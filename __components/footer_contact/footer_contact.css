@@ -1,0 +1,20 @@
+.footer-contact {
+    margin-top: 40px;
+}
+
+.element {
+    text-indent: calc(50% - 6rem);
+}
+
+#title {
+    margin-top: 1rem;
+}
+
+#phone {
+    margin-top: 0.5rem;
+}
+
+#copyright {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}

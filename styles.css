@@ -1,0 +1,12 @@
+body {
+    background-color: #dddddd;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.page-content {
+    margin-top: max(48px, calc(14vh + 16px));
+    scroll-margin-top: max(48px, calc(14vh + 16px));
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
