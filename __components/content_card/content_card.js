@@ -58,7 +58,7 @@ class CufContentCard extends HTMLElement {
                 content_list += `>${element_data}</div>`
             }
             else {
-                content_list += '>';
+                content_list += '></div>';
             }
             not_first = true;
           }
