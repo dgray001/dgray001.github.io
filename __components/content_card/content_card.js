@@ -90,13 +90,17 @@ class CufContentCard extends HTMLElement {
     clickHeaderText(content_key) {
         switch(content_key) {
             case 'news':
+                window.location.href = './news';
+                break;
             case 'papers':
+                window.location.href = './position_papers';
+                break;
             case 'prayer':
             case 'jobs_available':
             default:
                 console.log(`No page exists yet for: ${content_key}`)
+                break;
         }
-        // depends on content_key --> generally navigate to correct page
     }
 }
 
