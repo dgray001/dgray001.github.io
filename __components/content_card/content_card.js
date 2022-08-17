@@ -15,20 +15,22 @@ class CufContentCard extends HTMLElement {
         const content = await res.text();
         shadow.innerHTML = content;
         this.setContent();
+        const headerText = this.shadowRoot.querySelector('.headerText');
+        headerText.addEventListener('click', this.clickHeaderText.bind(null, this.content_key));
         if (this.collapsible === true) {
             const header = this.shadowRoot.querySelector('.header');
-            const headerText = this.shadowRoot.querySelector('.headerText');
             header.addEventListener('click', this.collapseHeader.bind(null, this, headerText));
-            headerText.addEventListener('click', this.clickHeaderText.bind(null, this.content_key));
+            if (start_closed) {
+                const content_element = this.shadowRoot.querySelector('.content');
+                const image_element = this.shadowRoot.querySelector('.image');
+                content_element.setAttribute('style', 'display: none;');
+                image_element.setAttribute('style', 'transform: rotate(90deg)');
+            }
         }
         else {
-            // add scrollbar css
-        }
-        if (start_closed) {
-            const content_element = this.shadowRoot.querySelector('.content');
             const image_element = this.shadowRoot.querySelector('.image');
-            content_element.setAttribute('style', 'display: none;');
-            image_element.setAttribute('style', 'transform: rotate(90deg)');
+            image_element.setAttribute('style', 'display: none;');
+            headerText.setAttribute('style', 'max-width: calc(100% - 0.3rem);')
         }
     }
 
@@ -83,7 +85,6 @@ class CufContentCard extends HTMLElement {
             content_element.setAttribute('style', 'display: block;');
             image_element.setAttribute('style', 'animation: openRotate 300ms forwards');
             source.scrollIntoView({behavior: "smooth"});
-
         }
     }
 

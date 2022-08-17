@@ -1,1 +1,14 @@
 @import "../styles.css";
+
+.page-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.actual-content {
+    flex: 3 1 0;
+}
+
+.sidebar {
+    flex: 1 1 0;
+}

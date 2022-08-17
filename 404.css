@@ -1,5 +1,9 @@
 @import "./styles.css";
 
+.page-content {
+    text-align: center;
+}
+
 .main-message {
     font-size: larger;
 }
