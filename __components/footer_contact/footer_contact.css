@@ -3,7 +3,7 @@
 }
 
 .element {
-    text-indent: calc(50% - 6rem);
+    margin-left: calc(50% - 6rem);
 }
 
 #title {
