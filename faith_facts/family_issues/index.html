@@ -13,12 +13,14 @@
     <script type="text/javascript" src="./faith_facts/family_issues/family_issues.js"></script>
     <script type="text/javascript" src="./__components/header/header.js" async></script>
     <script type="text/javascript" src="./__components/faith_fact_category/faith_fact_category.js" async></script>
+    <script type="text/javascript" src="./__components/faith_fact_category_list/faith_fact_category_list.js"></script>
     <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
 </head>
 <body>
     <cuf-header></cuf-header>
     <div class="page-content">
-        <h1>Faith Facts</h1>
+        <h1 class="faith-facts-header" onclick="window.location='faith_facts'">Faith Facts</h1>
+        <cuf-faith-fact-category-list category="family_issues"></cuf-faith-fact-category-list>
         <cuf-faith-fact-category category="family_issues"></cuf-faith-fact-category>
     </div>
     <cuf-footer-contact></cuf-footer-contact>

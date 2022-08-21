@@ -4,7 +4,6 @@ class CufFaithFactCategory extends HTMLElement {
     }
 
     async connectedCallback() {
-        console.log('test');
         const category_name = this.attributes.category?.value || '';
         const shadow = this.attachShadow({mode: 'open'});
         const res = await fetch('./__components/faith_fact_category/faith_fact_category.html');

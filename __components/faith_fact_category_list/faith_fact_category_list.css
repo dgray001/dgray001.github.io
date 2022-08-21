@@ -1,0 +1,28 @@
+#faith-fact-categories {
+    flex-direction: row;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.current-category {
+    background-color: gray;
+}
+
+.category-link {
+    color: darkblue;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    outline: none;
+    padding: 1em;
+    text-align: center;
+    user-select: none;
+}
+
+.category-link:hover:not(.current-category):not(:active) {
+    background-color: lightgray;
+}
+
+.category-link:active {
+    background-color: gray;
+}

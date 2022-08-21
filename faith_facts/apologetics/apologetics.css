@@ -1,1 +1,9 @@
 @import "../../styles.css";
+
+.faith-facts-header {
+    cursor: pointer;
+}
+
+.faith-facts-header:hover {
+    text-decoration: underline;
+}
