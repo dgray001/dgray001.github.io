@@ -12,14 +12,14 @@
     <link rel="icon" type="image/png" href="./__images/logo_square.png">
     <script type="text/javascript" src="./faith_facts/sacred_scripture/sacred_scripture.js"></script>
     <script type="text/javascript" src="./__components/header/header.js" async></script>
+    <script type="text/javascript" src="./__components/faith_fact_category/faith_fact_category.js" async></script>
     <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
 </head>
 <body>
     <cuf-header></cuf-header>
     <div class="page-content">
         <h1>Faith Facts</h1>
-        <h2 class="subtitle"></h2>
-        <div id="faith-fact-list"></div>
+        <cuf-faith-fact-category category="sacred_scripture"></cuf-faith-fact-category>
     </div>
     <cuf-footer-contact></cuf-footer-contact>
 </body>
