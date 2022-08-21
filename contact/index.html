@@ -17,7 +17,81 @@
 <body>
     <cuf-header></cuf-header>
     <div class="page-content">
-        <div class="test">Contact CUF content</div>
+        <form class="contact-form" action="/contact_form.php">
+            <div class="form-section" id="name-wrapper">
+                <div class="form-section-label">Name</div>
+                <div class="flex-wrapper form-row">
+                    <span id="name-prefix-wrapper">
+                        <select class="form-field" name="name-prefix" id="name-prefix">
+                            <option value=""></option>
+                            <option value="Mr.">Mr.</option>
+                            <option value="Mrs.">Mrs.</option>
+                            <option value="Ms.">Ms.</option>
+                            <option value="Dr.">Dr.</option>
+                            <option value="Prof.">Prof.</option>
+                            <option value="Rev.">Rev.</option>
+                        </select><br>
+                        <label for="name-prefix">Prefix</label>
+                    </span>
+                    <span id="name-first-wrapper">
+                        <input class="form-field" name="name-first" id="name-first" required="required"><br>
+                        <label for="name-first">First Name</label>
+                    </span>
+                    <span id="name-last-wrapper">
+                        <input class="form-field" name="name-last" id="name-last" required="required"><br>
+                        <label for="name-last">Last Name</label>
+                    </span>
+                    <span id="name-suffix-wrapper">
+                        <input class="form-field" name="name-suffix" id="name-suffix"><br>
+                        <label for="name-suffix">Suffix</label>
+                    </span>
+                </div>
+            </div>
+            <div class="form-section" id="address-wrapper">
+                <div class="form-section-label">Address</div>
+                <div id="address-first-wrapper" class="form-row">
+                    <input class="form-field" name="address-first" id="address-first" required="required"><br>
+                    <label for="address-first">Address Line 1</label>
+                </div>
+                <div id="address-second-wrapper" class="form-row">
+                    <input class="form-field" name="address-second" id="address-second"><br>
+                    <label for="address-second">Address Line 2</label>
+                </div>
+                <div class="flex-wrapper form-row">
+                    <span id="city-wrapper">
+                        <input class="form-field" name="city" id="city"><br>
+                        <label for="city">City</label>
+                    </span>
+                    <span id="state-wrapper">
+                        <input class="form-field" name="state" id="state"><br>
+                        <label for="state">State/Region/Province</label>
+                    </span>
+                </div>
+                <div class="flex-wrapper form-row">
+                    <span id="zip-wrapper">
+                        <input class="form-field" name="zip" id="zip"><br>
+                        <label for="zip">Zip / Postal Code</label>
+                    </span>
+                    <span id="country-wrapper">
+                        <input class="form-field" name="country" id="country"><br>
+                        <label for="country">Country</label>
+                    </span>
+                </div>
+            </div>
+            <div class="form-section">
+                <div class="flex-wrapper form-row">
+                    <span id="phone-wrapper">
+                        <input class="form-field" name="phone" id="phone"><br>
+                        <label for="phone">Phone</label>
+                    </span>
+                    <span id="email-wrapper">
+                        <input class="form-field" name="email" id="email"><br>
+                        <label for="email">Email</label>
+                    </span>
+                </div>
+            </div>
+            <input type="submit" value="Contact Us">
+        </form>
     </div>
     <cuf-footer-contact></cuf-footer-contact>
 </body>

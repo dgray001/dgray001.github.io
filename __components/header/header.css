@@ -47,6 +47,10 @@
     height: 13vh;
 }
 
+a {
+    outline: none;
+}
+
 img {
     object-fit: scale-down;
     max-width: 100%;
