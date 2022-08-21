@@ -1,1 +1,23 @@
 @import "../styles.css";
+
+#faith-fact-categories {
+    flex-direction: row;
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.category-link {
+    color: black;
+    display: inline-block;
+    outline: none;
+    padding: 1em;
+    text-align: center;
+}
+
+.category-link:hover {
+    background-color: lightgray;
+}
+
+.category-link:active {
+    background-color: gray;
+}

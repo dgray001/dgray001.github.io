@@ -3,7 +3,7 @@ async function loadPage() {
     const json_data = await response.json();
     let category_html = '';
     for (const category of json_data['faith_fact_categories']) {
-        category_html += `<div class="category-div"><a class="category-link" href="faith_facts/${category['category']}">${category['category_display']}</a></div>`;
+        category_html += `<a class="category-link" href="faith_facts/${category['category']}">${category['category_display']}</a>`;
     }
     document.getElementById('faith-fact-categories').innerHTML = category_html;
 }
