@@ -1,0 +1,32 @@
+{
+    "faith_fact_categories": [
+        {
+            "category": "apologetics",
+            "faith_facts": []
+        },
+        {
+            "category": "catechetics",
+            "faith_facts": []
+        },
+        {
+            "category": "family_issues",
+            "faith_facts": []
+        },
+        {
+            "category": "general",
+            "faith_facts": []
+        },
+        {
+            "category": "groups_and_people",
+            "faith_facts": []
+        },
+        {
+            "category": "liturgy_and_sacraments",
+            "faith_facts": []
+        },
+        {
+            "category": "sacred_scripture",
+            "faith_facts": []
+        },
+    ]
+}
