@@ -4,6 +4,10 @@ body {
     margin-right: 0;
 }
 
+* {
+    scroll-padding-top: max(48px, calc(14vh + 16px));
+}
+
 .page-content {
     margin-top: max(48px, calc(14vh + 16px));
     scroll-margin-top: max(48px, calc(14vh + 16px));

@@ -1,8 +1,6 @@
 .card {
     margin-left: 5px;
     margin-right: 5px;
-    padding-top: max(48px, calc(14vh + 16px));
-    margin-top: min(-48px, calc(-14vh - 16px));
 }
 
 .header {
