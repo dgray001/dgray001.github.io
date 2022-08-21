@@ -1,3 +1,22 @@
+.faith-facts-header-wrapper {
+    text-align: center;
+}
+
+.faith-facts-header {
+    cursor: pointer;
+    font-size: 2em;
+    font-weight: bold;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    user-select: none;
+}
+
+.faith-facts-header:hover {
+    text-decoration: underline;
+}
+
 #faith-fact-categories {
     flex-direction: row;
     overflow-x: scroll;
