@@ -2,31 +2,1120 @@
     "faith_fact_categories": [
         {
             "category": "apologetics",
-            "faith_facts": []
+            "category_display": "Apologetics",
+            "faith_facts": [
+                {
+                    "title": "ALL IN THE FAMILY: THE COMMUNION OF SAINTS",
+                    "question": "What is the communion of saints?",
+                    "summary": "The communion of saints is the intimate union that exists among all the disciples of Christ. This communion is known as the Mystical Body of Christ: the Family of God consisting of the faithful on earth (the Church Militant or pilgrim Church), the holy souls in purgatory undergoing spiritual cleansing (the Church Suffering), and the saints in heaven (the Church Triumphant). This union of believers joins us in Christ, our source of grace and life, and calls us to love and pray for one another as members of His body. Therefore, we can ask for the prayers of the saints in heaven, and we can also pray for people on earth and those in purgatory."
+                },
+                {
+                    "title": "BLESSED BE GOD, THE FATHER, SON AND HOLY SPIRIT",
+                    "question": "What is the Holy Trinity?",
+                    "summary": "The Holy Trinity is the union of the Father, Son and Holy Spirit as One God. As a fundamental truth of the Christian faith, no one embraces Christianity without believing in the Holy Trinity."
+                },
+                {
+                    "title": "CHOSEN IN HIM: THE CATHOLIC TEACHING ON PREDESTINATION",
+                    "question": "How does the Catholic Church understand predestination?",
+                    "summary": "Predestination is a term used to identify God’s plan of salvation in which, according to His own decree, He “accomplishes all things according to his will.” God gives us the gift of salvation through grace and faith. In turn, we must use our free will to persevere in good works “prepared beforehand” by God Himself."
+                },
+                {
+                    "title": "CHRIST’S DESCENT INTO “HELL”",
+                    "question": "Every time we recite the Apostles’ Creed, we proclaim our belief that Christ descended into “Hell” after His death. But isn’t Hell a place of everlasting torment for the damned? Did Christ actually descend to this Hell of eternal damnation, or is this another sense in which the Church understands “Hell”?",
+                    "summary": "The English word “Hell” describes two different places in the Bible. The first, referred to in the Apostles’ Creed, is “Hades” or the “abode of the dead,” the place where Christ spoke to the spirits in prison after His death. This first Hell is also known as the “limbo of the fathers.” The more commonly known “Hell of damnation” (or “Gehenna”) is the place where those who die in a state of mortal sin go, eternally separated by self-exclusion from God and the blessed. Hades was emptied after Christ's descent, with the just going to heaven and the wicked going to the eternal Hell. Hades is known today as Purgatory, where God purifies the saved sinner so that he can live in heaven with the Trinity (cf. Rev. 21:27; 1 Cor. 3:15)."
+                },
+                {
+                    "title": "ECUMENISM AND THE UNITY OF THE CHURCH ",
+                    "question": "What does the Catholic Church teach about ecumenism and Church unity?",
+                    "summary": "The Church’s teaching authority praises efforts to restore the full communion of non-Catholic churches and ecclesial communities with Christ’s sole Church, which subsists in the Catholic Church."
+                },
+                {
+                    "title": "GIVE IT A REST: SUNDAY IS THE LORD’S DAY",
+                    "question": "Why does the Catholic Church worship on Sunday, rather than maintaining the Jewish tradition of the Saturday Sabbath?",
+                    "summary": "Through His Paschal Mystery, i.e., His death and resurrection, Jesus Christ fulfilled the “spiritual truth” of the Jewish Sabbath. “[F]or Christians its ceremonial observance replaces that of the Sabbath,” fulfilling “the moral command of the Old Covenant.” Jesus, who is Lord even over the Sabbath, taught the early Church to fulfill the Sabbath and commemorate His Mystery on the first day of the week, Sunday: “The Sabbath was made for man, not man for the Sabbath; so the Son of man is lord even over the Sabbath.” This celebration is the Sacrifice of the Mass, also known as “the breaking of the bread.”"
+                },
+                {
+                    "title": "GOD OR GODDESS? OUR HEAVENLY FATHER KNOWS BEST",
+                    "question": "Is it proper for us to refer to God as our mother?",
+                    "summary": "When asked how to pray, Jesus told His disciples to refer to God as “Father”.1 While God is neither man nor woman, Jesus revealed God’s “fatherhood” to us. God is Father from all eternity, and becomes “Our Father” through our rebirth in Christ. God has not revealed Himself as “mother,” and so it is inappropriate to address Him that way."
+                },
+                {
+                    "title": "GOING GOD’S WAY: MORAL CONSCIENCE",
+                    "question": "What does the Church teach concerning moral conscience?",
+                    "summary": "While the natural law written on our hearts teaches us the general, objective principles of the moral life, conscience applies the natural law to particular circumstances, enabling us to choose what is good and avoid what is evil (cf. Catechism, no. 1777)."
+                },
+                {
+                    "title": "GREGORY THE GREAT AND PAPAL PRIMACY ",
+                    "question": "In A.D. 587 Emperor Maurice granted the title “ecumenical patriarch” or “universal bishop” to John the Faster, Patriarch of Constantinople. Pope St. Gregory the Great condemned the title. Later, when others tried to apply them to him as bishop of Rome, he refused the titles. In refusing the titles, was the Pope denying the primacy of the papacy as some Eastern Orthodox Christians maintain?",
+                    "summary": "No, Pope St. Gregory the Great was simply affirming the constant Catholic doctrine that individual bishops are truly successors of the apostles and not just agents of the Pope or any other patriarch. However, in doing so, he never denied his primacy, which on other occasions he clearly affirmed, noting, among things, that “the See of Constantinople is subject to the Apostolic See.”"
+                },
+                {
+                    "title": "HONOR THY MOTHER: PRAISING MARY AND THE SAINTS IS BIBLICALLY CORRECT ",
+                    "question": "Does honoring and praising Mary and the saints offend God? Some Christian say that such practices are blasphemous, substituting the “worship” of creatures over God the Creator. What does the Bible say about these matters?",
+                    "summary": "Catholics do not worship or adore Mary the Mother of God and the saints. Rather, we honor and praise Mary and the saints because of their great love and faithfulness to God. God is glorified in His creation (e.g., angels, mountains, stars, sunsets, human beings), and when we praise the beauty of His creation we are praising Him. This principle is at the heart of the Catholic teaching on honoring Mary and the saints. We recognize the great beauty and the graces God has bestowed on these holy men and women (cf. Rom. 8:30), and praising them redounds to God's greater honor and glory. Catholics do not worship or adore Mary the Mother of God and the saints. Rather, we honor and praise Mary and the saints because of their great love and faithfulness to God."
+                },
+                {
+                    "title": "“IF I FOR GET YOU, O JERUSALEM”: THE TRUTH ABOUT THE CRUSADES ",
+                    "question": "What were the Crusades?",
+                    "summary": "The Crusades were an integral part of the attempt to reform, defend, and renew the Church during the Middle Ages. The term “crusade” comes from the Latin crucesignati, referring to the crosses (cruces) of cloth sewn on crusaders’ tunics after taking their vows. The “taking of the cross” was a penitential act directed to the defense of the faith. From 1095 up until the late 16th century, numerous crusades were proclaimed against the Muslims in the Holy Land, Spain, and North Africa; against various pagan peoples threatening the northern and eastern borders of Christendom; against a variety of heretics in France, Germany, and eastern Europe; and against the enemies of the papacy in northern and southern Italy."
+                },
+                {
+                    "title": "IS CHRISTMAS A PAGAN FEAST?",
+                    "question": "Does Christmas have pagan roots? Why do Catholics and Christians celebrate Christmas on December 25?",
+                    "summary": "Christmas is the celebration of Our Lord Jesus Christ’s birth. It is not a pagan feast. However, history indicates that the Church chose December 25 to evangelize the pagans of the ancient Roman Empire, who celebrated the feast of the “invincible sun” on that day. Following the biblical wisdom not to “lay on any burden beyond that which is strictly necessary” (Acts 15:28), the Church apparently chose Dec. 25 to “baptize” the Romans’ worship, redirecting it toward the true “invincible sun” (cf. Ps. 84:11), Jesus Christ, who “abolished death and brought life and immortality to life through the gospel (2 Tim. 1:10; cf. Rom. 5:15-21, 6:9-11)."
+                },
+                {
+                    "title": "IT WORKS FOR ME: THE CHURCH’S TEACHING ON JUSTIFICATION",
+                    "question": "How does the Catholic understanding of justification differ from the Protestant understanding? Do Catholics believe in salvation by grace alone? Is the Catholic understanding biblical?",
+                    "summary": "When Catholics and Protestants use the words “righteousness,” “justification” and “sanctification,” they have different, though similar, definitions for these words. These differences lead to a lot of unnecessary and divisive confusion between the two groups. However, if we learn the different ways Protestants and Catholics use these words, we can better understand our differences and points of agreement, providing a basis, with God’s grace, for our ultimate reconciliation.<br>The Catholic Church teaches, and most Protestants also believe, that people can be saved only by the grace of God, i.e., “free and undeserved help” from God, which is mediated through Christ, the God-man (Catechism of the Catholic Church, nos. 606-18). We can never “earn” salvation by our own good works; nothing we do is “repaid” by God in a strict tit-for-tat sense (Rom. 11:35, Catechism no. 2007). So on this crucial issue—justification (and ultimately salvation) by God’s grace through Christ (Rom. 3:24)—Catholics and most Protestants agree. The Church differs with Protestants, however, regarding the means of righteousness, justification, and ultimately salvation. Protestants believe that people are “justified through faith alone,” while Catholics believe that people are “justified through faith and works.” The Catholic view of justification, properly understood, is not only very convincing and satisfying, it is also biblical and true (cf. Catechism nos. 1987-2029 for more information on grace, justification and merit)."
+                },
+                {
+                    "title": "JEHOVAH’S WITNESSES AND THE HOLY SPIRIT ",
+                    "question": "What do Jehovah’s Witnesses believe about the Holy Spirit? How can one respond to their claims?",
+                    "summary": "Jehovah’s Witnesses believe that the Holy Spirit is a force of God, not a Person. This belief corresponds with their denial of God as a Trinity—three Persons, but one God. One can respond to their claims by pointing to Scripture passages that suggest the Personhood of the Holy Spirit. One can also look to the writings of early Church Fathers who refer to the Holy Spirit as a Person. After doing so, three questions arise: Is one conclusion more reasonable than the other, or are they equally reasonable? Is either conclusion necessary? Given the answers to those two questions, how do we know with certainty which conclusion is correct?"
+                },
+                {
+                    "title": "LIFE IN THE FAST LANE: WHY CATHOLICS ABSTAIN",
+                    "question": "Why do Catholics fast? What did Jesus teach about fasting? Is fasting still an obligation for Catholics?",
+                    "summary": "Fasting is a “spiritual exercise” by which we repent of our sins and strive to become more Christ-like as sons and daughters of God (Catechism of the Catholic Church, nos. 1438, 2043; cf. Rom. 8:14-17). While Jesus cautioned against prideful fasting (Mt. 6:1-5, 16-18), He Himself fasted (Lk. 4:1-2) and encouraged others to do so to advance His Kingdom (Mt. 17:21). From her inception, the Church has followed Christ’s example regarding fasting. She continues to require the faithful to fast and abstain on prescribed days during Lent."
+                },
+                {
+                    "title": "MARY, CONCEIVED WITHOUT SIN: THE IMMACULATE CONCEPTION",
+                    "question": "What is the Immaculate Conception? Is the Church’s teaching on the Immaculate Conception biblical?",
+                    "summary": "The dogma of the Immaculate Conception, as solemnly defined by Pope Pius IX in 1854, teaches that “the most Blessed Virgin Mary, in the first instant of her conception, by a singular grace and privilege granted by Almighty God, in view of the merits of Jesus Christ, the Savior of the human race, was preserved free from all stain of original sin.”"
+                },
+                {
+                    "title": "MARY’S PERPETUAL VIRGINITY",
+                    "question": "What does the Church teach concerning Mary’s virginity?",
+                    "summary": "The Church has always professed that Mary was a virgin “ante partum, in partu, et post partum,” i.e., before birth, during birth, and after the birth of Christ. Mary conceived Jesus in her womb “by the power of the Holy Spirit” without loss of her virginity. She remained a virgin in giving birth to Jesus; His miraculous birth did not diminish her virginal integrity but sanctified it (Vatican II, Lumen Gentium, no. 57). Following the birth of Jesus, Mary remained a virgin for the rest of her earthly life, until such time as she was taken body and soul into heaven, where she reigns as Queen (Lumen Gentium, no. 59)."
+                },
+                {
+                    "title": "NO BULL: PAPAL AUTHORITY AND OUR RESPONSE",
+                    "question": "What is the origin and purpose of papal authority? What obedience is due the Pope by the People of God?",
+                    "summary": "Papal authority has divine origin. The Lord made Simon alone, whom He named Peter, the “rock” of His Church. He gave him the keys of His Church and instituted him shepherd of the whole flock."
+                },
+                {
+                    "title": "PERSEVERING TO THE END: THE BIBLICAL REALITY OF MORTAL SIN",
+                    "question": "Is the distinction between mortal and venial sin biblical? Can we “lose” our salvation by committing a mortal sin?",
+                    "summary": "The Bible describes sins that are mortal (or “unto death”), and those that are not mortal, which we commonly call venial (cf. 1 Jn. 5:16-17; Catechism, nos. 1852-54)."
+                },
+                {
+                    "title": "PILLAR AND BULWARK OF THE TRUTH: THE INFALLIBLE MAGISTERIUM OF THE CATHOLIC CHURCH",
+                    "question": "What is the Magisterium? How should the faithful respond to the Magisterium? What is the charism of infallibility? How is that charism exercised by the Church?",
+                    "summary": "The Magisterium is the Church’s teaching office established by Jesus Christ to “guard what has been entrusted” (1 Tim. 6:20). The Magisterium, in service to the Word of God, authentically interprets the Word, whether in Scripture or in the form of Tradition. The Magisterium is exercised by the Pope and the bishops in union with him. Because Christ has instituted the Magisterium to communicate His saving truth, the faithful should respond in docility and joy to the Church’s teaching out of love for Christ.<br>Infallibility is a charism whereby the Holy Spirit protects the Magisterium from teaching error on matters of faith and morals. The Church exercises this charism when she teaches definitively, whether in a solemn manner (i.e., through the extraordinary Magisterium) or through the ordinary and universal Magisterium."
+                },
+                {
+                    "title": "PREDESTINATION AND FREE WILL",
+                    "question": "What is meant by “predestination” within a Calvinist understanding of salvation? Does this exclude free will?",
+                    "summary": "In general, predestination refers to God’s sovereign will over all things, for He accomplishes everything according to the counsel of His will (Eph. 1:11). According to Catholic teaching, predestination and free will are not mutually exclusive. Rather, God created man in His image to share in His divine nature by a communion of love.1 Freedom of the will holds a necessary place in the mystery of God’s eternal, sovereign and predestined plan, which is to unite all things in heaven and on earth in him (I Cor. 15:28; Eph. 1:10). In contrast, the Calvinist approach to predestination denies the full freedom of will God gives each person."
+                },
+                {
+                    "title": "PURGATORY",
+                    "question": "What does the Church teach concerning purgatory? What is its biblical basis? What are common misconceptions to the doctrine and how can they be refuted?",
+                    "summary": "Purgatory is a doctrine of the Catholic Church. It refers to the state of being after death in which people do penance for sins not atoned for on earth. Its biblical basis is found in both the Old and New Testaments. Just as the doctrine of purgatory flows from the Catholic understanding of grace, so misconceptions flow from a misunderstanding of grace. Errors concerning this doctrine are most prevalent among Protestants due to their teaching of sola fide."
+                },
+                {
+                    "title": "ROCK SOLID: THE SALVATION HISTORY OF THE CATHOLIC CHURCH",
+                    "question": "Is the Catholic Church a man-made, post-resurrection invention or the fulfillment of God’s saving plan for mankind?",
+                    "summary": "The Catholic Church is the universal family of God through which all men may be saved and have communion with their heavenly Father, fulfilling what God promised Abraham1 and David."
+                },
+                {
+                    "title": "ST. AUGUSTINE’S REAL FAITH IN THE REAL PRESENCE",
+                    "question": "Did St. Augustine believe in the Real Presence of Christ in the Eucharist?",
+                    "summary": "Yes. St. Augustine did believe that the bread and wine become the Body and Blood of Jesus Christ at the time of consecration."
+                },
+                {
+                    "title": "THAT THEY MAY ALL BE ONE: THE DIFFERENCE THE CHURCH MAKES",
+                    "question": "In the 1500s, Protestant Reformers claimed to have divine guidance in attempting to restore the order, truth and unity of the early Christian Church. Does the Bible and other historical evidence support their claim?",
+                    "summary": "No. As the Bible and other historical evidence testify, Jesus Christ founded the Catholic Church. While some of the Church’s leaders and practices (not doctrines) were in need of reform in the 1500s, the Protestant Reformation erred in rejecting the visible papal authority that God provided to establish and maintain order, truth and unity in His Church. In seeking Christ without His Church, the Reformation created a vacuum of Church authority that has generated more than 20,000 Protestant denominations (listed in the Oxford University Press’s World Christian Encyclopedia)."
+                },
+                {
+                    "title": "THE ASSUMPTION OF THE BLESSED VIRGIN MARY",
+                    "question": "What does the Church teach concerning the Assumption of the Blessed Virgin Mary?",
+                    "summary": "The teaching is aptly summarized in the Catechism of the Catholic Church, no. 974:<br>The Most Blessed Virgin Mary, when the course of her earthly life was completed, was taken up [“assumed”] body and soul into the glory of heaven, where she already shares in the glory of her Son’s Resurrection, anticipating the resurrection of all members of His Body.<br>The doctrine of Mary’s Assumption is firmly rooted in sacred Scripture and Tradition, and this constant teaching was infallibly defined as a dogma of the Catholic Faith by Pope Pius XII in 1950."
+                },
+                {
+                    "title": "THE FIRST MARIAN DOGMA: MARY, THE MOTHER OF GOD",
+                    "question": "What is the Church’s teaching concerning Mary’s divine maternity?",
+                    "summary": "The first and foremost revealed truth about our Blessed Mother, from which all her other roles and honors flow, is that she is the Mother of God."
+                },
+                {
+                    "title": "THE HUMAN KNOWLEDGE OF CHRIST",
+                    "question": "What does the Church teach concerning Christ’s human knowledge?",
+                    "summary": "The constant teaching of the Church is that Christ, in His human intellect, knew all things that a created intellect could know from the moment of His conception."
+                },
+                {
+                    "title": "THE INQUISITION IN THE CATHOLIC CHURCH",
+                    "question": "What role did the Inquisition play in the Catholic Church?",
+                    "summary": "According to Pope John Paul II, “the Inquisition belongs to a tormented phase in the history of the Church, which ... Christians [should] examine in a spirit of sincerity and open mindedness.” To assess the Inquisition properly we must distinguish between the principle which undergirded it, and the actions of those responsible for implementing the principle. The principle -- that the Church must guard the faith against deviations -- is an obligation of Divine Law (cf. Mt. 18:18; 2 Tim. 1:14). The actions taken to implement the process were sometimes questionable and even deplorable. Yet, because of centuries of misinformation, we must take care to distinguish fact from fiction."
+                },
+                {
+                    "title": "THE ROLE OF THE INQUISITION IN EUROPE",
+                    "question": "What was the Inquisition?",
+                    "summary": "“Inquisition” was a judicial procedure used in the medieval courts of Europe."
+                },
+                {
+                    "title": "WHAT’S A MOTHER TO DO? MARY’S ROLE IN OUR SALVATION",
+                    "question": "What is Mary’s role in our salvation? Isn’t Jesus Christ the one Mediator between God and man?",
+                    "summary": "Mary’s role can be summarized in the terms Co-redemptrix, Mediatrix, and Advocate (cf. Catechism, no. 969). Mary’s maternal role in our salvation, as summarized by these titles, is part of the constant teaching of the Church."
+                },
+                {
+                    "title": "WITHOUT THE CHURCH THERE IS NO SALVATION",
+                    "question": "What does the Catholic Church mean by the phrase, “Outside the Church there is no salvation” (extra ecclesiam nulla salus)?",
+                    "summary": "All salvation comes through Jesus Christ, the one Savior of the world (cf. Acts 4:12). His Holy Spirit dispenses the graces of salvation through His Body, the Church. Christ told the apostles, “He who hears you hears me, and he who rejects you rejects me, and he who rejects me rejects him who sent me” (Lk. 10:16). As stated in Vatican II's Dogmatic Constitution on the Church, “Basing itself upon Sacred Scripture and Tradition, [this holy Council] teaches that the Church, now sojourning on earth as an exile, is necessary for salvation.” Quoting from various documents of Vatican II and Pope Paul VI, the Catechism explains:<br>As sacrament, the Church is Christ's instrument. “She is taken up by him also as the instrument for the salvation of all,” “the universal sacrament of salvation,' by which Christ is “at once manifesting and actualizing the mystery of God's love for men.” The Church “is the visible plan of God's love for humanity,” because God desires “that the whole human race may become one People of God, form one Body of Christ, and be built up into one temple of the Holy Spirit” (no. 776; see also nos. 846 -- 48)."
+                }
+            ]
         },
         {
             "category": "catechetics",
-            "faith_facts": []
+            "category_display": "Catechetics",
+            "faith_facts": [
+                {
+                    "title": "SEPARATION OF CHURCH AND HOME: PREPARING CHILDREN FOR SACRAMENTS",
+                    "question": "Who has the right to prepare a child for the sacraments of Confession, Confirmation, and Holy Eucharist? Who should make the final determination as to whether the child is ready to receive?",
+                    "summary": "Both pastors of souls and parents have obligations and rights in the preparation of children for the sacraments. If they fulfill their obligations according to the intentions of the Church, their roles complement each other."
+                },
+                {
+                    "title": "WE HAVE BUT ONE TEACHER: CATECHESIS IN OUR TIME",
+                    "question": "What is the Church’s view of catechesis?",
+                    "summary": "Effective catechesis involves a deepening relationship with Jesus Christ and a growing knowledge of His Church’s teachings. The goal is a vital relationship with Jesus Christ and His Mystical Body, the Church, so that the person in turn may bear effective witness to Christ in this life and share eternal happiness in heaven in the next. The achievement of this goal, which only occurs in cooperation with God’s grace, may be furthered by sound catechisms, good priests and teachers, and dynamic parish programs. However, the most important component is the instruction and example given at home, the domestic Church, upon which everything else builds."
+                },
+                {
+                    "title": "WHERE DO WE GO WRONG? THE TOP TEN ERRORS IN CATECHESIS",
+                    "question": "",
+                    "summary": "The Catechism of the Catholic Church is the ultimate standard by which all catechetical resources should be evaluated. We are blessed to have in our day such a comprehensive and useful resource to help us present our faith to others. However, the Catechism is not meant to replace all of the various catechisms that are on the market, but rather to encourage and assist in the updating of old series and the writing of new ones that faithfully present Catholic doctrine. What are the most common problems with some modern catechetical resources?"
+                }
+            ]
         },
         {
             "category": "family_issues",
-            "faith_facts": []
+            "category_display": "Family Issues",
+            "faith_facts": [
+                {
+                    "title": "“BE FRUITFUL AND MULTIPLY”: THE MORALITY OF FERTILITY DRUGS",
+                    "question": "Is the use of fertility drugs in conformity with the moral law?",
+                    "summary": "Medical technology must be at the service of human dignity. In particular, technology that concerns overcoming fertility disorders must be at the service of the dignity of the conjugal union, i.e., the mutual self-giving of spouses expressed in the conjugal act, performed in a truly human way and open to new life (cf. Catechism of the Catholic Church, no. 2361; Code of Canon Law, c. 1061). Couples with fertility problems who desire to have a child and participate in giving the gift of human life should be encouraged to do whatever is morally permissible to bring this about. This can include fertility drugs."
+                },
+                {
+                    "title": "BENZIGER FAMILY LIFE",
+                    "question": "Does Catholics United for the Faith (CUF) recommend the use of the Benziger Family Life (BFL) sex education program in Catholic grade schools?",
+                    "summary": "No, CUF does not recommend Benziger Family Life (BFL) because it violates several principles of Catholic chastity education. These principles were stated in The Truth and Meaning of Human Sexuality (TMHS), which the Pontifical Council for the Family published in 1995.<br>To determine whether such a program is faithfully and effectively assisting parents, there are several principles, based on a wealth of Church teaching on the subject, to which any such program should be faithful. Benziger Family Life is not faithful to these principles.<br>(1) BFL is designed for use in a coeducational setting. Trying to teach chastity in such a setting violates the child’s privacy and modesty, and simply is counterproductive (cf. TMHS, no. 127).<br>(2) BFL does not ensure a respect for the different phases of childhood development. In particular, the program runs the risk of violating the child’s “years of innocence,” i.e., “latency” or prepuberty stage (TMHS, nos. 64, 65, 75, 78, 83), presenting explicit, biological information prematurely and providing other materials that offend modesty. The Church unambiguously teaches that such explicit, immodest presentations can never be tolerated (TMHS, nos. 126, 127, 133, 139, 143). Even during puberty and adolescence, moral education “must not include the more intimate aspects of sexual information, whether biological or affective, which belong to individual formation within the family” (no. 133; emphasis added).<br>(3) BFL possesses a flawed view that the primary cause of impurity is ignorance, not sin. This is seen by a continual focus on information, rather than formation. The program tends to inform sinners rather than form saints (TMHS, nos. 122-23; Catechism of the Catholic Church, no. 407). BFL is also deficient in its presentation of Catholic doctrine, such as an inadequate treatment of original sin; failing to even mention, let alone distinguish between, mortal and venial sin; and making an inaccurate presentation on the human soul.<br>(4) BFL ambiguously presents official Church teaching on marriage and family, specifically regarding contraception. In addition, the program recommends the works of others who dissent from Catholic teaching on marriage and family. Because of such referrals, and because of the program’s inadequate presentation on sin, the program does not have in place safeguards to help ensure that teachers faithfully communicate Church teaching on sensitive marriage and family issues (TMHS, nos. 116, 117, 120, 135, 145, 146).<br>In light of TMHS, CUF recommends that schools work with parents so that they can form their children regarding the intimate details of chastity within their homes (nos. 145, 150). In addition, general discussions of chastity should take place within already existing religion classes. As the Catechism conveys, these discussions should be framed by the Sixth and Ninth Commandments (Catechism, nos. 2331-2400, especially 2331-56, and 2514-33).<br>Benziger has recently produced a new version of its Family Life program, making explicit sections on sexual anatomy and the marital act detachable. Although they market this as a “less offensive” program, it remains one that we cannot endorse. If the publisher recognizes the program as “offensive,” requiring a “less offensive” option, we find it disappointing that Benziger offers this new edition as a marketing option, rather than out of moral conviction."
+                },
+                {
+                    "title": "CANONICAL MISCONCEPTIONS: POPE PIUS IX AND THE CHURCH’S TEACHING ON ABORTION",
+                    "question": "Has the Catholic Church always taught that abortion is a grave sin? If so, how do you respond to the charge that the Church only declared abortion to be murder in 1869 under Pope Pius IX?",
+                    "summary": "The Catholic Church has always taught that abortion is a grave sin and has always prohibited Catholics from cooperating in or procuring an abortion. This has been the clear and constant doctrine of the Catholic Church, as even the ancient Didache, a first-century document that conveys the teaching of the early Church, affirms: “You shall not procure abortion, nor destroy a new-born child” (cf. Acts. 2:42, Catechism of the Catholic Church, nos. 2270-75). What became clearer over time, because of advances in biology, was the issue of ensoulment, i.e., when the soul is infused into the unborn. In addition, the action of Pope Pius IX in 1869 was one of changeable discipline, not a change in doctrine. In this case, the Pope merely removed the distinction between the “unensouled” and “ensouled” fetus, making the canonical punishment the same for abortion at every stage because the soul is infused at conception (Catechism, no. 366). While the Church does not change her doctrine, she can modify the penalties for violating that doctrine as she deems appropriate. Thus, while a complete description of all the ways in which abortion offends God has not always been completely understood, the fact that it is a grave offense against God has always been taught."
+                },
+                {
+                    "title": "CATHOLIC TRADITIONS FOR ADVENT AND CHRISTMAS",
+                    "question": "How can families better live the spirit of Advent and Christmas in their homes?",
+                    "summary": "The Catholic Church has designated the four weeks preceding Christmas as Advent, a time to “prepare the way of the Lord” for His coming as our King and Savior. In addition, the Church teaches that:<br>when the Church celebrates the liturgy of Advent each year, she makes present this ancient expectancy of the Messiah, for by sharing in the long preparation for the Savior’s first coming, the faithful renew their ardent desire for his second coming. By celebrating [John the Baptist’s] birth and martyrdom, the Church unites herself to his desire: “He must increase, but I must decrease” (Catechism, no. 524; original emphasis).<br>By participating in various time-honored traditions, such as making Jesse trees or putting on a Christmas play at home, Catholic families can engage more fruitfully in the seasons of Advent and Christmas."
+                },
+                {
+                    "title": "CHASTITY BEGINS AT HOME: PARENTAL RIGHTS AND CHASTITY EDUCATION",
+                    "question": "What are the rights and duties of parents when it comes to chastity education? How can they effectively resolve their concerns regarding chastity education programs at a parish or school in a constructive manner?",
+                    "summary": "The Church has consistently taught that parents are the principal and first educators of their children (Catechism, no. 1653). According to natural law and the Church’s moral teachings, schools must be subservient to parents, particularly in the area of sex education. School programs must not violate a child’s innocence. Even with adolescents, classroom programs must not include the more intimate aspects of sexual information, whether biological or affective, which belong to individual formation within the family."
+                },
+                {
+                    "title": "CHOOSE LIFE THAT YOU AND YOUR CHILDREN MIGHT LIVE: THE TRUTH ABOUT BIRTH CONTROL",
+                    "question": "Is artificial birth control or contraception ever permitted?",
+                    "summary": "Under no circumstances is the use of contraception morally permissible. This is the clear and infallible teaching of the Catholic Church and, because it flows from the natural law as given to us by God, the Creator of all people, it is binding on all men and women (Humanae Vitae [HV] 18; Catechism, no. 2036)."
+                },
+                {
+                    "title": "DIVORCE AND REMARRIAGE: THE CHURCH’S PERSPECTIVE",
+                    "question": "What does the Catholic Church teach about remarriage after divorce? Can divorced and remarried Catholics substitute their personal judgment for a Church annulment? Can divorced and remarried Catholics receive Holy Communion?",
+                    "summary": "The Catholic Church does not permit the practice of divorce and remarriage under any circumstances. As our Lord says, “The man who divorces his wife and marries another is guilty of adultery against her. And if a woman divorces her husband and marries another, she is guilty of adultery too” (Mk. 10:11-12). One can be an innocent victim of divorce, and serious circumstances may warrant a separation of spouses, but remarriage is morally wrong.<br>A Catholic cannot substitute his personal judgment as to whether his marriage was invalid (internal forum) in place of the legitimate Church annulment process.<br>In general, the Church does not allow divorced and remarried Catholics to receive the sacraments. For serious reasons, there are certain exceptions to this discipline."
+                },
+                {
+                    "title": "HOME SCHOOLING RESOURCES",
+                    "question": "Are there any home schooling resources committed to preserving the teachings of the Catholic Church? Are there other resources available that are not Catholic but respect the Catholic home schooling parent?",
+                    "summary": "Yes, there are many resources available to Catholic home schooling parents."
+                },
+                {
+                    "title": "LENTEN TRADITIONS WITHIN THE HOME",
+                    "question": "How can families better live the spirit of Lent and Easter in their homes?",
+                    "summary": "The Catholic Church has designated the liturgical season of Lent to be a period of 40 days, not including Sundays. It begins on Ash Wednesday and ends with Holy Saturday, the day before Easter Sunday. It is a period of fasting and self-denial, for we imitate Christ’s fasting for 40 days and 40 nights before His temptation by the devil (Catechism of the Catholic Church, nos. 538-40). Pope Gregory I described Lent as “the spiritual tithing of the year.”<br>The liturgical season of Easter begins with the Feast of feasts, Christ’s resurrection. St. Gregory of Nazianzus writes, “This highest Feast and greatest celebration so much surpasses not only civic holidays but also the other feast days of the Lord, that it is like the sun among the stars.”<br>In The Easter Book, Fr. Francis Weiser, S.J. simply states, “From the very first, the resurrection of Christ was celebrated as the greatest and most important festive day of the entire year. In fact, every Sunday is a little Easter, consecrated to the memory of the Risen Christ.”"
+                },
+                {
+                    "title": "MALE AND FEMALE HE CREATED THEM: THE CHURCH AND “SAME SEX MARRIAGES”",
+                    "question": "Why does the Church oppose government-sanctioned homosexual “marriages”?",
+                    "summary": "Two men cannot legitimately marry each other, nor can two women, no matter what any earthly judicial or legislative body may say. Marriage is by nature defined by the conjugal act between one man and one woman, a monogamous or exclusive union in which the two become one in a lifelong partnership (cf. Gen. 2:24; Mt. 19:4-6)."
+                },
+                {
+                    "title": "MARRIAGE IN GOD’S PLAN: DISCOVERING THE POWER OF MARITAL LOVE",
+                    "question": "What is the role of marriage in the plan of God?",
+                    "summary": "Christ restored marriage to its original integrity and elevated it to the dignity of a sacrament. Marriage reflects the communion of love that the Godhead shares in Himself and is a means through which God restores man to the communion for which he was created."
+                },
+                {
+                    "title": "PLAY IT AGAIN: ORGAN DONATION",
+                    "question": "What is the position of the Catholic Church on organ donation for the purpose of transplant? What moral principles are involved? What would motivate one to be an organ donor?",
+                    "summary": "Pope John Paul II sums up the position of the Church in these words:<br>[T]he Gospel of life is to be celebrated above all in daily living, which should be filled with self-giving love for others. …Over and above such outstanding moments, there is an everyday heroism, made up of gestures of sharing, big or small, which build up an authentic culture of life. A particularly praiseworthy example of such gestures is the donation of organs, performed in an ethically acceptable manner, with a view to offering a chance of health and even of life itself to the sick who sometimes have no other hope."
+                },
+                {
+                    "title": "PURE BIOLOGY? EFFECTIVE CHASTITY EDUCATION",
+                    "question": "How can parents determine whether a particular “sex education” program will effectively teach their children the virtue of chastity?",
+                    "summary": "To determine whether such a program is faithfully and effectively assisting the parents, there are six useful questions, based on a wealth of Church teaching on the subject, that should be asked. These questions should be considered particularly in light of The Truth and Meaning of Human Sexuality: Guidelines for Education Within the Family (TMHS), published in late 1995 by the Pontifical Council for the Family."
+                },
+                {
+                    "title": "RAISING TOMORROW’S SAINTS: THE CATHOLIC EDUCATION OF YOUTH",
+                    "question": "What is Catholic education?",
+                    "summary": "Catholic education recognizes that knowledge is at the service of man and must be directed toward the common good and the salvation of all. Such education requires a formation in the virtues that has foundation in the Commandments of God. An education is truly Catholic to the degree an educator uses the educational experience to evangelize the students and form them in Christ."
+                },
+                {
+                    "title": "REPRODUCTIVE TECHNOLOGIES",
+                    "question": "What does the Church teach about reproductive technologies?",
+                    "summary": "If they help married couples realize the basic goods involved in marriage, the Church favors technological interventions. The Church opposes technological interventions that violate the natural law regarding the intrinsic goods and natural rights of the human person. In this regard, the Church protects human life and the procreative and unitive aspects of sexual acts within marriage.1 The following are morally wrong: in vitro fertilization and the discarding of embryos in in vitro fertilization, non-therapeutic experimentation or manipulation on embryos, artificial insemination (whether by donor or by husband) and human cloning. The Church has not pronounced on the procedures called GIFT and TOTS."
+                },
+                {
+                    "title": "RETURNING TO THE CHURCH",
+                    "question": "What is the process for returning to the Catholic Church? What might a person returning to the Church expect?",
+                    "summary": "Former Catholics can always return to the Church—they need only seek a priest. The priest can provide any needed guidance or instruction. A full return to the Church includes a celebration of the sacraments.<br>A person coming back into the Church can expect the fullness of the means of personal sanctification provided by Jesus Christ through His Church. He or she can expect a full participation in the mission of Christ and His Church. He or she should expect to experience the characteristics of the Church—one, holy, catholic, and apostolic—really but imperfectly manifested in the life of faith, the celebration of the liturgy, and pastoral governance."
+                },
+                {
+                    "title": "SHOULD I ATTEND?",
+                    "question": "Does the Catholic Church require Catholics not to attend weddings that the Church does not approve? If he can attend, is it permissible for a Catholic to be in the wedding party?",
+                    "summary": "The Catholic Church does not explicitly prohibit Catholics from attending. However, there are certain moral principles that must be considered before a Catholic decides what to do. Most important, Catholics must avoid any actions that encourage others to sin or cause scandal."
+                },
+                {
+                    "title": "SHOULD I BE A CONFIRMATION SPONSOR?",
+                    "question": "Having received an invitation to be a confirmation sponsor, how can a person decide whether to accept?",
+                    "summary": "There are a number of considerations a person might make when deciding whether or not to accept the invitation to be a sponsor for confirmation. They fall into two general categories: Church norms and personal considerations."
+                },
+                {
+                    "title": "THE ANNULMENT PROCESS",
+                    "question": "What is a declaration of nullity?",
+                    "summary": "A declaration of nullity is not a divorce. A divorce recognizes a marriage existed but allows common life to end. A declaration of nullity is a decree by a Church court stating that a marriage never existed. In a case of marriage nullity, the judges must determine if the minimum requirements of marriage were met, not if the ideal marriage was achieved. If minimum requirements were met, the validity of the marriage is upheld."
+                },
+                {
+                    "title": "TRUE COMPASSION FOR THE DYING: THE CHURCH’S TEACHING ON EUTHANASIA",
+                    "question": "What is euthanasia? Why does the Church forbid its practice?",
+                    "summary": "The glossary in the Catechism of the Catholic Church defines euthanasia as “an act or omission which, of itself or by intention, causes the death of handicapped, sick, or dying persons -- sometimes with an attempt to justify the act as a means of eliminating suffering.”<br>Euthanasia is a form of murder and thus is prohibited by the Fifth Commandment. It is a grave offense against the dignity of the human person and also against God, the Author of human life. While motives and circumstances can mitigate one’s culpability, they do not change the nature of this murderous act, which must be forbidden (Catechism, no. 2277).<br>The Church affirms the right to life of all persons, from conception to natural death. The Church encourages those with terminal illness to unite their sufferings with those of Jesus Christ, for the sake of His body, the Church (cf. Col. 1:24). The Church also encourages caregivers and family members to treat sick or handicapped persons with “special respect” (Catechism, no. 2276)."
+                },
+                {
+                    "title": "WHAT MAKES A MARRIAGE? CONSENT, CONSUMMATION, AND THE SPECIAL CASE OF THE HOLY FAMILY",
+                    "question": "Must a marriage be consummated in order to be considered valid? Can a valid marriage be dissolved? If so, what about the marriage of Joseph and Mary, which was not consummated?",
+                    "summary": "A marriage is valid in which both parties have expressed their free consent to be married through the exchange of vows, even though they have not consummated their union. However, a marriage that has not been consummated may be dissolved by the Church. Regarding the marriage of Joseph and Mary, their complete commitment to doing the will of God made dissolution a non issue in their case. As Pope John Paul II has written, “In the course of that pilgrimage of faith which was his life, Joseph, like Mary, remained faithful to God’s call until the end.”"
+                }
+            ]
         },
         {
             "category": "general",
-            "faith_facts": []
+            "category_display": "General",
+            "faith_facts": [
+                {
+                    "title": "A MATTER OF RECEPTION: ABORTION, HOLY COMMUNION, AND CATHOLIC POLITICIANS",
+                    "question": "Should Catholic politicians who publicly support abortion rights receive Holy Communion? What principles apply to this situation?",
+                    "summary": "All Catholics who reject the Church’s moral teaching concerning the evil of abortion and/or advocate or promote abortion rights should not receive Communion until they repent of their position and are restored to full communion with the Church. This is based on the fundamental Right to Life and, more specifically, the Church’s perennial teaching that direct abortion is always a grave offense against the Right to Life. It is also based on traditional teaching regarding the worthy reception of Holy Communion.<br>Additional factors come into play in the case of Catholic politicians. According to Church law, they may even be denied Communion if they persist in their public support of abortion rights."
+                },
+                {
+                    "title": "A SEASON OF HOPE: JUBILEE YEAR 2000",
+                    "question": "What is the significance of Jubilee Year 2000? How can I participate in the special graces given during this time?",
+                    "summary": "The Third Millennium is a threshold of Hope for all men seeking peace in God's plan. We can participate in the special graces given during this time if we remain docile to the working of the Holy Spirit and enter fully into the life of the Church. In his Bull of Indiction of the Great Jubilee of the Year 2000, John Paul II outlines how we can enter fully into the mystery of the Church during this year of grace."
+                },
+                {
+                    "title": "ABOVE AND BEYOND: THE CHURCH’S TEACHING ON MIRACLES",
+                    "question": "What is a miracle? What is the purpose of miracles?",
+                    "summary": "Traditionally understood, a miracle is a supernatural sign or wonder, brought about by God, signifying His glory and the salvation of mankind. As a sign, a miracle is perceived by the senses and makes present the supernatural order, God’s governance of nature, and His loving plan of salvation. Miracles are a call to faith."
+                },
+                {
+                    "title": "ALL HALLOWS’ EVE",
+                    "question": "Is the celebration of Halloween a pagan feast? May a Catholic celebrate Halloween in good conscience? What is the history of this popular American holiday?",
+                    "summary": "We celebrate Halloween on the evening before All Saints Day. The word itself is a shortened form of “All Hallows’ Eve,” which quite literally means “the eve of All Saints.” From the earliest days of the Feast of All Saints (mid 700s A.D.), Catholics observed October 31 as the vigil of this November 1 celebration. This feast commemorates the lives of Christians who lived exemplary lives of faith. Pope Sixtus IV introduced an octave to the feast day in the 1400s, which was celebrated until 1955.<br>In the United States, the secular celebration of Halloween combines the diverse holidays and cultural practices of the immigrants who settled here. The Church has not issued any prohibitions on celebrating Halloween, so Catholics remain free to participate in accord with their conscience. Naturally, such participation must not conflict with the faith or Christian charity."
+                },
+                {
+                    "title": "ALL YOU NEED IS LOVE: THE THEOLOGICAL VIRTUE OF CHARITY",
+                    "question": "What is the virtue of charity? How can I better live it in my life?",
+                    "summary": "Charity allows us to love God above all else for His own sake, and to love our neighbor for the love of God (cf. Mk. 12:29-31; Catechism, no. 1822)"
+                },
+                {
+                    "title": "ANGLICAN-CATHOLIC RELATIONS: THE QUEST FOR UNITY",
+                    "question": "What is the state of relations between the Anglican Communion and the Catholic Church? What does the Catholic Church teach about the validity of the sacraments within Anglicanism?",
+                    "summary": "The Catholic Church takes seriously the desire of Our Lord Jesus Christ “that they all may be one” (Jn. 17:21), and so there are ongoing discussions and efforts to overcome those things that separate Anglicans from Catholics. Because the Catholic Church has a responsibility to present the truth as revealed in Scripture and Tradition, it is necessary at times to be clear about those areas in which other Christians have deviated from Christ’s teaching. Although there are striking similarities between Anglicans and Catholics, there remain serious areas of doctrinal disagreement which mean that the sad divisions, for now, continue."
+                },
+                {
+                    "title": "ANT-JUDAISM VS. ANTI-SEMITISM: WAS CHRISTIANITY RESPONSIBLE FOR THE NAZI HOLOCAUST?",
+                    "question": "Should the Pope apologize for the Nazi Holocaust? Did Christian teaching, as is increasingly being alleged, create cultural conditions which ultimately drove the Jews to their mass graves during the mid-twentieth century?",
+                    "summary": "In understanding the “Holocaust apology” scenario, we must distinguish between anti-Judaism among Christians, and anti-Semitism in Church teaching. The term anti-Judaism refers to subjective feelings of distaste towards the Jewish people. While it is sinful for Christians to be prejudiced in this way, the sorry truth is that such antagonism exists as an historical fact. Quite different is the question of anti-Semitism, or a philosophical belief in the inferiority of the Jewish race. Such a tenet does not exist and has never existed in Catholic doctrine or social teaching. To answer the questions noted, we must maintain this distinction between anti-Judaism and anti-Semitism."
+                },
+                {
+                    "title": "ATTENDING A NON-CHRISTIAN WORSHIP SERVICE",
+                    "question": "May a Catholic attend non-Christian worship services?",
+                    "summary": "Catholics are not prohibited from attending non-Christian worship services. However, before attending a non-Christian worship service, there are some considerations a Catholic should make."
+                },
+                {
+                    "title": "ATTENDING A PROTESTANT SERVICE",
+                    "question": "May a Catholic attend a service at a Protestant church? How may a Catholic participate?",
+                    "summary": "A Catholic may attend and participate in common prayer at services in Protestant churches. Catholics are encouraged to pray and sing, and they may read or preach, but a Catholic may not receive “communion” if this is part of the service."
+                },
+                {
+                    "title": "AVOIDING WAR AND SAFEGUARDING PEACE",
+                    "question": "What does the Church teach about just war?",
+                    "summary": "While recognizing the right of nations to legitimate self-defense under the just war doctrine, the teaching Church urges the avoidance of war."
+                },
+                {
+                    "title": "BURYING A STATUE OF ST. JOSEPH TO SELL YOUR HOUSE",
+                    "question": "What does the Church say about the custom of burying a statue of St. Joseph for the purpose of selling one’s home?",
+                    "summary": "The Church teaches that the faithful should pray to the saints for their intercession. The custom of burying a statue of St. Joseph for the purpose of selling one’s home can be in harmony with the teachings of the Church when grounded in prayer for St. Joseph’s intercession. At the same time, the Church cautions against superstitious beliefs such as attributing some power to the act of burying the statue."
+                },
+                {
+                    "title": "CAN GOD DO THE IMPOSSIBLE?",
+                    "question": "Can God do the impossible?",
+                    "summary": "What is possible for God extends beyond the limits of human reason or human possibility.<br>“For my thoughts are not your thoughts, neither are my ways your ways, says the Lord. For as the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts” (Is. 55: 8-9)."
+                },
+                {
+                    "title": "CAPITAL PUNISHMENT",
+                    "question": "What is the Church’s teaching on capital punishment?",
+                    "summary": "The traditional teaching of the Church does not exclude recourse to the death penalty, so long as it is the only possible way of effectively defending human lives against an unjust aggressor.<br>The Church also affirms that non-lethal means of punishment are generally more in keeping with the good of society and the dignity of the human person. In today’s society, the cases in which the execution of a criminal is an absolute necessity are very rare, if not practically nonexistent (Catechism, no. 2267)."
+                },
+                {
+                    "title": "CHRISTIAN JOY",
+                    "question": "What is Christian joy?",
+                    "summary": "Pope Paul VI teaches that Christian joy “consists in the human spirit’s finding repose and a deep satisfaction in the possession of the Triune God, known by faith and loved with the charity that comes from Him.”"
+                },
+                {
+                    "title": "CHRISTIAN STEWARDSHIP: WHAT GOD EXPECTS FROM US",
+                    "question": "What is Christian stewardship? How can I be a proper steward of God’s gifts?",
+                    "summary": "Christian stewardship is a way of living in which we recognize that everything belongs to God. All resources must be used for His glory and the common good. Solidarity is the fruit of stewardship."
+                },
+                {
+                    "title": "CLONING: AN AFFRONT TO HUMAN DIGNITY",
+                    "question": "What is human cloning? Why does the Church teach that cloning is immoral?",
+                    "summary": "Cloning is a form of artificial reproduction in which the offspring produced is genetically identical to the individual from whom he or she originated. Human cloning is immoral because it attacks the dignity of human procreation and because it is an affront to the dignity of the individuals involved in cloning."
+                },
+                {
+                    "title": "DAILY PENANCE & DAYS OF PENANCE",
+                    "question": "What does the Church teach about daily penance? What are the days of penance, and how ought Catholics to observe them?",
+                    "summary": "As part of our response to Christ’s exhortation to repent, the Church urges us to live penitentially every day. While Catholics are called to do penance primarily in daily life, the Church has established special days of penance-all Fridays and the season of Lent-on which Catholics are called to pray, fast, and perform works of charity. The laws of fast and abstinence bind Catholics of certain ages on certain days of penance."
+                },
+                {
+                    "title": "DARK NIGHT OF THE SOUL",
+                    "question": "What is the “Dark Night of the Soul”?",
+                    "summary": "The concept of the “Dark Night of the Soul” comes from the writings of St. John of the Cross. It refers to the purification of the sensual and spiritual appetites through which one becomes more open to God."
+                },
+                {
+                    "title": "DEBUNKING THE OVERPOPULATION MYTH",
+                    "question": "Is the world overpopulated? Could we not cure countless social problems if we stabilized or curbed the rate of population growth?",
+                    "summary": "No. The claims of the Zero Population Growth (ZPG) lobby crumble in any encounter with the facts. Proponents of population control argue that the earth has too fragile an environment, and too limited space and resources to sustain population growth. Historic and scientific facts prove these arguments false. More importantly, Sacred Scripture and the teachings of the Catholic Church on man’s nature and the purpose of the earth provide a proper understanding of the issues involved, and offer just solutions for the social problems of our day."
+                },
+                {
+                    "title": "DOCTORS OF THE CHURCH",
+                    "question": "What does it mean to be a doctor of the Church? Who are the doctors of the Church?",
+                    "summary": "The doctors of the Church are certain men and women who are revered by the Church for the special value of their writings and preaching and the sanctity of their lives. Thirty-three saints have been declared doctors of the Church. The most recent addition is St. Theresa of the Child Jesus (a.k.a. St. Thérèse of Lisieux), who was declared a doctor of the Church by Pope John Paul II in 1997."
+                },
+                {
+                    "title": "DRAWING THE LINE: THE CHURCH’S TEACHING ON EMBRYONIC STEM CELL RESEARCH",
+                    "question": "What are stem cells? What does the Church teach about embryonic stem cell research?",
+                    "summary": "Stem cells are the building blocks of human tissues. The Church teaches that the intentional destruction of human embryos, which is necessary for embryonic stem cell research, is gravely immoral (cf. Catechism, no. 2274-75)."
+                },
+                {
+                    "title": "EASTERTIDE: DETERMINING THE DATE FOR EASTER",
+                    "question": "How is the date of Easter determined by the Church?",
+                    "summary": "Easter falls on the first Sunday following the full moon after the vernal equinox (first day of spring). The Council of Nicea (AD 325) set this standard for the date for Easter to provide uniformity to the Church’s observance of her greatest feast day. The formula the Council set takes into account both Easter as the New Passover and Easter Sunday as the New Sabbath, and it works out difficulties that resulted from the different calendars that were in use at the time."
+                },
+                {
+                    "title": "ECUMENICAL COUNCILS OF THE CHURCH",
+                    "question": "What is an ecumenical council? What are the more significant Church councils, their important teachings, and the actions that came from them?",
+                    "summary": "An ecumenical council is a gathering of all the bishops of the world, either called for by the Pope or confirmed by him, in the exercise of their authority over the universal Church. Infallibility is present in the body of bishops when, with the Pope, they exercise the Church’s Magisterium in an ecumenical council. When the Church presents a doctrine as the teaching of Christ through this Magisterium, the doctrine “must be adhered to with the obedience of faith” (Catechism, no. 891)."
+                },
+                {
+                    "title": "FOLLOWING OUR BISHOPS: APOSTOLIC AUTHORITY IN THE CHURCH",
+                    "question": "As a Roman Catholic, I understand that the Pope has authority over the entire Church. What, then, is the role of my local bishop? What should be my attitude toward him?",
+                    "summary": "In the Catechism of the Catholic Church, the Church teaches that “the faithful should be closely attached to the bishop as the Church is to Jesus Christ, and as Jesus Christ is to the Father” (no. 896). In communion with the whole Church, and under the guidance of the Pope, bishops are called to exercise authority in the name of Christ in their respective dioceses. Because the bishop is truly a successor of the apostles, our attitude should be characterized by charity, respect, and obedience."
+                },
+                {
+                    "title": "FROZEN EMBRYOS AND EMBRYO ADOPTION",
+                    "question": "What should be done with frozen embryos, which are the result of in vitro fertilization (IVF)? Is “embryo adoption” a morally acceptable solution?",
+                    "summary": "Frozen embryos are produced using immoral means (IVF). Yet by the fact of their existence, these tiny human beings have the right to life. They cannot be destroyed or experimented on, nor can they be left frozen. While moral theologians work on a solution, faithful Catholics are free to propose possible solutions within the moral framework provided by the Church.<br>Some moral theologians and ethicists have proposed embryo adoption, whereby the frozen embryo is implanted in an adoptive mother’s womb. However, embryo adoption is not a simple solution, and requires answers to several significant moral questions.<br>Pope John Paul II recognized that these embryos exist due to a series of violations of the moral law and that finding a solution presents many complications. He advocated not only that the lives of the existing embryos must be protected, but that the very production of these embryos must be halted."
+                },
+                {
+                    "title": "FUNDAMENTAL OPTION",
+                    "question": "What is the “fundamental option”? Can individual acts of sin separate a person from God?",
+                    "summary": "The fundamental option is a person’s basic orientation in life either for or against God. This orientation is directed by a person’s actions."
+                },
+                {
+                    "title": "GOD’S BIG BANG: THE CHURCH AND EVOLUTION",
+                    "question": "What does the Church teach regarding evolution?",
+                    "summary": "The Church rejects all theories of evolution that do not reflect the revelations of God. Pius XII “already stated [in Humani Generis] that there was no opposition between evolution and the doctrine of the faith about man and his vocation, on condition that one not lose sight of several indisputable points.” As explained by John Paul II, “the theory of natural evolution, understood in a sense that does not exclude divine causality, is not in principle opposed to the truth about the creation of the visible world as presented in the Book of Genesis.” Any such theory must affirm that our all loving, omnipotent God created all things, that human souls are created immediately by God, and that we are all descended from the same set of human parents—Adam and Eve—from whom we inherited our fallen condition. In a nutshell, Catholics are free to accept some theories of evolution, within certain guidelines, but they are under no obligation to do so. Likewise, teaching theories of evolution that contradict truths of the Catholic Faith represents an attack on the Faith itself."
+                },
+                {
+                    "title": "HELL: THE SELF-EXCLUSION FROM GOD",
+                    "question": "What is Hell? Where is it?",
+                    "summary": "<em>“To die in mortal sin without repenting and accepting God’s merciful love means remaining separated from him forever by our own free choice. This state of definitive self-exclusion from communion with God and the blessed is called ‘hell’”.</em> Regarding hell’s location, while individual theologians have offered conjectures, the Church has not made a definitive proclamation on the subject, wisely following the advice of St. John Chrysostom: “We must not ask where hell is, but how we are to escape it.”"
+                },
+                {
+                    "title": "HERE I AM, LORD: VOCATIONS IN CHRIST",
+                    "question": "What is meant by the term “vocation”?",
+                    "summary": "Vocation” comes from the Latin verb vocare, meaning “to call.” The glossary in the Catechism of the Catholic Church defines “vocation” as:<br>[T]he calling or destiny we have in this life and hereafter. God has created the human person to love and serve him; the fulfillment of this vocation is eternal happiness. Christ calls the faithful to the perfection of holiness. The vocation of the laity consists in seeking the kingdom of God by engaging in temporal affairs and directing them according to God’s will. Priestly and religious vocations are dedicated to the service of the Church as the universal sacrament of salvation."
+                },
+                {
+                    "title": "HOLD FAST TO WHAT IS GOOD: ON BORROWING FORMS OF MEDITATION FROM EASTERN RELIGIONS",
+                    "question": "Should Christians look to non-Christian methods of meditation to draw closer to God? What are the more popular non-Christian methods of today? Can the Church’s tradition meet the spiritual needs of those looking to non-Christian methods?",
+                    "summary": "The Church acknowledges the usefulness of some elements of meditation found in non-Christian religions, provided that these elements be renewed or redefined by the Catholic faith. The Church’s basic understanding of Christian prayer must not be expanded to incorporate non-Christian elements."
+                },
+                {
+                    "title": "“HOLY THINGS TO THE HOLY”: SACRED THINGS, PLACES, AND TIMES",
+                    "question": "What does the Church call sacred and why? What is the proper use of the sacred?",
+                    "summary": "According to the Code of Canon Law (Codex Iuris Canonici [CIC], c. 12-5), a place is said to be sacred if it is designated for divine worship. Such things must be used according to their purpose in divine worship to the exclusion of any common or ordinary usage. Sacred times are those times set apart in which “the astonishing actions of the Savior God” are commemorated in order to give God thanks and perpetuate their remembrance throughout all generations (Catechism, nos. 1163, 1164)."
+                },
+                {
+                    "title": "HOPE: A PILGRIM’S VIRTUE",
+                    "question": "What is the theological virtue of hope?",
+                    "summary": "The theological virtue of hope is the confident expectation of divine blessing and eternal life with God (cf. Catechism, no. 2090). This virtue is infused at Baptism and enables the Christian, who is an heir of heaven (cf. Rom. 8:17; Gal. 4:7; Tit. 3:6-7), to persevere in order to reign with Christ (2 Tim. 2:12)."
+                },
+                {
+                    "title": "HOROSCOPES: SHOULD THE CHRISTIAN FAITHFUL USE THEM?",
+                    "question": "Should the Christian faithful utilize horoscopes?",
+                    "summary": "Consulting horoscopes is a form of divination and as such, rejected by the Church. Consulting horoscopes is an offense against the First Commandment (“I am the LORD your God . . . you shall have no other gods before me.”). Horoscopes should not be used in seriousness, nor should they be used as entertainment, even if a person does not believe that they have a power to predict the future."
+                },
+                {
+                    "title": "HUMAN SUFFERING: WHY DOES GOD PERMIT IT?",
+                    "question": "“If God the Father almighty, the Creator of the ordered and good world, cares for all His creatures, why does evil exist?” (Catechism, no. 309)",
+                    "summary": "“To this question, as pressing as it is unavoidable and as painful as it is mysterious, no quick answer will suffice. Only Christian faith as a whole constitutes the answer to this question” (ibid.)."
+                },
+                {
+                    "title": "I WILL GIVE YOU SHEPHERDS: ADDRESSING THE PRIEST SHORTAGE",
+                    "question": "Is there a priest shortage? What is being done to address shortages where they occur? What can be done to increase the number of candidates for ordination?",
+                    "summary": "There is some debate as to what constitutes a priest shortage. Some compare current ratios of priests to faithful with ratios from other eras, though some say that demand for priests has diminished to the point that the ratios are not comparable. Others contend that “priests shortage” is a slogan used by those who seek structural change in the Church. Apart from how “shortage” is defined, though, in some parts of the world the faithful acutely feel a need for priests. The Church is addressing shortages on both the universal and local level. Vatican II (1962-65) treated the issue of fostering vocations in <em>Optatam Totius</em>, the decree on the training of priests. The Holy Father, Pope John Paul II, issued an apostolic exhortation in 1992 entitled <em>Pastores Dabo Vobis</em> (“I Will Give You Shepherds”) which likewise addresses the issue. The brunt of the work, however, falls to the local bishop, who has the responsibility to apply these teachings and find co-laborers for Christ in his own diocese. In a diocese experiencing a priest shortage, the bishop must both provide the faithful with the spiritual goods of the Church and also uphold the essential identity and function of his pastors and their parishes. While there may be shortage of priests in some areas, there is no shortage of vocations. The general fostering of vocations among the faithful is necessary before the seminaries can be filled. The faithful should also actively seek the spiritual goods (sacraments) of the Church, which are primarily administered by priests."
+                },
+                {
+                    "title": "INDULGENCES",
+                    "question": "What is an indulgence? How do you obtain them? For whom can an indulgence be gained?",
+                    "summary": "An indulgence remits temporal punishment1 or consequences due to sins for which we have already been forgiven. The Church dispenses indulgences when, as a minister of Christ’s Redemption, “she dispenses and applies with authority the treasury of the satisfaction won by Christ and the saints.”2 We gain an indulgence when we are properly disposed and perform prescribed penitential actions. Indulgences are either partial or plenary, so named because they remove either part (partial) or all (plenary) of the temporal punishment due to actual sin.3 Through God’s grace and the intercession of the saints, indulgences magnify the power of our penitential actions, remitting the temporal consequences of some or all of our sins.<br>Christians living on earth and in the state of grace can obtain indulgences, and they may do so only for themselves or a deceased member of the Body of Christ."
+                },
+                {
+                    "title": "IS MISSING SUNDAY MASS A MORTAL SIN?",
+                    "question": "Is missing Sunday Mass a mortal sin?",
+                    "summary": "The requirement to attend Mass on Sunday and other holy days of obligation, rooted in the Third Commandment and codified in Church law (cf. Code of Canon Law, canons 1246-48) is a serious obligation for all Catholics. A Catholic who (a) is able to attend Sunday Mass (i.e., who is not impeded by illness, lack of transportation, etc.), (b) knows the seriousness of this requirement, and (c) nonetheless freely chooses to miss Mass, thereby commits a mortal sin (cf. Catechism, no. 2181)."
+                },
+                {
+                    "title": "JEHOVAH AS A NAME OF GOD",
+                    "question": "Where do we get the word “Jehovah”? Is “Jehovah” an acceptable pronunciation of the name of God?",
+                    "summary": "The origins of the word “Jehovah” go back to Exodus 3:14 when God reveals his name to Moses: “I Am Who Am.” The Hebrew “YHWH” (also called the tetragrammaton) is generally accepted as representing this Name of God (cf. Ex. 3:14; Jn. 8:58), and “Jehovah” is an attempt at translating the Name of God. While a common pronunciation, “Jehovah” is a misnomer that developed out of an improper understanding of the Hebraic texts."
+                },
+                {
+                    "title": "LENT: DISCIPLINE AND HISTORY",
+                    "question": "How did Lent arise? What is its current discipline, and what is its history?",
+                    "summary": "At the beginning of His public life, Jesus was tempted for 40 days in the desert (Mt. 4:1–11; Mk. 1:12–13; Lk. 4:1–13). “By the solemn 40 days of <em>Lent</em>,” the <em>Catechism of the Catholic Church</em> teaches, “the Church unites herself each year to the mystery of Jesus in the desert.” The Church has also officially set aside this time as a season of penance: <em>The seasons and days of penance</em> in the course of the liturgical year (Lent, and each Friday in memory of the death of the Lord) are intense moments of the Church’s penitential practice. These times are particularly appropriate for spiritual exercises, penitential liturgies, pilgrimages as signs of penance, voluntary self-denial such as fasting and almsgiving, and fraternal sharing (charitable and missionary works)."
+                },
+                {
+                    "title": "LET THE SON SHINE: THE TRUTH ABOUT THE NEW AGE MOVEMENT",
+                    "question": "May Catholics participate in New Age activities?",
+                    "summary": "No. The New Age movement opposes the Catholic Faith. It denies doctrines essential to Christianity, such as the Trinity, the divinity of Christ, the redemptive sacrifice of Christ on Calvary, and the God-ordained necessity of the Church for salvation. The New Age movement is rooted in witchcraft ideology and practice. Because of its direct opposition to the truths of the faith, participation in New Age activities constitutes grave matter and is offensive to Christ and His Church. No one should participate in New Age activities."
+                },
+                {
+                    "title": "MARY, MOTHER OF THE CHURCH",
+                    "question": "Is “Mother of the Church” an official title of the Blessed Virgin Mary? How do we understand this title?",
+                    "summary": "“Mother of the Church” is a title of the Blessed Virgin Mary that was solemnly proclaimed by Pope Paul VI at the closing address of the third session of the Second Vatican Council on November 21, 1964. In this proclamation, the Holy Father made clear reference to Vatican II’s Dogmatic Constitution on the Church (<em>Lumen Gentium</em>), which provided foundational teaching on the intimate relationship between Mary and the Church. In his address, Pope Paul VI said: Therefore, for the glory of the Blessed Virgin and our consolation, we declare most holy Mary Mother of the Church, that is of the whole Christian people, both faithful and pastors, who call her a most loving Mother; and we decree that henceforth the whole Christian people should, by this most sweet name, give still greater honor to the Mother of God and address prayers to her. Four years later, Pope Paul VI used this title in his profession of faith commonly known as the “Credo of the People of God”: We believe that the Most Holy Mother of God, the new Eve, the Mother of the Church, carries on in heaven her maternal role with regard to the members of Christ, cooperating in the birth and development of divine life in the souls of the redeemed (no. 15; cf. Catechism, no. 975)."
+                },
+                {
+                    "title": "MORALITY IS HABIT-FORMING: THE CARDINAL VIRTUES",
+                    "question": "What are the cardinal virtues? What is the role of the cardinal virtues in the Christian life?",
+                    "summary": "Virtue is a habitual and firm disposition to do the good (Catechism, no. 1803). There are two types of virtues: theological and human (or moral) virtues. The theological virtues of faith, hope, and charity relate directly to God, are given to us at Baptism, and allow us to live a life of supernatural grace as children of God (cf. Catechism, nos. 1812-13).<br>The immediate object of the human virtues is not God, but human activities that lead us to God. They are generally acquired by human effort but are assisted and reach their perfection by grace. These virtues help us to lead a morally good life with joy and relative ease (cf. Catechism, no. 1804).<br>Four of the human or moral virtues are known as <em>cardinal</em> virtues. “Cardinal” comes from the Latin word <em>cardo</em>, which means “hinge.” The cardinal virtues, then, are considered the “hinge virtues” and are the basis for all the other human virtues. They are <em>prudence</em>, <em>justice</em>, <em>fortitude</em>, and <em>temperance</em>.<br>Sacred Scripture frequently attests to the value of these virtues in living a godly life, although sometimes under other names. For example, Wisdom 8:7 provides:<br>And if any one loves righteousness, [wisdom’s] labors are virtues; for she teaches self-control [i.e., temperance] and prudence, justice and courage [i.e., fortitude]; nothing in life is more profitable for men than these."
+                },
+                {
+                    "title": "NEW ECCLESIAL MOVEMENTS",
+                    "question": "What are the new ecclesial movements, and what have been the popes’ assessments of them?",
+                    "summary": "The new movements that have been approved by the Church represent, according to Pope John Paul II, a providential response to charisms given by the Holy Spirit at this time in the Church’s history. While exhorting the movements to submit to the Church’s pastors, Pope John Paul and Pope Benedict have offered overwhelmingly positive assessments of them."
+                },
+                {
+                    "title": "NIHIL OBSTAT AND IMPRIMATUR",
+                    "question": "What are the <em>nihil obstat</em> and <em>imprimatur</em>? Do they guarantee that a work will authentically present the teachings of the Church?",
+                    "summary": "In the Catholic Church, certain types of writings need a bishop’s authorization to be published for use in Catholic instruction. The <em>nihil obstat</em> and <em>imprimatur</em> indicate that a writing has received that authorization. They signify that, in the judgment of the bishop who grants the <em>imprimatur</em>, the work contains nothing contrary to faith and morals. However, the <em>nihil obstat</em> and <em>imprimatur</em> are not an endorsement and do not guarantee that the entire contents of a work are true."
+                },
+                {
+                    "title": "NO MAN’S AN ISLAND: ASSOCIATIONS OF THE FAITHFUL",
+                    "question": "What is an association of the faithful? Are there different types?",
+                    "summary": "According to canon law: In the Church there are associations distinct from institutes of consecrated life and societies of apostolic life, in which the Christian faithful, either clergy or laity or clergy and laity together, strive by common effort to promote a more perfect life or to foster public worship or Christian doctrine or to exercise other apostolic works, namely to engage in efforts of evangelization, to exercise works of piety or charity and to animate the temporal order with the Christian spirit."
+                },
+                {
+                    "title": "NON-MASS USE OF CHURCHES",
+                    "question": "What are the Church’s norms regarding the use of churches for events other than the Mass?",
+                    "summary": "A sacred place should only hold events that exercise or promote worship, piety, and religion. However, in certain circumstances the bishop may allow other uses as long as they are not contrary to the sacred nature of the place."
+                },
+                {
+                    "title": "NOT IN VAIN: THE ROSARY AND REPETITION",
+                    "question": "Is the Rosary a prayer of “vain repetition” (cf. Mt. 6:7)? What type of prayer is the Rosary?",
+                    "summary": "Any prayer from the heart, repetitive or otherwise, is acceptable to God. How many times should we repeat “I love you” to our Heavenly Father? The matter then is not simply repetition, but vain repetition. As discussed below, the Rosary is not a prayer of “vain repetition” but a meditation moving slowly forward by the familiar words of the Hail Mary and the Lord’s Prayer."
+                },
+                {
+                    "title": "ONE, HOLY, CATHOLIC, AND APOSTOLIC: THE MARKS OF CHRIST’S CHURCH",
+                    "question": "What are the four marks of the Church?",
+                    "summary": "The four marks of the Church are an important element of the Catholic faith, dating back to the earliest ecumenical councils in Church history (Nicea in 325 and First Constantinople in 381). In the Nicene Creed we profess one, holy, catholic, and apostolic Church. Those four adjectives for the Church—one, holy, catholic, and apostolic—are what we call the four marks of the Church."
+                },
+                {
+                    "title": "PAPAL SUCCESSION",
+                    "question": "How is a pope elected? How do the faithful know that a papal election is valid? Who can be elected? Who is typically elected?",
+                    "summary": "As a matter of faith, the Church teaches that as long as the Church exists God will provide a valid succession of popes. As the First Vatican Council dogmatically pronounced:<br>Therefore, if anyone says that it is not according to the institution of Christ our Lord himself, that is, by divine law, that St. Peter should have perpetual successors in the primacy over the whole Church; or if anyone says that the Roman Pontiff is not the successor of St. Peter in the same primacy, anathema sit [i.e., “Let him be accursed.”]<br>Legally, anyone who can receive the fullness of the sacrament of Holy Orders can be elected. Typically, however, the pope is chosen from among the Church’s cardinals."
+                },
+                {
+                    "title": "POPULAR PIETY",
+                    "question": "What is popular piety? How does popular piety fit into the life of the Church and individual Christians?",
+                    "summary": "“Popular piety” is a collective term used to describe practices, devotions, and other activities “that do not replace the liturgical life of the Church; rather, they extend it into daily life.” Examples include Eucharistic adoration, Marian devotion, and practices and devotion associated with the Sacred Heart of Jesus, the Miraculous Medal and the Scapular. Their expression encompasses specific gestures; sacred texts and formulae; songs and music; sacred images; sacred places; and sacred times.<br>These practices and devotions “draw inspiration” from the sacred liturgy “and ultimately lead back to it.” Popular piety helps the faithful both to cultivate and give witness to their faith in Jesus Christ in their everyday lives. Because it is ordered toward the liturgy, popular piety has the same, ultimate goal: our being one with Christ in His mystical body and bride, the Catholic Church, and through Christ and His Church in union with our heavenly Father."
+                },
+                {
+                    "title": "PREACH TO THE ENDS OF THE EARTH: THE MEANS OF SOCIAL COMMUNICATION",
+                    "question": "What are the means of social communication? How can they be used most effectively for spreading the Gospel?",
+                    "summary": "In the Vatican II document, <em>Decree on the Means of Social Communication (Inter Mirifica</em> [IM]), the Magisterium provided a necessary understanding of the means of social communication and their proper use in the world. Social communication is the delivery of a message to a large audience at one time. The means of social communication are the ways through which the message is given. “These are the press, the cinema, radio, television and others of a like nature” (IM, no. 1). “It is the Church’s birthright to use and own any of these media which are necessary or useful for the formation of Christians and for pastoral activity” (IM, no. 3). “If the media are to be correctly employed, it is essential that all who use them know the principles of the moral order and apply them faithfully in this domain” (IM, no. 3)."
+                },
+                {
+                    "title": "PRIVATE REVELATION",
+                    "question": "What is the difference between private revelation and public Revelation?",
+                    "summary": "By divine Revelation God has communicated Himself and His will concerning our salvation (Vatican II, <em>Dei Verbum</em>, no. 6). The perfect Revelation of God is the Person of Jesus Christ (Heb. 1:1-2; <em>Dei Verbum</em>, no. 2). Public Revelation refers to the deposit of faith, entrusted to the Apostles, which includes all Church teaching (i.e., dogma and doctrine). Public Revelation ended with the death of the last apostle, St. John. As the Church reflects on the sacred deposit, her understanding can deepen, but the sacred deposit itself (i.e., what God revealed to us through His Son) does not change (Catechism, no. 66). Private revelation is so-called not because it is only for individuals or small groups, but to distinguish it from public Revelation. Authentic private revelations, such as approved Marian apparitions, neither add to or subtract from the deposit of faith. Rather, they call us to a greater commitment to Jesus Christ, the one Savior of the world, and the Church He founded, and draw our attention back to the content of public Revelation."
+                },
+                {
+                    "title": "PROCLAIMING THE GOOD NEWS TO THE WORLD: THE CHURCH’S EVANGELIZING MISSION",
+                    "question": "What is evangelization? What is the role of evangelization in the life of the Church? What is meant by the “new evangelization”? What is my role in evangelization?",
+                    "summary": "Evangelization is the proclamation of Christ and His Gospel by word and example, in fulfillment of Christ’s command (cf. Catechism, no. 905). The Church’s fundamental mission is to call all people to be reconciled to God through Jesus Christ. Evangelization takes place on a daily basis as the faithful bring Christ to the world. The new evangelization adapts this proclamation to a changing world with new ardor, methods, and expression."
+                },
+                {
+                    "title": "REIKI",
+                    "question": "What is Reiki? Is there medical evidence that Reiki is effective? Is Reiki compatible with the Catholic faith?",
+                    "summary": "Reiki (“ray-key”) means “universal life energy” or “universal life force.” Advocates describe Reiki as “a hands-on spiritual healing tradition” in which “spiritual energy” is communicated from one individual to another. Regarding its effectiveness, even Reiki practitioners acknowledge that “evidence for the efficacy of Reiki is mostly anecdotal, and clinical research is minimal. Reiki has foundational beliefs and practices that are irreconcilable with Catholicism, including not recognizing Jesus as a divine Person and the Savior of all mankind. Reiki involves a belief similar to pantheism, in which a universal life energy—not Jesus—provides life to all living beings and is also said to govern the Reiki healing process. Because Reiki practitioners believe they can harness and use this universal life energy, Reiki is not simply a form of superstition but rather opens oneself up to dangerous involvement in the occult practices of divination and magic (cf. <em>Catechism of the Catholic Church</em>, nos. 2111, 2116-17)."
+                },
+                {
+                    "title": "RESPONDING TO SCANDALS IN THE CHURCH",
+                    "question": "What is scandal? If the Church is holy, how can there be scandal in the Church? How ought we to respond to scandals?",
+                    "summary": "Scandal is an attitude or behavior that leads another to do evil. We ought to examine our consciences, repent of our own sins of scandal, make reparation, and, when prudent, offer fraternal correction in response to scandal."
+                },
+                {
+                    "title": "SACRED ART",
+                    "question": "What is sacred art? How is its significant in the life of the Church?",
+                    "summary": "Works of sacred art are symbols of faith. They represent realities that cannot be seen, stories that are already known, truths that we perceive. As symbols of faith, they foster deeper devotion and encourage a greater understanding of truth. Sacred art witnesses to the truths of our Catholic Faith."
+                },
+                {
+                    "title": "SHOULD I OBEY? FAITHFULLY RESPONDING TO LAWFUL AUTHORITY",
+                    "question": "If someone in authority demands that I do something wrong, should I obey?",
+                    "summary": "Obedience to lawful authority is an ordinary means of working out our salvation. As St. Paul writes:<br>Do you not know that if you yield yourselves to any one as obedient slaves, you are slaves of the one whom you obey, either of sin, which leads to death, or of obedience, which leads to righteousness? (Rom. 6:16)."
+                },
+                {
+                    "title": "SIGNS AND SYMBOLS",
+                    "question": "Is What is the Catholic perspective on the use of signs and symbols?",
+                    "summary": "Signs and symbols are creatures,1 either created directly by God or designed by men using natural shapes and designs, which mean or communicate something more than their own existence. Because man is an intimate union of body and spirit, making and using signs and symbols is consistent with his being. Signs and symbols are good in themselves."
+                },
+                {
+                    "title": "SMALL FAITH COMMUNITIES",
+                    "question": "Should small faith communities be encouraged as a means of strengthening or renewing families, parishes, and dioceses?",
+                    "summary": "Small faith or “ecclesial base” communities can be a great asset to families, parishes, and dioceses if they are faithful to teaching and living authentic Catholic doctrine. In fact, local CUF chapters are structured in a small group format. Problems have occurred in other small faith communities when they have promoted inaccurate or vague Catholic doctrine, often substituting personal experience for objective truth."
+                },
+                {
+                    "title": "“SO THAT WE MIGHT BECOME GOD”: UNDERSTANDING CATECHISM NO. 460",
+                    "question": "What is meant by the quote from St. Athanasius that is found in the <em>Catechism of the Catholic Church</em>: “For the Son of God became man so that we might become God” (no. 460)?",
+                    "summary": "When God created Adam and Eve, He gave them supernatural grace that allowed them to participate in His divine nature. Christ became man in order to restore this grace, which was forfeited when Adam and Eve sinned. We are united to the Son of God in Baptism, whereby we share in his Passion, Death, and Resurrection. We are thus “sons in the Son” and, by grace, “partakers of the divine nature.”"
+                },
+                {
+                    "title": "SPIRITUAL COMMUNION",
+                    "question": "What is a spiritual communion? How does one make a spiritual communion?",
+                    "summary": "A spiritual communion is made when we fervently desire to receive Jesus in the Blessed Sacrament and then lovingly embrace Him as if we had received Him."
+                },
+                {
+                    "title": "TATTOOS",
+                    "question": "What is the teaching of the Church on tattoos and body piercing?",
+                    "summary": "Tattoos and acts of body piercing are not intrinsically evil. The Church offers principles by which Catholics can discern whether it is sinful to be tattooed or have one’s body pierced in particular situations."
+                },
+                {
+                    "title": "THE BOOK ON GAMBLING",
+                    "question": "Is gambling immoral? Should a parish use bingo or other games of chance as a means of supporting itself?",
+                    "summary": "Gambling is not intrinsically evil and can be a legitimate form of entertainment so long as it is kept within the confines of virtuous conduct. Given the tragic consequences of habitual or excessive gambling, one should exercise caution and vigilance in this area.<br>Since bingo and other forms of gambling are not intrinsically evil, they maybe used as a means of raising money for parishes. However, the promoters of church bingo must take extreme care in preserving a wholesome, virtuous environment for everyone involved."
+                },
+                {
+                    "title": "THE ENNEAGRAM",
+                    "question": "What is the enneagram? May Catholics use the enneagram?",
+                    "summary": "The enneagram is a symbol of geometric design. The symbol is made up of nine lines of equal length connecting to form a nine-pointed star. A circle connecting the nine points completes the enneagram symbol. Because it is merely a symbol of geometric design, the enneagram itself presents no offense to faith or morals. However, particular use of the enneagram for cultic or pseudo-scientific practices can pose a threat to Catholic belief and practices."
+                },
+                {
+                    "title": "THE GRAMMAR OF DISSENT: IDENTIFYING AND ENGAGING HERESY",
+                    "question": "What is heresy? What is dissent? How might Catholics effectively engage dissenters?",
+                    "summary": "The Code of Canon Law, canon 751, defines heresy as “the obstinate denial or doubt, after baptism, of a truth which must be believed by divine and catholic faith.” The Catechism of the Catholic Church identifies heresy as a sin against faith, and thus against the First Commandment (no. 2089).<br>Over the past few decades, heresy has become entrenched in many Catholic institutions, from colleges and universities to hospitals, from magazines and periodicals to chancery offices. Rather than use the term “heresy,” many use the broader term “dissent” to express an attitude of opposition to the Holy Father and official Church teaching on a spectrum of issues that includes matters of Church discipline and governance as well as faith and morals.<br>The Catholic faithful, to effectively engage those who dissent from Church teaching, should (a) know and articulate the fullness of the Catholic faith; (b) draw upon Sacred Tradition, including the documents of Vatican II; (c) patiently develop relationships through respectful interpersonal dialogue; (d) understand the worldview of dissident Catholics and strive to find common ground; (e) use allegory, analogy, and compelling images to counter esoteric arguments; (f) maintain a sense of humor; and above all (g) strive for holiness."
+                },
+                {
+                    "title": "THE NECESSITY OF LAW AND RIGHT ORDER",
+                    "question": "What is the purpose of law and order?",
+                    "summary": "Law and order express the presence and will of God. In the absence of law and order, chaos exists. Obedience to lawful authority is an ordinary means of working out our salvation."
+                },
+                {
+                    "title": "THE SIGN OF THE CROSS",
+                    "question": "What are the history and significance of the sign of the cross?",
+                    "summary": "The sign of the cross—an immemorial Christian custom first mentioned in writing at the beginning of the third century—signifies the grace of redemption and strengthens us (cf. 1 Cor.1:23)."
+                },
+                {
+                    "title": "THE THEOLOGICAL VIRTUE OF FAITH",
+                    "question": "What is faith?",
+                    "summary": "The Glossary found in the official 1997 version of the <em>Catechism of the Catholic Church</em> defines faith as follows: [Faith is] both a gift of God and a human act by which the believer gives personal adherence to God who invites his response, and freely assents to the whole truth that God has revealed. It is this revelation of God which the Church proposes for our belief, and which we profess in the Creed, celebrate in the sacraments, live by right conduct that fulfills the twofold commandment of charity (as specified in the ten commandments), and respond to in our prayer of faith. Faith is both a theological virtue given by God as grace, and an obligation which flows from the first commandment of God."
+                },
+                {
+                    "title": "THE THIRD PART OF THE SECRET OF FATIMA",
+                    "question": "What is the “third secret” of Fatima?",
+                    "summary": "The third part of the secret of Fatima concerns the suffering of the Vicar of Christ, bishops, priests, consecrated men and women religious, and lay faithful during the 20th century who loyally followed Jesus to the Cross."
+                },
+                {
+                    "title": "THE YEAR OF THE EUCHARIST",
+                    "question": "Why did Pope John Paul II designate October 2004-October 2005 as the Year of the Eucharist? What specific guidelines does the Church offer us to respond to the graces of this year?",
+                    "summary": "Pope John Paul II proclaimed the Year of the Eucharist in order to make our ordinary lives more Eucharistic, to emphasize the truth that the Eucharist is the source and summit of the Christian life, and to spur Catholics to seek holiness by contemplating the Eucharistic face of Christ. He offers 12 guidelines to respond to the graces of this year."
+                },
+                {
+                    "title": "VATICAN WEALTH",
+                    "question": "How can Catholics explain to critics the significant wealth of the Vatican and the Church in general, given the Church’s consistent exhortation to help the poor?",
+                    "summary": "The Church is called to be the good steward of the spiritual riches of Christ’s Mystical Body while also exercising a stewardship of her material resources for the temporal and eternal well-being of all humanity."
+                },
+                {
+                    "title": "WHERE DO WE GO FROM HERE: THE CONCEPT OF LIMBO",
+                    "question": "What is Limbo? What does the Church teach concerning Limbo?",
+                    "summary": "Theologians developed the concept of Limbo as an attempt to explain the destiny of those who die without baptism, yet do not merit the pains of hell. The concept is applied primarily to infants and children who die before baptism. The concept of Limbo does not appear to belong to the deposit of faith. Therefore, the Church has no official position on the matter. Provided the belief does not conflict with other teachings of the Faith, the faithful are free to believe or disbelieve in Limbo."
+                },
+                {
+                    "title": "WHO ART IN HEAVEN: THE DWELLING PLACE OF GOD",
+                    "question": "What is heaven? Where is it?",
+                    "summary": "Heaven is “a living, personal relationship with the Holy Trinity. It is our meeting with the Father which takes place in the risen Christ through the communion of the Holy Spirit.” It is the fulfillment of God’s desire to be one with each man as God is one with Himself in the Trinity (cf. Jn. 17:20-24).<br>The Church does not know a specific place for heaven, such as in the clouds, except to know that heaven is union with God, face to face, without the mediation of any creature (cf. Catechism 1023-1029)."
+                }
+            ]
         },
         {
             "category": "groups_and_people",
-            "faith_facts": []
+            "category_display": "Groups and People",
+            "faith_facts": [
+                {
+                    "title": "A FRIEND IN WORD AND DEED: POPE PIUS XII AND THE JEWS",
+                    "question": "During and after World War II, and again upon his death in 1958, Pope Pius XII was praised by secular and Jewish leaders for his efforts against the Nazi-induced Holocaust. During the last three-and-a-half decades, however, many people, including some Catholics, have accused the Pope of “silence” and even criminal negligence, saying that he could have said and done much more to lessen the genocide that claimed six million Jews. Both before and after he became Pope, what was Pius XII’s record regarding the Jewish people and the Nazis? How and why did his policies continue and change after the onset of World War II?",
+                    "summary": "As a papal envoy to Germany from 1917-29, Vatican Secretary of State in the 1930s, and Pope during World War II, Pius XII established a clear record of supporting the Jewish people against the German National Socialist Workers’ Party, more commonly known as the Nazis. Because of a defamatory drama in the early 1960s, Pius XII’s wartime record has been unjustly tarnished. By their own testimony, the Nazis knew they had an enemy, and Jewish leaders a faithful ally, in Pius XII. To maximize Church efforts and minimize Nazi backlash, Pius XII modified his tactics during the war, but his pro-Jewish efforts continued unabated. As former Israeli diplomat and historian Pinchas Lapide says, the Jews saved by the Catholic Church under the Pope’s direction -- an estimated 700,000 to 860,000 -- “exceed by far those saved by all other churches, religious institutions, and rescue organizations combined.”"
+                },
+                {
+                    "title": "A VOICE OF REASON? THE TRUTH ABOUT VOICE OF THE FAITHFUL",
+                    "question": "What is Voice of the Faithful? What are the organizations goals? Have any concerns been raised about the organization?",
+                    "summary": "VOTF is an association of Catholics formed in 2002 in response to the clerical sex abuse crisis in the Church. The organization identifies three basic goals: (1) to support those who have been abused; (2) to support priests of integrity; and (3) to bring about structural change within the Church to prevent further such abuse. While VOTF officially claims that it “does not seek any change in Church doctrine,” the vast majority of its leaders, advisors, and speakers are known for their outspoken dissent from Church teaching. VOTF has also caused concerns because of its attempts to undermine the hierarchy’s lawful authority, so as to “democratize” the Church. As set forth below, CUF recommends that the faithful dissociate themselves from VOTF and join other reform movements that are unabashedly faithful to Church teaching."
+                },
+                {
+                    "title": "CAN CATHOLICS BE FREEMASONS?",
+                    "question": "Can Catholics be Freemasons?",
+                    "summary": "No, Catholics may not be Freemasons because of this group’s “irreconcilable” opposition to Jesus Christ and His Catholic Church.1 Nor may they belong to the Order of the Eastern Star (a Masonic association for women), the Order of DeMolay (for boys), or Job’s Daughters or the Rainbow Girls (for girls). Popes Clement XII (1738), Benedict XIV (1751), Pius VII (1821), Leo XII (1825), Pius VIII (1829), Gregory XVI (1832), Pius IX (1846, 1849, 1864, 1865, 1869, 1873), and Leo XIII (1882, 1884, 1890, 1894, 1902) have repeated the prohibition against joining Masonic associations. The old Code of Canon Law (1917) imposed excommunication upon Catholics who became masons. Recent Vatican directives under Pope John Paul II have reaffirmed the long-standing ban."
+                },
+                {
+                    "title": "CATHOLICS UNITED FOR THE FAITH: PROCLAIMING CHRIST TO A NEW GENERATION",
+                    "question": "What is Catholics United for the Faith (CUF)?",
+                    "summary": "Catholics United for the Faith is an international lay apostolate founded in 1968 by H. Lyman Stebbins to unite the faithful from all walks of life in order to support, defend, and advance the efforts of the Teaching Church in accord with the teachings of the Second Vatican Council. The efforts of Catholics United for the Faith must be directed toward the unity of the Church and communion with God the Father as intended by Christ (Jn. 17:21). This is accomplished by joining members in a common apostolate to be formed doctrinally and spiritually in the Catholic faith. The desired result is the renewal of our members’ own hearts. This formation also equips members to prayerfully engage in works of evangelization and catechesis for the renewal of the Church and society as lay witnesses to Our Blessed Lord. CUF promotes fidelity to, and communion with, the Holy Father and the bishops in union with him."
+                },
+                {
+                    "title": "EASTERN CATHOLIC CHURCHES",
+                    "question": "What are the Eastern Catholic Churches?",
+                    "summary": "Eastern Catholic Churches are “Churches of the East in union with, but not of Roman rite, with their own liturgical, theological, and administrative traditions, such as those of the Byzantine, Alexandrian or Coptic, Syriac, Armenian, Maronite, and Chaldean rites. The variety of particular churches with distinctive traditions witnesses to the catholicity of the one Church of Christ, which takes root in distinct cultures” (Glossary, Catechism of the Catholic Church, second ed.)."
+                },
+                {
+                    "title": "JEHOVAH’S WITNESSES: A CATHOLIC RESPONSE",
+                    "question": "What do Jehovah’s Witnesses basically believe, and how I can effectively evangelize them with the saving truths of Catholicism when they knock on my door?",
+                    "summary": "The Jehovah’s Witnesses (JWs) believe that, shortly after the death of the 12 Apostles, there was a great but not total apostasy of the Church, in which only a few scattered Christians kept the “true” Christian Faith for centuries. The “Church” was not fully restored until Charles Taze Russell founded the JWs in 1872. Russell was a Protestant who incorrectly predicted the end of the world in 1914; his followers have made similar failed predictions since.<br>Though many JWs may live moral lives in many ways, they are not Christians, because they deny basic doctrines such as the divinity of Christ and the Trinity. They also deny other basic articles of the Nicene-Constantinople Creed that Catholics pray every Sunday at Mass. There is also no historical evidence (biblical or extra-biblical) for their version of a “great apostasy,” nor is there any evidence that the JWs’ religion has ever been espoused by any Christians prior to Russell’s foundation in 1872. Measured against orthodox Christianity, there are many errors in the JWs’ religion."
+                },
+                {
+                    "title": "MORMONISM AND THE “GREAT APOSTASY” THEORY",
+                    "question": "What is the best way to respond to Mormon missionaries when they come to my door? How can I best share the Catholic Faith with them while refuting the errors contained in Mormonism?",
+                    "summary": "When Mormon missionaries come to the door, it is important to remember that any discussion with them must be guided by charity. With that in mind, the best way to approach a discussion is to have your Mormon visitors focus on defending their claim of a “Great Apostasy” in the early Church. The truth is that there is no historical evidence to substantiate the claim of this alleged apostasy. The existence of the Mormon Church is entirely dependent on this theory and, if Mormons are unable to provide proof for this particular theory, all other issues become irrelevant."
+                },
+                {
+                    "title": "MUSLIMS AND THE ONE GOD",
+                    "question": "Does the Catholics Church teach that Muslims adore the same God as Christians? Is the Muslim worship of God as efficacious as the Catholic worship of God? Are Muslims saved through their adoration of God?",
+                    "summary": "The Church teaches that the followers of Islam adore along with Catholics the one, living, merciful, and all-powerful God who is the Creator of heaven and earth. While subjectively adoration of God can be efficacious and a channel of God’s grace, objectively there are deficiencies and even errors in non-Catholic rituals that constitute impediments to salvation."
+                },
+                {
+                    "title": "OLD CATHOLICS",
+                    "question": "Who are the Old Catholics?",
+                    "summary": "The Old Catholics are members of seven autonomous churches in schism from the Catholic Church. Most of the Old Catholic churches trace their origins to a group of German priests and laymen who dissented from the First Vatican Council. All of the Old Catholic churches subscribe to the Declaration of Utrecht (1889)."
+                },
+                {
+                    "title": "POPE SAINT JOHN PAUL II’S ENDURING LEGACY",
+                    "question": "What may be learned from the life and pontificate of John Paul II?",
+                    "summary": "During the last day of March and the first two days of April 2005, much of the world was riveted on the third floor of the Vatican Apostolic Palace—the home for the last twenty-six years of Pope John Paul II. The once physically strong Pontiff finally succumbed to a panoply of medical ailments.<br>As was to be expected, the days following his death were the backdrop for much analysis, both scholarly and popular. What is the legacy of the Holy Father? What are the perduring contributions of Karol Wojtyla to our troubled era? Undoubtedly, these pressing questions will be asked in the years and decades—even centuries—to come. In cataloging the remarkable achievements of Pope John Paul II, one faces a stiff task. There are so many things that the simple priest and bishop from Krakow did that it is difficult to know where to begin. Archbishop John Patrick Foley, the President of the Pontifical Council for Social Communications in Vatican City, was a long-time collaborator of Pope John Paul II and an astute observer of his noteworthy Pontificate, often being called by the media to give his perspective on various papal initiatives. Almost two months after the death of the Successor of St. Peter, Archbishop Foley, who was appointed to his current position by Pope John Paul II in 1984, traveled to Orlando, Florida, where he attended the meeting of the Catholic Press Association. In a homily he gave during the gathering, the prelate avoided the understandable temptation to provide a lengthy list of the incredible accomplishments of his dear friend—an exercise that surely does have merit. Instead, Archbishop Foley was content to summarize the Holy Father’s legacy as follows. “Pope John Paul II taught us that there is much more to the papacy than speaking, writing, greeting people and traveling—although he certainly did enough of all of that. “Pope John Paul II taught us how to live, how to suffer and how to die.”<br>The “numbers” of this Pontificate—countries visited, encyclicals penned, men, women, boys and girls beatified and canonized, audiences held, babies embraced, bishops appointed, civil authorities encouraged—are helpful and do tell part of the notable story very well. However, this author, taking a cue from Archbishop Foley, will rather consider what lessons we learn from Pope John Paul II as he lived, suffered and died."
+                },
+                {
+                    "title": "SAINTS PETER AND PAUL",
+                    "question": "How do we know that Saints Peter and Paul spent their final years in Rome and were martyred there? How were their ministries different? Why are they commemorated together on June 29?",
+                    "summary": "There is a wealth of evidence that Saints Peter and Paul were martyred in Rome. The two apostles exercised complementary ministries in which Saint Paul was subordinate to Saint Peter. They are commemorated together on June 29 because on that day in 258, the relics of the two saints were transferred to the catacombs."
+                },
+                {
+                    "title": "SEVENTH-DAY ADVENTISTS",
+                    "question": "What do Seventh-day Adventists believe?",
+                    "summary": "Seventh-day Adventists are identified with two main beliefs: the Sabbath is to be observed on Saturday, and Christ’s return (the Advent) is the only hope for good in the world."
+                },
+                {
+                    "title": "ST. FRANCIS DE SALES: PATRON OF CUF’S INFORMATION SERVICES",
+                    "question": "Who is St. Francis de Sales? What has the Magisterium taught about him? Why is he the Co-Patron of CUF’s Information Services?",
+                    "summary": "St. Francis de Sales (1567-1622), patron of writers, journalists, and the Catholic press and author of <em>Introduction to the Devout Life and Treatise on the Love of God</em>, was the first to make wide use of religious tracts. Named bishop of Geneva, Switzerland, he was canonized in 1665 and proclaimed a Doctor of the Church in 1877. The Magisterium has drawn attention to his charity in dealing with opponents of Catholic doctrine and his teaching on lay spirituality. Because CUF staff members strive to follow his example, he was named Co-Patron of Information Services (the other is Saint Nonna)."
+                },
+                {
+                    "title": "ST. HILDEGARD OF BINGEN: THE GENIUS OF A WOMAN",
+                    "question": "Who was Hildegard of Bingen? Was she a saint?",
+                    "summary": "Hildegard of Bingen was a Benedictine prioress of 12th Century Germany. During her life, she was highly influential and well respected. She is a saint. The Latin Church celebrates her feast on September 17th."
+                },
+                {
+                    "title": "ST. JOSEPH: PATRON OF THE UNIVERSAL CHURCH AND CUF",
+                    "question": "Why is Saint Joseph Patron of the Universal Church and Co-patron of Catholics United for the Faith?",
+                    "summary": "Pope Pius IX named Saint Joseph Patron of the Universal Church because of his dignity, holiness, and glory as spouse of the Blessed Virgin and foster father of Jesus Christ. Catholics United for the Faith seeks his patronage because the Church and the family (the domestic Church) are under attack in our culture."
+                },
+                {
+                    "title": "ST. NONNA: PATRONESS OF CUF’S INFORMATION SERVICES",
+                    "question": "Who is St. Nonna?",
+                    "summary": "Saint Nonna lived in Cappadocia during the early fourth century A.D. Raised in a Christian family, she married a pagan named Gregory Nazianzen. Through prayer, fasting, admonition, and her example of faith, she brought about Gregory’s conversion. They had three children: Caesarius, Gregory and a girl named Gorgonia. Nonna, Gregory, and their children all became saints. Gregory Nazianzen the Younger became both a Father and Doctor of the Church (also known as St. Gregory the Theologian). St. Nonna, with St. Francis de Sales, is a patroness of Catholics United for the Faith’s Information Services. Her feast day is August 5."
+                },
+                {
+                    "title": "ST. PATRICK: THE APOSTLE OF IRELAND",
+                    "question": "Who was St. Patrick? Why should we care about him today?",
+                    "summary": "St. Patrick is the Patron Saint of Ireland and known for his efforts to evangelize and convert the pagan Irish of his time. In more recent times, his sanctity is less known. The feast day of St. Patrick, March 17, has become more of a secular holiday than a remembrance of St. Patrick’s life and holiness. Despite the secularization of his feast, St. Patrick provides an example of the need for personal renewal, evangelical love, Christian courage and total devotion to God. His feast should be claimed by all Catholics as a memorial of his life, and his life example should be used to claim the world for Christ."
+                },
+                {
+                    "title": "ST. THOMAS MORE: PATRON OF CATHOLICS UNITED FOR THE FAITH",
+                    "question": "Who is Saint Thomas More? Why is he one of the patrons of Catholics United for the Faith?",
+                    "summary": "Saint Thomas More is a martyr of the early sixteenth century. H. Lyman Stebbins, founder of Catholics United for the Faith (CUF), wrote that Saint Thomas More is a CUF patron because he is a model layman who was faithful to the Holy See."
+                },
+                {
+                    "title": "THE ENCYCLICALS OF POPE SAINT JOHN PAUL II",
+                    "question": "What topics did Pope John Paul II examine in his fourteen encyclicals?",
+                    "summary": "Pope John Paul devoted three encyclicals to the Divine Persons, three to subjects that touch upon the truth of the Catholic faith and morality, three to the Church’s social doctrine, two to missionary activity, and three to other subjects (the Holy Eucharist, the Blessed Mother, and ecumenism)."
+                },
+                {
+                    "title": "WE ARE CHURCH",
+                    "question": "What is “We Are Church”?",
+                    "summary": "The “International We Are Church Movement” (IMWAC), or simply We are Church (WAC), is an international coalition whose supporters desire radical revisions of Church teaching and discipline. The coalition, founded in 1996, openly dissents from Church teaching on issues such as women’s ordination, contraception, and abortion.<br>WAC espouses moral relativism, which claims that the unformed conscience has primacy in all moral decision-making. This error places great emphasis on subjective experiences and feelings. This is considered by many to be the central problem for the Faith at the present time."
+                },
+                {
+                    "title": "WHO IS JOHN THE BAPTIST?",
+                    "question": "In John 1:19-23, John the Baptist says that he is not the Christ, Elijah, or “the prophet.” What does this mean? Isn’t John a prophet? And doesn’t Jesus say that John is Elijah in Matthew 11:11-15, 17:10-13; and Mark 9:11-13?",
+                    "summary": "John the Baptist is not the Christ, the Elijah <em>actually</em> returned from Heaven, or the prophet (i.e., a law-giver like Moses), so his statements are accurate. However, John is truly a prophet because he prepared the way of the Lord and first introduced the Lamb of God (Jn. 1:29-34; cf. Is. 53). He is also a “type” of Elijah, fulfilling in the New Covenant what Elijah prefigured in the Old (cf. <em>Catechism of the Catholic Church</em>, nos. 128-30)."
+                }
+            ]
         },
         {
             "category": "liturgy_and_sacraments",
-            "faith_facts": []
+            "category_display": "Liturgy and Sacraments",
+            "faith_facts": [
+                {
+                    "title": "ANNOUNCEMENTS AT MASS",
+                    "question": "When should announcements be made during Mass?",
+                    "summary": "“Following the prayer after communion, if there are any brief announcements, the deacon may make them, unless the priest prefers to do so himself” [<em>General Instruction to the Roman Missal</em> (GIRM), no. 139]."
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                }
+            ]
         },
         {
             "category": "sacred_scripture",
-            "faith_facts": []
-        },
+            "category_display": "Sacred Scripture",
+            "faith_facts": [
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                },
+                {
+                    "title": "",
+                    "question": "",
+                    "summary": ""
+                }
+            ]
+        }
     ]
 }
