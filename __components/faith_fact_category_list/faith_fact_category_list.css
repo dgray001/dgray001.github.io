@@ -18,7 +18,6 @@
 }
 
 #faith-fact-categories {
-    flex-direction: row;
     overflow-x: scroll;
     white-space: nowrap;
 }
@@ -33,15 +32,30 @@
     display: inline-block;
     font-size: 20px;
     outline: none;
+    overflow: hidden;
     padding: 1em;
+    position: relative;
     text-align: center;
     user-select: none;
 }
 
-.category-link:hover:not(.current-category):not(:active) {
-    background-color: lightgray;
+span.ripple {
+    animation: ripple 700ms linear forwards;
+    background-color: gray;
+    border-radius: 50%;
+    opacity: 100;
+    position: absolute;
+    transform: scale(0);
+    z-index: -1;
 }
 
-.category-link:active {
-    background-color: gray;
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 100;
+  }
+}
+
+.category-link:hover:not(.current-category):not(:active) {
+    background-color: lightgray;
 }
