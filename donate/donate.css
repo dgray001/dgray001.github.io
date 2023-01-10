@@ -1,1 +1,12 @@
 @import "../styles.css";
+
+.iframe-wrapper {
+  height: auto;
+  min-height: 100%;
+  position: absolute;
+  width: 90%;
+}
+
+iframe {
+  width: 100%;
+}

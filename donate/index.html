@@ -13,11 +13,36 @@
     <script type="text/javascript" src="./donate/donate.js"></script>
     <script type="text/javascript" src="./__components/header/header.js" async></script>
     <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
+</script>
 </head>
-<body>
+<body onload="loadPage()">
     <cuf-header></cuf-header>
     <div class="page-content">
         <div class="test">Donate content</div>
+
+        <br>
+        <div>Using hosted form on authorize.net</div>
+        <button id="loadHostedForm" onclick="loadHostedForm(false)">Continue to hosted form</button>
+        <form method="post" action="https://test.authorize.net/payment/payment"
+          id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
+            <input type="hidden" id="tokenInput" name="token" value="">
+            <button type="submit" id="formButton" hidden></button>
+        </form>
+
+        <br>
+        <div>Embed hosted form from authorize.net</div>
+        <div id="iframe_wrapper" class="iframe-wrapper" hidden>
+            <iframe id="add_payment" class="embed-responsive-item panel"
+              name="add_payment" frameborder="0" scrolling="no"></iframe>
+            <form id="send_token" action="https://test.authorize.net/payment/payment" method="post" target="add_payment" >
+                <input type="hidden" id="tokenInput_iframe" name="token" value="">
+            </form>
+        </div>
+        <button id="loadHostedForm_iframe" onclick="loadHostedForm(true)">Continue to hosted form (iframe)</button>
+
+        <br><br>
+        <div>Can also implement a custom form</div>
+
     </div>
     <cuf-footer-contact></cuf-footer-contact>
 </body>

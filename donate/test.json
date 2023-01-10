@@ -1,0 +1,60 @@
+{
+  "getHostedPaymentPageRequest": {
+    "merchantAuthentication": {
+      "name": "992nZqEh8",
+      "transactionKey": "94t6533CvQcwA5F6"
+    },
+    "transactionRequest": {
+      "transactionType": "authCaptureTransaction",
+      "amount": "20.00",
+      "profile": {
+        "customerProfileId": "123456789"
+      },
+      "customer": {
+        "email": "yodan.and.the.sixth.character@gmail.com"
+      },
+      "billTo": {
+        "firstName": "Daniel",
+        "lastName": "Gray",
+        "address": "3600 N Hills Dr",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "78731",
+        "country": "US"
+      }
+    },
+    "hostedPaymentSettings": {
+      "setting": [{
+        "settingName": "hostedPaymentReturnOptions",
+        "settingValue": "{\"showReceipt\": false, \"url\": \"https://127.0.0.1:5500/donate\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.0.1:5500/donate\", \"cancelUrlText\": \"Cancel\"}"
+      }, {
+        "settingName": "hostedPaymentButtonOptions",
+        "settingValue": "{\"text\": \"Donate\"}"
+      }, {
+        "settingName": "hostedPaymentStyleOptions",
+        "settingValue": "{\"bgColor\": \"green\"}"
+      }, {
+        "settingName": "hostedPaymentPaymentOptions",
+        "settingValue": "{\"cardCodeRequired\": false, \"showCreditCard\": true, \"showBankAccount\": false}"
+      }, {
+        "settingName": "hostedPaymentSecurityOptions",
+        "settingValue": "{\"captcha\": true}"
+      }, {
+        "settingName": "hostedPaymentShippingAddressOptions",
+        "settingValue": "{\"show\": false, \"required\": false}"
+      }, {
+        "settingName": "hostedPaymentBillingAddressOptions",
+        "settingValue": "{\"show\": true, \"required\": true}"
+      }, {
+        "settingName": "hostedPaymentCustomerOptions",
+        "settingValue": "{\"showEmail\": false, \"requiredEmail\": false, \"addPaymentProfile\": true}"
+      }, {
+        "settingName": "hostedPaymentOrderOptions",
+        "settingValue": "{\"show\": true, \"merchantName\": \"CUF\"}"
+      }, {
+        "settingName": "hostedPaymentIFrameCommunicatorUrl",
+        "settingValue": "{\"url\": \"https://127.0.0.1:5500/donate/iframe_communicator.html\"}"
+      }]
+    }
+  }
+}
