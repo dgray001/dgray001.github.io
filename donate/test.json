@@ -1,9 +1,5 @@
 {
   "getHostedPaymentPageRequest": {
-    "merchantAuthentication": {
-      "name": "992nZqEh8",
-      "transactionKey": "94t6533CvQcwA5F6"
-    },
     "transactionRequest": {
       "transactionType": "authCaptureTransaction",
       "amount": "20.00",
@@ -26,7 +22,7 @@
     "hostedPaymentSettings": {
       "setting": [{
         "settingName": "hostedPaymentReturnOptions",
-        "settingValue": "{\"showReceipt\": false, \"url\": \"https://127.0.0.1:5500/donate\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.0.1:5500/donate\", \"cancelUrlText\": \"Cancel\"}"
+        "settingValue": "{\"showReceipt\": false, \"url\": \"https://aef7-2603-8080-1600-efda-45d2-fab4-7580-ff5d.ngrok.io/donate\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://aef7-2603-8080-1600-efda-45d2-fab4-7580-ff5d.ngrok.io/donate\", \"cancelUrlText\": \"Cancel\"}"
       }, {
         "settingName": "hostedPaymentButtonOptions",
         "settingValue": "{\"text\": \"Donate\"}"
@@ -53,7 +49,7 @@
         "settingValue": "{\"show\": true, \"merchantName\": \"CUF\"}"
       }, {
         "settingName": "hostedPaymentIFrameCommunicatorUrl",
-        "settingValue": "{\"url\": \"https://127.0.0.1:5500/donate/iframe_communicator.html\"}"
+        "settingValue": "{\"url\": \"https://aef7-2603-8080-1600-efda-45d2-fab4-7580-ff5d.ngrok.io/donate/iframe_communicator.html\"}"
       }]
     }
   }

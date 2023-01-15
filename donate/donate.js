@@ -28,30 +28,36 @@ async function loadPage() {
 }
 
 async function loadHostedForm(use_iframe) {
+  // prevent repeat clicks
   const button = document.getElementById(use_iframe ? 'loadHostedForm_iframe' : 'loadHostedForm');
   button.disabled = true;
-  setInterval(() => {}, 2000);
+  // Load test data for now ; will be taken from form submit in future
   const data = await fetch('./donate/test.json');
   const json_data = await data.json();
-  const response = await fetch('https://apitest.authorize.net/xml/v1/request.api', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(json_data),
-  });
-  const response_json = await response.json();
-  const token_input = document.getElementById(use_iframe ? 'tokenInput_iframe' : 'tokenInput');
-  token_input.setAttribute('value', response_json['token']);
-  if (use_iframe) {
-    const iframe_wrapper = document.getElementById("iframe_wrapper");
-    iframe_wrapper.removeAttribute('hidden');
-    const send_token_element = document.getElementById("send_token");
-    send_token_element.submit();
-  }
-  else {
-    const form_button = document.getElementById('formButton');
-    form_button.click();
+  // post data to server
+  try {
+    const response = await fetch('/server/donate.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(json_data),
+    });
+    const response_json = await response.json();
+    const token_input = document.getElementById(use_iframe ? 'tokenInput_iframe' : 'tokenInput');
+    token_input.setAttribute('value', response_json["token"]);
+    if (use_iframe) {
+      const iframe_wrapper = document.getElementById("iframe_wrapper");
+      iframe_wrapper.removeAttribute('hidden');
+      const send_token_element = document.getElementById("send_token");
+      send_token_element.submit();
+    }
+    else {
+      const form_button = document.getElementById('formButton');
+      form_button.click();
+    }
+  } catch(error) {
+    console.log(error);
   }
   button.disabled = false;
 }
