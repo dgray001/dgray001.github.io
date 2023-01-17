@@ -1,20 +1,50 @@
-.footer-contact {
-    margin-top: 40px;
+.margin {
+  background-color: rgb(120, 120, 255);
+  height: max(1vh, 7.5px);
+  margin-top: var(--margin-size);
+  width: 100vw;
 }
 
-.element {
-    margin-left: calc(50% - 6rem);
+.content-container {
+  background-color: lightgreen;
+}
+
+.element-container {
+  margin: 0 auto;
+  max-width: max(var(--max-width));
+  overflow: auto;
+  width: 90%;
+}
+
+/* large devices */
+@media only screen and (min-width: 600px) {
+  .element-container {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .left .element {
+    margin-right: 1rem;
+  }
+
+  .right .element {
+    margin-left: 1rem;
+  }
 }
 
 #title {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 #phone {
-    margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
 #copyright {
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
+  font-size: 0.8rem;
+  margin: 0 auto;
+  max-width: max(var(--max-width));
+  padding-bottom: 0.5rem;
+  padding-top: 0.5rem;
+  width: 90%;
 }

@@ -1,58 +1,72 @@
 .container {
-    background-color: #dddddd;
-    position: fixed;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    height: 14vh;
-    width: 90vw;
-    padding-left: 5vw;
-    padding-right: 5vw;
-    padding-top: 8px;
-    z-index: 9;
+  --margin-offset: 0px;
+  --header-total-height: calc(var(--header-height-unit) * 5 - var(--margin-offset));
 }
 
-.margin {
-    background-color: rgb(120, 120, 255);
-    flex: 1 1 0;
-}
-
-.site-title {
-    background-color: lightgreen;
-    flex: 6 1 0;
-    display: flex;
-    flex-direction: column;
-}
-
-.site-title div {
-    text-align: center;
+.fixed-container {
+  background-color: lightgreen;
+  position: fixed;
+  top: 0;
+  height: calc(var(--header-height-unit) * 2);
+  width: 100vw;
+  z-index: 9;
 }
 
 .title {
-    flex: 5 1 0;
-    font-size: clamp(14px, 2.2vw, 4.5vh);
-    font-weight: bold;
+  font-size: calc(var(--header-height-unit) * 1.4);
+  font-weight: bold;
+  margin-top: calc(var(--header-height-unit) * 0.2);
+  margin-left: var(--left-margin-size);
+  white-space: nowrap;
+}
+
+.collapsed-container {
+  background-color: lightgreen;
+  display: flex;
+  flex-direction: column;
+  height: calc(var(--header-height-unit) * 3);
+  margin-top: calc(var(--header-height-unit) * 2);
+  top: 0;
+  width: 100vw;
 }
 
 .subtitle {
-    flex: 3 1 0;
-    font-size: clamp(10px, 1.6vw, 2.6vh);
+  flex: auto;
+  font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)));
+  margin-top: calc(var(--header-height-unit) * 0.1);
+  margin-left: var(--left-margin-size);
+  white-space: nowrap;
 }
 
-.logo {
-    position: absolute;
-    top: calc(8px + 0.5vh);
-    left: calc(8px + 6vw);
-    width: 13vh;
-    height: 13vh;
+.margin {
+  background-color: rgb(120, 120, 255);
+  height: calc(var(--header-height-unit) * 0.5);
+  margin-bottom: 15px;
+  position: fixed;
+  top: var(--header-total-height);
+  width: 100vw;
+  z-index: 9;
+}
+
+.logo-container {
+  left: max(0px, calc(var(--left-margin-size) - calc(var(--header-height-unit) * 3)));
+  height: var(--header-total-height);
+  position: absolute;
+  top: 0px;
+  width: min(var(--left-margin-size), calc(var(--header-height-unit) * 3));
 }
 
 a {
-    outline: none;
+  display: inline-block;
+  outline: none;
+  height: 100%;
+  width: 100%;
 }
 
 img {
-    object-fit: scale-down;
-    max-width: 100%;
-    max-height: 100%;
+  object-fit: scale-down;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
 }

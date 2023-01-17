@@ -10,6 +10,7 @@ class CufSidebar extends HTMLElement {
         try {
             const panels_to_include = JSON.parse(this.attributes.panels?.value || '[]');
             const content = this.shadowRoot.querySelector('.content');
+            const start_closed = window.innerWidth < 600;
             let content_string = '';
             for (const panel_to_include of panels_to_include) {
                 const response = await fetch(`./__data/${panel_to_include}/${panel_to_include}.json`);
@@ -17,7 +18,8 @@ class CufSidebar extends HTMLElement {
                 if (!json_data['content'] || json_data['content'].length === 0) {
                     continue;
                 }
-                content_string += `<div class="content-card"><cuf-content-card content_key="${panel_to_include}" collapsible="true" start_closed="false"></cuf-content-card></div>`;
+                content_string += `<div class="content-card"><cuf-content-card content_key="${panel_to_include}"
+                  collapsible="true" start_closed="${start_closed}"></cuf-content-card></div>`;
             }
             content.innerHTML = content_string;
         } catch(e) {

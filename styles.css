@@ -1,16 +1,55 @@
-body {
-    background-color: #dddddd;
-    margin-left: 0;
-    margin-right: 0;
+:root {
+  --margin-size: 15px;
+  --header-height-unit: max(2vh, 15px);
+  --fixed-header-height: calc(var(--header-height-unit) * 0.5 + var(--margin-size));
+  --max-width: 1400px;
+  --left-margin-size: 10vw;
 }
 
-* {
-    scroll-padding-top: max(48px, calc(14vh + 16px));
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #dddddd;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
 .page-content {
-    margin-top: max(48px, calc(14vh + 16px));
-    scroll-margin-top: max(48px, calc(14vh + 16px));
-    margin-left: 5vw;
-    margin-right: 5vw;
+  flex: 1 0 auto;
+  justify-content: space-between;
+  margin: var(--fixed-header-height) auto 0;
+  max-width: var(--max-width);
+  scroll-margin-top: var(--fixed-header-height);
+  width: 90%;
+}
+
+.actual-content {
+  background-color: red;
+  margin-bottom: 20px;
+}
+
+cuf-sidebar {
+  max-width: 450px;
+  min-width: 250px;
+}
+
+/* move sidebar to side for large enough devices */
+@media only screen and (min-width: 600px) {
+  .page-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .actual-content {
+    flex: 2 1 0;
+    margin-bottom: 0px;
+    margin-right: 10px;
+  }
+
+  cuf-sidebar {
+    flex: 1 1 0;
+  }
 }
