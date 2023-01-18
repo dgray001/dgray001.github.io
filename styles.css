@@ -4,6 +4,10 @@
   --fixed-header-height: calc(var(--header-height-unit) * 0.5 + var(--margin-size));
   --max-width: 1400px;
   --left-margin-size: 10vw;
+  --margin-color: rgb(120, 120, 255);
+  --card-background-color: rgb(221, 210, 200);
+  --card-box-shadow-color: rgba(0, 0, 0, .5);
+  --page-body-font-size: 17px;
 }
 
 html, body {
@@ -11,7 +15,7 @@ html, body {
 }
 
 body {
-  background-color: #dddddd;
+  background-color: rgb(221, 221, 221);
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -27,8 +31,38 @@ body {
 }
 
 .actual-content {
-  background-color: red;
+  background-color: var(--card-background-color);
+  box-shadow: 0 0 6px var(--card-box-shadow-color);
+  font-size: var(--page-body-font-size);
   margin-bottom: 20px;
+  padding: 8px;
+}
+
+.page-title {
+  color: rgb(100, 100, 200);
+  font-size: 2.6em;
+  padding-left: 4vw;
+}
+
+.section {}
+
+.section-title {
+  color: rgb(70, 70, 140);
+  font-size: 1.8em;
+  font-weight: 600; /* between normal and bold */
+}
+
+.section-subtitle {
+  color: rgb(40, 40, 80);
+  font-size: 1.4em;
+  font-weight: normal;
+}
+
+.section-content {}
+
+.no-list-style {
+  list-style: none;
+  padding-left: 10px;
 }
 
 cuf-sidebar {

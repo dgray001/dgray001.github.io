@@ -1,17 +1,25 @@
+@import "../styles.css";
+
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: lightblue;
-  margin-left: 0;
-  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
 .container {
   align-items: stretch;
   display: flex;
+  flex: 1 0 auto;
   flex-direction: row;
   gap: 14px;
   height: 50vh;
   justify-content: center;
-  margin-top: 25px;
+  margin-top: var(--fixed-header-height);
   max-width: 100vw;
 }
 
@@ -20,7 +28,14 @@ body {
   flex: 3 1 0;
 }
 
-.left-panel-list-element {
+.list-element {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.left-panel.list-element {
   text-align: right;
   flex: 1 1 0;
 }
@@ -43,7 +58,7 @@ img {
   flex: 3 1 0;
 }
 
-.right-panel-list-element {
+.right-panel.list-element {
   padding-left: 5%;
   text-align: left;
   flex: auto;
@@ -52,7 +67,6 @@ img {
 .right-panel-list-header {
   padding-left: 0%;
   text-align: left;
-  flex: auto;
   font-weight: bold;
 }
 
@@ -64,9 +78,18 @@ img {
   height: 100%;
 }
 
+.left-panel a {
+  align-self: flex-end;
+}
+
+.right-panel a {
+  align-self: flex-start;
+}
+
 a {
   color: darkblue;
   text-decoration: none;
+  width: auto;
 }
 
 @keyframes flicker {
@@ -74,8 +97,12 @@ a {
     opacity: 1;
   }
   100% {
-    opacity: 0.3;
+    opacity: 1;
   }
+}
+
+a:visited {
+  color: darkmagenta;
 }
 
 a:hover {
@@ -84,7 +111,7 @@ a:hover {
 }
 
 a:active {
-  color: red;
+  color: darkred;
   animation: flicker 300ms alternate 2;
   text-decoration: underline;
 }

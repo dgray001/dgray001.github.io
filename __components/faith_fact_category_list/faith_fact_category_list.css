@@ -1,61 +1,48 @@
-.faith-facts-header-wrapper {
-    text-align: center;
-}
-
-.faith-facts-header {
-    cursor: pointer;
-    font-size: 2em;
-    font-weight: bold;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-    margin-left: 0;
-    margin-right: 0;
-    user-select: none;
-}
-
-.faith-facts-header:hover {
-    text-decoration: underline;
-}
-
-#faith-fact-categories {
-    overflow-x: scroll;
-    white-space: nowrap;
-}
-
-.current-category {
-    background-color: gray;
+.faith-fact-category-list {
+  display: flex;
+  overflow-x: auto;
 }
 
 .category-link {
-    color: darkblue;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 20px;
-    outline: none;
-    overflow: hidden;
-    padding: 1em;
-    position: relative;
-    text-align: center;
-    user-select: none;
+  color: darkblue;
+  cursor: pointer;
+  display: inline-block;
+  flex: 0 0 auto;
+  font-size: 20px;
+  outline: none;
+  overflow: hidden;
+  padding: 1em;
+  position: relative;
+  text-align: center;
+  user-select: none;
+}
+
+.category-link.current-category {
+  background-color: rgb(104, 103, 103);
+  color: lightblue;
+}
+
+.category-link:hover:not(.current-category) {
+  background-color: rgb(180, 180, 180);
+}
+
+.category-link .title-container {
+  position: relative;
+  z-index: 1;
 }
 
 span.ripple {
-    animation: ripple 700ms linear forwards;
-    background-color: gray;
-    border-radius: 50%;
-    opacity: 100;
-    position: absolute;
-    transform: scale(0);
-    z-index: -1;
+  animation: ripple 200ms linear forwards;
+  background-color: gray;
+  border-radius: 50%;
+  opacity: 100;
+  position: absolute;
+  transform: scale(0);
 }
 
 @keyframes ripple {
   to {
-    transform: scale(4);
+    transform: scale(2);
     opacity: 100;
   }
-}
-
-.category-link:hover:not(.current-category):not(:active) {
-    background-color: lightgray;
 }

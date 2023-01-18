@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="Catholics, United, Faith, Information, Services">
+  <meta name="author" content="Daniel Gray">
+  <title>Information Services | CUF</title>
+  <base href="../">
+  <link rel="stylesheet" href="./information_services/information_services.css">
+  <script type="text/javascript" src="./information_services/information_services.js"></script>
+  <script type="text/javascript" src="./__components/header/header.js" async></script>
+  <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
+  <script type="text/javascript" src="./__components/sidebar/sidebar.js" async></script>
+  <script type="text/javascript" src="./__components/content_card/content_card.js" async></script>
+  <script type="text/javascript" src="./__components/faith_fact_category/faith_fact_category.js" async></script>
+  <script type="text/javascript" src="./__components/faith_fact_category_list/faith_fact_category_list.js"></script>
+</head>
+<body>
+  <cuf-header></cuf-header>
+  <div class="page-content">
+    <div class="actual-content">
+      <h1 class="page-title">Information Services</h1>
+      <div class="section">
+        <h2 class="section-title">What is Information Services?</h2>
+        <div class="section-content">
+          <p>
+            We will answer any question about the Catholic Faith. Anyone may call and ask questions pertaining to the Catholic Church, Faith or teachings. We have staff available to take questions from 8:00 am until 4:00 pm EST, Monday - Friday. We prefer to answer questions in writing as this allows us to provide substantive references to magisterial and scriptural references.
+          </p>
+          <p>
+            Our <a href='./information_services#faith_facts'>FAITH FACTS</a> support this service. Each FAITH FACT is a carefully researched article that offers a clear, concise and accurate discussion on topics relating to the Catholic Faith. At the end of the FAITH FACT, we offer a partial list of other FAITH FACTS available. If a person calls, and we have a FAITH FACT prepared on the question they ask, we will send it to them. If  we have not prepared a FAITH FACT on that topic, we will research the issue and send a letter addressing their particular question.
+          </p>
+          <p>
+            If you have a question about the Catholic Faith, We invite you to call us at 1-800-MY-FAITH (1-800-693-2484) or <a href='./contact'>contact us</a> via our online form. Relying totally on donations, we offer these services free of charge.
+          </p>
+        </div>
+      </div>
+      <div class="section" id="faith_facts">
+        <h2 class="section-title">Faith Facts</h2>
+        <div class="section-content">
+          <p>
+            Here you can find a comprehensive index of our facts organized by category. If you have a question that you cannot find here, we are happy to answer it for you.
+          </p>
+        </div>
+        <h2 class="section-title">Categories</h2>
+        <cuf-faith-fact-category-list></cuf-faith-fact-category-list>
+      </div>
+    </div>
+    <cuf-sidebar panels='["prayer", "news", "papers"]'></cuf-sidebar>
+  </div>
+  <cuf-footer-contact></cuf-footer-contact>
+</body>
+</html>

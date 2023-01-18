@@ -39,7 +39,7 @@
 }
 
 .margin {
-  background-color: rgb(120, 120, 255);
+  background-color: var(--margin-color);
   height: calc(var(--header-height-unit) * 0.5);
   margin-bottom: 15px;
   position: fixed;

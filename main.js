@@ -42,14 +42,14 @@ const RightPanelLinks = [new PageLink('information_services'), new PageLink('lay
 function loadPage() {
     let leftPanelString = '<div class="panel-list">';
     for (const i of LeftPanelLinks) {
-        leftPanelString += `<div class="left-panel-list-element"><a href="${i.page_url}">${i.page_name}</a></div>`;
+        leftPanelString += `<div class="left-panel list-element"><a href="${i.page_url}">${i.page_name}</a></div>`;
     }
     leftPanelString += "</div>";
     document.getElementById("leftPanelLinks").innerHTML = leftPanelString;
 
-    let rightPanelString = '<div class="panel-list"><div class="right-panel-list-header">Apostolic Activities:</div>';
+    let rightPanelString = '<div class="panel-list"><div class="right-panel list-element"><div class="right-panel-list-header">Apostolic Activities:</div></div>';
     for (const i of RightPanelLinks) {
-        rightPanelString += `<div class="right-panel-list-element"><a href="${i.page_url}">${i.page_name}</a></div>`;
+        rightPanelString += `<div class="right-panel list-element"><a href="${i.page_url}">${i.page_name}</a></div>`;
     }
     rightPanelString += "</div>";
     document.getElementById("rightPanelLinks").innerHTML = rightPanelString;

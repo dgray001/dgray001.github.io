@@ -1,5 +1,5 @@
 .margin {
-  background-color: rgb(120, 120, 255);
+  background-color: var(--margin-color);
   height: max(1vh, 7.5px);
   margin-top: var(--margin-size);
   width: 100vw;

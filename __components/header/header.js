@@ -40,15 +40,9 @@ class CufHeader extends HTMLElement {
   homepageStyle() {
     this.shadowRoot.querySelector('.logo').setAttribute('style', 'visibility: hidden;');
     this.shadowRoot.querySelector('a').setAttribute('style', 'width: 0px;');
-    const fixed_container = this.shadowRoot.querySelector('.fixed-container');
-    fixed_container.setAttribute('style', 'margin-left: 5vw; width: 90vw;');
-    const collapsed_container = this.shadowRoot.querySelector('.collapsed-container');
-    collapsed_container.setAttribute('style', 'margin-left: 5vw; width: 90vw;');
-    const margin_container = this.shadowRoot.querySelector('.margin');
-    margin_container.setAttribute('style', 'margin-left: 5vw; width: 90vw;');
-    this.shadowRoot.querySelector('.title').setAttribute('style', 'text-align: center;');
+    this.shadowRoot.querySelector('.title').setAttribute('style', 'text-align: center; margin-left: 0;');
     for (const element of this.shadowRoot.querySelectorAll('.subtitle')) {
-      element.setAttribute('style', 'text-align: center;');
+      element.setAttribute('style', 'text-align: center; margin-left: 0;');
     }
   }
   
