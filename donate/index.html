@@ -1,49 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="Catholics, United, Faith">
-    <meta name="author" content="Daniel Gray">
-    <title>Donate</title>
-    <base href="../">
-    <link rel="stylesheet" href="./donate/donate.css">
-    <link rel="icon" type="image/png" href="./__images/logo_square.png">
-    <script type="text/javascript" src="./donate/donate.js"></script>
-    <script type="text/javascript" src="./__components/header/header.js" async></script>
-    <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
-</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="keywords" content="Catholics, United, Faith, Donate">
+  <meta name="author" content="Daniel Gray">
+  <title>Donate | CUF</title>
+  <base href="../">
+  <link rel="stylesheet" href="./donate/donate.css">
+  <script type="text/javascript" src="./donate/donate.js"></script>
+  <script type="text/javascript" src="./__components/header/header.js" async></script>
+  <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
+  <script type="text/javascript" src="./__components/sidebar/sidebar.js" async></script>
+  <script type="text/javascript" src="./__components/content_card/content_card.js" async></script>
 </head>
-<body onload="loadPage()">
-    <cuf-header></cuf-header>
-    <div class="page-content">
-        <div class="test">Donate content</div>
-
-        <br>
-        <div>Using hosted form on authorize.net</div>
-        <button id="loadHostedForm" onclick="loadHostedForm(false)">Continue to hosted form</button>
-        <form method="post" action="https://test.authorize.net/payment/payment"
-          id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
-            <input type="hidden" id="tokenInput" name="token" value="">
-            <button type="submit" id="formButton" hidden></button>
-        </form>
-
-        <br>
-        <div>Embed hosted form from authorize.net</div>
-        <div id="iframe_wrapper" class="iframe-wrapper" hidden>
-            <iframe id="add_payment" class="embed-responsive-item panel"
-              name="add_payment" frameborder="0" scrolling="no"></iframe>
-            <form id="send_token" action="https://test.authorize.net/payment/payment" method="post" target="add_payment" >
-                <input type="hidden" id="tokenInput_iframe" name="token" value="">
-            </form>
-        </div>
-        <button id="loadHostedForm_iframe" onclick="loadHostedForm(true)">Continue to hosted form (iframe)</button>
-
-        <br><br>
-        <div>Can also implement a custom form</div>
-
+<body>
+  <cuf-header></cuf-header>
+  <div class="page-content">
+    <div class="actual-content">
+      <div class="test">Donate content</div>
     </div>
-    <cuf-footer-contact></cuf-footer-contact>
+    <cuf-sidebar panels='["prayer", "news", "papers"]'></cuf-sidebar>
+  </div>
+  <cuf-footer-contact></cuf-footer-contact>
 </body>
 </html>
