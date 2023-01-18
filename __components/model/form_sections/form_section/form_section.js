@@ -1,0 +1,20 @@
+export class CufFormSection extends HTMLElement {
+  constructor() {
+    super();
+  }
+
+  async connectedCallback() {
+    const shadow = this.attachShadow({mode: 'open'});
+    const res = await fetch('./__components/model/form_sections/form_section/form_section.html');
+    shadow.innerHTML = await res.text();
+  }
+
+  async setFormSectionAttributes(res, form_section_name) {
+    const wrapper = this.shadowRoot.querySelector('.flex-wrapper');
+    wrapper.innerHTML = await res.text();
+    const form_section_label = this.shadowRoot.querySelector('.form-section-label');
+    form_section_label.innerText = form_section_name;
+  }
+}
+
+customElements.define("cuf-form-section", CufFormSection);

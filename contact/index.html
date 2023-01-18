@@ -9,22 +9,25 @@
   <title>Contact | CUF</title>
   <base href="../">
   <link rel="stylesheet" href="./contact/contact.css">
+  <link rel="icon" type="image/png" href="./__images/logo_square.png">
   <script type="text/javascript" src="./contact/contact.js"></script>
   <script type="text/javascript" src="./__components/header/header.js" async></script>
   <script type="text/javascript" src="./__components/footer_contact/footer_contact.js" async></script>
   <script type="text/javascript" src="./__components/sidebar/sidebar.js" async></script>
   <script type="text/javascript" src="./__components/content_card/content_card.js" async></script>
-  <script type="module" src="./__components/input_text/input_text.js" async></script>
+  <script type="module" src="./__components/model/form_sections/form_section_name/form_section_name.js" async></script>
 </head>
 <body>
   <cuf-header></cuf-header>
   <div class="page-content">
     <div class="actual-content">
-      <h1 class="page-title">Contact Us</h1>
+      <header>
+        <h1 class="page-title">Contact Us</h1>
+      </header>
       <div class="section">
         <h3 class="section-subtitle">If you have a question, We invite you to contact us. If you are requesting a FAITH FACT please include the title(s) you would like to receive. Relying totally on donations, we offer the service free of charge.</h3>
         <div class="section-content">
-          <cuf-input-text></cuf-input-text>
+          <cuf-form-section-name></cuf-form-section-name>
         </div>
       </div>
     </div>
