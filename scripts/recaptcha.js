@@ -6,7 +6,7 @@
  */
 async function verifyRecaptcha(token) {
   try {
-    const response = await fetch('/server/recaptcha.php', {
+    const response = await fetch('/CUF_website/server/recaptcha.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

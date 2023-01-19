@@ -57,7 +57,7 @@ async function loadHostedForm(use_iframe) {
   const json_data = await data.json();
   // post data to server
   try {
-    const response = await fetch('/server/donate.php', {
+    const response = await fetch('/CUF_website/server/donate.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
