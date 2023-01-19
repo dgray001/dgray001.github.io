@@ -16,6 +16,11 @@
   <script type="text/javascript" src="./__components/sidebar/sidebar.js" async></script>
   <script type="text/javascript" src="./__components/content_card/content_card.js" async></script>
   <script type="module" src="./__components/model/form_sections/form_section_name/form_section_name.js" async></script>
+  <script type="module" src="./__components/model/form_sections/form_section_address/form_section_address.js" async></script>
+  <script type="module" src="./__components/model/form_sections/form_section_contact/form_section_contact.js" async></script>
+  <script type="module" src="./__components/model/text_area/text_area.js" async></script>
+  <script type="module" src="./__components/model/checkbox/checkbox.js" async></script>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
   <cuf-header></cuf-header>
@@ -27,7 +32,35 @@
       <div class="section">
         <h3 class="section-subtitle">If you have a question, We invite you to contact us. If you are requesting a FAITH FACT please include the title(s) you would like to receive. Relying totally on donations, we offer the service free of charge.</h3>
         <div class="section-content">
-          <cuf-form-section-name></cuf-form-section-name>
+          <form id="contact-form" action="submitForm()">
+            <cuf-form-section-name></cuf-form-section-name>
+            <cuf-form-section-address></cuf-form-section-address>
+            <cuf-form-section-contact></cuf-form-section-contact>
+            <cuf-text-area id="name-prefix">Message</cuf-text-area><br><br>
+            <cuf-checkbox id="checkbox-member">
+              I wish to be a CUF Member
+            </cuf-checkbox>
+            <cuf-checkbox id="checkbox-associate">
+              I wish to be a CUF associate (receives Lay Witness; is not considered a member)
+            </cuf-checkbox>
+            <cuf-checkbox id="checkbox-chapters">
+              Please send me information on CUF Chapters in my area
+            </cuf-checkbox>
+            <cuf-checkbox id="checkbox-start-chapter">
+              Please send me information on starting a CUF Chapter
+            </cuf-checkbox>
+            <button
+              id="submit-form-button"
+              class="g-recaptcha" 
+              data-sitekey="6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1" 
+              data-callback='submitForm' 
+              data-action='submit'>
+              Submit
+            </button>
+            <div id="recaptcha-error-message">
+              ReCaptcha validation has failed. If you are human, please report this false positive.
+            </div>
+          </form>
         </div>
       </div>
     </div>

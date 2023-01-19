@@ -10,7 +10,7 @@ export class CufFormSection extends HTMLElement {
   }
 
   async setFormSectionAttributes(res, form_section_name) {
-    const wrapper = this.shadowRoot.querySelector('.flex-wrapper');
+    const wrapper = this.shadowRoot.querySelector('.section-wrapper');
     wrapper.innerHTML = await res.text();
     const form_section_label = this.shadowRoot.querySelector('.form-section-label');
     form_section_label.innerText = form_section_name;

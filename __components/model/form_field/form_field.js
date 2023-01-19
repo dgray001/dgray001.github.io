@@ -8,6 +8,7 @@ export class CufFormField extends HTMLElement {
 
   async connectedCallback() {
     this.id = this.attributes.id?.value || '';
+    const flex_option = this.attributes.flex_option?.value || '';
     this.label = this.innerText;
     this.innerText = '';
     const shadow = this.attachShadow({mode: 'open'});
@@ -16,6 +17,10 @@ export class CufFormField extends HTMLElement {
     const wrapper = shadow.querySelector('.form-field-wrapper');
     wrapper.setAttribute('id', this.id + '-wrapper');
     this.removeAttribute('id');
+    this.classList.add('form-field');
+    if (flex_option) {
+      this.setAttribute('style', `flex: ${flex_option} 0 0`)
+    }
   }
 
   // given response to child html, wrap it in wrapper and set attributes

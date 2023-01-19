@@ -18,6 +18,7 @@ body {
   background-color: rgb(221, 221, 221);
   display: flex;
   flex-direction: column;
+  font-family: "Goudy Bookletter 1911", sans-serif;
   margin: 0;
 }
 
@@ -70,6 +71,10 @@ cuf-sidebar {
   min-width: 250px;
 }
 
+a:not(:focus-visible) {
+  outline: none;
+}
+
 /* move sidebar to side for large enough devices */
 @media only screen and (min-width: 750px) {
   .page-content {
@@ -88,4 +93,9 @@ cuf-sidebar {
   cuf-sidebar {
     flex: 1;
   }
+}
+
+/* Hide recaptcha badge */
+.grecaptcha-badge { 
+  visibility: hidden;
 }

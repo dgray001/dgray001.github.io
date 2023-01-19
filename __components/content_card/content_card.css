@@ -21,6 +21,7 @@
   overflow: hidden;
   max-height: 40px;
   max-width: calc(100% - 40px - 0.3rem);
+  user-select: none;
   white-space: nowrap;
 }
 
@@ -117,4 +118,8 @@ img:hover {
   white-space: pre-wrap;
   overflow-wrap: break-word; /* Chrome, Safari */
   overflow-wrap: anywhere; /* Firefox */
+}
+
+a:not(:focus-visible) {
+  outline: none;
 }

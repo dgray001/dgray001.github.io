@@ -111,7 +111,7 @@ a:hover {
 }
 
 a:active {
-  color: darkred;
+  color: rgb(190, 0, 0);
   animation: flicker 300ms alternate 2;
   text-decoration: underline;
 }

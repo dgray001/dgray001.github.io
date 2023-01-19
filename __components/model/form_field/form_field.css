@@ -1,0 +1,15 @@
+.form-field-wrapper {
+  display: inline-block;
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+}
+
+.form-field {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: var(--page-body-font-size);
+  max-width: 100%;
+  min-width: 100%;
+  width: 100%;
+}

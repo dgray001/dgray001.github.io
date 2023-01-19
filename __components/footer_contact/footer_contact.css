@@ -16,6 +16,10 @@
   width: 90%;
 }
 
+.element-group {
+  margin-top: 1rem;
+}
+
 /* large devices */
 @media only screen and (min-width: 600px) {
   .element-container {
@@ -30,14 +34,14 @@
   .right .element {
     margin-left: 1rem;
   }
+
+  .recaptcha .element {
+    margin-left: 3rem;
+  }
 }
 
-#title {
-  margin-top: 1rem;
-}
-
-#phone {
-  margin-top: 1rem;
+#recaptcha-notice {
+  font-size: 0.6rem;
 }
 
 #copyright {
