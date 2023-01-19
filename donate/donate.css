@@ -1,1 +1,28 @@
 @import "../styles.css";
+
+#submit-form-button {
+  margin-top: 1rem;
+}
+
+#recaptcha-success-message {
+  color: green;
+  margin-top: 1rem;
+  display: none;
+}
+
+#recaptcha-error-message {
+  color: rgb(218, 0, 0);
+  margin-top: 1rem;
+  display: none;
+}
+
+.iframe-wrapper {
+  height: auto;
+  min-height: 100%;
+  position: absolute;
+  width: 90%;
+}
+
+iframe {
+  width: 100%;
+}

@@ -1,6 +1,6 @@
 import {CufFormField} from '../form_field/form_field.js';
 
-class CufCheckbox extends CufFormField {
+export class CufCheckbox extends CufFormField {
   constructor() {
     super();
   }
