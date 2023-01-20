@@ -4,14 +4,12 @@
   margin-top: 1rem;
 }
 
-#recaptcha-success-message {
-  color: green;
+#contact-form-status-message {
   margin-top: 1rem;
   display: none;
 }
 
-#recaptcha-error-message {
-  color: rgb(218, 0, 0);
+#contact-form-receipt-message {
   margin-top: 1rem;
   display: none;
 }

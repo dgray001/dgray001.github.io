@@ -5,6 +5,7 @@
 
 .fixed-container {
   background-color: lightgreen;
+  flex-direction: row;
   position: fixed;
   top: 0;
   height: calc(var(--header-height-unit) * 2);
@@ -18,6 +19,12 @@
   margin-top: calc(var(--header-height-unit) * 0.2);
   margin-left: var(--left-margin-size);
   white-space: nowrap;
+}
+
+cuf-navigation-pane {
+  flex: 1 1 0;
+  margin-left: 10vw;
+  margin-right: 6vw;
 }
 
 .collapsed-container {

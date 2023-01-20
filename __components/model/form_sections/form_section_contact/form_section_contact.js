@@ -12,6 +12,16 @@ class CufFormSectionContact extends CufFormSection {
     const res = await fetch('./__components/model/form_sections/form_section_contact/form_section_contact.html');
     const form_section = await this.setFormSectionAttributes(res, 'Contact');
   }
+
+  /**
+   * Returns map of name data for the name form section
+   * @return {{email:string, phone:string}}
+   */
+  getFormData() {
+    const email = this.shadowRoot.getElementById('contact-email').getFormData();
+    const phone = this.shadowRoot.getElementById('contact-phone').getFormData();
+    return {'email': email, 'phone': phone};
+  }
 }
 
 customElements.define("cuf-form-section-contact", CufFormSectionContact);

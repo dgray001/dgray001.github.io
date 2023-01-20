@@ -11,6 +11,14 @@ export class CufInputText extends CufFormField {
     const form_field = await this.setFormFieldAttributes(res);
     form_field.setAttribute('placeholder', this.label);
   }
+
+  /**
+   * Returns form data as a string
+   * @return {string}
+   */
+  getFormData() {
+    return this.form_field.value;
+  }
 }
 
 customElements.define("cuf-input-text", CufInputText);

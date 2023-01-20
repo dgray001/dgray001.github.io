@@ -1,5 +1,12 @@
 export class CufFormField extends HTMLElement {
+  /**
+   * reference to actual form field element
+   * @type {HTMLElement}
+   */
+  form_field;
+  /** @type {string} */
   id = '';
+  /** @type {string} */
   label = ''
 
   constructor() {
@@ -16,21 +23,32 @@ export class CufFormField extends HTMLElement {
     shadow.innerHTML = await res.text();
     const wrapper = shadow.querySelector('.form-field-wrapper');
     wrapper.setAttribute('id', this.id + '-wrapper');
-    this.removeAttribute('id');
     this.classList.add('form-field');
     if (flex_option) {
       this.setAttribute('style', `flex: ${flex_option} 0 0`)
     }
   }
 
-  // given response to child html, wrap it in wrapper and set attributes
+  /**
+   * Given response to child html, wrap it in wrapper and set attributes
+   * @return {Promise<HTMLElement>}
+   */
   async setFormFieldAttributes(res) {
     const wrapper = this.shadowRoot.querySelector('span');
     wrapper.innerHTML = await res.text();
-    const form_field = this.shadowRoot.querySelector('.form-field');
-    form_field.setAttribute('id', this.id);
-    form_field.setAttribute('name', this.id);
-    return form_field;
+    this.form_field = this.shadowRoot.querySelector('.form-field');
+    this.form_field.setAttribute('id', this.id);
+    this.form_field.setAttribute('name', this.id);
+    return this.form_field;
+  }
+
+  /**
+   * Returns form data as a string
+   * @return {string}
+   */
+  getFormData() {
+    console.log(`CufFormField::getFormData not implemented for ${this.constructor.name}.`);
+    return 'error';
   }
 }
 

@@ -15,6 +15,15 @@ export class CufFormSection extends HTMLElement {
     const form_section_label = this.shadowRoot.querySelector('.form-section-label');
     form_section_label.innerText = form_section_name;
   }
+
+  /**
+   * Returns map of form data for the form section
+   * @return {{}}
+   */
+  getFormData() {
+    console.log(`CufFormSection::getFormData not implemented for ${this.constructor.name}.`);
+    return {};
+  }
 }
 
 customElements.define("cuf-form-section", CufFormSection);

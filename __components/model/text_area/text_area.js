@@ -18,6 +18,14 @@ class CufTextArea extends CufFormField {
     textarea.style.height = "";
     textarea.style.height = textarea.scrollHeight + 2 + "px";
   }
+
+  /**
+   * Returns form data as a string
+   * @return {string}
+   */
+  getFormData() {
+    return this.form_field.value;
+  }
 }
 
 customElements.define("cuf-text-area", CufTextArea);

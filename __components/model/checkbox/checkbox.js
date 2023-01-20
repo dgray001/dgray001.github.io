@@ -15,6 +15,14 @@ export class CufCheckbox extends CufFormField {
     label_element.textContent = this.label;
     this.shadowRoot.querySelector('.form-field-wrapper').appendChild(label_element);
   }
+
+  /**
+   * Returns form data as a string
+   * @return {string}
+   */
+  getFormData() {
+    return this.form_field.checked.toString();
+  }
 }
 
 customElements.define("cuf-checkbox", CufCheckbox);

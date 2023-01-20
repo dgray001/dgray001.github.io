@@ -1,3 +1,5 @@
+import {CufNavigationPane} from '../navigation_pane/navigation_pane.js';
+
 class CufHeader extends HTMLElement {
   homepage = false;
   lastKnownScrollPosition = 0;
@@ -15,6 +17,9 @@ class CufHeader extends HTMLElement {
     shadow.innerHTML = header;
     if (this.homepage) {
       this.homepageStyle();
+    }
+    else {
+      this.defaultStyle();
     }
     document.addEventListener("scroll", () => {
       this.lastKnownScrollPosition = window.scrollY;
@@ -44,8 +49,14 @@ class CufHeader extends HTMLElement {
     for (const element of this.shadowRoot.querySelectorAll('.subtitle')) {
       element.setAttribute('style', 'text-align: center; margin-left: 0;');
     }
+    const navigation_panel = this.shadowRoot.querySelector('cuf-navigation-pane');
+    navigation_panel.remove();
   }
-  
+
+  defaultStyle() {
+    const fixed_container = this.shadowRoot.querySelector('.fixed-container');
+    fixed_container.setAttribute('style', 'display: flex;');
+  }
 }
 
 customElements.define("cuf-header", CufHeader);
