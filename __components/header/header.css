@@ -52,7 +52,7 @@ cuf-navigation-pane {
   position: fixed;
   top: var(--header-total-height);
   width: 100vw;
-  z-index: 9;
+  z-index: 8;
 }
 
 .logo-container {

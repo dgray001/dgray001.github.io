@@ -10,3 +10,16 @@ function scrollToElement(element) {
     behavior: "smooth"
   });
 }
+
+/**
+ * Smooth scrolls to the input element, accounting for fixed header height
+ * @param {HTMLElement} element element to scroll to
+ * @return {Promise}
+ */
+function until(conditionFunction) {
+  const poll = resolve => {
+    if(conditionFunction) resolve();
+    else setTimeout(_ => poll(resolve), 400);
+  }
+  return new Promise(poll);
+}

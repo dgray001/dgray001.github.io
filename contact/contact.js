@@ -1,6 +1,5 @@
 /**
- * @param {string} token
- * @return {void}
+ * @return {Promise<void>}
  * Submits contact form if recaptcha token is valid
  */
 async function submitFormButton() {

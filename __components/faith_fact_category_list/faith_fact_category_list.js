@@ -1,10 +1,9 @@
-
-
-
 class CufFaithFactCategoryList extends HTMLElement {
   hovered = false;
   scrolling = false;
   current_category = '';
+  loading = false;
+  loaded_json_data = new Map();
 
   constructor() {
     super();
@@ -39,16 +38,24 @@ class CufFaithFactCategoryList extends HTMLElement {
       this.hovered = false;
       document.body.style.overflow = 'auto';
     });
-    category_list.addEventListener('wheel', this.scrollCategories.bind(category_list));
+    category_list.addEventListener('wheel',//this.scrollCategories.bind(category_list));
+      (evt) => {
+        evt.preventDefault();
+        category_list.scrollLeft += 0.5 * evt.deltaY;
+      });
   }
 
-  setCategory(evt) {
+  async setCategory(evt) {
+    if (this.loading) {
+      return;
+    }
     const category = evt.target.id;
     if (category === this.current_category) {
       this.scrollToCategories();
       return;
     }
     this.current_category = category;
+    this.loading = true;
 
     for (const category_link of this.shadowRoot.querySelectorAll('.category-link')) {
       if (category_link.id === category) {
@@ -63,9 +70,30 @@ class CufFaithFactCategoryList extends HTMLElement {
     new_category_element.setAttribute('category', category);
     
     const container = this.shadowRoot.querySelector('.category-container');
-    container.innerHTML = '';
+    const previous_children = [];
+    for (const child of container.children) {
+      previous_children.push(child);
+    }
+    if (this.loaded_json_data.has(category)) {
+      new_category_element.json_data = this.loaded_json_data[category];
+    }
+    new_category_element.callback = this.renderChildCallback.bind(this, () => {
+      for (const child of previous_children) {
+        container.removeChild(child);
+      }
+    });
     container.appendChild(new_category_element);
-    setTimeout(this.scrollToCategories.bind(this), 250);
+  }
+
+  renderChildCallback(remove_previous_child, json_data) {
+    if (remove_previous_child) {
+      remove_previous_child();
+    }
+    if (json_data) {
+      this.loaded_json_data.set(json_data['category'], json_data);
+    }
+    this.scrollToCategories();
+    this.loading = false;
   }
 
   scrollToCategories() {
