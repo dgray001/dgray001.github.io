@@ -12,11 +12,15 @@ $received_data = json_decode(file_get_contents('php://input'), true);
 // get mail config
 require_once(__DIR__ . "/../../config/mail_config.php");
 
-$msg = json_encode($received_data);
+$msg = $received_data;
+
+$headers[] = 'X-Mailer: PHP/' . phpversion();
+$headers[] = 'MIME-Version: 1.0';
+$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
 // send mail
-mail($contact_form_recipient, "CUF | Contact Form Submission Data", $msg);
-if (mail("yodan.and.the.sixth.character@gmail.com", "CUF | Contact Form Submission Data", $msg)) {
+$sent = mail($contact_form_recipient, "CUF | Contact Form Submission Data", $msg, implode("\r\n", $headers));
+if ($sent) {
   echo json_encode('true');
 }
 else {

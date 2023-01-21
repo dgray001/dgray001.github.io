@@ -7,13 +7,10 @@ export class CufCheckbox extends CufFormField {
 
   async connectedCallback() {
     await super.connectedCallback();
+    this.form_field_label.classList.remove('styled');
+    this.form_field_wrapper.classList.remove('styled');
     const res = await fetch('./__components/model/checkbox/checkbox.html');
-    const form_field = await this.setFormFieldAttributes(res);
-    // The following will be removed when labels are added to all form fields
-    const label_element = document.createElement('label');
-    label_element.setAttribute('for', form_field.id);
-    label_element.textContent = this.label;
-    this.shadowRoot.querySelector('.form-field-wrapper').appendChild(label_element);
+    await this.setFormFieldAttributes(res, true);
   }
 
   /**

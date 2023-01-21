@@ -5,6 +5,7 @@
   --max-width: 1400px;
   --left-margin-size: 10vw;
   --margin-color: rgb(120, 120, 255);
+  --page-background-color: rgb(221, 221, 221);
   --card-background-color: rgb(221, 210, 200);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
   --page-body-font-size: calc(12px + 0.5vw);
@@ -15,10 +16,10 @@ html, body {
 }
 
 body {
-  background-color: rgb(221, 221, 221);
+  background-color: var(--page-background-color);
   display: flex;
   flex-direction: column;
-  font-family: "Goudy Bookletter 1911", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   margin: 0;
 }
 

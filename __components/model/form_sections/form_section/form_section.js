@@ -24,6 +24,15 @@ export class CufFormSection extends HTMLElement {
     console.log(`CufFormSection::getFormData not implemented for ${this.constructor.name}.`);
     return {};
   }
+
+  /**
+   * Returns map of form data for the form section
+   * @return {string | {}}
+   */
+  getDisplayableData() {
+    console.log(`CufFormSection::getDisplayableData not implemented for ${this.constructor.name}.`);
+    return {};
+  }
 }
 
 customElements.define("cuf-form-section", CufFormSection);

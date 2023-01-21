@@ -7,14 +7,9 @@ export class CufNavigationPane extends HTMLElement {
     const shadow = this.attachShadow({mode: 'closed'});
     const res = await fetch('./__components/navigation_pane/navigation_pane.html');
     shadow.innerHTML = await res.text();
-    const about = shadow.querySelector('#about');
-    about.addEventListener('click', () => {
-      this.navigateTo('./about');
-    });
-    const involvement = shadow.querySelector('#involvement');
-    involvement.addEventListener('click', () => {
-      this.navigateTo('./involvement');
-    });
+    const current_path = window.location.pathname;
+    this.setEventListener(shadow.querySelector('#about'), '/about', current_path);
+    this.setEventListener(shadow.querySelector('#involvement'), '/involvement', current_path);
     const apostolic_activities = shadow.querySelector('#apostolic_activities');
     apostolic_activities.disabled = true;
     const apostolic_activities_dropdown = shadow.querySelector('#apostolic_activities_dropdown');
@@ -32,26 +27,23 @@ export class CufNavigationPane extends HTMLElement {
         child.setAttribute('style', 'display: none;');
       }
     })
-    const information_services = shadow.querySelector('#information_services');
-    information_services.addEventListener('click', () => {
-      this.navigateTo('./information_services');
-    });
-    const lay_witness = shadow.querySelector('#lay_witness');
-    lay_witness.addEventListener('click', () => {
-      this.navigateTo('./lay_witness');
-    });
-    const faith_and_life_series = shadow.querySelector('#faith_and_life_series');
-    faith_and_life_series.addEventListener('click', () => {
-      this.navigateTo('./faith_and_life_series');
-    });
-    const contact = shadow.querySelector('#contact');
-    contact.addEventListener('click', () => {
-      this.navigateTo('./contact');
-    });
-    const donate = shadow.querySelector('#donate');
-    donate.addEventListener('click', () => {
-      this.navigateTo('./donate');
-    });
+    this.setEventListener(shadow.querySelector('#information_services'), '/information_services', current_path);
+    this.setEventListener(shadow.querySelector('#lay_witness'), '/lay_witness', current_path);
+    this.setEventListener(shadow.querySelector('#faith_and_life_series'), '/faith_and_life_series', current_path);
+    this.setEventListener(shadow.querySelector('#contact'), '/contact', current_path);
+    this.setEventListener(shadow.querySelector('#donate'), '/donate', current_path);
+  }
+
+  setEventListener(element, path, current_path) {
+    if (path == current_path) {
+      element.disabled = true;
+      element.setAttribute('style', 'background-color: rgba(120, 120, 255, 0.8);');
+    }
+    else {
+      element.addEventListener('click', () => {
+        this.navigateTo('.' + path);
+      })
+    }
   }
 
   navigateTo(path) {

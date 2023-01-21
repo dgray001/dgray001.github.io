@@ -21,6 +21,7 @@ export class CufSelect extends CufFormField {
     const options_text = this.attributes.options?.value || '[]';
     const mapping = await this.specificMapping(options_text);
     const default_mapping = this.defaultMapping(options_text);
+    const button_container = this.shadowRoot.querySelector('#child-container');
     for (const option_text of mapping) {
       const entry = {};
       if (Array.isArray(option_text)) {
@@ -31,15 +32,30 @@ export class CufSelect extends CufFormField {
         entry.value = option_text;
         entry.text = option_text;
       }
-      const option = document.createElement("option");
+      const option = document.createElement("button");
+      option.classList.add('child');
       option.setAttribute('value', entry.value);
+      option.setAttribute('style', 'display: none;');
       if (default_mapping === entry.text) {
         option.setAttribute('selected', 'true');
+        form_field.innerText = entry.text;
       }
       option.innerText = entry.text;
-      form_field.appendChild(option);
+      button_container.appendChild(option);
       this.options.set(entry.value, entry.text);
     }
+    button_container.firstChild.classList.add('first-child');
+    button_container.lastChild.classList.add('last-child');
+    form_field.addEventListener('focus', () => {
+      for (const child of button_container.children) {
+        child.setAttribute('style', 'display: block;');
+      }
+    });
+    form_field.addEventListener('blur', () => {
+      for (const child of button_container.children) {
+        child.setAttribute('style', 'display: none;');
+      }
+    });
   }
 
   /**
@@ -113,6 +129,14 @@ export class CufSelect extends CufFormField {
    */
   getFormData() {
     return this.form_field.value;
+  }
+
+  /**
+   * Returns form data as a string
+   * @return {string}
+   */
+  getDisplayableData() {
+    return this.form_field.options[this.form_field.selectedIndex].text;
   }
 }
 

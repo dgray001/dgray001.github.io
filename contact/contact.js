@@ -7,7 +7,7 @@ async function submitFormButton() {
   button.disabled = true;
   button.innerText = 'Sending';
   grecaptcha.ready(async function() {
-    const token = await grecaptcha.execute('6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1', {action: 'submit'});
+    const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
     const recaptcha_check = await verifyRecaptcha(token);
     const status_message = document.getElementById('contact-form-status-message');
     if (recaptcha_check) {
@@ -16,7 +16,7 @@ async function submitFormButton() {
     }
     else {
       status_message.setAttribute('style', 'display: block; color: red');
-      status_message.innerText = 'ReCaptcha validation has failed. If you are human, please report this false positive.';
+      status_message.innerText = 'reCaptcha validation has failed. If you are human, please report this false positive.';
     }
   });
 }
@@ -27,23 +27,24 @@ async function submitFormButton() {
  */
 async function submitForm() {
   const name_section = document.getElementById('section-name');
-  const name_section_data = name_section.getFormData();
+  const name_section_data = name_section.getDisplayableData();
   const address_section = document.getElementById('section-address');
-  const address_section_data = address_section.getFormData();
+  const address_section_data = address_section.getDisplayableData();
   const contact_section = document.getElementById('section-contact');
   const contact_section_data = contact_section.getFormData();
   const message = document.getElementById('section-message');
   const message_data = message.getFormData();
   const membership = document.getElementById('section-membership');
-  const membership_data = membership.getFormData();
-  const post_data = {'name': name_section_data, 'address': address_section_data,
+  const membership_data = membership.getDisplayableData();
+  const form_data = {'name': name_section_data, 'address': address_section_data,
     'contact': contact_section_data, 'message': message_data, 'membership': membership_data};
+  const post_data = createContactEmail(form_data);
   const status_message = document.getElementById('contact-form-status-message');
   try {
     const response = await fetch('/server/contact.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: JSON.stringify(post_data),
     });

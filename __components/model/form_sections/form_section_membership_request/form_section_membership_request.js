@@ -23,6 +23,31 @@ class CufFormSectionMembershipRequest extends CufFormSection {
     const start_chapter = this.shadowRoot.getElementById('checkbox-start-chapter').getFormData();
     return {'member': member, 'associate': associate, 'join_chapter': join_chapter, 'start_chapter': start_chapter};
   }
+
+  /**
+   * Returns string indicating which boxes where checked
+   * @return {string}
+   */
+  getDisplayableData() {
+    const member = this.shadowRoot.getElementById('checkbox-member').getFormData();
+    const associate = this.shadowRoot.getElementById('checkbox-associate').getFormData();
+    const join_chapter = this.shadowRoot.getElementById('checkbox-chapters').getFormData();
+    const start_chapter = this.shadowRoot.getElementById('checkbox-start-chapter').getFormData();
+    const memberships = [];
+    if (member == true.toString()) {
+      memberships.push(' - I want to be a CUF member.');
+    }
+    if (associate == true.toString()) {
+      memberships.push(' - I want to be a CUF associate.');
+    }
+    if (join_chapter == true.toString()) {
+      memberships.push(' - I want information regarding CUF chapters in my area.');
+    }
+    if (start_chapter == true.toString()) {
+      memberships.push(' - I want information on starting a new CUF chapter.');
+    }
+    return memberships.join(',');
+  }
 }
 
 customElements.define("cuf-form-section-membership-request", CufFormSectionMembershipRequest);

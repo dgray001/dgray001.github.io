@@ -8,8 +8,7 @@ export class CufInputText extends CufFormField {
   async connectedCallback() {
     await super.connectedCallback();
     const res = await fetch('./__components/model/input_text/input_text.html');
-    const form_field = await this.setFormFieldAttributes(res);
-    form_field.setAttribute('placeholder', this.label);
+    await this.setFormFieldAttributes(res);
   }
 
   /**

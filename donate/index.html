@@ -21,10 +21,11 @@
   <script type="module" src="./__components/model/form_sections/form_section_contact/form_section_contact.js" async></script>
   <script type="module" src="./__components/model/text_area/text_area.js" async></script>
   <script type="module" src="./__components/model/checkbox/checkbox.js" async></script>
+  <script type="text/javascript" src="./scripts/util.js" async></script>
   <script type="module" src="./__components/model/form_sections/form_section_membership_request/form_section_membership_request.js" async></script>
-  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1"></script>
 </head>
-<body onload="loadPage()">
+<body>
   <cuf-header></cuf-header>
   <div class="page-content">
     <div class="actual-content">
@@ -72,62 +73,31 @@
         <h2 class="section-title">Donate Online</h2>
         <div class="section-content">
           <p>
-            You can donate online using this online form. All donations are processed through secure <a href='https://authorize.net'>authorize.net</a> servers.
+            You can donate online using this online form. All donations will be processed through secure <a href='https://authorize.net'>authorize.net</a> servers.
           </p>
         </div>
       </div>
       <div class="section-content">
-        <form id="contact-form" action="submitForm()">
+        <form id="donate-form" method="post" action="https://test.authorize.net/payment/payment">
           <cuf-form-section-name></cuf-form-section-name>
           <cuf-form-section-address></cuf-form-section-address>
           <cuf-form-section-contact></cuf-form-section-contact>
           <cuf-text-area id="name-prefix">Message</cuf-text-area><br>
           <cuf-form-section-membership-request></cuf-form-section-membership-request>
-          <button
-            id="submit-form-button"
-            class="g-recaptcha" 
-            data-sitekey="6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1" 
-            data-callback='submitFormButton' 
-            data-action='submit'>
-            Proceed to authorize.net
+          <button id="donate-form-button" onclick="donateFormButton()" type="button">
+            Proceed to secure authorize.net payment portal
           </button>
-          <div id="recaptcha-success-message">
-            ReCaptcha validation succeeded; the form would now be submitted.
-          </div>
-          <div id="recaptcha-error-message">
-            ReCaptcha validation has failed. If you are human, please report this false positive.
-          </div>
+          <input type="hidden" id="hidden-token-input" name="token" value="">
+          <button type="submit" id="hidden-form-submit-button" hidden></button>
+          <div id="donate-form-status-message"></div>
         </form>
         <p>
-          <em>Catholics United for the Faith respects the privacy of its members and those who contact us. The information we collect will not be sold to third parties, and will not be shared without your express permission.</em>
+          <em>Catholics United for the Faith respects the privacy of its members and donors. The information we collect will not be sold to third parties, and will not be shared without your express permission.</em>
         </p>
       </div>
-      <div class="temp-wrapper"><br><br><br><br>
-        <div class="test">authorize.net possibilities</div>
-
-        <br>
-        <div>Using hosted form on authorize.net</div>
-        <button id="loadHostedForm" onclick="loadHostedForm(false)">Continue to hosted form</button>
-        <form method="post" action="https://test.authorize.net/payment/payment"
+        <form
           id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
-            <input type="hidden" id="tokenInput" name="token" value="">
-            <button type="submit" id="formButton" hidden></button>
         </form>
-
-        <br>
-        <div>Embed hosted form from authorize.net</div>
-        <div id="iframe_wrapper" class="iframe-wrapper" hidden>
-            <iframe id="add_payment" class="embed-responsive-item panel"
-              name="add_payment" frameborder="0" scrolling="no"></iframe>
-            <form id="send_token" action="https://test.authorize.net/payment/payment" method="post" target="add_payment" >
-                <input type="hidden" id="tokenInput_iframe" name="token" value="">
-            </form>
-        </div>
-        <button id="loadHostedForm_iframe" onclick="loadHostedForm(true)">Continue to hosted form (iframe)</button>
-
-        <br><br>
-        <div>Can also implement a custom form</div>
-      </div>
     </div>
     <cuf-sidebar panels='["prayer", "news", "papers"]'></cuf-sidebar>
   </div>

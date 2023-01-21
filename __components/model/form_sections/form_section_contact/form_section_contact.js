@@ -14,13 +14,22 @@ class CufFormSectionContact extends CufFormSection {
   }
 
   /**
-   * Returns map of name data for the name form section
+   * Returns map of contact data for the contact form section
    * @return {{email:string, phone:string}}
    */
   getFormData() {
     const email = this.shadowRoot.getElementById('contact-email').getFormData();
     const phone = this.shadowRoot.getElementById('contact-phone').getFormData();
     return {'email': email, 'phone': phone};
+  }
+
+  /**
+   * Returns map of contact data for the contact form section
+   * @return {{email:string, phone:string}}
+   * @todo maybe add dashes between phone number sections
+   */
+  getDisplayableData() {
+    return this.getFormData();
   }
 }
 

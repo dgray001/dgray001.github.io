@@ -1,0 +1,49 @@
+button {
+  background-color: var(--card-background-color);
+  border: none;
+  height: 100%;
+  outline: none;
+  padding: 0;
+  text-align: left;
+}
+
+button:active {
+  border: none;
+  outline:none;
+}
+
+button:focus {
+  border: none;
+  outline:none;
+}
+
+#child-container {
+  height: 0px;
+  max-height: 0px;
+  overflow: visible;
+}
+
+button.child {
+  border: 0.5px solid black;
+  border-bottom-style: none;
+  border-top-style: none;
+  font-size: 16px;
+  height: 20px;
+  max-width: 100%;
+  min-width: 100%;
+  position: relative;
+  width: 100%;
+  z-index: 9;
+}
+
+button.child.first-child {
+  border-top-style: solid;
+}
+
+button.child.last-child {
+  border-bottom-style: solid;
+}
+
+button.child:hover {
+  background-color: rgb(192, 180, 169);
+}

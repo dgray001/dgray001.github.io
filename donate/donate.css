@@ -1,17 +1,15 @@
 @import "../styles.css";
 
-#submit-form-button {
+#donate-form-button {
   margin-top: 1rem;
 }
 
-#recaptcha-success-message {
-  color: green;
+#donate-form-status-message {
   margin-top: 1rem;
   display: none;
 }
 
-#recaptcha-error-message {
-  color: rgb(218, 0, 0);
+#donate-form-receipt-message {
   margin-top: 1rem;
   display: none;
 }

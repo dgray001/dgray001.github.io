@@ -26,6 +26,25 @@ class CufFormSectionAddress extends CufFormSection {
     const country = this.shadowRoot.getElementById('address-country').getFormData();
     return {'address1': address1, 'address2': address2, 'city': city, 'state': state, 'zip': zip, 'country': country};
   }
+
+  /**
+   * Returns map of form data for the form section
+   * @return {string}
+   */
+  getDisplayableData() {
+    const address1 = this.shadowRoot.getElementById('address-first').getFormData();
+    const address2 = this.shadowRoot.getElementById('address-second').getFormData();
+    const city = this.shadowRoot.getElementById('address-city').getFormData();
+    const state = this.shadowRoot.getElementById('address-state').getFormData();
+    const zip = this.shadowRoot.getElementById('address-zip').getFormData();
+    // Need country name not code
+    const country = this.shadowRoot.getElementById('address-country').getDisplayableData();
+    const return_data = {'1': address1, '2': `${city}, ${state} ${zip}`, '3': country};
+    if (address2) {
+      return_data['1'] += ' ' + address2;
+    }
+    return return_data;
+  }
 }
 
 customElements.define("cuf-form-section-address", CufFormSectionAddress);

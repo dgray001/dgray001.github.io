@@ -8,8 +8,94 @@
 .form-field {
   box-sizing: border-box;
   display: inline-block;
+  font-family: "Times New Roman", Times, serif;
   font-size: var(--page-body-font-size);
   max-width: 100%;
   min-width: 100%;
   width: 100%;
+}
+
+/* Style 1 */
+
+.form-field-wrapper.styled {
+  background-color: transparent;
+	border: 1px solid black;
+	border-radius: 3px;
+  box-sizing: border-box;
+	display: block;
+	padding: 9px;
+  padding-bottom: 12px;
+	margin-bottom: 27px;
+}
+
+.form-field-wrapper.styled.focused {
+  background-color: rgb(192, 180, 169);
+  box-shadow: 0 0 3px rgb(192, 180, 169);
+}
+
+.form-field-label.styled {
+  background-color: var(--card-background-color);
+	border-radius: 5px;
+  display: block;
+  float: left;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  height: 14px;
+  margin-top: -19px;
+  overflow: hidden;
+  padding: 2px 5px 2px 5px;
+  user-select: none;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="time"],
+input[type="url"],
+input[type="password"],
+textarea.form-field,
+select.form-field,
+button.form-field
+{
+  background-color: transparent;
+	box-sizing: border-box;
+	border: none;
+	border-radius: 3px;
+	display: block;
+	font-size: 16px;
+	height: 25px;
+	line-height: 25px;
+	outline: none;
+	padding: 0;
+	width: 100%;
+}
+
+.helper-text {
+	background-color: rgb(243, 243, 243);
+	display: block;
+	margin: 0 -9px -9px -9px;
+	text-align: left;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+
+input[type="submit"],
+
+input[type="button"]{
+	background: #2471FF;
+	border: none;
+	padding: 10px 20px 10px 20px;
+	border-bottom: 3px solid #5994FF;
+	border-radius: 3px;
+	color: #D2E2FF;
+}
+
+input[type="submit"]:hover,
+
+input[type="button"]:hover{
+	background: #6B9FFF;
+	color:#fff;
 }
