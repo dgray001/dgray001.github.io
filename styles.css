@@ -71,6 +71,21 @@ li {
   margin-bottom: 0.3rem;
 }
 
+button.form-submit-button {
+  border: none;
+  box-shadow: 0 0 0px black;
+  cursor: pointer;
+  display: block;
+  font-size: var(--page-body-font-size);
+  margin: 0 auto;
+  padding: 5px 10px;
+  transition: all .4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+button:hover{
+  box-shadow: 0 0 6px black;
+}
+
 cuf-sidebar {
   max-width: 450px;
   min-width: 250px;

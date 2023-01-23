@@ -1,15 +1,15 @@
 <link rel="stylesheet" href="./__components/model/form_sections/form_section_address/form_section_address.css">
 <div class="flex-wrapper">
-  <cuf-input-text id="address-first" flex_option="1">Address Line 1</cuf-input-text>
+  <cuf-input-text id="address-first" flex_option="1" validators='["required", "address"]'>Address Line 1</cuf-input-text>
 </div>
 <div class="flex-wrapper">
-  <cuf-input-text id="address-second" flex_option="1">Address Line 2</cuf-input-text>
+  <cuf-input-text id="address-second" flex_option="1" validators='["address"]'>Address Line 2</cuf-input-text>
 </div>
 <div class="flex-wrapper">
-  <cuf-input-text id="address-city" flex_option="1">City</cuf-input-text>
-  <cuf-input-text id="address-state" flex_option="1">State/Region/Province</cuf-input-text>
+  <cuf-input-text id="address-city" flex_option="1" validators='["required", "address"]'>City</cuf-input-text>
+  <cuf-input-text id="address-state" flex_option="1" validators='["required", "address"]'>State/Region/Province</cuf-input-text>
 </div>
 <div class="flex-wrapper">
-  <cuf-input-text id="address-zip" flex_option="1">Zip / Postal Code</cuf-input-text>
-  <cuf-select id="address-country" options='countries' flex_option="1">Country</cuf-select>
+  <cuf-input-text id="address-zip" flex_option="1" validators='["required", "address"]'>Zip / Postal Code</cuf-input-text>
+  <cuf-select id="address-country" options='countries' flex_option="1" validators='["required"]'>Country</cuf-select>
 </div>

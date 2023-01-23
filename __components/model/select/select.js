@@ -17,11 +17,35 @@ export class CufSelect extends CufFormField {
   async connectedCallback() {
     await super.connectedCallback();
     const res = await fetch('./__components/model/select/select.html');
-    const form_field = await this.setFormFieldAttributes(res);
+    await this.setFormFieldAttributes(res);
     const options_text = this.attributes.options?.value || '[]';
     const mapping = await this.specificMapping(options_text);
     const default_mapping = this.defaultMapping(options_text);
+    const option_container = this.shadowRoot.querySelector('select');
+    for (const option_text of mapping) {
+      const entry = {};
+      if (Array.isArray(option_text)) {
+        entry.value = option_text[0];
+        entry.text = option_text[1];
+      }
+      else {
+        entry.value = option_text;
+        entry.text = option_text;
+      }
+      const option = document.createElement("option");
+      option.setAttribute('value', entry.value);
+      if (default_mapping === entry.text) {
+        option.setAttribute('selected', 'true');
+      }
+      option.innerText = entry.text;
+      option_container.appendChild(option);
+      this.options.set(entry.value, entry.text);
+    }
+  }
+
+  /* Way to do with button select
     const button_container = this.shadowRoot.querySelector('#child-container');
+    button_container.setAttribute('style', 'display: none;');
     for (const option_text of mapping) {
       const entry = {};
       if (Array.isArray(option_text)) {
@@ -36,6 +60,7 @@ export class CufSelect extends CufFormField {
       option.classList.add('child');
       option.setAttribute('value', entry.value);
       option.setAttribute('style', 'display: none;');
+      option.setAttribute('tabindex', '-1');
       if (default_mapping === entry.text) {
         option.setAttribute('selected', 'true');
         form_field.innerText = entry.text;
@@ -43,20 +68,31 @@ export class CufSelect extends CufFormField {
       option.innerText = entry.text;
       button_container.appendChild(option);
       this.options.set(entry.value, entry.text);
+      option.addEventListener('mouseover', () => {
+        option.setAttribute('hovered', 'true');
+      });
+      option.addEventListener('mouseleave', () => {
+        option.removeAttribute('hovered');
+      });
     }
-    button_container.firstChild.classList.add('first-child');
-    button_container.lastChild.classList.add('last-child');
     form_field.addEventListener('focus', () => {
+      button_container.setAttribute('style', 'display: block;');
       for (const child of button_container.children) {
         child.setAttribute('style', 'display: block;');
       }
     });
     form_field.addEventListener('blur', () => {
+      button_container.setAttribute('style', 'display: none;');
       for (const child of button_container.children) {
         child.setAttribute('style', 'display: none;');
+        if (child.hasAttribute('hovered')) {
+          child.removeAttribute('hovered');
+          form_field.setAttribute('value', child.getAttribute('value'));
+          form_field.innerText = child.innerText;
+        }
       }
     });
-  }
+  */
 
   /**
    * Updates this.options in case it is a keyword.
@@ -136,7 +172,7 @@ export class CufSelect extends CufFormField {
    * @return {string}
    */
   getDisplayableData() {
-    return this.form_field.options[this.form_field.selectedIndex].text;
+    return this.form_field.innerText;
   }
 }
 

@@ -6,6 +6,9 @@
       "profile": {
         "customerProfileId": "123456789"
       },
+      "order": {
+        "description": "donation"
+      },
       "customer": {
         "email": "yodan.and.the.sixth.character@gmail.com"
       },

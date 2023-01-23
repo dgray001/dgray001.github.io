@@ -6,6 +6,7 @@ async function submitFormButton() {
   const button = document.getElementById('submit-form-button');
   button.disabled = true;
   button.innerText = 'Sending';
+  button.setAttribute('style', 'box-shadow: none;');
   grecaptcha.ready(async function() {
     const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
     const recaptcha_check = await verifyRecaptcha(token);
