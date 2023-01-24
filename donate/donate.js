@@ -3,6 +3,9 @@
  * Checks reCaptcha token then if it passes will redirect to hosted form
  */
 async function donateFormButton() {
+  if (!validateForm()) {
+    return;
+  }
   const button = document.getElementById('donate-form-button');
   button.disabled = true;
   button.innerText = 'Loading';
@@ -20,6 +23,27 @@ async function donateFormButton() {
     }
   });
 }
+
+/**
+ * Validates each section in form
+ * @return {boolean} whether form field is valid.
+ */
+  function validateForm() {
+    const name_section = document.getElementById('section-name');
+    const name_section_valid = name_section.validate();
+    const address_section = document.getElementById('section-address');
+    const address_section_valid = address_section.validate();
+    const contact_section = document.getElementById('section-contact');
+    const contact_section_valid = contact_section.validate();
+    const message = document.getElementById('section-message');
+    const message_valid = message.validate();
+    const membership = document.getElementById('section-membership');
+    const membership_valid = membership.validate();
+    const donation_field = document.getElementById('donation-amount');
+    const donation_field_valid = donation_field.validate();
+    return name_section_valid && address_section_valid && contact_section_valid &&
+      message_valid && membership_valid && donation_field_valid;
+  }
 
 /**
  * Request server to provide hosted form token then proceed to hosted form
@@ -65,7 +89,7 @@ async function loadHostedForm() {
   const hosted_payment_settings = {
     "setting": [{
       "settingName": "hostedPaymentReturnOptions",
-      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.01:8000/donate\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.01:8000/donate\", \"cancelUrlText\": \"Cancel\"}"
+      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.01:3000/donate\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.01:3000/donate\", \"cancelUrlText\": \"Cancel\"}"
     }, {
       "settingName": "hostedPaymentButtonOptions",
       "settingValue": "{\"text\": \"Donate\"}"

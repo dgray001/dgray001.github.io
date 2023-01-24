@@ -9,7 +9,9 @@ class CufFormSectionContact extends CufFormSection {
   async connectedCallback() {
     await super.connectedCallback();
     const res = await fetch('./__components/model/form_sections/form_section_contact/form_section_contact.html');
-    await this.setFormSectionAttributes(res, 'Contact');
+    const form_section = await this.setFormSectionAttributes(res, 'Contact');
+    form_section.form_fields.push(this.shadowRoot.getElementById('contact-email'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('contact-phone'));
   }
 
   /**

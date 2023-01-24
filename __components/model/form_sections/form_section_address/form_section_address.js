@@ -11,6 +11,12 @@ class CufFormSectionAddress extends CufFormSection {
     await super.connectedCallback();
     const res = await fetch('./__components/model/form_sections/form_section_address/form_section_address.html');
     const form_section = await this.setFormSectionAttributes(res, 'Address');
+    form_section.form_fields.push(this.shadowRoot.getElementById('address-first'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('address-second'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('address-city'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('address-state'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('address-zip'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('address-country'));
   }
 
   /**

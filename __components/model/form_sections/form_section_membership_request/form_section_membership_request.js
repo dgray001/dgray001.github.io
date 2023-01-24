@@ -10,6 +10,10 @@ class CufFormSectionMembershipRequest extends CufFormSection {
     await super.connectedCallback();
     const res = await fetch('./__components/model/form_sections/form_section_membership_request/form_section_membership_request.html');
     const form_section = await this.setFormSectionAttributes(res, 'Membership Request (optional)');
+    form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-member'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-associate'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-chapters'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-start-chapter'));
   }
 
   /**
