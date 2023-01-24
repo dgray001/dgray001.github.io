@@ -25,10 +25,10 @@ async function donateFormButton() {
 }
 
 /**
- * Validates each section in form
+ * Validates each section in donate form
  * @return {boolean} whether form field is valid.
  */
-  function validateForm() {
+  function validateDonateForm() {
     const name_section = document.getElementById('section-name');
     const name_section_valid = name_section.validate();
     const address_section = document.getElementById('section-address');
@@ -89,7 +89,7 @@ async function loadHostedForm() {
   const hosted_payment_settings = {
     "setting": [{
       "settingName": "hostedPaymentReturnOptions",
-      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.01:3000/donate\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.01:3000/donate\", \"cancelUrlText\": \"Cancel\"}"
+      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.01:3000/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.01:3000/donate\", \"cancelUrlText\": \"Cancel\"}"
     }, {
       "settingName": "hostedPaymentButtonOptions",
       "settingValue": "{\"text\": \"Donate\"}"

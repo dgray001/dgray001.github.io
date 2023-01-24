@@ -3,6 +3,9 @@
  * Submits contact form if recaptcha token is valid
  */
 async function submitFormButton() {
+  if (!validateForm()) {
+    return;
+  }
   const button = document.getElementById('submit-form-button');
   button.disabled = true;
   button.innerText = 'Sending';
@@ -21,6 +24,25 @@ async function submitFormButton() {
     }
   });
 }
+
+/**
+ * Validates each section in contact form
+ * @return {boolean} whether form field is valid.
+ */
+  function validateContactForm() {
+    const name_section = document.getElementById('section-name');
+    const name_section_valid = name_section.validate();
+    const address_section = document.getElementById('section-address');
+    const address_section_valid = address_section.validate();
+    const contact_section = document.getElementById('section-contact');
+    const contact_section_valid = contact_section.validate();
+    const message = document.getElementById('section-message');
+    const message_valid = message.validate();
+    const membership = document.getElementById('section-membership');
+    const membership_valid = membership.validate();
+    return name_section_valid && address_section_valid && contact_section_valid &&
+      message_valid && membership_valid;
+  }
 
 /**
  * Submits contact form to server

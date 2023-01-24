@@ -39,28 +39,34 @@ export class CufFormField extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.id = this.attributes.id?.value || '';
-    this.default_helper_text = this.attributes["helper-text"]?.value || '';
-    const flex_option = this.attributes.flex_option?.value || '';
-    const validators_array = JSON.parse(this.attributes.validators?.value || '[]');
-    this.validators = new Set(validators_array);
-    this.label = this.innerText;
-    this.innerText = '';
-    const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/model/form_field/form_field.html');
-    shadow.innerHTML = await res.text();
-    this.form_field_wrapper = shadow.querySelector('.form-field-wrapper');
-    this.form_field_wrapper.setAttribute('id', this.id + '-wrapper');
-    this.classList.add('form-field');
-    if (flex_option) {
-      this.setAttribute('style', `flex: ${flex_option} 0 0`)
-    }
-    this.form_field_label = shadow.querySelector('.form-field-label');
-    this.form_field_label.setAttribute('for', this.id);
-    this.form_field_label.innerText = this.label;
-    if (this.validators.has('required')) {
-      this.form_field_label.innerText += ' *';
-    }
+    // Need to have the setTimeout to ensure innerText is set loaded
+    return new Promise((resolve) => {
+      setTimeout(async () => {
+        this.id = this.attributes.id?.value || '';
+        this.default_helper_text = this.attributes["helper-text"]?.value || '';
+        const flex_option = this.attributes.flex_option?.value || '';
+        const validators_array = JSON.parse(this.attributes.validators?.value || '[]');
+        this.validators = new Set(validators_array);
+        this.label = this.innerText;
+        this.innerText = '';
+        const shadow = this.attachShadow({mode: 'open'});
+        const res = await fetch('./__components/model/form_field/form_field.html');
+        shadow.innerHTML = await res.text();
+        this.form_field_wrapper = shadow.querySelector('.form-field-wrapper');
+        this.form_field_wrapper.setAttribute('id', this.id + '-wrapper');
+        this.classList.add('form-field');
+        if (flex_option) {
+          this.setAttribute('style', `flex: ${flex_option} 0 0`)
+        }
+        this.form_field_label = shadow.querySelector('.form-field-label');
+        this.form_field_label.setAttribute('for', this.id);
+        this.form_field_label.innerText = this.label;
+        if (this.validators.has('required')) {
+          this.form_field_label.innerText += ' *';
+        }
+        resolve();
+      });
+    });
   }
 
   /**
@@ -68,12 +74,12 @@ export class CufFormField extends HTMLElement {
    * @return {Promise<HTMLElement>}
    */
   async setFormFieldAttributes(res, insert_before_label = false) {
+    const new_html = await res.text();
     if (insert_before_label) {
-      const new_html = await res.text();
       this.form_field_wrapper.innerHTML = new_html + this.form_field_wrapper.innerHTML;
     }
     else {
-      this.form_field_wrapper.innerHTML += await res.text();
+      this.form_field_wrapper.innerHTML += new_html;
     }
     this.form_field_helper_text = document.createElement('span');
     this.updateHelperText();
