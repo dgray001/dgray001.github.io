@@ -64,9 +64,12 @@ img {
   flex: auto;
 }
 
-.right-panel-list-header {
+.right-panel.list-element#faith_facts {
+  padding-left: 10%;
+}
+
+.right-panel.list-element.right-panel-list-header {
   padding-left: 0%;
-  text-align: left;
   font-weight: bold;
 }
 
@@ -90,6 +93,11 @@ a {
   color: darkblue;
   text-decoration: none;
   width: auto;
+}
+
+.right-panel.list-element#faith_facts a {
+  position: relative;
+  top: -30%;
 }
 
 @keyframes flicker {
