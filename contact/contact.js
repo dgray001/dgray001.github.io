@@ -3,7 +3,7 @@
  * Submits contact form if recaptcha token is valid
  */
 async function submitFormButton() {
-  if (!validateForm()) {
+  if (!validateContactForm()) {
     return;
   }
   const button = document.getElementById('submit-form-button');

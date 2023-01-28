@@ -6,6 +6,48 @@ const public_recaptcha_site_key = DEV ?
 '6LcNpAskAAAAAKc6tm_rQ8FpJo-j6ftEVaWPu8Gk';
 
 /**
+ * Loop helper function
+ * @param {number} times times to loop
+ * @param {Function} callback function to call
+ */
+const loop = (times, callback) => {
+  for (let i = 0; i < times; i++) {
+    callback(i);
+  }
+};
+
+/**
+ * Scrolls to the input value over the input time
+ * @param {HTMLElement} element element to scroll
+ * @param {number} target value to scroll to
+ * @param {number} duration duration to take
+ */
+export function scrollOverDuration(element, target, duration) {
+  const frame_time = 10;
+  if (duration < 0) {
+    return;
+  }
+  let frames = Math.ceil(duration / frame_time);
+  if (frames == 0) {
+    frames = 1;
+  }
+  const frame_scroll = Math.round((target - element.scrollTop) / frames);
+  if (frame_scroll == 0) {
+    return;
+  }
+  // account for rounding error in frame_scroll since scrollTop is an integer
+  frames = Math.floor((target - element.scrollTop) / frame_scroll);
+  const interval = setInterval(() => {
+    frames--;
+    element.scrollBy(0, frame_scroll);
+    if (frames <= 0) {
+      clearInterval(interval);
+      element.scrollTop = target;
+    }
+  }, frame_time);
+}
+
+/**
  * Smooth scrolls to the input element, accounting for fixed header height
  * @param {HTMLElement} element element to scroll to
  */

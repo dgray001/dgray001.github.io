@@ -3,7 +3,7 @@
  * Checks reCaptcha token then if it passes will redirect to hosted form
  */
 async function donateFormButton() {
-  if (!validateForm()) {
+  if (!validateDonateForm()) {
     return;
   }
   const button = document.getElementById('donate-form-button');

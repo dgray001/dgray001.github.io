@@ -9,6 +9,7 @@
   --card-background-color: rgb(221, 210, 200);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
   --page-body-font-size: calc(12px + 0.5vw);
+  --left-sidebar-width: 10vw;
 }
 
 html, body {
@@ -28,6 +29,7 @@ body {
   justify-content: space-between;
   margin: var(--fixed-header-height) auto 0;
   max-width: var(--max-width);
+  padding-left: var(--left-sidebar-width);
   scroll-margin-top: var(--fixed-header-height);
   width: 90%;
 }
@@ -37,6 +39,7 @@ body {
   box-shadow: 0 0 6px var(--card-box-shadow-color);
   font-size: var(--page-body-font-size);
   margin-bottom: 20px;
+  margin-right: 10px;
   padding: 8px;
 }
 
@@ -104,14 +107,14 @@ a:not(:focus-visible) {
   }
 
   .actual-content {
-    flex: 2;
+    flex: 2 0 0;
     margin-bottom: 0px;
-    margin-right: 10px;
     min-width: 0;
   }
 
   cuf-sidebar {
-    flex: 1;
+    flex: 1 0 0;
+    margin-right: 5px;
   }
 }
 

@@ -1,3 +1,5 @@
+import {scrollOverDuration} from "../../scripts/util.js";
+
 class CufContentCard extends HTMLElement {
   content_key = '';
   collapsible = true;
@@ -54,11 +56,15 @@ class CufContentCard extends HTMLElement {
       card.setAttribute('style', `box-shadow: 0 0 0px var(--card-box-shadow-color); transform: rotateX(-90deg) scale(0.9) translateZ(${0.5 * fixed_height}px); height: 100%;`);
       image.setAttribute('style', `transform: scale(0.9) translateZ(${0.5 * fixed_height}px);`);
       card_wrapper.setAttribute('style', `height: ${fixed_height}px; min-height: ${fixed_height}px; max-height: ${fixed_height}px; perspective: ${5 * fixed_height}px`);
-      card_wrapper.addEventListener('mouseover', () => {
+      let last_scroll_top = 0;
+      card_wrapper.addEventListener('mouseenter', () => {
         card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
+        scrollOverDuration(card_wrapper, last_scroll_top, 200);
       });
       card_wrapper.addEventListener('mouseleave', () => {
+        last_scroll_top = card_wrapper.scrollTop;
         card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
+        scrollOverDuration(card_wrapper, 0, 200);
       });
     }
     else if (fixed_height) {
