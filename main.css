@@ -5,10 +5,13 @@ html, body {
 }
 
 body {
-  background-color: lightblue;
   display: flex;
   flex-direction: column;
   margin: 0;
+}
+
+.page-content {
+  padding-left: 0px;
 }
 
 .container {
@@ -59,13 +62,13 @@ img {
 }
 
 .right-panel.list-element {
-  padding-left: 5%;
+  padding-left: 0%;
   text-align: left;
   flex: auto;
 }
 
 .right-panel.list-element#faith_facts {
-  padding-left: 10%;
+  padding-left: 5%;
 }
 
 .right-panel.list-element.right-panel-list-header {

@@ -1,13 +1,22 @@
 :root {
   --margin-size: 15px;
   --header-height-unit: max(2vh, 15px);
-  --fixed-header-height: calc(var(--header-height-unit) * 0.5 + var(--margin-size));
+  --navigation-height: calc(2.8 * var(--page-body-font-size));
+  --fixed-header-height: calc(max(
+    var(--navigation-height),
+    calc(var(--header-height-unit) * 2.5)) +
+    var(--margin-size));
   --max-width: 1400px;
   --left-margin-size: 10vw;
-  --margin-color: rgb(120, 120, 255);
-  --page-background-color: rgb(221, 221, 221);
-  --card-background-color: rgb(221, 210, 200);
+  --page-background-color: rgb(230, 230, 230);
+  --card-background-color: rgb(230, 220, 210);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
+  /*--header-color: rgb(160, 255, 160);
+  --margin-color: rgb(120, 120, 255);*/
+  --header-color: var(--page-background-color);
+  --margin-color: var(--page-background-color);
+  --navigation-hover-color: rgb(190, 190, 190);
+  --navigation-current-color: rgba(190, 190, 190, 0.8);
   --page-body-font-size: calc(12px + 0.5vw);
   --left-sidebar-width: 10vw;
 }
@@ -27,7 +36,7 @@ body {
 .page-content {
   flex: 1 1 auto;
   justify-content: space-between;
-  margin: var(--fixed-header-height) auto 0;
+  margin: var(--margin-size) auto 0;
   max-width: var(--max-width);
   padding-left: var(--left-sidebar-width);
   scroll-margin-top: var(--fixed-header-height);

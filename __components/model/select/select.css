@@ -8,7 +8,7 @@ select.form-field {
 }
 
 select.form-field:focus {
-  background-color: rgb(192, 180, 169);
+  background-color: rgb(230, 225, 220);
 }
 
 option {

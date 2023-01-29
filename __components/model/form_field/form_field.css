@@ -31,8 +31,9 @@
 }
 
 .form-field-wrapper.styled.focused {
-  background-color: rgb(192, 180, 169);
-  box-shadow: 0 0 3px rgb(192, 180, 169);
+  background-color: rgb(230, 225, 220);
+	border-color: rgb(90, 100, 140);
+  box-shadow: 0 0 3px rgb(230, 225, 220);
 }
 
 .form-field-label.styled {

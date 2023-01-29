@@ -132,8 +132,7 @@ export class CufFormField extends HTMLElement {
   updateHelperText() {
     if (this.validation_error_text) {
       this.form_field_wrapper.setAttribute('style',
-        'border-color: rgb(255, 0, 0);' +
-        'border-width: 2px;');
+        'border-color: rgb(255, 0, 0);');
       this.form_field_helper_text.setAttribute('style',
         'background-color: rgb(255, 200, 180);' +
         'border-color: rgb(255, 0, 0);' +
@@ -141,9 +140,7 @@ export class CufFormField extends HTMLElement {
       this.form_field_helper_text.innerText = this.validation_error_text;
     }
     else if (this.default_helper_text) {
-      this.form_field_wrapper.setAttribute('style',
-        'border-color: rgb(0, 0, 0);' +
-        'border-width: 1px;');
+      this.form_field_wrapper.setAttribute('style', '');
       this.form_field_helper_text.setAttribute('style',
         'background-color: rgb(231, 224, 217);' +
         'border-color: rgb(0, 0, 0);' +
@@ -151,9 +148,7 @@ export class CufFormField extends HTMLElement {
       this.form_field_helper_text.innerText = this.default_helper_text;
     }
     else {
-      this.form_field_wrapper.setAttribute('style',
-        'border-color: rgb(0, 0, 0);' +
-        'border-width: 1px;');
+      this.form_field_wrapper.setAttribute('style', '');
       this.form_field_helper_text.setAttribute('style', 'display: none;');
     }
   }

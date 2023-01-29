@@ -27,13 +27,13 @@ class CufContentCard extends HTMLElement {
       header.addEventListener('click', this.collapseHeader.bind(null, this, headerText));
       if (start_closed) {
         const content_element = this.shadowRoot.querySelector('.content');
-        const image_element = this.shadowRoot.querySelector('.image');
+        const image_element = this.shadowRoot.querySelector('.arrow-image-wrapper');
         content_element.setAttribute('style', 'display: none;');
         image_element.setAttribute('style', 'transform: rotate(90deg)');
       }
     }
     else {
-      const image_element = this.shadowRoot.querySelector('.image');
+      const image_element = this.shadowRoot.querySelector('.arrow-image-wrapper');
       image_element.setAttribute('style', 'display: none;');
       headerText.setAttribute('style', 'max-width: calc(100% - 0.3rem);')
     }
@@ -113,7 +113,7 @@ class CufContentCard extends HTMLElement {
       return;
     }
     const content_element = source.shadowRoot.querySelector('.content');
-    const image_element = source.shadowRoot.querySelector('.image');
+    const image_element = source.shadowRoot.querySelector('img.arrow-image');
     const content_style = window.getComputedStyle(content_element);
     if (content_style.display === 'block') {
       content_element.setAttribute('style', 'display: none;');
@@ -122,7 +122,7 @@ class CufContentCard extends HTMLElement {
     else {
       content_element.setAttribute('style', 'display: block;');
       image_element.setAttribute('style', 'animation: openRotate 300ms forwards');
-      source.scrollIntoView({behavior: "smooth"});
+      //source.scrollIntoView({behavior: "smooth", block: "center"});
     }
   }
 

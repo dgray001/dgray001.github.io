@@ -6,7 +6,7 @@
 }
 
 .content-container {
-  background-color: lightgreen;
+  background-color: var(--header-color);
 }
 
 .element-container {

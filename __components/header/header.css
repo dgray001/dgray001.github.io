@@ -1,14 +1,17 @@
 .container {
   --margin-offset: 0px;
-  --header-total-height: calc(var(--header-height-unit) * 5 - var(--margin-offset));
+  --fixed-container-height: max(var(--navigation-height), calc(var(--header-height-unit) * 2));
+  --header-total-height: calc(var(--fixed-container-height) + var(--header-height-unit) * 3 - var(--margin-offset));
+  --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
+  background-color: var(--header-color);
 }
 
 .fixed-container {
-  background-color: var(--page-background-color);
+  background-color: var(--header-color);
   flex-direction: row;
   position: fixed;
   top: 0;
-  height: calc(var(--header-height-unit) * 2);
+  height: var(--fixed-container-height);
   width: 100vw;
   z-index: 9;
 }
@@ -17,22 +20,50 @@
   font-size: calc(var(--header-height-unit) * 1.4);
   font-weight: bold;
   margin-top: calc(var(--header-height-unit) * 0.2);
-  margin-left: var(--left-margin-size);
+  margin-left: calc(var(--left-auto-margin) + 10px);
   white-space: nowrap;
 }
 
 cuf-navigation-pane {
-  flex: 1 1 0;
-  margin-left: 10vw;
-  margin-right: 6vw;
+  height: var(--navigation-height);
+}
+
+/* navigation panel below header for smaller devices */
+@media only screen and (max-width: 1200px) {
+  .container {
+    --fixed-container-height: calc(var(--header-height-unit) * 2);
+    --header-total-height: calc(var(--navigation-height) +
+      var(--fixed-container-height) + var(--header-height-unit) * 3 - var(--margin-offset));
+    padding-bottom: var(--navigation-height);
+  }
+
+  cuf-navigation-pane {
+    background-color: var(--header-color);
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding: 2px 10px;
+    position: absolute;
+    top: calc(var(--header-total-height) - var(--navigation-height));
+    width: 100%;
+  }
+}
+
+/* navigation panel to the right of header for larger devices */
+@media only screen and not (max-width: 1200px) {
+  cuf-navigation-pane {
+    flex: 1 1 0;
+    margin-left: 10vw;
+    margin-right: 6vw;
+    position: relative;
+  }
 }
 
 .collapsed-container {
-  background-color: var(--page-background-color);
   display: flex;
   flex-direction: column;
   height: calc(var(--header-height-unit) * 3);
-  margin-top: calc(var(--header-height-unit) * 2);
+  margin-top: var(--fixed-container-height);
+  position: relative;
   top: 0;
   width: 100vw;
 }
@@ -41,12 +72,12 @@ cuf-navigation-pane {
   flex: auto;
   font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)));
   margin-top: calc(var(--header-height-unit) * 0.1);
-  margin-left: var(--left-margin-size);
+  margin-left: calc(var(--left-auto-margin) + 10px);
   white-space: nowrap;
 }
 
 .margin {
-  background-color: transparent;
+  background-color: var(--margin-color);
   height: calc(var(--header-height-unit) * 0.5);
   margin-bottom: var(--margin-size);
   position: fixed;
@@ -56,7 +87,7 @@ cuf-navigation-pane {
 }
 
 .logo-container {
-  left: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
+  left: var(--left-auto-margin);
   height: calc(2 * var(--left-sidebar-width));
   position: absolute;
   top: calc(var(--header-total-height) + var(--margin-size));
