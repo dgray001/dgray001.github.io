@@ -1,4 +1,4 @@
-import {Validator, validate} from '../../../../scripts/validation.js';
+import {Validator, validate} from '../../../scripts/validation.js';
 
 export class CufFormField extends HTMLElement {
   /**
@@ -115,7 +115,7 @@ export class CufFormField extends HTMLElement {
   validate() {
     this.valid = true;
     for (const validator of this.validators) {
-      this.validation_error_text = validate(validator, this.getFormData());
+      this.validation_error_text = validate(validator, this.getFormData(), this);
       if (this.validation_error_text) {
         this.valid = false;
         break;

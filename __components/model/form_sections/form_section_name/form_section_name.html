@@ -1,7 +1,31 @@
 <link rel="stylesheet" href="./__components/model/form_sections/form_section_name/form_section_name.css">
 <div class="flex-wrapper">
-  <cuf-select id="name-prefix" flex_option="1" options='prefixes'>Prefix</cuf-select>
-  <cuf-input-text id="name-first" flex_option="3" validators='["required", "name"]'>First</cuf-input-text>
-  <cuf-input-text id="name-last" flex_option="3" validators='["required", "name"]'>Last</cuf-input-text>
-  <cuf-input-text id="name-suffix" flex_option="1" validators='["suffix"]'>Suffix</cuf-input-text>
+  <cuf-select
+    id="name-prefix"
+    autocomplete="honorific-prefix"
+    flex_option="1"
+    options='prefixes'>
+    Prefix
+  </cuf-select>
+  <cuf-input-text
+    id="name-first"
+    autocomplete="given-name"
+    flex_option="3"
+    validators='["required", "name"]'>
+    First
+  </cuf-input-text>
+  <cuf-input-text
+    id="name-last"
+    autocomplete="family-name"
+    flex_option="3"
+    validators='["required", "name"]'>
+    Last
+  </cuf-input-text>
+  <cuf-input-text
+    id="name-suffix"
+    autocomplete="honorific-suffix"
+    flex_option="1"
+    validators='["suffix"]'>
+    Suffix
+  </cuf-input-text>
 </div>

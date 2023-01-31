@@ -11,13 +11,23 @@ export const Validator = {
  * Validates the input based on the given validator.
  * @param {Validator} validator validator keyword
  * @param {string} input input text
+ * @param {HTMLElement} element element reference
  * @return {string} error message text; blank if no error
  */
-export function validate(validator, input) {
+export function validate(validator, input, element) {
   switch(validator) {
     case 'required':
       if (!input) {
         return 'This field is required';
+      }
+      break;
+    case 'datalist':
+      if (!element.datalist_values) {
+        console.log('CUF WARNING: Element with datalist validator has no datalist.');
+        break;
+      }
+      if (!element.datalist_values.includes(input)) {
+        return 'Please enter one of the suggested values';
       }
       break;
     case 'name':
