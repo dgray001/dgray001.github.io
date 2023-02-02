@@ -1,8 +1,10 @@
+import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+
 /**
  * @return {Promise<void>}
  * Checks reCaptcha token then if it passes will redirect to hosted form
  */
-async function donateFormButton() {
+window.donateFormButton = async () => {
   if (!validateDonateForm()) {
     return;
   }
@@ -60,9 +62,9 @@ async function loadHostedForm() {
   const message_data = message.getFormData();
   const membership = document.getElementById('section-membership');
   const membership_data = membership.getDisplayableData();
-  const donation_amount = document.getElementById('donation-amount').getFormData();
+  let donation_amount = document.getElementById('donation-amount').getFormData();
   if (donation_amount.startsWith('$')) {
-    donation_amount.slice(1);
+    donation_amount = donation_amount.slice(1);
   }
   const order = {
     'description': 'donation',
@@ -75,7 +77,7 @@ async function loadHostedForm() {
     'lastName': name_section_data['last'],
     'address': address_section_data['address1'],
     'city': address_section_data['city'],
-    'state': address_section_data['first'],
+    'state': address_section_data['state'],
     'zip': address_section_data['zip'],
     'country': address_section_data['country'],
   };
@@ -89,7 +91,7 @@ async function loadHostedForm() {
   const hosted_payment_settings = {
     "setting": [{
       "settingName": "hostedPaymentReturnOptions",
-      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.01:3000/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.01:3000/donate\", \"cancelUrlText\": \"Cancel\"}"
+      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.0.1:3000/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.0.1:3000/donate\", \"cancelUrlText\": \"Cancel\"}"
     }, {
       "settingName": "hostedPaymentButtonOptions",
       "settingValue": "{\"text\": \"Donate\"}"
@@ -114,6 +116,9 @@ async function loadHostedForm() {
     }, {
       "settingName": "hostedPaymentOrderOptions",
       "settingValue": "{\"show\": true, \"merchantName\": \"CUF\"}"
+    }, {
+      "settingName": "hostedPaymentIFrameCommunicatorUrl",
+      "settingValue": "{\"url\": \"https://cuf.org/donate/iframe_communicator.html\"}"
     }]
   };
   const post_data = {
@@ -132,10 +137,11 @@ async function loadHostedForm() {
       body: JSON.stringify(post_data),
     });
     const response_json = await response.json();
+    console.log(response_json);
     const token_input = document.getElementById('hidden-token-input');
     token_input.setAttribute('value', response_json["token"]);
-    const form_button = document.getElementById('hidden-form-submit-button');
-    form_button.click();
+    const donate_form = document.getElementById('donate-form');
+    donate_form.submit();
   } catch(error) {
     console.log(error);
   }

@@ -1,3 +1,5 @@
+import '../faith_fact_category/faith_fact_category.js';
+
 class CufFaithFactCategoryList extends HTMLElement {
   hovered = false;
   scrolling = false;

@@ -1,8 +1,11 @@
+import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+import {createContactEmail, scrollToElement} from '../scripts/util.js';
+
 /**
  * @return {Promise<void>}
  * Submits contact form if recaptcha token is valid
  */
-async function submitFormButton() {
+window.submitFormButton = async () => {
   if (!validateContactForm()) {
     return;
   }
@@ -29,26 +32,26 @@ async function submitFormButton() {
  * Validates each section in contact form
  * @return {boolean} whether form field is valid.
  */
-  function validateContactForm() {
-    const name_section = document.getElementById('section-name');
-    const name_section_valid = name_section.validate();
-    const address_section = document.getElementById('section-address');
-    const address_section_valid = address_section.validate();
-    const contact_section = document.getElementById('section-contact');
-    const contact_section_valid = contact_section.validate();
-    const message = document.getElementById('section-message');
-    const message_valid = message.validate();
-    const membership = document.getElementById('section-membership');
-    const membership_valid = membership.validate();
-    return name_section_valid && address_section_valid && contact_section_valid &&
-      message_valid && membership_valid;
-  }
+function validateContactForm() {
+  const name_section = document.getElementById('section-name');
+  const name_section_valid = name_section.validate();
+  const address_section = document.getElementById('section-address');
+  const address_section_valid = address_section.validate();
+  const contact_section = document.getElementById('section-contact');
+  const contact_section_valid = contact_section.validate();
+  const message = document.getElementById('section-message');
+  const message_valid = message.validate();
+  const membership = document.getElementById('section-membership');
+  const membership_valid = membership.validate();
+  return name_section_valid && address_section_valid && contact_section_valid &&
+    message_valid && membership_valid;
+}
 
 /**
  * Submits contact form to server
  * @return {Promise<void>}
  */
-async function submitForm() {
+window.submitForm = async () => {
   const name_section = document.getElementById('section-name');
   const name_section_data = name_section.getDisplayableData();
   const address_section = document.getElementById('section-address');

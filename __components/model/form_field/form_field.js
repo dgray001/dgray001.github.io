@@ -132,7 +132,8 @@ export class CufFormField extends HTMLElement {
   updateHelperText() {
     if (this.validation_error_text) {
       this.form_field_wrapper.setAttribute('style',
-        'border-color: rgb(255, 0, 0);');
+        '--box-shadow-color: rgb(255, 0, 0);' +
+        '--box-shadow-width: 2px;');
       this.form_field_helper_text.setAttribute('style',
         'background-color: rgb(255, 200, 180);' +
         'border-color: rgb(255, 0, 0);' +

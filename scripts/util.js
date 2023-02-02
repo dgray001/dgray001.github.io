@@ -1,16 +1,11 @@
-const DEV = true;
-
-// reCaptcha public site key
-const public_recaptcha_site_key = DEV ?
-'6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1' :
-'6LcNpAskAAAAAKc6tm_rQ8FpJo-j6ftEVaWPu8Gk';
+export const DEV = true;
 
 /**
  * Loop helper function
  * @param {number} times times to loop
  * @param {Function} callback function to call
  */
-const loop = (times, callback) => {
+export const loop = (times, callback) => {
   for (let i = 0; i < times; i++) {
     callback(i);
   }
@@ -51,7 +46,7 @@ export function scrollOverDuration(element, target, duration) {
  * Smooth scrolls to the input element, accounting for fixed header height
  * @param {HTMLElement} element element to scroll to
  */
-function scrollToElement(element) {
+export function scrollToElement(element) {
   const element_position = element.offsetTop;
   const fixed_header_size = 15 + 2 * Math.max(0.02 * window.innerHeight, 15);
   window.scrollTo({
@@ -61,11 +56,11 @@ function scrollToElement(element) {
 }
 
 /**
- * Smooth scrolls to the input element, accounting for fixed header height
- * @param {HTMLElement} element element to scroll to
+ * Returns promise that resolves when condition function becomes true
+ * @param {Function} conditionFunction element to scroll to
  * @return {Promise}
  */
-function until(conditionFunction) {
+export function until(conditionFunction) {
   const poll = resolve => {
     if(conditionFunction) resolve();
     else setTimeout(_ => poll(resolve), 400);
@@ -73,7 +68,7 @@ function until(conditionFunction) {
   return new Promise(poll);
 }
 
-function createContactEmail(form_data) {
+export function createContactEmail(form_data) {
   let membership_html = '';
   if (form_data['membership']) {
     membership_html += `

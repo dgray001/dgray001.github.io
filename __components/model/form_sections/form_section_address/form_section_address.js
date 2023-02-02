@@ -44,7 +44,7 @@ class CufFormSectionAddress extends CufFormSection {
     const state = this.shadowRoot.getElementById('address-state').getFormData();
     const zip = this.shadowRoot.getElementById('address-zip').getFormData();
     // Need country name not code
-    const country = this.shadowRoot.getElementById('address-country').getDisplayableData();
+    const country = this.shadowRoot.getElementById('address-country').getFormData();
     const return_data = {'1': address1, '2': `${city}, ${state} ${zip}`, '3': country};
     if (address2) {
       return_data['1'] += ' ' + address2;

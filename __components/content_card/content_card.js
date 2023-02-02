@@ -133,7 +133,7 @@ class CufContentCard extends HTMLElement {
       case 'prayer':
       case 'jobs_available':
       default:
-        console.log(`No content card exists yet for: ${content_key}`)
+        console.log(`No page exists yet for: ${content_key}`)
         break;
     }
   }

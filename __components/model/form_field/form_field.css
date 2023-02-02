@@ -18,11 +18,13 @@
 /* Style 1 */
 
 .form-field-wrapper.styled {
+  --box-shadow-color: black;
+  --box-shadow-width: 1px;
   --form-field-extra-width: 10px;
   background-color: transparent;
-	border: 1px solid black;
 	border-radius: 3px;
   box-sizing: border-box;
+  box-shadow: 0px 0px 0px var(--box-shadow-width) var(--box-shadow-color) inset;
 	display: block;
 	padding: 9px;
   padding-bottom: 12px;
@@ -31,9 +33,9 @@
 }
 
 .form-field-wrapper.styled.focused {
+  --box-shadow-color: darkblue;
+  --box-shadow-width: 2px;
   background-color: rgb(230, 225, 220);
-	border-color: rgb(90, 100, 140);
-  box-shadow: 0 0 3px rgb(230, 225, 220);
 }
 
 .form-field-label.styled {

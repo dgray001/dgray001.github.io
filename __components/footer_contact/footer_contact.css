@@ -21,7 +21,7 @@
 }
 
 /* large devices */
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 800px) {
   .element-container {
     display: flex;
     flex-direction: row;
@@ -40,8 +40,31 @@
   }
 }
 
+#site-map {
+  display: flex;
+  font-size: 0.8rem;
+  margin-left: 4rem;
+}
+
+#site-map .element-group {
+  margin-left: 1rem;
+}
+
+#site-map .element {
+  margin-top: 0.3rem;
+}
+
+#site-map .element.tab-single {
+  margin-left: 0.8rem;
+}
+
+#site-map .element.tab-double {
+  margin-left: 1.6rem;
+}
+
 #recaptcha-notice {
   font-size: 0.6rem;
+  margin-left: 2rem;
 }
 
 #copyright {
