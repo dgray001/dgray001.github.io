@@ -1,4 +1,4 @@
-import {CufNavigationPane} from '../navigation_pane/navigation_pane.js';
+import '../navigation_pane/navigation_pane.js';
 
 class CufHeader extends HTMLElement {
   homepage = false;

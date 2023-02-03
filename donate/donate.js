@@ -1,4 +1,5 @@
-import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
+import { base_url } from '../scripts/util.js';
 
 /**
  * @return {Promise<void>}
@@ -91,7 +92,7 @@ async function loadHostedForm() {
   const hosted_payment_settings = {
     "setting": [{
       "settingName": "hostedPaymentReturnOptions",
-      "settingValue": "{\"showReceipt\": true, \"url\": \"https://127.0.0.1:3000/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"https://127.0.0.1:3000/donate\", \"cancelUrlText\": \"Cancel\"}"
+      "settingValue": `{\"showReceipt\": true, \"url\": \"${base_url}/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"${base_url}/donate\", \"cancelUrlText\": \"Cancel\"}`
     }, {
       "settingName": "hostedPaymentButtonOptions",
       "settingValue": "{\"text\": \"Donate\"}"
@@ -118,7 +119,7 @@ async function loadHostedForm() {
       "settingValue": "{\"show\": true, \"merchantName\": \"CUF\"}"
     }, {
       "settingName": "hostedPaymentIFrameCommunicatorUrl",
-      "settingValue": "{\"url\": \"https://cuf.org/donate/iframe_communicator.html\"}"
+      "settingValue": `{\"url\": \"${base_url}/donate/iframe_communicator.html\"}`
     }]
   };
   const post_data = {
