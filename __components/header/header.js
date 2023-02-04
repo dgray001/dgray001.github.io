@@ -43,9 +43,14 @@ class CufHeader extends HTMLElement {
   }
 
   homepageStyle() {
+    this.shadowRoot.querySelector('.container').setAttribute('style',
+      '--fixed-container-height: calc(1.4 * max(var(--navigation-height), calc(var(--header-height-unit) * 2)));' +
+      '--header-total-height: calc(var(--fixed-container-height) + var(--header-height-unit) * 3 - var(--margin-offset));');
     this.shadowRoot.querySelector('.logo').setAttribute('style', 'visibility: hidden;');
     this.shadowRoot.querySelector('a').setAttribute('style', 'width: 0px;');
     this.shadowRoot.querySelector('.title').setAttribute('style', 'text-align: center; margin-left: 0;');
+    this.shadowRoot.querySelector('.collapsed-container').setAttribute('style',
+      'height: 1.4 * calc(var(--header-height-unit) * 3);');
     for (const element of this.shadowRoot.querySelectorAll('.subtitle')) {
       element.setAttribute('style', 'text-align: center; margin-left: 0;');
     }

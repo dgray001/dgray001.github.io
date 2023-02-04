@@ -2,7 +2,6 @@
   --margin-offset: 0px;
   --fixed-container-height: max(var(--navigation-height), calc(var(--header-height-unit) * 2));
   --header-total-height: calc(var(--fixed-container-height) + var(--header-height-unit) * 3 - var(--margin-offset));
-  --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
   background-color: var(--header-color);
 }
 
@@ -27,6 +26,7 @@
 
 .fixed-container a {
   text-decoration: none;
+  width: fit-content;
 }
 
 cuf-navigation-pane {
@@ -106,7 +106,7 @@ cuf-navigation-pane {
   width: var(--left-sidebar-width);
 }
 
-a {
+.logo-container a {
   display: inline-block;
   outline: none;
   height: 100%;
