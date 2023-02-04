@@ -60,8 +60,6 @@ body {
   padding-left: 4vw;
 }
 
-.section {}
-
 .section-title {
   color: rgb(70, 70, 140);
   font-size: 1.8em;
@@ -73,8 +71,6 @@ body {
   font-size: 1.4em;
   font-weight: normal;
 }
-
-.section-content {}
 
 .no-list-style {
   list-style: none;
@@ -108,6 +104,7 @@ button.form-submit-button:active{
 }
 
 cuf-sidebar {
+  margin-left: -5px;
   max-width: 450px;
   min-width: 250px;
 }
@@ -132,6 +129,7 @@ a:not(:focus-visible) {
 
   cuf-sidebar {
     flex: 1 0 0;
+    margin-left: 0px;
     margin-right: 5px;
   }
 }

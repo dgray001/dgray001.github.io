@@ -22,7 +22,7 @@ body {
   gap: 14px;
   height: 50vh;
   justify-content: center;
-  margin-top: var(--fixed-header-height);
+  margin-top: var(--header-height-unit);
   max-width: 100vw;
 }
 
@@ -68,6 +68,7 @@ img {
 }
 
 .right-panel.list-element#faith_facts {
+  font-size: 0.9em;
   padding-left: 5%;
 }
 

@@ -25,7 +25,7 @@ class PageLink {
         this.page_name = 'Information Services';
         break;
       case 'faith_facts':
-        this.page_name = 'FAITH FACTS';
+        this.page_name = '- Faith Facts';
         break;
       case 'involvement':
         this.page_name = 'Involvement';
