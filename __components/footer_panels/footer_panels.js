@@ -1,3 +1,5 @@
+import { panelsToIncludeFrom } from '../../scripts/datalists.js';
+
 class CufFooterPanels extends HTMLElement {
   constructor() {
     super();
@@ -8,7 +10,8 @@ class CufFooterPanels extends HTMLElement {
     const res = await fetch('./__components/footer_panels/footer_panels.html');
     shadow.innerHTML = await res.text();
     try {
-      const panels_to_include = JSON.parse(this.attributes.panels?.value || '[]');
+      const panels_data = this.attributes.panels?.value || '[]';
+      const panels_to_include = panelsToIncludeFrom(panels_data);
       const content = this.shadowRoot.querySelector('.content');
       let content_string = '';
       for (const panel_to_include of panels_to_include) {

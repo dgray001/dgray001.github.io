@@ -1,0 +1,7 @@
+@import "../styles.css";
+
+#login-form {
+  margin: 3em auto 0;
+  min-width: 300px;
+  width: 75%;
+}
