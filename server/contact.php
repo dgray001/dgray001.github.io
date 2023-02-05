@@ -26,3 +26,4 @@ if ($sent) {
 else {
   echo json_encode('false');
 }
+exit();

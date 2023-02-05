@@ -128,6 +128,7 @@ async function loadHostedForm() {
       'hostedPaymentSettings': hosted_payment_settings
     }
   };
+  const status_message = document.getElementById('donate-form-status-message');
   // post data to server
   try {
     const response = await fetch('/server/donate.php', {
@@ -138,12 +139,13 @@ async function loadHostedForm() {
       body: JSON.stringify(post_data),
     });
     const response_json = await response.json();
-    console.log(response_json);
     const token_input = document.getElementById('hidden-token-input');
     token_input.setAttribute('value', response_json["token"]);
     const donate_form = document.getElementById('donate-form');
     donate_form.submit();
   } catch(error) {
     console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'Donation failed to process. Please report this bug.';
   }
 }

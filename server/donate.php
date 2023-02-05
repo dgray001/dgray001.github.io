@@ -2,8 +2,8 @@
 
 // prevent GET requests on server code
 if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
-    die( header( 'location: /' ) );
+  header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
+  die( header( 'location: /' ) );
 }
 
 // get post data
@@ -41,3 +41,4 @@ $server_output = curl_exec($ch);
 curl_close ($ch);
 
 echo $server_output;
+exit();

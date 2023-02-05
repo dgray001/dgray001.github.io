@@ -21,15 +21,19 @@ class CufFaithFactCategory extends HTMLElement {
       const category_data = this.json_data['faith_facts'];
       let faith_facts = '';
       for (const faith_fact of category_data) {
+        const question_html = faith_fact['question'] ?
+          `<div class="question">
+            <div class="label"><em>Question</em>:</div>
+            <div class="content">${faith_fact['question']}</div>
+          </div>` : '';
         faith_facts += `<div class="faith-fact">
-          <div class="faith-fact-title">
-            ${faith_fact['title']}
+          <div class="title">
+            ${faith_fact['title'].toUpperCase()}
           </div>
-          <div class="faith-fact-question">
-            ${faith_fact['question']}
-          </div>
-          <div class="faith-fact-summary">
-            ${faith_fact['summary']}
+          ${question_html}
+          <div class="summary">
+            <div class="label"><em>Summary</em>:</div>
+            <div class="content">${faith_fact['summary']}</div>
           </div>
         </div>`;
       }

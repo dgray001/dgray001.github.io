@@ -5,3 +5,7 @@
   min-width: 300px;
   width: 75%;
 }
+
+#login-form-status-message {
+  margin-bottom: 1em;
+}
