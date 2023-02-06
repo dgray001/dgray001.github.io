@@ -1,5 +1,20 @@
 import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
 
+window.onload = () => {
+  if (!document.cookie) {
+    console.log(document.cookie);
+    return;
+  }
+  const cookies = document.cookie
+    .split(';')
+    .map(cookie => cookie.split('='))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+      return acc;
+    }, {});
+  console.log(cookies);
+}
+
 /**
  * @return {Promise<void>}
  * Submits login form if recaptcha token is valid
@@ -61,10 +76,11 @@ window.submitForm = async () => {
       body: JSON.stringify(post_data),
     });
     const response_json = await response.json();
-    console.log(response_json);
     if (response_json['valid']) {
       status_message.setAttribute('style', 'display: block; color: green');
       status_message.innerText = `Logged in successfully as: ${username_data}`;
+      location.reload();
+      return;
     }
     else {
       status_message.setAttribute('style', 'display: block; color: red');
@@ -78,6 +94,7 @@ window.submitForm = async () => {
   const button = document.getElementById('login-form-button');
   button.disabled = false;
   button.innerText = 'Login';
+  button.removeAttribute('style');
 }
 
 /**

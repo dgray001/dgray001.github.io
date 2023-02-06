@@ -14,19 +14,24 @@ function userEmailExists($conn, $email): array|bool|null {
 }
 
 function loginUser($conn, $email, $password): void {
-  $userExists = userEmailExists($conn, $email);
-  if (!$userExists) {
+  $user = userEmailExists($conn, $email);
+  if (!$user) {
     echo json_encode('User doesn\'t exist');
     exit(4);
   }
-  $hashedPassword = $userExists["password"];
+  $hashedPassword = $user["password"];
   if (!password_verify($password, $hashedPassword)) {
     echo json_encode('Password doesn\'t match');
     exit(5);
   }
-  session_set_cookie_params('3600', 'www.example.com', isset($_SERVER['HTTPS']) ?
+  $session_lifetime = 60 * 60; // 1 hour until relogin required
+  session_set_cookie_params($session_lifetime, 'www.example.com', isset($_SERVER['HTTPS']) ?
     $_SERVER['HTTPS'] !== 'off' : false, true);
   session_start();
-  $_SESSION["user_id"] = $userExists["id"];
-  $_SESSION["user_email"] = $userExists["email"];
+  $_SESSION["user_id"] = $user["id"];
+  $_SESSION["user_email"] = $user["email"];
+  // set session lifetime here since doesn't work in session_set_cookie_params (?)
+  setcookie(session_name(), session_id(), time() + $session_lifetime, '/');
+  setcookie('email', $user["email"], time() + $session_lifetime, '/');
+  setcookie('role', $user["role"], time() + $session_lifetime, '/');
 }

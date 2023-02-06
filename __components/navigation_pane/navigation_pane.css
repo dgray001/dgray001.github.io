@@ -11,29 +11,32 @@
 }
 
 .element {
+  flex: 1 1 0;
+  height: var(--button-height);
+  max-height: var(--button-height);
+  min-height: var(--button-height);
+}
+
+.element-style {
   background-color: var(--header-color);
   border-radius: 0px;
   border-color: transparent gray gray transparent;
   box-shadow: inset 0 0 0 0 var(--margin-color);
   box-sizing: border-box;
   color: rgb(0, 0, 0);
-  flex: 1 1 0;
   font-size: calc(0.95 * var(--page-body-font-size));
   font-weight: 500;
-  height: var(--button-height);
-  max-height: var(--button-height);
-  min-height: var(--button-height);
   text-align: center;
   text-decoration: none;
   transition: box-shadow ease-out 200ms;
 }
 
-.element:hover:not(.header-element) {
+.element-style:hover:not(.header-element) {
   box-shadow: inset 0 calc(var(--fixed-header-height)) 0 0 var(--navigation-hover-color);
 }
 
-.element:active:not(.current-element):not(.header-element) {
-  border-color: transparent;
+.element-style:active:not(.current-element):not(.header-element) {
+  border-color: transparent var(--header-color) var(--header-color) transparent;
 }
 
 .dropdown {
@@ -54,4 +57,102 @@ button.current-element {
 
 button.dropdown-element.current-element {
   background-color: var(--navigation-hover-color);
+}
+
+.hamburger-wrapper {
+  position: absolute;
+  height: 100%;
+  top: 0%;
+  width: 100%;
+}
+
+.hamburger {
+  border-radius: 50%;
+  outline: none;
+  position: relative;
+  z-index: 9;
+}
+
+.hamburger:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.hamburger:active {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.background-grayed {
+  background: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 5;
+}
+
+.hamburger-sidebar {
+  background-color: var(--card-background-color);
+  box-shadow: 0 0 6px var(--card-box-shadow-color);
+  bottom: 0;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: all ease-out 200ms;
+  width: 0px;
+  z-index: 5;
+}
+
+.hamburger-navigation-wrapper {
+  --hamburger-element-height: 30px;
+  --hamburger-element-margin: 15px;
+  height: 100%;
+  margin-top: var(--fixed-header-height);
+  width: 100%;
+}
+
+.hamburger-element {
+  display: block;
+  height: var(--hamburger-element-height);
+  margin: var(--hamburger-element-margin) auto 0;
+  width: 90%;
+  z-index: 9;
+  background-color: var(--header-color);
+  border-radius: 0px;
+}
+
+.hamburger-header-element {
+  line-height: var(--hamburger-element-height);
+}
+
+.hamburger-dropdown-element {
+  margin: calc(0.4 * var(--hamburger-element-margin)) auto 0;
+  margin-left: 15%;
+  margin-right: 5%;
+  width: 80%;
+}
+
+/* Navigation panel for larger devices */
+/* If change media query must change in header.css */
+@media only screen and not (max-width: 700px) {
+  .hamburger-wrapper {
+    display: none;
+  }
+}
+
+/* Hamburger button for smaller devices */
+@media only screen and (max-width: 700px) {
+  .wrapper {
+    display: none;
+  }
+
+  .hamburger-wrapper .hamburger {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: scale-down;
+  }
 }
