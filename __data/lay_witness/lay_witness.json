@@ -1,0 +1,44 @@
+{
+  "volumes": [
+    {
+      "number": 40,
+      "year": 2022,
+      "issues": [
+        {
+          "number": 2,
+          "title": "‘Wokeness’ and ‘pseudo-religions’: Catholic colleges look for ways to challenge growing cancel culture"
+        },
+        {
+          "number": 6,
+          "title": "Lay Witness Addendum",
+          "addendum": 1
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "year": 2021,
+      "issues": [
+        {
+          "number": 4,
+          "title": "In Memoriam: Madeleine Stebbins",
+          "insert": 1
+        }
+      ]
+    },
+    {
+      "number": 38,
+      "year": 2020,
+      "issues": [
+        {
+          "number": 2,
+          "title": "Consecration to St. Joseph"
+        },
+        {
+          "number": 4,
+          "title": "Mandate of Conscience: Balancing Obligations to the Common Good"
+        }
+      ]
+    }
+  ]
+}

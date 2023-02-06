@@ -43,6 +43,11 @@ window.onload = () => {
       </button>
     </form>`;
   }
+  const url_params = new URLSearchParams(window.location.search);
+  if (url_params.get('redirect')) {
+    const status_message = document.getElementById('login-form-status-message');
+    status_message.innerText = 'Please login to gain access to this page.';
+  }
 }
 
 /**
@@ -125,7 +130,13 @@ window.submitLoginForm = async () => {
     if (response_json['valid']) {
       status_message.setAttribute('style', 'display: block; color: green');
       status_message.innerText = `Logged in successfully as: ${username_data}`;
-      location.reload();
+      const url_params = new URLSearchParams(window.location.search);
+      if (url_params.get('redirect')) {
+        document.location.href = url_params.get('redirect');
+      }
+      else {
+        document.location.href = '/';
+      }
       return;
     }
     else {

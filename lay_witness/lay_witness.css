@@ -1,1 +1,5 @@
 @import "../styles.css";
+
+#newsletter-list ul {
+  font-size: smaller;
+}
