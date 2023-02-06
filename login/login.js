@@ -1,11 +1,7 @@
 import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
 
 window.onload = () => {
-  if (!document.cookie) {
-    console.log(document.cookie);
-    return;
-  }
-  const cookies = document.cookie
+  const cookies = !document.cookie ? {} : document.cookie
     .split(';')
     .map(cookie => cookie.split('='))
     .reduce((acc, v) => {
@@ -13,20 +9,68 @@ window.onload = () => {
       return acc;
     }, {});
   console.log(cookies);
+  const section_content = document.getElementById('form-section-content');
+  if (cookies.hasOwnProperty('PHPSESSID')) {
+    section_content.innerHTML = `
+    <p>
+      You are already logged in as ${cookies.email}. Please logout to switch accounts.
+    </p>
+    <form id="login-form" name="login-form" action="javascript:submitLogoutForm()">
+      <div id="login-form-status-message"></div>
+      <button class="form-submit-button" id="logout-form-button" onclick="submitLogoutFormButton()" type="button">
+        Logout
+      </button>
+    </form>`;
+  }
+  else {
+    section_content.innerHTML = `
+    <form id="login-form" name="login-form" action="javascript:submitLoginForm()">
+      <cuf-input-text
+        id="username-field"
+        flex_option="1"
+        validators='["required", "email"]'>
+        Login ID
+      </cuf-input-text>
+      <cuf-input-text
+        id="password-field"
+        flex_option="1"
+        validators='["required"]'>
+        Password
+      </cuf-input-text>
+      <div id="login-form-status-message"></div>
+      <button class="form-submit-button" id="login-form-button" onclick="submitLoginFormButton()" type="button">
+        Login
+      </button>
+    </form>`;
+  }
 }
 
 /**
  * @return {Promise<void>}
  * Submits login form if recaptcha token is valid
  */
-window.submitFormButton = async () => {
+window.submitLoginFormButton = async () => {
   if (!validateLoginForm()) {
     return;
   }
-  const button = document.getElementById('login-form-button');
-  button.disabled = true;
-  button.innerText = 'Loading';
-  button.setAttribute('style', 'box-shadow: none;');
+  disableLoginFormButton(true);
+  submitFormButton();
+}
+
+/**
+ * @return {Promise<void>}
+ * Submits logout form if recaptcha token is valid
+ */
+window.submitLogoutFormButton = async () => {
+  disableLoginFormButton(false);
+  submitFormButton();
+}
+
+/**
+ * @return {Promise<void>}
+ * Submits form
+ */
+async function submitFormButton() {
   grecaptcha.ready(async function() {
     const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
     const recaptcha_check = await verifyRecaptcha(token);
@@ -37,10 +81,12 @@ window.submitFormButton = async () => {
     }
     else {
       status_message.setAttribute('style', 'display: block; color: red');
-      status_message.innerText = 'reCaptcha validation has failed. If you are human, please report this false positive.';
+      status_message.innerText = 'reCaptcha validation has failed. ' +
+        'If you are human, please report this false positive.';
     }
   });
 }
+
 
 /**
  * Validates each section in contact form
@@ -55,10 +101,10 @@ function validateLoginForm() {
 }
 
 /**
- * Submits contact form to server
+ * Submits login form to server
  * @return {Promise<void>}
  */
-window.submitForm = async () => {
+window.submitLoginForm = async () => {
   const username = document.getElementById('username-field');
   const username_data = username.getFormData();
   const password = document.getElementById('password-field');
@@ -91,13 +137,38 @@ window.submitForm = async () => {
     status_message.setAttribute('style', 'display: block; color: red');
     status_message.innerText = 'Message failed to send. Please report this bug.';
   }
-  const button = document.getElementById('login-form-button');
-  button.disabled = false;
-  button.innerText = 'Login';
-  button.removeAttribute('style');
+  enableLoginFormButton(true);
 }
 
 /**
- * Login error code to message
- * @param {number} 
+ * Submits logout form to server
+ * @return {Promise<void>}
  */
+window.submitLogoutForm = async () => {
+  document.cookie = '';
+  document.location.href = '/server/logout.php';
+}
+
+/**
+ * Disables login form button
+ * @param {boolean} login_form
+ */
+function disableLoginFormButton(login_form) {
+  const button_id = login_form ? 'login-form-button' : 'logout-form-button';
+  const button = document.getElementById(button_id);
+  button.disabled = true;
+  button.innerText = 'Loading';
+  button.setAttribute('style', 'box-shadow: none;');
+}
+
+/**
+ * Enables login form button
+ * @param {boolean} login_form
+ */
+function enableLoginFormButton(login_form) {
+  const button_id = login_form ? 'login-form-button' : 'logout-form-button';
+  const button = document.getElementById(button_id);
+  button.disabled = false;
+  button.innerText = login_form ? 'Login' : 'Logout';
+  button.removeAttribute('style');
+}

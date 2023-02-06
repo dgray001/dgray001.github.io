@@ -5,3 +5,4 @@ DEV:
  - modify test.json to accomodate forwarding url given by ngrok
  - ensure config files (outside doc root) are in dev mode
  - still use site in localhost => ngrok only for receipt page after donating
+ - run WAMP server to simulate db

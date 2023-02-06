@@ -114,13 +114,14 @@ button.dropdown-element.current-element {
 }
 
 .hamburger-element {
+  background-color: var(--header-color);
+  border-radius: 0px;
   display: block;
   height: var(--hamburger-element-height);
   margin: var(--hamburger-element-margin) auto 0;
+  white-space: nowrap;
   width: 90%;
   z-index: 9;
-  background-color: var(--header-color);
-  border-radius: 0px;
 }
 
 .hamburger-header-element {

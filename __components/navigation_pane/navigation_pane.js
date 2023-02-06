@@ -47,7 +47,8 @@ export class CufNavigationPane extends HTMLElement {
   openHamburgerSidebar(shadow) {
     this.hamburger_clicked = true;
     shadow.querySelector('.background-grayed').setAttribute('style', 'display: block');
-    shadow.querySelector('.hamburger-sidebar').setAttribute('style', 'width: 180px');
+    shadow.querySelector('.hamburger-sidebar').setAttribute('style', 'width: ' +
+      'calc(max(180px, min(350px, 35vw)))');
     document.body.style.overflow = 'hidden';
   }
 

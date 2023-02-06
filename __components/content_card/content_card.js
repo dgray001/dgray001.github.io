@@ -27,13 +27,13 @@ class CufContentCard extends HTMLElement {
       header.addEventListener('click', this.collapseHeader.bind(null, this, headerText));
       if (start_closed) {
         const content_element = this.shadowRoot.querySelector('.content');
-        const image_element = this.shadowRoot.querySelector('.arrow-image-wrapper');
+        const image_element = this.shadowRoot.querySelector('.arrow-image');
         content_element.setAttribute('style', 'display: none;');
         image_element.setAttribute('style', 'transform: rotate(90deg)');
       }
     }
     else {
-      const image_element = this.shadowRoot.querySelector('.arrow-image-wrapper');
+      const image_element = this.shadowRoot.querySelector('.arrow-image');
       image_element.setAttribute('style', 'display: none;');
       headerText.setAttribute('style', 'max-width: calc(100% - 0.3rem);')
     }
