@@ -47,7 +47,7 @@ export class CufFormField extends HTMLElement {
         const flex_option = this.attributes.flex_option?.value || '';
         const validators_array = JSON.parse(this.attributes.validators?.value || '[]');
         this.validators = new Set(validators_array);
-        this.label = this.innerText;
+        this.label = this.innerText.replace('\n', '');
         this.innerText = '';
         const shadow = this.attachShadow({mode: 'open'});
         const res = await fetch('./__components/model/form_field/form_field.html');

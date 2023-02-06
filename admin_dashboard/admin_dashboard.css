@@ -1,1 +1,9 @@
 @import "../styles.css";
+
+#laywitness-file-upload {
+  margin-bottom: 2em;
+}
+
+#laywitness-form {
+  display: none;
+}

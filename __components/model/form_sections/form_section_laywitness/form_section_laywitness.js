@@ -1,22 +1,21 @@
 import {CufFormSection} from '../form_section/form_section.js';
-import '../../select/select.js';
 import '../../input_text/input_text.js';
+import '../../checkbox/checkbox.js';
 
-class CufFormSectionAddress extends CufFormSection {
+class CufFormSectionLaywitness extends CufFormSection {
   constructor() {
     super();
   }
 
   async connectedCallback() {
     await super.connectedCallback();
-    const res = await fetch('./__components/model/form_sections/form_section_address/form_section_address.html');
-    const form_section = await this.setFormSectionAttributes(res, 'Address');
-    form_section.form_fields.push(this.shadowRoot.getElementById('address-first'));
-    form_section.form_fields.push(this.shadowRoot.getElementById('address-second'));
-    form_section.form_fields.push(this.shadowRoot.getElementById('address-city'));
-    form_section.form_fields.push(this.shadowRoot.getElementById('address-state'));
-    form_section.form_fields.push(this.shadowRoot.getElementById('address-zip'));
-    form_section.form_fields.push(this.shadowRoot.getElementById('address-country'));
+    const res = await fetch('./__components/model/form_sections/form_section_laywitness/form_section_laywitness.html');
+    const form_section = await this.setFormSectionAttributes(res, 'Details');
+    form_section.form_fields.push(this.shadowRoot.getElementById('laywitness-volume'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('laywitness-issue'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('laywitness-title'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-addendum'));
+    form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-insert'));
   }
 
   /**
@@ -53,4 +52,4 @@ class CufFormSectionAddress extends CufFormSection {
   }
 }
 
-customElements.define("cuf-form-section-address", CufFormSectionAddress);
+customElements.define("cuf-form-section-laywitness", CufFormSectionLaywitness);

@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="./__components/model/form_sections/form_section_laywitness/form_section_laywitness.css">
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="laywitness-volume"
+    flex_option="1"
+    validators='["required", "integer"]'>
+    Volume
+  </cuf-input-text>
+  <cuf-input-text
+    id="laywitness-issue"
+    flex_option="1"
+    validators='["required", "integer"]'>
+    Issue
+  </cuf-input-text>
+</div>
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="laywitness-title"
+    flex_option="1"
+    validators='["required"]'>
+    Issue Title
+  </cuf-input-text>
+</div>
+<div class="checkbox-wrapper">
+  <cuf-checkbox id="checkbox-addendum">
+    This issue is an addendum
+  </cuf-checkbox>
+  <cuf-checkbox id="checkbox-insert">
+    This issue is an insert (e.g. in memoriam)
+  </cuf-checkbox>
+  <div id="checkbox-insert-note">
+    Note: If you select both addendum and insert, the issue will be marked as an addendum but <em><strong>not</strong></em> an insert.
+  </div>
+</div>
