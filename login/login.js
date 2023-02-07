@@ -122,7 +122,7 @@ window.submitLoginForm = async () => {
     const response = await fetch('/server/login.php', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(post_data),
     });

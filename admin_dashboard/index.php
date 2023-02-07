@@ -46,7 +46,7 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
         echo '<h2 class="section-title">Lay Witness</h2>';
         echo '<label for="laywitness-file-upload">Upload PDF:</label><br>';
         echo '<input id="laywitness-file-upload" type="file" accept="application/pdf">';
-        echo '<form id="laywitness-form" action="javascript:submitForm()">';
+        echo '<form id="laywitness-form" action="javascript:submitLaywitnessForm()">';
         echo '<cuf-form-section-laywitness id="section-laywitness"></cuf-form-section-laywitness>';
         echo '<button class="form-submit-button" id="laywitness-form-button" onclick="submitLaywitnessFormButton()"type="button">Upload Laywitness</button>';
         echo '</form>';

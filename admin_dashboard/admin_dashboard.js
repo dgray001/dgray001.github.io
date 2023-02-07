@@ -20,7 +20,7 @@ window.onload = async () => {
         status_message.innerText = 'Invalid filetype; please upload a pdf.';
         return;
       }
-      lay_witness_form.removeAttribute('style');
+      lay_witness_form.setAttribute('style', 'display: block;');
       status_message.setAttribute('style', 'display: none;');
     });
   }
@@ -78,5 +78,192 @@ function validateLaywitnessForm() {
  * @return {Promise<void>}
  */
 window.submitLaywitnessForm = async () => {
-  console.log("submitting");
+  const status_message = document.getElementById('laywitness-form-status-message');
+
+  const response = await fetch('./__data/lay_witness/lay_witness.json');
+  const json_data = await response.json();
+  const laywitness_section = document.getElementById('section-laywitness');
+  const laywitness_section_data = laywitness_section.getFormData();
+  const lay_witness_input = document.getElementById('laywitness-file-upload');
+  /** @type {File} */
+  const file = lay_witness_input.files[0];
+
+  let submit_volume = undefined;
+  for (const volume of json_data['volumes']) {
+    if (volume['number'] == laywitness_section_data['volume']) {
+      submit_volume = volume;
+      break;
+    }
+  }
+  if (!submit_volume) {
+    submit_volume = {
+      "number": laywitness_section_data['volume'],
+      "year": 2022 + laywitness_section_data['volume'] - 40,
+      "issues": [],
+    };
+    json_data['volumes'].push(submit_volume);
+  }
+  const issues = submit_volume['issues'];
+  const new_issue = {
+    "number": laywitness_section_data['issue'],
+    "title": laywitness_section_data['title'],
+  };
+  if (laywitness_section_data['addendum']) {
+    let max_addendum = 0;
+    for (const issue of issues) {
+      if (issue['addendum'] && issue['addendum'] > max_addendum) {
+        max_addendum = issue['addendum'];
+      }
+    }
+    new_issue['addendum'] = max_addendum + 1;
+  }
+  else if (laywitness_section_data['insert']) {
+    let max_insert = 0;
+    for (const issue of issues) {
+      if (issue['insert'] && issue['insert'] > max_insert) {
+        max_insert = issue['insert'];
+      }
+    }
+    new_issue['insert'] = max_insert + 1;
+  }
+  else {
+    for (const [i, issue] of issues.entries()) {
+      if (issue['number'] === new_issue['number'] && !issue['addendum'] && !issue['insert']) {
+        issues.splice(i, 1);
+        break;
+      }
+    }
+  }
+  issues.push(new_issue);
+  // sort by issue number, addendum, and insert, respectively
+  issues.sort((a, b) => {
+    if (a['number'] > b['number']) {
+      return -1;
+    }
+    else if (a['number'] < b['number']) {
+      return 1;
+    }
+    if (!a['addendum'] && !a['insert']) {
+      return -1;
+    }
+    else if (!b['addendum'] && !b['insert']) {
+      return 1;
+    }
+    if (a['addendum'] && !b['addendum']) {
+      return -1;
+    }
+    else if (b['addendum'] && !a['addendum']) {
+      return 1;
+    }
+    if (a['addendum'] && b['addendum']) {
+      if (a['addendum'] > b['addendum']) {
+        return 1;
+      }
+      if (a['addendum'] < b['addendum']) {
+        return -1;
+      }
+    }
+    if (a['insert'] && b['insert']) {
+      if (a['insert'] > b['insert']) {
+        return 1;
+      }
+      if (a['insert'] < b['insert']) {
+        return -1;
+      }
+    }
+    return 0;
+  });
+  // Sort volumes by number
+  json_data['volumes'].sort((a, b) => {
+    if (a['number'] > b['number']) {
+      return -1;
+    }
+    else if (a['number'] < b['number']) {
+      return 1;
+    }
+    return 0;
+  });
+
+  try {
+    console.log(json_data);
+    const response = await fetch('/server/admin_dashboard/laywitness_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(json_data),
+    });
+    const response_json = await response.json();
+    console.log(response_json);
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'File upload succeeded';
+      laywitness_section.clearFormData();
+      const lay_witness_form = document.getElementById('laywitness-form');
+      lay_witness_form.setAttribute('style', 'display: none;');
+      const lay_witness_input = document.getElementById('laywitness-file-upload');
+      lay_witness_input.value = '';
+      uploadFile(new_issue, laywitness_section_data, file);
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'File upload failed. Please report this bug.';
+  }
+
+  const button = document.getElementById('laywitness-form-button');
+  button.disabled = false;
+  button.innerText = 'Upload File';
+  button.removeAttribute('style');
+}
+
+/**
+ * Uploads file onto server
+ * @param {{number:number, title:string, addendum?:boolean, insert?:boolean}} new_issue
+ * @param {{volume:number, issue:number, title:string, addendum:boolean, insert:boolean}} laywitness_section_data
+ * @param {File} file
+ * @return {Promise<void>}
+ */
+async function uploadFile(new_issue, laywitness_section_data, file) {
+  const status_message = document.getElementById('laywitness-form-status-message');
+  const laywitness_section = document.getElementById('section-laywitness');
+
+  const filename_extension = new_issue['addendum'] ? `-Addendum${new_issue['addendum']}` :
+    (new_issue['insert'] ? `-Insert${new_issue['insert']}` : '');
+  const filename = `/${laywitness_section_data['volume']}/` +
+    `${laywitness_section_data['volume']}.${laywitness_section_data['issue']}` +
+    `-Lay-Witness${filename_extension}.pdf`
+
+  try {
+    const response = await fetch('/server/admin_dashboard/laywitness_file.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': file.type,
+        'X-File-Name': filename,
+      },
+      body: file,
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'File upload succeeded';
+      laywitness_section.clearFormData();
+      const lay_witness_form = document.getElementById('laywitness-form');
+      lay_witness_form.setAttribute('style', 'display: none;');
+      const lay_witness_input = document.getElementById('laywitness-file-upload');
+      lay_witness_input.value = '';
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'File upload failed. Please report this bug.';
+  }
 }

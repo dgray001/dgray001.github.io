@@ -70,6 +70,13 @@ export class CufInputText extends CufFormField {
     }
     return this.form_field.value;
   }
+
+  /**
+   * Clears form data
+   */
+  clearFormData() {
+    this.form_field.value = '';
+  }
 }
 
 customElements.define("cuf-input-text", CufInputText);

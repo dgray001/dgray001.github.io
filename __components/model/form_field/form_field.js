@@ -108,6 +108,13 @@ export class CufFormField extends HTMLElement {
   }
 
   /**
+   * Clears form data
+   */
+  clearFormData() {
+    console.log(`CufFormField::clearFormData not implemented for ${this.constructor.name}.`);
+  }
+
+  /**
    * Validates the form field based on input validators.
    * This function sets valid, validation_error_text, and updates helper text.
    * @return {boolean} whether form field is valid.

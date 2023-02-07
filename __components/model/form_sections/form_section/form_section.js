@@ -51,6 +51,13 @@ export class CufFormSection extends HTMLElement {
   }
 
   /**
+   * Clears all form field data
+   */
+  clearFormData() {
+    console.log(`CufFormSection::clearFormData not implemented for ${this.constructor.name}.`);
+  }
+
+  /**
    * Validates the form section by validating each form field.
    * @return {boolean} whether form field is valid.
    */

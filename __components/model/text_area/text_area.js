@@ -38,6 +38,13 @@ class CufTextArea extends CufFormField {
   getFormData() {
     return this.form_field.value;
   }
+
+  /**
+   * Clears form data
+   */
+  clearFormData() {
+    this.form_field.value = '';
+  }
 }
 
 customElements.define("cuf-text-area", CufTextArea);

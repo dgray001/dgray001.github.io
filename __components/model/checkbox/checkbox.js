@@ -20,6 +20,13 @@ export class CufCheckbox extends CufFormField {
   getFormData() {
     return this.form_field.checked.toString();
   }
+
+  /**
+   * Clears form data
+   */
+  clearFormData() {
+    this.form_field.checked = false;
+  }
 }
 
 customElements.define("cuf-checkbox", CufCheckbox);

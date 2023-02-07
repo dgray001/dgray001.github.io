@@ -47,6 +47,13 @@ export class CufSelect extends CufFormField {
   }
 
   /**
+   * Clears form data
+   */
+  clearFormData() {
+    this.form_field.value = '';
+  }
+
+  /**
    * Returns form data as a string
    * @return {string}
    */
