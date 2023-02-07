@@ -42,6 +42,13 @@ class CufFormSectionLaywitness extends CufFormSection {
     this.shadowRoot.getElementById('checkbox-addendum').clearFormData();
     this.shadowRoot.getElementById('checkbox-insert').clearFormData();
   }
+
+  /**
+   * Focuses the first form field in the form section
+   */
+  focusFirst() {
+    this.shadowRoot.getElementById('laywitness-volume').focus();
+  }
 }
 
 customElements.define("cuf-form-section-laywitness", CufFormSectionLaywitness);

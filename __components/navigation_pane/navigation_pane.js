@@ -79,24 +79,52 @@ export class CufNavigationPane extends HTMLElement {
     const path = `./${element_id}`;
     const element = shadow.querySelector(`#${element_id}`);
     const hamburger_element = shadow.querySelector(`#hamburger-${element_id}`);
-    if (path == current_path) {
+    if (path === `.${current_path}`) {
       element.disabled = true;
-      hamburger_element = true;
+      hamburger_element.disabled = true;
       element.classList.add('current-element');
-      hamburger_element.classList.add('hamburger-current-element');
+      hamburger_element.classList.add('current-element');
     }
     else {
       element.addEventListener('click', () => {
         this.navigateTo(path);
       });
+      element.addEventListener('mousedown', (e) => {
+        if (e.button == 1) {
+          e.preventDefault();
+        }
+      });
+      element.addEventListener('auxclick', (e) => {
+        e.preventDefault();
+        if (e.button != 1) {
+          return;
+        }
+        this.openNewTab(path);
+      });
       hamburger_element.addEventListener('click', () => {
         this.navigateTo(path);
+      });
+      hamburger_element.addEventListener('mousedown', (e) => {
+        if (e.button == 1) {
+          e.preventDefault();
+        }
+      });
+      hamburger_element.addEventListener('auxclick', (e) => {
+        e.preventDefault();
+        if (e.button != 1) {
+          return;
+        }
+        this.openNewTab(path);
       });
     }
   }
 
   navigateTo(path) {
     window.location = path;
+  }
+
+  openNewTab(path) {
+    window.open(path, '_blank');
   }
 }
 

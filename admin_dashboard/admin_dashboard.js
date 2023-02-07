@@ -22,6 +22,7 @@ window.onload = async () => {
       }
       lay_witness_form.setAttribute('style', 'display: block;');
       status_message.setAttribute('style', 'display: none;');
+      document.getElementById('section-laywitness').focusFirst();
     });
   }
 };
@@ -185,7 +186,6 @@ window.submitLaywitnessForm = async () => {
   });
 
   try {
-    console.log(json_data);
     const response = await fetch('/server/admin_dashboard/laywitness_data.php', {
       method: 'POST',
       headers: {
@@ -194,7 +194,6 @@ window.submitLaywitnessForm = async () => {
       body: JSON.stringify(json_data),
     });
     const response_json = await response.json();
-    console.log(response_json);
     if (response_json['success']) {
       status_message.setAttribute('style', 'display: block; color: green');
       status_message.innerText = 'File upload succeeded';

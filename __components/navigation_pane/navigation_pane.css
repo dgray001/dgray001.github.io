@@ -157,3 +157,7 @@ button.dropdown-element.current-element {
     object-fit: scale-down;
   }
 }
+
+button:hover:not(.current-element) {
+  cursor: pointer;
+}

@@ -71,6 +71,13 @@ export class CufFormSection extends HTMLElement {
     }
     return this.valid;
   }
+
+  /**
+   * Focuses the first form field in the form section
+   */
+  focusFirst() {
+    console.log(`CufFormSection::focusFirst not implemented for ${this.constructor.name}.`);
+  }
 }
 
 customElements.define("cuf-form-section", CufFormSection);

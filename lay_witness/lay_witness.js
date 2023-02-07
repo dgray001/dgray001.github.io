@@ -16,7 +16,7 @@ window.onload = async () => {
     for (const issue of volume['issues']) {
       const issue_element = document.createElement('li');
       const issue_link = document.createElement('a');
-      issue_link.innerText = `Issue ${issue['number']} — ${issue['title']}`;
+      issue_link.innerHTML = `Issue ${issue['number']} — ${issue['title']}`;
       issue_link.target = '_blank';
       issue_link.href = `./__data/lay_witness/${volume['number']}/` +
         `${volume['number']}.${issue['number']}-Lay-Witness`;
@@ -25,7 +25,7 @@ window.onload = async () => {
       }
       else if (issue['insert']) {
         issue_link.href += `-Insert${issue['insert']}`;
-        issue_link.innerText = issue['title'];
+        issue_link.innerHTML = issue['title'];
       }
       issue_link.href += '.pdf';
       issue_element.appendChild(issue_link);
