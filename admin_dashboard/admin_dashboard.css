@@ -5,5 +5,9 @@
 }
 
 #laywitness-form {
-  display: none;
+  visibility: hidden;
+}
+
+#papers-form {
+  visibility: hidden;
 }

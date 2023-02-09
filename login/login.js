@@ -8,7 +8,6 @@ window.onload = () => {
       acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
       return acc;
     }, {});
-  console.log(cookies);
   const section_content = document.getElementById('form-section-content');
   if (cookies.hasOwnProperty('PHPSESSID')) {
     section_content.innerHTML = `
@@ -28,14 +27,14 @@ window.onload = () => {
       <cuf-input-text
         id="username-field"
         flex_option="1"
-        validators='["required", "email"]'>
-        Login ID
+        validators='["required", "email"]'
+        label="Login ID">
       </cuf-input-text>
       <cuf-input-text
         id="password-field"
         flex_option="1"
-        validators='["required"]'>
-        Password
+        validators='["required"]'
+        label="Password">
       </cuf-input-text>
       <div id="login-form-status-message"></div>
       <button class="form-submit-button" id="login-form-button" onclick="submitLoginFormButton()" type="button">

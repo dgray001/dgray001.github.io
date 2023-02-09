@@ -19,7 +19,7 @@ class CufFormSectionLaywitness extends CufFormSection {
   }
 
   /**
-   * Returns map of name data for the name form section
+   * Returns map of laywitness data for the laywitness form section
    * @return {{volume:number, issue:number, title:string, addendum:boolean, insert:boolean}}
    */
   getFormData() {

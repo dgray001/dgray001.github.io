@@ -72,9 +72,14 @@
           <cuf-form-section-name id="section-name"></cuf-form-section-name>
           <cuf-form-section-address id="section-address"></cuf-form-section-address>
           <cuf-form-section-contact id="section-contact"></cuf-form-section-contact>
-          <cuf-text-area id="section-message" min-rows="2">Message</cuf-text-area><br>
+          <cuf-text-area id="section-message" min-rows="2" label="Message"></cuf-text-area><br>
           <cuf-form-section-membership-request id="section-membership"></cuf-form-section-membership-request>
-          <cuf-input-text id="donation-amount" flex_option="1" validators='["required", "money"]'>Donation Amount</cuf-input-text>
+          <cuf-input-text
+            id="donation-amount"
+            flex_option="1"
+            validators='["required", "money"]'
+            label="Donation Amount">
+          </cuf-input-text>
           <button class="form-submit-button" id="donate-form-button" onclick="donateFormButton()" type="button">
             Proceed to authorize.net payment portal
           </button>

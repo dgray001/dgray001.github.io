@@ -51,7 +51,12 @@
             <cuf-form-section-name id="section-name"></cuf-form-section-name>
             <cuf-form-section-address id="section-address"></cuf-form-section-address>
             <cuf-form-section-contact id="section-contact"></cuf-form-section-contact>
-            <cuf-text-area id="section-message" validators='["required"]' min-rows="3">Message</cuf-text-area><br><br>
+            <cuf-text-area
+              id="section-message"
+              validators='["required"]'
+              min-rows="3"
+              label="Message">
+            </cuf-text-area><br><br>
             <cuf-form-section-membership-request id="section-membership"></cuf-form-section-membership-request>
             <button class="form-submit-button" id="submit-form-button" onclick="submitFormButton()" type="button">
               Send

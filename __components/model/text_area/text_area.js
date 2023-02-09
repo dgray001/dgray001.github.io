@@ -14,7 +14,6 @@ class CufTextArea extends CufFormField {
     const form_field = await this.setFormFieldAttributes(res);
     form_field.addEventListener('input', (evt) => {this.setTextAreaHeight(evt.target)});
     this.setMinHeight();
-    this.setTextAreaHeight();
   }
 
   setMinHeight() {
@@ -23,6 +22,7 @@ class CufTextArea extends CufFormField {
     this.form_field.value = '\n'.repeat(min_rows - 1);
     this.min_height = this.form_field.scrollHeight + 2;
     this.form_field.value = previous_value;
+    this.setTextAreaHeight();
   }
 
   setTextAreaHeight() {

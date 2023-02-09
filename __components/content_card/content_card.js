@@ -92,10 +92,8 @@ class CufContentCard extends HTMLElement {
             content_list += ` class="element-with-title"><div class="element-title">${content['title']}</div`;
           }
         }
-        if (content['textfile']) {
-          const element_response = await fetch(`./__data/${this.content_key}/${content['textfile']}.txt`);
-          const element_data = await element_response.text();
-          content_list += `>${element_data}</div>`
+        if (content['description']) {
+          content_list += `>${content['description']}</div>`
         }
         else {
           content_list += '></div>';

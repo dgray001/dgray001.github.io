@@ -5,24 +5,50 @@ window.onload = async () => {
   if (lay_witness_section) {
     const lay_witness_input = document.getElementById('laywitness-file-upload');
     const lay_witness_form = document.getElementById('laywitness-form');
+    lay_witness_form.setAttribute('style', 'display: none; visibility: visible;');
     lay_witness_input.addEventListener('change', () => {
       /** @type {File} */
       const file = lay_witness_input.files[0];
       if (!file) {
-        lay_witness_form.setAttribute('style', 'display: none;');
+        lay_witness_form.setAttribute('style', 'display: none; visibility: visible;');
         return;
       }
       const status_message = document.getElementById('laywitness-form-status-message');
       if (file.type !== 'application/pdf') {
         lay_witness_input.value = '';
-        lay_witness_form.setAttribute('style', 'display: none;');
+        lay_witness_form.setAttribute('style', 'display: none; visibility: visible;');
         status_message.setAttribute('style', 'display: block; color: red');
         status_message.innerText = 'Invalid filetype; please upload a pdf.';
         return;
       }
-      lay_witness_form.setAttribute('style', 'display: block;');
+      lay_witness_form.setAttribute('style', 'display: block; visibility: visible;');
       status_message.setAttribute('style', 'display: none;');
       document.getElementById('section-laywitness').focusFirst();
+    });
+  }
+  const paper_section = document.getElementById('positionPapers');
+  if (paper_section) {
+    const paper_input = document.getElementById('papers-file-upload');
+    const paper_form = document.getElementById('papers-form');
+    paper_form.setAttribute('style', 'display: none; visibility: visible;');
+    paper_input.addEventListener('change', () => {
+      /** @type {File} */
+      const file = paper_input.files[0];
+      if (!file) {
+        paper_form.setAttribute('style', 'display: none; visibility: visible;');
+        return;
+      }
+      const status_message = document.getElementById('papers-form-status-message');
+      if (file.type !== 'application/pdf') {
+        paper_input.value = '';
+        paper_form.setAttribute('style', 'display: none; visibility: visible;');
+        status_message.setAttribute('style', 'display: block; color: red');
+        status_message.innerText = 'Invalid filetype; please upload a pdf.';
+        return;
+      }
+      paper_form.setAttribute('style', 'display: block; visibility: visible;');
+      status_message.setAttribute('style', 'display: none;');
+      document.getElementById('section-papers').focusFirst();
     });
   }
 };

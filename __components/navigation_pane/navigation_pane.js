@@ -15,7 +15,6 @@ export class CufNavigationPane extends HTMLElement {
     shadow.innerHTML = await res.text();
     const current_path = window.location.pathname;
     const wrapper = shadow.querySelector('.wrapper');
-    wrapper.style.setProperty('--button-height', `${wrapper.offsetHeight}`);
     this.setEventListener(shadow, 'about', current_path);
     this.setEventListener(shadow, 'involvement', current_path);
     const apostolic_activities = shadow.querySelector('#apostolic_activities');
@@ -42,6 +41,7 @@ export class CufNavigationPane extends HTMLElement {
     shadow.querySelector('.background-grayed').addEventListener('click', () => {
       this.closeHamburgerSidebar(shadow);
     });
+    wrapper.style.setProperty('--button-height', `${wrapper.offsetHeight}`);
   }
 
   openHamburgerSidebar(shadow) {

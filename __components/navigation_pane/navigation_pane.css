@@ -158,6 +158,6 @@ button.dropdown-element.current-element {
   }
 }
 
-button:hover:not(.current-element) {
+button:hover:not(.current-element):not(.header-element) {
   cursor: pointer;
 }

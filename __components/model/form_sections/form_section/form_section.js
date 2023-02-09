@@ -18,6 +18,22 @@ export class CufFormSection extends HTMLElement {
     const shadow = this.attachShadow({mode: 'open'});
     const res = await fetch('./__components/model/form_sections/form_section/form_section.html');
     shadow.innerHTML = await res.text();
+    // Add mutation observer for attributes on parent
+    const mutation_config = {attributes: true, childList: false, subtree: false};
+    const mutation_callback = (mutationList) => {
+      for (const mutation of mutationList) {
+        this.mutationCallback(mutation);
+      }
+    };
+    const observer = new MutationObserver(mutation_callback);
+    observer.observe(this.parentElement, mutation_config);
+  }
+
+  /**
+   * Called whenever attributes on parent form are changed.
+   * Used to update form fields when for display: none is changed.
+   */
+  async mutationCallback(mutation) {
   }
 
   /**

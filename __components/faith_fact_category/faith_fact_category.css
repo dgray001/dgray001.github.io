@@ -1,6 +1,8 @@
 .faith-fact {
   background-color: rgb(255, 245, 235);
+  border-radius: 6px;
   margin: 1.2rem 0;
+  padding: 3px;
 }
 
 .faith-fact .title {
