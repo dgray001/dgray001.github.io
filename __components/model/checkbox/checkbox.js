@@ -7,6 +7,11 @@ export class CufCheckbox extends CufFormField {
 
   async connectedCallback() {
     await super.connectedCallback();
+  }
+
+  // This should be called when children (and inner text) available
+  async childrenAvailableCallback() {
+    await super.childrenAvailableCallback();
     this.form_field_label.classList.remove('styled');
     this.form_field_wrapper.classList.remove('styled');
     const res = await fetch('./__components/model/checkbox/checkbox.html');

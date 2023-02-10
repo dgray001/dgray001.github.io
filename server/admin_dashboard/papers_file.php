@@ -17,16 +17,22 @@ if (!isset($_SESSION["role"])) {
 }
 
 // logged in but doesn't have permission
-if (!hasPermission('layWitness', $_SESSION["role"])) {
-  echo json_encode('You don\'t have permission to upload Lay Witness');
+if (!hasPermission('positionPapers', $_SESSION["role"])) {
+  echo json_encode('You don\'t have permission to upload position papers');
   exit(2);
 }
 
 require_once('../create_file.php');
 
-// get post data
-$received_data = json_decode(file_get_contents('php://input'), true);
+$filename = $_SERVER['HTTP_X_FILE_NAME'];
+$in = fopen('php://input', 'r');
+$filetype = mime_content_type($in);
 
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/lay_witness/lay_witness.json', json_encode($received_data));
+if ($filetype != 'application/pdf') {
+  echo json_encode('Must upload a pdf');
+  exit(3);
+}
+
+forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/articles/' . $filename, $in);
 
 echo json_encode(array('success' => true));

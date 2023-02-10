@@ -15,6 +15,11 @@ export class CufInputText extends CufFormField {
 
   async connectedCallback() {
     await super.connectedCallback();
+  }
+
+  // This should be called when children (and inner text) available
+  async childrenAvailableCallback() {
+    await super.childrenAvailableCallback();
     const res = await fetch('./__components/model/input_text/input_text.html');
     const form_field = await this.setFormFieldAttributes(res);
     const autocomplete = this.attributes.autocomplete?.value || '';

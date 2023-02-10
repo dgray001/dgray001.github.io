@@ -1,6 +1,7 @@
 import {Validator, validate} from '../../../scripts/validation.js';
+import {HTMLBaseElement} from '../HTML_base_element.js';
 
-export class CufFormField extends HTMLElement {
+export class CufFormField extends HTMLBaseElement {
   /**
    * reference to actual form field element
    * @type {HTMLElement}
@@ -34,11 +35,17 @@ export class CufFormField extends HTMLElement {
   /** @type {string} */
   validation_error_text = '';
 
-  constructor() {
-    super();
+  constructor(...args) {
+    const self = super(...args);
+    return self;
   }
 
   async connectedCallback() {
+    super.setup();
+  }
+
+  // This should be called when children (and inner text) available
+  async childrenAvailableCallback() {
     this.id = this.attributes.id?.value || '';
     this.default_helper_text = this.attributes["helper-text"]?.value || '';
     const flex_option = this.attributes.flex_option?.value || '';
@@ -55,13 +62,12 @@ export class CufFormField extends HTMLElement {
       this.setAttribute('style', `flex: ${flex_option} 0 0`)
     }
     this.form_field_label = shadow.querySelector('.form-field-label');
-    this.form_field_label.setAttribute('for', this.id);
-    setTimeout(() => {
+    if (this.validators.has('required')) {
+      this.form_field_label.innerText = this.label.concat(' *');
+    }
+    else {
       this.form_field_label.innerText = this.label;
-      if (this.validators.has('required')) {
-        this.form_field_label.innerText += ' *';
-      }
-    }, 10);
+    }
   }
 
   /**

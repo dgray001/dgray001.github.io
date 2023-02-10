@@ -63,8 +63,8 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
         echo '<h2 class="section-title">Position Papers</h2>';
         echo '<label for="papers-file-upload">Upload PDF:</label><br>';
         echo '<input id="papers-file-upload" type="file" accept="application/pdf">';
-        echo '<form id="papers-form" action="javascript:submitPapersForm()">';
-        echo '<cuf-form-section-paper id="section-papers"></cuf-form-section-papers>';
+        echo '<form id="papers-form" action="javascript:submitPaperForm()">';
+        echo '<cuf-form-section-paper id="section-papers"></cuf-form-section-paper>';
         echo '<button class="form-submit-button" id="papers-form-button" onclick="submitPaperFormButton()"type="button">Upload Position Paper</button>';
         echo '</form>';
         echo '<div id="papers-form-status-message"></div>';

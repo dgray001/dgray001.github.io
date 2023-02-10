@@ -1,6 +1,6 @@
 import {CufFormField} from '../form_field/form_field.js';
 
-class CufTextArea extends CufFormField {
+export class CufTextArea extends CufFormField {
   /** @type {number} */
   min_height = 0;
 
@@ -10,6 +10,11 @@ class CufTextArea extends CufFormField {
 
   async connectedCallback() {
     await super.connectedCallback();
+  }
+
+  // This should be called when children (and inner text) available
+  async childrenAvailableCallback() {
+    await super.childrenAvailableCallback();
     const res = await fetch('./__components/model/text_area/text_area.html');
     const form_field = await this.setFormFieldAttributes(res);
     form_field.addEventListener('input', (evt) => {this.setTextAreaHeight(evt.target)});
@@ -17,6 +22,9 @@ class CufTextArea extends CufFormField {
   }
 
   setMinHeight() {
+    if (this.form_field == null) {
+      return;
+    }
     const min_rows = parseInt(this.attributes['min-rows']?.value || '1');
     const previous_value = this.form_field.value;
     this.form_field.value = '\n'.repeat(min_rows - 1);

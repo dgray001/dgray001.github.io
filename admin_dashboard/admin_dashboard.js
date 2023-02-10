@@ -65,16 +65,30 @@ window.submitLaywitnessFormButton = async () => {
   const status_message = document.getElementById('laywitness-form-status-message');
   const laywitness_form = document.getElementById('laywitness-form');
   submitFormButton(button, status_message, laywitness_form);
-}
+};
+
+/**
+ * @return {Promise<void>}
+ * Submits paper form if recaptcha token is valid
+ */
+window.submitPaperFormButton = async () => {
+  if (!validatePaperForm()) {
+    return;
+  }
+  const button = document.getElementById('papers-form-button');
+  const status_message = document.getElementById('papers-form-status-message');
+  const paper_form = document.getElementById('papers-form');
+  submitFormButton(button, status_message, paper_form);
+};
 
 /**
  * Submits input form if recaptcha is valid
  * @param {HTMLButtonElement} button
  * @param {HTMLDivElement} status_message
- * @param {HTMLFormElement} laywitness_form
+ * @param {HTMLFormElement} form
  * @return {Promise<void>}
  */
-function submitFormButton(button, status_message, laywitness_form) {
+function submitFormButton(button, status_message, form) {
   button.disabled = true;
   button.innerText = 'Uploading';
   button.setAttribute('style', 'box-shadow: none;');
@@ -82,7 +96,7 @@ function submitFormButton(button, status_message, laywitness_form) {
     const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
     const recaptcha_check = await verifyRecaptcha(token);
     if (recaptcha_check) {
-      laywitness_form.submit();
+      form.submit();
     }
     else {
       status_message.setAttribute('style', 'display: block; color: red');
@@ -98,6 +112,15 @@ function submitFormButton(button, status_message, laywitness_form) {
 function validateLaywitnessForm() {
   const laywitness_section = document.getElementById('section-laywitness');
   return laywitness_section.validate();
+}
+
+/**
+ * Validates each section in paper form
+ * @return {boolean} whether form field is valid.
+ */
+function validatePaperForm() {
+  const paper_section = document.getElementById('section-papers');
+  return paper_section.validate();
 }
 
 /**
@@ -228,7 +251,7 @@ window.submitLaywitnessForm = async () => {
       lay_witness_form.setAttribute('style', 'display: none;');
       const lay_witness_input = document.getElementById('laywitness-file-upload');
       lay_witness_input.value = '';
-      uploadFile(new_issue, laywitness_section_data, file);
+      uploadLaywitnessFile(new_issue, laywitness_section_data, file);
     }
     else {
       status_message.setAttribute('style', 'display: block; color: red');
@@ -244,16 +267,73 @@ window.submitLaywitnessForm = async () => {
   button.disabled = false;
   button.innerText = 'Upload File';
   button.removeAttribute('style');
-}
+};
 
 /**
- * Uploads file onto server
+ * Submits paper form to server
+ * @return {Promise<void>}
+ */
+window.submitPaperForm = async () => {
+  const status_message = document.getElementById('papers-form-status-message');
+
+  const response = await fetch('./__data/papers/papers.json');
+  const json_data = await response.json();
+  const paper_section = document.getElementById('section-papers');
+  const paper_section_data = paper_section.getFormData();
+  const paper_input = document.getElementById('papers-file-upload');
+  /** @type {File} */
+  const file = paper_input.files[0];
+  const new_paper = {
+    'title': paper_section_data['title'],
+    'titlelink': `./__data/articles/${file.name}`,
+  };
+  if (paper_section_data.description) {
+    new_paper['description'] = paper_section_data['description'];
+  }
+  json_data['content'].push(new_paper);
+
+  try {
+    const response = await fetch('/server/admin_dashboard/papers_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(json_data),
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'File upload succeeded';
+      paper_section.clearFormData();
+      const paper_form = document.getElementById('papers-form');
+      paper_form.setAttribute('style', 'display: none;');
+      const paper_input = document.getElementById('papers-file-upload');
+      paper_input.value = '';
+      uploadPaperFile(file.name, file);
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'File upload failed. Please report this bug.';
+  }
+  const button = document.getElementById('papers-form-button');
+  button.disabled = false;
+  button.innerText = 'Upload File';
+  button.removeAttribute('style');
+};
+
+/**
+ * Uploads laywitness file onto server
  * @param {{number:number, title:string, addendum?:boolean, insert?:boolean}} new_issue
  * @param {{volume:number, issue:number, title:string, addendum:boolean, insert:boolean}} laywitness_section_data
  * @param {File} file
  * @return {Promise<void>}
  */
-async function uploadFile(new_issue, laywitness_section_data, file) {
+async function uploadLaywitnessFile(new_issue, laywitness_section_data, file) {
   const status_message = document.getElementById('laywitness-form-status-message');
   const laywitness_section = document.getElementById('section-laywitness');
 
@@ -281,6 +361,45 @@ async function uploadFile(new_issue, laywitness_section_data, file) {
       lay_witness_form.setAttribute('style', 'display: none;');
       const lay_witness_input = document.getElementById('laywitness-file-upload');
       lay_witness_input.value = '';
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'File upload failed. Please report this bug.';
+  }
+}
+
+/**
+ * Uploads paper file onto server
+ * @param {string} filename
+ * @param {File} file
+ * @return {Promise<void>}
+ */
+async function uploadPaperFile(filename, file) {
+  const status_message = document.getElementById('papers-form-status-message');
+  const paper_section = document.getElementById('section-papers');
+  try {
+    const response = await fetch('/server/admin_dashboard/papers_file.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': file.type,
+        'X-File-Name': filename,
+      },
+      body: file,
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'File upload succeeded';
+      paper_section.clearFormData();
+      const paper_form = document.getElementById('papers-form');
+      paper_form.setAttribute('style', 'display: none;');
+      const paper_input = document.getElementById('papers-file-upload');
+      paper_input.value = '';
     }
     else {
       status_message.setAttribute('style', 'display: block; color: red');

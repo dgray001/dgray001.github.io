@@ -1,6 +1,6 @@
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
-import '../../text_area/text_area.js';
+import {CufTextArea} from '../../text_area/text_area.js';
 
 class CufFormSectionPaper extends CufFormSection {
   constructor() {
@@ -20,7 +20,9 @@ class CufFormSectionPaper extends CufFormSection {
    * Used here to update textarea min height
    */
   async mutationCallback(mutation) {
-    this.shadowRoot.getElementById('paper-description').setMinHeight();
+    /** @type {CufTextArea} */
+    const description = this.shadowRoot.getElementById('paper-description');
+    description.setMinHeight();
   }
 
   /**

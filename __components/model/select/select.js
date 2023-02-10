@@ -11,6 +11,11 @@ export class CufSelect extends CufFormField {
 
   async connectedCallback() {
     await super.connectedCallback();
+  }
+
+  // This should be called when children (and inner text) available
+  async childrenAvailableCallback() {
+    await super.childrenAvailableCallback();
     const res = await fetch('./__components/model/select/select.html');
     await this.setFormFieldAttributes(res);
     const options_text = this.attributes.options?.value || '[]';

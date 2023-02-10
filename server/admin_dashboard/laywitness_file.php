@@ -17,7 +17,7 @@ if (!isset($_SESSION["role"])) {
 }
 
 // logged in but doesn't have permission
-if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
+if (!hasPermission('layWitness', $_SESSION["role"])) {
   echo json_encode('You don\'t have permission to upload Lay Witness');
   exit(2);
 }
