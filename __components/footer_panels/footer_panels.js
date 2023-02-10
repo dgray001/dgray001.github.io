@@ -20,7 +20,10 @@ class CufFooterPanels extends HTMLElement {
         if (!json_data['content'] || json_data['content'].length === 0) {
           continue;
         }
-        content_string += `<span class="content-card"><cuf-content-card content_key="${panel_to_include}" collapsible="false" start_closed="false" fixed_height="300" card_rotation_image="test_image"></cuf-content-card></span>`;
+        content_string += `<span class="content-card"><cuf-content-card
+          content_key="${panel_to_include}" collapsible="false"
+          start_closed="false" fixed_height="250" card_rotation_image="test_image">
+          </cuf-content-card></span>`;
       }
       content.innerHTML = content_string;
     } catch(e) {

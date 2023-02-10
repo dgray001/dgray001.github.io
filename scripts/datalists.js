@@ -10,15 +10,24 @@ export function panelsToIncludeFrom(panels_data) {
       return json_data;
     }
   } catch (e) {} // if not an array
-  switch(panels_data) {
+  const panels_data_split = panels_data.split('-');
+  const remove_element = panels_data_split[1];
+  let return_array = [];
+  switch(panels_data_split[0]) {
     case 'homepage':
-      return ["prayer", "news", "papers"];
+      return_array = ["prayer", "news", "papers"];
+      break;
     case 'page':
-      return ["prayer", "news", "jobs_available", "papers"];
+      return_array = ["prayer", "news", "jobs_available", "papers"];
+      break;
     default:
-      console.error(`CufSidebar panels keyword ${panels_data} not found.`);
-      return [];
+      console.error(`CufSidebar panels keyword ${panels_data_split[0]} not found.`);
+      return return_array;
   }
+  if (remove_element) {
+    return_array = return_array.filter(el => el !== remove_element);
+  }
+  return return_array;
 }
   
 /**

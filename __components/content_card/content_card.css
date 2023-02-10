@@ -12,30 +12,32 @@
 }
 
 .headerText {
-  position: absolute;
+  color: black;
   font-size: 24px;
   font-weight: bold;
   left: 0.3rem;
-  top: 50%;
   margin-top: -14px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   max-height: 40px;
   max-width: calc(100% - 40px - 0.3rem);
+  overflow: hidden;
+  position: absolute;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  top: 50%;
   user-select: none;
   white-space: nowrap;
 }
 
 .headerText:hover {
-  text-decoration: underline;
-  cursor: pointer;
-  overflow: visible;
-  z-index: 1;
   background-color: rgba(230, 210, 190, 150);
-  display: block;
-  max-width: max-content;
-  width: max-content;
   color: rgb(70, 70, 70);
+  cursor: pointer;
+  display: block;
+  overflow: visible;
+  max-width: max-content;
+  text-decoration: underline;
+  width: max-content;
+  z-index: 1;
 }
 
 .headerText:active {

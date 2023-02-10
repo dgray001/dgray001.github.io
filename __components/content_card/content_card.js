@@ -12,7 +12,7 @@ class CufContentCard extends HTMLElement {
     this.content_key = this.attributes.content_key?.value || this.content_key;
     this.collapsible = this.attributes.collapsible ? this.attributes.collapsible.value === 'true' : this.collapsible;
     const start_closed = this.attributes.start_closed ? this.attributes.start_closed.value === 'true' : false;
-    const fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
+    let fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
     const card_rotation_image = this.attributes.card_rotation_image?.value || '';
     const shadow = this.attachShadow({mode: 'open'});
     const res = await fetch('./__components/content_card/content_card.html');
@@ -21,7 +21,21 @@ class CufContentCard extends HTMLElement {
     this.setContent();
     const card = this.shadowRoot.querySelector('.card');
     const headerText = this.shadowRoot.querySelector('.headerText');
-    headerText.addEventListener('click', this.clickHeaderText.bind(null, this.content_key));
+    switch(this.content_key) {
+      case 'news':
+        headerText.href = '/news';
+        break;
+      case 'papers':
+        headerText.href = '/position_papers';
+        break;
+      case 'jobs_available':
+        headerText.href = '/jobs_available';
+        break;
+      case 'prayer':
+      default:
+        console.log(`No page exists for content card: ${this.content_key}`)
+        break;
+    }
     if (this.collapsible === true) {
       const header = this.shadowRoot.querySelector('.header');
       header.addEventListener('click', this.collapseHeader.bind(null, this, headerText));
@@ -39,7 +53,7 @@ class CufContentCard extends HTMLElement {
     }
     if (card_rotation_image) {
       if (!fixed_height) {
-        throw new Error('Need to set fixed height when card_rotaiton_image set.');
+        throw new Error('Need to set fixed height when card_rotation_image set.');
       }
       const image = document.createElement('img');
       image.src = `__images/${card_rotation_image}.png`;
@@ -53,9 +67,17 @@ class CufContentCard extends HTMLElement {
       card_wrapper.appendChild(card_rotater);
       card_rotater.appendChild(card);
       card_rotater.appendChild(image);
+      let fixed_width = 2 * fixed_height; // calculated from fixed height
+      if (1.1 * fixed_width > window.innerWidth) {
+        fixed_width = window.innerWidth / 1.1;
+        fixed_height = fixed_width / 2.0;
+      }
       card.setAttribute('style', `box-shadow: 0 0 0px var(--card-box-shadow-color); transform: rotateX(-90deg) scale(0.9) translateZ(${0.5 * fixed_height}px); height: 100%;`);
       image.setAttribute('style', `transform: scale(0.9) translateZ(${0.5 * fixed_height}px);`);
-      card_wrapper.setAttribute('style', `height: ${fixed_height}px; min-height: ${fixed_height}px; max-height: ${fixed_height}px; perspective: ${5 * fixed_height}px`);
+      card_wrapper.setAttribute('style', `height: ${fixed_height}px;
+        min-height: ${fixed_height}px; max-height: ${fixed_height}px;
+        min-width: ${fixed_width}px; max-width: ${fixed_width}px;
+        perspective: ${5 * fixed_height}px; width: ${fixed_width}px;`);
       let last_scroll_top = 0;
       card_wrapper.addEventListener('mouseenter', () => {
         card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
@@ -121,18 +143,6 @@ class CufContentCard extends HTMLElement {
       content_element.setAttribute('style', 'display: block;');
       image_element.setAttribute('style', 'animation: openRotate 300ms forwards');
       //source.scrollIntoView({behavior: "smooth", block: "center"});
-    }
-  }
-
-  clickHeaderText(content_key) {
-    switch(content_key) {
-      case 'news':
-      case 'papers':
-      case 'prayer':
-      case 'jobs_available':
-      default:
-        console.log(`No page exists yet for: ${content_key}`)
-        break;
     }
   }
 }
