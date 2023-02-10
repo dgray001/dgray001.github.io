@@ -26,6 +26,25 @@ window.onload = async () => {
       document.getElementById('section-laywitness').focusFirst();
     });
   }
+  const news_section = document.getElementById('positionPapers');
+  if (news_section) {
+    const news_button = document.getElementById('new-news-button');
+    const news_form = document.getElementById('news-form');
+    news_form.setAttribute('style', 'display: none; visibility: visible;');
+    news_button.addEventListener('click', () => {
+      const news_form = document.getElementById('news-form');
+      if (news_form.getAttribute('style').includes('display: block')) {
+        news_form.setAttribute('style', 'display: none; visibility: visible;');
+        news_button.innerText = 'Add News';
+        return;
+      }
+      news_button.innerText = 'Cancel';
+      const status_message = document.getElementById('news-form-status-message');
+      news_form.setAttribute('style', 'display: block; visibility: visible;');
+      status_message.setAttribute('style', 'display: none;');
+      document.getElementById('section-news').focusFirst();
+    });
+  }
   const paper_section = document.getElementById('positionPapers');
   if (paper_section) {
     const paper_input = document.getElementById('papers-file-upload');
@@ -65,6 +84,20 @@ window.submitLaywitnessFormButton = async () => {
   const status_message = document.getElementById('laywitness-form-status-message');
   const laywitness_form = document.getElementById('laywitness-form');
   submitFormButton(button, status_message, laywitness_form);
+};
+
+/**
+ * @return {Promise<void>}
+ * Submits news form if recaptcha token is valid
+ */
+window.submitNewsFormButton = async () => {
+  if (!validateNewsForm()) {
+    return;
+  }
+  const button = document.getElementById('news-form-button');
+  const status_message = document.getElementById('news-form-status-message');
+  const news_form = document.getElementById('news-form');
+  submitFormButton(button, status_message, news_form);
 };
 
 /**
@@ -112,6 +145,15 @@ function submitFormButton(button, status_message, form) {
 function validateLaywitnessForm() {
   const laywitness_section = document.getElementById('section-laywitness');
   return laywitness_section.validate();
+}
+
+/**
+ * Validates each section in news form
+ * @return {boolean} whether form field is valid.
+ */
+function validateNewsForm() {
+  const news_section = document.getElementById('section-news');
+  return news_section.validate();
 }
 
 /**
@@ -245,7 +287,7 @@ window.submitLaywitnessForm = async () => {
     const response_json = await response.json();
     if (response_json['success']) {
       status_message.setAttribute('style', 'display: block; color: green');
-      status_message.innerText = 'File upload succeeded';
+      status_message.innerText = 'Data upload succeeded';
       laywitness_section.clearFormData();
       const lay_witness_form = document.getElementById('laywitness-form');
       lay_witness_form.setAttribute('style', 'display: none;');
@@ -267,6 +309,60 @@ window.submitLaywitnessForm = async () => {
   button.disabled = false;
   button.innerText = 'Upload File';
   button.removeAttribute('style');
+};
+
+/**
+ * Submits news form to server
+ * @return {Promise<void>}
+ */
+window.submitNewsForm = async () => {
+  const status_message = document.getElementById('news-form-status-message');
+
+  const response = await fetch('./__data/news/news.json');
+  const json_data = await response.json();
+  const news_section = document.getElementById('section-news');
+  const news_section_data = news_section.getFormData();
+  const new_news = {
+    'title': news_section_data['title'],
+    'description': news_section_data['description'],
+  };
+  if (news_section_data['titlelink']) {
+    new_news['titlelink'] = news_section_data['titlelink'];
+  }
+  json_data['content'].push(new_news);
+
+  try {
+    const response = await fetch('/server/admin_dashboard/news_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(json_data),
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'Data upload succeeded';
+      news_section.clearFormData();
+      const news_form = document.getElementById('news-form');
+      news_form.setAttribute('style', 'display: none;');
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'News upload failed. Please report this bug.';
+  }
+  
+  const button = document.getElementById('news-form-button');
+  button.disabled = false;
+  button.innerText = 'Upload News';
+  button.removeAttribute('style');
+  const news_button = document.getElementById('new-news-button');
+  news_button.innerText = 'Add News';
 };
 
 /**
@@ -303,7 +399,7 @@ window.submitPaperForm = async () => {
     const response_json = await response.json();
     if (response_json['success']) {
       status_message.setAttribute('style', 'display: block; color: green');
-      status_message.innerText = 'File upload succeeded';
+      status_message.innerText = 'Data upload succeeded';
       paper_section.clearFormData();
       const paper_form = document.getElementById('papers-form');
       paper_form.setAttribute('style', 'display: none;');
@@ -320,6 +416,7 @@ window.submitPaperForm = async () => {
     status_message.setAttribute('style', 'display: block; color: red');
     status_message.innerText = 'File upload failed. Please report this bug.';
   }
+
   const button = document.getElementById('papers-form-button');
   button.disabled = false;
   button.innerText = 'Upload File';

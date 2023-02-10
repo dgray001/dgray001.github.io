@@ -56,6 +56,12 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
       if (hasPermission('news', $_SESSION["role"])) {
         echo '<div class="section" id="news">';
         echo '<h2 class="section-title">News</h2>';
+        echo '<button id="new-news-button">Add News</button>';
+        echo '<form id="news-form" action="javascript:submitNewsForm()">';
+        echo '<cuf-form-section-news id="section-news"></cuf-form-section-news>';
+        echo '<button class="form-submit-button" id="news-form-button" onclick="submitNewsFormButton()"type="button">Upload News</button>';
+        echo '</form>';
+        echo '<div id="news-form-status-message"></div>';
         echo '</div>';
       }
       if (hasPermission('positionPapers', $_SESSION["role"])) {

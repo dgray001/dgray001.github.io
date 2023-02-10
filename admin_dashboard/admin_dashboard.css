@@ -8,6 +8,10 @@
   visibility: hidden;
 }
 
+#news-form {
+  visibility: hidden;
+}
+
 #papers-form {
   visibility: hidden;
 }
