@@ -144,6 +144,7 @@ img {
 }
 
 .profile-wrapper {
+  --profile-padding-width: 0.8vw;
   height: var(--fixed-container-height);
   position: absolute;
   right: 1px;
@@ -163,11 +164,11 @@ img {
 
 .profile-wrapper .profile-info-wrapper {
   background-color: rgb(45, 80, 80);
-  border-radius: 0.8vw;
+  border-radius: var(--profile-padding-width);
   color: white;
   display: none;
   font-size: var(--page-body-font-size);
-  padding: 0.6vw;
+  padding: 0.6vw var(--profile-padding-width);
   position: absolute;
   right: 2vw;
   top: calc(var(--fixed-container-height) + 4px);
@@ -175,7 +176,8 @@ img {
 }
 
 .profile-wrapper .profile-info {
-  margin: 0.2em 0.8vw;
+  margin: 0.4em var(--profile-padding-width);
+  text-align: center;
 }
 
 .profile-wrapper hr {
@@ -186,8 +188,10 @@ img {
   box-sizing: border-box;
   color: white;
   display: inline-block;
+  left: calc(-1 * var(--profile-padding-width));
   padding: 0.5em;
-  width: 100%;
+  position: relative;
+  width: calc(100% + 2 * var(--profile-padding-width));
 }
 
 .profile-wrapper a span {
