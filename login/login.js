@@ -1,13 +1,8 @@
-import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
+import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+import {clientCookies} from '../scripts/util.js';
 
 window.onload = () => {
-  const cookies = !document.cookie ? {} : document.cookie
-    .split(';')
-    .map(cookie => cookie.split('='))
-    .reduce((acc, v) => {
-      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
-      return acc;
-    }, {});
+  const cookies = clientCookies();
   const section_content = document.getElementById('form-section-content');
   if (cookies.hasOwnProperty('PHPSESSID')) {
     section_content.innerHTML = `
@@ -28,13 +23,16 @@ window.onload = () => {
         id="username-field"
         flex_option="1"
         validators='["required", "email"]'
-        label="Login ID">
+        label="Login ID"
+        autocomplete="username">
       </cuf-input-text>
       <cuf-input-text
         id="password-field"
         flex_option="1"
         validators='["required"]'
-        label="Password">
+        label="Password"
+        datatype="password"
+        autocomplete="current-password">
       </cuf-input-text>
       <div id="login-form-status-message"></div>
       <button class="form-submit-button" id="login-form-button" onclick="submitLoginFormButton()" type="button">

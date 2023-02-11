@@ -14,5 +14,6 @@
 }
 
 .content-card cuf-content-card {
+  display: table;
   margin: 0 auto;
 }

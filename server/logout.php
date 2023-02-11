@@ -15,9 +15,13 @@ setcookie('role', $user["role"], time(), '/');
 session_unset();
 session_destroy();
 
-if (isset($_GET['redirect'])) {
+if (isset($_GET['hard_redirect'])) {
+  header("location: " . $_GET['hard_redirect']);
+}
+else if (isset($_GET['redirect'])) {
   header("location: ../login?redirect=" . $_GET['redirect']);
-} else {
+}
+else {
   header("location: ../login");
 }
 

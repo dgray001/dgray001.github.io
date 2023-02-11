@@ -1,4 +1,7 @@
-export class CufNavigationPane extends HTMLElement {
+import {HTMLBaseElement} from '../model/HTML_base_element.js';
+import {until} from '../../scripts/util.js';
+
+export class CufNavigationPane extends HTMLBaseElement {
   /**
    * reference to actual form field element
    * @type {boolean}
@@ -10,6 +13,11 @@ export class CufNavigationPane extends HTMLElement {
   }
 
   async connectedCallback() {
+    super.setup();
+  }
+
+  // This should be called when children (and inner text) available
+  async childrenAvailableCallback() {
     const shadow = this.attachShadow({mode: 'closed'});
     const res = await fetch('./__components/navigation_pane/navigation_pane.html');
     shadow.innerHTML = await res.text();
@@ -41,7 +49,11 @@ export class CufNavigationPane extends HTMLElement {
     shadow.querySelector('.background-grayed').addEventListener('click', () => {
       this.closeHamburgerSidebar(shadow);
     });
-    wrapper.style.setProperty('--button-height', `${wrapper.offsetHeight}`);
+    await until(() => {
+      return wrapper && wrapper.offsetHeight > 0;
+    });
+    const navigation_wrapper = shadow.querySelector('.wrapper');
+    wrapper.style.setProperty('--button-height', `${navigation_wrapper.offsetHeight}`);
   }
 
   openHamburgerSidebar(shadow) {

@@ -1,6 +1,7 @@
 :root {
   --margin-size: 15px;
   --header-height-unit: max(2vh, 15px);
+  --page-body-font-size: calc(12px + 0.5vw);
   --navigation-height: calc(2.8 * var(--page-body-font-size));
   --fixed-header-height: calc(max(
     var(--navigation-height),
@@ -17,7 +18,6 @@
   --margin-color: var(--page-background-color);
   --navigation-hover-color: rgb(190, 190, 190);
   --navigation-current-color: rgba(190, 190, 190, 0.8);
-  --page-body-font-size: calc(12px + 0.5vw);
   --left-sidebar-width: 10vw;
   --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
   --page-content-width: calc(100vw - 2 * var(--left-auto-margin) - var(--left-sidebar-width));

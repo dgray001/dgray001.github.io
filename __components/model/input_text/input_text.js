@@ -27,6 +27,10 @@ export class CufInputText extends CufFormField {
       form_field.setAttribute('autocomplete', autocomplete);
       this.removeAttribute('autocomplete');
     }
+    const datatype = this.attributes.datatype?.value || '';
+    if (datatype) {
+      form_field.setAttribute('type', datatype);
+    }
     const datalist = this.attributes.datalist?.value || '';
     if (datalist) {
       this.removeAttribute('datalist');

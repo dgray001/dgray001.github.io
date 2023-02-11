@@ -60,13 +60,27 @@ export function scrollToElement(element) {
 }
 
 /**
+ * Returns mapping of client-side cookies
+ * @returns {{}} cookies
+ */
+export function clientCookies() {
+  return !document.cookie ? {} : document.cookie
+    .split(';')
+    .map(cookie => cookie.split('='))
+    .reduce((acc, v) => {
+      acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
+      return acc;
+    }, {});
+}
+
+/**
  * Returns promise that resolves when condition function becomes true
  * @param {Function} conditionFunction element to scroll to
  * @return {Promise}
  */
 export function until(conditionFunction) {
   const poll = resolve => {
-    if(conditionFunction) resolve();
+    if(conditionFunction()) resolve();
     else setTimeout(_ => poll(resolve), 400);
   }
   return new Promise(poll);
