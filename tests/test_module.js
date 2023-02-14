@@ -4,6 +4,12 @@ export class TestModule {
   /** @type {string} display name of module */
   module_name;
 
+  /** @type {number} mapping tree depth of the module */
+  tree_depth;
+
+  /** @type {boolean} if true run all submodules and tests synchronously */
+  run_syncronously;
+
   /** @type {Array<TestModule>} */
   sub_modules;
 
@@ -30,18 +36,22 @@ export class TestModule {
    * @param {Array<TestModule>} sub_modules 
    * @param {Array<UnitTest>} unit_tests 
    */
-  constructor(module_name, sub_modules, unit_tests) {
+  constructor(module_name, sub_modules, unit_tests, run_syncronously = false) {
     this.module_name = module_name;
     this.sub_modules = sub_modules;
     this.unit_tests = unit_tests;
+    this.run_syncronously = run_syncronously;
   }
   
   /**
    * Recursively generates HTML for the test module
    * @param {number} module_key unique key for this module
+   * @param {number=} tree_depth mapping tree depth of the module
+   * @param {Map<number, TestModule|UnitTest>=} mapping
    * @returns {{module_html: string, updated_key: number, mapping: Map<number, TestModule|UnitTest>}}
    */
-  getHTML(module_key, mapping = new Map()) {
+  getHTML(module_key, tree_depth = 0, mapping = new Map()) {
+    this.tree_depth = tree_depth++;
     mapping.set(module_key, this);
     let return_html = `
       <div class="module" id="${module_key++}">
@@ -49,16 +59,16 @@ export class TestModule {
       <div class="module-tests">`;
     for (const test of this.unit_tests) {
       mapping.set(module_key, test);
-      return_html += test.getHTML(module_key++);
+      return_html += test.getHTML(module_key++, tree_depth);
     }
     return_html += '</div>';
     return_html += '<div class="sub-modules">';
     for (const module of this.sub_modules) {
-      const {module_html, updated_key} = module.getHTML(module_key++, mapping);
+      const {module_html, updated_key} = module.getHTML(module_key++, tree_depth, mapping);
       return_html += module_html;
       module_key = updated_key;
     }
-    return_html += '</div>';
+    return_html += '</div></div>';
     return {module_html: return_html, updated_key: module_key, mapping: mapping};
   }
   
@@ -97,6 +107,19 @@ export class TestModule {
     this.module_finished = false;
     const module_title = this.test_el.querySelector('.module-title');
     module_title.innerHTML = this.getTitleHTML();
+    module_title.setAttribute('style', 'background-color: lightyellow;');
+    if (this.run_syncronously) {
+      return new Promise(async (resolve) => {
+        for (const test of this.unit_tests) {
+          await test.run();
+        }
+        for (const module of this.sub_modules) {
+          await module.run();
+        }
+        this.afterRun();
+        resolve();
+      });
+    }
     const promises = [];
     for (const test of this.unit_tests) {
       promises.push(test.run());
@@ -104,12 +127,39 @@ export class TestModule {
     for (const module of this.sub_modules) {
       promises.push(module.run());
     }
+    // combine all promises
     this.module_promise = Promise.all(promises).then(() => {
-      this.module_finished = true;
-      const module_title = this.test_el.querySelector('.module-title');
-      module_title.innerHTML = this.getTitleHTML();
+      this.afterRun();
     });
     return this.module_promise;
+  }
+
+  /**
+   * Processing that occurs after moduel is run
+   */
+  afterRun() {
+    this.module_finished = true;
+    const module_title = this.test_el.querySelector('.module-title');
+    this.all_tests_passed = true;
+    for (const test of this.unit_tests) {
+      if (!test.test_passed) {
+        this.all_tests_passed = false;
+        break;
+      }
+    }
+    for (const module of this.sub_modules) {
+      if (!module.all_tests_passed) {
+        this.all_tests_passed = false;
+        break;
+      }
+    }
+    module_title.innerHTML = this.getTitleHTML();
+    if (this.all_tests_passed) {
+      module_title.setAttribute('style', 'background-color: lightgreen;');
+    }
+    else {
+      module_title.setAttribute('style', 'background-color: red;');
+    }
   }
 
   /**
@@ -177,5 +227,11 @@ export class TestModule {
     const module = test_mapping.get(parseInt(this.test_el.id));
     await module.run();
     module.setModuleRunnerListeners(test_mapping);
+    for (const test of this.unit_tests) {
+      test.addEventListeners(test_mapping);
+    }
+    for (const submodule of this.sub_modules) {
+      submodule.setModuleRunnerListeners(test_mapping);
+    }
   }
 }

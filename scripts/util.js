@@ -1,3 +1,5 @@
+// @ts-check
+
 export const DEV = true;
 
 export const base_url = DEV ?
@@ -14,6 +16,70 @@ export const loop = (times, callback) => {
     callback(i);
   }
 };
+
+/**
+ * Returns promise that resolves when condition function becomes true
+ * @param {Function} conditionFunction
+ * @return {Promise}
+ */
+export function until(conditionFunction) {
+  const poll = (resolve) => {
+    if (conditionFunction()) {
+      resolve();
+    }
+    else {
+      setTimeout(() => poll(resolve), 400);
+    }
+  }
+  return new Promise(poll);
+}
+
+/**
+ * Recursively checks objects to see if they are equal
+ * @param {object} obj1
+ * @param {object} obj2
+ * @param {string=} obj1_name name for obj1 in return string
+ * @param {string=} obj2_name name for obj1 in return string
+ * @returns {string} error message or empty if objects are equal
+ */
+export function objectsEqual(obj1, obj2, obj1_name = 'obj1', obj2_name = 'obj2') {
+  if (typeof obj1 !== 'object') {
+    return `${obj1_name} is not an object.`;
+  }
+  if (typeof obj2 !== 'object') {
+    return `${obj2_name} is not an object.`;
+  }
+  for (const i in obj1) {
+    if (!obj2.hasOwnProperty(i)) {
+      return `${obj2_name} missing property ${i} found in ${obj1_name}.`;
+    }
+    if (typeof obj1[i] === 'object' || obj2[i] === 'object') {
+      return objectsEqual(obj1[i], obj2[i], obj1_name + `[${i}]`, obj2_name + `[${i}]`);
+    }
+    if (obj1[i] !== obj2[i]) {
+      return `Property ${i} in ${obj1_name} (${obj1[i]}) is not equal to ${obj2_name}[${i}] (${obj2[i]}).`;
+    }
+  }
+  for (const i in obj2) {
+    if (!obj1.hasOwnProperty(i)) {
+      return `${obj1_name} missing property ${i} found in ${obj2_name}.`;
+    }
+  }
+  return '';
+}
+
+/**
+ * Smooth scrolls to the input element, accounting for fixed header height
+ * @param {HTMLElement} element element to scroll to
+ */
+export function scrollToElement(element) {
+  const element_position = element.offsetTop;
+  const fixed_header_size = 15 + 2 * Math.max(0.02 * window.innerHeight, 15);
+  window.scrollTo({
+    top: element_position - fixed_header_size,
+    behavior: "smooth"
+  });
+}
 
 /**
  * Scrolls to the input value over the input time
@@ -47,21 +113,8 @@ export function scrollOverDuration(element, target, duration) {
 }
 
 /**
- * Smooth scrolls to the input element, accounting for fixed header height
- * @param {HTMLElement} element element to scroll to
- */
-export function scrollToElement(element) {
-  const element_position = element.offsetTop;
-  const fixed_header_size = 15 + 2 * Math.max(0.02 * window.innerHeight, 15);
-  window.scrollTo({
-    top: element_position - fixed_header_size,
-    behavior: "smooth"
-  });
-}
-
-/**
  * Returns mapping of client-side cookies
- * @returns {{}} cookies
+ * @returns {object} cookies
  */
 export function clientCookies() {
   return !document.cookie ? {} : document.cookie
@@ -74,22 +127,8 @@ export function clientCookies() {
 }
 
 /**
- * Returns promise that resolves when condition function becomes true
- * @param {Function} conditionFunction element to scroll to
- * @return {Promise}
+ * @param {{ [x: string]: any; name?: any; address?: any; contact?: any; message?: any; membership?: any; }} form_data
  */
-export function until(conditionFunction) {
-  const poll = resolve => {
-    if (conditionFunction()) {
-      resolve();
-    }
-    else {
-      setTimeout(_ => poll(resolve), 400);
-    }
-  }
-  return new Promise(poll);
-}
-
 export function createContactEmail(form_data) {
   let membership_html = '';
   if (form_data['membership']) {

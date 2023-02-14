@@ -57,7 +57,7 @@ export function validate(validator, input, element) {
       }
       break;
     case 'suffix':
-      const re_suffix = /^$|^[\p{L}0-9'\-,.][^_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{0,5}$/u;
+      const re_suffix = /^$|^[\p{L}0-9'\-,.][^_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{0,8}$/u;
       if (!re_suffix.test(input)) {
         return 'Please enter a valid suffix';
       }
@@ -69,7 +69,7 @@ export function validate(validator, input, element) {
       }
       break;
     case 'integer':
-      const valid_integer = !isNaN(input) && !isNaN(parseInt(input)) && /^\+?\d+$/.test(input);
+      const valid_integer = !isNaN(input) && !isNaN(parseInt(input)) && /^[-]?\+?\d+$/.test(input);
       if (!valid_integer) {
         return 'Please enter a valid integer';
       }

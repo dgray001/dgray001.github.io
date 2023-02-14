@@ -1,6 +1,14 @@
+import {objectsEqual} from "../scripts/util.js";
+
 export class UnitTest {
   /** @type {string} display name of test*/
   test_name;
+
+  /** @type {number} mapping tree depth of the module */
+  tree_depth;
+
+  /** @type {number} number of parametrized cases (undefined if not parametrized) */
+  parametrized;
 
   /** @type {Function} that returns a boolean */
   test_runnable;
@@ -66,11 +74,17 @@ export class UnitTest {
     if (this.test_started && !this.test_finished) {
       return this.test_promise;
     }
+    globalThis.afterTest = () => {};
     this.test_started = true;
+    this.times_ran = 0;
+    this.times_passed = 0;
     this.test_finished = false;
     this.test_el.innerHTML = this.getBodyHTML(); // running
+    this.test_el.setAttribute('style', 'background-color: lightyellow; margin-left: 1rem;');
     let this_run_finished = false;
     const run_promise = new Promise(async (resolve) => {
+      // Make tests take minimum of 50ms to complete
+      await new Promise(resolve => setTimeout(resolve, 50));
       await this.runRunnable();
       if (this.test_finished) {
         resolve();
@@ -106,10 +120,17 @@ export class UnitTest {
           this.failure_message = 'Test timed out.';
         }
         resolve();
-      }, 1000);
+      }, 3000);
     });
     this.test_promise = Promise.race([run_promise, timeout_promise]).then(_ => {
       this.test_el.innerHTML = this.getBodyHTML();
+      if (this.test_passed) {
+        this.test_el.setAttribute('style', 'background-color: lightgreen; margin-left: 1rem;');
+      }
+      else {
+        this.test_el.setAttribute('style', 'background-color: red; margin-left: 1rem;');
+      }
+      globalThis.afterTest();
     });
     return this.test_promise;
   }
@@ -117,9 +138,11 @@ export class UnitTest {
   /**
    * Generates HTML for the unit test
    * @param {number} test_key unique key for this test
+   * @param {number} tree_depth mapping tree depth of the module
    * @returns {string} inner HTML
    */
-  getHTML(test_key) {
+  getHTML(test_key, tree_depth) {
+    this.tree_depth = tree_depth;
     let return_html = `
       <div class="test" id="${test_key}">
       `;
@@ -133,13 +156,27 @@ export class UnitTest {
    * @returns {string} inner HTML
    */
   getBodyHTML() {
-    let return_html = `<h4 class="test-title">${this.test_name}</h4>`;
+    let title_name = this.test_name;
+    if (typeof this.parametrized !== 'undefined') {
+      title_name += ` (${this.parametrized} cases)`;
+    }
+    if (this.potentially_flaky) {
+      title_name += ' (flaky)';
+    }
+    let return_html = `<h4 class="test-title">${title_name}</h4>`;
     if (this.test_finished) {
       if (this.test_passed) {
         return_html += '<span class="run-test">Run Again</span><span class="test-result">Passed</span>';
       }
       else {
-        return_html += `<span class="run-test">Run Again</span><span class="test-result">Failed: ${this.failure_message}</span>`;
+        if (this.times_ran > 1) {
+          return_html += `<span class="run-test">Run Again</span><span class="test-result">` +
+            `Failed (${this.times_ran - this.times_passed} times): ${this.failure_message}</span>`;
+        }
+        else {
+          return_html += `<span class="run-test">Run Again</span><span class="test-result">` +
+            `Failed: ${this.failure_message}</span>`;
+        }
       }
     }
     else if (this.test_started) {
@@ -171,5 +208,61 @@ export class UnitTest {
     const test = test_mapping.get(parseInt(this.test_el.id));
     await test.run(this.test_el);
     test.addEventListeners(test_mapping);
+  }
+
+  /**
+   * Compares operands
+   * @param {any} actual
+   * @param {any} expected
+   */
+  expectEqual = (actual, expected) => {
+    this.something_tested = true;
+    if (actual === expected) {
+      if (typeof this.test_passed === 'undefined') {
+        this.test_passed = true;
+      }
+      return;
+    }
+    this.test_passed = false;
+    this.failure_message = `expected ${actual} to equal ${expected}`;
+  }
+
+  /**
+   * Compares objects
+   * @param {object} actual
+   * @param {object} expected
+   */
+  expectObjectEqual = (actual, expected) => {
+    this.something_tested = true;
+    this.failure_message = objectsEqual(actual, expected);
+    if (this.failure_message) {
+      this.test_passed = false;
+    }
+    else if (typeof this.test_passed === 'undefined') {
+      this.test_passed = true;
+    }
+  }
+
+  /**
+   * expect function to throw (or not throw) error
+   * @param {function} callback
+   * @param {boolean=} throws
+   */
+  expectErrorThrown = (callback, throws = true) => {
+    this.something_tested = true;
+    let error_thrown = false;
+    try {
+      callback();
+    } catch(e) {
+      error_thrown = true;
+    }
+    if (throws === error_thrown) {
+      if (typeof this.test_passed === 'undefined') {
+        this.test_passed = true;
+      }
+      return;
+    }
+    this.test_passed = false;
+    this.failure_message = `expected ${actual} to equal ${expected}`;
   }
 }
