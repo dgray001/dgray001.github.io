@@ -2,7 +2,7 @@ import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import {CufTextArea} from '../../text_area/text_area.js';
 
-class CufFormSectionNews extends CufFormSection {
+export class CufFormSectionNews extends CufFormSection {
   constructor() {
     super();
   }
@@ -50,7 +50,7 @@ class CufFormSectionNews extends CufFormSection {
    * Focuses the first form field in the form section
    */
   focusFirst() {
-    this.shadowRoot.getElementById('news-title').focus();
+    this.shadowRoot.getElementById('news-title').form_field.focus();
   }
 }
 

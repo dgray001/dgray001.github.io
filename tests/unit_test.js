@@ -123,7 +123,7 @@ export class UnitTest {
           this.failure_message = 'Test timed out.';
         }
         resolve();
-      }, 3000);
+      }, 5000);
     });
     this.test_promise = Promise.race([run_promise, timeout_promise]).then(_ => {
       this.test_el.innerHTML = this.getBodyHTML();

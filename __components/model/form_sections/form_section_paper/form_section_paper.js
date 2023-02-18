@@ -2,7 +2,7 @@ import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import {CufTextArea} from '../../text_area/text_area.js';
 
-class CufFormSectionPaper extends CufFormSection {
+export class CufFormSectionPaper extends CufFormSection {
   constructor() {
     super();
   }
@@ -47,7 +47,7 @@ class CufFormSectionPaper extends CufFormSection {
    * Focuses the first form field in the form section
    */
   focusFirst() {
-    this.shadowRoot.getElementById('paper-title').focus();
+    this.shadowRoot.getElementById('paper-title').form_field.focus();
   }
 }
 

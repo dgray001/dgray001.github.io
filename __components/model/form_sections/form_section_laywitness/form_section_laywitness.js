@@ -2,7 +2,7 @@ import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import '../../checkbox/checkbox.js';
 
-class CufFormSectionLaywitness extends CufFormSection {
+export class CufFormSectionLaywitness extends CufFormSection {
   constructor() {
     super();
   }
@@ -47,7 +47,7 @@ class CufFormSectionLaywitness extends CufFormSection {
    * Focuses the first form field in the form section
    */
   focusFirst() {
-    this.shadowRoot.getElementById('laywitness-volume').focus();
+    this.shadowRoot.getElementById('laywitness-volume').form_field.focus();
   }
 }
 

@@ -1,7 +1,7 @@
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../checkbox/checkbox.js';
 
-class CufFormSectionMembershipRequest extends CufFormSection {
+export class CufFormSectionMembershipRequest extends CufFormSection {
   constructor() {
     super();
   }

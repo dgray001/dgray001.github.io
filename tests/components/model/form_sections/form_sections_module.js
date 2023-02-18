@@ -11,7 +11,7 @@ import {form_section_news_tests} from './form_section_news.test.js';
 import {form_section_paper_tests} from './form_section_paper.test.js';
 
 export const form_section_module = new TestModule('form section modules', [
-  form_section_tests,
+  form_section_tests('cuf-form-section'),
   form_section_address_tests,
   form_section_contact_tests,
   form_section_laywitness_tests,
@@ -19,4 +19,4 @@ export const form_section_module = new TestModule('form section modules', [
   form_section_name_tests,
   form_section_news_tests,
   form_section_paper_tests,
-], []);
+], [], true);

@@ -1,8 +1,8 @@
 import {CufFormSection} from '../form_section/form_section.js';
-import {CufSelect} from '../../select/select.js';
-import {CufInputText} from '../../input_text/input_text.js';
+import '../../select/select.js';
+import '../../input_text/input_text.js';
 
-class CufFormSectionName extends CufFormSection {
+export class CufFormSectionName extends CufFormSection {
   constructor() {
     super();
   }

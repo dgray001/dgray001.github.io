@@ -31,7 +31,7 @@ window.onload = () => {
     if (value.tree_depth) {
       value.test_el.style.marginLeft = `1rem`;
       if (value instanceof TestModule) {
-        value.closeModule();
+        //value.closeModule();
       }
     }
     value.addEventListeners(test_mapping);

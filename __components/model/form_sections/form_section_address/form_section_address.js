@@ -2,7 +2,7 @@ import {CufFormSection} from '../form_section/form_section.js';
 import '../../select/select.js';
 import '../../input_text/input_text.js';
 
-class CufFormSectionAddress extends CufFormSection {
+export class CufFormSectionAddress extends CufFormSection {
   constructor() {
     super();
   }
