@@ -2,6 +2,7 @@
 
 import {DEV} from '../scripts/util.js';
 import {TestModule} from './test_module.js';
+import {components_module} from './components/components_module.js';
 import {scripts_module} from './scripts/scripts_module.js';
 import {test_util_tests} from './test_util.test.js';
 
@@ -12,6 +13,7 @@ window.onload = () => {
   }
 
   const test_module = new TestModule('CUF tests', [
+    components_module,
     scripts_module,
     test_util_tests,
   ], [], true);
@@ -28,6 +30,9 @@ window.onload = () => {
     value.test_el = document.getElementById(key.toString());
     if (value.tree_depth) {
       value.test_el.style.marginLeft = `1rem`;
+      if (value instanceof TestModule) {
+        value.closeModule();
+      }
     }
     value.addEventListeners(test_mapping);
   });

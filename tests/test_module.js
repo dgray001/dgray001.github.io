@@ -178,6 +178,10 @@ export class TestModule {
     module_title.addEventListener('click', (e) => {
       e.preventDefault();
       if (module_title.classList.contains('blockhovered')) {
+        if (module_title.classList.contains('remove_blockhovered')) {
+          module_title.classList.remove('blockhovered');
+          module_title.classList.remove('remove_blockhovered');
+        }
         return;
       }
       const tests = this.test_el.querySelector('.module-tests');
@@ -198,6 +202,18 @@ export class TestModule {
   }
 
   /**
+   * Closes module in dom
+   */
+  closeModule() {
+    const tests = this.test_el.querySelector('.module-tests');
+    const sub_modules = this.test_el.querySelector('.sub-modules');
+    const expand_module = this.test_el.querySelector('.expand-module');
+    tests.setAttribute('style', 'display: none;');
+    sub_modules.setAttribute('style', 'display: none;');
+    expand_module.innerHTML = '>';
+  }
+
+  /**
    * Sets event listeners on module runner
    * @param {Map<number, TestModule|UnitTest>} test_mapping
    */
@@ -215,6 +231,7 @@ export class TestModule {
     });
     module_runner.addEventListener('click', (e) => {
       e.preventDefault();
+      module_runner.parentElement.classList.add('remove_blockhovered');
       this.runModule(test_mapping);
     });
   }

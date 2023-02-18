@@ -29,6 +29,7 @@ export class CufInputText extends CufFormField {
     }
     const datatype = this.attributes.datatype?.value || '';
     if (datatype) {
+      this.removeAttribute('datatype');
       form_field.setAttribute('type', datatype);
     }
     const datalist = this.attributes.datalist?.value || '';

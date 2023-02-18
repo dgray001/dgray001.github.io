@@ -17,7 +17,9 @@ export class CufTextArea extends CufFormField {
     await super.childrenAvailableCallback();
     const res = await fetch('./__components/model/text_area/text_area.html');
     const form_field = await this.setFormFieldAttributes(res);
-    form_field.addEventListener('input', (evt) => {this.setTextAreaHeight(evt.target)});
+    form_field.addEventListener('input', (evt) => {
+      this.setTextAreaHeight(evt.target);
+    });
     this.setMinHeight();
   }
 

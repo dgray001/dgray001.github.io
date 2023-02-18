@@ -1,7 +1,7 @@
 // @ts-check
 
 import {TestModule} from "./test_module.js";
-import {mockFunction, it, pit, mockFetch} from "./test_util.js";
+import {bootstrap, mockFunction, it, pit, mockFetch} from "./test_util.js";
 
 /** @type {TestModule} */
 export const test_util_tests = new TestModule('test util tests', [], [
@@ -94,5 +94,29 @@ export const test_util_tests = new TestModule('test util tests', [], [
       response_text = error.toString();
     }
     this.expectEqual(response_text, expected);
+  }),
+
+  it('bootstrap generates component', async function() {
+    const comp = await bootstrap('div', {inner_html: 'test'});
+    this.expectEqual(comp.innerText, 'test');
+    const rect =  comp.getBoundingClientRect();
+    this.expectEqual(rect.x + rect.width < 0, true);
+  }),
+
+  it('bootstrap generates inner HTML', async function() {
+    const comp = await bootstrap('div', {inner_html: 'div text<span>span text</span>'});
+    this.expectEqual(comp.innerText, 'div textspan text');
+    this.expectEqual(comp.children.length, 1);
+    const span = comp.querySelector('span');
+    this.expectEqual(span.innerText, 'span text');
+  }),
+
+  it('bootstrap generates attributes', async function() {
+    const comp = await bootstrap('div', {
+      attributes: new Map([['style', 'height: 50px; width: 100px;']]),
+      inner_html: 'test',
+    });
+    this.expectEqual(comp.offsetHeight, 50);
+    this.expectEqual(comp.offsetWidth, 100);
   }),
 ]);

@@ -1,4 +1,4 @@
-import {objectsEqual} from "../scripts/util.js";
+import {asyncLoop, objectsEqual} from "../scripts/util.js";
 
 export class UnitTest {
   /** @type {string} display name of test*/
@@ -76,6 +76,7 @@ export class UnitTest {
     }
     globalThis.afterTest = () => {};
     this.test_started = true;
+    this.test_passed = undefined;
     this.times_ran = 0;
     this.times_passed = 0;
     this.test_finished = false;
@@ -86,18 +87,20 @@ export class UnitTest {
       // Make tests take minimum of 50ms to complete
       await new Promise(resolve => setTimeout(resolve, 50));
       await this.runRunnable();
+      globalThis.afterTest();
       if (this.test_finished) {
         resolve();
         return;
       }
       if (this.potentially_flaky) {
-        for (const _ of 4) { // run flaky tests 5 times
+        await asyncLoop(4, async () => {
           await this.runRunnable();
+          globalThis.afterTest();
           if (this.test_finished) {
             resolve();
             return;
           }
-        }
+        });
         if (this.times_passed < this.times_ran) {
           this.test_passed = false;
           this.failure_message = `Flaky test passed ${this.times_passed} / ` +
@@ -130,7 +133,6 @@ export class UnitTest {
       else {
         this.test_el.setAttribute('style', 'background-color: red; margin-left: 1rem;');
       }
-      globalThis.afterTest();
     });
     return this.test_promise;
   }
@@ -211,6 +213,22 @@ export class UnitTest {
   }
 
   /**
+   * Checks if operand is true
+   * @param {any} operand
+   */
+  expect = (operand) => {
+    this.something_tested = true;
+    if (operand === true) {
+      if (typeof this.test_passed === 'undefined') {
+        this.test_passed = true;
+      }
+      return;
+    }
+    this.test_passed = false;
+    this.failure_message = `expected ${operand} to be true`;
+  }
+
+  /**
    * Compares operands
    * @param {any} actual
    * @param {any} expected
@@ -234,9 +252,10 @@ export class UnitTest {
    */
   expectObjectEqual = (actual, expected) => {
     this.something_tested = true;
-    this.failure_message = objectsEqual(actual, expected);
-    if (this.failure_message) {
+    const failure_message = objectsEqual(actual, expected);
+    if (failure_message && failure_message !== '') {
       this.test_passed = false;
+      this.failure_message = failure_message;
     }
     else if (typeof this.test_passed === 'undefined') {
       this.test_passed = true;

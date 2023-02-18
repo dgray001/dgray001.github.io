@@ -6,16 +6,31 @@ export const base_url = DEV ?
   'https://371c-2603-8080-1600-efda-1c8-dab8-a917-6e79.ngrok.io' :
   'https://cuf.org';
 
-/**
- * Loop helper function
- * @param {number} times times to loop
- * @param {Function} callback function to call
- */
-export const loop = (times, callback) => {
-  for (let i = 0; i < times; i++) {
-    callback(i);
-  }
-};
+  /**
+   * Loop helper function
+   * @param {number} times times to loop
+   * @param {Function} callback function to call
+   */
+  export const loop = (times, callback) => {
+    for (let i = 0; i < times; i++) {
+      callback(i);
+    }
+  };
+
+  /**
+   * Loop helper function
+   * @param {number} times times to loop
+   * @param {Function} callback function to call
+   * @returns {Promise<void>} resolves when loop finished
+   */
+  export const asyncLoop = async (times, callback) => {
+    return new Promise(async (resolve) => {
+      for (let i = 0; i < times; i++) {
+        await callback(i);
+      }
+      resolve();
+    });
+  };
 
 /**
  * Returns promise that resolves when condition function becomes true

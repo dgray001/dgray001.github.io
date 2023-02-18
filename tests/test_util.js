@@ -1,6 +1,7 @@
 // @ts-check
 
 import {UnitTest} from "./unit_test.js";
+import {until} from "../scripts/util.js";
 
 /**
  * Generates a dummy mock function that tracks number of callbacks
@@ -88,4 +89,37 @@ export function pit(test_name, parameters, test_runnable, potentially_flaky = fa
   unit_test.test_runnable = parametrized_runnable.bind(unit_test);
   unit_test.parametrized = parameters.length;
   return unit_test;
+}
+
+/**
+ * Renders template in offscreen iframe and returns component and iframe dom
+ * @param {string} component selector of component
+ * @param {{attributes?: Map<string, string>, inner_html?: string}} args optional args
+ * @returns {Promise<HTMLElement>} resolves when element fully parsed
+ */
+export async function bootstrap(component, args = {
+  attributes: new Map(),
+  inner_html: '',
+}) {
+  const wrapper = document.createElement('div');
+  const comp = document.createElement(component);
+  if (args.attributes) {
+    for (const attribute of args.attributes) {
+      comp.setAttribute(attribute[0], attribute[1]);
+    }
+  }
+  comp.innerHTML = args.inner_html;
+  wrapper.appendChild(comp);
+  const dummy = document.createElement('div');
+  dummy.innerHTML = 'dummy';
+  wrapper.appendChild(dummy);
+  document.body.appendChild(wrapper);
+  // need to wait or shadow dom doesn't fill (sometimes)
+  await new Promise(resolve => setTimeout(resolve, 100));
+  wrapper.style.position = 'absolute';
+  wrapper.style.right = '101vw';
+  globalThis.afterTest = () => {
+    wrapper.remove();
+  };
+  return comp;
 }

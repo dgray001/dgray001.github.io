@@ -1,3 +1,5 @@
+// @ts-check
+
 import {TestModule} from '../test_module.js';
 import {util_tests} from './util.test.js';
 import {validation_tests} from './validation.test.js';

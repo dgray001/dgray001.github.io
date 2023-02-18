@@ -63,7 +63,7 @@ export class CufSelect extends CufFormField {
    * @return {string}
    */
   getDisplayableData() {
-    return this.form_field.innerText;
+    return this.form_field.options[this.form_field.selectedIndex]?.innerText ?? '';
   }
 }
 

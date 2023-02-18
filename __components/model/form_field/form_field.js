@@ -59,7 +59,7 @@ export class CufFormField extends HTMLBaseElement {
     this.form_field_wrapper.setAttribute('id', this.id + '-wrapper');
     this.classList.add('form-field');
     if (flex_option) {
-      this.setAttribute('style', `flex: ${flex_option} 0 0`)
+      this.setAttribute('style', `flex: ${flex_option} 0 0;`)
     }
     this.form_field_label = shadow.querySelector('.form-field-label');
     if (this.validators.has('required')) {
@@ -87,6 +87,8 @@ export class CufFormField extends HTMLBaseElement {
     this.form_field_helper_text.classList.add('helper-text');
     this.form_field_wrapper.appendChild(this.form_field_helper_text);
     this.form_field = this.shadowRoot.querySelector('.form-field');
+    this.form_field_label = this.shadowRoot.querySelector('.form-field-label');
+    this.form_field_label.setAttribute('for', this.id);
     this.form_field.setAttribute('id', this.id);
     this.form_field.setAttribute('name', this.id);
     this.form_field.addEventListener('focus', () => {
