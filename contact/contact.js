@@ -1,5 +1,5 @@
-import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
-import { createContactEmail, scrollToElement } from '../scripts/util.js';
+import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+import {createContactEmail, scrollToElement} from '../scripts/util.js';
 
 /**
  * @return {Promise<void>}

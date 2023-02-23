@@ -1,3 +1,5 @@
+// @ts-check
+
 import {UnitTest} from './unit_test.js';
 
 export class TestModule {

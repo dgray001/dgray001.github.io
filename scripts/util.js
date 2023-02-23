@@ -143,8 +143,12 @@ export function clientCookies() {
 
 /**
  * @param {{ [x: string]: any; name?: any; address?: any; contact?: any; message?: any; membership?: any; }} form_data
+ * @param {boolean} contact_page
  */
-export function createContactEmail(form_data) {
+export function createContactEmail(form_data, contact_page = true) {
+  const page_name = contact_page ? 'Contact Us' : 'Donate';
+  const donate_message = contact_page ? '' : '<div><em>This email is not receipt of an actual donation. This email is sent when the user submits the donate form on CUF.org/donate. They will be redirected to authorize.net to complete their payment; authorize.net will send a receipt email if they complete the actual donation.</em></div>';
+
   let membership_html = '';
   if (form_data['membership']) {
     membership_html += `
@@ -156,16 +160,17 @@ export function createContactEmail(form_data) {
     <tr bgcolor="#FFFFFF">
       <td width="20">&nbsp;</td>
       <td>
-        <font style="font-family: sans-serif; font-size:12px;">${form_data['membership'].replace(',', '<br />')}</font>
+        <font style="font-family: sans-serif; font-size:12px;">${form_data['membership'].replaceAll(',', '<br />')}</font>
       </td>
     </tr>`;
   }
   return `
     <html>
       <head>
-        <title>New submission from CUF.org - Contact Us Page</title>
+        <title>New submission from CUF.org - ${page_name} Page</title>
       </head>
       <body>
+        ${donate_message}
         <table width="99%" border="0" cellpadding="1" cellspacing="0" bgcolor="#EAEAEA"><tr><td>
           <table width="100%" border="0" cellpadding="5" cellspacing="0" bgcolor="#FFFFFF">
           <tr bgcolor="#EAF2FA">

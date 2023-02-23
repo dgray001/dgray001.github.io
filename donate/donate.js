@@ -1,5 +1,5 @@
-import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
-import { base_url } from '../scripts/util.js';
+import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+import {createContactEmail, base_url} from '../scripts/util.js';
 
 /**
  * @return {Promise<void>}
@@ -128,8 +128,26 @@ async function loadHostedForm() {
       'hostedPaymentSettings': hosted_payment_settings
     }
   };
-  const status_message = document.getElementById('donate-form-status-message');
+  // send email
+  const name_section_email_data = name_section.getDisplayableData();
+  const address_section_email_data = address_section.getDisplayableData();
+  const membership_email_data = membership.getDisplayableData();
+  const email_form_data = {'name': name_section_email_data, 'address': address_section_email_data,
+    'contact': contact_section_data, 'message': message_data, 'membership': membership_email_data};
+  const email_post_data = createContactEmail(email_form_data, false);
+  try {
+    await fetch('/server/donate_email.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: JSON.stringify(email_post_data),
+    });
+  } catch(error) {
+    console.log(error);
+  }
   // post data to server
+  const status_message = document.getElementById('donate-form-status-message');
   try {
     const response = await fetch('/server/donate.php', {
       method: 'POST',
