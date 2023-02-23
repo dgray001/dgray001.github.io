@@ -1,8 +1,19 @@
-import { verifyRecaptcha, public_recaptcha_site_key } from '../scripts/recaptcha.js';
+import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
+import {until} from '../scripts/util.js';
 
 window.onload = async () => {
   const lay_witness_section = document.getElementById('layWitness');
   if (lay_witness_section) {
+    const lay_witness_title = lay_witness_section.querySelector('.section-title');
+    const lay_witness_body = lay_witness_section.querySelector('.laywitness-body');
+    lay_witness_title.addEventListener('click', () => {
+      if (lay_witness_body.hasAttribute('style')) {
+        lay_witness_body.removeAttribute('style');
+      }
+      else {
+        lay_witness_body.setAttribute('style', 'display: none;');
+      }
+    });
     const lay_witness_input = document.getElementById('laywitness-file-upload');
     const lay_witness_form = document.getElementById('laywitness-form');
     lay_witness_form.setAttribute('style', 'display: none; visibility: visible;');
@@ -26,27 +37,59 @@ window.onload = async () => {
       document.getElementById('section-laywitness').focusFirst();
     });
   }
-  const news_section = document.getElementById('positionPapers');
+  const news_section = document.getElementById('news');
   if (news_section) {
-    const news_button = document.getElementById('new-news-button');
+    const news_title = news_section.querySelector('.section-title');
+    const news_body = news_section.querySelector('.news-body');
+    news_title.addEventListener('click', () => {
+      if (news_body.hasAttribute('style')) {
+        news_body.removeAttribute('style');
+      }
+      else {
+        news_body.setAttribute('style', 'display: none;');
+      }
+    });
+    const add_news_button = document.getElementById('new-news-button');
     const news_form = document.getElementById('news-form');
     news_form.setAttribute('style', 'display: none; visibility: visible;');
-    news_button.addEventListener('click', () => {
+    add_news_button.addEventListener('click', () => {
       const news_form = document.getElementById('news-form');
       if (news_form.getAttribute('style').includes('display: block')) {
         news_form.setAttribute('style', 'display: none; visibility: visible;');
-        news_button.innerText = 'Add News';
+        add_news_button.innerText = 'Add News';
         return;
       }
-      news_button.innerText = 'Cancel';
+      add_news_button.innerText = 'Cancel';
       const status_message = document.getElementById('news-form-status-message');
       news_form.setAttribute('style', 'display: block; visibility: visible;');
       status_message.setAttribute('style', 'display: none;');
       document.getElementById('section-news').focusFirst();
     });
+    await updateNewsList();
+    const news_list = document.getElementById('current-news');
+    const edit_news_button = document.getElementById('edit-news-button');
+    edit_news_button.addEventListener('click', () => {
+      if (news_list.getAttribute('style').includes('display: block')) {
+        news_list.setAttribute('style', 'display: none; visibility: visible;');
+        edit_news_button.innerText = 'Edit News';
+        return;
+      }
+      edit_news_button.innerText = 'Cancel';
+      news_list.setAttribute('style', 'display: block; visibility: visible;');
+    });
   }
   const paper_section = document.getElementById('positionPapers');
   if (paper_section) {
+    const paper_title = paper_section.querySelector('.section-title');
+    const paper_body = paper_section.querySelector('.papers-body');
+    paper_title.addEventListener('click', () => {
+      if (paper_body.hasAttribute('style')) {
+        paper_body.removeAttribute('style');
+      }
+      else {
+        paper_body.setAttribute('style', 'display: none;');
+      }
+    });
     const paper_input = document.getElementById('papers-file-upload');
     const paper_form = document.getElementById('papers-form');
     paper_form.setAttribute('style', 'display: none; visibility: visible;');
@@ -69,6 +112,145 @@ window.onload = async () => {
       status_message.setAttribute('style', 'display: none;');
       document.getElementById('section-papers').focusFirst();
     });
+  }
+};
+
+/**
+ * @return {Promise<void>}
+ * Updates current news list
+ */
+window.updateNewsList = async () => {
+  const news_list = document.getElementById('current-news');
+  news_list.replaceChildren();
+  const news_response = await fetch('./__data/news/news.json');
+  const news_data = await news_response.json();
+  for (const [i, news_piece] of news_data['content'].entries()) {
+    const news_div = document.createElement('div');
+    news_div.innerHTML = `
+      <div class="line-item">
+        <span class="uneditable-content">Title: </span>
+        <span class="editable-content">${news_piece['title']}</span>
+      </div>
+      <div class="line-item">
+        <span class="uneditable-content">Title Link: </span>
+        <span class="editable-content">
+          <a target="_blank" href="${news_piece['titlelink']}">${news_piece['titlelink']}</a>
+        </span>
+      </div>
+      <div class="line-item">
+        <span class="uneditable-content">Description: </span>
+        <span class="editable-content">${news_piece['description']}</span>
+      </div>
+      <button class="over-piece left" id="edit-news-button-${i}" onclick="editNewsPiece(${i})">Edit News Piece</button>
+      <button class="over-piece right" id="delete-news-button-${i}" onclick="deleteNewsPiece(${i})">Delete News Piece</button>
+    `;
+    news_div.classList.add('editable-piece');
+    news_div.id = `editable-piece-${i}`;
+    news_list.appendChild(news_div);
+  }
+};
+
+/**
+ * @param {number} i index of news to edit
+ * @return {Promise<void>}
+ * Edits the news piece at the input index
+ */
+window.editNewsPiece = async (i) => {
+  const piece_div = document.getElementById(`editable-piece-${i}`);
+  const edit_button = document.getElementById(`edit-news-button-${i}`);
+  if (edit_button.classList.contains('editing')) {
+    edit_button.innerText = 'Edit News Piece';
+    edit_button.classList.remove('editing');
+    const news_piece_form = document.getElementById(`news-piece-form-${i}`);
+    news_piece_form.remove();
+    return;
+  }
+  edit_button.innerText = 'Cancel';
+  edit_button.classList.add('editing');
+  piece_div.innerHTML += `
+    <form id="news-piece-form-${i}" action="javascript:editUpdateNewsPiece(${i})">
+      <cuf-form-section-news id="section-news-${i}"></cuf-form-section-news>
+      <button class="form-submit-button" id="news-piece-form-button-${i}" type="submit">Update News</button>
+    </form>
+  `;
+  const news_response = await fetch('./__data/news/news.json');
+  const news_data = await news_response.json();
+  const news_piece_form_section = document.getElementById(`section-news-${i}`);
+  await until(() => news_piece_form_section.form_fields.length == 3);
+  news_piece_form_section.setFormData(news_data['content'][i]);
+  news_piece_form_section.focusFirst();
+};
+
+/**
+ * @param {number} i index of news to edit
+ * @return {Promise<void>}
+ * Edits news piece from edit form data
+ */
+window.editUpdateNewsPiece = async (i) => {
+  const edit_button = document.getElementById(`news-piece-form-button-${i}`);
+  edit_button.disabled = true;
+  edit_button.innerText = 'Editing';
+  const news_response = await fetch('./__data/news/news.json');
+  const news_data = await news_response.json();
+  const news_piece_form_section = document.getElementById(`section-news-${i}`);
+  const news_section_data = news_piece_form_section.getFormData();
+  const new_news = {
+    'title': news_section_data['title'],
+    'description': news_section_data['description'],
+  };
+  if (news_section_data['titlelink']) {
+    new_news['titlelink'] = news_section_data['titlelink'];
+  }
+  news_data['content'][i] = new_news;
+  try {
+    const response = await fetch('/server/admin_dashboard/news_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(news_data),
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+    }
+    else {
+    }
+  } catch(error) {
+    console.log(error);
+  } finally {
+    await updateNewsList();
+  }
+};
+
+/**
+ * @param {number} i index of news to delete
+ * @return {Promise<void>}
+ * Deletes the news piece at the input index
+ */
+window.deleteNewsPiece = async (i) => {
+  const delete_button = document.getElementById(`delete-news-button-${i}`);
+  delete_button.disabled = true;
+  delete_button.innerText = 'Deleting';
+  const news_response = await fetch('./__data/news/news.json');
+  const news_data = await news_response.json();
+  news_data['content'].splice(i, 1);
+  try {
+    const response = await fetch('/server/admin_dashboard/news_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(news_data),
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+    }
+    else {
+    }
+  } catch(error) {
+    console.log(error);
+  } finally {
+    await updateNewsList();
   }
 };
 
@@ -329,7 +511,7 @@ window.submitNewsForm = async () => {
   if (news_section_data['titlelink']) {
     new_news['titlelink'] = news_section_data['titlelink'];
   }
-  json_data['content'].push(new_news);
+  json_data['content'].unshift(new_news);
 
   try {
     const response = await fetch('/server/admin_dashboard/news_data.php', {
@@ -363,6 +545,7 @@ window.submitNewsForm = async () => {
   button.removeAttribute('style');
   const news_button = document.getElementById('new-news-button');
   news_button.innerText = 'Add News';
+  await updateNewsList();
 };
 
 /**
@@ -386,7 +569,7 @@ window.submitPaperForm = async () => {
   if (paper_section_data.description) {
     new_paper['description'] = paper_section_data['description'];
   }
-  json_data['content'].push(new_paper);
+  json_data['content'].unshift(new_paper);
 
   try {
     const response = await fetch('/server/admin_dashboard/papers_data.php', {

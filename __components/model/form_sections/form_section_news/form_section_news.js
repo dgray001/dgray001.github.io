@@ -38,6 +38,16 @@ export class CufFormSectionNews extends CufFormSection {
   }
 
   /**
+   * Sets form data from a properly-constructed json input
+   * @param {{title:string, titlelink:string, description:string}} input
+   */
+  setFormData(input) {
+    this.shadowRoot.getElementById('news-title').form_field.value = input.title;
+    this.shadowRoot.getElementById('news-titlelink').form_field.value = input.titlelink;
+    this.shadowRoot.getElementById('news-description').form_field.value = input.description;
+  }
+
+  /**
    * Clears all form field data
    */
   clearFormData() {

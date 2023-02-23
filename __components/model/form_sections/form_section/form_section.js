@@ -58,6 +58,14 @@ export class CufFormSection extends HTMLElement {
   }
 
   /**
+   * Sets form data from a properly-constructed json input
+   * @param {JSON} input
+   */
+  setFormData(input) {
+    console.log(`CufFormSection::setFormData not implemented for ${this.constructor.name}.`);
+  }
+
+  /**
    * Returns map of form data for the form section
    * @return {string | {}}
    */

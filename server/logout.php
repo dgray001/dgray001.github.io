@@ -1,10 +1,6 @@
 <?php
 
-// prevent POST requests on server code
-if ( $_SERVER['REQUEST_METHOD']=='POST' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-  header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
-  die( header( 'location: /' ) );
-}
+require_once(__DIR__ . '/includes/prevent_post.php');
 
 session_start();
 

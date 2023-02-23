@@ -1,14 +1,10 @@
 <?php
 
-// prevent all but POST requests on server code
-if ($_SERVER['REQUEST_METHOD'] != 'POST' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'])) {
-  header('HTTP/1.0 403 Forbidden', TRUE, 403);
-  die(header('location: /'));
-}
+require_once(__DIR__ . '/../includes/prevent_get.php');
 
 session_start();
 
-require_once('../../../config/permissions.php');
+require_once(__DIR__ . '/../../../config/permissions.php');
 
 // not logged in
 if (!isset($_SESSION["role"])) {
@@ -22,7 +18,7 @@ if (!hasPermission('positionPapers', $_SESSION["role"])) {
   exit(2);
 }
 
-require_once('../create_file.php');
+require_once(__DIR__ . '/../includes/create_file.php');
 
 // get post data
 $received_data = json_decode(file_get_contents('php://input'), true);

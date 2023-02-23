@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/force_include.php');
+
 function userEmailExists($conn, $email): array|bool|null {
   $sqlCommand = "SELECT * FROM cuf_users WHERE email = ?;";
   $stmt = mysqli_stmt_init($conn);

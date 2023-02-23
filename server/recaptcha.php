@@ -1,14 +1,10 @@
 <?php
 
-// prevent GET requests on server code
-if ( $_SERVER['REQUEST_METHOD']=='GET' && realpath(__FILE__) == realpath( $_SERVER['SCRIPT_FILENAME'] ) ) {
-    header( 'HTTP/1.0 403 Forbidden', TRUE, 403 );
-    die( header( 'location: /' ) );
-}
+require_once(__DIR__ . '/includes/prevent_get.php');
 
 // get post data & ip address
 $received_data = json_decode(file_get_contents('php://input'), true);
-require_once(__DIR__ . "/util.php");
+require_once(__DIR__ . "/includes/util.php");
 $client_ip = get_ip_address();
 
 // get recaptcha api login key

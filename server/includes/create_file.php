@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/force_include.php');
+
 /**
  * create file with content, and create folder structure if doesn't exist 
  * @param string $filepath

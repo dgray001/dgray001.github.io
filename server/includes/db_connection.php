@@ -1,7 +1,9 @@
 <?php
 
+require_once(__DIR__ . '/force_include.php');
+
 function connectToTable() {
-  require_once("../../config/db_login.php");
+  require_once(__DIR__ . '/../../../config/db_login.php');
   $conn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);
   if (!$conn) {
     error_log("Database connection failed with error: " .

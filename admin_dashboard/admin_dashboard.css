@@ -1,5 +1,58 @@
 @import "../styles.css";
 
+button {
+  font-size: larger;
+  display: block;
+  margin: 0.5em;
+}
+
+button.over-piece {
+  display: inline-block;
+  font-size: larger;
+  height: 2em;
+  margin: 0px;
+  width: 48%;
+}
+
+button.over-piece.left {
+  background-color: rgb(255, 255, 100);
+}
+
+button.over-piece.right {
+  background-color: rgb(255, 100, 100);
+}
+
+.editable-piece {
+  margin: 1.5em 0px;
+  position: relative;
+  width: 100%;
+}
+
+.editable-piece .line-item {
+  margin: 0.5em 0px;
+}
+
+.editable-piece .editable-content {
+}
+
+.editable-piece .uneditable-content {
+  font-weight: bold;
+  user-select: none;
+}
+
+.section-title {
+  cursor: pointer;
+  user-select: none;
+}
+
+.section-title:hover {
+  background-color: rgba(120, 120, 120, 0.4);
+}
+
+.section-title:active {
+  background-color: rgba(120, 120, 120, 0.6);
+}
+
 #laywitness-file-upload {
   margin-bottom: 2em;
 }
