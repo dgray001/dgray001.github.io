@@ -22,7 +22,7 @@ class CufFooterPanels extends HTMLElement {
         }
         content_string += `<span class="content-card"><cuf-content-card
           content_key="${panel_to_include}" collapsible="false"
-          start_closed="false" fixed_height="250" card_rotation_image="test_image">
+          start_closed="false" fixed_height="270" card_rotation_image="test_image">
           </cuf-content-card></span>`;
       }
       content.innerHTML = content_string;

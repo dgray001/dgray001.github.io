@@ -2,6 +2,8 @@
   --margin-offset: 0px;
   --fixed-container-height: max(var(--navigation-height), calc(var(--header-height-unit) * 2));
   --header-total-height: calc(var(--fixed-container-height) + var(--header-height-unit) * 3 - var(--margin-offset));
+  --title-font-size-factor: 1; /* For the homepage styling */
+  --subtitle-font-size-factor: 1;
   background-color: var(--header-color);
 }
 
@@ -17,7 +19,7 @@
 
 .title {
   color: black;
-  font-size: calc(var(--fixed-container-height) * 0.8);
+  font-size: calc(0.8 * var(--fixed-container-height) * var(--title-font-size-factor));
   font-weight: bold;
   margin-top: calc(var(--fixed-container-height) * 0.05);
   margin-left: calc(var(--left-auto-margin) + 10px);
@@ -76,7 +78,7 @@ cuf-navigation-pane {
 
 .subtitle {
   flex: auto;
-  font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)));
+  font-size: calc(var(--subtitle-font-size-factor) * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)));
   margin-top: calc(var(--header-height-unit) * 0.1);
   margin-left: calc(var(--left-auto-margin) + 10px);
   white-space: nowrap;
@@ -85,25 +87,34 @@ cuf-navigation-pane {
 /* control font sizes for smaller devices */
 @media only screen and (max-width: 600px) {
   .title {
-    font-size: calc(var(--fixed-container-height) * 0.7);
+    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.7);
+  }
+  .subtitle {
+    --modified-subtitle-factor: calc(1 + 0.7 * (var(--subtitle-font-size-factor) - 1));
+    font-size: calc(var(--modified-subtitle-factor) * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.9);
   }
 }
 @media only screen and (max-width: 500px) {
   .title {
-    font-size: calc(var(--fixed-container-height) * 0.6);
+    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.6);
+  }
+  .subtitle {
+    --modified-subtitle-factor: calc(1 + 0.6 * (var(--subtitle-font-size-factor) - 1));
+    font-size: calc(var(--modified-subtitle-factor) * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.9);
   }
 }
 @media only screen and (max-width: 405px) {
   .title {
-    font-size: calc(var(--fixed-container-height) * 0.5);
+    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.5);
   }
   .subtitle {
-    font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.9);
+    --modified-subtitle-factor: calc(1 + 0.2 * (var(--subtitle-font-size-factor) - 1));
+    font-size: calc(var(--modified-subtitle-factor) * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.9);
   }
 }
 @media only screen and (max-width: 355px) {
   .title {
-    font-size: calc(var(--fixed-container-height) * 0.45);
+    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.45);
   }
   .subtitle {
     font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.8);

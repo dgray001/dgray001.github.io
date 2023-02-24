@@ -1,3 +1,5 @@
+'use strict';
+
 import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
 import {clientCookies} from '../scripts/util.js';
 

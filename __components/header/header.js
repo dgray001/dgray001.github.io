@@ -54,7 +54,10 @@ class CufHeader extends HTMLElement {
     this.collapsed_container_height_multiplier = 4;
     this.shadowRoot.querySelector('.container').setAttribute('style',
       '--fixed-container-height: calc(1.4 * max(var(--navigation-height), calc(var(--header-height-unit) * 2)));' +
-      '--header-total-height: calc(var(--fixed-container-height) + var(--header-height-unit) * 4 - var(--margin-offset));');
+      '--header-total-height: calc(var(--fixed-container-height) + ' +
+        'var(--header-height-unit) * 4 - var(--margin-offset));' +
+      '--title-font-size-factor: 0.9;' +
+      '--subtitle-font-size-factor: 1.3;');
     this.shadowRoot.querySelector('.logo').setAttribute('style', 'visibility: hidden;');
     this.shadowRoot.querySelector('.logo-container a').setAttribute('style', 'width: 0px;');
     this.shadowRoot.querySelector('.fixed-container a').removeAttribute('href');
@@ -62,8 +65,7 @@ class CufHeader extends HTMLElement {
     this.shadowRoot.querySelector('.collapsed-container').setAttribute('style',
       'height: calc(var(--header-height-unit) * 4);');
     for (const element of this.shadowRoot.querySelectorAll('.subtitle')) {
-      element.setAttribute('style', 'text-align: center; margin-left: 0;' +
-      'font-size: calc(1.3 * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)));');
+      element.setAttribute('style', 'text-align: center; margin-left: 0;');
     }
     const navigation_panel = this.shadowRoot.querySelector('cuf-navigation-pane');
     navigation_panel.remove();

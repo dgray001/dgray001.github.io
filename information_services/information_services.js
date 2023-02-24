@@ -1,3 +1,5 @@
+'use strict';
+
 window.loadUrlHash = () => {
   document.body.classList.add("loaded");
   let urlHash = window.location.hash;

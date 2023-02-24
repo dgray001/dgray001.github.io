@@ -1,3 +1,5 @@
+'use strict';
+
 class PageLink {
   page_url = '';
   page_name = '';

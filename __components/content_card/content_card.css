@@ -138,6 +138,10 @@ div.card-wrapper {
   overflow-y: scroll;
 }
 
+div.card-wrapper.showing-image {
+  overflow-y: hidden;
+}
+
 div.card-rotater {
   height: 100%;
   transform-style: preserve-3d;

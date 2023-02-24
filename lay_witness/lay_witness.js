@@ -1,3 +1,5 @@
+'use strict';
+
 window.onload = async () => {
   const response = await fetch('./__data/lay_witness/lay_witness.json');
   const json_data = await response.json();

@@ -1,3 +1,5 @@
+'use strict';
+
 window.onload = async () => {
   const response = await fetch(`./__data/news/news.json`);
   const json_data = await response.json();

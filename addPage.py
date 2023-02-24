@@ -52,6 +52,7 @@ f.write('</html>')
 f.close()
 
 f = open(os.path.join(newdir, f'{filename}.js'), 'w')
+f.write("'use strict';")
 f.close()
 
 f = open(os.path.join(newdir, f'{filename}.css'), 'w')
