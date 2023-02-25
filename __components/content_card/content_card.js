@@ -81,7 +81,27 @@ class CufContentCard extends HTMLElement {
       let last_scroll_top = 0;
       card_wrapper.classList.add('showing-image');
       if ('ontouchstart' in window) {
-        card_wrapper.addEventListener('click', () => {
+        card_wrapper.addEventListener('touchstart', (e) => {
+          const touch = e.touches[0] || e.changedTouches[0];
+          const scroll_start_x = touch.clientX + card_wrapper.scrollLeft;
+          const scroll_start_y = touch.clientY + card_wrapper.scrollTop;
+          card_wrapper.setAttribute('touchscroll-start-x', scroll_start_x.toString());
+          card_wrapper.setAttribute('touchscroll-start-y', scroll_start_y.toString());
+        });
+        card_wrapper.addEventListener('touchend', (e) => {
+          const touch = e.touches[0] || e.changedTouches[0];
+          const scroll_end_x = touch.clientX + card_wrapper.scrollLeft;
+          const scroll_end_y = touch.clientY + card_wrapper.scrollTop;
+          const scroll_start_x = parseInt(card_wrapper.getAttribute('touchscroll-start-x'));
+          const scroll_start_y = parseInt(card_wrapper.getAttribute('touchscroll-start-y'));
+          if (!scroll_start_x || !scroll_start_y) {
+            return;
+          }
+          const cutoff_distance = 2;
+          if (Math.abs(scroll_end_x - scroll_start_x) > cutoff_distance ||
+            Math.abs(scroll_end_y - scroll_start_y) > cutoff_distance) {
+              return;
+            }
           if (card_rotater.getAttribute('style') && card_rotater.getAttribute('style').includes('rotateX(90deg)')) {
             card_wrapper.classList.add('showing-image');
             last_scroll_top = card_wrapper.scrollTop;
@@ -94,53 +114,55 @@ class CufContentCard extends HTMLElement {
             scrollOverDuration(card_wrapper, last_scroll_top, 200);
           }
         });
+        card_wrapper.addEventListener('touchstart', (e) => {
+          if (card_wrapper.classList.contains('showing-image')) {
+            return;
+          }
+          e.preventDefault();
+          const touch = e.touches[0] || e.changedTouches[0];
+          const scroll_start = touch.clientY + card.scrollTop;
+          card.setAttribute('touchscroll-start', scroll_start.toString());
+        });
+        card_wrapper.addEventListener('touchend', (e) => {
+          if (card_wrapper.classList.contains('showing-image')) {
+            return;
+          }
+          e.preventDefault();
+          card.removeAttribute('touchscroll-start');
+        });
+        card_wrapper.addEventListener('touchmove', (e) => {
+          if (card_wrapper.classList.contains('showing-image')) {
+            return;
+          }
+          const scroll_start = card.getAttribute('touchscroll-start');
+          if (!scroll_start) {
+            return;
+          }
+          e.preventDefault();
+          const touch = e.touches[0] || e.changedTouches[0];
+          card.scrollTop = parseInt(scroll_start) - touch.clientY;
+        });
       }
-      card_wrapper.addEventListener('mouseenter', () => {
-        card_wrapper.classList.remove('showing-image');
-        card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
-        scrollOverDuration(card_wrapper, last_scroll_top, 200);
-      });
-      card_wrapper.addEventListener('mouseleave', () => {
-        card_wrapper.classList.add('showing-image');
-        last_scroll_top = card_wrapper.scrollTop;
-        card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
-        scrollOverDuration(card_wrapper, 0, 200);
-      });
-      card_wrapper.addEventListener('wheel', (e) => {
-        if (card_wrapper.classList.contains('showing-image')) {
-          return;
-        }
-        e.preventDefault();
-        card.scrollTop += 0.3 * e.deltaY;
-      });
-      card_wrapper.addEventListener('touchstart', (e) => {
-        if (card_wrapper.classList.contains('showing-image')) {
-          return;
-        }
-        e.preventDefault();
-        const touch = e.touches[0] || e.changedTouches[0];
-        const scroll_start = touch.clientY + card.scrollTop;
-        card_wrapper.setAttribute('touchscroll-start', scroll_start.toString());
-      });
-      card_wrapper.addEventListener('touchend', (e) => {
-        if (card_wrapper.classList.contains('showing-image')) {
-          return;
-        }
-        e.preventDefault();
-        card_wrapper.removeAttribute('touchscroll-start');
-      });
-      card_wrapper.addEventListener('touchmove', (e) => {
-        if (card_wrapper.classList.contains('showing-image')) {
-          return;
-        }
-        const scroll_start = card_wrapper.getAttribute('touchscroll-start');
-        if (!scroll_start) {
-          return;
-        }
-        e.preventDefault();
-        const touch = e.touches[0] || e.changedTouches[0];
-        card.scrollTop = parseInt(scroll_start) - touch.clientY;
-      });
+      else {
+        card_wrapper.addEventListener('mouseenter', () => {
+          card_wrapper.classList.remove('showing-image');
+          card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
+          scrollOverDuration(card_wrapper, last_scroll_top, 200);
+        });
+        card_wrapper.addEventListener('mouseleave', () => {
+          card_wrapper.classList.add('showing-image');
+          last_scroll_top = card_wrapper.scrollTop;
+          card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
+          scrollOverDuration(card_wrapper, 0, 200);
+        });
+        card_wrapper.addEventListener('wheel', (e) => {
+          if (card_wrapper.classList.contains('showing-image')) {
+            return;
+          }
+          e.preventDefault();
+          card.scrollTop += 0.3 * e.deltaY;
+        });
+      }
     }
     else if (fixed_height) {
       card.setAttribute('style', `height: ${fixed_height}px; min-height: ${fixed_height}px; max-height: ${fixed_height}px; overflow-y: scroll;`);
