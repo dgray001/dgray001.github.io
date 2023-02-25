@@ -45,7 +45,10 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
         echo '<div class="section" id="layWitness">';
         echo '<h2 class="section-title">Lay Witness</h2>';
         echo '<div class="laywitness-body" style="display: none;">';
-        echo '<label for="laywitness-file-upload">Upload PDF:</label><br>';
+        echo '<button id="edit-laywitness-button">Edit Lay Witness</button>';
+        echo '<div id="current-laywitness" style="display: none;">';
+        echo '</div>';
+        echo '<label for="laywitness-file-upload">Upload New Lay Witness:</label><br>';
         echo '<input id="laywitness-file-upload" type="file" accept="application/pdf">';
         echo '<form id="laywitness-form" action="javascript:submitLaywitnessForm()">';
         echo '<cuf-form-section-laywitness id="section-laywitness"></cuf-form-section-laywitness>';

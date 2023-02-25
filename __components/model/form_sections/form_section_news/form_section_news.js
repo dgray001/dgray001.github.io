@@ -23,7 +23,9 @@ export class CufFormSectionNews extends CufFormSection {
   async mutationCallback(mutation) {
     /** @type {CufTextArea} */
     const description = this.shadowRoot.getElementById('news-description');
-    description.setMinHeight();
+    if (description) {
+      description.setMinHeight();
+    }
   }
 
   /**

@@ -22,17 +22,35 @@ button.over-piece.right {
   background-color: rgb(255, 100, 100);
 }
 
+.clickable-piece {
+  cursor: pointer;
+  margin: 1.5em 0px;
+  position: relative;
+  width: 100%;
+}
+
+.clickable-piece:hover {
+  background-color: lightgray;
+}
+
+.clickable-piece:active {
+  background-color: gray;
+}
+
 .editable-piece {
   margin: 1.5em 0px;
   position: relative;
   width: 100%;
 }
 
-.editable-piece .line-item {
-  margin: 0.5em 0px;
+.editable-subpiece {
+  margin: 1em;
+  position: relative;
+  width: 100%;
 }
 
-.editable-piece .editable-content {
+.editable-piece .line-item {
+  margin: 0.5em 0px;
 }
 
 .editable-piece .uneditable-content {

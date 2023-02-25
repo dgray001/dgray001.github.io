@@ -38,6 +38,18 @@ window.onload = async () => {
       status_message.setAttribute('style', 'display: none;');
       document.getElementById('section-laywitness').focusFirst();
     });
+    await updateLaywitnessList();
+    const lay_witness_list = document.getElementById('current-laywitness');
+    const edit_lay_witness_button = document.getElementById('edit-laywitness-button');
+    edit_lay_witness_button.addEventListener('click', () => {
+      if (lay_witness_list.getAttribute('style').includes('display: block')) {
+        lay_witness_list.setAttribute('style', 'display: none; visibility: visible;');
+        edit_lay_witness_button.innerText = 'Edit Lay Witness';
+        return;
+      }
+      edit_lay_witness_button.innerText = 'Cancel';
+      lay_witness_list.setAttribute('style', 'display: block; visibility: visible;');
+    });
   }
   const news_section = document.getElementById('news');
   if (news_section) {
@@ -118,8 +130,72 @@ window.onload = async () => {
 };
 
 /**
+ * Updates current laywitness list
  * @return {Promise<void>}
+ */
+window.updateLaywitnessList = async () => {
+  const laywitness_list = document.getElementById('current-laywitness');
+  laywitness_list.replaceChildren();
+  const laywitness_response = await fetch('./__data/lay_witness/lay_witness.json');
+  const laywitness_data = await laywitness_response.json();
+  for (const [i, volume] of laywitness_data['volumes'].entries()) {
+    const volume_div = document.createElement('div');
+    const issue_wrapper = document.createElement('div');
+    issue_wrapper.setAttribute('style', 'display: none;');
+    const volume_title = document.createElement('div');
+    volume_title.innerHTML = `
+      <div class="line-item clickable-piece">
+        <span class="uneditable-content">Volume: </span>
+        <span class="editable-content">${volume['number']} (${volume['year']})</span>
+      </div>
+    `;
+    volume_title.addEventListener('click', () => {
+      if (issue_wrapper.getAttribute('style')) {
+        issue_wrapper.removeAttribute('style');
+      }
+      else {
+        issue_wrapper.setAttribute('style', 'display: none;');
+      }
+    });
+    volume_div.appendChild(volume_title);
+    volume_div.appendChild(issue_wrapper);
+    for (const [j, issue] of volume['issues'].entries()) {
+      const issue_div = document.createElement('div');
+      issue_div.innerHTML = `
+        <div class="line-item">
+          <span class="uneditable-content">Number: </span>
+          <span class="editable-content">${issue['number']}</span>
+        </div>
+        <div class="line-item">
+          <span class="uneditable-content">Title: </span>
+          <span class="editable-content">${issue['title']}</span>
+        </div>
+        <div class="line-item">
+          <span class="uneditable-content">Addendum: </span>
+          <span class="editable-content">${!!issue['addendum']}</span>
+        </div>
+        <div class="line-item">
+          <span class="uneditable-content">Insert: </span>
+          <span class="editable-content">${!!issue['insert']}</span>
+        </div>
+        <button class="over-piece left" id="edit-laywitness-button-${i}-${j}"
+          onclick="editLaywitnessPiece(${i}, ${j})">Edit Issue</button>
+        <button class="over-piece right" id="delete-laywitness-button-${i}-${j}"
+          onclick="deleteLaywitnessPiece(${i}, ${j})">Delete Issue</button>
+      `;
+      issue_div.classList.add('editable-subpiece');
+      issue_div.id = `editable-laywitness-piece-${i}-${j}`;
+      issue_wrapper.appendChild(issue_div);
+    }
+    volume_div.classList.add('editable-piece');
+    volume_div.id = `editable-laywitness-volume-piece-${i}`;
+    laywitness_list.appendChild(volume_div);
+  }
+}
+
+/**
  * Updates current news list
+ * @return {Promise<void>}
  */
 window.updateNewsList = async () => {
   const news_list = document.getElementById('current-news');
@@ -143,22 +219,60 @@ window.updateNewsList = async () => {
         <span class="uneditable-content">Description: </span>
         <span class="editable-content">${news_piece['description']}</span>
       </div>
-      <button class="over-piece left" id="edit-news-button-${i}" onclick="editNewsPiece(${i})">Edit News Piece</button>
-      <button class="over-piece right" id="delete-news-button-${i}" onclick="deleteNewsPiece(${i})">Delete News Piece</button>
+      <button class="over-piece left" id="edit-news-button-${i}"
+        onclick="editNewsPiece(${i})">Edit News Piece</button>
+      <button class="over-piece right" id="delete-news-button-${i}"
+        onclick="deleteNewsPiece(${i})">Delete News Piece</button>
     `;
     news_div.classList.add('editable-piece');
-    news_div.id = `editable-piece-${i}`;
+    news_div.id = `editable-news-piece-${i}`;
     news_list.appendChild(news_div);
   }
 };
 
 /**
+ * Edits the laywitness piece at the input index
+ * @param {number} i index of volume to edit
+ * @param {number} j index of issue to edit
+ * @return {Promise<void>}
+ */
+window.editLaywitnessPiece = async (i, j) => {
+  const piece_div = document.getElementById(`editable-laywitness-piece-${i}-${j}`);
+  const edit_button = document.getElementById(`edit-laywitness-button-${i}-${j}`);
+  if (edit_button.classList.contains('editing')) {
+    edit_button.innerText = 'Edit Issue';
+    edit_button.classList.remove('editing');
+    const laywitness_piece_form = document.getElementById(`laywitness-piece-form-${i}-${j}`);
+    laywitness_piece_form.remove();
+    return;
+  }
+  edit_button.innerText = 'Cancel';
+  edit_button.classList.add('editing');
+  piece_div.innerHTML += `
+    <form id="laywitness-piece-form-${i}-${j}" action="javascript:editUpdateLaywitnessPiece(${i}, ${j})">
+      <br><label for="laywitness-file-upload-${i}-${j}">Update Lay Witness PDF:</label><br>
+      <input id="laywitness-file-upload-${i}-${j}" type="file" accept="application/pdf">
+      <cuf-form-section-laywitness id="section-laywitness-${i}-${j}"></cuf-form-section-laywitness>
+      <button class="form-submit-button" id="laywitness-piece-form-button-${i}-${j}" type="submit">Update Laywitness</button>
+    </form>
+  `;
+  const laywitness_response = await fetch('./__data/lay_witness/lay_witness.json');
+  const laywitness_data = await laywitness_response.json();
+  const volume = laywitness_data['volumes'][i]['number'];
+  const issue = laywitness_data['volumes'][i]['issues'][j];
+  const laywitness_piece_form_section = document.getElementById(`section-laywitness-${i}-${j}`);
+  await until(() => laywitness_piece_form_section.form_fields.length == 5);
+  laywitness_piece_form_section.setFormData(volume, issue);
+  laywitness_piece_form_section.focusFirst();
+};
+
+/**
+ * Edits the news piece at the input index
  * @param {number} i index of news to edit
  * @return {Promise<void>}
- * Edits the news piece at the input index
  */
 window.editNewsPiece = async (i) => {
-  const piece_div = document.getElementById(`editable-piece-${i}`);
+  const piece_div = document.getElementById(`editable-news-piece-${i}`);
   const edit_button = document.getElementById(`edit-news-button-${i}`);
   if (edit_button.classList.contains('editing')) {
     edit_button.innerText = 'Edit News Piece';
@@ -184,9 +298,90 @@ window.editNewsPiece = async (i) => {
 };
 
 /**
+ * Edits laywitness piece from edit form data
+ * @param {number} i index of volume to edit
+ * @param {number} j index of issue to edit
+ * @return {Promise<void>}
+ */
+window.editUpdateLaywitnessPiece = async (i, j) => {
+  const edit_button = document.getElementById(`laywitness-piece-form-button-${i}-${j}`);
+  edit_button.disabled = true;
+  edit_button.innerText = 'Editing';
+  const laywitness_response = await fetch('./__data/lay_witness/lay_witness.json');
+  const laywitness_data = await laywitness_response.json();
+  const volume = laywitness_data['volumes'][i]['number'];
+  const issue = laywitness_data['volumes'][i]['issues'][j];
+  laywitness_data['volumes'][i]['issues'].splice(j, 1);
+  if (!laywitness_data['volumes'][i]['issues'].length) {
+    laywitness_data['volumes'].splice(i, 1);
+  }
+  const filename = laywitnessFilename(volume, issue);
+  const laywitness_piece_input = document.getElementById(`laywitness-file-upload-${i}-${j}`);
+  /** @type {File} */
+  let laywitness_pdf = laywitness_piece_input.files[0];
+  if (!laywitness_pdf) {
+    const laywitness_pdf_response = await fetch(`./__data/lay_witness/${filename}`);
+    const laywitness_pdf_blob = await laywitness_pdf_response.blob();
+    laywitness_pdf = new File([laywitness_pdf_blob], filename.split('/')[-1], {
+      type: "application/pdf",
+    });
+  }
+  const laywitness_piece_form_section = document.getElementById(`section-laywitness-${i}-${j}`);
+  const laywitness_section_data = laywitness_piece_form_section.getFormData();
+  const {post_data, new_issue} = processLaywitnessFormData(laywitness_data, laywitness_section_data);
+  const new_filename = laywitnessFilename(laywitness_section_data['volume'], new_issue);
+
+  try {
+    // Delete old file
+    const delete_response = await fetch('/server/admin_dashboard/laywitness_file_delete.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        filename: filename,
+      }),
+    });
+    const delete_response_json = await delete_response.json();
+    if (!delete_response_json['success']) {
+      throw new Error('Delete old file failed');
+    }
+    // Update json data
+    const data_response = await fetch('/server/admin_dashboard/laywitness_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(post_data),
+    });
+    const data_response_json = await data_response.json();
+    if (!data_response_json['success']) {
+      throw new Error('Update laywitness data failed');
+    }
+    // Upload new file
+    const file_response = await fetch('/server/admin_dashboard/laywitness_file.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': laywitness_pdf.type,
+        'X-File-Name': new_filename,
+      },
+      body: laywitness_pdf,
+    });
+    const file_response_json = await file_response.json();
+    if (!file_response_json['success']) {
+      throw new Error('Update file failed');
+    }
+  } catch(error) {
+    console.log(error);
+  } finally {
+    await updateLaywitnessList();
+  }
+};
+
+/**
+ * Edits news piece from edit form data
  * @param {number} i index of news to edit
  * @return {Promise<void>}
- * Edits news piece from edit form data
  */
 window.editUpdateNewsPiece = async (i) => {
   const edit_button = document.getElementById(`news-piece-form-button-${i}`);
@@ -225,9 +420,62 @@ window.editUpdateNewsPiece = async (i) => {
 };
 
 /**
+ * Deletes the laywitness issue at the input index
+ * @param {number} i index of volume to delete
+ * @param {number} j index of issue to delete
+ * @return {Promise<void>}
+ */
+window.deleteLaywitnessPiece = async (i, j) => {
+  const delete_button = document.getElementById(`delete-laywitness-button-${i}-${j}`);
+  delete_button.disabled = true;
+  delete_button.innerText = 'Deleting';
+  const lay_witness_response = await fetch('./__data/lay_witness/lay_witness.json');
+  const lay_witness_data = await lay_witness_response.json();
+  const volume = lay_witness_data['volumes'][i]['number'];
+  const issue = lay_witness_data['volumes'][i]['issues'][j];
+  const filename = laywitnessFilename(volume, issue);
+  lay_witness_data['volumes'][i]['issues'].splice(j, 1);
+  if (!lay_witness_data['volumes'][i]['issues'].length) {
+    lay_witness_data['volumes'].splice(i, 1);
+  }
+  try {
+    // Update data
+    const response = await fetch('/server/admin_dashboard/laywitness_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(lay_witness_data),
+    });
+    const response_json = await response.json();
+    if (!response_json['success']) {
+      throw new Error('Updating laywitness data failed');
+    }
+    // Delete file
+    const delete_response = await fetch('/server/admin_dashboard/laywitness_file_delete.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        filename: filename,
+      }),
+    });
+    const delete_response_json = await delete_response.json();
+    if (!delete_response_json['success']) {
+      throw new Error('Delete laywitness file failed');
+    }
+  } catch(error) {
+    console.log(error);
+  } finally {
+    await updateLaywitnessList();
+  }
+};
+
+/**
+ * Deletes the news piece at the input index
  * @param {number} i index of news to delete
  * @return {Promise<void>}
- * Deletes the news piece at the input index
  */
 window.deleteNewsPiece = async (i) => {
   const delete_button = document.getElementById(`delete-news-button-${i}`);
@@ -247,8 +495,6 @@ window.deleteNewsPiece = async (i) => {
     const response_json = await response.json();
     if (response_json['success']) {
     }
-    else {
-    }
   } catch(error) {
     console.log(error);
   } finally {
@@ -257,8 +503,8 @@ window.deleteNewsPiece = async (i) => {
 };
 
 /**
- * @return {Promise<void>}
  * Submits laywitness form if recaptcha token is valid
+ * @return {Promise<void>}
  */
 window.submitLaywitnessFormButton = async () => {
   if (!validateLaywitnessForm()) {
@@ -271,8 +517,8 @@ window.submitLaywitnessFormButton = async () => {
 };
 
 /**
- * @return {Promise<void>}
  * Submits news form if recaptcha token is valid
+ * @return {Promise<void>}
  */
 window.submitNewsFormButton = async () => {
   if (!validateNewsForm()) {
@@ -285,8 +531,8 @@ window.submitNewsFormButton = async () => {
 };
 
 /**
- * @return {Promise<void>}
  * Submits paper form if recaptcha token is valid
+ * @return {Promise<void>}
  */
 window.submitPaperFormButton = async () => {
   if (!validatePaperForm()) {
@@ -364,27 +610,72 @@ window.submitLaywitnessForm = async () => {
   /** @type {File} */
   const file = lay_witness_input.files[0];
 
+  const {post_data, new_issue} = processLaywitnessFormData(json_data, laywitness_section_data);
+
+  try {
+    const response = await fetch('/server/admin_dashboard/laywitness_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(post_data),
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'Data upload succeeded';
+      laywitness_section.clearFormData();
+      const lay_witness_form = document.getElementById('laywitness-form');
+      lay_witness_form.setAttribute('style', 'display: none;');
+      const lay_witness_input = document.getElementById('laywitness-file-upload');
+      lay_witness_input.value = '';
+      uploadLaywitnessFile(new_issue, laywitness_section_data, file);
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'File upload failed. Please report this bug.';
+  }
+
+  const button = document.getElementById('laywitness-form-button');
+  button.disabled = false;
+  button.innerText = 'Upload File';
+  button.removeAttribute('style');
+  await updateLaywitnessList();
+};
+
+/**
+ * Processes laywitness form data
+ * @param {json} post_data current json data
+ * @param {json} form_data
+ * @return {{post_data: json, new_issue: json}} data ready to post to server
+ */
+function processLaywitnessFormData(post_data, form_data) {
   let submit_volume = undefined;
-  for (const volume of json_data['volumes']) {
-    if (volume['number'] == laywitness_section_data['volume']) {
+  for (const volume of post_data['volumes']) {
+    if (volume['number'] == form_data['volume']) {
       submit_volume = volume;
       break;
     }
   }
   if (!submit_volume) {
     submit_volume = {
-      "number": laywitness_section_data['volume'],
-      "year": 2022 + laywitness_section_data['volume'] - 40,
+      "number": form_data['volume'],
+      "year": 2022 + form_data['volume'] - 40,
       "issues": [],
     };
-    json_data['volumes'].push(submit_volume);
+    post_data['volumes'].push(submit_volume);
   }
   const issues = submit_volume['issues'];
   const new_issue = {
-    "number": laywitness_section_data['issue'],
-    "title": laywitness_section_data['title'],
+    "number": form_data['issue'],
+    "title": form_data['title'],
   };
-  if (laywitness_section_data['addendum']) {
+  if (form_data['addendum']) {
     let max_addendum = 0;
     for (const issue of issues) {
       if (issue['addendum'] && issue['addendum'] > max_addendum) {
@@ -393,7 +684,7 @@ window.submitLaywitnessForm = async () => {
     }
     new_issue['addendum'] = max_addendum + 1;
   }
-  else if (laywitness_section_data['insert']) {
+  else if (form_data['insert']) {
     let max_insert = 0;
     for (const issue of issues) {
       if (issue['insert'] && issue['insert'] > max_insert) {
@@ -450,7 +741,7 @@ window.submitLaywitnessForm = async () => {
     return 0;
   });
   // Sort volumes by number
-  json_data['volumes'].sort((a, b) => {
+  post_data['volumes'].sort((a, b) => {
     if (a['number'] > b['number']) {
       return -1;
     }
@@ -459,41 +750,8 @@ window.submitLaywitnessForm = async () => {
     }
     return 0;
   });
-
-  try {
-    const response = await fetch('/server/admin_dashboard/laywitness_data.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(json_data),
-    });
-    const response_json = await response.json();
-    if (response_json['success']) {
-      status_message.setAttribute('style', 'display: block; color: green');
-      status_message.innerText = 'Data upload succeeded';
-      laywitness_section.clearFormData();
-      const lay_witness_form = document.getElementById('laywitness-form');
-      lay_witness_form.setAttribute('style', 'display: none;');
-      const lay_witness_input = document.getElementById('laywitness-file-upload');
-      lay_witness_input.value = '';
-      uploadLaywitnessFile(new_issue, laywitness_section_data, file);
-    }
-    else {
-      status_message.setAttribute('style', 'display: block; color: red');
-      status_message.innerText = response_json;
-    }
-  } catch(error) {
-    console.log(error);
-    status_message.setAttribute('style', 'display: block; color: red');
-    status_message.innerText = 'File upload failed. Please report this bug.';
-  }
-
-  const button = document.getElementById('laywitness-form-button');
-  button.disabled = false;
-  button.innerText = 'Upload File';
-  button.removeAttribute('style');
-};
+  return {post_data, new_issue};
+}
 
 /**
  * Submits news form to server
@@ -588,8 +846,6 @@ window.submitPaperForm = async () => {
       paper_section.clearFormData();
       const paper_form = document.getElementById('papers-form');
       paper_form.setAttribute('style', 'display: none;');
-      const paper_input = document.getElementById('papers-file-upload');
-      paper_input.value = '';
       uploadPaperFile(file.name, file);
     }
     else {
@@ -618,12 +874,7 @@ window.submitPaperForm = async () => {
 async function uploadLaywitnessFile(new_issue, laywitness_section_data, file) {
   const status_message = document.getElementById('laywitness-form-status-message');
   const laywitness_section = document.getElementById('section-laywitness');
-
-  const filename_extension = new_issue['addendum'] ? `-Addendum${new_issue['addendum']}` :
-    (new_issue['insert'] ? `-Insert${new_issue['insert']}` : '');
-  const filename = `/${laywitness_section_data['volume']}/` +
-    `${laywitness_section_data['volume']}.${laywitness_section_data['issue']}` +
-    `-Lay-Witness${filename_extension}.pdf`
+  const filename = laywitnessFilename(laywitness_section_data['volume'], new_issue);
 
   try {
     const response = await fetch('/server/admin_dashboard/laywitness_file.php', {
@@ -653,6 +904,18 @@ async function uploadLaywitnessFile(new_issue, laywitness_section_data, file) {
     status_message.setAttribute('style', 'display: block; color: red');
     status_message.innerText = 'File upload failed. Please report this bug.';
   }
+}
+
+/**
+ * Processes laywitness pdf filename from issue json
+ * @param {number} volume
+ * @param {json} issue
+ * @return {string} filename
+ */
+function laywitnessFilename(volume, issue) {
+  const filename_extension = issue['addendum'] ? `-Addendum${issue['addendum']}` :
+    (issue['insert'] ? `-Insert${issue['insert']}` : '');
+  return `/${volume}/${volume}.${issue['number']}-Lay-Witness${filename_extension}.pdf`
 }
 
 /**

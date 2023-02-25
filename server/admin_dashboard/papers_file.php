@@ -18,7 +18,7 @@ if (!hasPermission('positionPapers', $_SESSION["role"])) {
   exit(2);
 }
 
-require_once(__DIR__ . '/../includes/create_file.php');
+require_once(__DIR__ . '/../includes/file_util.php');
 
 $filename = $_SERVER['HTTP_X_FILE_NAME'];
 $in = fopen('php://input', 'r');

@@ -19,6 +19,7 @@
   --left-sidebar-width: 10vw;
   --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
   --page-content-width: calc(100vw - 2 * var(--left-auto-margin) - var(--left-sidebar-width));
+  overflow-anchor: none;
 }
 
 html, body {

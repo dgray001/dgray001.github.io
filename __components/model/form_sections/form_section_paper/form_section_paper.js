@@ -22,7 +22,9 @@ export class CufFormSectionPaper extends CufFormSection {
   async mutationCallback(mutation) {
     /** @type {CufTextArea} */
     const description = this.shadowRoot.getElementById('paper-description');
-    description.setMinHeight();
+    if (description) {
+      description.setMinHeight();
+    }
   }
 
   /**

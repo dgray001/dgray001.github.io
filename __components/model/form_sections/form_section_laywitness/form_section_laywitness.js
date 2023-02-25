@@ -19,6 +19,19 @@ export class CufFormSectionLaywitness extends CufFormSection {
   }
 
   /**
+   * Sets laywitness data
+   * @param {number} volume
+   * @param {{number:number, title:string, addendum:number, insert:number}} data
+   */
+  setFormData(volume, data) {
+    this.shadowRoot.getElementById('laywitness-volume').form_field.value = volume.toString();
+    this.shadowRoot.getElementById('laywitness-issue').form_field.value = data.number.toString();
+    this.shadowRoot.getElementById('laywitness-title').form_field.value = data.title;
+    this.shadowRoot.getElementById('checkbox-addendum').form_field.checked = !!data.addendum;
+    this.shadowRoot.getElementById('checkbox-insert').form_field.checked = !!data.insert;
+  }
+
+  /**
    * Returns map of laywitness data for the laywitness form section
    * @return {{volume:number, issue:number, title:string, addendum:boolean, insert:boolean}}
    */

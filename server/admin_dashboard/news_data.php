@@ -18,7 +18,7 @@ if (!hasPermission('news', $_SESSION["role"])) {
   exit(2);
 }
 
-require_once(__DIR__ . '/../includes/create_file.php');
+require_once(__DIR__ . '/../includes/file_util.php');
 
 // get post data
 $received_data = json_decode(file_get_contents('php://input'), true);

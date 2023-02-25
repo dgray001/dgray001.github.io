@@ -3,6 +3,14 @@
 require_once(__DIR__ . '/force_include.php');
 
 /**
+ * delete file given the filepath
+ * @param string $filepath
+ */
+function deleteFile($filepath) {
+  unlink($filepath);
+}
+
+/**
  * create file with content, and create folder structure if doesn't exist 
  * @param string $filepath
  * @param string $content

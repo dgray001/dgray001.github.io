@@ -23,6 +23,6 @@ require_once(__DIR__ . '/../includes/file_util.php');
 // get post data
 $received_data = json_decode(file_get_contents('php://input'), true);
 
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/lay_witness/lay_witness.json', json_encode($received_data));
+deleteFile($_SERVER['DOCUMENT_ROOT'] . '/__data/lay_witness/' . $received_data['filename']);
 
 echo json_encode(array('success' => true));
