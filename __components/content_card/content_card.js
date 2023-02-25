@@ -107,8 +107,39 @@ class CufContentCard extends HTMLElement {
         scrollOverDuration(card_wrapper, 0, 200);
       });
       card_wrapper.addEventListener('wheel', (e) => {
+        if (card_wrapper.classList.contains('showing-image')) {
+          return;
+        }
         e.preventDefault();
         card.scrollTop += 0.3 * e.deltaY;
+      });
+      card_wrapper.addEventListener('touchstart', (e) => {
+        if (card_wrapper.classList.contains('showing-image')) {
+          return;
+        }
+        e.preventDefault();
+        const touch = e.touches[0] || e.changedTouches[0];
+        const scroll_start = touch.clientY + card.scrollTop;
+        card_wrapper.setAttribute('touchscroll-start', scroll_start.toString());
+      });
+      card_wrapper.addEventListener('touchend', (e) => {
+        if (card_wrapper.classList.contains('showing-image')) {
+          return;
+        }
+        e.preventDefault();
+        card_wrapper.removeAttribute('touchscroll-start');
+      });
+      card_wrapper.addEventListener('touchmove', (e) => {
+        if (card_wrapper.classList.contains('showing-image')) {
+          return;
+        }
+        const scroll_start = card_wrapper.getAttribute('touchscroll-start');
+        if (!scroll_start) {
+          return;
+        }
+        e.preventDefault();
+        const touch = e.touches[0] || e.changedTouches[0];
+        card.scrollTop = parseInt(scroll_start) - touch.clientY;
       });
     }
     else if (fixed_height) {

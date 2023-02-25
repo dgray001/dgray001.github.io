@@ -1,3 +1,8 @@
+// @ts-check
+import {CufFormSectionPaper} from "../../model/form_sections/form_section_paper/form_section_paper.js";
+import {CufAdminDashboardSection} from "../admin_dashboard_section.js";
+import {until} from "../../../scripts/util.js";
+
 class CufAdminDashboardPapers extends HTMLElement {
   constructor() {
     super();
