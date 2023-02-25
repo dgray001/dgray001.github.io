@@ -1,1 +1,36 @@
 @import "../styles.css";
+
+.content-element {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  overflow-wrap: break-word; /* Chrome, Safari */
+  overflow-wrap: anywhere; /* Firefox */
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  white-space: pre-wrap;
+}
+
+.element-title {
+  font-size: larger;
+  font-style: italic;
+  margin-bottom: 0.7rem;
+  margin-left: 0.3em;
+  white-space: pre-wrap;
+  overflow-wrap: break-word; /* Chrome, Safari */
+  overflow-wrap: anywhere; /* Firefox */
+}
+
+.element-spacer::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: black;
+  display: block;
+  position: relative;
+  top: 50%;
+}
+
+.element-spacer {
+  height: 1.5rem;
+  border: none;
+}

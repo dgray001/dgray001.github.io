@@ -127,6 +127,47 @@ window.onload = async () => {
       document.getElementById('section-papers').focusFirst();
     });
   }
+  const jobs_section = document.getElementById('jobsAvailable');
+  if (jobs_section) {
+    const jobs_title = jobs_section.querySelector('.section-title');
+    const jobs_body = jobs_section.querySelector('.jobs-body');
+    jobs_title.addEventListener('click', () => {
+      if (jobs_body.hasAttribute('style')) {
+        jobs_body.removeAttribute('style');
+      }
+      else {
+        jobs_body.setAttribute('style', 'display: none;');
+      }
+    });
+    const add_jobs_button = document.getElementById('new-jobs-button');
+    const jobs_form = document.getElementById('jobs-form');
+    jobs_form.setAttribute('style', 'display: none; visibility: visible;');
+    add_jobs_button.addEventListener('click', () => {
+      const jobs_form = document.getElementById('jobs-form');
+      if (jobs_form.getAttribute('style').includes('display: block')) {
+        jobs_form.setAttribute('style', 'display: none; visibility: visible;');
+        add_jobs_button.innerText = 'Add Job';
+        return;
+      }
+      add_jobs_button.innerText = 'Cancel';
+      const status_message = document.getElementById('jobs-form-status-message');
+      jobs_form.setAttribute('style', 'display: block; visibility: visible;');
+      status_message.setAttribute('style', 'display: none;');
+      document.getElementById('section-jobs').focusFirst();
+    });
+    await updateJobsList();
+    const jobs_list = document.getElementById('current-jobs');
+    const edit_jobs_button = document.getElementById('edit-jobs-button');
+    edit_jobs_button.addEventListener('click', () => {
+      if (jobs_list.getAttribute('style').includes('display: block')) {
+        jobs_list.setAttribute('style', 'display: none; visibility: visible;');
+        edit_jobs_button.innerText = 'Edit Jobs';
+        return;
+      }
+      edit_jobs_button.innerText = 'Cancel';
+      jobs_list.setAttribute('style', 'display: block; visibility: visible;');
+    });
+  }
 };
 
 /**
@@ -231,6 +272,37 @@ window.updateNewsList = async () => {
 };
 
 /**
+ * Updates current jobs list
+ * @return {Promise<void>}
+ */
+window.updateJobsList = async () => {
+  const jobs_list = document.getElementById('current-jobs');
+  jobs_list.replaceChildren();
+  const jobs_response = await fetch('./__data/jobs_available/jobs_available.json');
+  const jobs_data = await jobs_response.json();
+  for (const [i, jobs_piece] of jobs_data['content'].entries()) {
+    const jobs_div = document.createElement('div');
+    jobs_div.innerHTML = `
+      <div class="line-item">
+        <span class="uneditable-content">Title: </span>
+        <span class="editable-content">${jobs_piece['title']}</span>
+      </div>
+      <div class="line-item">
+        <span class="uneditable-content">Description: </span>
+        <span class="editable-content">${jobs_piece['description']}</span>
+      </div>
+      <button class="over-piece left" id="edit-jobs-button-${i}"
+        onclick="editJobsPiece(${i})">Edit Job</button>
+      <button class="over-piece right" id="delete-jobs-button-${i}"
+        onclick="deleteJobsPiece(${i})">Delete Job</button>
+    `;
+    jobs_div.classList.add('editable-piece');
+    jobs_div.id = `editable-jobs-piece-${i}`;
+    jobs_list.appendChild(jobs_div);
+  }
+};
+
+/**
  * Edits the laywitness piece at the input index
  * @param {number} i index of volume to edit
  * @param {number} j index of issue to edit
@@ -295,6 +367,37 @@ window.editNewsPiece = async (i) => {
   await until(() => news_piece_form_section.form_fields.length == 3);
   news_piece_form_section.setFormData(news_data['content'][i]);
   news_piece_form_section.focusFirst();
+};
+
+/**
+ * Edits the jobs piece at the input index
+ * @param {number} i index of job to edit
+ * @return {Promise<void>}
+ */
+window.editJobsPiece = async (i) => {
+  const piece_div = document.getElementById(`editable-jobs-piece-${i}`);
+  const edit_button = document.getElementById(`edit-jobs-button-${i}`);
+  if (edit_button.classList.contains('editing')) {
+    edit_button.innerText = 'Edit Job';
+    edit_button.classList.remove('editing');
+    const jobs_piece_form = document.getElementById(`jobs-piece-form-${i}`);
+    jobs_piece_form.remove();
+    return;
+  }
+  edit_button.innerText = 'Cancel';
+  edit_button.classList.add('editing');
+  piece_div.innerHTML += `
+    <form id="jobs-piece-form-${i}" action="javascript:editUpdateJobPiece(${i})">
+      <cuf-form-section-job id="section-jobs-${i}"></cuf-form-section-job>
+      <button class="form-submit-button" id="jobs-piece-form-button-${i}" type="submit">Update Job</button>
+    </form>
+  `;
+  const jobs_response = await fetch('./__data/jobs_available/jobs_available.json');
+  const jobs_data = await jobs_response.json();
+  const jobs_piece_form_section = document.getElementById(`section-jobs-${i}`);
+  await until(() => jobs_piece_form_section.form_fields.length == 2);
+  jobs_piece_form_section.setFormData(jobs_data['content'][i]);
+  jobs_piece_form_section.focusFirst();
 };
 
 /**
@@ -408,14 +511,50 @@ window.editUpdateNewsPiece = async (i) => {
       body: JSON.stringify(news_data),
     });
     const response_json = await response.json();
-    if (response_json['success']) {
-    }
-    else {
+    if (!response_json['success']) {
+      throw new Error('Update news data failed');
     }
   } catch(error) {
     console.log(error);
   } finally {
     await updateNewsList();
+  }
+};
+
+/**
+ * Edits jobs piece from edit form data
+ * @param {number} i index of job to edit
+ * @return {Promise<void>}
+ */
+window.editUpdateJobPiece = async (i) => {
+  const edit_button = document.getElementById(`jobs-piece-form-button-${i}`);
+  edit_button.disabled = true;
+  edit_button.innerText = 'Editing';
+  const jobs_response = await fetch('./__data/jobs_available/jobs_available.json');
+  const jobs_data = await jobs_response.json();
+  const jobs_piece_form_section = document.getElementById(`section-jobs-${i}`);
+  const jobs_section_data = jobs_piece_form_section.getFormData();
+  const new_job = {
+    'title': jobs_section_data['title'],
+    'description': jobs_section_data['description'],
+  };
+  jobs_data['content'][i] = new_job;
+  try {
+    const response = await fetch('/server/admin_dashboard/jobs_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jobs_data),
+    });
+    const response_json = await response.json();
+    if (!response_json['success']) {
+      throw new Error('Update jobs data failed');
+    }
+  } catch(error) {
+    console.log(error);
+  } finally {
+    await updateJobsList();
   }
 };
 
@@ -493,12 +632,44 @@ window.deleteNewsPiece = async (i) => {
       body: JSON.stringify(news_data),
     });
     const response_json = await response.json();
-    if (response_json['success']) {
+    if (!response_json['success']) {
+      throw new Error('Failed to delete news');
     }
   } catch(error) {
     console.log(error);
   } finally {
     await updateNewsList();
+  }
+};
+
+/**
+ * Deletes the jobs piece at the input index
+ * @param {number} i index of job to delete
+ * @return {Promise<void>}
+ */
+window.deleteJobsPiece = async (i) => {
+  const delete_button = document.getElementById(`delete-jobs-button-${i}`);
+  delete_button.disabled = true;
+  delete_button.innerText = 'Deleting';
+  const jobs_response = await fetch('./__data/jobs_available/jobs_available.json');
+  const jobs_data = await jobs_response.json();
+  jobs_data['content'].splice(i, 1);
+  try {
+    const response = await fetch('/server/admin_dashboard/jobs_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(jobs_data),
+    });
+    const response_json = await response.json();
+    if (!response_json['success']) {
+      throw new Error('Failed to delete job');
+    }
+  } catch(error) {
+    console.log(error);
+  } finally {
+    await updateJobsList();
   }
 };
 
@@ -545,6 +716,20 @@ window.submitPaperFormButton = async () => {
 };
 
 /**
+ * Submits jobs form if recaptcha token is valid
+ * @return {Promise<void>}
+ */
+window.submitJobsFormButton = async () => {
+  if (!validateJobsForm()) {
+    return;
+  }
+  const button = document.getElementById('jobs-form-button');
+  const status_message = document.getElementById('jobs-form-status-message');
+  const jobs_form = document.getElementById('jobs-form');
+  submitFormButton(button, status_message, jobs_form);
+};
+
+/**
  * Submits input form if recaptcha is valid
  * @param {HTMLButtonElement} button
  * @param {HTMLDivElement} status_message
@@ -570,7 +755,7 @@ function submitFormButton(button, status_message, form) {
 
 /**
  * Validates each section in laywitness form
- * @return {boolean} whether form field is valid.
+ * @return {boolean} whether form is valid.
  */
 function validateLaywitnessForm() {
   const laywitness_section = document.getElementById('section-laywitness');
@@ -579,7 +764,7 @@ function validateLaywitnessForm() {
 
 /**
  * Validates each section in news form
- * @return {boolean} whether form field is valid.
+ * @return {boolean} whether form is valid.
  */
 function validateNewsForm() {
   const news_section = document.getElementById('section-news');
@@ -588,11 +773,20 @@ function validateNewsForm() {
 
 /**
  * Validates each section in paper form
- * @return {boolean} whether form field is valid.
+ * @return {boolean} whether form is valid.
  */
 function validatePaperForm() {
   const paper_section = document.getElementById('section-papers');
   return paper_section.validate();
+}
+
+/**
+ * Validates each section in jobs form
+ * @return {boolean} whether form is valid.
+ */
+function validateJobsForm() {
+  const jobs_section = document.getElementById('section-jobs');
+  return jobs_section.validate();
 }
 
 /**
@@ -862,6 +1056,58 @@ window.submitPaperForm = async () => {
   button.disabled = false;
   button.innerText = 'Upload File';
   button.removeAttribute('style');
+};
+
+/**
+ * Submits jobs form to server
+ * @return {Promise<void>}
+ */
+window.submitJobsForm = async () => {
+  const status_message = document.getElementById('jobs-form-status-message');
+
+  const response = await fetch('./__data/jobs_available/jobs_available.json');
+  const json_data = await response.json();
+  const jobs_section = document.getElementById('section-jobs');
+  const jobs_section_data = jobs_section.getFormData();
+  const new_job = {
+    'title': jobs_section_data['title'],
+    'description': jobs_section_data['description'],
+  };
+  json_data['content'].unshift(new_job);
+
+  try {
+    const response = await fetch('/server/admin_dashboard/jobs_data.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(json_data),
+    });
+    const response_json = await response.json();
+    if (response_json['success']) {
+      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.innerText = 'Data upload succeeded';
+      jobs_section.clearFormData();
+      const jobs_form = document.getElementById('jobs-form');
+      jobs_form.setAttribute('style', 'display: none;');
+    }
+    else {
+      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.innerText = response_json;
+    }
+  } catch(error) {
+    console.log(error);
+    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.innerText = 'Job upload failed. Please report this bug.';
+  }
+  
+  const button = document.getElementById('jobs-form-button');
+  button.disabled = false;
+  button.innerText = 'Upload News';
+  button.removeAttribute('style');
+  const jobs_button = document.getElementById('new-jobs-button');
+  jobs_button.innerText = 'Add Job';
+  await updateJobsList();
 };
 
 /**

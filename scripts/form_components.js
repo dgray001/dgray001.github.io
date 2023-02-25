@@ -6,3 +6,4 @@ import '../__components/model/form_sections/form_section_membership_request/form
 import '../__components/model/form_sections/form_section_laywitness/form_section_laywitness.js';
 import '../__components/model/form_sections/form_section_paper/form_section_paper.js';
 import '../__components/model/form_sections/form_section_news/form_section_news.js';
+import '../__components/model/form_sections/form_section_job/form_section_job.js';

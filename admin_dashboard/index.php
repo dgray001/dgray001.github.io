@@ -89,6 +89,15 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
         echo '<div class="section" id="jobsAvailable">';
         echo '<h2 class="section-title">Jobs Available</h2>';
         echo '<div class="jobs-body" style="display: none;">';
+        echo '<button id="edit-jobs-button">Edit Jobs</button>';
+        echo '<div id="current-jobs" style="display: none;">';
+        echo '</div>';
+        echo '<button id="new-jobs-button">Add Job</button>';
+        echo '<form id="jobs-form" action="javascript:submitJobsForm()">';
+        echo '<cuf-form-section-job id="section-jobs"></cuf-form-section-job>';
+        echo '<button class="form-submit-button" id="jobs-form-button" onclick="submitJobsFormButton() "type="button">Upload Job</button>';
+        echo '</form>';
+        echo '<div id="jobs-form-status-message"></div>';
         echo '</div></div>';
       }
       ?>
