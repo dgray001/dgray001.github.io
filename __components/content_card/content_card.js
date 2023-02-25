@@ -79,11 +79,29 @@ class CufContentCard extends HTMLElement {
         min-width: ${fixed_width}px; max-width: ${fixed_width}px;
         perspective: ${5 * fixed_height}px; width: ${fixed_width}px;`);
       let last_scroll_top = 0;
+      card_wrapper.classList.add('showing-image');
+      if ('ontouchstart' in window) {
+        card_wrapper.addEventListener('click', () => {
+          if (card_rotater.getAttribute('style') && card_rotater.getAttribute('style').includes('rotateX(90deg)')) {
+            card_wrapper.classList.add('showing-image');
+            last_scroll_top = card_wrapper.scrollTop;
+            card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
+            scrollOverDuration(card_wrapper, 0, 200);
+          }
+          else {
+            card_wrapper.classList.remove('showing-image');
+            card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
+            scrollOverDuration(card_wrapper, last_scroll_top, 200);
+          }
+        });
+      }
       card_wrapper.addEventListener('mouseenter', () => {
+        card_wrapper.classList.remove('showing-image');
         card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
         scrollOverDuration(card_wrapper, last_scroll_top, 200);
       });
       card_wrapper.addEventListener('mouseleave', () => {
+        card_wrapper.classList.add('showing-image');
         last_scroll_top = card_wrapper.scrollTop;
         card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
         scrollOverDuration(card_wrapper, 0, 200);
@@ -108,7 +126,7 @@ class CufContentCard extends HTMLElement {
         content_list += '<div class="content-element"';
         if (content['title']) {
           if (content['titlelink']) {
-            content_list += ` class="element-with-title"><div class="element-title"><a href="${content['titlelink']}" target="_blank">${content['title']}</a></div`;
+            content_list += ` class="element-with-title"><div class="element-title"><a href="${content['titlelink']}" target="_blank" onclick="event.stopPropagation()">${content['title']}</a></div`;
           }
           else {
             content_list += ` class="element-with-title"><div class="element-title">${content['title']}</div`;

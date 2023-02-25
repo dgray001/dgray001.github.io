@@ -1,6 +1,6 @@
 :root {
   --margin-size: 15px;
-  --header-height-unit: max(2vh, 15px);
+  --header-height-unit: max(min(2vh, 2.75vw), 15px);
   --page-body-font-size: calc(12px + 0.5vw);
   --navigation-height: calc(2.8 * var(--page-body-font-size));
   --fixed-header-height: calc(max(

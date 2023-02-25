@@ -39,17 +39,19 @@
   #site-map {
     flex: 1 0 0;
     margin-right: 5px;
+    margin-top: 0px;
   }
 }
 
 #site-map {
   display: flex;
   font-size: 0.8rem;
+  margin-top: 1rem;
 }
 
 #site-map .element-group {
   flex: 1 1 0;
-  margin-left: 1rem;
+  margin: 0 0.5rem;
   text-align: right;
 }
 
