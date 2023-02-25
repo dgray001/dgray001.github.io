@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import {CufTextArea} from '../../text_area/text_area.js';
@@ -28,8 +29,23 @@ export class CufFormSectionPaper extends CufFormSection {
   }
 
   /**
+   * @typedef {Object} PaperFormData
+   * @property {string} title
+   * @property {string=} description
+   */
+
+  /**
+   * Sets papers data
+   * @param {PaperFormData} data
+   */
+  setFormData(data) {
+    this.form_fields[0].form_field.value = data.title;
+    this.form_fields[1].form_field.value = data.description ?? '';
+  }
+
+  /**
    * Returns map of paper data for the paper form section
-   * @return {{title:string, description:string}}
+   * @return {PaperFormData}
    */
   getFormData() {
     const title = this.shadowRoot.getElementById('paper-title').getFormData();

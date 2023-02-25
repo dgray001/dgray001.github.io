@@ -2,6 +2,7 @@
 'use strict';
 
 import '../__components/admin_dashboard/admin_dashboard_laywitness/admin_dashboard_laywitness.js';
+import '../__components/admin_dashboard/admin_dashboard_papers/admin_dashboard_papers.js';
 
 import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
 import {until} from '../scripts/util.js';
@@ -410,20 +411,6 @@ window.submitNewsFormButton = async () => {
 };
 
 /**
- * Submits paper form if recaptcha token is valid
- * @return {Promise<void>}
- */
-window.submitPaperFormButton = async () => {
-  if (!validatePaperForm()) {
-    return;
-  }
-  const button = document.getElementById('papers-form-button');
-  const status_message = document.getElementById('papers-form-status-message');
-  const paper_form = document.getElementById('papers-form');
-  submitFormButton(button, status_message, paper_form);
-};
-
-/**
  * Submits jobs form if recaptcha token is valid
  * @return {Promise<void>}
  */
@@ -468,15 +455,6 @@ function submitFormButton(button, status_message, form) {
 function validateNewsForm() {
   const news_section = document.getElementById('section-news');
   return news_section.validate();
-}
-
-/**
- * Validates each section in paper form
- * @return {boolean} whether form is valid.
- */
-function validatePaperForm() {
-  const paper_section = document.getElementById('section-papers');
-  return paper_section.validate();
 }
 
 /**
@@ -544,62 +522,6 @@ window.submitNewsForm = async () => {
 };
 
 /**
- * Submits paper form to server
- * @return {Promise<void>}
- */
-window.submitPaperForm = async () => {
-  const status_message = document.getElementById('papers-form-status-message');
-
-  const response = await fetch('./__data/papers/papers.json');
-  const json_data = await response.json();
-  const paper_section = document.getElementById('section-papers');
-  const paper_section_data = paper_section.getFormData();
-  const paper_input = document.getElementById('papers-file-upload');
-  /** @type {File} */
-  const file = paper_input.files[0];
-  const new_paper = {
-    'title': paper_section_data['title'],
-    'titlelink': `./__data/articles/${file.name}`,
-  };
-  if (paper_section_data.description) {
-    new_paper['description'] = paper_section_data['description'];
-  }
-  json_data['content'].unshift(new_paper);
-
-  try {
-    const response = await fetch('/server/admin_dashboard/papers_data.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(json_data),
-    });
-    const response_json = await response.json();
-    if (response_json['success']) {
-      status_message.setAttribute('style', 'display: block; color: green');
-      status_message.innerText = 'Data upload succeeded';
-      paper_section.clearFormData();
-      const paper_form = document.getElementById('papers-form');
-      paper_form.setAttribute('style', 'display: none;');
-      uploadPaperFile(file.name, file);
-    }
-    else {
-      status_message.setAttribute('style', 'display: block; color: red');
-      status_message.innerText = response_json;
-    }
-  } catch(error) {
-    console.log(error);
-    status_message.setAttribute('style', 'display: block; color: red');
-    status_message.innerText = 'File upload failed. Please report this bug.';
-  }
-
-  const button = document.getElementById('papers-form-button');
-  button.disabled = false;
-  button.innerText = 'Upload File';
-  button.removeAttribute('style');
-};
-
-/**
  * Submits jobs form to server
  * @return {Promise<void>}
  */
@@ -650,42 +572,3 @@ window.submitJobsForm = async () => {
   jobs_button.innerText = 'Add Job';
   await updateJobsList();
 };
-
-/**
- * Uploads paper file onto server
- * @param {string} filename
- * @param {File} file
- * @return {Promise<void>}
- */
-async function uploadPaperFile(filename, file) {
-  const status_message = document.getElementById('papers-form-status-message');
-  const paper_section = document.getElementById('section-papers');
-  try {
-    const response = await fetch('/server/admin_dashboard/papers_file.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': file.type,
-        'X-File-Name': filename,
-      },
-      body: file,
-    });
-    const response_json = await response.json();
-    if (response_json['success']) {
-      status_message.setAttribute('style', 'display: block; color: green');
-      status_message.innerText = 'File upload succeeded';
-      paper_section.clearFormData();
-      const paper_form = document.getElementById('papers-form');
-      paper_form.setAttribute('style', 'display: none;');
-      const paper_input = document.getElementById('papers-file-upload');
-      paper_input.value = '';
-    }
-    else {
-      status_message.setAttribute('style', 'display: block; color: red');
-      status_message.innerText = response_json;
-    }
-  } catch(error) {
-    console.log(error);
-    status_message.setAttribute('style', 'display: block; color: red');
-    status_message.innerText = 'File upload failed. Please report this bug.';
-  }
-}

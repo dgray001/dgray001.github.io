@@ -81,6 +81,7 @@ class CufContentCard extends HTMLElement {
       let last_scroll_top = 0;
       card_wrapper.classList.add('showing-image');
       if ('ontouchstart' in window) {
+        // Touchscreen event listeners
         card_wrapper.addEventListener('touchstart', (e) => {
           const touch = e.touches[0] || e.changedTouches[0];
           const scroll_start_x = touch.clientX + card_wrapper.scrollLeft;
@@ -143,26 +144,25 @@ class CufContentCard extends HTMLElement {
           card.scrollTop = parseInt(scroll_start) - touch.clientY;
         });
       }
-      else {
-        card_wrapper.addEventListener('mouseenter', () => {
-          card_wrapper.classList.remove('showing-image');
-          card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
-          scrollOverDuration(card_wrapper, last_scroll_top, 200);
-        });
-        card_wrapper.addEventListener('mouseleave', () => {
-          card_wrapper.classList.add('showing-image');
-          last_scroll_top = card_wrapper.scrollTop;
-          card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
-          scrollOverDuration(card_wrapper, 0, 200);
-        });
-        card_wrapper.addEventListener('wheel', (e) => {
-          if (card_wrapper.classList.contains('showing-image')) {
-            return;
-          }
-          e.preventDefault();
-          card.scrollTop += 0.3 * e.deltaY;
-        });
-      }
+      // Mouse event listeners
+      card_wrapper.addEventListener('mouseenter', () => {
+        card_wrapper.classList.remove('showing-image');
+        card_rotater.setAttribute('style', 'transform: rotateX(90deg);');
+        scrollOverDuration(card_wrapper, last_scroll_top, 200);
+      });
+      card_wrapper.addEventListener('mouseleave', () => {
+        card_wrapper.classList.add('showing-image');
+        last_scroll_top = card_wrapper.scrollTop;
+        card_rotater.setAttribute('style', 'transform: rotateX(0deg);');
+        scrollOverDuration(card_wrapper, 0, 200);
+      });
+      card_wrapper.addEventListener('wheel', (e) => {
+        if (card_wrapper.classList.contains('showing-image')) {
+          return;
+        }
+        e.preventDefault();
+        card.scrollTop += 0.3 * e.deltaY;
+      });
     }
     else if (fixed_height) {
       card.setAttribute('style', `height: ${fixed_height}px; min-height: ${fixed_height}px; max-height: ${fixed_height}px; overflow-y: scroll;`);
