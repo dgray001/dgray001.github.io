@@ -12,8 +12,6 @@
   --page-background-color: rgb(230, 230, 230);
   --card-background-color: rgb(230, 220, 210);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
-  /*--header-color: rgb(160, 255, 160); the green and blue style
-  --margin-color: rgb(120, 120, 255);*/
   --header-color: var(--page-background-color);
   --margin-color: var(--page-background-color);
   --navigation-hover-color: rgb(190, 190, 190);
