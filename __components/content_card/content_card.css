@@ -136,6 +136,7 @@ div.card-wrapper {
   margin-right: 5px;
   overflow-x: hidden;
   overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 div.card-wrapper.showing-image {
