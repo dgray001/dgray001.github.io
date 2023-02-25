@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import '../../checkbox/checkbox.js';
@@ -19,21 +20,29 @@ export class CufFormSectionLaywitness extends CufFormSection {
   }
 
   /**
-   * Sets laywitness data
-   * @param {number} volume
-   * @param {{number:number, title:string, addendum:number, insert:number}} data
+   * @typedef {Object} LaywitnessFormData
+   * @property {number} volume
+   * @property {number} issue
+   * @property {string} title
+   * @property {boolean} addendum
+   * @property {boolean} insert
    */
-  setFormData(volume, data) {
-    this.shadowRoot.getElementById('laywitness-volume').form_field.value = volume.toString();
-    this.shadowRoot.getElementById('laywitness-issue').form_field.value = data.number.toString();
-    this.shadowRoot.getElementById('laywitness-title').form_field.value = data.title;
-    this.shadowRoot.getElementById('checkbox-addendum').form_field.checked = !!data.addendum;
-    this.shadowRoot.getElementById('checkbox-insert').form_field.checked = !!data.insert;
+
+  /**
+   * Sets laywitness data
+   * @param {LaywitnessFormData} data
+   */
+  setFormData(data) {
+    this.form_fields[0].form_field.value = data.volume.toString();
+    this.form_fields[1].form_field.value = data.issue.toString();
+    this.form_fields[2].form_field.value = data.title;
+    this.form_fields[3].form_field.checked = data.addendum;
+    this.form_fields[4].form_field.checked = data.insert;
   }
 
   /**
    * Returns map of laywitness data for the laywitness form section
-   * @return {{volume:number, issue:number, title:string, addendum:boolean, insert:boolean}}
+   * @return {LaywitnessFormData}
    */
   getFormData() {
     const volume = this.shadowRoot.getElementById('laywitness-volume').getFormData();

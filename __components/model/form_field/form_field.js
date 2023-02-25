@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {Validator, validate} from '../../../scripts/validation.js';
 import {HTMLBaseElement} from '../HTML_base_element.js';
 

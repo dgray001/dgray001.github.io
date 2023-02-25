@@ -7,6 +7,7 @@ button {
 }
 
 button.over-piece {
+  border-radius: 1.5em;
   display: inline-block;
   font-size: larger;
   height: 2em;
@@ -38,15 +39,17 @@ button.over-piece.right {
 }
 
 .editable-piece {
+  background-color: rgb(245, 235, 225);
   margin: 1.5em 0px;
   position: relative;
   width: 100%;
 }
 
 .editable-subpiece {
+  background-color: rgb(255, 250, 240);
   margin: 1em;
   position: relative;
-  width: 100%;
+  width: calc(100% - 1em);
 }
 
 .editable-piece .line-item {

@@ -38,6 +38,8 @@ export class CufFormSection extends HTMLElement {
 
   /**
    * Assigns form section wrapper and label
+   * @param {Response} res
+   * @param {string} form_section_name
    * @return {Promise<CufFormSection>}
    */
   async setFormSectionAttributes(res, form_section_name) {
@@ -59,7 +61,7 @@ export class CufFormSection extends HTMLElement {
 
   /**
    * Sets form data from a properly-constructed json input
-   * @param {JSON} input
+   * @param {any} input
    */
   setFormData(input) {
     console.log(`CufFormSection::setFormData not implemented for ${this.constructor.name}.`);

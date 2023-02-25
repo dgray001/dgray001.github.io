@@ -33,8 +33,12 @@ export const base_url = DEV ?
   };
 
 /**
+ * @callback conditionCallback
+ * @return {boolean}
+ */
+/**
  * Returns promise that resolves when condition function becomes true
- * @param {Function} conditionFunction
+ * @param {conditionCallback} conditionFunction
  * @return {Promise}
  */
 export function until(conditionFunction) {

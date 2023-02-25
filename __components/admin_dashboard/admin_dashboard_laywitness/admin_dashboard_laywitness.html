@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="./__components/admin_dashboard/admin_dashboard_laywitness/admin_dashboard_laywitness.css">
+
+<h2 class="section-title">Lay Witness</h2>
+<div class="section-body" style="display: none;">
+  <button class="edit-button">Edit Lay Witness</button>
+  <div class="current-list" style="display: none;"></div>
+  <label for="file-upload">Upload New Lay Witness:</label><br>
+  <input class="file-upload" id="file-upload" type="file" accept="application/pdf">
+  <form class="new-form" style="display: none; visibility: visible;">
+    <cuf-form-section-laywitness class="form-section"></cuf-form-section-laywitness>
+    <button class="form-submit-button" type="button">
+      Upload Laywitness
+    </button>
+  </form>
+  <div class="status-message"></div>
+</div>

@@ -42,20 +42,7 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
       </header>
       <?php
       if (hasPermission('layWitness', $_SESSION["role"])) {
-        echo '<div class="section" id="layWitness">';
-        echo '<h2 class="section-title">Lay Witness</h2>';
-        echo '<div class="laywitness-body" style="display: none;">';
-        echo '<button id="edit-laywitness-button">Edit Lay Witness</button>';
-        echo '<div id="current-laywitness" style="display: none;">';
-        echo '</div>';
-        echo '<label for="laywitness-file-upload">Upload New Lay Witness:</label><br>';
-        echo '<input id="laywitness-file-upload" type="file" accept="application/pdf">';
-        echo '<form id="laywitness-form" action="javascript:submitLaywitnessForm()">';
-        echo '<cuf-form-section-laywitness id="section-laywitness"></cuf-form-section-laywitness>';
-        echo '<button class="form-submit-button" id="laywitness-form-button" onclick="submitLaywitnessFormButton()"type="button">Upload Laywitness</button>';
-        echo '</form>';
-        echo '<div id="laywitness-form-status-message"></div>';
-        echo '</div></div>';
+        echo '<cuf-admin-dashboard-laywitness></cuf-admin-dashboard-laywitness>';
       }
       if (hasPermission('news', $_SESSION["role"])) {
         echo '<div class="section" id="news">';
