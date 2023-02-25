@@ -108,10 +108,7 @@ class CufContentCard extends HTMLElement {
       });
       card_wrapper.addEventListener('wheel', (e) => {
         e.preventDefault();
-        console.log(e.deltaY, card.offsetHeight, card_wrapper.offsetHeight);
-        card_wrapper.scrollTop += e.deltaY;
-        card_rotater.scrollTop += e.deltaY;
-        card.scrollTop += e.deltaY;
+        card.scrollTop += 0.3 * e.deltaY;
       });
     }
     else if (fixed_height) {
