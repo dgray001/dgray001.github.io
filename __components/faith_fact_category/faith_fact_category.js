@@ -17,27 +17,39 @@ class CufFaithFactCategory extends HTMLElement {
         const response = await fetch(`./__data/faith_facts/${category_name}.json`);
         this.json_data = await response.json();
       }
-      this.shadowRoot.querySelector('.subtitle').innerHTML = this.json_data['category_display']
+      shadow.querySelector('.subtitle').innerHTML = this.json_data['category_display']
       const category_data = this.json_data['faith_facts'];
-      let faith_facts = '';
+      const faith_fact_list = shadow.querySelector('.faith-fact-list');
       for (const faith_fact of category_data) {
+        const faith_fact_div = document.createElement('div');
+        const title = document.createElement('button');
+        title.classList.add('title');
+        title.innerText = faith_fact['title'].toUpperCase();
+        faith_fact_div.appendChild(title);
+        const content = document.createElement('div');
+        content.setAttribute('style', 'display: none;');
         const question_html = faith_fact['question'] ?
           `<div class="question">
             <div class="label"><em>Question</em>:</div>
             <div class="content">${faith_fact['question']}</div>
           </div>` : '';
-        faith_facts += `<div class="faith-fact">
-          <div class="title">
-            ${faith_fact['title'].toUpperCase()}
-          </div>
+        content.innerHTML = `
           ${question_html}
           <div class="summary">
             <div class="label"><em>Summary</em>:</div>
             <div class="content">${faith_fact['summary']}</div>
-          </div>
-        </div>`;
+          </div>`;
+        faith_fact_div.appendChild(content);
+        title.addEventListener('click', () => {
+          if (content.hasAttribute('style')) {
+            content.removeAttribute('style');
+            return;
+          }
+          content.setAttribute('style', 'display: none;');
+        });
+        faith_fact_div.classList.add('faith-fact');
+        faith_fact_list?.appendChild(faith_fact_div);
       }
-      this.shadowRoot.querySelector('.faith-fact-list').innerHTML = faith_facts;
       if (this.callback) {
         this.callback(this.json_data);
       }

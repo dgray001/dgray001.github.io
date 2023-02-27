@@ -42,10 +42,11 @@ export class CufAdminDashboardSection extends HTMLElement {
   /**
    * Waits for parsing to be complete and sets parameters.
    * Should be called first in connectedCallback.
+   * @param {string} path 
    * @param {string} name 
    */
-  async setHTML(name) {
-    const res = await fetch(`./__components/admin_dashboard/${name}/${name}.html`);
+  async setHTML(path, name) {
+    const res = await fetch(`./__components/admin_dashboard/${path}/${path}.html`);
     this.innerHTML = await res.text();
 
     await until(() => !!this.querySelector('.section-title'));
@@ -87,14 +88,25 @@ export class CufAdminDashboardSection extends HTMLElement {
         }
         if (file.type !== 'application/pdf') {
           this.file_input.value = '';
-          this.new_form.setAttribute('style', 'display: none; visibility: visible;');
+          this.new_form.setAttribute('style', 'display: none;');
           this.status_message.setAttribute('style', 'display: block; color: red');
           this.status_message.innerText = 'Invalid filetype; please upload a pdf.';
           return;
         }
-        this.new_form.setAttribute('style', 'display: block; visibility: visible;');
+        this.new_form.removeAttribute('style');
         this.status_message.setAttribute('style', 'display: none;');
         this.new_form_section.focusFirst();
+      });
+    }
+    else if (this.add_button) {
+      this.add_button.addEventListener('click', () => {
+        if (this.new_form.hasAttribute('style')) {
+          this.new_form.removeAttribute('style');
+          this.add_button.innerText = 'Cancel';
+          return;
+        }
+        this.new_form.setAttribute('style', 'display: none;');
+        this.add_button.innerText = `New ${name}`;
       });
     }
 
@@ -109,7 +121,7 @@ export class CufAdminDashboardSection extends HTMLElement {
     this.edit_button.addEventListener('click', () => {
       if (this.current_list.getAttribute('style').includes('display: block')) {
         this.current_list.setAttribute('style', 'display: none; visibility: visible;');
-        this.edit_button.innerText = 'Edit Lay Witness';
+        this.edit_button.innerText = `Edit ${name}`;
         return;
       }
       this.edit_button.innerText = 'Cancel';

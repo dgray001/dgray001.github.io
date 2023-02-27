@@ -9,7 +9,7 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
   }
 
   async connectedCallback() {
-    await this.setHTML('admin_dashboard_papers');
+    await this.setHTML('admin_dashboard_papers', 'Position Papers');
   }
 
   /**

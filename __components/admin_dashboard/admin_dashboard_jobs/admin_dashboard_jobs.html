@@ -1,3 +1,15 @@
 <link rel="stylesheet" href="./__components/admin_dashboard/admin_dashboard_jobs/admin_dashboard_jobs.css">
-<div class="admin-dashboard-jobs">
+
+<h2 class="section-title">Jobs Available</h2>
+<div class="section-body" style="display: none;">
+  <button class="edit-button">Edit Jobs</button>
+  <div class="current-list" style="display: none;"></div>
+  <button class="add-button">New Job</button>
+  <form class="new-form" style="display: none;">
+    <cuf-form-section-job class="form-section"></cuf-form-section-job>
+    <button class="form-submit-button" type="button">
+      Upload Job
+    </button>
+  </form>
+  <div class="status-message"></div>
 </div>

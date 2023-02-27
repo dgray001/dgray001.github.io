@@ -28,8 +28,14 @@ export class CufFormSectionJob extends CufFormSection {
   }
 
   /**
+   * @typedef {Object} JobsFormData
+   * @property {string} title
+   * @property {string} description
+   */
+
+  /**
    * Returns map of paper data for the paper form section
-   * @return {{title:string, description:string}}
+   * @return {JobsFormData}
    */
   getFormData() {
     const title = this.shadowRoot.getElementById('job-title').getFormData();
@@ -39,7 +45,7 @@ export class CufFormSectionJob extends CufFormSection {
 
   /**
    * Sets form data from a properly-constructed json input
-   * @param {{title:string, description:string}} input
+   * @param {JobsFormData} input
    */
   setFormData(input) {
     this.shadowRoot.getElementById('job-title').form_field.value = input.title;

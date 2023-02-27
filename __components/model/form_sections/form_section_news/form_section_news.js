@@ -29,8 +29,15 @@ export class CufFormSectionNews extends CufFormSection {
   }
 
   /**
+   * @typedef {Object} NewsFormData
+   * @property {string} title
+   * @property {string=} titlelink
+   * @property {string} description
+   */
+
+  /**
    * Returns map of paper data for the paper form section
-   * @return {{title:string, titlelink:string, description:string}}
+   * @return {NewsFormData}
    */
   getFormData() {
     const title = this.shadowRoot.getElementById('news-title').getFormData();
@@ -41,7 +48,7 @@ export class CufFormSectionNews extends CufFormSection {
 
   /**
    * Sets form data from a properly-constructed json input
-   * @param {{title:string, titlelink:string, description:string}} input
+   * @param {NewsFormData} input
    */
   setFormData(input) {
     this.shadowRoot.getElementById('news-title').form_field.value = input.title;

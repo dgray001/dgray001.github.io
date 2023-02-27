@@ -1,7 +1,8 @@
 <?php
 session_start();
 
-require_once(__DIR__ . '/../../config/permissions.php');
+require_once(__DIR__ . '/../server/includes/config_path.php');
+require_once($config_path . '/permissions.php');
 
 // not logged in
 if (!isset($_SESSION["role"])) {
@@ -45,37 +46,13 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
         echo '<cuf-admin-dashboard-laywitness></cuf-admin-dashboard-laywitness>';
       }
       if (hasPermission('news', $_SESSION["role"])) {
-        echo '<div class="section" id="news">';
-        echo '<h2 class="section-title">News</h2>';
-        echo '<div class="news-body" style="display: none;">';
-        echo '<button id="edit-news-button">Edit News</button>';
-        echo '<div id="current-news" style="display: none;">';
-        echo '</div>';
-        echo '<button id="new-news-button">Add News</button>';
-        echo '<form id="news-form" action="javascript:submitNewsForm()">';
-        echo '<cuf-form-section-news id="section-news"></cuf-form-section-news>';
-        echo '<button class="form-submit-button" id="news-form-button" onclick="submitNewsFormButton() "type="button">Upload News</button>';
-        echo '</form>';
-        echo '<div id="news-form-status-message"></div>';
-        echo '</div></div>';
+        echo '<cuf-admin-dashboard-news></cuf-admin-dashboard-news>';
       }
       if (hasPermission('positionPapers', $_SESSION["role"])) {
         echo '<cuf-admin-dashboard-papers></cuf-admin-dashboard-papers>';
       }
       if (hasPermission('jobsAvailable', $_SESSION["role"])) {
-        echo '<div class="section" id="jobsAvailable">';
-        echo '<h2 class="section-title">Jobs Available</h2>';
-        echo '<div class="jobs-body" style="display: none;">';
-        echo '<button id="edit-jobs-button">Edit Jobs</button>';
-        echo '<div id="current-jobs" style="display: none;">';
-        echo '</div>';
-        echo '<button id="new-jobs-button">Add Job</button>';
-        echo '<form id="jobs-form" action="javascript:submitJobsForm()">';
-        echo '<cuf-form-section-job id="section-jobs"></cuf-form-section-job>';
-        echo '<button class="form-submit-button" id="jobs-form-button" onclick="submitJobsFormButton() "type="button">Upload Job</button>';
-        echo '</form>';
-        echo '<div id="jobs-form-status-message"></div>';
-        echo '</div></div>';
+        echo '<cuf-admin-dashboard-jobs></cuf-admin-dashboard-jobs>';
       }
       ?>
     </div>

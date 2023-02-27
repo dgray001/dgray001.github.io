@@ -9,7 +9,7 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
   }
 
   async connectedCallback() {
-    await this.setHTML('admin_dashboard_laywitness');
+    await this.setHTML('admin_dashboard_laywitness', 'Lay Witness');
   }
 
   /**
