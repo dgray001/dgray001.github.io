@@ -1,5 +1,5 @@
 import {HTMLBaseElement} from '../model/HTML_base_element.js';
-import {until} from '../../scripts/util.js';
+import {until, trim} from '../../scripts/util.js';
 
 export class CufNavigationPane extends HTMLBaseElement {
   /**
@@ -87,11 +87,21 @@ export class CufNavigationPane extends HTMLBaseElement {
     }
   }
 
+  /**
+   * @param {ShadowRoot} shadow 
+   * @param {string} element_id 
+   * @param {string} current_path 
+   */
   setEventListener(shadow, element_id, current_path) {
     const path = `./${element_id}`;
+    /** @type {HTMLButtonElement|null} */
     const element = shadow.querySelector(`#${element_id}`);
+    /** @type {HTMLButtonElement|null} */
     const hamburger_element = shadow.querySelector(`#hamburger-${element_id}`);
-    if (path === `.${current_path}`) {
+    if (!element || !hamburger_element) {
+      throw new Error(`Setting event listener on ${element_id} failed; can't find element.`)
+    }
+    if (element_id === trim(current_path, '/')) {
       element.disabled = true;
       hamburger_element.disabled = true;
       element.classList.add('current-element');
@@ -131,10 +141,16 @@ export class CufNavigationPane extends HTMLBaseElement {
     }
   }
 
+  /**
+   * @param {string} path 
+   */
   navigateTo(path) {
     window.location = path;
   }
 
+  /**
+   * @param {string} path 
+   */
   openNewTab(path) {
     window.open(path, '_blank');
   }

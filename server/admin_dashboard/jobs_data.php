@@ -4,7 +4,8 @@ require_once(__DIR__ . '/../includes/prevent_get.php');
 
 session_start();
 
-require_once(__DIR__ . '/../../../config/permissions.php');
+require_once(__DIR__ . '/../includes/config_path.php');
+require_once($config_path . '/permissions.php');
 
 // not logged in
 if (!isset($_SESSION["role"])) {

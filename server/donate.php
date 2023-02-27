@@ -6,7 +6,8 @@ require_once(__DIR__ . '/includes/prevent_get.php');
 $received_data = json_decode(file_get_contents('php://input'), true);
 
 // get authorize.net api login credentials
-require_once(__DIR__ . "/../../config/authorize_login.php");
+require_once(__DIR__ . '/includes/config_path.php');
+require_once($config_path . '/authorize_login.php');
 $api_cred = json_encode(array('name' => $name,
   'transactionKey' => $transactionKey), JSON_FORCE_OBJECT);
 

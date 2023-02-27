@@ -88,6 +88,21 @@ export function objectsEqual(obj1, obj2, obj1_name = 'obj1', obj2_name = 'obj2')
 }
 
 /**
+ * Trims input string of the input character
+ * @param {string} str string to trim
+ * @param {string} ch character to trim
+ * @return {string} trimmed string
+ */
+export function trim(str, ch) {
+  if (ch === "]") ch = "\\]";
+  if (ch === "^") ch = "\\^";
+  if (ch === "\\") ch = "\\\\";
+  return str.replace(new RegExp(
+    "^[" + ch + "]+|[" + ch + "]+$", "g"
+  ), "");
+}
+
+/**
  * Smooth scrolls to the input element, accounting for fixed header height
  * @param {HTMLElement} element element to scroll to
  */
