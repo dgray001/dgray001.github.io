@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {Validator, validate} from '../../../scripts/validation.js';
+import {Validator, validate, version} from '/scripts/validation.js';
 import {HTMLBaseElement} from '../HTML_base_element.js';
 
 export class CufFormField extends HTMLBaseElement {
@@ -54,8 +54,12 @@ export class CufFormField extends HTMLBaseElement {
     const validators_array = JSON.parse(this.attributes.validators?.value || '[]');
     this.validators = new Set(validators_array);
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/model/form_field/form_field.html');
+    const res = await fetch(`/__components/model/form_field/form_field.html?v=${version}`);
     shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/model/form_field/form_field.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     this.form_field_wrapper = shadow.querySelector('.form-field-wrapper');
     this.form_field_wrapper.setAttribute('id', this.id + '-wrapper');
     this.classList.add('form-field');

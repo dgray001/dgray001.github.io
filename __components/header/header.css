@@ -196,7 +196,6 @@ img {
   position: absolute;
   right: 2vw;
   top: calc(var(--fixed-container-height) + 4px);
-  width: max(12vw, 150px);
 }
 
 .profile-wrapper .profile-info {

@@ -1,6 +1,8 @@
+// @ts-nocheck
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../select/select.js';
 import '../../input_text/input_text.js';
+import {version} from '/scripts/validation.js';
 
 export class CufFormSectionAddress extends CufFormSection {
   constructor() {
@@ -9,8 +11,14 @@ export class CufFormSectionAddress extends CufFormSection {
 
   async connectedCallback() {
     await super.connectedCallback();
-    const res = await fetch('./__components/model/form_sections/form_section_address/form_section_address.html');
+    const res = await fetch(
+      `/__components/model/form_sections/form_section_address/form_section_address.html?v=${version}`);
     const form_section = await this.setFormSectionAttributes(res, 'Address');
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href',
+      `/__components/model/form_sections/form_section_address/form_section_address.css?v=${version}`);
+    this.shadowRoot.appendChild(stylesheet);
     form_section.form_fields.push(this.shadowRoot.getElementById('address-first'));
     form_section.form_fields.push(this.shadowRoot.getElementById('address-second'));
     form_section.form_fields.push(this.shadowRoot.getElementById('address-city'));

@@ -1,6 +1,7 @@
-import {scrollOverDuration} from "../../scripts/util.js";
+// @ts-nocheck
+import {version, scrollOverDuration} from "../../scripts/util.js";
 
-class CufContentCard extends HTMLElement {
+export class CufContentCard extends HTMLElement {
   content_key = '';
   collapsible = true;
 
@@ -15,9 +16,12 @@ class CufContentCard extends HTMLElement {
     let fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
     const card_rotation_image = this.attributes.card_rotation_image?.value || '';
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/content_card/content_card.html');
-    const content = await res.text();
-    shadow.innerHTML = content;
+    const res = await fetch(`/__components/content_card/content_card.html?v=${version}`);
+    shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/content_card/content_card.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     this.setContent();
     const card = this.shadowRoot.querySelector('.card');
     const headerText = this.shadowRoot.querySelector('.headerText');

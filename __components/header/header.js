@@ -1,7 +1,8 @@
+//@ts-nocheck
 import '../navigation_pane/navigation_pane.js';
-import {clientCookies} from '../../scripts/util.js';
+import {hasPermission, clientCookies, version} from '/scripts/util.js';
 
-class CufHeader extends HTMLElement {
+export class CufHeader extends HTMLElement {
   /** @type {boolean} */
   homepage = false;
   /** @type {number} */
@@ -20,15 +21,19 @@ class CufHeader extends HTMLElement {
   async connectedCallback() {
     this.homepage = this.attributes.homepage ? this.attributes.homepage.value === 'true' : this.homepage;
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/header/header.html');
-    const header = await res.text();
-    shadow.innerHTML = header;
+    const res = await fetch(`/__components/header/header.html?v=${version}`);
+    shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/header/header.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     if (this.homepage) {
       this.homepageSettings();
     }
     else {
       this.defaultSettings();
     }
+    this.setProfileButton();
     document.addEventListener('scroll', () => {
       this.lastKnownScrollPosition = window.scrollY;
     
@@ -69,13 +74,14 @@ class CufHeader extends HTMLElement {
     }
     const navigation_panel = this.shadowRoot.querySelector('cuf-navigation-pane');
     navigation_panel.remove();
-    const profile_wrapper = this.shadowRoot.querySelector('.profile-wrapper');
-    profile_wrapper.setAttribute('style', 'display: none;');
   }
 
   defaultSettings() {
     const fixed_container = this.shadowRoot.querySelector('.fixed-container');
     fixed_container.setAttribute('style', 'display: flex;');
+  }
+
+  setProfileButton() {
     const profile_picture = this.shadowRoot.querySelector('.profile-picture');
     const profile_button_logout = this.shadowRoot.querySelector('#profile-button-logout');
     profile_button_logout.href += `?hard_redirect=${window.location.href}`;
@@ -87,6 +93,10 @@ class CufHeader extends HTMLElement {
     if (cookies.hasOwnProperty('role')) {
       const profile_info_email = this.shadowRoot.querySelector('.profile-info-wrapper .info-role');
       profile_info_email.innerText = ` - ${cookies['role']} -`;
+      if (hasPermission(cookies['role'], 'viewAdminDashboard')) {
+        const profile_button_dashboard = this.shadowRoot.querySelector('#profile-button-dashboard');
+        profile_button_dashboard.removeAttribute('style');
+      }
     }
     if (cookies.hasOwnProperty('PHPSESSID')) {
       profile_picture.addEventListener('click', () => {

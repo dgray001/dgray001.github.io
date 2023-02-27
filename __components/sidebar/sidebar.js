@@ -1,14 +1,20 @@
-import { panelsToIncludeFrom } from '../../scripts/datalists.js';
+// ts-nocheck
+import {panelsToIncludeFrom} from '../../scripts/datalists.js';
+import {version} from "../../scripts/util.js";
 
-class CufSidebar extends HTMLElement {
+export class CufSidebar extends HTMLElement {
   constructor() {
     super();
   }
 
   async connectedCallback() {
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/sidebar/sidebar.html');
+    const res = await fetch(`/__components/sidebar/sidebar.html?v=${version}`);
     shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/sidebar/sidebar.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     try {
       const panels_data = this.attributes.panels?.value || '[]';
       const panels_to_include = panelsToIncludeFrom(panels_data);

@@ -1,6 +1,8 @@
+// @ts-nocheck
+import {version} from "../../scripts/util.js";
 import '../faith_fact_category/faith_fact_category.js';
 
-class CufFaithFactCategoryList extends HTMLElement {
+export class CufFaithFactCategoryList extends HTMLElement {
   hovered = false;
   scrolling = false;
   current_category = '';
@@ -13,8 +15,13 @@ class CufFaithFactCategoryList extends HTMLElement {
 
   async connectedCallback() {
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/faith_fact_category_list/faith_fact_category_list.html');
+    const res = await fetch(
+      `/__components/faith_fact_category_list/faith_fact_category_list.html?v=${version}`);
     shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/faith_fact_category_list/faith_fact_category_list.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     const response = await fetch('./__data/faith_facts/faith_facts.json');
     const json_data = await response.json();
     let category_html = '';

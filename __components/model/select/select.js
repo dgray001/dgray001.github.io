@@ -1,5 +1,7 @@
+// @ts-nocheck
 import {CufFormField} from '../form_field/form_field.js';
 import {specificMapping, defaultMapping} from '../../../scripts/datalists.js';
+import {version} from '/scripts/validation.js';
 
 export class CufSelect extends CufFormField {
   /** @type {Map<string, string>} */
@@ -16,8 +18,12 @@ export class CufSelect extends CufFormField {
   // This should be called when children (and inner text) available
   async childrenAvailableCallback() {
     await super.childrenAvailableCallback();
-    const res = await fetch('./__components/model/select/select.html');
+    const res = await fetch(`/__components/model/select/select.html?v=${version}`);
     await this.setFormFieldAttributes(res);
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/model/form_field/form_field.css?v=${version}`);
+    this.shadowRoot.appendChild(stylesheet);
     const options_text = this.attributes.options?.value || '[]';
     const mapping = await specificMapping(options_text);
     const default_mapping = defaultMapping(options_text);

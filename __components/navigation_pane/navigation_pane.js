@@ -1,5 +1,6 @@
+// @ts-nocheck
 import {HTMLBaseElement} from '../model/HTML_base_element.js';
-import {until, trim} from '../../scripts/util.js';
+import {until, trim, version} from '../../scripts/util.js';
 
 export class CufNavigationPane extends HTMLBaseElement {
   /**
@@ -19,8 +20,12 @@ export class CufNavigationPane extends HTMLBaseElement {
   // This should be called when children (and inner text) available
   async childrenAvailableCallback() {
     const shadow = this.attachShadow({mode: 'closed'});
-    const res = await fetch('./__components/navigation_pane/navigation_pane.html');
+    const res = await fetch(`/__components/navigation_pane/navigation_pane.html?v=${version}`);
     shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/navigation_pane/navigation_pane.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     const current_path = window.location.pathname;
     const wrapper = shadow.querySelector('.wrapper');
     this.setEventListener(shadow, 'about', current_path);

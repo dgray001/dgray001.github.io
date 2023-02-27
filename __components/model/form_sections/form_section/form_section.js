@@ -1,5 +1,6 @@
-
+// @ts-nocheck
 import {CufFormField} from '../../form_field/form_field.js';
+import {version} from '/scripts/validation.js';
 
 export class CufFormSection extends HTMLElement {
   /**
@@ -16,8 +17,13 @@ export class CufFormSection extends HTMLElement {
 
   async connectedCallback() {
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/model/form_sections/form_section/form_section.html');
+    const res = await fetch(`/__components/model/form_sections/form_section/form_section.html?v=${version}`);
     shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href',
+      `/__components/model/form_sections/form_section/form_section.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     // Add mutation observer for attributes on parent
     const mutation_config = {attributes: true, childList: false, subtree: false};
     const mutation_callback = (mutationList) => {

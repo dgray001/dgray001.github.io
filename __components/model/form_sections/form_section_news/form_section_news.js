@@ -1,6 +1,8 @@
+// @ts-nocheck
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import {CufTextArea} from '../../text_area/text_area.js';
+import {version} from '/scripts/validation.js';
 
 export class CufFormSectionNews extends CufFormSection {
   constructor() {
@@ -9,8 +11,14 @@ export class CufFormSectionNews extends CufFormSection {
 
   async connectedCallback() {
     await super.connectedCallback();
-    const res = await fetch('./__components/model/form_sections/form_section_news/form_section_news.html');
+    const res = await fetch(
+      `/__components/model/form_sections/form_section_news/form_section_news.html?v=${version}`);
     const form_section = await this.setFormSectionAttributes(res, 'Details');
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href',
+      `/__components/model/form_sections/form_section_news/form_section_news.css?v=${version}`);
+    this.shadowRoot.appendChild(stylesheet);
     form_section.form_fields.push(this.shadowRoot.getElementById('news-title'));
     form_section.form_fields.push(this.shadowRoot.getElementById('news-titlelink'));
     form_section.form_fields.push(this.shadowRoot.getElementById('news-description'));

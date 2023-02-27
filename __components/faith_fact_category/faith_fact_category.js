@@ -1,4 +1,7 @@
-class CufFaithFactCategory extends HTMLElement {
+// @ts-nocheck
+import {version} from "../../scripts/util.js";
+
+export class CufFaithFactCategory extends HTMLElement {
     // Callback function from host called when connectedCallback is complete
     callback;
     // Preloaded data if this element has been loaded before
@@ -11,8 +14,12 @@ class CufFaithFactCategory extends HTMLElement {
     async connectedCallback() {
       const category_name = this.attributes.category?.value || '';
       const shadow = this.attachShadow({mode: 'open'});
-      const res = await fetch('./__components/faith_fact_category/faith_fact_category.html');
+      const res = await fetch(`/__components/faith_fact_category/faith_fact_category.html?v=${version}`);
       shadow.innerHTML = await res.text();
+      const stylesheet = document.createElement('link');
+      stylesheet.setAttribute('rel', 'stylesheet');
+      stylesheet.setAttribute('href', `/__components/faith_fact_category/faith_fact_category.css?v=${version}`);
+      shadow.appendChild(stylesheet);
       if (!this.json_data) {
         const response = await fetch(`./__data/faith_facts/${category_name}.json`);
         this.json_data = await response.json();

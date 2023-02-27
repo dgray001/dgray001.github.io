@@ -2,6 +2,7 @@
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../input_text/input_text.js';
 import {CufTextArea} from '../../text_area/text_area.js';
+import {version} from '/scripts/validation.js';
 
 export class CufFormSectionPaper extends CufFormSection {
   constructor() {
@@ -10,8 +11,14 @@ export class CufFormSectionPaper extends CufFormSection {
 
   async connectedCallback() {
     await super.connectedCallback();
-    const res = await fetch('./__components/model/form_sections/form_section_paper/form_section_paper.html');
+    const res = await fetch(
+      `/__components/model/form_sections/form_section_paper/form_section_paper.html?v=${version}`);
     const form_section = await this.setFormSectionAttributes(res, 'Details');
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href',
+      `/__components/model/form_sections/form_section_paper/form_section_paper.css?v=${version}`);
+    this.shadowRoot.appendChild(stylesheet);
     form_section.form_fields.push(this.shadowRoot.getElementById('paper-title'));
     form_section.form_fields.push(this.shadowRoot.getElementById('paper-description'));
   }

@@ -1,5 +1,7 @@
+// @ts-nocheck
 import {CufFormField} from '../form_field/form_field.js';
 import {specificMapping, defaultMapping} from '../../../scripts/datalists.js';
+import {version} from '/scripts/validation.js';
 
 export class CufInputText extends CufFormField {
   /** @type {boolean} */
@@ -20,8 +22,12 @@ export class CufInputText extends CufFormField {
   // This should be called when children (and inner text) available
   async childrenAvailableCallback() {
     await super.childrenAvailableCallback();
-    const res = await fetch('./__components/model/input_text/input_text.html');
+    const res = await fetch(`/__components/model/input_text/input_text.html?v=${version}`);
     const form_field = await this.setFormFieldAttributes(res);
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/model/form_field/form_field.css?v=${version}`);
+    this.shadowRoot.appendChild(stylesheet);
     const autocomplete = this.attributes.autocomplete?.value || '';
     if (autocomplete) {
       form_field.setAttribute('autocomplete', autocomplete);

@@ -1,5 +1,7 @@
+// @ts-nocheck
 import {CufFormSection} from '../form_section/form_section.js';
 import '../../checkbox/checkbox.js';
+import {version} from '/scripts/validation.js';
 
 export class CufFormSectionMembershipRequest extends CufFormSection {
   constructor() {
@@ -8,8 +10,12 @@ export class CufFormSectionMembershipRequest extends CufFormSection {
 
   async connectedCallback() {
     await super.connectedCallback();
-    const res = await fetch('./__components/model/form_sections/form_section_membership_request/form_section_membership_request.html');
+    const res = await fetch(`/__components/model/form_sections/form_section_membership_request/form_section_membership_request.html?v=${version}`);
     const form_section = await this.setFormSectionAttributes(res, 'Membership Request (optional)');
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/model/form_sections/form_section_membership_request/form_section_membership_request.css?v=${version}`);
+    this.shadowRoot.appendChild(stylesheet);
     form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-member'));
     form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-associate'));
     form_section.form_fields.push(this.shadowRoot.getElementById('checkbox-chapters'));

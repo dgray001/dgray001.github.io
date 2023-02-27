@@ -1,14 +1,20 @@
-import { panelsToIncludeFrom } from '../../scripts/datalists.js';
+// @ts-nocheck
+import {panelsToIncludeFrom} from '../../scripts/datalists.js';
+import {version} from "../../scripts/util.js";
 
-class CufFooterPanels extends HTMLElement {
+export class CufFooterPanels extends HTMLElement {
   constructor() {
     super();
   }
 
   async connectedCallback() {
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch('./__components/footer_panels/footer_panels.html');
+    const res = await fetch(`/__components/footer_panels/footer_panels.html?v=${version}`);
     shadow.innerHTML = await res.text();
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/footer_panels/footer_panels.css?v=${version}`);
+    shadow.appendChild(stylesheet);
     try {
       const panels_data = this.attributes.panels?.value || '[]';
       const panels_to_include = panelsToIncludeFrom(panels_data);

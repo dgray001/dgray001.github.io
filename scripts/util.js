@@ -2,35 +2,60 @@
 
 export const DEV = true;
 
+export const version = '0.3i';
+
 export const base_url = DEV ?
   'https://371c-2603-8080-1600-efda-1c8-dab8-a917-6e79.ngrok.io' :
   'https://cuf.org';
 
-  /**
-   * Loop helper function
-   * @param {number} times times to loop
-   * @param {Function} callback function to call
-   */
-  export const loop = (times, callback) => {
-    for (let i = 0; i < times; i++) {
-      callback(i);
-    }
-  };
+/**
+ * Bases permission from cookie so can be spoofed
+ * @param {string} role
+ * @param {string} permission
+ * @return {boolean} whether this role allows this permission
+ */
+export function hasPermission(role, permission) {
+  if (role == 'admin') {
+    return true;
+  }
+  switch(permission) {
+    case "viewAdminDashboard":
+    case "layWitness":
+      return role == 'employee';
+    case "positionPapers":
+    case "news":
+    case "faithFacts":
+    case "jobsAvailable":
+    default:
+      return false;
+  }
+}
 
-  /**
-   * Loop helper function
-   * @param {number} times times to loop
-   * @param {Function} callback function to call
-   * @returns {Promise<void>} resolves when loop finished
-   */
-  export const asyncLoop = async (times, callback) => {
-    return new Promise(async (resolve) => {
-      for (let i = 0; i < times; i++) {
-        await callback(i);
-      }
-      resolve();
-    });
-  };
+/**
+ * Loop helper function
+ * @param {number} times times to loop
+ * @param {Function} callback function to call
+ */
+export const loop = (times, callback) => {
+  for (let i = 0; i < times; i++) {
+    callback(i);
+  }
+};
+
+/**
+ * Loop helper function
+ * @param {number} times times to loop
+ * @param {Function} callback function to call
+ * @returns {Promise<void>} resolves when loop finished
+ */
+export const asyncLoop = async (times, callback) => {
+  return new Promise(async (resolve) => {
+    for (let i = 0; i < times; i++) {
+      await callback(i);
+    }
+    resolve();
+  });
+};
 
 /**
  * @callback conditionCallback
