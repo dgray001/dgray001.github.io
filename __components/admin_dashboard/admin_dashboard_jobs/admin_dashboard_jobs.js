@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
 const {CufFormSectionJob} = await import(`../../model/form_sections/form_section_job/form_section_job.js?v=${version}`);
 const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
@@ -31,7 +32,7 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
    * Submit the form to add a new piece
    */
   async newFormSubmit() {
-    const response = await fetch('/__data/jobs_available/jobs_available.json');
+    const response = await fetchJson('/__data/jobs_available/jobs_available.json');
     /** @type {JobsData} */
     const json_data = await response.json();
     /** @type {JobsFormData} */
@@ -60,10 +61,10 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
       }
       else {
         this.status_message.setAttribute('style', 'display: block; color: red');
-        this.status_message.innerText = response_json;
+        this.status_message.innerText = JSON.stringify(response_json);
       }
     } catch(error) {
-      console.log(error);
+      console.log(error.toString());
       this.status_message.setAttribute('style', 'display: block; color: red');
       this.status_message.innerText = 'Jobs upload failed. Please report this bug.';
     }
@@ -80,9 +81,8 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
    */
   async updateCurrentList() {
     this.current_list.replaceChildren();
-    const response = await fetch('/__data/jobs_available/jobs_available.json');
     /** @type {JobsData} */
-    const jobs_data = await response.json();
+    const jobs_data = await fetchJson('jobs_available/jobs_available.json');
     for (const [i, jobs] of jobs_data['content'].entries()) {
       const jobs_div = document.createElement('div');
       jobs_div.innerHTML = `
@@ -137,9 +137,8 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
       <button class="form-submit-button" id="jobs-piece-form-button-${i}" type="button">Update jobs</button>
     `;
     piece_div.appendChild(jobs_piece_form);
-    const response = await fetch('/__data/jobs_available/jobs_available.json');
     /** @type {JobsData} */
-    const jobs_data = await response.json();
+    const jobs_data = await fetchJson('jobs_available/jobs_available.json');
     const jobs = jobs_data['content'][i];
     /** @type {CufFormSectionJob} */
     const jobs_piece_form_section = document.getElementById(`section-jobs-${i}`);
@@ -165,9 +164,8 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
    * @param {number} i paper index
    */
    async editUpdateJobPiece(i) {
-    const response = await fetch('/__data/jobs_available/jobs_available.json');
     /** @type {JobsData} */
-    const jobs_data = await response.json();
+    const jobs_data = await fetchJson('jobs_available/jobs_available.json');
     /** @type {CufFormSectionJob} */
     const jobs_piece_form_section = document.getElementById(`section-jobs-${i}`);
     const jobs_section_data = jobs_piece_form_section.getFormData();
@@ -189,7 +187,7 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
         throw new Error('Update jobs data failed');
       }
     } catch(error) {
-      console.log(error);
+      console.log(error.toString());
     } finally {
       await this.updateCurrentList();
     }
@@ -203,9 +201,8 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
     const delete_button = document.getElementById(`delete-jobs-button-${i}`);
     delete_button.disabled = true;
     delete_button.innerText = 'Deleting';
-    const jobs_response = await fetch('./__data/jobs_available/jobs_available.json');
     /** @type {JobsData} */
-    const jobs_data = await jobs_response.json();
+    const jobs_data = await fetchJson('jobs_available/jobs_available.json');
     jobs_data['content'].splice(i, 1);
     try {
       const response = await fetch('/server/admin_dashboard/jobs_data.php', {
@@ -220,7 +217,7 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
         throw new Error('Failed to delete job');
       }
     } catch(error) {
-      console.log(error);
+      console.log(error.toString());
     } finally {
       await this.updateCurrentList();
     }

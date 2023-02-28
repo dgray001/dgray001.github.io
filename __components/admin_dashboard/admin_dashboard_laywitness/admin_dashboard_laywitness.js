@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
 const {CufFormSectionLaywitness} = await import(`../../model/form_sections/form_section_laywitness/form_section_laywitness.js?v=${version}`);
 const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
@@ -40,9 +41,8 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
    * Submit the form to add a new piece
    */
   async newFormSubmit() {
-    const response = await fetch('/__data/lay_witness/lay_witness.json');
     /** @type {LaywitnessData} */
-    const json_data = await response.json();
+    const json_data = await fetchJson('lay_witness/lay_witness.json');
     /** @type {LaywitnessFormData} */
     const laywitness_section_data = this.new_form_section.getFormData();
     const file = this.file_input.files[0];
@@ -87,9 +87,8 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
    */
   async updateCurrentList() {
     this.current_list.replaceChildren();
-    const laywitness_response = await fetch('/__data/lay_witness/lay_witness.json');
     /** @type {LaywitnessData} */
-    const laywitness_data = await laywitness_response.json();
+    const laywitness_data = await fetchJson('lay_witness/lay_witness.json');
     for (const [i, volume] of laywitness_data['volumes'].entries()) {
       const volume_div = document.createElement('div');
       const issue_wrapper = document.createElement('div');
@@ -180,9 +179,8 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
       <button class="form-submit-button" id="laywitness-piece-form-button-${i}-${j}" type="button">Update Laywitness</button>
     `;
     piece_div.appendChild(lay_witness_piece_form);
-    const response = await fetch('/__data/lay_witness/lay_witness.json');
     /** @type {LaywitnessData} */
-    const laywitness_data = await response.json();
+    const laywitness_data = await fetchJson('lay_witness/lay_witness.json');
     const volume = laywitness_data['volumes'][i]['number'];
     const issue = laywitness_data['volumes'][i]['issues'][j];
     /** @type {CufFormSectionLaywitness} */
@@ -213,9 +211,8 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
    * @param {number} j issue index
    */
    async editUpdateLaywitnessPiece(i, j) {
-    const laywitness_response = await fetch('/__data/lay_witness/lay_witness.json');
     /** @type {LaywitnessData} */
-    const laywitness_data = await laywitness_response.json();
+    const laywitness_data = await fetchJson('lay_witness/lay_witness.json');
     const volume = laywitness_data['volumes'][i]['number'];
     const issue = laywitness_data['volumes'][i]['issues'][j];
     // first remove current issue since it could have been changed
@@ -298,15 +295,14 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
     const delete_button = document.getElementById(`delete-laywitness-button-${i}-${j}`);
     delete_button.disabled = true;
     delete_button.innerText = 'Deleting';
-    const lay_witness_response = await fetch('./__data/lay_witness/lay_witness.json');
     /** @type {LaywitnessData} */
-    const lay_witness_data = await lay_witness_response.json();
-    const volume = lay_witness_data['volumes'][i]['number'];
-    const issue = lay_witness_data['volumes'][i]['issues'][j];
+    const laywitness_data = await fetchJson('lay_witness/lay_witness.json');
+    const volume = laywitness_data['volumes'][i]['number'];
+    const issue = laywitness_data['volumes'][i]['issues'][j];
     const filename = this.laywitnessFilename(volume, issue);
-    lay_witness_data['volumes'][i]['issues'].splice(j, 1);
-    if (!lay_witness_data['volumes'][i]['issues'].length) {
-      lay_witness_data['volumes'].splice(i, 1);
+    laywitness_data['volumes'][i]['issues'].splice(j, 1);
+    if (!laywitness_data['volumes'][i]['issues'].length) {
+      laywitness_data['volumes'].splice(i, 1);
     }
     try {
       // Update data
@@ -315,7 +311,7 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(lay_witness_data),
+        body: JSON.stringify(laywitness_data),
       });
       const response_json = await response.json();
       if (!response_json['success']) {

@@ -1,6 +1,7 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 const {scrollOverDuration} = await import(`/scripts/util.js?v=${version}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 
 export class CufContentCard extends HTMLElement {
   content_key = '';
@@ -176,8 +177,7 @@ export class CufContentCard extends HTMLElement {
 
   async setContent() {
     try {
-      const response = await fetch(`./__data/${this.content_key}/${this.content_key}.json`);
-      const json_data = await response.json();
+      const json_data = await fetchJson(`${this.content_key}/${this.content_key}.json`);
       this.shadowRoot.querySelector('.headerText').innerHTML = json_data['header'];
       let content_list = '';
       let not_first = false;
@@ -204,7 +204,7 @@ export class CufContentCard extends HTMLElement {
       }
       this.shadowRoot.querySelector('.content').innerHTML = content_list;
     } catch(error) {
-      throw new Error('Error setting content for: ' + this.content_key);
+      throw new Error(`Error setting content for ${this.content_key}: ${error.toString()}.`);
     }
   }
   

@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 
 export class CufFaithFactCategory extends HTMLElement {
     // Callback function from host called when connectedCallback is complete
@@ -21,8 +22,7 @@ export class CufFaithFactCategory extends HTMLElement {
       stylesheet.setAttribute('href', `/__components/faith_fact_category/faith_fact_category.css?v=${version}`);
       shadow.appendChild(stylesheet);
       if (!this.json_data) {
-        const response = await fetch(`./__data/faith_facts/${category_name}.json`);
-        this.json_data = await response.json();
+        this.json_data = await fetchJson(`faith_facts/${category_name}.json`);
       }
       shadow.querySelector('.subtitle').innerHTML = this.json_data['category_display']
       const category_data = this.json_data['faith_facts'];

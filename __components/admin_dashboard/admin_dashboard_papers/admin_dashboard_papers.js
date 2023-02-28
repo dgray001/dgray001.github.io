@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
 const {CufFormSectionPaper} = await import(`../../model/form_sections/form_section_paper/form_section_paper.js?v=${version}`);
 const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
@@ -32,16 +33,15 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
    * Submit the form to add a new piece
    */
   async newFormSubmit() {
-    const response = await fetch('/__data/papers/papers.json');
     /** @type {PapersData} */
-    const json_data = await response.json();
+    const json_data = await fetchJson('papers/papers.json');
     /** @type {PaperFormData} */
     const paper_section_data = this.new_form_section.getFormData();
     const file = this.file_input.files[0];
     /** @type {PositionPaper} */
     const new_paper = {
       'title': paper_section_data['title'],
-      'titlelink': `/__data/articles/${file.name}`,
+      'titlelink': `/__data/papers/${file.name}`,
     };
     if (paper_section_data.description) {
       new_paper['description'] = paper_section_data['description'];
@@ -86,9 +86,8 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
    */
   async updateCurrentList() {
     this.current_list.replaceChildren();
-    const response = await fetch('/__data/papers/papers.json');
     /** @type {PapersData} */
-    const papers_data = await response.json();
+    const papers_data = await fetchJson('papers/papers.json');
     for (const [i, paper] of papers_data['content'].entries()) {
       const paper_div = document.createElement('div');
       paper_div.innerHTML = `
@@ -150,9 +149,8 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
       <button class="form-submit-button" id="paper-piece-form-button-${i}" type="button">Update Position Paper</button>
     `;
     piece_div.appendChild(paper_piece_form);
-    const response = await fetch('/__data/papers/papers.json');
     /** @type {PapersData} */
-    const papers_data = await response.json();
+    const papers_data = await fetchJson('papers/papers.json');
     const paper = papers_data['content'][i];
     /** @type {CufFormSectionPaper} */
     const paper_piece_form_section = document.getElementById(`section-paper-${i}`);
@@ -178,9 +176,8 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
    * @param {number} i paper index
    */
    async editUpdatePaperPiece(i) {
-    const response = await fetch('/__data/papers/papers.json');
     /** @type {PapersData} */
-    const papers_data = await response.json();
+    const papers_data = await fetchJson('papers/papers.json');
     const paper_piece_input = document.getElementById(`paper-file-upload-${i}`);
     /** @type {File=} */
     const paper_pdf = paper_piece_input.files[0];
@@ -192,7 +189,7 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
     const paper_section_data = paper_piece_form_section.getFormData();
     const new_paper = {
       'title': paper_section_data['title'],
-      'titlelink': delete_old_file ? `/__data/articles/${filename}` : old_filename,
+      'titlelink': delete_old_file ? `/__data/papers/${filename}` : old_filename,
     };
     if (paper_section_data.description) {
       new_paper['description'] = paper_section_data['description'];
@@ -256,9 +253,8 @@ class CufAdminDashboardPapers extends CufAdminDashboardSection {
       const delete_button = document.getElementById(`delete-paper-button-${i}`);
       delete_button.disabled = true;
       delete_button.innerText = 'Deleting';
-      const response = await fetch('./__data/papers/papers.json');
       /** @type {PapersData} */
-      const paper_data = await response.json();
+      const papers_data = await fetchJson('papers/papers.json');
       const filename = paper_data['content'][i].titlelink;
       paper_data['content'].splice(i, 1);
       try {

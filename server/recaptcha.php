@@ -27,7 +27,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $server_output = curl_exec($ch);
 
-curl_close ($ch);
+curl_close($ch);
 
 echo $server_output;
 exit();

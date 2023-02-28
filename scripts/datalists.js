@@ -1,3 +1,6 @@
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
+
 /**
  * Returns array of panels to include based on attribute input
  * @param {JSON | string} panels_data - a valid JSON or keyword
@@ -59,9 +62,7 @@ export async function specificMapping(options_text) {
  * @return {Promise<Map<string, string>>} country_map<code, display name>
  */
 export async function countriesList() {
-  const res = await fetch('./__data/countries.json');
-  const country_json = await res.text();
-  const country_data = JSON.parse(country_json);
+  const country_data = await fetchJson('countries.json');
   /**
   * @type {Map<string, string>}
   */

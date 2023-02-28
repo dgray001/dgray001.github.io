@@ -26,4 +26,9 @@ $received_data = json_decode(file_get_contents('php://input'), true);
 
 forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/jobs_available/jobs_available.json', json_encode($received_data));
 
-echo json_encode(array('success' => true));
+$data_control = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/__data/data_control.json');
+$json_data = json_decode($data_control, true);
+$json_data['jobs_available/jobs_available.json'] = time();
+forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/data_control.json', json_encode($json_data));
+
+echo json_encode(array('success' => 'true'));

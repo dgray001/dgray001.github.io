@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {panelsToIncludeFrom} = await import(`/scripts/datalists.js?v=${version}`);
 
 export class CufSidebar extends HTMLElement {
@@ -22,8 +23,7 @@ export class CufSidebar extends HTMLElement {
       const start_closed = window.innerWidth < 600;
       let content_string = '';
       for (const panel_to_include of panels_to_include) {
-        const response = await fetch(`./__data/${panel_to_include}/${panel_to_include}.json`);
-        const json_data = await response.json();
+        const json_data = await fetchJson(`${panel_to_include}/${panel_to_include}.json`);
         if (!json_data['content'] || json_data['content'].length === 0) {
             continue;
         }

@@ -30,6 +30,6 @@ if ($filetype != 'application/pdf') {
   exit(3);
 }
 
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/articles/' . $filename, $in);
+forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/__data/papers/' . $filename, $in);
 
 echo json_encode(array('success' => true));

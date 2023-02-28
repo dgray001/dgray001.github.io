@@ -1,8 +1,9 @@
 // @ts-check
 
-import {TestModule} from "../test_module.js";
-import {it, mockFetch} from "../test_util.js";
-import {verifyRecaptcha, public_recaptcha_site_key} from "../../scripts/recaptcha.js";
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {TestModule} = await import(`../test_module.js?v=${version}`);
+const {it, mockFetch} = await import(`../test_module.js?v=${version}`);
+const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
 
 export const recaptcha_tests = new TestModule('recaptcha tests', [], [
   it('sends to recaptcha api', async function() {

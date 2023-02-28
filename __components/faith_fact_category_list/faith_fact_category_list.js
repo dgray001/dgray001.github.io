@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 await import(`../faith_fact_category/faith_fact_category.js?v=${version}`);
 
 export class CufFaithFactCategoryList extends HTMLElement {
@@ -22,8 +23,7 @@ export class CufFaithFactCategoryList extends HTMLElement {
     stylesheet.setAttribute('rel', 'stylesheet');
     stylesheet.setAttribute('href', `/__components/faith_fact_category_list/faith_fact_category_list.css?v=${version}`);
     shadow.appendChild(stylesheet);
-    const response = await fetch('./__data/faith_facts/faith_facts.json');
-    const json_data = await response.json();
+    const json_data = await fetchJson('faith_facts/faith_facts.json');
     let category_html = '';
     for (const category of json_data['faith_fact_categories']) {
       category_html +=

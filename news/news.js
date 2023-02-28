@@ -1,8 +1,11 @@
 'use strict';
+export {};
+
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 
 window.onload = async () => {
-  const response = await fetch(`./__data/news/news.json`);
-  const json_data = await response.json();
+  const json_data = await fetchJson(`news/news.json`);
   const title = document.getElementById('news-title');
   title.innerText = json_data['header'] ?? '';
   let content_list = '';

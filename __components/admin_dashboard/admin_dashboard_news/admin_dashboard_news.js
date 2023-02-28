@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
 const {CufFormSectionNews} = await import(`../../model/form_sections/form_section_news/form_section_news.js?v=${version}`);
 const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
@@ -33,9 +34,8 @@ export class CufAdminDashboardNews extends CufAdminDashboardSection {
    * Submit the form to add a new piece
    */
   async newFormSubmit() {
-    const response = await fetch('/__data/news/news.json');
     /** @type {NewsData} */
-    const json_data = await response.json();
+    const json_data = await fetchJson('news/news.json');
     /** @type {NewsFormData} */
     const news_section_data = this.new_form_section.getFormData();
     /** @type {NewsPiece} */
@@ -85,9 +85,8 @@ export class CufAdminDashboardNews extends CufAdminDashboardSection {
    */
   async updateCurrentList() {
     this.current_list.replaceChildren();
-    const response = await fetch('/__data/news/news.json');
     /** @type {NewsData} */
-    const news_data = await response.json();
+    const news_data = await fetchJson('news/news.json');
     for (const [i, news] of news_data['content'].entries()) {
       const news_div = document.createElement('div');
       news_div.innerHTML = `
@@ -146,9 +145,8 @@ export class CufAdminDashboardNews extends CufAdminDashboardSection {
       <button class="form-submit-button" id="news-piece-form-button-${i}" type="button">Update News</button>
     `;
     piece_div.appendChild(news_piece_form);
-    const response = await fetch('/__data/news/news.json');
     /** @type {NewsData} */
-    const news_data = await response.json();
+    const news_data = await fetchJson('news/news.json');
     const news = news_data['content'][i];
     /** @type {CufFormSectionNews} */
     const news_piece_form_section = document.getElementById(`section-news-${i}`);
@@ -175,9 +173,8 @@ export class CufAdminDashboardNews extends CufAdminDashboardSection {
    * @param {number} i paper index
    */
    async editUpdateNewsPiece(i) {
-    const response = await fetch('/__data/news/news.json');
     /** @type {NewsData} */
-    const news_data = await response.json();
+    const news_data = await fetchJson('news/news.json');
     /** @type {CufFormSectionNews} */
     const news_piece_form_section = document.getElementById(`section-news-${i}`);
     const news_section_data = news_piece_form_section.getFormData();
@@ -216,9 +213,8 @@ export class CufAdminDashboardNews extends CufAdminDashboardSection {
     const delete_button = document.getElementById(`delete-news-button-${i}`);
     delete_button.disabled = true;
     delete_button.innerText = 'Deleting';
-    const news_response = await fetch('./__data/news/news.json');
     /** @type {NewsData} */
-    const news_data = await news_response.json();
+    const news_data = await fetchJson('news/news.json');
     news_data['content'].splice(i, 1);
     try {
       const response = await fetch('/server/admin_dashboard/news_data.php', {

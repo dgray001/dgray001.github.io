@@ -1,8 +1,11 @@
 'use strict';
+export {};
+
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 
 window.onload = async () => {
-  const response = await fetch('./__data/lay_witness/lay_witness.json');
-  const json_data = await response.json();
+  const json_data = await fetchJson(`lay_witness/lay_witness.json`);
   const newsletter_list = document.getElementById('newsletter-list');
   for (const volume of json_data['volumes']) {
     const volume_element = document.createElement('div');
