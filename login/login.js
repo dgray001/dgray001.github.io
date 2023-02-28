@@ -8,10 +8,10 @@ const {clientCookies} = await import(`/scripts/util.js?v=${version}`);
 window.onload = () => {
   const cookies = clientCookies();
   const section_content = document.getElementById('form-section-content');
-  if (cookies.hasOwnProperty('PHPSESSID')) {
+  if (cookies.hasOwnProperty('PHPSESSID') && cookies.hasOwnProperty('email') && cookies.hasOwnProperty('role')) {
     section_content.innerHTML = `
     <p>
-      You are already logged in as ${cookies.email}. Please logout to switch accounts.
+      You are already logged in as <b>${cookies.email}</b>. Please logout to switch accounts.
     </p>
     <form id="login-form" name="login-form" action="javascript:submitLogoutForm()">
       <div id="login-form-status-message"></div>

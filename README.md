@@ -10,3 +10,9 @@ Dev server:
 Testing:
  - run dev server and navigate to ./tests
  - event listeners can become corrupt; so may need to refresh page
+
+Staging:
+ - Bluehost (and hostgator) have a bug where if you can't have a php file (or folder?) name 'contact'
+ - I don't think it can have the word contact at all as it's a keyword (why tf?)
+ - So when deploying to staging, rename contact.php to anything else, say con_test.php
+ - Also need to update contact.js with the new name

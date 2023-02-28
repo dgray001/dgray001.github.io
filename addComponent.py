@@ -39,7 +39,7 @@ f.write(f'    const res = await fetch(`/{folder_string}/{filename}.html?v=${{ver
 f.write('    shadow.innerHTML = await res.text();\n')
 f.write('    const stylesheet = document.createElement(\'link\');\n')
 f.write('    stylesheet.setAttribute(\'rel\', \'stylesheet\');\n')
-f.write('    stylesheet.setAttribute(\'href\', `/__components/header/header.css?v=${version}`);\n')
+f.write(f'    stylesheet.setAttribute(\'href\', `/{folder_string}/{filename}.css?v=${{version}}`);\n')
 f.write('    shadow.appendChild(stylesheet);\n')
 f.write('  }\n')
 f.write('}\n')

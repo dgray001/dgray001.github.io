@@ -1,7 +1,7 @@
 //@ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
-const {hasPermission, clientCookies} = await import(`/scripts/util.js?v=${version}`);
 await import(`../navigation_pane/navigation_pane.js?v=${version}`);
+await import(`../profile_button/profile_button.js?v=${version}`);
 
 export class CufHeader extends HTMLElement {
   /** @type {boolean} */
@@ -34,7 +34,6 @@ export class CufHeader extends HTMLElement {
     else {
       this.defaultSettings();
     }
-    this.setProfileButton();
     document.addEventListener('scroll', () => {
       this.lastKnownScrollPosition = window.scrollY;
     
@@ -80,40 +79,6 @@ export class CufHeader extends HTMLElement {
   defaultSettings() {
     const fixed_container = this.shadowRoot.querySelector('.fixed-container');
     fixed_container.setAttribute('style', 'display: flex;');
-  }
-
-  setProfileButton() {
-    const profile_picture = this.shadowRoot.querySelector('.profile-picture');
-    const profile_button_logout = this.shadowRoot.querySelector('#profile-button-logout');
-    profile_button_logout.href += `?hard_redirect=${window.location.href}`;
-    const cookies = clientCookies();
-    if (cookies.hasOwnProperty('email')) {
-      const profile_info_email = this.shadowRoot.querySelector('.profile-info-wrapper .info-email');
-      profile_info_email.innerText = cookies['email'];
-    }
-    if (cookies.hasOwnProperty('role')) {
-      const profile_info_email = this.shadowRoot.querySelector('.profile-info-wrapper .info-role');
-      profile_info_email.innerText = ` - ${cookies['role']} -`;
-      if (hasPermission(cookies['role'], 'viewAdminDashboard')) {
-        const profile_button_dashboard = this.shadowRoot.querySelector('#profile-button-dashboard');
-        profile_button_dashboard.removeAttribute('style');
-      }
-    }
-    if (cookies.hasOwnProperty('PHPSESSID')) {
-      profile_picture.addEventListener('click', () => {
-        const profile_info_wrapper = this.shadowRoot.querySelector('.profile-info-wrapper');
-        this.profile_info_open = !this.profile_info_open;
-        if (this.profile_info_open) {
-          profile_info_wrapper.setAttribute('style', 'display: block;');
-        }
-        else {
-          profile_info_wrapper.setAttribute('style', 'display: none;');
-        }
-      });
-    }
-    else {
-      profile_picture.setAttribute('style', 'display: none;');
-    }
   }
 }
 
