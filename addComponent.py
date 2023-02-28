@@ -26,7 +26,7 @@ f.close()
 
 f = open(os.path.join(newdir, f'{filename}.js'), 'w')
 f.write('// @ts-nocheck\n')
-f.write('import {version} from \'/scripts/util.js\'\n')
+f.write('const {version} = await import(`/scripts/version.js?v=${Date.now()}`);\n')
 f.write('\n')
 f.write(f'export class Cuf{string.capwords(filename.replace("_", " ")).replace(" ", "")} extends HTMLElement {{\n')
 f.write('  constructor() {\n')

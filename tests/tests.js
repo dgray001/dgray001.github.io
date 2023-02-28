@@ -1,6 +1,9 @@
 // @ts-check
+'use strict';
 
-import {DEV} from '../scripts/util.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {DEV} = await import(`/scripts/util.js?v=${version}`);
+
 import {TestModule} from './test_module.js';
 import {components_module} from './components/components_module.js';
 import {scripts_module} from './scripts/scripts_module.js';
@@ -8,8 +11,7 @@ import {test_util_tests} from './test_util.test.js';
 
 window.onload = () => {
   if (!DEV) {
-    console.log('Should only run tests in dev.');
-    return;
+    throw new Error('Should only run tests in dev.');
   }
 
   const test_module = new TestModule('CUF tests', [
@@ -20,6 +22,9 @@ window.onload = () => {
 
   const mappingAndHtml = test_module.getHTML(1);
   const test_suite = document.getElementById('test-suite');
+  if (!test_suite) {
+    throw new Error('Test suite is null.');
+  }
   test_suite.innerHTML = mappingAndHtml.module_html;
   const test_mapping = mappingAndHtml.mapping;
   test_mapping.forEach((value, key) => {

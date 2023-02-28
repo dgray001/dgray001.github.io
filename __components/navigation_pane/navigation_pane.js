@@ -1,6 +1,7 @@
 // @ts-nocheck
-import {HTMLBaseElement} from '../model/HTML_base_element.js';
-import {until, trim, version} from '../../scripts/util.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {HTMLBaseElement} = await import(`../model/HTML_base_element.js?v=${version}`);
+const {until, trim} = await import(`/scripts/util.js?v=${version}`);
 
 export class CufNavigationPane extends HTMLBaseElement {
   /**

@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {CufFormField} from '../form_field/form_field.js';
-import {version} from '/scripts/validation.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {CufFormField} = await import(`../form_field/form_field.js?v=${version}`);
 
 export class CufTextArea extends CufFormField {
   /** @type {number} */
@@ -21,7 +21,7 @@ export class CufTextArea extends CufFormField {
     const form_field = await this.setFormFieldAttributes(res);
     const stylesheet = document.createElement('link');
     stylesheet.setAttribute('rel', 'stylesheet');
-    stylesheet.setAttribute('href', `/__components/model/form_field/form_field.css?v=${version}`);
+    stylesheet.setAttribute('href', `/__components/model/text_area/text_area.css?v=${version}`);
     this.shadowRoot.appendChild(stylesheet);
     form_field.addEventListener('input', (evt) => {
       this.setTextAreaHeight(evt.target);

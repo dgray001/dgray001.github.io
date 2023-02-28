@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {version} from "../../scripts/util.js";
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 
 export class CufFaithFactCategory extends HTMLElement {
     // Callback function from host called when connectedCallback is complete

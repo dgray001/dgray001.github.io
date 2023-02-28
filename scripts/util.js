@@ -2,8 +2,6 @@
 
 export const DEV = true;
 
-export const version = '0.3i';
-
 export const base_url = DEV ?
   'https://371c-2603-8080-1600-efda-1c8-dab8-a917-6e79.ngrok.io' :
   'https://cuf.org';

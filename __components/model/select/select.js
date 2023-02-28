@@ -1,7 +1,7 @@
 // @ts-nocheck
-import {CufFormField} from '../form_field/form_field.js';
-import {specificMapping, defaultMapping} from '../../../scripts/datalists.js';
-import {version} from '/scripts/validation.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {CufFormField} = await import(`../form_field/form_field.js?v=${version}`);
+const {specificMapping, defaultMapping} = await import(`/scripts/datalists.js?v=${version}`);
 
 export class CufSelect extends CufFormField {
   /** @type {Map<string, string>} */
@@ -22,7 +22,7 @@ export class CufSelect extends CufFormField {
     await this.setFormFieldAttributes(res);
     const stylesheet = document.createElement('link');
     stylesheet.setAttribute('rel', 'stylesheet');
-    stylesheet.setAttribute('href', `/__components/model/form_field/form_field.css?v=${version}`);
+    stylesheet.setAttribute('href', `/__components/model/select/select.css?v=${version}`);
     this.shadowRoot.appendChild(stylesheet);
     const options_text = this.attributes.options?.value || '[]';
     const mapping = await specificMapping(options_text);

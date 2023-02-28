@@ -1,4 +1,8 @@
-import '../__components/header/header.js';
-import '../__components/footer_contact/footer_contact.js';
-import '../__components/sidebar/sidebar.js';
-import '../__components/content_card/content_card.js';
+export {};
+
+const {version} = await import(`./version.js?v=${Date.now()}`);
+
+await import(`../__components/header/header.js?v=${version}`);
+await import(`../__components/footer_contact/footer_contact.js?v=${version}`);
+await import(`../__components/sidebar/sidebar.js?v=${version}`);
+await import(`../__components/content_card/content_card.js?v=${version}`);

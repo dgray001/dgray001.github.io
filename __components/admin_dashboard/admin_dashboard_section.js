@@ -1,8 +1,8 @@
 // @ts-nocheck
-
-import {until} from "../../scripts/util.js";
-import {CufFormSection} from "../model/form_sections/form_section/form_section.js";
-import {verifyRecaptcha, public_recaptcha_site_key} from '../../scripts/recaptcha.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {until} = await import(`/scripts/util.js?v=${version}`);
+const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
+const {CufFormSection} = await import(`../model/form_sections/form_section/form_section.js?v=${version}`);
 
 export class CufAdminDashboardSection extends HTMLElement {
   /** @type {HTMLHeadingElement} */
@@ -46,8 +46,16 @@ export class CufAdminDashboardSection extends HTMLElement {
    * @param {string} name 
    */
   async setHTML(path, name) {
-    const res = await fetch(`./__components/admin_dashboard/${path}/${path}.html`);
+    const res = await fetch(`/__components/admin_dashboard/${path}/${path}.html?v=${version}`);
     this.innerHTML = await res.text();
+    const overall_stylesheet = document.createElement('link');
+    overall_stylesheet.setAttribute('rel', 'stylesheet');
+    overall_stylesheet.setAttribute('href', `/__components/admin_dashboard/admin_dashboard_section.css?v=${version}`);
+    this.appendChild(overall_stylesheet);
+    const stylesheet = document.createElement('link');
+    stylesheet.setAttribute('rel', 'stylesheet');
+    stylesheet.setAttribute('href', `/__components/admin_dashboard/${path}/${path}.css?v=${version}`);
+    this.appendChild(stylesheet);
 
     await until(() => !!this.querySelector('.section-title'));
     this.section_title = this.querySelector('.section-title');

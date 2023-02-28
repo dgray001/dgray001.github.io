@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {version} from "../../scripts/util.js";
-import '../faith_fact_category/faith_fact_category.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+await import(`../faith_fact_category/faith_fact_category.js?v=${version}`);
 
 export class CufFaithFactCategoryList extends HTMLElement {
   hovered = false;

@@ -1,7 +1,8 @@
 // @ts-nocheck
-import {CufFormSectionJob} from "../../model/form_sections/form_section_job/form_section_job.js";
-import {CufAdminDashboardSection} from "../admin_dashboard_section.js";
-import {until} from "../../../scripts/util.js";
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {until} = await import(`/scripts/util.js?v=${version}`);
+const {CufFormSectionJob} = await import(`../../model/form_sections/form_section_job/form_section_job.js?v=${version}`);
+const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
 
 export class CufAdminDashboardJobs extends CufAdminDashboardSection {
   constructor() {

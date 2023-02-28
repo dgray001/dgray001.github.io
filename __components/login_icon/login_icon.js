@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {version} from '/scripts/util.js'
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 
 export class CufLoginIcon extends HTMLElement {
   constructor() {

@@ -1,7 +1,8 @@
 // @ts-nocheck
-import {CufFormSectionLaywitness} from "../../model/form_sections/form_section_laywitness/form_section_laywitness.js";
-import {CufAdminDashboardSection} from "../admin_dashboard_section.js";
-import {until} from "../../../scripts/util.js";
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {until} = await import(`/scripts/util.js?v=${version}`);
+const {CufFormSectionLaywitness} = await import(`../../model/form_sections/form_section_laywitness/form_section_laywitness.js?v=${version}`);
+const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
 
 export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
   constructor() {

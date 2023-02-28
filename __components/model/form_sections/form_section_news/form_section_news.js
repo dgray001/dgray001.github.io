@@ -1,8 +1,8 @@
 // @ts-nocheck
-import {CufFormSection} from '../form_section/form_section.js';
-import '../../input_text/input_text.js';
-import {CufTextArea} from '../../text_area/text_area.js';
-import {version} from '/scripts/validation.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {CufFormSection} = await import(`../form_section/form_section.js?v=${version}`);
+const {CufTextArea} = await import(`../../text_area/text_area.js?v=${version}`);
+await import(`../../input_text/input_text.js?v=${version}`);
 
 export class CufFormSectionNews extends CufFormSection {
   constructor() {

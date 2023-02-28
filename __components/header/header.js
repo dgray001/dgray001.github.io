@@ -1,6 +1,7 @@
 //@ts-nocheck
-import '../navigation_pane/navigation_pane.js';
-import {hasPermission, clientCookies, version} from '/scripts/util.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {hasPermission, clientCookies} = await import(`/scripts/util.js?v=${version}`);
+await import(`../navigation_pane/navigation_pane.js?v=${version}`);
 
 export class CufHeader extends HTMLElement {
   /** @type {boolean} */

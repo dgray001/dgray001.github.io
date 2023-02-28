@@ -1,5 +1,6 @@
 // @ts-nocheck
-import {version, scrollOverDuration} from "../../scripts/util.js";
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {scrollOverDuration} = await import(`/scripts/util.js?v=${version}`);
 
 export class CufContentCard extends HTMLElement {
   content_key = '';

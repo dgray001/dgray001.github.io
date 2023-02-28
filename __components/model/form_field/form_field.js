@@ -1,6 +1,7 @@
 // @ts-nocheck
-import {Validator, validate, version} from '/scripts/validation.js';
-import {HTMLBaseElement} from '../HTML_base_element.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {Validator, validate} = await import(`/scripts/validation.js?v=${version}`);
+const {HTMLBaseElement} = await import(`../HTML_base_element.js?v=${version}`);
 
 export class CufFormField extends HTMLBaseElement {
   /**
@@ -8,31 +9,40 @@ export class CufFormField extends HTMLBaseElement {
    * @type {HTMLElement}
    */
   form_field;
+  
   /**
    * reference to wrapper element
    * @type {HTMLElement}
    */
   form_field_wrapper;
+
   /**
    * reference to label element
    * @type {HTMLElement}
    */
   form_field_label;
+
   /**
    * reference to helper text element
    * @type {HTMLElement}
    */
   form_field_helper_text;
+
   /** @type {string} */
   id = '';
+
   /** @type {string} */
   label = '';
+
   /** @type {string} */
   default_helper_text = '';
+
   /** @type {Set<Validator>} */
   validators;
+
   /** @type {boolean} */
   valid;
+
   /** @type {string} */
   validation_error_text = '';
 

@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {CufFormField} from '../../form_field/form_field.js';
-import {version} from '/scripts/validation.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {CufFormField} = await import(`../../form_field/form_field.js?v=${version}`);
 
 export class CufFormSection extends HTMLElement {
   /**

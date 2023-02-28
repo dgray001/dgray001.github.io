@@ -1,6 +1,6 @@
-// ts-nocheck
-import {panelsToIncludeFrom} from '../../scripts/datalists.js';
-import {version} from "../../scripts/util.js";
+// @ts-nocheck
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {panelsToIncludeFrom} = await import(`/scripts/datalists.js?v=${version}`);
 
 export class CufSidebar extends HTMLElement {
   constructor() {

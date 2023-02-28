@@ -1,7 +1,9 @@
+// @ts-nocheck
 'use strict';
 
-import {verifyRecaptcha, public_recaptcha_site_key} from '../scripts/recaptcha.js';
-import {createContactEmail, base_url} from '../scripts/util.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
+const {createContactEmail, base_url} = await import(`/scripts/util.js?v=${version}`);
 
 /**
  * @return {Promise<void>}

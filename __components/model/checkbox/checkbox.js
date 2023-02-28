@@ -1,6 +1,6 @@
 // @ts-nocheck
-import {CufFormField} from '../form_field/form_field.js';
-import {version} from '/scripts/validation.js';
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {CufFormField} = await import(`../form_field/form_field.js?v=${version}`);
 
 export class CufCheckbox extends CufFormField {
   constructor() {
@@ -20,7 +20,7 @@ export class CufCheckbox extends CufFormField {
     await this.setFormFieldAttributes(res, true);
     const stylesheet = document.createElement('link');
     stylesheet.setAttribute('rel', 'stylesheet');
-    stylesheet.setAttribute('href', `/__components/model/form_field/form_field.css?v=${version}`);
+    stylesheet.setAttribute('href', `/__components/model/checkbox/checkbox.css?v=${version}`);
     this.shadowRoot.appendChild(stylesheet);
   }
 
