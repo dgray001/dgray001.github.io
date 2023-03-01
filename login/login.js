@@ -3,12 +3,13 @@
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
-const {clientCookies} = await import(`/scripts/util.js?v=${version}`);
+const {clientCookies, loggedIn, until} = await import(`/scripts/util.js?v=${version}`);
 
-window.onload = () => {
-  const cookies = clientCookies();
+window.on_load = async () => {
+  await until(() => document.getElementById('form-section-content'));
   const section_content = document.getElementById('form-section-content');
-  if (cookies.hasOwnProperty('PHPSESSID') && cookies.hasOwnProperty('email') && cookies.hasOwnProperty('role')) {
+  if (loggedIn()) {
+    const cookies = clientCookies();
     section_content.innerHTML = `
     <p>
       You are already logged in as <b>${cookies.email}</b>. Please logout to switch accounts.
@@ -27,7 +28,7 @@ window.onload = () => {
         id="username-field"
         flex_option="1"
         validators='["required", "email"]'
-        label="Login ID"
+        label="Login ID (email)"
         autocomplete="username">
       </cuf-input-text>
       <cuf-input-text
@@ -42,12 +43,14 @@ window.onload = () => {
       <button class="form-submit-button" id="login-form-button" onclick="submitLoginFormButton()" type="button">
         Login
       </button>
-    </form>`;
+    </form>
+    <a class="activate-account" href="/login/activate">Don't have login credentials yet? Click here to activate your account</a>`;
   }
   const url_params = new URLSearchParams(window.location.search);
   if (url_params.get('redirect')) {
     const status_message = document.getElementById('login-form-status-message');
-    status_message.innerText = 'Please login to gain access to this page.';
+    status_message.setAttribute('style', 'display: block; color: navy;');
+    status_message.innerText = `Please login to gain access to this page.`;
   }
 }
 
@@ -86,7 +89,7 @@ async function submitFormButton() {
       login_form.submit();
     }
     else {
-      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.setAttribute('style', 'display: block; color: red;');
       status_message.innerText = 'reCaptcha validation has failed. ' +
         'If you are human, please report this false positive.';
     }
@@ -129,7 +132,7 @@ window.submitLoginForm = async () => {
     });
     const response_json = await response.json();
     if (response_json['valid']) {
-      status_message.setAttribute('style', 'display: block; color: green');
+      status_message.setAttribute('style', 'display: block; color: green;');
       status_message.innerText = `Logged in successfully as: ${username_data}`;
       const url_params = new URLSearchParams(window.location.search);
       if (url_params.get('redirect')) {
@@ -141,12 +144,12 @@ window.submitLoginForm = async () => {
       return;
     }
     else {
-      status_message.setAttribute('style', 'display: block; color: red');
+      status_message.setAttribute('style', 'display: block; color: red;');
       status_message.innerText = response_json; // display echo message to user
     }
   } catch(error) {
     console.log(error);
-    status_message.setAttribute('style', 'display: block; color: red');
+    status_message.setAttribute('style', 'display: block; color: red;');
     status_message.innerText = 'Message failed to send. Please report this bug.';
   }
   enableLoginFormButton(true);

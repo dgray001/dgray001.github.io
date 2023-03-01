@@ -151,7 +151,7 @@ div.card-rotater {
 div.card {
   margin-left: 0px;
   margin-right: 0px;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 img.rotation-image {

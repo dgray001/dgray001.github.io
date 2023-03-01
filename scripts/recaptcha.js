@@ -1,4 +1,5 @@
-import {DEV} from "./util.js";
+const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {DEV, until} = await import(`/scripts/util.js?v=${version}`);
 
 // reCaptcha public site key
 export const public_recaptcha_site_key = DEV ?
@@ -26,4 +27,48 @@ export async function verifyRecaptcha(token) {
     console.log(error);
   }
   return false;
+}
+
+/**
+ * @callback grecaptchaCallback
+ * @return {Promise<boolean|undefined>}
+ */
+
+/**
+ * Frontend recaptcha api returning whether the callback was successfully called
+ * @param {any} grecaptcha
+ * @param {grecaptchaCallback} callback should return true if successful
+ * @param {HTMLButtonElement=} button
+ * @param {HTMLElement=} status_message
+ * @param {string} loading_text
+ * @return {Promise<boolean>} whether callbak was successfully called
+ */
+export async function recaptchaCallback(grecaptcha, callback, button, status_message, loading_text = 'Loading') {
+  let button_original_text = '';
+  if (button) {
+    button_original_text = button.innerText;
+    button.disabled = true;
+    button.innerText = loading_text;
+  }
+  let success;
+  grecaptcha.ready(async function() {
+    const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
+    const recaptcha_check = await verifyRecaptcha(token);
+    if (recaptcha_check) {
+      success = !!(await callback());
+      if (button) {
+        button.disabled = false;
+        button.innerText = button_original_text;
+      }
+      return;
+    }
+    else if (status_message) {
+      status_message.setAttribute('style', 'display: block; color: red;');
+      status_message.innerText = 'reCaptcha validation has failed. ' +
+        'If you are human, please report this false positive.';
+    }
+    success = false;
+  });
+  await until(() => success !== undefined);
+  return success;
 }

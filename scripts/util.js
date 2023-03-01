@@ -184,6 +184,15 @@ export function clientCookies() {
 }
 
 /**
+ * Returns whether user is logged in based on client cookies
+ * @returns {boolean}
+ */
+export function loggedIn() {
+  const cookies = clientCookies();
+  return cookies.hasOwnProperty('PHPSESSID') && cookies.hasOwnProperty('email') && cookies.hasOwnProperty('role');
+}
+
+/**
  * @param {{ [x: string]: any; name?: any; address?: any; contact?: any; message?: any; membership?: any; }} form_data
  * @param {boolean} contact_page
  */

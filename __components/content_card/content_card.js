@@ -78,7 +78,7 @@ export class CufContentCard extends HTMLElement {
         fixed_width = window.innerWidth / 1.1;
         fixed_height = fixed_width / 2.0;
       }
-      card.setAttribute('style', `box-shadow: 0 0 0px var(--card-box-shadow-color); transform: rotateX(-90deg) scale(0.9) translateZ(${0.5 * fixed_height}px); height: 100%;`);
+      card.setAttribute('style', `box-shadow: 0 0 0px var(--card-box-shadow-color); transform: rotateX(-90deg) scale(0.9) translateZ(${0.5 * fixed_height}px); height: 100%; overflow-y: scroll; overflow-x: hidden;`);
       image.setAttribute('style', `transform: scale(0.9) translateZ(${0.5 * fixed_height}px);`);
       card_wrapper.setAttribute('style', `height: ${fixed_height}px;
         min-height: ${fixed_height}px; max-height: ${fixed_height}px;

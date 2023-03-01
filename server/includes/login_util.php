@@ -2,6 +2,10 @@
 
 require_once(__DIR__ . '/force_include.php');
 
+function loggedIn(): bool {
+  return isset($_SESSION["user_id"]) && isset($_SESSION["user_email"]) && isset($_SESSION["role"]);
+}
+
 function userEmailExists($conn, $email): array|bool|null {
   $sqlCommand = "SELECT * FROM cuf_users WHERE email = ?;";
   $stmt = mysqli_stmt_init($conn);
