@@ -28,8 +28,18 @@ export class CufFormSectionAddress extends CufFormSection {
   }
 
   /**
+   * @typedef {Object} AddressFormData
+   * @property {string} address1
+   * @property {string} address2
+   * @property {string} city
+   * @property {string} state
+   * @property {string} zip
+   * @property {string} country
+   */
+
+  /**
    * Returns map of name data for the name form section
-   * @return {{address1:string, address2:string, city:string, state:string, zip:string, country:string}}
+   * @return {AddressFormData}
    */
   getFormData() {
     const address1 = this.shadowRoot.getElementById('address-first').getFormData();
@@ -42,6 +52,19 @@ export class CufFormSectionAddress extends CufFormSection {
   }
 
   /**
+   * Sets form data for the name form section
+   * @param {AddressFormData} data
+   */
+  setFormData(data) {
+    this.shadowRoot.getElementById('address-first').form_field.value = data.address1;
+    this.shadowRoot.getElementById('address-second').form_field.value = data.address2;
+    this.shadowRoot.getElementById('address-city').form_field.value = data.city;
+    this.shadowRoot.getElementById('address-state').form_field.value = data.state;
+    this.shadowRoot.getElementById('address-zip').form_field.value = data.zip;
+    this.shadowRoot.getElementById('address-country').form_field.value = data.country;
+  }
+
+  /**
    * Returns map of form data for the form section
    * @return {string}
    */
@@ -51,7 +74,6 @@ export class CufFormSectionAddress extends CufFormSection {
     const city = this.shadowRoot.getElementById('address-city').getFormData();
     const state = this.shadowRoot.getElementById('address-state').getFormData();
     const zip = this.shadowRoot.getElementById('address-zip').getFormData();
-    // Need country name not code
     const country = this.shadowRoot.getElementById('address-country').getFormData();
     const return_data = {'1': address1, '2': `${city}, ${state} ${zip}`, '3': country};
     if (address2) {

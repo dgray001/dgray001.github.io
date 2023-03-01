@@ -1,12 +1,17 @@
+// @ts-check
 'use strict';
-export {};
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 
-window.onload = async () => {
-  const json_data = await fetchJson(`papers/papers.json`);
+export async function onInit() {
   const title = document.getElementById('papers-title');
+  const section = document.getElementById('papers-section');
+  if (!title || !section) {
+    throw new Error('Missing needed elements');
+  }
+
+  const json_data = await fetchJson(`papers/papers.json`);
   title.innerText = json_data['header'] ?? '';
   let content_list = '';
   let not_first = false;
@@ -31,5 +36,5 @@ window.onload = async () => {
     }
     not_first = true;
   }
-  document.getElementById('papers-section').innerHTML = content_list;
-};
+  section.innerHTML = content_list;
+}

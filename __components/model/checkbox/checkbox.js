@@ -33,6 +33,14 @@ export class CufCheckbox extends CufFormField {
   }
 
   /**
+   * Returns form data as a string
+   * @param {string} data
+   */
+  setFormData(data) {
+    this.form_field.checked = data === true.toString();
+  }
+
+  /**
    * Clears form data
    */
   clearFormData() {

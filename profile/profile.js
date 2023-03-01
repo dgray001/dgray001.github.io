@@ -23,25 +23,8 @@ export function onInit() {
   role.innerHTML = cookies['role'];
   change_password.addEventListener('click', async () => {
     const success = await recaptchaCallback(grecaptcha, async () => {
-      return await changePassword();
+      window.location.href = '/profile/verify_email?redirect=/profile/reset_password';
     }, change_password, change_password_sm);
     console.log(success);
   });
-}
-
-async function changePassword() {
-  /*try {
-    const response = await fetch('/server/recaptcha.php', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(token),
-    });
-    const response_json = await response.json();
-    return !!response_json['success'];
-  } catch(error) {
-    console.log(error);
-  }
-  return false;*/
 }

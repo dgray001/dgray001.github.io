@@ -1,5 +1,3 @@
-@import "../styles.css";
-
 body:not(.loaded) .hide-for-load {
   display: none;
 }

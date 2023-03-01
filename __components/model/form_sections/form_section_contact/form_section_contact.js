@@ -23,8 +23,14 @@ export class CufFormSectionContact extends CufFormSection {
   }
 
   /**
+   * @typedef {Object} ContactFormData
+   * @property {string} email
+   * @property {string} phone
+   */
+
+  /**
    * Returns map of contact data for the contact form section
-   * @return {{email:string, phone:string}}
+   * @return {ContactFormData}
    */
   getFormData() {
     const email = this.shadowRoot.getElementById('contact-email').getFormData();
@@ -34,7 +40,16 @@ export class CufFormSectionContact extends CufFormSection {
 
   /**
    * Returns map of contact data for the contact form section
-   * @return {{email:string, phone:string}}
+   * @param {ContactFormData} data
+   */
+  setFormData(data) {
+    this.shadowRoot.getElementById('contact-email').form_field.value = data.email;
+    this.shadowRoot.getElementById('contact-phone').form_field.value = data.phone;
+  }
+
+  /**
+   * Returns map of contact data for the contact form section
+   * @return {ContactFormData}
    * @todo maybe add dashes between phone number sections
    */
   getDisplayableData() {

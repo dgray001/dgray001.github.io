@@ -8,15 +8,10 @@
   <meta name="author" content="Daniel Gray">
   <title>Contact | CUF</title>
   <base href="../">
-  <link rel="stylesheet" href="./contact/contact.css">
-  <link rel="icon" type="image/png" href="./__images/logo_square.png">
-  <script type="module" src="./contact/contact.js"></script>
-  <script type="module" src="./scripts/page_layout_components.js" async></script>
-  <script type="module" src="./scripts/form_components.js" async></script>
+  <script type="module" src="./contact/contact_init.js"></script>
   <script src="https://www.google.com/recaptcha/api.js?render=6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1"></script>
 </head>
 <body>
-  <script>let FIREFOX_FOUC_FIX;</script>
   <cuf-header></cuf-header>
   <div class="page-content">
     <div class="actual-content">
@@ -47,7 +42,7 @@
           <p>
             <em>If you are requesting a FAITH FACT please include the title(s) you would like to receive.</em>
           </p>
-          <form id="contact-form" name="contact-form" action="javascript:submitForm()">
+          <form id="contact-form" name="contact-form">
             <cuf-form-section-name id="section-name"></cuf-form-section-name>
             <cuf-form-section-address id="section-address"></cuf-form-section-address>
             <cuf-form-section-contact id="section-contact"></cuf-form-section-contact>
@@ -58,11 +53,12 @@
               label="Message">
             </cuf-text-area><br><br>
             <cuf-form-section-membership-request id="section-membership"></cuf-form-section-membership-request>
-            <button class="form-submit-button" id="submit-form-button" onclick="submitFormButton()" type="button">
+            <button class="form-submit-button" id="submit-form-button" type="button">
               Send
             </button>
             <div id="contact-form-status-message"></div>
           </form>
+          <hr>
           <p>
             <em>Catholics United for the Faith respects the privacy of its members and those who contact us. The information we collect will not be sold to third parties, and will not be shared without your express permission.</em>
           </p>

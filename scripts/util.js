@@ -131,9 +131,17 @@ export function trim(str, ch) {
  */
 export function scrollToElement(element) {
   const element_position = element.offsetTop;
-  const fixed_header_size = 15 + 2 * Math.max(0.02 * window.innerHeight, 15);
+  const header_height_unit = Math.max(
+    Math.min(0.02 * window.innerHeight, 0.0275 * window.innerWidth), 15);
+  const navigation_height = 2.8 * (12 + 0.005 * window.innerWidth);
+  let fixed_header_height = 15 + Math.max(navigation_height, 2.5 * header_height_unit);
+
+  if (window.innerWidth >= 700 && window.innerWidth <= 1200) { // tablet mode
+    fixed_header_height = 15 + navigation_height + 2 * header_height_unit;
+  }
+
   window.scrollTo({
-    top: element_position - fixed_header_size,
+    top: element_position - fixed_header_height,
     behavior: "smooth"
   });
 }

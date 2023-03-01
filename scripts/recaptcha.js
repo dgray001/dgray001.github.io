@@ -6,6 +6,8 @@ export const public_recaptcha_site_key = DEV ?
   '6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1' :
   '6LcNpAskAAAAAKc6tm_rQ8FpJo-j6ftEVaWPu8Gk';
 
+const disable_recaptcha = true;
+
 /**
  * Frontend recaptcha api returning whether the token is valid
  * @param {string} token
@@ -41,7 +43,7 @@ export async function verifyRecaptcha(token) {
  * @param {HTMLButtonElement=} button
  * @param {HTMLElement=} status_message
  * @param {string} loading_text
- * @return {Promise<boolean>} whether callbak was successfully called
+ * @return {Promise<boolean>} whether callback was successfully called
  */
 export async function recaptchaCallback(grecaptcha, callback, button, status_message, loading_text = 'Loading') {
   let button_original_text = '';
@@ -51,6 +53,17 @@ export async function recaptchaCallback(grecaptcha, callback, button, status_mes
     button.innerText = loading_text;
   }
   let success;
+
+  if (DEV && disable_recaptcha) {
+    success = !!(await callback());
+    if (button) {
+      button.disabled = false;
+      button.innerText = button_original_text;
+    }
+    console.log('1');
+    return success;
+  }
+
   grecaptcha.ready(async function() {
     const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
     const recaptcha_check = await verifyRecaptcha(token);
@@ -69,6 +82,7 @@ export async function recaptchaCallback(grecaptcha, callback, button, status_mes
     }
     success = false;
   });
+
   await until(() => success !== undefined);
   return success;
 }

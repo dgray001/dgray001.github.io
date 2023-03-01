@@ -23,8 +23,16 @@ export class CufFormSectionMembershipRequest extends CufFormSection {
   }
 
   /**
-   * Returns map of name data for the name form section
-   * @return {{member:boolean, associate:boolean, join_chapter:boolean, start_chapter:boolean}}
+   * @typedef {Object} MembershipRequestFormData
+   * @property {boolean} member
+   * @property {boolean} associate
+   * @property {boolean} join_chapter
+   * @property {boolean} start_chapter
+   */
+
+  /**
+   * Returns membership request data
+   * @return {MembershipRequestFormData}
    */
   getFormData() {
     const member = this.shadowRoot.getElementById('checkbox-member').getFormData();
@@ -32,6 +40,17 @@ export class CufFormSectionMembershipRequest extends CufFormSection {
     const join_chapter = this.shadowRoot.getElementById('checkbox-chapters').getFormData();
     const start_chapter = this.shadowRoot.getElementById('checkbox-start-chapter').getFormData();
     return {'member': member, 'associate': associate, 'join_chapter': join_chapter, 'start_chapter': start_chapter};
+  }
+
+  /**
+   * Sets membership request data
+   * @param {MembershipRequestFormData} data
+   */
+  setFormData(data) {
+    this.shadowRoot.getElementById('checkbox-member').setFormData(data.member.toString());
+    this.shadowRoot.getElementById('checkbox-associate').setFormData(data.associate.toString());
+    this.shadowRoot.getElementById('checkbox-chapters').setFormData(data.join_chapter.toString());
+    this.shadowRoot.getElementById('checkbox-start-chapter').setFormData(data.start_chapter.toString());
   }
 
   /**

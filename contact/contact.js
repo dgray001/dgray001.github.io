@@ -2,34 +2,51 @@
 'use strict';
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
-const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
-const {createContactEmail, scrollToElement} = await import(`/scripts/util.js?v=${version}`);
+const {recaptchaCallback} = await import(`/scripts/recaptcha.js?v=${version}`);
+const {createContactEmail, scrollToElement, DEV} = await import(`/scripts/util.js?v=${version}`);
 
-/**
- * @return {Promise<void>}
- * Submits contact form if recaptcha token is valid
- */
-window.submitFormButton = async () => {
-  if (!validateContactForm()) {
+export async function onInit() {
+  const contact_form_button = document.getElementById('submit-form-button');
+  const status_message = document.getElementById('contact-form-status-message');
+  if (!contact_form_button || !status_message) {
+    throw new Error('Missing required elements');
+  }
+
+  contact_form_button.addEventListener('click', () => {
+    if (!validateContactForm()) {
+      status_message.setAttribute('style', 'display: block; color: maroon;');
+      status_message.innerText = 'You must fix the validation errors.';
+      return;
+    }
+    recaptchaCallback(grecaptcha, () => {
+      submitContactForm();
+    }, contact_form_button, status_message, 'Sending');
+  });
+
+  if (!DEV) {
     return;
   }
-  const button = document.getElementById('submit-form-button');
-  button.disabled = true;
-  button.innerText = 'Sending';
-  button.setAttribute('style', 'box-shadow: none;');
-  grecaptcha.ready(async function() {
-    const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});
-    const recaptcha_check = await verifyRecaptcha(token);
-    const status_message = document.getElementById('contact-form-status-message');
-    if (recaptcha_check) {
-      const contact_form = document.getElementById('contact-form');
-      contact_form.submit();
-    }
-    else {
-      status_message.setAttribute('style', 'display: block; color: red');
-      status_message.innerText = 'reCaptcha validation has failed. If you are human, please report this false positive.';
-    }
+  const name_section = document.getElementById('section-name');
+  const address_section = document.getElementById('section-address');
+  const contact_section = document.getElementById('section-contact');
+  const message = document.getElementById('section-message');
+  const membership = document.getElementById('section-membership');
+  if (!name_section || !address_section || !contact_section || !message || !membership) {
+    throw new Error('Missing required elements');
+  }
+
+  name_section.setFormData({prefix: '', first: 'Rick', last: 'Roll', suffix: ''});
+  address_section.setFormData({
+    address1: 'Never gonna give you up',
+    address2: '',
+    city: 'Never gonna',
+    state: 'let you down',
+    country: 'France',
+    zip: 'desert you',
   });
+  contact_section.setFormData({email: 'rick@roll.com', phone: '1-800-beep-bop'});
+  message.form_field.value = 'This is a message';
+  membership.setFormData({member: false, associate: true, join_chapter: true, start_chapter: false});
 }
 
 /**
@@ -38,15 +55,20 @@ window.submitFormButton = async () => {
  */
 function validateContactForm() {
   const name_section = document.getElementById('section-name');
-  const name_section_valid = name_section.validate();
   const address_section = document.getElementById('section-address');
-  const address_section_valid = address_section.validate();
   const contact_section = document.getElementById('section-contact');
-  const contact_section_valid = contact_section.validate();
   const message = document.getElementById('section-message');
-  const message_valid = message.validate();
   const membership = document.getElementById('section-membership');
+  if (!name_section || !address_section || !contact_section || !message || !membership) {
+    throw new Error('Missing required elements');
+  }
+
+  const name_section_valid = name_section.validate();
+  const address_section_valid = address_section.validate();
+  const contact_section_valid = contact_section.validate();
+  const message_valid = message.validate();
   const membership_valid = membership.validate();
+
   return name_section_valid && address_section_valid && contact_section_valid &&
     message_valid && membership_valid;
 }
@@ -55,21 +77,26 @@ function validateContactForm() {
  * Submits contact form to server
  * @return {Promise<void>}
  */
-window.submitForm = async () => {
+async function submitContactForm() {
   const name_section = document.getElementById('section-name');
-  const name_section_data = name_section.getDisplayableData();
   const address_section = document.getElementById('section-address');
-  const address_section_data = address_section.getDisplayableData();
   const contact_section = document.getElementById('section-contact');
-  const contact_section_data = contact_section.getFormData();
   const message = document.getElementById('section-message');
-  const message_data = message.getFormData();
   const membership = document.getElementById('section-membership');
+  if (!name_section || !address_section || !contact_section || !message || !membership) {
+    throw new Error('Missing required elements');
+  }
+
+  const name_section_data = name_section.getDisplayableData();
+  const address_section_data = address_section.getDisplayableData();
+  const contact_section_data = contact_section.getFormData();
+  const message_data = message.getFormData();
   const membership_data = membership.getDisplayableData();
   const form_data = {'name': name_section_data, 'address': address_section_data,
     'contact': contact_section_data, 'message': message_data, 'membership': membership_data};
   const post_data = createContactEmail(form_data);
   const status_message = document.getElementById('contact-form-status-message');
+
   try {
     const response = await fetch('/server/contact.php', {
       method: 'POST',
@@ -79,7 +106,7 @@ window.submitForm = async () => {
       body: JSON.stringify(post_data),
     });
     const response_json = await response.json();
-    if (response_json == 'true') {
+    if (response_json === 'true') {
       status_message.setAttribute('style', 'display: block; color: green');
       status_message.innerText = 'Message sent!';
       const contact_form = document.getElementById('contact-form-section');

@@ -26,8 +26,16 @@ export class CufFormSectionName extends CufFormSection {
   }
 
   /**
+   * @typedef {Object} NameFormData
+   * @property {string} prefix
+   * @property {string} first
+   * @property {string} last
+   * @property {string} suffix
+   */
+
+  /**
    * Returns map of name data for the name form section
-   * @return {{prefix:string, first:string, last:string, suffix:string}}
+   * @return {NameFormData}
    */
   getFormData() {
     const prefix = this.shadowRoot.getElementById('name-prefix').getFormData();
@@ -38,7 +46,18 @@ export class CufFormSectionName extends CufFormSection {
   }
 
   /**
-   * Returns map of form data for the form section
+   * Sets form data for the name form section
+   * @param {NameFormData} data
+   */
+  setFormData(data) {
+    this.shadowRoot.getElementById('name-prefix').form_field.value = data.prefix;
+    this.shadowRoot.getElementById('name-first').form_field.value = data.first;
+    this.shadowRoot.getElementById('name-last').form_field.value = data.last;
+    this.shadowRoot.getElementById('name-suffix').form_field.value = data.suffix;
+  }
+
+  /**
+   * Returns displayable map of form data for the form section
    * @return {string}
    */
   getDisplayableData() {

@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {scrollToElement} = await import(`/scripts/util.js?v=${version}`);
 const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 await import(`../faith_fact_category/faith_fact_category.js?v=${version}`);
 
@@ -47,7 +48,7 @@ export class CufFaithFactCategoryList extends HTMLElement {
       this.hovered = false;
       document.body.style.overflow = 'auto';
     });
-    category_list.addEventListener('wheel',//this.scrollCategories.bind(category_list));
+    category_list.addEventListener('wheel',
       (evt) => {
         evt.preventDefault();
         category_list.scrollLeft += 0.5 * evt.deltaY;
@@ -60,7 +61,7 @@ export class CufFaithFactCategoryList extends HTMLElement {
     }
     const category = evt.target.id;
     if (category === this.current_category) {
-      this.scrollToCategories();
+      scrollToElement(this);
       return;
     }
     this.current_category = category;
@@ -101,17 +102,8 @@ export class CufFaithFactCategoryList extends HTMLElement {
     if (json_data) {
       this.loaded_json_data.set(json_data['category'], json_data);
     }
-    this.scrollToCategories();
+    scrollToElement(this);
     this.loading = false;
-  }
-
-  scrollToCategories() {
-    const elementPosition = this.offsetTop;
-    const fixed_header_size = 15 + 2 * Math.max(0.02 * window.innerHeight, 15);
-    window.scrollTo({
-      top: elementPosition - fixed_header_size,
-      behavior: "smooth"
-    });
   }
   
   createRipple(evt) {

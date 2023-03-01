@@ -126,6 +126,14 @@ export class CufFormField extends HTMLBaseElement {
   }
 
   /**
+   * Sets form data as a string
+   * @param {string} data
+   */
+  setFormData(data) {
+    console.log(`CufFormField::setFormData not implemented for ${this.constructor.name}.`);
+  }
+
+  /**
    * Clears form data
    */
   clearFormData() {

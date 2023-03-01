@@ -1,12 +1,16 @@
+// @ts-check
 'use strict';
-export {};
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 
-window.onload = async () => {
-  const json_data = await fetchJson(`lay_witness/lay_witness.json`);
+export async function onInit() {
   const newsletter_list = document.getElementById('newsletter-list');
+  if (!newsletter_list) {
+    throw new Error('Missing needed elements');
+  }
+
+  const json_data = await fetchJson(`lay_witness/lay_witness.json`);
   for (const volume of json_data['volumes']) {
     const volume_element = document.createElement('div');
     volume_element.classList.add('section-content');
@@ -40,4 +44,4 @@ window.onload = async () => {
     volume_element.appendChild(paragraph_element);
     newsletter_list.appendChild(volume_element);
   }
-};
+}
