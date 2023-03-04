@@ -9,8 +9,8 @@
     var(--margin-size));
   --max-width: 1400px;
   --left-margin-size: 10vw;
-  --page-background-color: rgb(230, 230, 230);
-  --card-background-color: rgb(230, 220, 210);
+  --page-background-color: rgb(237, 237, 237);
+  --card-background-color: rgb(237, 231, 225);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
   --header-color: var(--page-background-color);
   --margin-color: var(--page-background-color);
@@ -41,16 +41,17 @@ body {
   max-width: var(--max-width);
   padding-left: var(--left-sidebar-width);
   scroll-margin-top: var(--fixed-header-height);
+  text-align: justify;
+  text-justify: inter-word;
   width: 90%;
 }
 
 .actual-content {
-  background-color: var(--card-background-color);
-  box-shadow: 0 0 6px var(--card-box-shadow-color);
+  background-color: var(--page-background-color);
   font-size: var(--page-body-font-size);
   margin-bottom: 20px;
   margin-right: 10px;
-  padding: 8px;
+  padding: 8px 15px;
 }
 
 .page-title {

@@ -1,7 +1,7 @@
 select.form-field {
   --child-height: 20px;
   --child-width: calc(100% + 0.5 * var(--form-field-extra-width));
-  background-color: var(--card-background-color);
+  background-color: var(--page-background-color);
   max-width: var(--child-width);
   min-width: var(--child-width);
   width: var(--child-width);
@@ -12,7 +12,7 @@ select.form-field:focus {
 }
 
 option {
-  background-color: var(--card-background-color);
+  background-color: var(--page-background-color);
   font-size: 16px;
 }
 

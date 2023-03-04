@@ -39,7 +39,7 @@
 }
 
 .form-field-label.styled {
-  background-color: var(--card-background-color);
+  background-color: var(--page-background-color);
 	border-radius: 5px;
   display: block;
   float: left;

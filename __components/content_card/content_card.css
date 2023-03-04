@@ -1,13 +1,16 @@
 .card {
   background-color: var(--card-background-color);
-  box-shadow: 0 0 6px var(--card-box-shadow-color);
+  border-radius: 20px;
   margin-left: 5px;
   margin-right: 5px;
+  padding: 3px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
 .header {
   position: relative;
-  background-color: rgb(230, 210, 190);
+  background-color: rgb(237, 227, 217);
   height: 40px;
 }
 
@@ -29,7 +32,6 @@
 }
 
 .headerText:hover {
-  background-color: rgba(230, 210, 190, 150);
   color: rgb(70, 70, 70);
   cursor: pointer;
   display: block;
@@ -45,10 +47,10 @@
 }
 
 .arrow-image-wrapper {
-  bottom: 10%;
+  bottom: 25%;
   position: absolute;
-  right: 2px;
-  top: 10%;
+  right: 6px;
+  top: 25%;
 }
 
 img.arrow-image {
@@ -58,11 +60,12 @@ img.arrow-image {
   max-height: 100%;
   object-fit: scale-down;
   transform: rotate(180deg);
+  user-select: none;
 }
 
 img.arrow-image:hover {
   cursor: pointer;
-  filter: brightness(100%);
+  filter: brightness(80%);
 }
 
 /* Used to rotate arrow image */
@@ -96,7 +99,7 @@ img.arrow-image:hover {
   overflow-wrap: anywhere; /* Firefox */
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  white-space: pre-wrap;
+  white-space: pre-line;
 }
 
 .element-spacer::before {

@@ -48,6 +48,8 @@ export class CufContentCard extends HTMLElement {
       if (start_closed) {
         const content_element = this.shadowRoot.querySelector('.content');
         const image_element = this.shadowRoot.querySelector('.arrow-image');
+        card.style['border-bottom-left-radius'] = '0px';
+        card.style['border-bottom-right-radius'] = '0px';
         content_element.setAttribute('style', 'display: none;');
         image_element.setAttribute('style', 'transform: rotate(90deg)');
       }
@@ -212,16 +214,19 @@ export class CufContentCard extends HTMLElement {
     if (evt.explicitOriginalTarget === headerText) { // if click header text
       return;
     }
+    const card = source.shadowRoot.querySelector('.card');
     const content_element = source.shadowRoot.querySelector('.content');
     const image_element = source.shadowRoot.querySelector('img.arrow-image');
     const content_style = window.getComputedStyle(content_element);
     if (content_style.display === 'block') {
+      card.setAttribute('style', 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;');
       content_element.setAttribute('style', 'display: none;');
-      image_element.setAttribute('style', 'animation: closeRotate 300ms forwards');
+      image_element.setAttribute('style', 'animation: closeRotate 300ms forwards;');
     }
     else {
+      card.removeAttribute('style');
       content_element.setAttribute('style', 'display: block;');
-      image_element.setAttribute('style', 'animation: openRotate 300ms forwards');
+      image_element.setAttribute('style', 'animation: openRotate 300ms forwards;');
       //source.scrollIntoView({behavior: "smooth", block: "center"});
     }
   }
