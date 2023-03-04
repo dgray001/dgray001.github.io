@@ -22,6 +22,7 @@ logo.setAttribute('href', `/__images/logo_square.png?v=${version}`);
 document.head.appendChild(logo);
 
 await import(`/scripts/page_layout_components.js?v=${version}`);
+await import(`/scripts/form_components.js?v=${version}`);
 const {onInit} = await import(`./donate.js?v=${version}`);
 await until(() => document.readyState === 'complete');
 onInit();

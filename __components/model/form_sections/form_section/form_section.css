@@ -16,6 +16,6 @@
 .flex-wrapper {
   column-gap: 2rem;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   padding-bottom: 0.6rem;
 }

@@ -30,7 +30,7 @@ function loginUser($conn, $email, $password): void {
     echo json_encode('Password doesn\'t match');
     exit(5);
   }
-  $session_lifetime = 60 * 60; // 1 hour until relogin required
+  $session_lifetime = 5 * 60 * 60; // 1 hour until relogin required
   session_set_cookie_params($session_lifetime, '/', $_SERVER['SERVER_NAME'],
     isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] !== 'off' : false, true);
   session_start();

@@ -22,6 +22,11 @@ logo.setAttribute('href', `/__images/logo_square.png?v=${version}`);
 document.head.appendChild(logo);
 
 await import(`/scripts/page_layout_components.js?v=${version}`);
+await import(`/scripts/form_components.js?v=${version}`);
+await import(`/__components/admin_dashboard/admin_dashboard_laywitness/admin_dashboard_laywitness.js?v=${version}`);
+await import(`/__components/admin_dashboard/admin_dashboard_news/admin_dashboard_news.js?v=${version}`);
+await import(`/__components/admin_dashboard/admin_dashboard_papers/admin_dashboard_papers.js?v=${version}`);
+await import(`/__components/admin_dashboard/admin_dashboard_jobs/admin_dashboard_jobs.js?v=${version}`);
 const {onInit} = await import(`./admin_dashboard.js?v=${version}`);
 await until(() => document.readyState === 'complete');
 onInit();

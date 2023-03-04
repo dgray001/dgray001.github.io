@@ -1,13 +1,16 @@
-// @ts-nocheck
+// @ts-check
 'use strict';
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
 const {clientCookies, loggedIn, until} = await import(`/scripts/util.js?v=${version}`);
 
-window.on_load = async () => {
-  await until(() => document.getElementById('form-section-content'));
+export async function onInit() {
   const section_content = document.getElementById('form-section-content');
+  if (!section_content) {
+    throw new Error('Missing required elements');
+  }
+
   if (loggedIn()) {
     const cookies = clientCookies();
     section_content.innerHTML = `
@@ -150,7 +153,7 @@ window.submitLoginForm = async () => {
   } catch(error) {
     console.log(error);
     status_message.setAttribute('style', 'display: block; color: red;');
-    status_message.innerText = 'Message failed to send. Please report this bug.';
+    status_message.innerText = 'Login failed. Please report this bug.';
   }
   enableLoginFormButton(true);
 }

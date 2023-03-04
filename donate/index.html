@@ -8,11 +8,7 @@
   <meta name="author" content="Daniel Gray">
   <title>Donate | CUF</title>
   <base href="../">
-  <link rel="stylesheet" href="./donate/donate.css">
-  <link rel="icon" type="image/png" href="./__images/logo_square.png">
-  <script type="module" src="./donate/donate.js"></script>
-  <script type="module" src="./scripts/page_layout_components.js" async></script>
-  <script type="module" src="./scripts/form_components.js" async></script>
+  <script type="module" src="./donate/donate_init.js"></script>
   <script src="https://www.google.com/recaptcha/api.js?render=6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1"></script>
 </head>
 <body>
@@ -80,13 +76,14 @@
             validators='["required", "money"]'
             label="Donation Amount">
           </cuf-input-text>
-          <button class="form-submit-button" id="donate-form-button" onclick="donateFormButton()" type="button">
+          <button class="form-submit-button" id="donate-form-button" type="button">
             Proceed to authorize.net payment portal
           </button>
           <input type="hidden" id="hidden-token-input" name="token" value="">
           <button type="submit" id="hidden-form-submit-button" hidden></button>
           <div id="donate-form-status-message"></div>
         </form>
+        <hr>
         <p>
           <em>Catholics United for the Faith respects the privacy of its members and donors. The information we collect will not be sold to third parties, and will not be shared without your express permission.</em>
         </p>

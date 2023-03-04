@@ -3,7 +3,7 @@
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
 const {recaptchaCallback} = await import(`/scripts/recaptcha.js?v=${version}`);
-const {clientCookies, loggedIn, until} = await import(`/scripts/util.js?v=${version}`);
+const {clientCookies, loggedIn} = await import(`/scripts/util.js?v=${version}`);
 
 export function onInit() {
   if (!loggedIn()) {

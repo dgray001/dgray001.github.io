@@ -3,6 +3,7 @@
 export {};
 
 const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {until} = await import(`/scripts/util.js?v=${{version}}`);
 
 const stylesheet = document.createElement('link');
 stylesheet.setAttribute('rel', 'stylesheet');
@@ -17,6 +18,6 @@ document.head.appendChild(logo);
 
 await import(`/scripts/page_layout_components.js?v=${version}`);
 await import(`/scripts/form_components.js?v=${version}`);
-await import(`./login.js?v=${version}`);
-
-await window.on_load();
+const {onInit} = await import(`./login.js?v=${version}`);
+await until(() => document.readyState === 'complete');
+onInit();

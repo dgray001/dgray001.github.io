@@ -74,7 +74,8 @@ export class CufFormField extends HTMLBaseElement {
     this.form_field_wrapper.setAttribute('id', this.id + '-wrapper');
     this.classList.add('form-field');
     if (flex_option) {
-      this.setAttribute('style', `flex: ${flex_option} 0 0;`)
+      const flex_basis = flex_option * 50;
+      this.setAttribute('style', `flex: ${flex_option} 0 ${flex_basis}px;`)
     }
     this.form_field_label = shadow.querySelector('.form-field-label');
     if (this.validators.has('required')) {

@@ -6,7 +6,7 @@ const {recaptchaCallback} = await import(`/scripts/recaptcha.js?v=${version}`);
 const {createContactEmail, scrollToElement, DEV} = await import(`/scripts/util.js?v=${version}`);
 
 export async function onInit() {
-  const contact_form_button = document.getElementById('submit-form-button');
+  const contact_form_button = document.getElementById('contact-form-button');
   const status_message = document.getElementById('contact-form-status-message');
   if (!contact_form_button || !status_message) {
     throw new Error('Missing required elements');
@@ -15,7 +15,7 @@ export async function onInit() {
   contact_form_button.addEventListener('click', () => {
     if (!validateContactForm()) {
       status_message.setAttribute('style', 'display: block; color: maroon;');
-      status_message.innerText = 'You must fix the validation errors.';
+      status_message.innerText = 'Please fix the validation errors.';
       return;
     }
     recaptchaCallback(grecaptcha, () => {
