@@ -60,7 +60,6 @@ export class CufHeader extends HTMLElement {
     const container = shadow.querySelector('.container');
     const max_offset = Math.max(0.02 * this.collapsed_container_height_multiplier * window.innerHeight, 45);
     const margin_offset = Math.min(scroll_pos, max_offset);
-    console.log(max_offset, margin_offset);
     container.style.setProperty('--margin-offset', margin_offset + 'px');
   }
 

@@ -17,5 +17,6 @@
   column-gap: 2rem;
   display: flex;
   flex-flow: row wrap;
+  flex: 1 0 fit-content;
   padding-bottom: 0.6rem;
 }

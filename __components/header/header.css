@@ -146,18 +146,13 @@ cuf-navigation-pane {
 }
 
 .logo-container {
-  left: var(--left-auto-margin);
-  height: calc(2 * var(--left-sidebar-width));
+  left: 25vw;
+  height: 70vh;
+  opacity: 0.5;
   position: absolute;
-  top: calc(var(--header-total-height) + var(--margin-size));
-  width: var(--left-sidebar-width);
-}
-
-.logo-container a {
-  display: inline-block;
-  outline: none;
-  height: 100%;
-  width: 100%;
+  top: 15vh;
+  width: 50vw;
+  z-index: 2;
 }
 
 img {
