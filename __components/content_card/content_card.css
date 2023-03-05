@@ -23,7 +23,7 @@ a:active {
 
 .header {
   position: relative;
-  background-color: rgb(237, 237, 237);
+  background-color: var(--card-header-color);
   height: 40px;
 }
 

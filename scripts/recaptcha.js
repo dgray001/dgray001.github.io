@@ -1,12 +1,10 @@
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
-const {DEV, until} = await import(`/scripts/util.js?v=${version}`);
+const {DEV, STAGING, until} = await import(`/scripts/util.js?v=${version}`);
 
 // reCaptcha public site key
-export const public_recaptcha_site_key = DEV ?
+export const public_recaptcha_site_key = (DEV || STAGING) ?
   '6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1' :
   '6LcNpAskAAAAAKc6tm_rQ8FpJo-j6ftEVaWPu8Gk';
-
-const disable_recaptcha = true;
 
 /**
  * Frontend recaptcha api returning whether the token is valid
@@ -53,16 +51,6 @@ export async function recaptchaCallback(grecaptcha, callback, button, status_mes
     button.innerText = loading_text;
   }
   let success;
-
-  if (DEV && disable_recaptcha) {
-    success = !!(await callback());
-    if (button) {
-      button.disabled = false;
-      button.innerText = button_original_text;
-    }
-    console.log('1');
-    return success;
-  }
 
   grecaptcha.ready(async function() {
     const token = await grecaptcha.execute(public_recaptcha_site_key, {action: 'submit'});

@@ -136,7 +136,7 @@ cuf-navigation-pane {
 
 .margin {
   background-color: var(--margin-color);
-  box-shadow: 0 2px 2px var(--card-box-shadow-color);
+  box-shadow: 0 4px 4px var(--card-box-shadow-color);
   height: calc(var(--header-height-unit) * 0.5);
   margin-bottom: var(--margin-size);
   position: fixed;

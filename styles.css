@@ -15,6 +15,7 @@
   --left-margin-size: 10vw;
   --page-background-color: rgb(255, 255, 255);
   --card-background-color: rgb(245, 245, 245);
+  --card-header-color: rgb(237, 237, 237);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
   --header-color: var(--page-background-color);
   --margin-color: var(--page-background-color);
