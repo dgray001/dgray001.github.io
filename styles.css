@@ -1,5 +1,9 @@
 :root {
   --margin-size: 15px;
+  --link-text-color: rgb(70, 140, 40);
+  --link-text-color-visited: rgb(70, 140, 40);
+  --link-text-color-hover: rgb(90, 160, 50);
+  --link-text-color-active: rgb(130, 200, 75);
   --header-height-unit: max(min(2vh, 2.75vw), 15px);
   --page-body-font-size: calc(12px + 0.5vw);
   --navigation-height: calc(2.8 * var(--page-body-font-size));
@@ -9,8 +13,8 @@
     var(--margin-size));
   --max-width: 1400px;
   --left-margin-size: 10vw;
-  --page-background-color: rgb(237, 237, 237);
-  --card-background-color: rgb(237, 231, 225);
+  --page-background-color: rgb(255, 255, 255);
+  --card-background-color: rgb(245, 245, 245);
   --card-box-shadow-color: rgba(0, 0, 0, .5);
   --header-color: var(--page-background-color);
   --margin-color: var(--page-background-color);
@@ -34,6 +38,20 @@ body {
   margin: 0;
 }
 
+a {
+  color: var(--link-text-color);
+  font-weight: bold;
+}
+a:visited {
+  color: var(--link-text-color-visited);
+}
+a:hover {
+  color: var(--link-text-color-hover);
+}
+a:active {
+  color: var(--link-text-color-active);
+}
+
 .page-content {
   flex: 1 1 auto;
   justify-content: space-between;
@@ -44,10 +62,10 @@ body {
   text-align: justify;
   text-justify: inter-word;
   width: 90%;
+  z-index: 2;
 }
 
 .actual-content {
-  background-color: var(--page-background-color);
   font-size: var(--page-body-font-size);
   margin-bottom: 20px;
   margin-right: 10px;

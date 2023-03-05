@@ -41,7 +41,6 @@ export class CufNavigationPane extends HTMLBaseElement {
     this.setEventListener(shadow, 'information_services', current_path);
     this.setEventListener(shadow, 'lay_witness', current_path);
     this.setEventListener(shadow, 'faith_and_life_series', current_path);
-    this.setEventListener(shadow, 'links', current_path);
     this.setEventListener(shadow, 'contact', current_path);
     this.setEventListener(shadow, 'donate', current_path);
     shadow.querySelector('.hamburger').addEventListener('click', () => {

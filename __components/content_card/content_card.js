@@ -51,7 +51,7 @@ export class CufContentCard extends HTMLElement {
         card.style['border-bottom-left-radius'] = '0px';
         card.style['border-bottom-right-radius'] = '0px';
         content_element.setAttribute('style', 'display: none;');
-        image_element.setAttribute('style', 'transform: rotate(90deg)');
+        image_element.setAttribute('src', '__images/plus.png');
       }
     }
     else {
@@ -221,12 +221,14 @@ export class CufContentCard extends HTMLElement {
     if (content_style.display === 'block') {
       card.setAttribute('style', 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;');
       content_element.setAttribute('style', 'display: none;');
-      image_element.setAttribute('style', 'animation: closeRotate 300ms forwards;');
+      image_element.setAttribute('style', 'animation: closeCard 300ms forwards;');
+      image_element.setAttribute('src', '__images/plus.png');
     }
     else {
       card.removeAttribute('style');
       content_element.setAttribute('style', 'display: block;');
-      image_element.setAttribute('style', 'animation: openRotate 300ms forwards;');
+      image_element.setAttribute('style', 'animation: openCard 300ms forwards;');
+      image_element.setAttribute('src', '__images/minus.png');
       //source.scrollIntoView({behavior: "smooth", block: "center"});
     }
   }

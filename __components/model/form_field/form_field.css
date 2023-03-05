@@ -35,7 +35,7 @@
 .form-field-wrapper.styled.focused {
   --box-shadow-color: darkblue;
   --box-shadow-width: 2px;
-  background-color: rgb(230, 225, 220);
+  background-color: rgb(245, 245, 245);
 }
 
 .form-field-label.styled {

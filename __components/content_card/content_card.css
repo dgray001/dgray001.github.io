@@ -1,5 +1,4 @@
 .card {
-  background-color: var(--card-background-color);
   border-radius: 20px;
   margin-left: 5px;
   margin-right: 5px;
@@ -8,16 +7,28 @@
   text-justify: inter-word;
 }
 
+a {
+  color: var(--link-text-color);
+  font-weight: bold;
+}
+a:visited {
+  color: var(--link-text-color-visited);
+}
+a:hover {
+  color: var(--link-text-color-hover);
+}
+a:active {
+  color: var(--link-text-color-active);
+}
+
 .header {
   position: relative;
-  background-color: rgb(237, 227, 217);
+  background-color: rgb(237, 237, 237);
   height: 40px;
 }
 
 .headerText {
-  color: black;
   font-size: 24px;
-  font-weight: bold;
   left: 0.3rem;
   margin-top: -14px;
   max-height: 40px;
@@ -32,7 +43,6 @@
 }
 
 .headerText:hover {
-  color: rgb(70, 70, 70);
   cursor: pointer;
   display: block;
   overflow: visible;
@@ -42,15 +52,11 @@
   z-index: 1;
 }
 
-.headerText:active {
-  color: rgb(140, 140, 140);
-}
-
 .arrow-image-wrapper {
-  bottom: 25%;
+  bottom: 35%;
   position: absolute;
-  right: 6px;
-  top: 25%;
+  right: 0.7em;
+  top: 35%;
 }
 
 img.arrow-image {
@@ -59,7 +65,6 @@ img.arrow-image {
   max-width: 100%;
   max-height: 100%;
   object-fit: scale-down;
-  transform: rotate(180deg);
   user-select: none;
 }
 
@@ -68,22 +73,18 @@ img.arrow-image:hover {
   filter: brightness(80%);
 }
 
-/* Used to rotate arrow image */
-@keyframes closeRotate {
+/* Used to transition arrow image */
+@keyframes closeCard {
   from {
-      transform: rotate(180deg);
   }
   to {
-      transform: rotate(90deg);
   }
 }
 
-@keyframes openRotate {
+@keyframes openCard {
   from {
-      transform: rotate(90deg);
   }
   to {
-      transform: rotate(180deg);
   }
 }
 
