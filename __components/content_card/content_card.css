@@ -73,21 +73,6 @@ img.arrow-image:hover {
   filter: brightness(80%);
 }
 
-/* Used to transition arrow image */
-@keyframes closeCard {
-  from {
-  }
-  to {
-  }
-}
-
-@keyframes openCard {
-  from {
-  }
-  to {
-  }
-}
-
 .content {
   background-color: var(--card-background-color);
   display: block;

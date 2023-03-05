@@ -34,6 +34,7 @@ export class CufFaithFactCategory extends HTMLElement {
         title.innerText = faith_fact['title'].toUpperCase();
         faith_fact_div.appendChild(title);
         const content = document.createElement('div');
+        content.classList.add('all-content');
         content.setAttribute('style', 'display: none;');
         const question_html = faith_fact['question'] ?
           `<div class="question">

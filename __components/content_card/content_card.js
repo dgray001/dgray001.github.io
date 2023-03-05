@@ -42,21 +42,25 @@ export class CufContentCard extends HTMLElement {
         console.log(`No page exists for content card: ${this.content_key}`)
         break;
     }
+    const image_plus_element = this.shadowRoot.querySelector('.arrow-image.plus');
+    const image_minus_element = this.shadowRoot.querySelector('.arrow-image.minus');
     if (this.collapsible === true) {
       const header = this.shadowRoot.querySelector('.header');
       header.addEventListener('click', this.collapseHeader.bind(null, this, headerText));
       if (start_closed) {
         const content_element = this.shadowRoot.querySelector('.content');
-        const image_element = this.shadowRoot.querySelector('.arrow-image');
         card.style['border-bottom-left-radius'] = '0px';
         card.style['border-bottom-right-radius'] = '0px';
         content_element.setAttribute('style', 'display: none;');
-        image_element.setAttribute('src', '__images/plus.png');
+        image_minus_element.setAttribute('style', 'display: none;');
+      }
+      else {
+        image_plus_element.setAttribute('style', 'display: none;');
       }
     }
     else {
-      const image_element = this.shadowRoot.querySelector('.arrow-image');
-      image_element.setAttribute('style', 'display: none;');
+      image_plus_element.setAttribute('style', 'display: none;');
+      image_minus_element.setAttribute('style', 'display: none;');
       headerText.setAttribute('style', 'max-width: calc(100% - 0.3rem);')
     }
     if (card_rotation_image) {
@@ -216,20 +220,20 @@ export class CufContentCard extends HTMLElement {
     }
     const card = source.shadowRoot.querySelector('.card');
     const content_element = source.shadowRoot.querySelector('.content');
-    const image_element = source.shadowRoot.querySelector('img.arrow-image');
+    const image_plus_element = source.shadowRoot.querySelector('.arrow-image.plus');
+    const image_minus_element = source.shadowRoot.querySelector('.arrow-image.minus');
     const content_style = window.getComputedStyle(content_element);
     if (content_style.display === 'block') {
       card.setAttribute('style', 'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;');
       content_element.setAttribute('style', 'display: none;');
-      image_element.setAttribute('style', 'animation: closeCard 300ms forwards;');
-      image_element.setAttribute('src', '__images/plus.png');
+      image_plus_element.setAttribute('style', 'display: block;');
+      image_minus_element.setAttribute('style', 'display: none;');
     }
     else {
       card.removeAttribute('style');
       content_element.setAttribute('style', 'display: block;');
-      image_element.setAttribute('style', 'animation: openCard 300ms forwards;');
-      image_element.setAttribute('src', '__images/minus.png');
-      //source.scrollIntoView({behavior: "smooth", block: "center"});
+      image_plus_element.setAttribute('style', 'display: none;');
+      image_minus_element.setAttribute('style', 'display: block;');
     }
   }
 }

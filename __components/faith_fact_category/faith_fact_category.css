@@ -2,12 +2,12 @@
   background-color: rgb(255, 245, 235);
   border-radius: 6px;
   margin: 1.2rem 0;
-  padding: 3px;
 }
 
 .faith-fact .title {
   background-color: transparent;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
   box-sizing: border-box;
   font-size: 1.2rem;
@@ -25,10 +25,15 @@
   background-color: rgba(200, 150, 100, 0.15);
 }
 
+.faith-fact .all-content {
+  box-sizing: border-box;
+  padding: 0.8rem;
+}
+
 .faith-fact .question {
   display: flex;
   flex-flow: row nowrap;
-  margin: 10px 0px;
+  margin-bottom: 0.8rem;
 }
 
 .faith-fact .summary {
