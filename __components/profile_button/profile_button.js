@@ -1,5 +1,5 @@
 // @ts-nocheck
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {hasPermission, clientCookies} = await import(`/scripts/util.js?v=${version}`);
 
 export class CufProfileButton extends HTMLElement {

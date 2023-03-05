@@ -1,5 +1,5 @@
 // @ts-nocheck
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
 const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
 const {CufFormSection} = await import(`../model/form_sections/form_section/form_section.js?v=${version}`);

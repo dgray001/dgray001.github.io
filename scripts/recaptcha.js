@@ -1,4 +1,4 @@
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {DEV, until} = await import(`/scripts/util.js?v=${version}`);
 
 // reCaptcha public site key

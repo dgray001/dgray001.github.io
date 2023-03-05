@@ -2,7 +2,7 @@
 'use strict';
 export {};
 
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {until} = await import(`/scripts/util.js?v=${{version}}`);
 
 const styles = document.createElement('link');

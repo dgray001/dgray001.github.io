@@ -1,5 +1,5 @@
 // @ts-nocheck
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {panelsToIncludeFrom} = await import(`/scripts/datalists.js?v=${version}`);
 

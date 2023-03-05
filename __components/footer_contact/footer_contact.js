@@ -1,5 +1,5 @@
 // @ts-nocheck
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 
 export class CufFooterContact extends HTMLElement {
   constructor() {

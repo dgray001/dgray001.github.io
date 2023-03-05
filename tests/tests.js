@@ -1,7 +1,7 @@
 // @ts-check
 'use strict';
 
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {DEV} = await import(`/scripts/util.js?v=${version}`);
 
 import {TestModule} from './test_module.js';

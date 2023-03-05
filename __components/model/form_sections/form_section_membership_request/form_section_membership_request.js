@@ -1,5 +1,5 @@
 // @ts-nocheck
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {CufFormSection} = await import(`../form_section/form_section.js?v=${version}`);
 await import(`../../checkbox/checkbox.js?v=${version}`);
 

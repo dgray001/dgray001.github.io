@@ -1,5 +1,5 @@
 // @ts-nocheck
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {CufFormField} = await import(`../../form_field/form_field.js?v=${version}`);
 
 export class CufFormSection extends HTMLElement {

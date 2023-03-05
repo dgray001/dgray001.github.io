@@ -1,7 +1,7 @@
 // @ts-nocheck
 'use strict';
 
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {recaptchaCallback} = await import(`/scripts/recaptcha.js?v=${version}`);
 const {createContactEmail, base_url, DEV} = await import(`/scripts/util.js?v=${version}`);
 

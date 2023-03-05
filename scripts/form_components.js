@@ -1,6 +1,6 @@
 export {};
 
-const {version} = await import(`./version.js?v=${Date.now()}`);
+const {version} = await import(`./version.js?v=${Math.floor(Date.now() / 86400000)}`);
 
 await import(`../__components/model/text_area/text_area.js?v=${version}`);
 

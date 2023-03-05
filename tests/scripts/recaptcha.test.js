@@ -1,6 +1,6 @@
 // @ts-check
 
-const {version} = await import(`/scripts/version.js?v=${Date.now()}`);
+const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {TestModule} = await import(`../test_module.js?v=${version}`);
 const {it, mockFetch} = await import(`../test_module.js?v=${version}`);
 const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
