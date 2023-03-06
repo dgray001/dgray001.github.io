@@ -5,6 +5,20 @@
   width: 100vw;
 }
 
+a {
+  color: var(--link-text-color);
+  font-weight: bold;
+}
+a:visited {
+  color: var(--link-text-color-visited);
+}
+a:hover {
+  color: var(--link-text-color-hover);
+}
+a:active {
+  color: var(--link-text-color-active);
+}
+
 .margin {
   background-color: var(--margin-color);
   height: max(1vh, 7.5px);
