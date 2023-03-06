@@ -1,6 +1,6 @@
 //@ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
-const {DEV} = await import(`/scripts/util.js?v=${version}`);
+const {DEV, STAGING} = await import(`/scripts/util.js?v=${version}`);
 await import(`../navigation_pane/navigation_pane.js?v=${version}`);
 await import(`../profile_button/profile_button.js?v=${version}`);
 
@@ -37,6 +37,9 @@ export class CufHeader extends HTMLElement {
     }
     if (DEV) {
       shadow.querySelector('.title').innerHTML = "CUF DEVELOPMENT SITE";
+    }
+    else if (STAGING) {
+      shadow.querySelector('.title').innerHTML = "CUF STAGING SITE";
     }
     document.addEventListener('scroll', () => {
       this.lastKnownScrollPosition = window.scrollY;
