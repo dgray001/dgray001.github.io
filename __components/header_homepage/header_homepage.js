@@ -4,7 +4,7 @@ const {DEV, STAGING} = await import(`/scripts/util.js?v=${version}`);
 await import(`../navigation_pane/navigation_pane.js?v=${version}`);
 await import(`../profile_button/profile_button.js?v=${version}`);
 
-export class CufHeader extends HTMLElement {
+export class CufHeaderHomepage extends HTMLElement {
   /** @type {boolean} */
   homepage = false;
   /** @type {number} */
@@ -23,11 +23,11 @@ export class CufHeader extends HTMLElement {
   async connectedCallback() {
     this.homepage = this.attributes.homepage ? this.attributes.homepage.value === 'true' : this.homepage;
     const shadow = this.attachShadow({mode: 'open'});
-    const res = await fetch(`/__components/header/header.html?v=${version}`);
+    const res = await fetch(`/__components/header_homepage/header_homepage.html?v=${version}`);
     shadow.innerHTML = await res.text();
     const stylesheet = document.createElement('link');
     stylesheet.setAttribute('rel', 'stylesheet');
-    stylesheet.setAttribute('href', `/__components/header/header.css?v=${version}`);
+    stylesheet.setAttribute('href', `/__components/header_homepage/header_homepage.css?v=${version}`);
     shadow.appendChild(stylesheet);
     if (this.homepage) {
       this.homepageSettings(shadow);
@@ -67,19 +67,32 @@ export class CufHeader extends HTMLElement {
   }
 
   /**
-   * @param {ShadowRoot} _shadow
+   * @param {ShadowRoot} shadow
    */
-  homepageSettings(_shadow) {
-    throw new Error("Should use cuf-header-homepage for the homepage");
+  homepageSettings(shadow) {
+    this.collapsed_container_height_multiplier = 4;
+    shadow.querySelector('.container').setAttribute('style',
+      '--fixed-container-height: calc(1.4 * max(var(--navigation-height), calc(var(--header-height-unit) * 2)));' +
+      '--header-total-height: calc(var(--fixed-container-height) + ' +
+        'var(--header-height-unit) * 4 - var(--margin-offset));' +
+      '--title-font-size-factor: 0.9; --subtitle-font-size-factor: 1.3;' +
+      'padding-bottom: 0px;');
+    shadow.querySelector('.logo').setAttribute('style', 'visibility: hidden;');
+    shadow.querySelector('.fixed-container a').removeAttribute('href');
+    shadow.querySelector('.title').setAttribute('style', 'text-align: center; margin-left: 0;');
+    shadow.querySelector('.collapsed-container').setAttribute('style',
+      'height: calc(var(--header-height-unit) * 4);');
+    for (const element of shadow.querySelectorAll('.subtitle')) {
+      element.setAttribute('style', 'text-align: center; margin-left: 0;');
+    }
   }
 
   /**
-   * @param {ShadowRoot} shadow
+   * @param {ShadowRoot} _shadow
    */
-  defaultSettings(shadow) {
-    const fixed_container = shadow.querySelector('.fixed-container');
-    fixed_container.setAttribute('style', 'display: flex;');
+  defaultSettings(_shadow) {
+    throw new Error("Should use cuf-header for the secondary pages");
   }
 }
 
-customElements.define("cuf-header", CufHeader);
+customElements.define("cuf-header-homepage", CufHeaderHomepage);

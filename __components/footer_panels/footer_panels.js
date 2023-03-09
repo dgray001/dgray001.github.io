@@ -21,6 +21,11 @@ export class CufFooterPanels extends HTMLElement {
       const panels_to_include = panelsToIncludeFrom(panels_data);
       const content = this.shadowRoot.querySelector('.content');
       let content_string = '';
+      const panel_to_image = new Map([
+        ['news', 'people_feasting'],
+        ['papers', 'keys_to_st_peter'],
+        ['prayer', 'annunciation']
+      ]);
       for (const panel_to_include of panels_to_include) {
         const json_data = await fetchJson(`${panel_to_include}/${panel_to_include}.json`);
         if (!json_data['content'] || json_data['content'].length === 0) {
@@ -28,7 +33,8 @@ export class CufFooterPanels extends HTMLElement {
         }
         content_string += `<span class="content-card"><cuf-content-card
           content_key="${panel_to_include}" collapsible="false"
-          start_closed="false" fixed_height="270" card_rotation_image="test_image">
+          start_closed="false" fixed_height="270" card_rotation_image=
+          "paintings/${panel_to_image.get(panel_to_include)}.jpg">
           </cuf-content-card></span>`;
       }
       content.innerHTML = content_string;

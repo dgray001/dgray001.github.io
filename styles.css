@@ -19,6 +19,8 @@
   --card-box-shadow-color: rgba(0, 0, 0, .5);
   --header-color: var(--page-background-color);
   --margin-color: var(--page-background-color);
+  --footer-margin-color: var(--page-background-color);
+  --footer-color: var(--page-background-color);
   --navigation-hover-color: rgb(190, 190, 190);
   --navigation-current-color: rgba(190, 190, 190, 0.8);
   --left-sidebar-width: 10vw;
@@ -54,6 +56,26 @@ a:active {
 }
 a:not(:focus-visible) {
   outline: none;
+}
+
+::-webkit-scrollbar {
+  height: 9px;
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(70, 70, 70, 0.8);
+  border-radius: 20px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  border: 1px solid transparent;
+}
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(40, 40, 40, 0.8);
 }
 
 .page-content {

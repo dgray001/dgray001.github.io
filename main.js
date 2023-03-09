@@ -46,6 +46,10 @@ class PageLink {
 }
 
 export async function onInit() {
+  document.documentElement.setAttribute('style',
+    '--footer-margin-color: var(--card-header-color);' + 
+    '--footer-color: var(--card-header-color);');
+
   const LeftPanelLinks = [
     new PageLink('about'),
     new PageLink('involvement'),

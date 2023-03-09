@@ -16,7 +16,8 @@ export class CufContentCard extends HTMLElement {
     this.collapsible = this.attributes.collapsible ? this.attributes.collapsible.value === 'true' : this.collapsible;
     const start_closed = this.attributes.start_closed ? this.attributes.start_closed.value === 'true' : false;
     let fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
-    const card_rotation_image = this.attributes.card_rotation_image?.value || '';
+    /** @type {string} */
+    const card_rotation_image = this.attributes.card_rotation_image?.value ?? '';
     const shadow = this.attachShadow({mode: 'open'});
     const res = await fetch(`/__components/content_card/content_card.html?v=${version}`);
     shadow.innerHTML = await res.text();
@@ -68,7 +69,9 @@ export class CufContentCard extends HTMLElement {
         throw new Error('Need to set fixed height when card_rotation_image set.');
       }
       const image = document.createElement('img');
-      image.src = `__images/${card_rotation_image}.png`;
+      image.src = card_rotation_image.endsWith('.jpg') ?
+        `__images/${card_rotation_image}` :
+        `__images/${card_rotation_image}.png`;
       image.classList.add('rotation-image');
       card.remove();
       const card_wrapper = document.createElement('div');

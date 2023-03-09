@@ -3,6 +3,7 @@ html, body {
 }
 
 body {
+  background-color: var(--card-background-color);
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -132,12 +133,6 @@ img {
   align-self: flex-start;
 }
 
-a {
-  color: darkblue;
-  text-decoration: none;
-  width: auto;
-}
-
 .right-panel.list-element#faith_facts a {
   position: relative;
   top: -30%;
@@ -150,23 +145,4 @@ a {
   100% {
     opacity: 1;
   }
-}
-
-a:visited {
-  color: darkmagenta;
-}
-
-a:hover {
-  color: darkmagenta;
-  text-decoration: underline;
-}
-
-a:active {
-  color: rgb(190, 0, 0);
-  animation: flicker 300ms alternate 2;
-  text-decoration: underline;
-}
-
-a:focus-visible {
-  outline: 2px solid blue;
 }

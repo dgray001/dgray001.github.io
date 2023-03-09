@@ -20,22 +20,23 @@ a:active {
 }
 
 .margin {
-  background-color: var(--margin-color);
+  background-color: var(--footer-margin-color);
   height: max(1vh, 7.5px);
   margin-top: var(--margin-size);
   width: 100vw;
 }
 
 .content-container {
-  background-color: var(--header-color);
+  background-color: var(--footer-color);
 }
 
 .element-container {
-  margin: var(--margin-size) auto 0;
+  margin: 0 auto;
   max-width: var(--max-width);
   min-width: 0;
   overflow: auto;
   padding-left: var(--left-sidebar-width);
+  padding-top: var(--margin-size);
   text-align: center;
   width: 90%;
 }

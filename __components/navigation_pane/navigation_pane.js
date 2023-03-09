@@ -20,6 +20,9 @@ export class CufNavigationPane extends HTMLBaseElement {
 
   // This should be called when children (and inner text) available
   async childrenAvailableCallback() {
+    const default_links = ['about', 'involvement', 'apostolic_activities', 'contact', 'donate'];
+    /** @type {Array<string>} */
+    const links = this.attributes.links ? JSON.parse(this.attributes.links.value) : default_links;
     const shadow = this.attachShadow({mode: 'closed'});
     const res = await fetch(`/__components/navigation_pane/navigation_pane.html?v=${version}`);
     shadow.innerHTML = await res.text();
@@ -29,20 +32,31 @@ export class CufNavigationPane extends HTMLBaseElement {
     shadow.appendChild(stylesheet);
     const current_path = window.location.pathname;
     const wrapper = shadow.querySelector('.wrapper');
-    this.setEventListener(shadow, 'about', current_path);
-    this.setEventListener(shadow, 'involvement', current_path);
-    const apostolic_activities = shadow.querySelector('#apostolic_activities');
-    apostolic_activities.disabled = true;
-    const apostolic_activities_dropdown = shadow.querySelector('#apostolic_activities_dropdown');
-    apostolic_activities_dropdown.addEventListener('mouseenter', () =>
-      this.headerMouseOver(apostolic_activities_dropdown, apostolic_activities));
-    apostolic_activities_dropdown.addEventListener('mouseleave', () =>
-      this.headerMouseLeave(apostolic_activities_dropdown, apostolic_activities));
-    this.setEventListener(shadow, 'information_services', current_path);
-    this.setEventListener(shadow, 'lay_witness', current_path);
-    this.setEventListener(shadow, 'faith_and_life_series', current_path);
-    this.setEventListener(shadow, 'contact', current_path);
-    this.setEventListener(shadow, 'donate', current_path);
+
+    for (const link of default_links) {
+      const callback = links.includes(link) ? this.setEventListener : this.removeLink;
+      if (link === 'apostolic_activities') {
+        const apostolic_activities = shadow.querySelector('#apostolic_activities');
+        apostolic_activities.disabled = true;
+        const apostolic_activities_dropdown = shadow.querySelector('#apostolic_activities_dropdown');
+        callback(shadow, 'information_services', current_path);
+        callback(shadow, 'lay_witness', current_path);
+        callback(shadow, 'faith_and_life_series', current_path);
+        if (links.includes(link)) {
+          apostolic_activities_dropdown.addEventListener('mouseenter', () =>
+            this.headerMouseOver(apostolic_activities_dropdown, apostolic_activities));
+          apostolic_activities_dropdown.addEventListener('mouseleave', () =>
+            this.headerMouseLeave(apostolic_activities_dropdown, apostolic_activities));
+        }
+        else {
+          apostolic_activities.remove();
+          apostolic_activities_dropdown.remove();
+        }
+        continue;
+      }
+      callback(shadow, link, current_path);
+    }
+
     shadow.querySelector('.hamburger').addEventListener('click', () => {
       if (this.hamburger_clicked) {
         this.closeHamburgerSidebar(shadow);
@@ -54,6 +68,7 @@ export class CufNavigationPane extends HTMLBaseElement {
     shadow.querySelector('.background-grayed').addEventListener('click', () => {
       this.closeHamburgerSidebar(shadow);
     });
+
     await until(() => {
       return wrapper && wrapper.offsetHeight > 0;
     });
@@ -144,6 +159,23 @@ export class CufNavigationPane extends HTMLBaseElement {
         this.openNewTab(path);
       });
     }
+  }
+
+  /**
+   * @param {ShadowRoot} shadow 
+   * @param {string} element_id 
+   * @param {string} _current_path 
+   */
+  removeLink(shadow, element_id, _current_path) {
+    /** @type {HTMLButtonElement|null} */
+    const element = shadow.querySelector(`#${element_id}`);
+    /** @type {HTMLButtonElement|null} */
+    const hamburger_element = shadow.querySelector(`#hamburger-${element_id}`);
+    if (!element || !hamburger_element) {
+      throw new Error(`Removing on ${element_id} failed; can't find element.`)
+    }
+    element.remove();
+    hamburger_element.remove();
   }
 
   /**
