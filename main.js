@@ -1,3 +1,4 @@
+// @ts-check
 'use strict';
 
 class PageLink {
@@ -44,19 +45,19 @@ class PageLink {
   }
 }
 
-const LeftPanelLinks = [
-  new PageLink('about'),
-  new PageLink('involvement'),
-  new PageLink('links'),
-  new PageLink('contact'),
-  new PageLink('donate')];
-const RightPanelLinks = [
-  new PageLink('information_services'),
-  new PageLink('faith_facts'),
-  new PageLink('lay_witness'),
-  new PageLink('faith_and_life_series')];
-
-function loadPage() {
+export async function onInit() {
+  const LeftPanelLinks = [
+    new PageLink('about'),
+    new PageLink('involvement'),
+    new PageLink('links'),
+    new PageLink('contact'),
+    new PageLink('donate')];
+  const RightPanelLinks = [
+    new PageLink('information_services'),
+    new PageLink('faith_facts'),
+    new PageLink('lay_witness'),
+    new PageLink('faith_and_life_series')];
+  
   let leftPanelString = '<div class="panel-list">';
   for (const i of LeftPanelLinks) {
     leftPanelString += `<div class="left-panel list-element" id="${i.page_url}"><a href="${i.page_url}">${i.page_name}</a></div>`;

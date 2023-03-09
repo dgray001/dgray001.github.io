@@ -78,7 +78,6 @@ export class CufHeader extends HTMLElement {
       '--title-font-size-factor: 0.9;' +
       '--subtitle-font-size-factor: 1.3;');
     shadow.querySelector('.logo').setAttribute('style', 'visibility: hidden;');
-    shadow.querySelector('.logo-container a').setAttribute('style', 'width: 0px;');
     shadow.querySelector('.fixed-container a').removeAttribute('href');
     shadow.querySelector('.title').setAttribute('style', 'text-align: center; margin-left: 0;');
     shadow.querySelector('.collapsed-container').setAttribute('style',

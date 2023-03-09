@@ -1,6 +1,5 @@
-// @ts-check
+// @ts-nocheck
 'use strict';
-export {};
 
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {verifyRecaptcha, public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);

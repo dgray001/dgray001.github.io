@@ -1,3 +1,5 @@
+@import "../../styles.css";
+
 #login-form {
   margin: 3em auto 2em;
   min-width: 300px;

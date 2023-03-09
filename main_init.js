@@ -12,7 +12,7 @@ document.head.appendChild(styles);
 
 const stylesheet = document.createElement('link');
 stylesheet.setAttribute('rel', 'stylesheet');
-stylesheet.setAttribute('href', `./information_services/information_services.css?v=${version}`);
+stylesheet.setAttribute('href', `./main.css?v=${version}`);
 document.head.appendChild(stylesheet);
 
 const logo = document.createElement('link');
@@ -25,8 +25,7 @@ const recaptcha = document.createElement('script');
 recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js');
 document.head.appendChild(recaptcha);
 
-await import(`/__components/faith_fact_category_list/faith_fact_category_list.js?v=${{version}}`);
 await import(`/scripts/page_layout_components.js?v=${version}`);
-const {onInit} = await import(`./information_services.js?v=${version}`);
+const {onInit} = await import(`./main.js?v=${version}`);
 await until(() => document.readyState === 'complete');
 onInit();

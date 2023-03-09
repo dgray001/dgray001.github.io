@@ -28,7 +28,6 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
   <title>Admin Dashboard | CUF</title>
   <base href="../">
   <script type="module" src="./admin_dashboard/admin_dashboard_init.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1"></script>
 </head>
 <body>
   <cuf-header></cuf-header>

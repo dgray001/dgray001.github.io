@@ -21,6 +21,10 @@ logo.setAttribute('type', 'image/png');
 logo.setAttribute('href', `/__images/logo_square.png?v=${version}`);
 document.head.appendChild(logo);
 
+const recaptcha = document.createElement('script');
+recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js');
+document.head.appendChild(recaptcha);
+
 await import(`/scripts/page_layout_components.js?v=${version}`);
 const {onInit} = await import(`./news.js?v=${version}`);
 await until(() => document.readyState === 'complete');
