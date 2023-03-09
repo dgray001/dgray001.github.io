@@ -3,7 +3,7 @@
 export {};
 
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
-const {until} = await import(`/scripts/util.js?v=${{version}}`);
+const {until} = await import(`/scripts/util.js?v=${version}`);
 const styles = document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('href', `./styles.css?v=${version}`);

@@ -8,7 +8,7 @@ const {DEV} = await import(`/scripts/util.js?v=${version}`);
  * @param {string} path relative path to json (from __data folder)
  */
 export async function fetchJson(path) {
-  const data_control_res = await fetch(`/__data/data_control.json?v=${Date.now()}`);
+  const data_control_res = await fetch(`/__data/data_control.json?v=${Math.floor(Date.now() / 86400000)}`);
   const data_control = await data_control_res.json();
   let timestamp = '';
   if (data_control[path]) {

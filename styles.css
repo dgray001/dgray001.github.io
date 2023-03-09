@@ -35,7 +35,7 @@ body {
   background-color: var(--page-background-color);
   display: flex;
   flex-direction: column;
-  font-family: "Times New Roman", Times, serif;
+  font-family: "Sans Serif";
   margin: 0;
 }
 
@@ -51,6 +51,9 @@ a:hover {
 }
 a:active {
   color: var(--link-text-color-active);
+}
+a:not(:focus-visible) {
+  outline: none;
 }
 
 .page-content {
@@ -82,7 +85,7 @@ a:active {
 .section-title {
   color: rgb(70, 70, 140);
   font-size: 1.8em;
-  font-weight: 600; /* between normal and bold */
+  font-weight: 600;
 }
 
 .section-subtitle {
@@ -127,10 +130,6 @@ cuf-sidebar {
   margin-left: -5px;
   max-width: 450px;
   min-width: 250px;
-}
-
-a:not(:focus-visible) {
-  outline: none;
 }
 
 /* move sidebar to side for large enough devices */

@@ -31,7 +31,7 @@ export class CufFaithFactCategory extends HTMLElement {
         const faith_fact_div = document.createElement('div');
         const title = document.createElement('button');
         title.classList.add('title');
-        title.innerText = faith_fact['title'].toUpperCase();
+        title.innerHTML = faith_fact['title'].toUpperCase();
         faith_fact_div.appendChild(title);
         const content = document.createElement('div');
         content.classList.add('all-content');
