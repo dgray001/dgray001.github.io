@@ -43,15 +43,22 @@ export class CufInputText extends CufFormField {
         const eyeball = document.createElement('img');
         eyeball.src = '/__images/eye.png';
         eyeball.classList.add('password-reveal');
+        const no_eyeball = document.createElement('img');
+        no_eyeball.src = '/__images/no_eye.png';
+        no_eyeball.classList.add('password-reveal');
+        no_eyeball.setAttribute('style', 'display: none;');
         eyeball.addEventListener('click', () => {
-          if (form_field.getAttribute('type') === 'password') {
-            form_field.setAttribute('type', 'text');
-          }
-          else {
-            form_field.setAttribute('type', 'password');
-          }
+          form_field.setAttribute('type', 'text');
+          eyeball.setAttribute('style', 'display: none;');
+          no_eyeball.removeAttribute('style');
+        });
+        no_eyeball.addEventListener('click', () => {
+          form_field.setAttribute('type', 'password');
+          no_eyeball.setAttribute('style', 'display: none;');
+          eyeball.removeAttribute('style');
         });
         this.form_field_wrapper.appendChild(eyeball);
+        this.form_field_wrapper.appendChild(no_eyeball);
       }
     }
     const datalist = this.attributes.datalist?.value || '';

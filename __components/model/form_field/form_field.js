@@ -180,7 +180,7 @@ export class CufFormField extends HTMLBaseElement {
         'background-color: rgb(255, 200, 180);' +
         'border-color: rgb(255, 0, 0);' +
         'color: darkred; display: block;');
-      this.form_field_helper_text.innerText = this.validation_error_text;
+      this.form_field_helper_text.innerHTML = this.validation_error_text;
     }
     else if (this.default_helper_text) {
       this.form_field_wrapper.setAttribute('style', '');
@@ -188,7 +188,7 @@ export class CufFormField extends HTMLBaseElement {
         'background-color: rgb(231, 224, 217);' +
         'border-color: rgb(0, 0, 0);' +
         'color: black; display: block;');
-      this.form_field_helper_text.innerText = this.default_helper_text;
+      this.form_field_helper_text.innerHTML = this.default_helper_text;
     }
     else {
       this.form_field_wrapper.setAttribute('style', '');

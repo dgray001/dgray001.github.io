@@ -12,10 +12,10 @@ export async function onInit() {
   }
 
   const form = document.createElement('form');
-  form.id = 'activate-form';
-  form.name = 'activate-form';
+  form.id = 'reset-password-form';
+  form.name = 'reset-password-form';
   const form_sm = document.createElement('div');
-  form_sm.id = 'activate-form-status-message';
+  form_sm.id = 'reset-password-form-status-message';
   const form_button = document.createElement('button');
   form_button.classList.add('form-submit-button');
   form_button.type = 'button';
@@ -59,8 +59,8 @@ export async function onInit() {
     onetime_code.setAttribute('label', 'Single Use Code');
     onetime_code.setAttribute('autocomplete', 'one-time-code');
 
-    form_button.id = 'activate-form-button';
-    form_button.innerHTML = 'Activate';
+    form_button.id = 'reset-password-form-button';
+    form_button.innerHTML = 'Verify Email';
 
     form.appendChild(username);
     form.appendChild(form_button_email);
@@ -148,7 +148,7 @@ export async function onInit() {
             form_button_password.remove();
             password_wrapper.setAttribute('style', 'display: none;');
             form_sm_email.setAttribute('style', 'display: block; color: green;');
-            form_sm_email.innerText = 'Congratulations, your account is activated!';
+            form_sm_email.innerText = 'Your password was successfully reset.';
             const profile_button = document.querySelector('cuf-header')
               .shadowRoot.querySelector('cuf-profile-button');
             if (profile_button && profile_button.shadowRoot) {
@@ -168,7 +168,7 @@ export async function onInit() {
   const login_link = document.createElement('a');
   login_link.classList.add('login-prompt');
   login_link.href = '/login';
-  login_link.innerText = 'Already activated your account? Click here to login';
+  login_link.innerText = 'Do you know your password? Click here to login';
   section_content.appendChild(login_link);
 }
 
@@ -185,7 +185,7 @@ async function sendVerificationEmail(status_message, username) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({'email': username.getFormData(), 'expect_activated': 'false'}),
+      body: JSON.stringify({'email': username.getFormData(), 'expect_activated': 'true'}),
     });
     const response_json = await response.json();
     if (response_json['valid']) {
@@ -220,7 +220,7 @@ async function verifyEmail(status_message, email, code) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({'email': email, 'code': code, 'expect_activated': 'false'}),
+      body: JSON.stringify({'email': email, 'code': code, 'expect_activated': 'true'}),
     });
     const response_json = await response.json();
     if (response_json['valid']) {
@@ -250,7 +250,7 @@ async function verifyEmail(status_message, email, code) {
 \ */
 async function setPassword(status_message, email, code, password) {
   try {
-    const response = await fetch('/server/set_password.php', {
+    const response = await fetch('/server/reset_password.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -260,7 +260,7 @@ async function setPassword(status_message, email, code, password) {
     const response_json = await response.json();
     if (response_json['valid']) {
       status_message.setAttribute('style', 'display: block; color: green;');
-      status_message.innerText = 'Congratulations, your account has been activated!';
+      status_message.innerText = 'Your password was successfully reset';
       return true;
     }
     else {

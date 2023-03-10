@@ -13,12 +13,17 @@ if (empty($user_email) || empty($user_code)) {
   exit(1);
 }
 
+$expect_activated = true;
+if (isset($received_data['expect_activated']) && $received_data['expect_activated'] == 'false') {
+  $expect_activated = false;
+}
+
 require_once(__DIR__ . '/includes/db_connection.php');
 require_once(__DIR__ . '/includes/login_util.php');
 
 $conn = connectToTable();
 
-verifyEmail($conn, $user_email, $user_code);
+verifyEmail($conn, $user_email, $user_code, $expect_activated);
 
 echo json_encode(array('valid' => true));
 exit();

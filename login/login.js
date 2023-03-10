@@ -49,6 +49,7 @@ export async function onInit() {
         validators='["required"]'
         label="Password"
         datatype="password"
+        helper-text="<a href='/login/reset_password'>Forgot password? Click here</a>"
         autocomplete="current-password">
       </cuf-input-text>
     `;
@@ -64,6 +65,11 @@ export async function onInit() {
         submitLoginForm();
       }, form_button, form_sm, 'Logging In');
     });
+    /*const forgot_password = document.createElement('a');
+    forgot_password.innerHTML = 'Forgot Password?';
+    forgot_password.classList.add('forgot-password');
+    forgot_password.href = '/login/reset_password';
+    form.appendChild(forgot_password);*/
   }
 
   form.appendChild(form_button);

@@ -88,10 +88,14 @@ button.form-field
 	font-size: 12px;
   left: 10px;
 	margin: 0 -9px -9px -9px;
-  padding-left: 2px;
+  padding-left: 4px;
   position: absolute;
   right: 10px;
 	text-align: left;
+}
+
+.helper-text a {
+  text-decoration: none;
 }
 
 input[type="submit"],
