@@ -65,7 +65,7 @@ export async function onInit() {
       }, form_button, form_sm, 'Logging In');
     });
   }
-  
+
   form.appendChild(form_button);
   form.appendChild(form_sm);
   section_content.appendChild(form);

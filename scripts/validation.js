@@ -1,3 +1,5 @@
+// @ts-check
+
 export const Validator = {
   required: 'required',
   name: 'name',
@@ -7,11 +9,12 @@ export const Validator = {
   suffix: 'suffix',
   number: 'number',
   integer: 'integer',
+  password: 'password',
 }
 
 /**
  * Validates the input based on the given validator.
- * @param {Validator} validator validator keyword
+ * @param {string} validator validator keyword
  * @param {string} input input text
  * @param {HTMLElement} element element reference
  * @return {string} error message text; blank if no error
@@ -72,6 +75,15 @@ export function validate(validator, input, element) {
       const valid_integer = !isNaN(input) && !isNaN(parseInt(input)) && /^[-]?\+?\d+$/.test(input);
       if (!valid_integer) {
         return 'Please enter a valid integer';
+      }
+      break;
+    case 'password':
+      if (input.length < 6) {
+        return 'Please choose a longer password'
+      }
+      const re_password = /^\S*$/;
+      if (!re_password.test(input)) {
+        return 'Please omit whitespace from your password';
       }
       break;
     default:

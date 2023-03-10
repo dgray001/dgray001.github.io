@@ -1,6 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
-const {hasPermission, clientCookies} = await import(`/scripts/util.js?v=${version}`);
+const {hasPermission, clientCookies, loggedIn} = await import(`/scripts/util.js?v=${version}`);
 
 export class CufProfileButton extends HTMLElement {
   constructor() {
@@ -8,7 +8,7 @@ export class CufProfileButton extends HTMLElement {
   }
 
   async connectedCallback() {
-    const shadow = this.attachShadow({mode: 'closed'});
+    const shadow = this.attachShadow({mode: 'open'});
     const res = await fetch(`/__components/profile_button/profile_button.html?v=${version}`);
     shadow.innerHTML = await res.text();
     const stylesheet = document.createElement('link');
@@ -26,7 +26,7 @@ export class CufProfileButton extends HTMLElement {
     const profile_button_logout = shadow.querySelector('#button-logout');
     profile_button_logout.href += `?hard_redirect=${window.location.href}`;
     const cookies = clientCookies();
-    if (cookies.hasOwnProperty('PHPSESSID') && cookies.hasOwnProperty('email') && cookies.hasOwnProperty('role')) {
+    if (loggedIn()) {
       const info_email = shadow.querySelector('.info-wrapper .email');
       info_email.innerText = cookies['email'];
 
@@ -48,6 +48,7 @@ export class CufProfileButton extends HTMLElement {
           profile_info_wrapper.setAttribute('style', 'display: none;');
         }
       });
+      profile_picture.removeAttribute('style');
     }
     else {
       profile_picture.setAttribute('style', 'display: none;');

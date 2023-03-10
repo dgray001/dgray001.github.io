@@ -6,19 +6,12 @@ require_once(__DIR__ . '/includes/prevent_get.php');
 $received_data = json_decode(file_get_contents('php://input'), true);
 
 // get mail config
+require_once(__DIR__ . '/includes/send_email.php');
 require_once(__DIR__ . '/includes/config_path.php');
 require_once($config_path . '/mail_config.php');
 
-$msg = $received_data;
-
-$headers[] = 'X-Mailer: PHP/' . phpversion();
-$headers[] = 'MIME-Version: 1.0';
-$headers[] = 'Content-type: text/html; charset=iso-8859-1';
-$headers[] = 'From: Catholics United for the Faith <noreply@cuf.org>';
-
 // send mail
-$sent = mail($donate_form_recipient, 'CUF | Donate Form Submission Data', $msg, implode("\r\n", $headers));
-if ($sent) {
+if (sendEmail($donate_form_recipient, 'CUF | Donate Form Submission Data', $received_data)) {
   echo json_encode('true');
 }
 else {
