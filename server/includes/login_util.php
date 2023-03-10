@@ -92,7 +92,22 @@ function sendActivationCode($conn, $email, $expect_activated): void {
     exit(26);
   }
 
-  if (!sendEmail($email, 'CUF Single Use Email Verification Code', $code)) {
+  $email_body = "
+  <html>
+    <head>
+      <title>CUF Single Use Email Verification Code</title>
+    </head>
+    <body>
+      <p>
+        Below is your single-use email verification code. This code will expire in 10 minutes. If you did not request this code, someone may be trying to access your CUF.org account
+      </p>
+        $code
+      <p>
+      </p>
+    </body>
+  </html>
+  ";
+  if (!sendEmail($email, 'CUF Single Use Email Verification Code', $email_body)) {
     echo json_encode('Email didn\'t send');
     exit(27);
   }
@@ -202,5 +217,42 @@ function resetPassword($conn, $email, $code, $password): void {
   if ($result != 1) {
     echo json_encode('Command did not affect a single row.');
     exit(28);
+  }
+}
+
+function changePassword($conn, $email, $old_password, $new_password): void {
+  $user = userEmailExists($conn, $email);
+  if (!$user) {
+    echo json_encode('User doesn\'t exist');
+    exit(21);
+  }
+  if (!$user['activated']) {
+    echo json_encode('Account not activated');
+    exit(22);
+  }
+  if (!password_verify($old_password, $user['password_hash'])) {
+    echo json_encode('Incorrect old password');
+    exit(23);
+  }
+
+  $cmd = 'UPDATE cuf_users SET password_hash = ? WHERE email = ?';
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $cmd)) {
+    echo json_encode('Server can\'t activate account at this time.');
+    exit(24);
+  }
+  $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+  if (!mysqli_stmt_bind_param($stmt, "ss", $hashed_password, $email)) {
+    echo json_encode('Parameter binding failed.');
+    exit(25);
+  }
+  if (!mysqli_stmt_execute($stmt)) {
+    echo json_encode('Command execution failed.');
+    exit(26);
+  }
+  $result = mysqli_stmt_affected_rows($stmt);
+  if ($result != 1) {
+    echo json_encode('Command did not affect a single row.');
+    exit(27);
   }
 }

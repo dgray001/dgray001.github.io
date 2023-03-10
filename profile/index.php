@@ -21,7 +21,6 @@ if (!loggedIn()) {
   <title>Profile | CUF</title>
   <base href="../">
   <script type="module" src="./profile/profile_init.js"></script>
-  <script src="https://www.google.com/recaptcha/api.js?render=6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1"></script>
 </head>
 <body>
   <cuf-header></cuf-header>
@@ -42,7 +41,39 @@ if (!loggedIn()) {
       <h2 class="section-title">Account Management</h2>
       <div class="section">
         <button id="change-password">Change Password</button>
-        <div id="change-password-sm"></div>
+        <form id="change-password-form" name="change-password-form" style="display: none;">
+          <cuf-input-text
+            id="change-password-old"
+            flex_option="3"
+            validators='["required"]'
+            label="Old Password"
+            datatype="password"
+            autocomplete="current-password">
+          </cuf-input-text>
+          <cuf-input-text
+            id="change-password-new"
+            flex_option="3"
+            validators='["required", "password"]'
+            label="New Password"
+            datatype="password"
+            autocomplete="new-password">
+          </cuf-input-text>
+          <cuf-input-text
+            id="change-password-confirm"
+            flex_option="3"
+            validators='["required", "password"]'
+            label="Confirm Password"
+            datatype="password"
+            autocomplete="new-password">
+          </cuf-input-text>
+          <button
+            id="change-password-form-button"
+            type="button"
+            class="form-submit-button">
+            Change Password
+          </button>
+        </form>
+        <div id="change-password-status-message"></div>
       </div>
     </div>
     <cuf-sidebar panels='page'></cuf-sidebar>
