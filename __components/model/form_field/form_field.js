@@ -84,6 +84,7 @@ export class CufFormField extends HTMLBaseElement {
     else {
       this.form_field_label.innerText = this.label;
     }
+    return shadow;
   }
 
   /**

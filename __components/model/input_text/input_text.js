@@ -6,8 +6,10 @@ const {specificMapping, defaultMapping} = await import(`/scripts/datalists.js?v=
 export class CufInputText extends CufFormField {
   /** @type {boolean} */
   use_data_value = false;
+
   /** @type {Array<HTMLOptionElement>} */
   datalist_options = [];
+
   /** @type {Array<string>} possible values */
   datalist_values = [];
 
@@ -21,13 +23,13 @@ export class CufInputText extends CufFormField {
 
   // This should be called when children (and inner text) available
   async childrenAvailableCallback() {
-    await super.childrenAvailableCallback();
+    const shadow = await super.childrenAvailableCallback();
     const res = await fetch(`/__components/model/input_text/input_text.html?v=${version}`);
     const form_field = await this.setFormFieldAttributes(res);
     const stylesheet = document.createElement('link');
     stylesheet.setAttribute('rel', 'stylesheet');
     stylesheet.setAttribute('href', `/__components/model/input_text/input_text.css?v=${version}`);
-    this.shadowRoot.appendChild(stylesheet);
+    shadow.appendChild(stylesheet);
     const autocomplete = this.attributes.autocomplete?.value || '';
     if (autocomplete) {
       form_field.setAttribute('autocomplete', autocomplete);
@@ -37,6 +39,20 @@ export class CufInputText extends CufFormField {
     if (datatype) {
       this.removeAttribute('datatype');
       form_field.setAttribute('type', datatype);
+      if (datatype === 'password') {
+        const eyeball = document.createElement('img');
+        eyeball.src = '/__images/eye.png';
+        eyeball.classList.add('password-reveal');
+        eyeball.addEventListener('click', () => {
+          if (form_field.getAttribute('type') === 'password') {
+            form_field.setAttribute('type', 'text');
+          }
+          else {
+            form_field.setAttribute('type', 'password');
+          }
+        });
+        this.form_field_wrapper.appendChild(eyeball);
+      }
     }
     const datalist = this.attributes.datalist?.value || '';
     if (datalist) {
