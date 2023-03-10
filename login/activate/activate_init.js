@@ -4,6 +4,8 @@ export {};
 
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
+const {public_recaptcha_site_key} = await import(`/scripts/recaptcha.js?v=${version}`);
+
 const styles = document.createElement('link');
 styles.setAttribute('rel', 'stylesheet');
 styles.setAttribute('href', `./styles.css?v=${version}`);
@@ -21,12 +23,11 @@ logo.setAttribute('href', `/__images/logo_square.png?v=${version}`);
 document.head.appendChild(logo);
 
 const recaptcha = document.createElement('script');
-recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js');
+recaptcha.setAttribute('src', `https://www.google.com/recaptcha/api.js?render=${public_recaptcha_site_key}`);
 document.head.appendChild(recaptcha);
 
 await import(`/scripts/page_layout_components.js?v=${version}`);
 await import(`/scripts/form_components.js?v=${version}`);
-await import(`./activate.js?v=${version}`);
+const {onInit} = await import(`./activate.js?v=${version}`);
 await until(() => document.readyState === 'complete');
-
-await window.on_load();
+onInit();

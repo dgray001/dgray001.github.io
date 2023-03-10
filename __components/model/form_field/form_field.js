@@ -142,6 +142,13 @@ export class CufFormField extends HTMLBaseElement {
   }
 
   /**
+   * Disables form field
+   */
+  disable() {
+    console.log(`CufFormField::disable not implemented for ${this.constructor.name}.`);
+  }
+
+  /**
    * Validates the form field based on input validators.
    * This function sets valid, validation_error_text, and updates helper text.
    * @return {boolean} whether form field is valid.

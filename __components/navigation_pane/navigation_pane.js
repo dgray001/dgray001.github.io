@@ -34,7 +34,9 @@ export class CufNavigationPane extends HTMLBaseElement {
     const wrapper = shadow.querySelector('.wrapper');
 
     for (const link of default_links) {
-      const callback = links.includes(link) ? this.setEventListener : this.removeLink;
+      const callback = links.includes(link) ?
+        this.setEventListener.bind(this) :
+        this.removeLink.bind(this);
       if (link === 'apostolic_activities') {
         const apostolic_activities = shadow.querySelector('#apostolic_activities');
         apostolic_activities.disabled = true;

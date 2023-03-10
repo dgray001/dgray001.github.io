@@ -1,11 +1,11 @@
-#login-form {
+#activate-form {
   margin: 3em auto 2em;
   min-width: 300px;
   width: 75%;
 }
 
-#login-form-status-message {
-  margin-bottom: 1em;
+#send-email-status-message {
+  margin-bottom: 1.3em;
 }
 
 .login-prompt {
@@ -18,5 +18,5 @@
 }
 
 .login-prompt:hover {
-  background-color: rgb(173, 173, 173);
+  background-color: rgb(225, 225, 225);
 }

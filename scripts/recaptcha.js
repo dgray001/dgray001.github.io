@@ -49,6 +49,7 @@ export async function recaptchaCallback(grecaptcha, callback, button, status_mes
     button_original_text = button.innerText;
     button.disabled = true;
     button.innerText = loading_text;
+    button.setAttribute('style', 'box-shadow: none;');
   }
   let success;
 
@@ -60,6 +61,7 @@ export async function recaptchaCallback(grecaptcha, callback, button, status_mes
       if (button) {
         button.disabled = false;
         button.innerText = button_original_text;
+        button.removeAttribute('style');
       }
       return;
     }

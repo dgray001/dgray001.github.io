@@ -14,6 +14,7 @@ $msg = $received_data;
 $headers[] = 'X-Mailer: PHP/' . phpversion();
 $headers[] = 'MIME-Version: 1.0';
 $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+$headers[] = 'From: Catholics United for the Faith <noreply@cuf.org>';
 
 // send mail
 $sent = mail($donate_form_recipient, 'CUF | Donate Form Submission Data', $msg, implode("\r\n", $headers));

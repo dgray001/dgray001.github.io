@@ -93,6 +93,13 @@ export class CufInputText extends CufFormField {
   clearFormData() {
     this.form_field.value = '';
   }
+
+  /**
+   * Disables form field
+   */
+  disable() {
+    this.form_field.setAttribute('readonly', 'true');
+  }
 }
 
 customElements.define("cuf-input-text", CufInputText);
