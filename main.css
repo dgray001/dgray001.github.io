@@ -20,11 +20,3 @@ body {
   margin-top: var(--header-height-unit);
   max-width: 100vw;
 }
-
-cuf-navigation-pane {
-  display: block;
-  height: calc(2 * var(--page-body-font-size));
-  margin: calc(1.2 * var(--page-body-font-size)) auto;
-  min-width: 300px;
-  width: 50vw;
-}

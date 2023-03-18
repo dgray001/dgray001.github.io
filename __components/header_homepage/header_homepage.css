@@ -1,7 +1,9 @@
 .container {
   --fixed-container-height: calc(var(--header-height-unit) * 5);
   --subtitle-font-size: calc(0.3 * var(--fixed-container-height) * var(--subtitle-font-size-factor));
-  --header-total-height: calc(var(--fixed-container-height) + 2 * (var(--subtitle-font-size)));
+  --header-total-height: calc(var(--fixed-container-height) +
+    2.4 * var(--subtitle-font-size) + var(--navigation-height) +
+    2.4 * var(--page-body-font-size));
   --title-font-size-factor: 1; /* For the homepage styling */
   --subtitle-font-size-factor: 1;
   background-color: var(--card-background-color);
@@ -38,20 +40,6 @@
   width: fit-content;
 }
 
-cuf-navigation-pane {
-  height: var(--navigation-height);
-}
-
-/* navigation panel below header for smaller devices */
-/* If change media query must change in navigation_pane.css */
-@media only screen and (max-width: 1200px) and (min-width: 700px) {
-  .container {
-    --fixed-container-height: calc(var(--header-height-unit) * 2);
-    --header-total-height: var(--fixed-container-height);
-    padding-bottom: var(--navigation-height);
-  }
-}
-
 /* remove margin for smaller devices */
 @media only screen and (max-width: 700px) {
   .margin {
@@ -81,8 +69,9 @@ cuf-navigation-pane {
 }
 
 .logo-container {
-  left: var(--left-auto-margin);
-  height: calc(var(--header-total-height));
+  --left: 2px;
+  left: var(--left);
+  height: calc(var(--header-total-height) - 2 * var(--page-body-font-size));
   position: absolute;
   top: var(--page-body-font-size);
   z-index: 9;
@@ -99,5 +88,16 @@ img {
 .subtitle {
   font-size: var(--subtitle-font-size);
   font-weight: bold;
+  height: calc(1.2 * var(--subtitle-font-size));
+  margin: 0 auto;
   text-align: center;
+  width: fit-content;
+}
+
+cuf-navigation-pane {
+  display: block;
+  height: var(--navigation-height);
+  margin: calc(1.2 * var(--page-body-font-size)) auto;
+  min-width: 300px;
+  width: 50vw;
 }

@@ -69,6 +69,7 @@ export class CufSlider extends HTMLElement {
       const text = document.createElement('a');
       text.href = `/${page}`;
       text.innerHTML = data[page]['text'];
+      text.tabIndex = -1;
       container.appendChild(text);
       if (i == 1) {
         this.current_index = 1;
@@ -84,6 +85,7 @@ export class CufSlider extends HTMLElement {
       const dot = document.createElement('div');
       dot.classList.add('dot');
       dot.id = `dot-${i}`;
+      dot.tabIndex = 1;
       if (i == 1) {
         dot.classList.add('current');
       }
