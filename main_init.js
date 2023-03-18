@@ -25,7 +25,7 @@ const recaptcha = document.createElement('script');
 recaptcha.setAttribute('src', 'https://www.google.com/recaptcha/api.js');
 document.head.appendChild(recaptcha);
 
-await import(`/__components/footer_panels/footer_panels.js?v=${version}`);
+await import(`/__components/slider/slider.js?v=${version}`);
 await import(`/scripts/page_layout_components.js?v=${version}`);
 const {onInit} = await import(`./main.js?v=${version}`);
 await until(() => document.readyState === 'complete');

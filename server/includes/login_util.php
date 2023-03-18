@@ -31,7 +31,7 @@ function loginUser($conn, $email, $password): void {
     echo json_encode('User doesn\'t exist');
     exit(21);
   }
-  if (!$user['activated']) {
+  if (!isset($user['activated']) || !$user['activated']) {
     echo json_encode('Account not activated');
     exit(22);
   }

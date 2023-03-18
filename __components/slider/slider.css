@@ -1,0 +1,18 @@
+.container {
+  overflow: hidden;
+  width: 100vw;
+}
+
+.images {
+  background-color: black;
+  height: calc(0.375 * 100vw);
+  width: 100vw;
+}
+
+.images img {
+  left: 100vw;
+  object-fit: contain;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}

@@ -1,11 +1,14 @@
+:root {
+  --page-background-color: var(--card-background-color);
+}
+
 html, body {
   height: 100%;
 }
 
 body {
   background-color: var(--card-background-color);
-  display: flex;
-  flex-direction: column;
+  display: block;
   margin: 0;
 }
 
@@ -14,135 +17,14 @@ body {
 }
 
 .container {
-  align-items: stretch;
-  display: flex;
-  flex: 1 0 auto;
-  flex-direction: row;
-  gap: 14px;
-  height: 50vh;
-  justify-content: center;
   margin-top: var(--header-height-unit);
   max-width: 100vw;
-  position: relative;
 }
 
-.panel-links {
-  font-size: min(3vw, 12vh);
-  flex: 3 1 0;
-}
-
-.list-element {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  flex-direction: column;
-}
-
-.left-panel.list-element {
-  text-align: right;
-  flex: 1 1 0;
-}
-
-#centerImage {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  flex: 2 1 0;
-}
-
-/* Make center image a watermark for smaller devices */
-@media only screen and (max-width: 950px) {
-  #centerImage {
-    height: 100%;
-    margin: 0 auto;
-    opacity: 0.5;
-    position: absolute;
-    z-index: -1;
-  }
-
-  .panel-links {
-    font-size: calc(1.4 * min(3vw, 12vh));
-    margin: 0 0.6em;
-  }
-
-  .list-element a {
-    background-color: rgba(220, 205, 190, 0.5);
-    border-radius: 1em;
-    padding: 0.1em 0.3em;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .container {
-    flex-wrap: wrap;
-  }
-
-  .panel-links {
-    flex: 0 0 calc(100% - 1.2em);
-    font-size: calc(1.8 * min(3vw, 12vh));
-  }
-
-  .container .panel-links .list-element {
-    text-align: center;
-  }
-
-  .container .panel-links .list-element a {
-    align-self: center;
-    width: 100%;
-  }
-
-  .container .panel-links .right-panel.list-element#faith_facts a {
-    top: -10%;
-  }
-}
-
-img {
-  object-fit: scale-down;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.right-panel.list-element {
-  padding-left: 0%;
-  text-align: left;
-  flex: auto;
-}
-
-.right-panel.list-element#faith_facts {
-  font-size: 0.9em;
-  padding-left: 5%;
-}
-
-.right-panel.list-element.right-panel-list-header {
-  padding-left: 0%;
-  font-weight: bold;
-}
-
-.panel-list {
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.left-panel a {
-  align-self: flex-end;
-}
-
-.right-panel a {
-  align-self: flex-start;
-}
-
-.right-panel.list-element#faith_facts a {
-  position: relative;
-  top: -30%;
-}
-
-@keyframes flicker {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
+cuf-navigation-pane {
+  display: block;
+  height: calc(2 * var(--page-body-font-size));
+  margin: calc(1.2 * var(--page-body-font-size)) auto;
+  min-width: 300px;
+  width: 50vw;
 }
