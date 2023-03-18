@@ -1,18 +1,77 @@
-.container {
-  overflow: hidden;
-  width: 100vw;
-}
-
-.images {
+.wrapper {
   background-color: black;
   height: calc(0.375 * 100vw);
+  overflow: hidden;
+  position: relative;
   width: 100vw;
 }
 
-.images img {
+.container {
   left: 100vw;
   object-fit: contain;
   overflow: hidden;
   position: absolute;
   width: 100%;
+}
+
+.container img {
+  object-fit: contain;
+  width: 100%;
+}
+
+.container a {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgb(160, 230, 110);
+  font-size: calc(2.4 * var(--page-body-font-size));
+  font-weight: bold;
+  left: 10vw;
+  position: absolute;
+  text-decoration: none;
+  top: calc(0.375 * 10vw);
+  white-space: pre-line;
+}
+
+.container a:visited {
+  color: rgb(150, 220, 90);
+}
+.container:hover a {
+  color: rgb(170, 240, 120);
+}
+.container a:active {
+  color: rgb(190, 255, 150);
+}
+.container a:not(:focus-visible) {
+  outline: none;
+}
+
+.dots {
+  align-items: center;
+  bottom: calc(0.375 * 7vw);
+  display: flex;
+  flex-flow: row nowrap;
+  height: 40px;
+  justify-content: center;
+  margin: 0 auto;
+  position: absolute;
+  width: 100vw;
+}
+
+.dots .dot {
+  background-clip: padding-box;
+  background-color: white;
+  border: solid transparent 4px;
+  border-radius: 9px;
+  margin: 6px;
+  height: 11px;
+  transition: all 200ms ease;
+  width: 11px;
+}
+
+.dots .dot:hover:not(.current) {
+  border-color: white;
+}
+
+.dots .dot.current {
+  background-color: black;
+  border-color: white;
 }
