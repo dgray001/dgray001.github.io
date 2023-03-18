@@ -1,9 +1,15 @@
 // @ts-check
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
+const {until} = await import(`/scripts/util.js?v=${version}`);
 
 export class CufSlider extends HTMLElement {
   /** @type {ShadowRoot} */
   shadow;
+
+  /** @type {HTMLDivElement} */
+  wrapper;
+
+  last_scale_used = 0;
 
   current_index = 0;
   max_index = 0;
@@ -47,6 +53,7 @@ export class CufSlider extends HTMLElement {
     if (!wrapper) {
       throw new Error('Missing required elements');
     }
+    this.wrapper = wrapper;
 
     wrapper.addEventListener('mousemove', () => {
       this.stop_moving = true;
@@ -64,7 +71,7 @@ export class CufSlider extends HTMLElement {
       container.classList.add('container');
       container.id = `img-${i}`;
       const img = document.createElement('img');
-      img.src = `/__images/paintings/${data[page]['image']}.jpg`;
+      img.setAttribute('image_name', data[page]['image']);
       container.appendChild(img);
       const text = document.createElement('a');
       text.href = `/${page}`;
@@ -95,6 +102,38 @@ export class CufSlider extends HTMLElement {
       dots.appendChild(dot);
     }
     wrapper.appendChild(dots);
+    this.updateImageSrcs();
+    window.addEventListener('resize', this.updateImageSrcs.bind(this));
+  }
+
+  async updateImageSrcs() {
+    const available_scales = [10, 13.333, 16.666, 20, 23.333, 26.666];
+    let header = document.getElementsByTagName('cuf-header')[0];
+    if (!header) {
+      header = document.getElementsByTagName('cuf-header-homepage')[0];
+    }
+    await until(() => !!header && header.parsed);
+    let remaining_height = window.innerHeight - header.offsetHeight;
+    if (remaining_height < 1) {
+      remaining_height = 1;
+    }
+    const ratio = 10 * window.innerWidth / remaining_height;
+    for (const [i, scale] of available_scales.entries()) {
+      if (i < available_scales.length && ratio > scale) {
+        continue;
+      }
+      if (this.last_scale_used == scale) {
+        break;
+      }
+      const scale_invert = 10 / scale;
+      this.wrapper.setAttribute('style', `--scale: ${scale_invert};`);
+      const display_scale = Math.floor(scale);
+      for (const img of this.shadow.querySelectorAll('.container img')) {
+        const painting_name = img.getAttribute('image_name') ?? '';
+        img.setAttribute('src', `/__images/paintings/slider/${painting_name}_${display_scale}.jpg`);
+      }
+      break;
+    }
   }
 
   nextImage(force = false) {

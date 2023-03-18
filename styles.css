@@ -26,6 +26,13 @@
   --left-sidebar-width: 10vw;
   --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
   --page-content-width: calc(100vw - 2 * var(--left-auto-margin) - var(--left-sidebar-width));
+  --title-font-size-factor: 1; /* For the homepage styling */
+  --subtitle-font-size-factor: 1;
+  --fixed-container-height: calc(var(--header-height-unit) * 5);
+  --subtitle-font-size: calc(0.3 * var(--fixed-container-height) * var(--subtitle-font-size-factor));
+  --header-total-height: calc(var(--fixed-container-height) +
+    2.4 * var(--subtitle-font-size) + var(--navigation-height) +
+    2.4 * var(--page-body-font-size));
   overflow-anchor: none;
 }
 

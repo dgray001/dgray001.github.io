@@ -7,6 +7,8 @@ await import(`../profile_button/profile_button.js?v=${version}`);
 export class CufHeaderHomepage extends HTMLElement {
   /** @type {boolean} */
   profile_info_open = false;
+  /** @type {boolean} */
+  parsed = false;
 
   constructor() {
     super();
@@ -56,9 +58,8 @@ export class CufHeaderHomepage extends HTMLElement {
       parseInt(subtitle_style.marginLeft.slice(0, -2)),
       parseInt(navigation_pane_style.marginLeft.slice(0, -2)));
     const logo_style = window.getComputedStyle(logo, null);
-    console.log(title_style.marginLeft, subtitle_style.marginLeft, navigation_pane_style.marginLeft);
-    console.log(margin_left);
     logo.setAttribute('style', `--left: max(2px, calc(${margin_left}px - ${logo_style.width} - 16px)`);
+    this.parsed = true;
   }
 }
 

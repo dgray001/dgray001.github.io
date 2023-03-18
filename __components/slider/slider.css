@@ -1,6 +1,7 @@
 .wrapper {
+  --scale: 0.375;
   background-color: black;
-  height: calc(0.375 * 100vw);
+  height: calc(var(--scale) * 100vw);
   overflow: hidden;
   position: relative;
   width: 100vw;
@@ -27,7 +28,7 @@
   left: 10vw;
   position: absolute;
   text-decoration: none;
-  top: calc(0.375 * 10vw);
+  top: calc(var(--scale) * 10vw);
   white-space: pre-line;
 }
 
@@ -46,7 +47,7 @@
 
 .dots {
   align-items: center;
-  bottom: calc(0.375 * 7vw);
+  bottom: calc(var(--scale) * 7vw);
   display: flex;
   flex-flow: row nowrap;
   height: 40px;
