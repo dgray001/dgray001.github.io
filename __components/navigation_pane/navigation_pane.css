@@ -84,7 +84,7 @@ button.dropdown-element.current-element {
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 5;
+  z-index: 7;
 }
 
 .hamburger-sidebar {
@@ -97,14 +97,14 @@ button.dropdown-element.current-element {
   top: 0;
   transition: all ease-out 200ms;
   width: 0px;
-  z-index: 5;
+  z-index: 8;
 }
 
 .hamburger-navigation-wrapper {
   --hamburger-element-height: 30px;
   --hamburger-element-margin: 15px;
   height: 100%;
-  margin-top: var(--fixed-header-height);
+  margin-top: calc(1.5 * var(--fixed-header-height));
   width: 100%;
 }
 

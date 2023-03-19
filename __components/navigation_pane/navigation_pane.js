@@ -51,6 +51,8 @@ export class CufNavigationPane extends HTMLBaseElement {
             this.headerMouseLeave(apostolic_activities_dropdown, apostolic_activities));
         }
         else {
+          const hamburger_apostolic_activities = shadow.querySelector('#hamburger-apostolic_activities');
+          hamburger_apostolic_activities.remove();
           apostolic_activities.remove();
           apostolic_activities_dropdown.remove();
         }

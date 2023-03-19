@@ -51,7 +51,7 @@ export class CufProfileButton extends HTMLElement {
       profile_picture.removeAttribute('style');
     }
     else {
-      profile_picture.setAttribute('style', 'display: none;');
+      //profile_picture.setAttribute('style', 'display: none;');
     }
   }
 }

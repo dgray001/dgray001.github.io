@@ -10,7 +10,7 @@
   top: 0;
   height: var(--fixed-container-height);
   width: 100vw;
-  z-index: 9;
+  z-index: 6;
 }
 
 .fixed-container-height-box {
@@ -33,41 +33,13 @@
   width: fit-content;
 }
 
-/* remove margin for smaller devices */
-@media only screen and (max-width: 700px) {
-  .margin {
-    display: none;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .title {
-    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.7);
-  }
-}
-@media only screen and (max-width: 500px) {
-  .title {
-    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.6);
-  }
-}
-@media only screen and (max-width: 405px) {
-  .title {
-    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.5);
-  }
-}
-@media only screen and (max-width: 355px) {
-  .title {
-    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.45);
-  }
-}
-
 .logo-container {
   --left: 2px;
   left: var(--left);
   height: calc(var(--header-total-height) - 2 * var(--page-body-font-size));
   position: absolute;
   top: var(--page-body-font-size);
-  z-index: 9;
+  z-index: 7;
 }
 
 img {
@@ -93,4 +65,34 @@ cuf-navigation-pane {
   margin: calc(1.2 * var(--page-body-font-size)) auto;
   min-width: 300px;
   width: 50vw;
+}
+
+/* navigation panel to the right of header for larger devices */
+@media only screen and (max-width: 700px) {
+  .fixed-container a, .subtitle {
+    padding-right: 7vw;
+  }
+
+  .title {
+    font-size: calc(0.7 * var(--fixed-container-height) * var(--title-font-size-factor));
+    margin: calc(0.15 * var(--fixed-container-height)) 0;
+  }
+
+  cuf-navigation-pane {
+    height: var(--fixed-container-height);
+    margin: 1px;
+    min-width: 7vw;
+    position: fixed;
+    top: 1px;
+    right: calc(7vw + 8px);
+    width: 7vw;
+    z-index: 6;
+  }
+}
+
+/* remove margin for smaller screens */
+@media only screen and (max-width: 700px) {
+  .margin {
+    display: none;
+  }
 }
