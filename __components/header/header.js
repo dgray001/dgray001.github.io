@@ -12,7 +12,7 @@ export class CufHeader extends HTMLElement {
   /** @type {boolean} */
   ticking = false;
   /** @type {number} */
-  collapsed_container_height_multiplier = 3;
+  collapsed_container_height_multiplier = 4;
   /** @type {boolean} */
   profile_info_open = false;
 
@@ -45,6 +45,7 @@ export class CufHeader extends HTMLElement {
       this.lastKnownScrollPosition = window.scrollY;
     
       if (!this.ticking) {
+        console.log('1');
         window.requestAnimationFrame(() => {
           this.updateScrollDependencies(this.lastKnownScrollPosition, shadow);
           this.ticking = false;

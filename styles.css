@@ -38,7 +38,6 @@
 
 html, body {
   height: 100%;
-  overflow-x: hidden;
 }
 
 body {
@@ -109,7 +108,6 @@ a:not(:focus-visible) {
 .page-title {
   color: rgb(100, 100, 200);
   font-size: 2.6em;
-  padding-left: 4vw;
 }
 
 .section-title {

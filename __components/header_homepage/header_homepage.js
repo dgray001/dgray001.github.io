@@ -45,7 +45,7 @@ export class CufHeaderHomepage extends HTMLElement {
    */
   calculateLogoPosition(shadow) {
     const title = shadow.querySelector('.title');
-    const subtitle = shadow.querySelector('.subtitle');
+    const subtitle = shadow.querySelectorAll('.subtitle')[1];
     const navigation_pane = shadow.querySelector('cuf-navigation-pane');
     const logo = shadow.querySelector('.logo-container');
     if (!title || !logo || !subtitle || !navigation_pane) {
