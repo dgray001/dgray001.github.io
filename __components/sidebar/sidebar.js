@@ -24,7 +24,7 @@ export class CufSidebar extends HTMLElement {
       let content_string = '';
       for (const panel_to_include of panels_to_include) {
         const json_data = await fetchJson(`${panel_to_include}/${panel_to_include}.json`);
-        if (!json_data['content'] || json_data['content'].length === 0) {
+        if (!json_data['subheader'] && (!json_data['content'] || json_data['content'].length === 0)) {
             continue;
         }
         content_string += `<div class="content-card"><cuf-content-card content_key="${panel_to_include}"

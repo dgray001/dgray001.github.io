@@ -45,7 +45,6 @@ export class CufHeader extends HTMLElement {
       this.lastKnownScrollPosition = window.scrollY;
     
       if (!this.ticking) {
-        console.log('1');
         window.requestAnimationFrame(() => {
           this.updateScrollDependencies(this.lastKnownScrollPosition, shadow);
           this.ticking = false;

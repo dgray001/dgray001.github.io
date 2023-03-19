@@ -41,6 +41,10 @@ export class CufContentCard extends HTMLElement {
       case 'jobs_available':
         headerText.href = '/jobs_available';
         break;
+      case 'involvement':
+        headerText.href = '/involvement';
+        break;
+      case 'chapters':
       case 'prayer':
       default:
         console.log(`No page exists for content card: ${this.content_key}`)
@@ -187,13 +191,26 @@ export class CufContentCard extends HTMLElement {
     }
   }
 
+  /**
+   * @typedef {Object} ContentCardData
+   * @property {string} title
+   * @property {string} titlelink
+   * @property {string} description
+   */
+
   async setContent() {
     try {
       const json_data = await fetchJson(`${this.content_key}/${this.content_key}.json`);
       this.shadowRoot.querySelector('.headerText').innerHTML = json_data['header'];
       let content_list = '';
+      /** @type {Array<ContentCardData>} */
+      const contents = [];
+      if (json_data['subheader']) {
+        contents.push(json_data['subheader']);
+      }
+      contents.push(...json_data['content']);
       let not_first = false;
-      for (const content of json_data['content']) {
+      for (const content of contents) {
         if (not_first) {
           content_list += '<hr class="element-spacer">';
         }

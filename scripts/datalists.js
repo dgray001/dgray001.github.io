@@ -17,11 +17,8 @@ export function panelsToIncludeFrom(panels_data) {
   const remove_element = panels_data_split[1];
   let return_array = [];
   switch(panels_data_split[0]) {
-    case 'homepage':
-      return_array = ["prayer", "news", "papers"];
-      break;
     case 'page':
-      return_array = ["prayer", "news", "jobs_available", "papers"];
+      return_array = ["prayer", "involvement", "chapters", "jobs_available", "papers"];
       break;
     default:
       console.error(`CufSidebar panels keyword ${panels_data_split[0]} not found.`);
