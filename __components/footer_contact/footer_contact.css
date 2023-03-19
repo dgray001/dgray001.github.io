@@ -19,6 +19,10 @@ a:active {
   color: var(--link-text-color-active);
 }
 
+.faith-facts-name {
+  font-variant: small-caps;
+}
+
 .margin {
   background-color: var(--footer-margin-color);
   height: max(1vh, 7.5px);

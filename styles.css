@@ -65,6 +65,10 @@ a:not(:focus-visible) {
   outline: none;
 }
 
+.faith-facts-name {
+  font-variant: small-caps;
+}
+
 ::-webkit-scrollbar {
   height: 9px;
   width: 9px;

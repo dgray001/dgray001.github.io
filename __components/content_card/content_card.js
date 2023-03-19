@@ -14,7 +14,10 @@ export class CufContentCard extends HTMLElement {
   async connectedCallback() {
     this.content_key = this.attributes.content_key?.value || this.content_key;
     this.collapsible = this.attributes.collapsible ? this.attributes.collapsible.value === 'true' : this.collapsible;
-    const start_closed = this.attributes.start_closed ? this.attributes.start_closed.value === 'true' : false;
+    let start_closed = this.attributes.start_closed ? this.attributes.start_closed.value === 'true' : false;
+    if (this.content_key === 'prayer') {
+      start_closed = true;
+    }
     let fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
     /** @type {string} */
     const card_rotation_image = this.attributes.card_rotation_image?.value ?? '';

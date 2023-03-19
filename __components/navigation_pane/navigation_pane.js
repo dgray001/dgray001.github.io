@@ -20,7 +20,7 @@ export class CufNavigationPane extends HTMLBaseElement {
 
   // This should be called when children (and inner text) available
   async childrenAvailableCallback() {
-    const default_links = ['about', 'involvement', 'apostolic_activities', 'contact', 'donate'];
+    const default_links = ['about', 'news', 'apostolic_activities', 'contact', 'donate'];
     /** @type {Array<string>} */
     const links = this.attributes.links ? JSON.parse(this.attributes.links.value) : default_links;
     const shadow = this.attachShadow({mode: 'closed'});

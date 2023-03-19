@@ -45,6 +45,10 @@
   outline: none;
 }
 
+.faith-facts-name {
+  font-variant: small-caps;
+}
+
 .dots {
   align-items: center;
   bottom: calc(var(--scale) * 7vw);

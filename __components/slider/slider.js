@@ -77,6 +77,9 @@ export class CufSlider extends HTMLElement {
       text.href = `/${page}`;
       text.innerHTML = data[page]['text'];
       text.tabIndex = -1;
+      if (page === 'faith_facts') {
+        text.classList.add('faith-facts-name');
+      }
       container.appendChild(text);
       if (i == 1) {
         this.current_index = 1;
