@@ -151,6 +151,7 @@ export class CufAdminDashboardNews extends CufAdminDashboardSection {
     /** @type {CufFormSectionNews} */
     const news_piece_form_section = document.getElementById(`section-news-${i}`);
     await until(() => news_piece_form_section.form_fields.length == 3);
+    await until(() => !!paper_piece_form_section.form_fields[2].form_field);
     news_piece_form_section.setFormData({
       title: news.title,
       titlelink: news.titlelink ?? '',

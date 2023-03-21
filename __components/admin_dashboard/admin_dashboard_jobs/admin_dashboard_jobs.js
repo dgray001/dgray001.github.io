@@ -143,6 +143,7 @@ export class CufAdminDashboardJobs extends CufAdminDashboardSection {
     /** @type {CufFormSectionJob} */
     const jobs_piece_form_section = document.getElementById(`section-jobs-${i}`);
     await until(() => jobs_piece_form_section.form_fields.length == 2);
+    await until(() => !!paper_piece_form_section.form_fields[1].form_field);
     jobs_piece_form_section.setFormData({
       title: jobs.title,
       description: jobs.description,

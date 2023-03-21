@@ -186,6 +186,7 @@ export class CufAdminDashboardLaywitness extends CufAdminDashboardSection {
     /** @type {CufFormSectionLaywitness} */
     const laywitness_piece_form_section = document.getElementById(`section-laywitness-${i}-${j}`);
     await until(() => laywitness_piece_form_section.form_fields.length == 5);
+    await until(() => !!paper_piece_form_section.form_fields[4].form_field);
     laywitness_piece_form_section.setFormData({
       volume: volume,
       issue: issue.number,

@@ -1,5 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
+const {until} = await import(`/scripts/util.js?v=${version}`);
 const {CufFormSection} = await import(`../form_section/form_section.js?v=${version}`);
 const {CufTextArea} = await import(`../../text_area/text_area.js?v=${version}`);
 await import(`../../input_text/input_text.js?v=${version}`);
@@ -72,7 +73,7 @@ export class CufFormSectionPaper extends CufFormSection {
    * Focuses the first form field in the form section
    */
   focusFirst() {
-    this.shadowRoot.getElementById('paper-title').form_field.focus();
+    this.form_fields[0].form_field.focus();
   }
 }
 

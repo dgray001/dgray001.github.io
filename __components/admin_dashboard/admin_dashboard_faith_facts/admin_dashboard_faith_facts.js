@@ -2,38 +2,43 @@
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 const {until} = await import(`/scripts/util.js?v=${version}`);
-const {CufFormSectionPaper} = await import(`../../model/form_sections/form_section_paper/form_section_paper.js?v=${version}`);
+const {CufFormSectionFaithFact} = await import(`../../model/form_sections/form_section_faith_fact/form_section_faith_fact.js?v=${version}`);
 const {CufAdminDashboardSection} = await import(`../admin_dashboard_section.js?v=${version}`);
 
-class CufAdminDashboardPapers extends CufAdminDashboardSection {
+class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
   constructor() {
     super();
   }
 
   async connectedCallback() {
-    await this.setHTML('admin_dashboard_papers', 'Position Papers');
+    await this.setHTML('admin_dashboard_faith_facts', 'Faith Facts');
   }
 
   /**
-   * @typedef {Object} PapersData
-   * @property {string} header
-   * @property {Array<PositionPaper>} content
+   * @typedef {Object} FaithFactsData
+   * @property {Map<string, FaithFactCategoryData>} content
    * 
-   * @typedef {Object} PositionPaper
+   * @typedef {Object} FaithFactCategoryData
+   * @property {string} category
+   * @property {string} category_display
+   * @property {Array<FaithFact>} faith_facts
+   * 
+   * @typedef {Object} FaithFact
    * @property {string} title
-   * @property {string} titlelink
-   * @property {string=} description
+   * @property {string=} question
+   * @property {string} summary
    * 
    * @typedef {Object} PaperFormData
    * @property {string} title
-   * @property {string} description
+   * @property {string=} question
+   * @property {string} summary
    */
 
   /**
    * Submit the form to add a new piece
    */
   async newFormSubmit() {
-    /** @type {PapersData} */
+    /** @type {FaithFactsData} */
     const json_data = await fetchJson('papers/papers.json');
     /** @type {PaperFormData} */
     const paper_section_data = this.new_form_section.getFormData();
