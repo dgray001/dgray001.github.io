@@ -19,6 +19,10 @@ export class CufContentCard extends HTMLElement {
       start_closed = true;
     }
     let fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
+    if (this.content_key !== 'prayer') {
+      this.collapsible = false;
+      fixed_height = 350;
+    }
     /** @type {string} */
     const card_rotation_image = this.attributes.card_rotation_image?.value ?? '';
     const shadow = this.attachShadow({mode: 'open'});

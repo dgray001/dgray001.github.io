@@ -122,7 +122,7 @@ export class CufSlider extends HTMLElement {
     }
     const ratio = 10 * window.innerWidth / remaining_height;
     for (const [i, scale] of available_scales.entries()) {
-      if (i < available_scales.length && ratio > scale) {
+      if (i < available_scales.length - 1 && ratio > scale) {
         continue;
       }
       if (this.last_scale_used == scale) {
@@ -131,7 +131,9 @@ export class CufSlider extends HTMLElement {
       const scale_invert = 10 / scale;
       this.wrapper.setAttribute('style', `--scale: ${scale_invert};`);
       const display_scale = Math.floor(scale);
-      for (const img of this.shadow.querySelectorAll('.container img')) {
+      await until(() => this.shadow.querySelectorAll('.container img').length == 4);
+      const imgs = this.shadow.querySelectorAll('.container img')
+      for (const img of imgs) {
         const painting_name = img.getAttribute('image_name') ?? '';
         img.setAttribute('src', `/__images/paintings/slider/${painting_name}_${display_scale}.jpg`);
       }
