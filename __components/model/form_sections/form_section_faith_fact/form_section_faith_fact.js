@@ -81,4 +81,4 @@ export class CufFormSectionFaithFact extends CufFormSection {
   }
 }
 
-customElements.define("cuf-form-section-paper", CufFormSectionPaper);
+customElements.define("cuf-form-section-faith-fact", CufFormSectionFaithFact);

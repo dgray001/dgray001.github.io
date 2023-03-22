@@ -54,7 +54,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
     json_data['content'].unshift(new_paper);
 
     try {
-      const response = await fetch('/server/admin_dashboard/papers_data.php', {
+      /*const response = await fetch('/server/admin_dashboard/papers_data.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
       else {
         this.status_message.setAttribute('style', 'display: block; color: red');
         this.status_message.innerText = response_json;
-      }
+      }*/
     } catch(error) {
       console.log(error);
       this.status_message.setAttribute('style', 'display: block; color: red');
@@ -122,7 +122,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
       paper_div.querySelector('button.right')?.addEventListener('click', async () => {
         await this.deletePaper(i);
       });
-      this.current_list.appendChild(paper_div);
+      //this.current_list.appendChild(paper_div);
     }
   }
 
@@ -203,7 +203,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
     papers_data['content'][i] = new_paper;
   
     try {
-      if (delete_old_file) {
+      /*if (delete_old_file) {
         // Delete old file
         const delete_response = await fetch('/server/admin_dashboard/papers_file_delete.php', {
           method: 'POST',
@@ -243,7 +243,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
       const data_response_json = await data_response.json();
       if (!data_response_json['success']) {
         throw new Error('Update papers data failed');
-      }
+      }*/
     } catch(error) {
       console.log(error);
     } finally {
@@ -265,7 +265,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
       paper_data['content'].splice(i, 1);
       try {
         // Update data
-        const response = await fetch('/server/admin_dashboard/papers_data.php', {
+        /*const response = await fetch('/server/admin_dashboard/papers_data.php', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -289,7 +289,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
         const delete_response_json = await delete_response.json();
         if (!delete_response_json['success']) {
           throw new Error('Delete paper file failed');
-        }
+        }*/
       } catch(error) {
         console.log(error);
       } finally {
@@ -305,7 +305,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
    */
   async uploadPaperFile(filename, file, status_message) {
     try {
-      const response = await fetch('/server/admin_dashboard/papers_file.php', {
+      /*const response = await fetch('/server/admin_dashboard/papers_file.php', {
         method: 'POST',
         headers: {
           'Content-Type': file.type,
@@ -321,7 +321,7 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
       else {
         status_message.setAttribute('style', 'display: block; color: red');
         status_message.innerText = response_json;
-      }
+      }*/
     } catch(error) {
       console.log(error);
       status_message.setAttribute('style', 'display: block; color: red');
@@ -330,4 +330,4 @@ class CufAdminDashboardFaithFacts extends CufAdminDashboardSection {
   }
 }
 
-customElements.define("cuf-admin-dashboard-papers", CufAdminDashboardPapers);
+customElements.define("cuf-admin-dashboard-faith-facts", CufAdminDashboardFaithFacts);

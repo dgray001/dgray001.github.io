@@ -43,6 +43,9 @@ if (!hasPermission('viewAdminDashboard', $_SESSION["role"])) {
       if (hasPermission('news', $_SESSION["role"])) {
         echo '<cuf-admin-dashboard-news></cuf-admin-dashboard-news>';
       }
+      if (hasPermission('faithFacts', $_SESSION["role"])) {
+        echo '<cuf-admin-dashboard-faith-facts></cuf-admin-dashboard-faith-facts>';
+      }
       if (hasPermission('positionPapers', $_SESSION["role"])) {
         echo '<cuf-admin-dashboard-papers></cuf-admin-dashboard-papers>';
       }
