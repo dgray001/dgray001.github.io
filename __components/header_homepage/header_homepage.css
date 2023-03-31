@@ -79,12 +79,15 @@ cuf-navigation-pane {
   }
 
   cuf-navigation-pane {
-    height: var(--fixed-container-height);
-    margin: 1px;
+    height: 7vw;
     min-width: 7vw;
-    position: fixed;
-    top: 1px;
-    right: calc(7vw + 8px);
+    margin: 0;
+    max-height: min(calc(0.85 * var(--fixed-container-height)), 65);
+    max-width: 7vw;
+    padding: 0;
+    position: absolute;
+    right: calc(7vw + 18px);
+    top: calc(0.15 * var(--fixed-container-height));
     width: 7vw;
     z-index: 6;
   }

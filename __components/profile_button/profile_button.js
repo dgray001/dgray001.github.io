@@ -1,6 +1,6 @@
 // @ts-nocheck
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
-const {hasPermission, clientCookies, loggedIn} = await import(`/scripts/util.js?v=${version}`);
+const {hasPermission, clientCookies, loggedIn, DEV} = await import(`/scripts/util.js?v=${version}`);
 
 export class CufProfileButton extends HTMLElement {
   constructor() {
@@ -27,10 +27,10 @@ export class CufProfileButton extends HTMLElement {
     profile_button_logout.href += `?hard_redirect=${window.location.href}`;
     const cookies = clientCookies();
     if (loggedIn()) {
-      const info_email = shadow.querySelector('.info-wrapper .email');
+      const info_email = shadow.querySelector('.info .email');
       info_email.innerText = cookies['email'];
 
-      const info_role = shadow.querySelector('.info-wrapper .role');
+      const info_role = shadow.querySelector('.info .role');
       info_role.innerText = ` - ${cookies['role']} -`;
 
       if (hasPermission(cookies['role'], 'viewAdminDashboard')) {
@@ -39,7 +39,7 @@ export class CufProfileButton extends HTMLElement {
       }
 
       profile_picture.addEventListener('click', () => {
-        const profile_info_wrapper = shadow.querySelector('.info-wrapper');
+        const profile_info_wrapper = shadow.querySelector('.menu-wrapper.info');
         this.profile_info_open = !this.profile_info_open;
         if (this.profile_info_open) {
           profile_info_wrapper.setAttribute('style', 'display: block;');
@@ -51,7 +51,20 @@ export class CufProfileButton extends HTMLElement {
       profile_picture.removeAttribute('style');
     }
     else {
-      //profile_picture.setAttribute('style', 'display: none;');
+      if (!DEV) {
+        profile_picture.setAttribute('style', 'display: none;');
+      }
+
+      profile_picture.addEventListener('click', () => {
+        const profile_login_wrapper = shadow.querySelector('.menu-wrapper.login');
+        this.profile_info_open = !this.profile_info_open;
+        if (this.profile_info_open) {
+          profile_login_wrapper.setAttribute('style', 'display: block;');
+        }
+        else {
+          profile_login_wrapper.setAttribute('style', 'display: none;');
+        }
+      });
     }
   }
 }
