@@ -66,7 +66,7 @@ export class CufFormSectionAddress extends CufFormSection {
 
   /**
    * Returns map of form data for the form section
-   * @return {string}
+   * @return {Object}
    */
   getDisplayableData() {
     const address1 = this.shadowRoot.getElementById('address-first').getFormData();

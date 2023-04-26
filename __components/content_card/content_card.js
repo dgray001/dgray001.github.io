@@ -27,7 +27,20 @@ export class CufContentCard extends HTMLElement {
     if (this.content_key !== 'prayer') {
       this.collapsible = false;
       fixed_height = 462; // 330 * 1.4
-      card_fade_image = 'paintings/annunciation.jpg';
+    }
+    switch(this.content_key) {
+      case 'involvement':
+        card_fade_image = 'paintings/cards/annunciation.jpg';
+        break;
+      case 'chapters':
+        card_fade_image = 'paintings/cards/assumption.jpg';
+        break;
+      case 'papers':
+        card_fade_image = 'paintings/cards/ghent_almighty.jpg';
+        break;
+      default:
+        card_fade_image = '';
+        break;
     }
     const shadow = this.attachShadow({mode: 'open'});
     const res = await fetch(`/__components/content_card/content_card.html?v=${version}`);
