@@ -3,7 +3,7 @@
 
 const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 const {recaptchaCallback} = await import(`/scripts/recaptcha.js?v=${version}`);
-const {clientCookies, loggedIn} = await import(`/scripts/util.js?v=${version}`);
+const {clientCookies, loggedIn, DEV} = await import(`/scripts/util.js?v=${version}`);
 
 export async function onInit() {
   const section_content = document.getElementById('form-section-content');
@@ -61,7 +61,7 @@ export async function onInit() {
         form_sm.innerText = 'Please fix the validation errors.';
         return;
       }
-      recaptchaCallback(grecaptcha, () => {
+      recaptchaCallback(DEV ? undefined : grecaptcha, () => {
         submitLoginForm();
       }, form_button, form_sm, 'Logging In');
     });

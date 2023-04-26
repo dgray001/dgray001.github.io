@@ -5,7 +5,7 @@ const {CufFormField} = await import(`../../form_field/form_field.js?v=${version}
 export class CufFormSection extends HTMLElement {
   /**
    * Array of references to form field elements
-   * @type {Array<CufFormField>}
+   * @type {Array<CufFormField|CufFormSection>}
    */
   form_fields = [];
   /** @type {boolean} */

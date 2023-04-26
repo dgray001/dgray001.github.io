@@ -38,7 +38,7 @@ export class CufFormSectionAddress extends CufFormSection {
    */
 
   /**
-   * Returns map of name data for the name form section
+   * Returns map of address data for the address form section
    * @return {AddressFormData}
    */
   getFormData() {
@@ -52,7 +52,7 @@ export class CufFormSectionAddress extends CufFormSection {
   }
 
   /**
-   * Sets form data for the name form section
+   * Sets form data for the address form section
    * @param {AddressFormData} data
    */
   setFormData(data) {
