@@ -6,6 +6,7 @@ const {fetchJson} = await import(`/__data/data_control.js?v=${version}`);
 export class CufContentCard extends HTMLElement {
   content_key = '';
   collapsible = true;
+  json_data;
 
   constructor() {
     super();
@@ -19,12 +20,15 @@ export class CufContentCard extends HTMLElement {
       start_closed = true;
     }
     let fixed_height = parseInt(this.attributes.fixed_height?.value || '0');
-    if (this.content_key !== 'prayer') {
-      this.collapsible = false;
-      fixed_height = 350;
-    }
     /** @type {string} */
     const card_rotation_image = this.attributes.card_rotation_image?.value ?? '';
+    /** @type {string} */
+    let card_fade_image = this.attributes.card_fade_image?.value ?? '';
+    if (this.content_key !== 'prayer') {
+      this.collapsible = false;
+      fixed_height = 462; // 330 * 1.4
+      card_fade_image = 'paintings/annunciation.jpg';
+    }
     const shadow = this.attachShadow({mode: 'open'});
     const res = await fetch(`/__components/content_card/content_card.html?v=${version}`);
     shadow.innerHTML = await res.text();
@@ -32,7 +36,7 @@ export class CufContentCard extends HTMLElement {
     stylesheet.setAttribute('rel', 'stylesheet');
     stylesheet.setAttribute('href', `/__components/content_card/content_card.css?v=${version}`);
     shadow.appendChild(stylesheet);
-    this.setContent();
+    await this.setContent();
     const card = this.shadowRoot.querySelector('.card');
     const headerText = this.shadowRoot.querySelector('.headerText');
     switch(this.content_key) {
@@ -190,6 +194,36 @@ export class CufContentCard extends HTMLElement {
         card.scrollTop += 0.3 * e.deltaY;
       });
     }
+    else if (card_fade_image) {
+      if (!fixed_height) {
+        throw new Error('Need to set fixed height when card_fade_image set.');
+      }
+      const image = document.createElement('img');
+      image.src = card_fade_image.endsWith('.jpg') ?
+        `__images/${card_fade_image}` :
+        `__images/${card_fade_image}.png`;
+      image.classList.add('fade-image');
+      card.remove();
+      card.setAttribute('style', `height: ${fixed_height}px; min-height: ${fixed_height}px; max-height: ${fixed_height}px; overflow-y: scroll;`);
+      const image_wrapper = document.createElement('div');
+      image_wrapper.classList.add('image-wrapper');
+      const card_wrapper = document.createElement('div');
+      card_wrapper.classList.add('card-fade-wrapper');
+      this.shadowRoot.appendChild(card_wrapper);
+      card_wrapper.appendChild(card);
+      card_wrapper.appendChild(image_wrapper);
+      image_wrapper.appendChild(image);
+      const card_name = document.createElement('div');
+      card_name.classList.add('card-name');
+      card_name.innerText = this.json_data['header'] ?? '';
+      image_wrapper.appendChild(card_name);
+      image_wrapper.addEventListener('click', () => {
+        image_wrapper.setAttribute('style', 'opacity: 0;');
+        setTimeout(() => {
+          image_wrapper.setAttribute('style', 'display: none;');
+        }, 400);
+      });
+    }
     else if (fixed_height) {
       card.setAttribute('style', `height: ${fixed_height}px; min-height: ${fixed_height}px; max-height: ${fixed_height}px; overflow-y: scroll;`);
     }
@@ -204,15 +238,15 @@ export class CufContentCard extends HTMLElement {
 
   async setContent() {
     try {
-      const json_data = await fetchJson(`${this.content_key}/${this.content_key}.json`);
-      this.shadowRoot.querySelector('.headerText').innerHTML = json_data['header'];
+      this.json_data = await fetchJson(`${this.content_key}/${this.content_key}.json`);
+      this.shadowRoot.querySelector('.headerText').innerHTML = this.json_data['header'];
       let content_list = '';
       /** @type {Array<ContentCardData>} */
       const contents = [];
-      if (json_data['subheader']) {
-        contents.push(json_data['subheader']);
+      if (this.json_data['subheader']) {
+        contents.push(this.json_data['subheader']);
       }
-      contents.push(...json_data['content']);
+      contents.push(...this.json_data['content']);
       let not_first = false;
       for (const content of contents) {
         if (not_first) {

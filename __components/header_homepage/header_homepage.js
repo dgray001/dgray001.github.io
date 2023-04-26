@@ -25,8 +25,8 @@ export class CufHeaderHomepage extends HTMLElement {
     stylesheet.setAttribute('href', `/__components/header_homepage/header_homepage.css?v=${version}`);
     shadow.appendChild(stylesheet);
     if (DEV) {
-      shadow.querySelector('.title').innerHTML = "|--CUF DEVELOPMENT SITE--|";
-      //shadow.querySelector('.title').innerHTML = "Catholics United for the Faith";
+      //shadow.querySelector('.title').innerHTML = "|--CUF DEVELOPMENT SITE--|";
+      shadow.querySelector('.title').innerHTML = "Catholics United for the Faith";
     }
     else if (STAGING) {
       shadow.querySelector('.title').innerHTML = "|---CUF STAGING SITE---|";

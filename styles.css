@@ -159,13 +159,13 @@ button.form-submit-button:active{
 }
 
 cuf-sidebar {
+  display: inline-block;
   margin-left: -5px;
-  max-width: 450px;
-  min-width: 250px;
+  width: 100%;
 }
 
 /* move sidebar to side for large enough devices */
-@media only screen and (min-width: 750px) {
+@media only screen and (min-width: 850px) {
   .page-content {
     display: flex;
     flex-direction: row;
@@ -182,6 +182,8 @@ cuf-sidebar {
     flex: 1 0 0;
     margin-left: 0px;
     margin-right: 5px;
+    max-width: 350px;
+    min-width: 350px;
   }
 }
 

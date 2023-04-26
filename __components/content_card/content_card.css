@@ -173,3 +173,48 @@ img.rotation-image {
   width: 100%;
   height: 100%;
 }
+
+/* Card fade styles */
+.card-fade-wrapper {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-fade-wrapper .image-wrapper {
+  bottom: 0px;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  transition: opacity 450ms;
+  width: 100%;
+}
+
+.card-fade-wrapper .image-wrapper:hover {
+  opacity: 0.85;
+}
+
+.card-fade-wrapper .image-wrapper .card-name {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 24px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 20px;
+  user-select: none;
+  z-index: 2;
+}
+
+.card-fade-wrapper .image-wrapper img.fade-image {
+  bottom: 0px;
+  border-radius: 20px;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+}

@@ -1,4 +1,7 @@
 .content {
+  align-items: center;
+  display: flex;
+  flex-flow: column nowrap;
   margin-top: 2em;
 }
 
@@ -6,4 +9,5 @@
   margin-left: 5px;
   margin-right: 5px;
   padding: 1.2em 0;
+  width: 330px;
 }

@@ -13,6 +13,9 @@ export const public_recaptcha_site_key = (DEV || STAGING) ?
  * @todo for reCaptcha values close to failure add manual check (is this needed?)
  */
 export async function verifyRecaptcha(token) {
+  if (DEV) {
+    return true;
+  }
   try {
     const response = await fetch('/server/recaptcha.php', {
       method: 'POST',

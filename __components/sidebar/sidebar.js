@@ -27,8 +27,10 @@ export class CufSidebar extends HTMLElement {
         if (!json_data['subheader'] && (!json_data['content'] || json_data['content'].length === 0)) {
             continue;
         }
-        content_string += `<div class="content-card"><cuf-content-card content_key="${panel_to_include}"
-          collapsible="true" start_closed="${start_closed}"></cuf-content-card></div>`;
+        content_string += `<div class="content-card">
+          <cuf-content-card content_key="${panel_to_include}" collapsible="true"
+          start_closed="${start_closed}"></cuf-content-card>
+        </div>`;
       }
       content.innerHTML = content_string;
     } catch(e) {
