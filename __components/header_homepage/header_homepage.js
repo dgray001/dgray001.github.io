@@ -9,6 +9,8 @@ export class CufHeaderHomepage extends HTMLElement {
   profile_info_open = false;
   /** @type {boolean} */
   parsed = false;
+  /** @type {number} */
+  lastKnownScrollPosition = 0;
 
   constructor() {
     super();
@@ -23,11 +25,11 @@ export class CufHeaderHomepage extends HTMLElement {
     stylesheet.setAttribute('href', `/__components/header_homepage/header_homepage.css?v=${version}`);
     shadow.appendChild(stylesheet);
     if (DEV) {
-      //shadow.querySelector('.title').innerHTML = "|---CUF DEVELOPMENT SITE---|";
-      shadow.querySelector('.title').innerHTML = "Catholics United for the Faith";
+      shadow.querySelector('.title').innerHTML = "|--CUF DEVELOPMENT SITE--|";
+      //shadow.querySelector('.title').innerHTML = "Catholics United for the Faith";
     }
     else if (STAGING) {
-      shadow.querySelector('.title').innerHTML = "|-----CUF STAGING SITE-----|";
+      shadow.querySelector('.title').innerHTML = "|---CUF STAGING SITE---|";
     }
     const title = shadow.querySelector('.title');
     const logo = shadow.querySelector('.logo-container');
@@ -36,6 +38,18 @@ export class CufHeaderHomepage extends HTMLElement {
     this.calculateLogoPosition(shadow);
     window.addEventListener('resize', () => {
       this.calculateLogoPosition(shadow);
+    });
+    document.addEventListener('scroll', () => {
+      this.lastKnownScrollPosition = window.scrollY;
+    
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.updateScrollDependencies(this.lastKnownScrollPosition, shadow);
+          this.ticking = false;
+        });
+    
+        this.ticking = true;
+      }
     });
   }
 
@@ -59,8 +73,40 @@ export class CufHeaderHomepage extends HTMLElement {
       parseInt(subtitle_style.marginLeft.slice(0, -2)),
       parseInt(navigation_pane_style.marginLeft.slice(0, -2)));
     const logo_style = window.getComputedStyle(logo, null);
-    logo.setAttribute('style', `--left: max(2px, calc(${margin_left}px - ${logo_style.width} - 16px)`);
+    logo.setAttribute('style', `--left: max(2px, calc(${margin_left}px - ${logo_style.width} - 16px))`);
     this.parsed = true;
+  }
+
+  /**
+   * @param {number} scroll_pos
+   * @param {ShadowRoot} shadow
+   */
+  updateScrollDependencies(scroll_pos, shadow) {
+    const container = shadow.querySelector('.container');
+    const fixed_container = shadow.querySelector('.fixed-container');
+    const logo = shadow.querySelector('.logo-container');
+    if (!container || !fixed_container || !logo) {
+      return;
+    }
+    const top = Math.max(1, 12 - 0.2 * scroll_pos);
+    const offset = Math.min(scroll_pos, container.offsetHeight - fixed_container.offsetHeight);
+
+    const title = shadow.querySelector('.title');
+    const subtitle = shadow.querySelectorAll('.subtitle')[1];
+    const navigation_pane = shadow.querySelector('cuf-navigation-pane');
+    if (!title || !logo || !subtitle || !navigation_pane) {
+      throw new Error('Missing required element.');
+    }
+    const title_style = window.getComputedStyle(title.parentElement, null);
+    const subtitle_style = window.getComputedStyle(subtitle, null);
+    const navigation_pane_style = window.getComputedStyle(navigation_pane, null);
+    let margin_left = Math.min(
+      parseInt(title_style.marginLeft.slice(0, -2)),
+      parseInt(subtitle_style.marginLeft.slice(0, -2)),
+      parseInt(navigation_pane_style.marginLeft.slice(0, -2)));
+    const logo_style = window.getComputedStyle(logo, null);
+
+    logo.setAttribute('style', `--left: max(2px, calc(${margin_left}px - ${logo_style.width} - 16px)); --offset: ${offset}px; --top: ${top}px;`);
   }
 }
 

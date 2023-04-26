@@ -1,4 +1,6 @@
 .container {
+  --fixed-container-height: max(var(--navigation-height), calc(var(--header-height-unit) * 3));
+  --header-total-height: calc(var(--fixed-container-height) + var(--header-height-unit) * 4);
   background-color: var(--card-background-color);
   height: var(--header-total-height);
 }
@@ -19,7 +21,7 @@
 
 .title {
   color: black;
-  font-size: calc(0.5 * var(--fixed-container-height) * var(--title-font-size-factor));
+  font-size: calc(1.8 * var(--header-height-unit) * var(--title-font-size-factor));
   font-weight: bold;
   margin: calc(0.25 * var(--fixed-container-height)) 0;
   text-align: center;
@@ -34,11 +36,14 @@
 }
 
 .logo-container {
-  --left: 2px;
+  --left: 12px;
+  --offset: 0px;
+  --height: calc(var(--header-total-height) - 2 * var(--top) - var(--offset));
+  --top: 12px;
   left: var(--left);
-  height: calc(var(--header-total-height) - 2 * var(--page-body-font-size));
-  position: absolute;
-  top: var(--page-body-font-size);
+  height: var(--height);
+  position: fixed;
+  top: var(--top);
   z-index: 7;
 }
 
@@ -67,6 +72,13 @@ cuf-navigation-pane {
   width: 50vw;
 }
 
+cuf-profile-button {
+  position: fixed;
+  right: 0;
+  top: calc(-0.07 * var(--fixed-container-height));
+  z-index: 7;
+}
+
 /* navigation panel to the right of header for larger devices */
 @media only screen and (max-width: 700px) {
   .fixed-container a, .subtitle {
@@ -74,8 +86,7 @@ cuf-navigation-pane {
   }
 
   .title {
-    font-size: calc(0.7 * var(--fixed-container-height) * var(--title-font-size-factor));
-    margin: calc(0.15 * var(--fixed-container-height)) 0;
+    font-size: calc(1.6 * var(--header-height-unit) * var(--title-font-size-factor));
   }
 
   cuf-navigation-pane {
@@ -87,8 +98,15 @@ cuf-navigation-pane {
     padding: 0;
     position: absolute;
     right: calc(7vw + 18px);
-    top: calc(0.15 * var(--fixed-container-height));
+    top: calc(0.1 * var(--fixed-container-height));
     width: 7vw;
+    z-index: 6;
+  }
+  
+  .buttons-fixed-container {
+    position: fixed;
+    right: 0;
+    top: 0;
     z-index: 6;
   }
 }

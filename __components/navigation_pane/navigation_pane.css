@@ -30,6 +30,10 @@
   transition: box-shadow ease-out 200ms;
 }
 
+.element-style.header-element {
+  color: black;
+}
+
 .element-style:hover:not(.header-element) {
   box-shadow: inset 0 calc(var(--fixed-header-height)) 0 0 var(--navigation-hover-color);
 }

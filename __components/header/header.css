@@ -68,7 +68,7 @@ cuf-navigation-pane {
 
 /* navigation panel below header for smaller devices */
 /* If change media query must change in navigation_pane.css */
-@media only screen and (max-width: 1200px) and (min-width: 701px) {
+@media only screen and (max-width: 1300px) and (min-width: 701px) {
   .container {
     --fixed-container-height: calc(var(--header-height-unit) * 3 + var(--navigation-height));
     padding-bottom: var(--navigation-height);
@@ -98,7 +98,7 @@ cuf-navigation-pane {
 }
 
 /* navigation panel to the right of header for larger devices */
-@media only screen and not (max-width: 1200px) {
+@media only screen and not (max-width: 1300px) {
   cuf-navigation-pane {
     flex: 1 1 0;
     margin-left: 4vw;
@@ -152,7 +152,7 @@ cuf-navigation-pane {
     font-size: calc(var(--modified-subtitle-factor) * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.9);
   }
 }
-@media only screen and (max-width: 405px) {
+@media only screen and (max-width: 440px) {
   .title {
     font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.5);
   }
@@ -161,12 +161,28 @@ cuf-navigation-pane {
     font-size: calc(var(--modified-subtitle-factor) * min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.9);
   }
 }
-@media only screen and (max-width: 355px) {
+@media only screen and (max-width: 365px) {
   .title {
     font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.45);
   }
   .subtitle {
     font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.8);
+  }
+}
+@media only screen and (max-width: 330px) {
+  .title {
+    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.4);
+  }
+  .subtitle {
+    font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.75);
+  }
+}
+@media only screen and (max-width: 295px) {
+  .title {
+    font-size: calc(var(--title-font-size-factor) * var(--fixed-container-height) * 0.35);
+  }
+  .subtitle {
+    font-size: calc(min(var(--header-height-unit) * 1.05, max(14px, 3.5vw)) * 0.7);
   }
 }
 
