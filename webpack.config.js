@@ -3,17 +3,11 @@ module.exports = {
     index: {
       import: './src/pages/index.ts',
     },
-    admin: {
+    secondary: {
+      import: './src/pages/secondary.ts',
+    },
+    admin_dashboard: {
       import: './src/pages/admin_dashboard.ts',
-    },
-    download: {
-      import: './src/pages/download.ts',
-    },
-    profile: {
-      import: './src/pages/profile.ts',
-    },
-    wiki: {
-      import: './src/pages/wiki.ts',
     },
   },
   module: {

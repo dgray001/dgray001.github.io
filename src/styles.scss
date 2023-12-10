@@ -1,0 +1,7 @@
+@use "./normalize";
+
+body {
+  .grecaptcha-badge {
+    visibility: hidden;
+  }
+}
