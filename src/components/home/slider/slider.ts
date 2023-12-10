@@ -14,7 +14,6 @@ export class CufSlider extends CufElement {
   }
 
   protected override parsedCallback(): void {
-    console.log('CufSlider parsed!');
   }
 }
 
