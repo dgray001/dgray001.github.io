@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '/dist'),
-    publicPath: '/dist/',
+    publicPath: '/dist',
   },
   devServer: {
     compress: true,
@@ -17,5 +17,8 @@ module.exports = {
       '/api': 'http://127.0.0.1:3000', // php server
     },
     server: 'http',
+    static: {
+      directory: path.resolve(__dirname, './docs/'),
+    },
   },
 }
