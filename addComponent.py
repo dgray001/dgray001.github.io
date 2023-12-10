@@ -29,7 +29,7 @@ def addCufComponent():
   f.write(f"import './{filename}.scss';\n")
   f.write('\n')
   f.write(f'export class Cuf{ts_class_name} extends CufElement {{\n')
-  f.write('  example: HTMLDivElement;\n')
+  f.write('  private example: HTMLDivElement;\n')
   f.write('\n')
   f.write('  constructor() {\n')
   f.write('    super();\n')

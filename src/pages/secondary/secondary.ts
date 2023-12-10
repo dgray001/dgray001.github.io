@@ -5,4 +5,4 @@ import './secondary.scss';
 
 // initialize
 import {initializePage} from '../common';
-initializePage();
+initializePage('');

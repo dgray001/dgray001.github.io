@@ -21,6 +21,7 @@ export abstract class CufElement extends HTMLElement {
     this.parsedCallback();
     this.classList.add('parsed');
     this.fully_parsed = true;
+    this.fullyParsedCallback();
   }
 
   private elementsParsed(): boolean {
@@ -50,6 +51,7 @@ export abstract class CufElement extends HTMLElement {
   }
 
   protected parsedCallback() {}
+  protected fullyParsedCallback() {}
 
   protected configureElement(name: string, element_id?: string) {
     if (!element_id) {

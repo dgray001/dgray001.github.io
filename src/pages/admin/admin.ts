@@ -5,7 +5,7 @@ import './admin.scss';
 
 // initialize
 import {initializePage} from '../common';
-initializePage();
+initializePage('');
 
 // permission
 import {hasPermission} from '../../scripts/session';

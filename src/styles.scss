@@ -1,6 +1,91 @@
 @use "./normalize";
 
 body {
+  // colors
+  --page-background-color: rgb(255, 255, 255);
+  --card-background-color: rgb(245, 245, 245);
+  --card-header-color: rgb(237, 237, 237);
+  --card-box-shadow-color: rgba(0, 0, 0, .5);
+  --navigation-hover-color: rgb(190, 190, 190);
+  --navigation-current-color: rgba(190, 190, 190, 0.8);
+  --link-text-color: rgb(70, 140, 40);
+  --link-text-color-visited: rgb(70, 140, 40);
+  --link-text-color-hover: rgb(90, 160, 50);
+  --link-text-color-active: rgb(130, 200, 75);
+  background-color: var(--page-background-color);
+  color: black;
+
+  // sizes
+  --size-title: calc(14px + 2.6vw);
+  --size-largest: calc(12px + 2vw);
+  --size-larger: calc(12px + 1.5vw);
+  --size-large: calc(12px + 1vw);
+  --size-medium: calc(12px + 0.5vw);
+  --size-small: calc(10px + 0.45vw);
+  --size-smaller: calc(8px + 0.4vw);
+  --size-smallest: calc(7px + 035vw);
+
+  &.mobile {
+    --size-title: calc(18px + 3vw);
+    --size-largest: calc(17px + 2.5vw);
+    --size-larger: calc(16px + 2vw);
+    --size-large: calc(16px + 1.5vw);
+    --size-medium: calc(14px + 1vw);
+    --size-small: calc(12px + 0.75vw);
+    --size-smaller: calc(10px + 0.5vw);
+    --size-smallest: calc(8px + 0.4vw);
+  }
+
+  // misc classes
+  .max-size {
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+  }
+
+  // link styles
+  a {
+    color: var(--link-text-color);
+    font-weight: bold;
+  }
+  a:visited {
+    color: var(--link-text-color-visited);
+  }
+  a:hover {
+    color: var(--link-text-color-hover);
+  }
+  a:active {
+    color: var(--link-text-color-active);
+  }
+  a:not(:focus-visible) {
+    outline: none;
+  }
+
+  // chrome scrollbar styles
+  ::-webkit-scrollbar {
+    height: 9px;
+    width: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(70, 70, 70, 0.8);
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    border: 1px solid transparent;
+  }
+  ::-webkit-scrollbar-thumb:active {
+    background-color: rgba(40, 40, 40, 0.8);
+  }
+
+  // hide recaptcha badge
   .grecaptcha-badge {
     transform: translateX(101%);
     visibility: hidden;
