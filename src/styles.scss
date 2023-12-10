@@ -2,6 +2,7 @@
 
 body {
   .grecaptcha-badge {
+    transform: translateX(101%);
     visibility: hidden;
   }
 }

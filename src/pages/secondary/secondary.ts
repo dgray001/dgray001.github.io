@@ -4,5 +4,5 @@ import './secondary.scss';
 // dependencies
 
 // initialize
-import {initializePage} from './common';
+import {initializePage} from '../common';
 initializePage();

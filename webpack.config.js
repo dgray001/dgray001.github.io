@@ -1,13 +1,13 @@
 module.exports = {
   entry: {
     index: {
-      import: './src/pages/index.ts',
+      import: './src/pages/home/home.ts',
     },
     secondary: {
-      import: './src/pages/secondary.ts',
+      import: './src/pages/secondary/secondary.ts',
     },
-    admin_dashboard: {
-      import: './src/pages/admin_dashboard.ts',
+    admin: {
+      import: './src/pages/admin/admin.ts',
     },
   },
   module: {
