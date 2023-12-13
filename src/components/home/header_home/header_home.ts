@@ -8,16 +8,19 @@ import './header_home.scss';
 import '../../common/navigation_pane/navigation_pane';
 
 export class CufHeaderHome extends CufElement {
+  private title_container: HTMLDivElement;
   private home_title: HTMLDivElement;
   private logo_container: HTMLDivElement;
   private subtitle_2: HTMLDivElement;
   private navigation_pane: CufNavigationPane;
 
   private logo_max_width = 0;
+  private ticking = false;
 
   constructor() {
     super();
     this.htmlString = html;
+    this.configureElement('title_container');
     this.configureElement('home_title', 'title');
     this.configureElement('logo_container');
     this.configureElement('subtitle_2');
@@ -35,6 +38,15 @@ export class CufHeaderHome extends CufElement {
     window.addEventListener('resize', () => {
       this.calculateLogoPosition();
     });
+    document.addEventListener('scroll', () => {    
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.updateScrollDependencies();
+          this.ticking = false;
+        });
+        this.ticking = true;
+      }
+    });
     this.classList.add('hidden');
   }
 
@@ -48,6 +60,7 @@ export class CufHeaderHome extends CufElement {
       );
     });
     await this.calculateLogoPosition(true);
+    this.updateScrollDependencies();
     this.classList.remove('hidden');
   }
 
@@ -63,6 +76,15 @@ export class CufHeaderHome extends CufElement {
     if (set_max_width) {
       this.logo_max_width = logo_width;
     }
+  }
+
+  private updateScrollDependencies() {
+    const title_rect = this.title_container.getBoundingClientRect();
+    const this_rect = this.getBoundingClientRect();
+    const height = Math.max(title_rect.bottom, this_rect.bottom) - title_rect.top;
+    const width = (77 / 226.0) * height;
+    this.logo_container.style.setProperty('--header-height', `${height}px`);
+    this.logo_container.style.setProperty('--offset', `${0.5 * (this.logo_max_width - width)}px`);
   }
 }
 

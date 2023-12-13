@@ -1,10 +1,10 @@
 cuf-header-home {
   --logo-width: calc(2 * var(--size-title));
-  --fixed-container-height: calc(2 * var(--size-title));
+  --fixed-container-height: calc(2.6 * var(--size-title));
   --subtitle-font-size: var(--size-larger);
   --subtitle-height: calc(2.4 * var(--subtitle-font-size));
   --navigation-margin: var(--size-medium);
-  --navigation-height: calc(2.5 * var(--size-larger));
+  --navigation-height: calc(3 * var(--size-medium));
   --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
 
   background-color: var(--card-background-color);
@@ -15,17 +15,19 @@ cuf-header-home {
     height: var(--fixed-container-height);
 
     #title-container {
-      align-items: center;
       background-color: var(--card-background-color);
       display: flex;
       height: var(--fixed-container-height);
-      justify-content: center;
       position: fixed;
       width: 100vw;
   
       #title {
-        font-size: calc(0.5 * var(--fixed-container-height));
+        font-size: calc(0.35 * var(--fixed-container-height));
         font-weight: bold;
+        height: var(--fixed-container-height);
+        line-height: var(--fixed-container-height);
+        margin: 0 auto;
+        text-align: center;
         white-space: nowrap;
       }
     }
@@ -34,14 +36,17 @@ cuf-header-home {
   #logo-container {
     --left: 0px; // set by component
     --offset: 0px; // set by component
-    --top: var(--size-small);
-    --height: calc(var(--total-height) - 2 * var(--top) - var(--offset));
+    --header-height: var(--total-height);
+    --margin: 4px;
+    --height: calc(var(--header-height) - 2 * var(--margin));
     --width: calc((77 / 226) * var(--height));
 
-    left: var(--left);
+    display: block;
+    left: calc(var(--left) + var(--offset));
     height: var(--height);
     position: fixed;
-    top: var(--top);
+    top: var(--margin);
+    width: var(--width);
     z-index: 2;
   }
 
@@ -59,7 +64,6 @@ cuf-header-home {
   #navigation-container {
     height: var(--navigation-height);
     margin: var(--navigation-margin) auto;
-    min-width: 300px;
-    width: 50vw;
+    width: fit-content;
   }
 }

@@ -1,6 +1,6 @@
 @use "./normalize";
 
-body {
+:root {
   // colors
   --page-background-color: rgb(255, 255, 255);
   --card-background-color: rgb(245, 245, 245);
@@ -23,7 +23,7 @@ body {
   --size-medium: calc(12px + 0.5vw);
   --size-small: calc(10px + 0.45vw);
   --size-smaller: calc(8px + 0.4vw);
-  --size-smallest: calc(7px + 035vw);
+  --size-smallest: calc(7px + 0.35vw);
 
   &.mobile {
     --size-title: calc(18px + 3vw);
@@ -36,6 +36,9 @@ body {
     --size-smallest: calc(8px + 0.4vw);
   }
 
+  // global styles
+  overflow-x: hidden;
+
   // misc classes
   .max-size {
     height: 100%;
@@ -47,20 +50,20 @@ body {
   }
 
   // link styles
-  a {
+  .a {
     color: var(--link-text-color);
     font-weight: bold;
   }
-  a:visited {
+  .a:visited {
     color: var(--link-text-color-visited);
   }
-  a:hover {
+  .a:hover {
     color: var(--link-text-color-hover);
   }
-  a:active {
+  .a:active {
     color: var(--link-text-color-active);
   }
-  a:not(:focus-visible) {
+  .a:not(:focus-visible) {
     outline: none;
   }
 

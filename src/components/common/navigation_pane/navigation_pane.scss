@@ -1,0 +1,33 @@
+cuf-navigation-pane {
+  #button-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
+    gap: var(--size-small);
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+
+    .button {
+      --width: calc(3 * var(--navigation-height));
+
+      background-color: var(--header-color);
+      color: var(--link-text-color);
+      flex: 0 0 var(--width);
+      font-size: calc(0.4 * var(--navigation-height));
+      font-weight: bold;
+      line-height: var(--navigation-height);
+      max-width: var(--width);
+      min-width: var(--width);
+      text-align: center;
+      text-decoration: none;
+      transition: box-shadow ease-out 200ms;
+      width: var(--width);
+      user-select: none;
+
+      &:hover:not(.header-el) {
+        box-shadow: inset 0 var(--navigation-height) 0 0 var(--navigation-hover-color);
+      }
+    }
+  }
+}
