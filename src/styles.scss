@@ -12,15 +12,18 @@
   --link-text-color-visited: rgb(70, 140, 40);
   --link-text-color-hover: rgb(90, 160, 50);
   --link-text-color-active: rgb(130, 200, 75);
+  --footer-margin-color: var(--page-background-color);
+  --footer-color: var(--page-background-color);
+  --header-color: var(--card-background-color);
   background-color: var(--page-background-color);
   color: black;
 
   // sizes
-  --size-title: calc(14px + 2.6vw);
-  --size-largest: calc(12px + 2vw);
-  --size-larger: calc(12px + 1.5vw);
+  --size-title: calc(14px + 1.6vw);
+  --size-largest: calc(13px + 1.4vw);
+  --size-larger: calc(12px + 1.2vw);
   --size-large: calc(12px + 1vw);
-  --size-medium: calc(12px + 0.5vw);
+  --size-medium: calc(11px + 0.5vw);
   --size-small: calc(10px + 0.45vw);
   --size-smaller: calc(8px + 0.4vw);
   --size-smallest: calc(7px + 0.35vw);
@@ -36,7 +39,13 @@
     --size-smallest: calc(8px + 0.4vw);
   }
 
+  // layout styles
+  --left-sidebar-width: 10vw;
+  --margin-size: var(--size-small);
+  --max-width: 1400px;
+
   // global styles
+  font-family: "Sans Serif";
   overflow-x: hidden;
 
   // misc classes
@@ -50,20 +59,20 @@
   }
 
   // link styles
-  .a {
+  a, .a {
     color: var(--link-text-color);
     font-weight: bold;
   }
-  .a:visited {
+  a:visited, .a:visited {
     color: var(--link-text-color-visited);
   }
-  .a:hover {
+  a:hover, .a:hover {
     color: var(--link-text-color-hover);
   }
-  .a:active {
+  a:active, .a:active {
     color: var(--link-text-color-active);
   }
-  .a:not(:focus-visible) {
+  a:not(:focus-visible), .a:not(:focus-visible) {
     outline: none;
   }
 

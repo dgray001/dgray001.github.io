@@ -1,0 +1,128 @@
+cuf-footer {
+  display: block;
+  max-width: 100vw;
+  min-width: 100vw;
+  overflow-x: hidden;
+  width: 100vw;
+
+  > #margin {
+    background-color: var(--footer-margin-color);
+    height: max(1vh, 7.5px);
+    margin-top: var(--margin-size);
+    width: 100vw;
+  }
+
+  > #content-container {
+    background-color: var(--footer-color);
+
+    .element-group {
+      margin-top: 1rem;
+    }
+
+    > #element-container {
+      margin: 0 auto;
+      max-width: var(--max-width);
+      min-width: 0;
+      overflow: auto;
+      padding-left: var(--left-sidebar-width);
+      padding-top: var(--margin-size);
+      text-align: center;
+      width: 90%;
+
+      > #site-map {
+        display: flex;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+
+        .element-group {
+          flex: 1 1 0;
+          margin: 0 0.5rem;
+          text-align: right;
+        }
+
+        #element-group-right {
+          text-align: left;
+        }
+
+        .element {
+          margin-top: 0.3rem;
+        }
+
+        .element.tab-single {
+          margin-left: 0.8rem;
+        }
+
+        .element.tab-double {
+          margin-left: 1.6rem;
+        }
+      }
+    }
+
+    > #recaptcha-notice {
+      font-size: 0.6rem;
+      margin-left: calc(var(--left-auto-margin) + var(--left-sidebar-width));
+      width: 90%;
+    }
+    
+    > #copyright {
+      font-size: 0.8rem;
+      margin-left: calc(var(--left-auto-margin) + var(--left-sidebar-width));
+      padding-bottom: 0.5rem;
+      padding-top: 0.8rem;
+      width: 90%;
+    }
+  }
+
+  &.align-center {
+    > #content-container {
+      > #element-container {
+        padding-left: 0px;
+
+        > #address-and-contact {
+          flex: 1 1 0;
+        }
+
+        > #site-map {
+          #element-group-left {
+            flex: 1 1 0;
+            text-align: right;
+          }
+
+          #element-group-right {
+            flex: 1 1 0;
+          }
+        }
+      }
+
+      > #recaptcha-notice {
+        margin-left: 5vw;
+        text-align: center;
+      }
+
+      > #copyright {
+        margin-left: 5vw;
+        text-align: center;
+      }
+    }
+  }
+}
+
+/* large devices */
+@media only screen and (min-width: 750px) {
+  #element-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #address-and-contact {
+    flex: 2 0 0;
+    margin-bottom: 0px;
+    min-width: 0;
+  }
+
+  #site-map {
+    flex: 1 0 0;
+    margin-right: 5px;
+    margin-top: 0px;
+  }
+}

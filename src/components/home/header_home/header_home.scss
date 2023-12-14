@@ -7,15 +7,18 @@ cuf-header-home {
   --navigation-height: calc(3 * var(--size-medium));
   --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
 
-  background-color: var(--card-background-color);
+  background-color: var(--header-color);
   display: block;
   height: var(--total-height);
 
   #fixed-container-height-box {
+    display: fixed;
     height: var(--fixed-container-height);
+    position: relative;
+    z-index: 4;
 
     #title-container {
-      background-color: var(--card-background-color);
+      background-color: var(--header-color);
       display: flex;
       height: var(--fixed-container-height);
       position: fixed;
@@ -47,7 +50,7 @@ cuf-header-home {
     position: fixed;
     top: var(--margin);
     width: var(--width);
-    z-index: 2;
+    z-index: 5;
   }
 
   .subtitle {

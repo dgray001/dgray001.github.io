@@ -65,13 +65,7 @@ export class CufSlider extends CufElement {
         dot.classList.add('current');
       }
     }
-    this.wrapper.addEventListener('mousemove', () => {
-      this.stop_moving = true;
-      clearTimeout(this.stop_moving_timeout);
-      this.stop_moving_timeout = setTimeout(() => {
-        this.stop_moving = false;
-      }, 3000);
-    });
+    this.wrapper.addEventListener('mousemove', this.stopMoving.bind(this));
     this.wrapper.addEventListener('click', this.nextImage.bind(this, true));
     setInterval(this.nextImage.bind(this, false), 5000);
     this.updateImageSrcs();
@@ -157,6 +151,15 @@ export class CufSlider extends CufElement {
       this.imgs[last_index].removeAttribute('style');
       this.in_transition = false;
     }, 500);
+    this.stopMoving();
+  }
+
+  private stopMoving() {
+    this.stop_moving = true;
+    clearTimeout(this.stop_moving_timeout);
+    this.stop_moving_timeout = setTimeout(() => {
+      this.stop_moving = false;
+    }, 3000);
   }
 }
 
