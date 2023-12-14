@@ -1,5 +1,85 @@
 cuf-slider {
-  #wrapper {
-    //
+  > #wrapper {
+    --scale: 0.375; // set by component
+    background-color: black;
+    height: calc(var(--scale) * 100vw);
+    overflow: hidden;
+    position: relative;
+    width: 100vw;
+
+    > .container {
+      left: 100vw;
+      object-fit: contain;
+      overflow: hidden;
+      position: absolute;
+      width: 100%;
+
+      > img {
+        object-fit: contain;
+        width: 100%;
+      }
+
+      > a {
+        background-color: rgba(0, 0, 0, 0.2);
+        color: rgb(160, 230, 110);
+        font-size: var(--size-larger);
+        font-weight: bold;
+        left: 10vw;
+        position: absolute;
+        text-decoration: none;
+        top: calc(var(--scale) * 10vw);
+        white-space: pre-line;
+
+        &:visited {
+          color: rgb(150, 220, 90);
+        }
+        &:active {
+          color: rgb(190, 255, 150);
+        }
+        &:not(:focus-visible) {
+          outline: none;
+        }
+      }
+
+      &:hover a {
+        color: rgb(170, 240, 120);
+      }
+    }
+
+    > #dots {
+      align-items: center;
+      bottom: calc(var(--scale) * 7vw);
+      display: flex;
+      flex-flow: row nowrap;
+      height: 40px;
+      justify-content: center;
+      margin: 0 auto;
+      position: absolute;
+      width: 100vw;
+
+      > .dot {
+        background-clip: padding-box;
+        background-color: white;
+        border: solid transparent 4px;
+        border-radius: 9px;
+        box-sizing: content-box;
+        height: 11px;
+        margin: 6px;
+        padding: 0;
+        position: relative;
+        transition: all 200ms ease;
+        width: 11px;
+        z-index: 2;
+
+        &:hover:not(.current) {
+          border-color: white;
+        }
+
+        &.current {
+          background-color: black;
+          border-color: white;
+        }
+      }
+    }
   }
 }
