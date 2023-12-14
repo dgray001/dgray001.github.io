@@ -5,8 +5,7 @@ import './home.scss';
 import html from './home.html';
 
 // dependencies
-import '../../components/home/header_home/header_home';
-import '../../components/home/slider/slider';
+import '../../components/home/homepage/homepage';
 
 // initialize
 import {initializePage} from '../common';
