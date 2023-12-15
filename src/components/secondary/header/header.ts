@@ -48,9 +48,7 @@ export class CufHeader extends CufElement {
   }
 
   updateScrollDependencies() {
-    const max_offset = Math.max(0.08 * window.innerHeight, 45);
-    const margin_offset = Math.min(window.scrollY, max_offset);
-    this.style.setProperty('--margin-offset', `${margin_offset}px`);
+    this.style.setProperty('--scrollY', `${window.scrollY}px`);
   }
 }
 

@@ -29,7 +29,7 @@ export function panelsToIncludeFrom(panels_data) {
   }
   return return_array;
 }
-  
+
 /**
  * Updates this.options in case it is a keyword.
  * If it is not a keyword then return the inputted options

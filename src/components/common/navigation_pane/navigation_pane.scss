@@ -1,4 +1,6 @@
 cuf-navigation-pane {
+  --button-width: calc(3.5 * var(--navigation-height));
+
   #button-wrapper {
     display: flex;
     flex-flow: row nowrap;
@@ -9,24 +11,23 @@ cuf-navigation-pane {
     width: 100%;
 
     .button {
-      --width: calc(2.6 * var(--navigation-height));
-
       background-color: var(--header-color);
       color: var(--link-text-color);
       cursor: default;
-      flex: 0 0 var(--width);
+      flex: 0 0 var(--button-width);
       font-size: calc(0.4 * var(--navigation-height));
       font-weight: bold;
+      height: var(--navigation-height);
       line-height: var(--navigation-height);
-      max-width: var(--width);
-      min-width: var(--width);
+      max-width: var(--button-width);
+      min-width: var(--button-width);
       text-align: center;
       text-decoration: none;
-      transition: box-shadow ease-out 200ms;
-      width: var(--width);
+      transition: box-shadow ease-out 150ms;
+      width: var(--button-width);
       user-select: none;
 
-      &:hover:not(.header-el) {
+      &:hover {
         box-shadow: inset 0 var(--navigation-height) 0 0 var(--navigation-hover-color);
       }
 
@@ -36,27 +37,46 @@ cuf-navigation-pane {
 
       &.header-el {
         color: black;
+        flex: 0 0 var(--navigation-height);
       }
-      
+
       &.current-el {
         background-color: var(--navigation-current-color);
       }
-      
+
       &.dropdown-el {
         background-color: var(--header-color);
         display: none;
+        flex: 0 0 var(--navigation-height);
       }
-      
+
       &.dropdown-el.current-el {
         background-color: var(--navigation-hover-color);
+      }
+
+      .label {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
       }
     }
 
     .dropdown {
       display: flex;
       flex-flow: column nowrap;
-      flex: 1 1 0;
+      flex: 0 0 var(--button-width);
       height: 100%;
+      max-width: var(--button-width);
+      min-width: var(--button-width);
+      width: var(--button-width);
+
+      &.hovered {
+        box-shadow: 0px 0px 2px 2px rgba(60, 60, 60, 0.3);
+
+        .button {
+          display: block;
+        }
+      }
     }
   }
 }

@@ -11,6 +11,14 @@ export function pageToName(page: string): string {
       return 'Contact';
     case 'donate':
       return 'Donate';
+    case 'apostolic_activities':
+      return 'Apostolic Activities';
+    case 'information_services':
+      return 'Information Services';
+    case 'lay_witness':
+      return 'Lay Witness';
+    case 'faith_and_life_series':
+      return 'Faith and Life Series';
     default:
       console.error(`Uknown page: ${page}`);
       return '';

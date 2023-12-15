@@ -1,11 +1,13 @@
 cuf-header {
   --padding-top: 8px;
-  --title-height: calc(1.7 * var(--size-title));
-  --navigation-height: calc(3 * var(--size-medium));
+  --title-height: calc(1.7 * var(--size-largest));
+  --navigation-height: calc(2.5 * var(--size-medium));
   --fixed-container-height: max(var(--title-height), var(--navigation-height));
-  --subtitle-font-size: var(--size-larger);
+  --subtitle-font-size: var(--size-large);
   --collapsed-container-height: calc(2.6 * var(--subtitle-font-size));
-  --margin-offset: 0px; // set by component
+  --scrollY: 0px; // set by component
+  --max-offset: var(--collapsed-container-height);
+  --margin-offset: min(var(--scrollY), var(--max-offset));
   --header-total-height: calc(var(--padding-top) + var(--fixed-container-height) +
     var(--collapsed-container-height) - var(--margin-offset));
 
@@ -13,7 +15,7 @@ cuf-header {
   display: block;
   
   img {
-    object-fit: scale-down;
+    object-fit: contain;
     margin: 0 auto;
     max-width: 100%;
     max-height: 100%;
@@ -34,7 +36,8 @@ cuf-header {
     flex-flow: row nowrap;
     gap: var(--size-title);
     height: var(--fixed-container-height);
-    padding: var(--padding-top) var(--padding-top) 0;
+    padding-left: calc(var(--left-auto-margin) + var(--padding-top));
+    padding-top: var(--padding-top);
     position: fixed;
     top: 0;
     width: 100vw;
@@ -44,7 +47,7 @@ cuf-header {
       align-items: center;
       background-color: var(--header-color);
       display: flex;
-      font-size: var(--size-title);
+      font-size: var(--size-largest);
       height: var(--title-height);
 
       a {
@@ -67,7 +70,7 @@ cuf-header {
   > #collapsed-container {
     height: var(--collapsed-container-height);
     margin-top: calc(var(--padding-top) + var(--fixed-container-height));
-    padding-left: var(--padding-top);
+    padding-left: calc(var(--left-auto-margin) + var(--padding-top));
     position: relative;
     top: 0;
     width: 100vw;
@@ -96,6 +99,8 @@ cuf-header {
 /* If change media query must change in navigation_pane.css */
 @media only screen and (max-width: 1300px) and (min-width: 701px) {
   cuf-header {
+    --title-height: calc(1.7 * var(--size-title));
+    --max-offset: calc(var(--padding-top) + var(--collapsed-container-height));
     --fixed-container-height: calc(var(--padding-top) + var(--title-height) + var(--navigation-height));
     padding-bottom: var(--navigation-height);
 
@@ -104,6 +109,7 @@ cuf-header {
       padding: 0px;
 
       > #title-container {
+        font-size: var(--size-title);
         padding: var(--padding-top) var(--padding-top) 0;
         width: 100%;
       }

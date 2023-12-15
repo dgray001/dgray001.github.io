@@ -19,9 +19,9 @@
 
   // sizes
   --size-title: calc(14px + 1.6vw);
-  --size-largest: calc(13px + 1.4vw);
-  --size-larger: calc(12px + 1.2vw);
-  --size-large: calc(12px + 1vw);
+  --size-largest: calc(13px + 1.3vw);
+  --size-larger: calc(12px + 1vw);
+  --size-large: calc(12px + 0.75vw);
   --size-medium: calc(11px + 0.5vw);
   --size-small: calc(10px + 0.45vw);
   --size-smaller: calc(8px + 0.4vw);
@@ -39,9 +39,10 @@
   }
 
   // layout styles
-  --left-sidebar-width: 10vw;
   --margin-size: var(--size-small);
   --max-width: 1400px;
+  --left-sidebar-width: 10vw;
+  --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
 }
 
 body {
