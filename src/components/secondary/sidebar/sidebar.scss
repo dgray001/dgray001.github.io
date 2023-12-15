@@ -1,0 +1,13 @@
+cuf-sidebar {
+  > #wrapper {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 2em;
+
+    > .content-card {
+      margin: 1.2em 5px;
+      width: 330px;
+    }
+  }
+}

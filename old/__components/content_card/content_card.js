@@ -248,7 +248,6 @@ export class CufContentCard extends HTMLElement {
    * @property {string} titlelink
    * @property {string} description
    */
-
   async setContent() {
     try {
       this.json_data = await fetchJson(`${this.content_key}/${this.content_key}.json`);
