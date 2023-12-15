@@ -1,6 +1,7 @@
 import {CufElement} from '../../cuf_element';
-import {DEV, STAGING, until} from '../../../scripts/util';
+import {until} from '../../../scripts/util';
 import {CufNavigationPane} from '../../common/navigation_pane/navigation_pane';
+import {titleText} from '../../common/util';
 
 import html from './header_home.html';
 
@@ -28,13 +29,7 @@ export class CufHeaderHome extends CufElement {
   }
 
   protected override parsedCallback(): void {
-    if (DEV) {
-      this.home_title.innerText = '|--CUF DEVELOPMENT SITE--|';
-    } else if (STAGING) {
-      this.home_title.innerText = '|---CUF STAGING SITE---|';
-    } else {
-      this.home_title.innerText = 'Catholics United for the Faith';
-    }
+    this.home_title.innerText = titleText();
     window.addEventListener('resize', () => {
       this.calculateLogoPosition();
     });

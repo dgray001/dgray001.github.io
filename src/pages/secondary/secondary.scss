@@ -1,0 +1,8 @@
+body {
+  --header-height-unit: max(min(2vh, 2.75vw), 15px);
+  --navigation-height: calc(2.8 * var(--size-medium));
+  --fixed-header-height: calc(max(
+    var(--navigation-height),
+    calc(var(--header-height-unit) * 2.5)) +
+    var(--margin-size));
+}

@@ -1,4 +1,5 @@
 import {CufElement} from '../../cuf_element';
+import {pageToName} from '../util';
 
 import html from './navigation_pane.html';
 
@@ -14,30 +15,14 @@ export class CufNavigationPane extends CufElement {
   }
 
   protected override parsedCallback(): void {
-    const links: string[] = JSON.parse(this.getAttribute('links'));
+    const links: string[] = JSON.parse(this.getAttribute('links')) ?? ['about', 'news', 'contact', 'donate'];
     for (const link of links) {
       this.createButton(link);
     }
   }
 
   private createButton(link: string) {
-    let label = '';
-    switch(link) {
-      case 'about':
-        label = 'About';
-        break;
-      case 'news':
-        label = 'CUF News';
-        break;
-      case 'contact':
-        label = 'Contact';
-        break;
-      case 'donate':
-        label = 'Donate';
-        break;
-      default:
-        console.error('unknown link', link);
-    }
+    let label = pageToName(link);
     const button = document.createElement('a');
     button.href = `/${link}`;
     button.draggable = false;

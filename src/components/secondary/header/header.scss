@@ -1,0 +1,93 @@
+cuf-header {
+  --padding-top: var(--size-smallest);
+  --title-height: calc(2 * var(--size-title));
+  --navigation-height: calc(3 * var(--size-medium));
+  --fixed-container-height: max(var(--title-height), var(--navigation-height));
+  --subtitle-font-size: var(--size-larger);
+  --collapsed-container-height: calc(2.6 * var(--subtitle-font-size));
+  --margin-offset: 0px; // set by component
+  --header-total-height: calc(var(--padding-top) + var(--fixed-container-height) +
+    var(--collapsed-container-height) - var(--margin-offset));
+
+  background-color: var(--header-color);
+  display: block;
+  
+  img {
+    object-fit: scale-down;
+    margin: 0 auto;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+  }
+  
+  > #logo-container {
+    left: var(--left-auto-margin);
+    height: calc(2 * var(--left-sidebar-width));
+    position: fixed;
+    top: calc(var(--header-total-height) + var(--margin-size) + 2em);
+    width: var(--left-sidebar-width);
+  }
+
+  > #fixed-container {
+    background-color: var(--header-color);
+    display: flex;
+    flex-flow: row nowrap;
+    gap: var(--size-title);
+    height: var(--fixed-container-height);
+    padding: var(--padding-top) var(--padding-top) 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 9;
+
+    > #title-container {
+      align-items: center;
+      background-color: var(--header-color);
+      display: flex;
+      font-size: var(--size-title);
+      height: var(--title-height);
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      #title {
+        color: black;
+        text-decoration: none;
+      }
+    }
+
+    #navigation-bar {
+      height: var(--navigation-height);
+      margin-top: calc(0.5 * (var(--fixed-container-height) - var(--navigation-height)));
+    }
+  }
+
+  > #collapsed-container {
+    height: var(--collapsed-container-height);
+    margin-top: calc(var(--padding-top) + var(--fixed-container-height));
+    padding-left: var(--padding-top);
+    position: relative;
+    top: 0;
+    width: 100vw;
+    z-index: 8;
+
+    .subtitle {
+      font-size: var(--subtitle-font-size);
+      height: calc(0.5 * var(--collapsed-container-height));
+      line-height: calc(0.5 * var(--collapsed-container-height));
+    }
+  }
+
+  > #margin {
+    background-color: var(--margin-color);
+    box-shadow: 0 4px 4px var(--card-box-shadow-color);
+    height: var(--margin-size);
+    margin-bottom: var(--margin-size);
+    position: fixed;
+    top: var(--header-total-height);
+    width: 100vw;
+    z-index: 8;
+  }
+}

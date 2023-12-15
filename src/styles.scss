@@ -14,9 +14,8 @@
   --link-text-color-active: rgb(130, 200, 75);
   --footer-margin-color: var(--page-background-color);
   --footer-color: var(--page-background-color);
-  --header-color: var(--card-background-color);
-  background-color: var(--page-background-color);
-  color: black;
+  --header-color: var(--page-background-color);
+  --margin-color: var(--page-background-color);
 
   // sizes
   --size-title: calc(14px + 1.6vw);
@@ -43,8 +42,12 @@
   --left-sidebar-width: 10vw;
   --margin-size: var(--size-small);
   --max-width: 1400px;
+}
 
+body {
   // global styles
+  background-color: var(--page-background-color);
+  color: black;
   font-family: "Sans Serif";
   overflow-x: hidden;
 
@@ -56,6 +59,9 @@
     min-width: 100%;
     min-height: 100%;
     width: 100%;
+  }
+  .ff {
+    font-variant: small-caps;
   }
 
   // link styles

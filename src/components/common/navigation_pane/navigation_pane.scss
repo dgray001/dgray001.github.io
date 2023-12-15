@@ -3,13 +3,13 @@ cuf-navigation-pane {
     display: flex;
     flex-flow: row nowrap;
     height: 100%;
-    gap: var(--size-small);
+    gap: var(--size-smaller);
     max-width: 100%;
     min-width: 100%;
     width: 100%;
 
     .button {
-      --width: calc(3 * var(--navigation-height));
+      --width: calc(2.6 * var(--navigation-height));
 
       background-color: var(--header-color);
       color: var(--link-text-color);

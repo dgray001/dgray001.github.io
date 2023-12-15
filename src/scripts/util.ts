@@ -46,3 +46,13 @@ export function capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + lower.slice(1);
   }).join(' ');
 }
+
+/** Trims specified chars from string */
+export function trim(s: string, c: string): string {
+  if (c === "]") c = "\\]";
+  if (c === "^") c = "\\^";
+  if (c === "\\") c = "\\\\";
+  return s.replace(new RegExp(
+    "^[" + c + "]+|[" + c + "]+$", "g"
+  ), "");
+}
