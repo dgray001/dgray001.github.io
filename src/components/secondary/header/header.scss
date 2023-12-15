@@ -1,6 +1,6 @@
 cuf-header {
-  --padding-top: var(--size-smallest);
-  --title-height: calc(2 * var(--size-title));
+  --padding-top: 8px;
+  --title-height: calc(1.7 * var(--size-title));
   --navigation-height: calc(3 * var(--size-medium));
   --fixed-container-height: max(var(--title-height), var(--navigation-height));
   --subtitle-font-size: var(--size-larger);
@@ -58,7 +58,7 @@ cuf-header {
       }
     }
 
-    #navigation-bar {
+    > #navigation-container {
       height: var(--navigation-height);
       margin-top: calc(0.5 * (var(--fixed-container-height) - var(--navigation-height)));
     }
@@ -89,5 +89,40 @@ cuf-header {
     top: var(--header-total-height);
     width: 100vw;
     z-index: 8;
+  }
+}
+
+/* navigation panel below header for smaller devices */
+/* If change media query must change in navigation_pane.css */
+@media only screen and (max-width: 1300px) and (min-width: 701px) {
+  cuf-header {
+    --fixed-container-height: calc(var(--padding-top) + var(--title-height) + var(--navigation-height));
+    padding-bottom: var(--navigation-height);
+
+    > #fixed-container {
+      background-color: transparent;
+      padding: 0px;
+
+      > #title-container {
+        padding: var(--padding-top) var(--padding-top) 0;
+        width: 100%;
+      }
+
+      > #navigation-container {
+        background-color: var(--header-color);
+        box-sizing: border-box;
+        flex: 0 0 auto;
+        height: calc(var(--padding-top) + var(--navigation-height));
+        margin-top: 0px;
+        padding: var(--padding-top) 10px 0px;
+        position: absolute;
+        top: calc(var(--header-total-height) - var(--navigation-height));
+        width: 100%;
+      }
+    }
+
+    > #collapsed-container {
+      margin-top: calc(var(--padding-top) + var(--title-height));
+    }
   }
 }

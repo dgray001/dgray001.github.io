@@ -2,10 +2,8 @@ cuf-secondary-page {
   display: flex;
   flex-flow: column nowrap;
 
-  #page-content {
-    display: flex;
+  > #page-content {
     flex: 1 1 auto;
-    flex-flow: row nowrap;
     justify-content: space-between;
     margin: var(--margin-size) auto 0;
     max-width: var(--max-width);
@@ -16,13 +14,13 @@ cuf-secondary-page {
     width: 90%;
     z-index: 2;
 
-    #actual-content {
+    > #actual-content {
       font-size: var(--size-medium);
       margin-bottom: 20px;
       margin-right: 10px;
       padding: 8px 15px;
 
-      #page-title {
+      > #page-title {
         color: rgb(100, 100, 200);
         font-size: 2.6em;
       }
@@ -47,6 +45,31 @@ cuf-secondary-page {
       li {
         margin-bottom: 0.3rem;
         text-align: left;
+      }
+    }
+  }
+}
+
+/* move sidebar to side for large enough devices */
+@media only screen and (min-width: 850px) {
+  cuf-secondary-page {
+    > #page-content {
+      display: flex;
+      flex-flow: row nowrap;
+      min-width: 0;
+
+      > #actual-content {
+        flex: 2 0 0;
+        margin-bottom: 0px;
+        min-width: 0;
+      }
+    
+      > #sidebar {
+        flex: 1 0 0;
+        margin-left: 0px;
+        margin-right: 5px;
+        max-width: 350px;
+        min-width: 350px;
       }
     }
   }

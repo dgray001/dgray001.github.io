@@ -13,6 +13,7 @@ cuf-navigation-pane {
 
       background-color: var(--header-color);
       color: var(--link-text-color);
+      cursor: default;
       flex: 0 0 var(--width);
       font-size: calc(0.4 * var(--navigation-height));
       font-weight: bold;
@@ -28,6 +29,34 @@ cuf-navigation-pane {
       &:hover:not(.header-el) {
         box-shadow: inset 0 var(--navigation-height) 0 0 var(--navigation-hover-color);
       }
+
+      &:hover:not(.current-el):not(.header-el) {
+        cursor: pointer;
+      }
+
+      &.header-el {
+        color: black;
+      }
+      
+      &.current-el {
+        background-color: var(--navigation-current-color);
+      }
+      
+      &.dropdown-el {
+        background-color: var(--header-color);
+        display: none;
+      }
+      
+      &.dropdown-el.current-el {
+        background-color: var(--navigation-hover-color);
+      }
+    }
+
+    .dropdown {
+      display: flex;
+      flex-flow: column nowrap;
+      flex: 1 1 0;
+      height: 100%;
     }
   }
 }

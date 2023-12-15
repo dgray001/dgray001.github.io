@@ -12,6 +12,8 @@ export class CufHeader extends CufElement {
   private fixed_container: HTMLDivElement;
   private title_el: HTMLDivElement;
 
+  private ticking = false;
+
   constructor() {
     super();
     this.htmlString = html;
@@ -22,6 +24,33 @@ export class CufHeader extends CufElement {
 
   protected override parsedCallback(): void {
     this.title_el.innerText = titleText();
+    document.addEventListener('scroll', () => {    
+      if (!this.ticking) {
+        window.requestAnimationFrame(() => {
+          this.updateScrollDependencies();
+          this.ticking = false;
+        });
+        this.ticking = true;
+      }
+    });
+    this.classList.add('hidden');
+  }
+
+  protected override async fullyParsedCallback(): Promise<void> {
+    await until(() => {
+      return (
+        this.logo_container.getBoundingClientRect().height > 0 &&
+        this.fixed_container.getBoundingClientRect().height > 0
+      );
+    });
+    this.updateScrollDependencies();
+    this.classList.remove('hidden');
+  }
+
+  updateScrollDependencies() {
+    const max_offset = Math.max(0.08 * window.innerHeight, 45);
+    const margin_offset = Math.min(window.scrollY, max_offset);
+    this.style.setProperty('--margin-offset', `${margin_offset}px`);
   }
 }
 
