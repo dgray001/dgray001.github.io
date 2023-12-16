@@ -39,6 +39,7 @@ export class CufSecondaryPage extends CufElement {
 
   private async setTitle(title: string) {
     this.page_title.innerText = title;
+    document.title = `${title.replace('CUF', '')} | CUF`;
     const response = await fetch(`/secondary_page_html/${this.page}.html`, {
       method: 'GET',
       headers: {

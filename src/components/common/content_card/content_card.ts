@@ -75,8 +75,11 @@ export class CufContentCard extends CufElement {
 
   private setContent() {
     this.header_text.innerText = this.json_data.header;
+    if (!!this.json_data.headerlink) {
+      this.header_text.href = this.json_data.headerlink;
+    }
     const contents: JsonDataContent[] = [];
-    if (this.json_data.subheader) {
+    if (!!this.json_data.subheader) {
       contents.push(this.json_data.subheader);
     }
     contents.push(...this.json_data.content);

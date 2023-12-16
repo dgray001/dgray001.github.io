@@ -3,7 +3,8 @@ import {DEV} from "../scripts/util";
 /** Format all json data should be in */
 export declare interface JsonData {
   header: string;
-  subheader: JsonDataSubheader;
+  headerlink?: string;
+  subheader?: JsonDataSubheader;
   content: JsonDataContent[];
 }
 
