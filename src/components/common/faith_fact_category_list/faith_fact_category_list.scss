@@ -1,0 +1,51 @@
+cuf-faith-fact-category-list {
+  > #category-container {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow-x: scroll;
+
+    .category-link {
+      color: darkblue;
+      cursor: pointer;
+      display: inline-block;
+      flex: 0 0 auto;
+      font-size: 20px;
+      outline: none;
+      overflow: hidden;
+      padding: 1em;
+      position: relative;
+      text-align: center;
+      user-select: none;
+    }
+
+    .category-link.current-category {
+      background-color: rgb(104, 103, 103);
+      color: lightblue;
+    }
+
+    .category-link:hover:not(.current-category) {
+      background-color: rgb(180, 180, 180);
+    }
+
+    .category-link .title-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    span.ripple {
+      animation: ripple 200ms linear forwards;
+      background-color: gray;
+      border-radius: 50%;
+      opacity: 100;
+      position: absolute;
+      transform: scale(0);
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(2);
+        opacity: 100;
+      }
+    }
+  }
+}

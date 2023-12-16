@@ -12,6 +12,7 @@ import './secondary_page.scss';
 import '../header/header';
 import '../sidebar/sidebar';
 import '../../common/footer/footer';
+import '../../common/faith_fact_category_list/faith_fact_category_list';
 
 export class CufSecondaryPage extends CufElement {
   private header: CufHeader;

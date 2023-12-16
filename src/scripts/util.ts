@@ -56,3 +56,14 @@ export function trim(s: string, c: string): string {
     "^[" + c + "]+|[" + c + "]+$", "g"
   ), "");
 }
+
+/** Scrolls to the input element */
+export function scrollToElement(el: HTMLElement) {
+  const element_position = el.offsetTop;
+  const fixed_header_height = 0; // TODO: implement
+
+  window.scrollTo({
+    top: element_position - fixed_header_height,
+    behavior: "smooth"
+  });
+}

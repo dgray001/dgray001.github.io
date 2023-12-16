@@ -44,7 +44,7 @@ export class CufContentCard extends CufElement {
       this.classList.add('fixed-height');
       this.style.setProperty('--fixed-height', `${fixed_height}px`);
     }
-    this.json_data = await fetchJson(`${this.content_key}/${this.content_key}.json`);
+    this.json_data = await fetchJson<JsonData>(`${this.content_key}/${this.content_key}.json`);
     this.setContent();
     this.setLink();
     if (fade_in) {
