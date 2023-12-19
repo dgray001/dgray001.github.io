@@ -7,7 +7,7 @@ cuf-sidebar {
 
     > .content-card {
       margin: 1.2em 5px;
-      width: 330px;
+      width: var(--content-card-width);
     }
   }
 }

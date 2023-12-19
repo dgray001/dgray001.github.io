@@ -44,6 +44,7 @@
   --margin-size: var(--size-smaller);
   --max-width: 1400px;
   --left-sidebar-width: 10vw;
+  --content-card-width: 320px;
   --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
 }
 

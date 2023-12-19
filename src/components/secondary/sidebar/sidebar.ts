@@ -30,7 +30,7 @@ export class CufSidebar extends CufElement {
       if (panel_to_include === 'prayer') {
         content_card.setAttribute('collapsible', 'true');
       } else {
-        content_card.setAttribute('fixed-height', '462');
+        content_card.setAttribute('fixed-height', '1.564'); // 391 / 250
         content_card.setAttribute('fade-in', 'true');
       }
       this.wrapper.appendChild(content_card);

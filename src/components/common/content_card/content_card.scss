@@ -1,6 +1,9 @@
 cuf-content-card {
+  --width: 0px; // set by component
+  --border-radius: 20px;
+
   border: black solid 1px;
-  border-radius: 20px;
+  border-radius: var(--border-radius);
   display: block;
   margin-left: 5px;
   margin-right: 5px;
@@ -30,9 +33,9 @@ cuf-content-card {
   }
 
   &.fixed-height {
-    height: var(--fixed-height);
-    max-height: var(--fixed-height);
-    min-height: var(--fixed-height);
+    height: calc(var(--fixed-height) * var(--width));
+    max-height: calc(var(--fixed-height) * var(--width));
+    min-height: calc(var(--fixed-height) * var(--width));
   }
 
   > #header {
@@ -133,6 +136,42 @@ cuf-content-card {
 
     a:not(:focus-visible) {
       outline: none;
+    }
+  }
+
+  &.fade-in {
+    position: relative;
+
+    > #fade-image-wrapper {
+      border-radius: var(--border-radius);
+      height: 100%;
+      left: 0;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      &:hover {
+        opacity: 0.85;
+      }
+
+      > #fade-image {
+        height: 100%;
+        width: 100%;
+      }
+
+      > #card-name {
+        background-color: rgba(0, 0, 0, 0.3);
+        color: white;
+        font-size: var(--size-largest);
+        left: 0;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 20px;
+        user-select: none;
+        z-index: 2;
+      }
     }
   }
 }

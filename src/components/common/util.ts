@@ -21,6 +21,8 @@ export function pageToName(page: string): string {
       return 'Information Services';
     case 'involvement':
       return 'Involvement';
+    case 'jobs_available':
+      return 'Jobs Available';
     case 'lay_witness':
       return 'Lay Witness';
     case 'links':

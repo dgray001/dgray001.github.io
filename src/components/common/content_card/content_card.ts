@@ -1,4 +1,5 @@
 import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
+import {until} from '../../../scripts/util';
 import {CufElement} from '../../cuf_element';
 
 import html from './content_card.html';
@@ -31,22 +32,22 @@ export class CufContentCard extends CufElement {
   }
 
   protected override async parsedCallback(): Promise<void> {
+    this.classList.add('hidden');
     this.content_key = this.attributes.getNamedItem('content-key')?.value ?? '';
     const collapsible = !!(this.attributes.getNamedItem('collapsible')?.value ?? '');
     const start_closed = !!(this.attributes.getNamedItem('start-closed')?.value ?? '');
     const fade_in = !!(this.attributes.getNamedItem('fade-in')?.value ?? '');
-    const fixed_height = parseInt(this.attributes.getNamedItem('fixed-height')?.value) ?? 0;
+    const fixed_height = parseFloat(this.attributes.getNamedItem('fixed-height')?.value) ?? 0;
     if (!this.content_key) {
       console.error('Must set content key for content card');
       return;
     }
     if (!!fixed_height) {
       this.classList.add('fixed-height');
-      this.style.setProperty('--fixed-height', `${fixed_height}px`);
+      this.style.setProperty('--fixed-height', fixed_height.toString());
     }
     this.json_data = await fetchJson<JsonData>(`${this.content_key}/${this.content_key}.json`);
     this.setContent();
-    this.setLink();
     if (fade_in) {
       this.card_type = ContentCardType.FADE_IN;
     }
@@ -56,7 +57,7 @@ export class CufContentCard extends CufElement {
           console.error('Must set fixed height for fade in content card');
           break;
         }
-        this.fadeInLogic(fixed_height);
+        this.fadeInLogic();
         break;
       default:
         break;
@@ -71,6 +72,12 @@ export class CufContentCard extends CufElement {
     } else {
       this.img_wrapper.remove();
     }
+  }
+
+  protected override async fullyParsedCallback(): Promise<void> {
+    await until(() => this.clientWidth > 0);
+    this.style.setProperty('--width', `${this.clientWidth.toString()}px`);
+    this.classList.remove('hidden');
   }
 
   private setContent() {
@@ -113,26 +120,45 @@ export class CufContentCard extends CufElement {
     this.content.innerHTML = content_list;
   }
 
-  private setLink() {
-    //
-  }
-
-  private fadeInLogic(fixed_height: number) {
-    let card_fade_image = '';
+  private fadeInLogic() {
+    this.classList.add('fade-in');
+    const fade_time = 450;
+    let card_fade_src = '';
     switch(this.content_key) {
       case 'involvement':
-        card_fade_image = 'paintings/cards/annunciation.jpg';
+        card_fade_src = '/images/paintings/cards/annunciation.jpg';
         break;
       case 'chapters':
-        card_fade_image = 'paintings/cards/assumption.jpg';
+        card_fade_src = '/images/paintings/cards/assumption.jpg';
         break;
       case 'papers':
-        card_fade_image = 'paintings/cards/ghent_almighty.jpg';
+        card_fade_src = '/images/paintings/cards/ghent_almighty.jpg';
+        break;
+      case 'jobs_available':
+        card_fade_src = '/images/paintings/cards/ghent_mary.jpg';
         break;
       default:
         console.error(`Unrecognized fade in content key: ${this.content_key}`);
         break;
     }
+    const img_el = document.createElement('img');
+    img_el.src = card_fade_src;
+    img_el.id = 'fade-image';
+    const card_name = document.createElement('div');
+    card_name.id = 'card-name';
+    card_name.innerText = this.json_data.header;
+    const img_wrap_el = document.createElement('div');
+    img_wrap_el.id = 'fade-image-wrapper';
+    img_wrap_el.style.setProperty('transition', `opacity ${fade_time}ms`);
+    img_wrap_el.addEventListener('click', () => {
+      img_wrap_el.style.setProperty('opacity', '0');
+      setTimeout(() => {
+        img_wrap_el.setAttribute('style', 'display: none;');
+      }, fade_time);
+    });
+    img_wrap_el.appendChild(img_el);
+    img_wrap_el.appendChild(card_name);
+    this.appendChild(img_wrap_el);
   }
 }
 
