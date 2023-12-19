@@ -6,6 +6,7 @@ export declare interface JsonData {
   headerlink?: string;
   subheader?: JsonDataSubheader;
   content: JsonDataContent[];
+  content_empty: JsonDataContent;
 }
 
 /** Format all json data should be in */

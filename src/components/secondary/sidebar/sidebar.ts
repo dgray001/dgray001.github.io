@@ -10,6 +10,8 @@ import '../../common/content_card/content_card';
 export class CufSidebar extends CufElement {
   private wrapper: HTMLDivElement;
 
+  private panels = new Map<string, CufContentCard>();
+
   constructor() {
     super();
     this.htmlString = html;
@@ -23,6 +25,7 @@ export class CufSidebar extends CufElement {
     for (const panel_to_include of panels_to_include) {
       const content_card: CufContentCard = document.createElement('cuf-content-card');
       content_card.classList.add('content-card');
+      content_card.id = panel_to_include;
       content_card.setAttribute('content-key', panel_to_include);
       if (start_closed || panel_to_include === 'prayer') {
         content_card.setAttribute('start-closed', 'true');
@@ -34,7 +37,18 @@ export class CufSidebar extends CufElement {
         content_card.setAttribute('fade-in', 'true');
       }
       this.wrapper.appendChild(content_card);
+      this.panels.set(panel_to_include, content_card);
     }
+  }
+
+  /** Returns whether panel was removed */
+  removePanel(panel: string): boolean {
+    const card = this.panels.get(panel);
+    if (!!card) {
+      card.remove();
+      this.panels.delete(panel);
+    }
+    return !!card;
   }
 }
 

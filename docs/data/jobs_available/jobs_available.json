@@ -1,10 +1,9 @@
 {
   "header": "Jobs Available",
   "headerlink": "/jobs_available",
-  "content": [
-    {
-      "title": "CUF President, Philip Gray on EWTN Live!",
-      "titlelink": "https:\/\/www.youtube.com\/watch?v=waIfDlcL_3M&list=PLA02A15AE776B6200&index=92&ab_channel=EWTN",
-      "description": "On January 30, 2019, CUF president Philip Gray spoke with Fr. Mitch Pacwa on EWTN Live to discuss the advantage of resolving issues in the Church using Canon Law. Philip is a Canon Lawyer and serves as the president of CUF\u2019s sister apostolate, The St. Joseph Foundation, which provides profession canonical guidance to individuals and groups. You won\u2019t want to miss this lively and enlightening interview!"
-    }]
+  "content": [],
+  "content_empty": {
+    "title": "No jobs currently available",
+    "description": "No jobs currently available"
+  }
 }

@@ -12,7 +12,7 @@ export function panelsToIncludeFrom(panels_data: string): string[] {
   let return_array: string[] = [];
   switch(panels_data_split[0]) {
     case 'page':
-      return_array = ["prayer", "involvement", "chapters", "jobs_available", "papers"];
+      return_array = ["prayer", "involvement", "chapters", "jobs_available", "position_papers"];
       break;
     default:
       console.error(`CufSidebar panels keyword ${panels_data_split[0]} not found.`);

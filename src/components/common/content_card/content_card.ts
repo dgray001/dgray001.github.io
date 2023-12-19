@@ -131,7 +131,7 @@ export class CufContentCard extends CufElement {
       case 'chapters':
         card_fade_src = '/images/paintings/cards/assumption.jpg';
         break;
-      case 'papers':
+      case 'position_papers':
         card_fade_src = '/images/paintings/cards/ghent_almighty.jpg';
         break;
       case 'jobs_available':
