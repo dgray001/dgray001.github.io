@@ -2,8 +2,8 @@ import {CufElement} from '../../cuf_element';
 import {CufHeader} from '../header/header';
 import {CufSidebar} from '../sidebar/sidebar';
 import {CufFooter} from '../../common/footer/footer';
-import {getPage} from '../../../scripts/url';
-import {trim} from '../../../scripts/util';
+import {getPage, getUrlParam} from '../../../scripts/url';
+import {scrollToElement, trim} from '../../../scripts/util';
 import {pageToName} from '../../common/util';
 
 import html from './secondary_page.html';
@@ -35,7 +35,14 @@ export class CufSecondaryPage extends CufElement {
 
   protected override async parsedCallback(): Promise<void> {
     this.page = trim(getPage(), '/');
-    this.setTitle(pageToName(this.page));
+    await this.setTitle(pageToName(this.page));
+    const hash = getUrlParam('h');
+    if (!!hash) {
+      const scroll_el = this.querySelector<HTMLElement>(`#${hash}`);
+      if (!!scroll_el) {
+        scrollToElement(scroll_el);
+      }
+    }
   }
 
   private async setTitle(title: string) {
