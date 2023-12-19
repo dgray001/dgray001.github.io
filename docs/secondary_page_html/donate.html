@@ -45,32 +45,6 @@
   </div>
 </div>
 
-<div class="section-content">
-  <form id="donate-form" method="post" action="https://test.authorize.net/payment/payment">
-    <cuf-form-section-name id="section-name"></cuf-form-section-name>
-    <cuf-form-section-address id="section-address"></cuf-form-section-address>
-    <cuf-form-section-contact id="section-contact"></cuf-form-section-contact>
-    <cuf-text-area id="section-message" min-rows="2" label="Message"></cuf-text-area><br>
-    <cuf-form-section-membership-request id="section-membership"></cuf-form-section-membership-request>
-    <cuf-input-text
-      id="donation-amount"
-      flex_option="1"
-      validators='["required", "money"]'
-      label="Donation Amount">
-    </cuf-input-text>
-    <button class="form-submit-button" id="donate-form-button" type="button">
-      Proceed to authorize.net payment portal
-    </button>
-    <input type="hidden" id="hidden-token-input" name="token" value="">
-    <button type="submit" id="hidden-form-submit-button" hidden></button>
-    <div id="donate-form-status-message"></div>
-  </form>
-  <hr>
-  <p>
-    <em>Catholics United for the Faith respects the privacy of its members and donors. The information we collect will not be sold to third parties, and will not be shared without your express permission.</em>
-  </p>
-</div>
+<cuf-contact-form></cuf-contact-form>
 
-<form
-  id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
-</form>
+<form id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage"></form>

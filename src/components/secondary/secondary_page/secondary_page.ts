@@ -15,6 +15,9 @@ import '../sidebar/sidebar';
 import '../../common/footer/footer';
 import '../../common/faith_fact_category_list/faith_fact_category_list';
 import '../../common/laywitness_list/laywitness_list';
+import '../../common/form/forms/contact_form/contact_form';
+import '../../common/form/forms/donate_form/donate_form';
+import '../../common/form/forms/login_form/login_form';
 
 export class CufSecondaryPage extends CufElement {
   private header: CufHeader;

@@ -18,7 +18,7 @@ export abstract class CufElement extends HTMLElement {
     this.classList.add('cuf-element');
     this.innerHTML = this.htmlString;
     await until(this.elementsParsed.bind(this));
-    this.parsedCallback();
+    await this.parsedCallback();
     this.classList.add('parsed');
     this.fully_parsed = true;
     this.fullyParsedCallback();
@@ -50,8 +50,8 @@ export abstract class CufElement extends HTMLElement {
     return parsed;
   }
 
-  protected parsedCallback() {}
-  protected fullyParsedCallback() {}
+  protected parsedCallback(): void|Promise<void> {}
+  protected fullyParsedCallback(): void|Promise<void> {}
 
   protected configureElement(name: string, element_id?: string) {
     if (!element_id) {

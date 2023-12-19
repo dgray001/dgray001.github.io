@@ -25,8 +25,8 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     this.classList.add('cuf-form-field');
   }
 
-  protected override parsedCallback(): void {
-    this.default_helper_text = this.attributes.getNamedItem('helper_text')?.value ?? '';
+  protected override async parsedCallback(): Promise<void> {
+    this.default_helper_text = this.attributes.getNamedItem('helper-text')?.value ?? '';
     this.label_el.innerText = this.attributes.getNamedItem('label')?.value ?? '';
     const validator_data = JSON.parse(this.attributes.getNamedItem('validators')?.value ?? '[]') as string[];
     let required = false;
@@ -56,8 +56,11 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
       this.classList.remove('focused');
       this.validate();
     });
+    await this._parsedCallback();
     this.ran_parsed_callback = true;
   }
+
+  protected async _parsedCallback(): Promise<void> {}
 
   protected override fullyParsedCallback(): void {
     if (this.ran_parsed_callback) {

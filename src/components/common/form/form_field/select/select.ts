@@ -1,20 +1,52 @@
-import {CufElement} from '../../../../cuf_element';
+import {defaultMapping, specificMapping} from '../../../../../scripts/datalists';
+import {CufFormField} from '../form_field';
 
 import html from './select.html';
 
 import './select.scss';
 
-export class CufSelect extends CufElement {
-  private example: HTMLDivElement;
+export class CufSelect extends CufFormField<HTMLSelectElement, string> {
+  private options = new Map<string, string>();
 
   constructor() {
     super();
-    this.htmlString = html;
-    this.configureElement('example');
+    this.htmlString += html;
   }
 
-  protected override parsedCallback(): void {
-    console.log('CufSelect parsed!');
+  override async _parsedCallback(): Promise<void> {
+    const options_text = this.attributes.getNamedItem('options')?.value ?? '[]';
+    const mapping = await specificMapping(options_text);
+    const default_mapping = defaultMapping(options_text);
+    for (const data of mapping) {
+      const option = document.createElement("option");
+      option.setAttribute('value', data.value);
+      if (default_mapping === data.text) {
+        option.setAttribute('selected', 'true');
+      }
+      option.innerText = data.text;
+      this.form_field.appendChild(option);
+      this.options.set(data.value, data.text);
+    }
+  }
+
+  protected _enable(): void {
+    this.form_field.disabled = false;
+  }
+
+  protected _disable(): void {
+    this.form_field.disabled = true;
+  }
+
+  getData(): string {
+    return this.form_field.value;
+  }
+
+  _setData(data: string): void {
+    this.form_field.value = data;
+  }
+
+  clearData(): void {
+    this.form_field.value = '';
   }
 }
 

@@ -1,0 +1,8 @@
+cuf-text-area {
+  > #form-field {
+    --min-height: 0px; // set by component
+  
+    min-height: var(--min-height);
+    resize: none;
+  }
+}

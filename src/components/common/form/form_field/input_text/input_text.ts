@@ -1,20 +1,33 @@
-import {CufElement} from '../../../../cuf_element';
+import {CufFormField} from '../form_field';
 
 import html from './input_text.html';
 
 import './input_text.scss';
 
-export class CufInputText extends CufElement {
-  private example: HTMLDivElement;
-
+export class CufInputText extends CufFormField<HTMLInputElement, string> {
   constructor() {
     super();
-    this.htmlString = html;
-    this.configureElement('example');
+    this.htmlString += html;
   }
 
-  protected override parsedCallback(): void {
-    console.log('CufInputText parsed!');
+  protected _enable(): void {
+    this.form_field.disabled = false;
+  }
+
+  protected _disable(): void {
+    this.form_field.disabled = true;
+  }
+
+  getData(): string {
+    return this.form_field.value;
+  }
+
+  _setData(data: string): void {
+    this.form_field.value = data;
+  }
+
+  clearData(): void {
+    this.form_field.value = '';
   }
 }
 
