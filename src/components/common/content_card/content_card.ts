@@ -144,6 +144,7 @@ export class CufContentCard extends CufElement {
     const img_el = document.createElement('img');
     img_el.src = card_fade_src;
     img_el.id = 'fade-image';
+    img_el.draggable = false;
     const card_name = document.createElement('div');
     card_name.id = 'card-name';
     card_name.innerText = this.json_data.header;
