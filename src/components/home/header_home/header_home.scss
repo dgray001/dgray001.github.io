@@ -7,24 +7,24 @@ cuf-header-home {
   --navigation-height: calc(3 * var(--size-medium));
   --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
 
-  background-color: var(--header-color);
+  background-color: var(--header-home-color);
   display: block;
   height: var(--total-height);
 
-  #fixed-container-height-box {
+  > #fixed-container-height-box {
     display: fixed;
     height: var(--fixed-container-height);
     position: relative;
     z-index: 4;
 
-    #title-container {
-      background-color: var(--header-color);
+    > #title-container {
+      background-color: var(--header-home-color);
       display: flex;
       height: var(--fixed-container-height);
       position: fixed;
       width: 100vw;
   
-      #title {
+      > #title {
         font-size: calc(0.35 * var(--fixed-container-height));
         font-weight: bold;
         height: var(--fixed-container-height);
@@ -36,7 +36,7 @@ cuf-header-home {
     }
   }
 
-  #logo-container {
+  > #logo-container {
     --left: 0px; // set by component
     --offset: 0px; // set by component
     --header-height: var(--total-height);
@@ -64,9 +64,19 @@ cuf-header-home {
     width: fit-content;
   }
 
-  #navigation-container {
+  > #navigation-container {
     height: var(--navigation-height);
     margin: var(--navigation-margin) auto;
     width: fit-content;
+  }
+
+  > #margin {
+    background-color: var(--margin-home-color);
+    box-shadow: 0 4px 4px var(--card-box-shadow-color);
+    height: var(--margin-size);
+    position: fixed;
+    top: var(--header-total-height);
+    width: 100vw;
+    z-index: 8;
   }
 }

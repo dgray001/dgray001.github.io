@@ -6,9 +6,8 @@ cuf-footer {
   width: 100vw;
 
   > #margin {
-    background-color: var(--footer-margin-color);
-    height: max(1vh, 7.5px);
-    margin-top: var(--margin-size);
+    background-color: var(--margin-color);
+    height: var(--margin-size);
     width: 100vw;
   }
 
@@ -74,7 +73,13 @@ cuf-footer {
   }
 
   &.align-center {
+    > #margin {
+      background-color: var(--footer-home-color);
+    }
+
     > #content-container {
+      background-color: var(--footer-home-color);
+
       > #element-container {
         padding-left: 0px;
 

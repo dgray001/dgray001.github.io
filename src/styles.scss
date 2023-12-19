@@ -12,10 +12,12 @@
   --link-text-color-visited: rgb(70, 140, 40);
   --link-text-color-hover: rgb(90, 160, 50);
   --link-text-color-active: rgb(130, 200, 75);
-  --footer-margin-color: var(--page-background-color);
-  --footer-color: var(--page-background-color);
+
   --header-color: var(--page-background-color);
   --margin-color: var(--page-background-color);
+  --footer-color: var(--card-background-color);
+  --header-home-color: var(--card-background-color);
+  --footer-home-color: var(--header-home-color);
 
   // sizes
   --size-title: calc(14px + 1.6vw);
@@ -39,7 +41,7 @@
   }
 
   // layout styles
-  --margin-size: var(--size-small);
+  --margin-size: var(--size-smaller);
   --max-width: 1400px;
   --left-sidebar-width: 10vw;
   --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));

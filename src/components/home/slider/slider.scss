@@ -22,7 +22,7 @@ cuf-slider {
       > a {
         background-color: rgba(0, 0, 0, 0.2);
         color: rgb(160, 230, 110);
-        font-size: var(--size-larger);
+        font-size: calc(1.3 * var(--size-title));
         font-weight: bold;
         left: 10vw;
         position: absolute;
