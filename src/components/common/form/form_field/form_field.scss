@@ -1,0 +1,19 @@
+.cuf-form-field {
+  display: inline-block;
+
+  > #label {
+    font-size: var(--size-medium);
+
+    .required-asterisk {
+      margin-left: 0.3em;
+    }
+  }
+
+  > #form-field {
+    font-size: var(--size-large);
+  }
+
+  > #helper-text {
+    font-size: var(--size-small);
+  }
+}

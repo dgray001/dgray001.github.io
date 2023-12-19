@@ -1,0 +1,117 @@
+import {Validator} from '../../../../scripts/validation';
+import {CufElement} from '../../../cuf_element';
+
+import html from './form_field.html';
+
+import './form_field.scss';
+
+export abstract class CufFormField<T extends HTMLElement, R> extends CufElement {
+  private label_el: HTMLLabelElement;
+  protected form_field: T;
+  private helper_text: HTMLDivElement;
+
+  private default_helper_text = '';
+  private validators: Validator[] = [];
+  private ran_parsed_callback = false;
+  private valid = false;
+  private validation_error: string = undefined;
+
+  constructor() {
+    super();
+    this.htmlString = html;
+    this.configureElement('label_el', 'label');
+    this.configureElement('form_field');
+    this.classList.add('hidden');
+    this.classList.add('cuf-form-field');
+  }
+
+  protected override parsedCallback(): void {
+    this.default_helper_text = this.attributes.getNamedItem('helper_text')?.value ?? '';
+    this.label_el.innerText = this.attributes.getNamedItem('label')?.value ?? '';
+    const validator_data = JSON.parse(this.attributes.getNamedItem('validators')?.value ?? '[]') as string[];
+    let required = false;
+    for (const validator of validator_data) {
+      const validator_type = validator.split('=')[0];
+      if (validator_type === 'required') {
+        required = true;
+        this.classList.add('required');
+      }
+      this.validators.push(validator.includes('=') ?
+        new Validator(validator.split('=')[0], validator.split('=')[1]) :
+        new Validator(validator));
+    }
+    if (required) {
+      this.label_el.innerHTML += '<span class="required-asterisk">*</span>';
+    }
+    this.helper_text = document.createElement('div');
+    this.helper_text.id = 'helper-text';
+    this.helper_text.classList.add('helper-text');
+    this.appendChild(this.helper_text);
+    this.updateHelperText();
+    this.form_field.setAttribute('name', this.id);
+    this.form_field.addEventListener('focus', () => {
+      this.classList.add('focused');
+    });
+    this.form_field.addEventListener('blur', () => {
+      this.classList.remove('focused');
+      this.validate();
+    });
+    this.ran_parsed_callback = true;
+  }
+
+  protected override fullyParsedCallback(): void {
+    if (this.ran_parsed_callback) {
+      this.classList.remove('hidden');
+    } else {
+      console.error('Do not override parsedCallback in CufFormField');
+    }
+  }
+
+  validate(): boolean {
+    for (const validator of this.validators) {
+      this.validation_error = validator.validate(this.getData(), this);
+      if (!!this.validation_error) {
+        this.valid = false;
+        break;
+      }
+    }
+    this.updateHelperText();
+    this.classList.toggle('valid', this.valid);
+    this.classList.toggle('invalid', !this.valid);
+    return this.valid;
+  }
+
+  private updateHelperText() {
+    if (!!this.validation_error) {
+      this.helper_text.innerText = this.validation_error;
+    }
+    else if (!!this.default_helper_text) {
+      this.helper_text.innerText = this.default_helper_text;
+    }
+    else {
+      this.helper_text.innerText = '';
+      this.helper_text.setAttribute('style', 'display: none;');
+    }
+  }
+
+  enable(): void {
+    this.classList.remove('disabled');
+    this._enable();
+  }
+
+  disable(): void {
+    this.classList.add('disabled');
+    this._disable();
+  }
+
+  setData(data: R): void {
+    this._setData(data);
+    this.updateHelperText();
+  }
+
+  protected abstract _enable(): void;
+  protected abstract _disable(): void;
+  abstract getData(): R;
+  abstract _setData(data: R): void;
+  abstract clearData(): void;
+}
