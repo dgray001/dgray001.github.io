@@ -2,7 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "declaration": true,
-    "module": "es6",
+    "module": "ES2022",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "outDir": "./tsout",
@@ -10,7 +10,7 @@
     "removeComments": true,
     "rootDir": ".",
     "sourceMap": true,
-    "target": "es6",
+    "target": "ES2022",
     "typeRoots": ["./node_modules/@types"],
   },
   "include": ["src"],

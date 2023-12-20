@@ -7,7 +7,7 @@ import html from './form.html';
 import './form.scss';
 
 export abstract class CufForm<T> extends CufElement {
-  private form_sections: (CufFormSection<any>|CufFormField<any, any>)[] = [];
+  private form_sections: (CufFormSection<any, any>|CufFormField<any, any>)[] = [];
   private valid = false;
   private ran_parsed_callback = false;
   private section_ids: string[] = [];
@@ -61,8 +61,11 @@ export abstract class CufForm<T> extends CufElement {
     }
     this.classList.toggle('valid', this.valid);
     this.classList.toggle('invalid', !this.valid);
+    this.postValidate(this.valid);
     return this.valid;
   }
+
+  protected postValidate(valid: boolean): void {}
 
   enable(): void {
     this.classList.add('disabled');

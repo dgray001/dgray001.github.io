@@ -6,7 +6,8 @@ import html from './form_section_address.html';
 import './form_section_address.scss';
 import '../../form_field/input_text/input_text';
 
-interface AddressData {
+/** Data describing a person's address */
+export declare interface AddressData {
   line1: string;
   line2: string;
   city: string;
@@ -15,7 +16,14 @@ interface AddressData {
   country: string;
 }
 
-export class CufFormSectionAddress extends CufFormSection<AddressData> {
+/** Data describing a person's address */
+export declare interface AddressOutputData {
+  line1: string;
+  line2: string;
+  line3: string;
+}
+
+export class CufFormSectionAddress extends CufFormSection<AddressData, AddressOutputData> {
   private address_first: CufInputText;
   private address_second: CufInputText;
   private address_city: CufInputText;
@@ -44,6 +52,19 @@ export class CufFormSectionAddress extends CufFormSection<AddressData> {
       zip: this.address_zip.getData(),
       country: this.address_country.getData(),
     };
+  }
+
+  getOutputData(): AddressOutputData {
+    const data: AddressOutputData = {
+      line1: this.address_first.getData(),
+      line2: `${this.address_city.getData()}, ${this.address_state.getData()} ${this.address_zip.getData()}`,
+      line3: this.address_country.getData(),
+    };
+    const address2 = this.address_second.getData();
+    if (!!address2) {
+      data.line1 += ` ${address2}`;
+    }
+    return data;
   }
 
   setData(data: AddressData): void {

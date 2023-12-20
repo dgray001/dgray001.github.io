@@ -8,14 +8,15 @@ import './form_section_name.scss';
 import '../../form_field/input_text/input_text';
 import '../../form_field/select/select';
 
-interface NameData {
+/** Data describing a person's name */
+export declare interface NameData {
   prefix: string;
   first: string;
   last: string;
   suffix: string;
 }
 
-export class CufFormSectionName extends CufFormSection<NameData> {
+export class CufFormSectionName extends CufFormSection<NameData, string> {
   private name_prefix: CufSelect;
   private name_first: CufInputText;
   private name_last: CufInputText;
@@ -38,6 +39,12 @@ export class CufFormSectionName extends CufFormSection<NameData> {
       last: this.name_last.getData(),
       suffix: this.name_suffix.getData(),
     };
+  }
+
+  getOutputData(): string {
+    const data = this.getData();
+    const parts = [data.prefix, data.first, data.last, data.suffix];
+    return parts.filter(p => !!p).join(' ');
   }
 
   setData(data: NameData): void {

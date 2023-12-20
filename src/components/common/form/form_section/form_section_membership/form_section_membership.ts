@@ -6,14 +6,15 @@ import html from './form_section_membership.html';
 import './form_section_membership.scss';
 import '../../form_field/checkbox/checkbox';
 
-interface MembershipData {
+/** Data describing which membership desire checkbox a person checked */
+export declare interface MembershipData {
   member: boolean;
   associate: boolean;
   chapters: boolean;
   start_chapter: boolean;
 }
 
-export class CufFormSectionMembership extends CufFormSection<MembershipData> {
+export class CufFormSectionMembership extends CufFormSection<MembershipData, string> {
   private checkbox_member: CufCheckbox;
   private checkbox_associate: CufCheckbox;
   private checkbox_chapters: CufCheckbox;
@@ -36,6 +37,24 @@ export class CufFormSectionMembership extends CufFormSection<MembershipData> {
       chapters: this.checkbox_chapters.getData(),
       start_chapter: this.checkbox_start_chapter.getData(),
     };
+  }
+
+  getOutputData(): string {
+    const data = this.getData();
+    const memberships: string[] = [];
+    if (data.member) {
+      memberships.push(' - I want to be a CUF member.');
+    }
+    if (data.associate) {
+      memberships.push(' - I want to be a CUF associate.');
+    }
+    if (data.chapters) {
+      memberships.push(' - I want information regarding CUF chapters in my area.');
+    }
+    if (data.start_chapter) {
+      memberships.push(' - I want information on starting a new CUF chapter.');
+    }
+    return memberships.join(',');
   }
 
   setData(data: MembershipData): void {

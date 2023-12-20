@@ -14,7 +14,7 @@ module.exports = {
     liveReload: true,
     port: 8080,
     proxy: {
-      '/api': 'http://127.0.0.1:3000', // php server
+      '/server': 'http://127.0.0.1:3000', // php server
     },
     server: 'http',
     static: {

@@ -14,7 +14,7 @@ export interface PostResponse {
 
 /** Converts string api to actual api url */
 function apiToUrl(api: string) {
-  return `/api/${api}/`;
+  return `/server/${api}.php`;
 }
 
 /** Calls and returns the input get api */

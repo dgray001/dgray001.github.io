@@ -6,7 +6,7 @@ import html from './form_section.html';
 
 import './form_section.scss';
 
-export abstract class CufFormSection<T> extends CufElement {
+export abstract class CufFormSection<T, R> extends CufElement {
   private form_section_label: HTMLDivElement;
   private form_section_wrapper: HTMLDivElement;
 
@@ -96,5 +96,6 @@ export abstract class CufFormSection<T> extends CufElement {
   }
 
   abstract getData(): T;
+  abstract getOutputData(): R;
   abstract setData(data: T): void;
 }

@@ -1,8 +1,12 @@
 import {CufForm} from '../../form';
 import {CufFormSectionName} from '../../form_section/form_section_name/form_section_name';
-import {CufFormSectionAddress} from '../../form_section/form_section_address/form_section_address';
-import {CufFormSectionContact} from '../../form_section/form_section_contact/form_section_contact';
+import {AddressOutputData, CufFormSectionAddress} from '../../form_section/form_section_address/form_section_address';
+import {ContactData, CufFormSectionContact} from '../../form_section/form_section_contact/form_section_contact';
 import {CufFormSectionMembership} from '../../form_section/form_section_membership/form_section_membership';
+import {CufTextArea} from '../../form_field/text_area/text_area';
+import {recaptchaCallback} from '../../../../../scripts/recaptcha';
+import {apiPost} from '../../../../../scripts/api';
+import {createContactEmail} from '../util';
 
 import html from './contact_form.html';
 
@@ -11,16 +15,25 @@ import '../../form_section/form_section_name/form_section_name';
 import '../../form_section/form_section_address/form_section_address';
 import '../../form_section/form_section_contact/form_section_contact';
 import '../../form_section/form_section_membership/form_section_membership';
+import '../../form_field/text_area/text_area';
 
-interface ContactData {
-  //
+/** Data describing the contact form */
+export declare interface ContactFormData {
+  name: string;
+  address: AddressOutputData;
+  contact: ContactData;
+  membership: string;
+  message: string;
 }
 
-export class CufContactForm extends CufForm<ContactData> {
+export class CufContactForm extends CufForm<ContactFormData> {
   private section_name: CufFormSectionName;
   private section_address: CufFormSectionAddress;
   private section_contact: CufFormSectionContact;
   private section_membership: CufFormSectionMembership;
+  private message: CufTextArea;
+  private contact_form_button: HTMLButtonElement;
+  private contact_form_status_message: HTMLDivElement;
 
   constructor() {
     super();
@@ -30,15 +43,47 @@ export class CufContactForm extends CufForm<ContactData> {
       'section_address',
       'section_contact',
       'section_membership',
+      'message',
     ]);
+    this.configureElement('contact_form_button');
+    this.configureElement('contact_form_status_message');
   }
 
-  getData(): ContactData {
-    return {};
+  protected override async _parsedCallback(): Promise<void> {
+    this.contact_form_button.addEventListener('click', () => {
+      if (!this.validate()) {
+        return;
+      }
+      recaptchaCallback(async () => {
+        const post_data = createContactEmail(this.getData(), true);
+        const res = await apiPost('contact', post_data);
+        console.log(res);
+      }, this.contact_form_button, this.contact_form_status_message, 'Sending');
+    });
   }
 
-  setData(data: ContactData): void {
-    //
+  protected override postValidate(valid: boolean): void {
+    if (valid) {
+      this.contact_form_status_message.classList.remove('error');
+      this.contact_form_status_message.innerText = '';
+    } else {
+      this.contact_form_status_message.classList.add('error');
+      this.contact_form_status_message.innerText = 'Please fix the validation errors';
+    }
+  }
+
+  getData(): ContactFormData {
+    return {
+      name: this.section_name.getOutputData(),
+      address: this.section_address.getOutputData(),
+      contact: this.section_contact.getOutputData(),
+      membership: this.section_membership.getOutputData(),
+      message: this.message.getData(),
+    };
+  }
+
+  setData(data: ContactFormData): void {
+    console.error('Not implemented');
   }
 }
 

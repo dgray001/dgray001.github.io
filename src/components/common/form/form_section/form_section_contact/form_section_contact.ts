@@ -6,12 +6,13 @@ import html from './form_section_contact.html';
 import './form_section_contact.scss';
 import '../../form_field/input_text/input_text';
 
-interface ContactData {
+/** Data describing a person's contact information */
+export declare interface ContactData {
   email: string;
   phone: string;
 }
 
-export class CufFormSectionContact extends CufFormSection<ContactData> {
+export class CufFormSectionContact extends CufFormSection<ContactData, ContactData> {
   private contact_email: CufInputText;
   private contact_phone: CufInputText;
 
@@ -28,6 +29,10 @@ export class CufFormSectionContact extends CufFormSection<ContactData> {
       email: this.contact_email.getData(),
       phone: this.contact_phone.getData(),
     };
+  }
+
+  getOutputData(): ContactData {
+    return this.getData();
   }
 
   setData(data: ContactData): void {
