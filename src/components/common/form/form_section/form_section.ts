@@ -56,6 +56,13 @@ export abstract class CufFormSection<T> extends CufElement {
     }
   }
 
+  setStyle(style: string) {
+    this.setAttribute('ux', style);
+    for (const field of this.form_fields) {
+      field.setStyle(style);
+    }
+  }
+
   validate(): boolean {
     this.valid = true;
     for (const field of this.form_fields) {

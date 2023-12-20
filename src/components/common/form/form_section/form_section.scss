@@ -22,4 +22,12 @@
       padding-bottom: 0.6em;
     }
   }
+
+  /* Style 1 */
+
+  &[ux="style1"] {
+    > #form-section-label {
+      padding-bottom: 0.6em;
+    }
+  }
 }

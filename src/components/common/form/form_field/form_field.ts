@@ -78,7 +78,12 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     }
   }
 
+  setStyle(style: string) {
+    this.setAttribute('ux', style);
+  }
+
   validate(): boolean {
+    this.valid = true;
     for (const validator of this.validators) {
       this.validation_error = validator.validate(this.getData(), this);
       if (!!this.validation_error) {

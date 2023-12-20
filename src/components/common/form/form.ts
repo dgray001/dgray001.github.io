@@ -9,17 +9,47 @@ import './form.scss';
 export abstract class CufForm<T> extends CufElement {
   private form_sections: (CufFormSection<any>|CufFormField<any, any>)[] = [];
   private valid = false;
+  private ran_parsed_callback = false;
+  private section_ids: string[] = [];
 
   constructor() {
     super();
     this.htmlString = html;
+    this.classList.add('hidden');
+    this.classList.add('cuf-form');
   }
 
-  protected override parsedCallback(): void {
+  protected configureForm(section_ids: string[]) {
+    this.section_ids = section_ids;
+    for (const id of this.section_ids) {
+      this.configureElement(id);
+    }
   }
 
-  addFormSection(section: CufFormSection<any>|CufFormField<any, any>) {
-    this.form_sections.push(section);
+  protected override async parsedCallback(): Promise<void> {
+    for (const id of this.section_ids) {
+      this.form_sections.push(this.querySelector(`#${id.replace(/_/g, '-')}`));
+    }
+    this.setStyle('style1');
+    await this._parsedCallback();
+    this.ran_parsed_callback = true;
+  }
+
+  protected async _parsedCallback(): Promise<void> {}
+
+  protected override fullyParsedCallback(): void {
+    if (this.ran_parsed_callback) {
+      this.classList.remove('hidden');
+    } else {
+      console.error('Do not override parsedCallback in CufFormSection');
+    }
+  }
+
+  setStyle(style: string) {
+    this.setAttribute('ux', style);
+    for (const section of this.form_sections) {
+      section.setStyle(style);
+    }
   }
 
   validate(): boolean {

@@ -1,4 +1,8 @@
 cuf-checkbox {
+  &:hover {
+    background-color: rgba(200, 200, 200, 0.2);
+  }
+
   > .form-field {
     max-width: fit-content !important;
     min-width: fit-content !important;

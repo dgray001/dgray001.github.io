@@ -10,6 +10,14 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
     this.htmlString = html + this.htmlString;
   }
 
+  protected override async _parsedCallback(): Promise<void> {
+    this.addEventListener('click', (e: MouseEvent) => {
+      this.form_field.checked = !this.form_field.checked;
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  }
+
   protected _enable(): void {
     this.form_field.disabled = false;
   }

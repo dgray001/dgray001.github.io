@@ -25,10 +25,12 @@ export class CufContactForm extends CufForm<ContactData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('section_name');
-    this.configureElement('section_address');
-    this.configureElement('section_contact');
-    this.configureElement('section_membership');
+    this.configureForm([
+      'section_name',
+      'section_address',
+      'section_contact',
+      'section_membership',
+    ]);
   }
 
   getData(): ContactData {
