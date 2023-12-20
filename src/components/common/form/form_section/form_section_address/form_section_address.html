@@ -1,1 +1,54 @@
-<div id="example">Hello from form-section-address!</div>
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="address-first"
+    autocomplete="address-line1"
+    flex-option="4"
+    validators='["required", "address"]'
+    label="Address Line 1">
+  </cuf-input-text>
+</div>
+
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="address-second"
+    autocomplete="address-line2"
+    flex-option="4"
+    validators='["address"]'
+    label="Address Line 2">
+  </cuf-input-text>
+</div>
+
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="address-city"
+    autocomplete="address-level2"
+    flex-option="3"
+    validators='["required", "address"]'
+    label="City">
+  </cuf-input-text>
+  <cuf-input-text
+    id="address-state"
+    autocomplete="address-level1"
+    flex-option="3"
+    validators='["required", "address"]'
+    label="State/Region/Province">
+  </cuf-input-text>
+</div>
+
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="address-zip"
+    autocomplete="postal-code"
+    flex-option="3"
+    validators='["required", "address"]'
+    label="Zip / Postal Code">
+  </cuf-input-text>
+  <cuf-input-text
+    id="address-country"
+    autocomplete="country"
+    datalist='countries'
+    flex-option="3"
+    validators='["datalist"]'
+    label="Country">
+  </cuf-input-text>
+</div>

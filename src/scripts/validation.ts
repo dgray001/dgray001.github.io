@@ -10,10 +10,16 @@ export class Validator {
 
   validate<T>(input: T, el: CufFormField<any, T>): string|undefined {
     switch(this.type) {
+      case 'required':
+        if (!input) {
+          return 'This field is required';
+        }
+        break;
       default:
         console.error(`Unknown validation type: ${this.type}`);
         return 'Unknown validator';
     }
+    return undefined;
   }
 }
 

@@ -1,1 +1,15 @@
-<div id="example">Hello from form-section-contact!</div>
+<div class="flex-wrapper">
+  <cuf-input-text
+    id="contact-email"
+    autocomplete="email"
+    flex-option="4"
+    validators='["required", "email"]'
+    label="Email Address">
+  </cuf-input-text>
+  <cuf-input-text
+    id="contact-phone"
+    autocomplete="tel"
+    flex-option="2"
+    label="Phone Number">
+  </cuf-input-text>
+</div>

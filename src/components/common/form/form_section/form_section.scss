@@ -1,0 +1,25 @@
+.cuf-form-section {
+  padding-bottom: 0.5em;
+  padding-top: 0.5em;
+
+  > #form-section-label {
+    font-size: larger;
+    padding-bottom: 0.3em;
+    margin-left: 1em;
+  }
+
+  #form-section-wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.3em;
+    padding-bottom: 0.6em;
+
+    .flex-wrapper {
+      column-gap: 2em;
+      display: flex;
+      flex-flow: row wrap;
+      flex: 1 0 fit-content;
+      padding-bottom: 0.6em;
+    }
+  }
+}

@@ -28,6 +28,11 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   protected override async parsedCallback(): Promise<void> {
     this.default_helper_text = this.attributes.getNamedItem('helper-text')?.value ?? '';
     this.label_el.innerText = this.attributes.getNamedItem('label')?.value ?? '';
+    const flex_option = parseInt(this.attributes.getNamedItem('flex-option')?.value);
+    if (!!flex_option) {
+      const flex_basis = flex_option * 60;
+      this.style.setProperty('--flex', `${flex_option} 0 ${flex_basis}px`);
+    }
     const validator_data = JSON.parse(this.attributes.getNamedItem('validators')?.value ?? '[]') as string[];
     let required = false;
     for (const validator of validator_data) {
@@ -43,12 +48,15 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     if (required) {
       this.label_el.innerHTML += '<span class="required-asterisk">*</span>';
     }
+    this.label_el.id += `-${this.id}`;
+    this.label_el.setAttribute('for', `form-field-${this.id}`);
     this.helper_text = document.createElement('div');
-    this.helper_text.id = 'helper-text';
+    this.helper_text.id = `helper-text-${this.id}`;
     this.helper_text.classList.add('helper-text');
     this.appendChild(this.helper_text);
     this.updateHelperText();
-    this.form_field.setAttribute('name', this.id);
+    this.form_field.id = `form-field-${this.id}`;
+    this.form_field.setAttribute('name', `form-field-${this.id}`);
     this.form_field.addEventListener('focus', () => {
       this.classList.add('focused');
     });
@@ -86,14 +94,16 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
 
   private updateHelperText() {
     if (!!this.validation_error) {
+      this.helper_text.classList.remove('hide');
       this.helper_text.innerText = this.validation_error;
     }
     else if (!!this.default_helper_text) {
+      this.helper_text.classList.remove('hide');
       this.helper_text.innerText = this.default_helper_text;
     }
     else {
+      this.helper_text.classList.add('hide');
       this.helper_text.innerText = '';
-      this.helper_text.setAttribute('style', 'display: none;');
     }
   }
 

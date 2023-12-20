@@ -12,7 +12,7 @@ interface ElementMetadata {
 export abstract class CufElement extends HTMLElement {
   protected htmlString: string;
   fully_parsed = false;
-  private elsMetadata: ElementMetadata[] = [];
+  private els_metadata: ElementMetadata[] = [];
 
   async connectedCallback() {
     this.classList.add('cuf-element');
@@ -24,20 +24,20 @@ export abstract class CufElement extends HTMLElement {
     this.fullyParsedCallback();
   }
 
-  private elementsParsed(): boolean {
+  protected elementsParsed(): boolean {
     let parsed = true;
-    for (const elMetadata of this.elsMetadata) {
+    for (const el_metadata of this.els_metadata) {
       // @ts-ignore -> check value in subclass
-      let el: HTMLElement|null = elMetadata.found_element ? this[elMetadata.name] : null;
-      if (!elMetadata.found_element) {
-        el = this.querySelector(`#${elMetadata.element_id}`);
+      let el: HTMLElement|null = el_metadata.found_element ? this[el_metadata.name] : null;
+      if (!el_metadata.found_element) {
+        el = this.querySelector(`#${el_metadata.element_id}`);
         if (!!el) {
           // @ts-ignore -> set value in subclass
-          this[elMetadata.name] = el;
-          elMetadata.found_element = true;
+          this[el_metadata.name] = el;
+          el_metadata.found_element = true;
         }
       }
-      if (!elMetadata.found_element) {
+      if (!el_metadata.found_element) {
         parsed = false;
         continue;
       }
@@ -57,7 +57,7 @@ export abstract class CufElement extends HTMLElement {
     if (!element_id) {
       element_id = name.replace(/_/g, '-');
     }
-    this.elsMetadata.push({element_id, name} as ElementMetadata);
+    this.els_metadata.push({element_id, name} as ElementMetadata);
   }
 
   protected configureElements(...names: string[]) {

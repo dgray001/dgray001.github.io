@@ -1,20 +1,41 @@
-import {CufElement} from '../../../../cuf_element';
+import {CufFormSection} from '../form_section';
+import {CufInputText} from '../../form_field/input_text/input_text';
 
 import html from './form_section_address.html';
 
 import './form_section_address.scss';
+import '../../form_field/input_text/input_text';
 
-export class CufFormSectionAddress extends CufElement {
-  private example: HTMLDivElement;
+interface AddressData {
+  //
+}
+
+export class CufFormSectionAddress extends CufFormSection<AddressData> {
+  private address_first: CufInputText;
+  private address_second: CufInputText;
+  private address_city: CufInputText;
+  private address_state: CufInputText;
+  private address_zip: CufInputText;
+  private address_country: CufInputText;
 
   constructor() {
     super();
-    this.htmlString = html;
-    this.configureElement('example');
+    this.configureFormSection(html, 'Address', [
+      'address_first',
+      'address_second',
+      'address_city',
+      'address_state',
+      'address_zip',
+      'address_country',
+    ]);
   }
 
-  protected override parsedCallback(): void {
-    console.log('CufFormSectionAddress parsed!');
+  getData(): AddressData {
+    return {};
+  }
+
+  setData(data: AddressData): void {
+    //
   }
 }
 

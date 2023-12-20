@@ -1,20 +1,37 @@
-import {CufElement} from '../../../../cuf_element';
+import {CufFormSection} from '../form_section';
+import {CufCheckbox} from '../../form_field/checkbox/checkbox';
 
 import html from './form_section_membership.html';
 
 import './form_section_membership.scss';
+import '../../form_field/checkbox/checkbox';
 
-export class CufFormSectionMembership extends CufElement {
-  private example: HTMLDivElement;
+interface MembershipData {
+  //
+}
+
+export class CufFormSectionMembership extends CufFormSection<MembershipData> {
+  private checkbox_member: CufCheckbox;
+  private checkbox_associate: CufCheckbox;
+  private checkbox_chapters: CufCheckbox;
+  private checkbox_start_chapter: CufCheckbox;
 
   constructor() {
     super();
-    this.htmlString = html;
-    this.configureElement('example');
+    this.configureFormSection(html, 'Membership Request (optional)', [
+      'checkbox_member',
+      'checkbox_associate',
+      'checkbox_chapters',
+      'checkbox_start_chapter',
+    ]);
   }
 
-  protected override parsedCallback(): void {
-    console.log('CufFormSectionMembership parsed!');
+  getData(): MembershipData {
+    return {};
+  }
+
+  setData(data: MembershipData): void {
+    //
   }
 }
 
