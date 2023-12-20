@@ -6,11 +6,12 @@ import html from './form_section_contact.html';
 import './form_section_contact.scss';
 import '../../form_field/input_text/input_text';
 
-interface AddressData {
-  //
+interface ContactData {
+  email: string;
+  phone: string;
 }
 
-export class CufFormSectionContact extends CufFormSection<AddressData> {
+export class CufFormSectionContact extends CufFormSection<ContactData> {
   private contact_email: CufInputText;
   private contact_phone: CufInputText;
 
@@ -22,12 +23,16 @@ export class CufFormSectionContact extends CufFormSection<AddressData> {
     ]);
   }
 
-  getData(): AddressData {
-    return {};
+  getData(): ContactData {
+    return {
+      email: this.contact_email.getData(),
+      phone: this.contact_phone.getData(),
+    };
   }
 
-  setData(data: AddressData): void {
-    //
+  setData(data: ContactData): void {
+    this.contact_email.setData(data.email);
+    this.contact_phone.setData(data.phone);
   }
 }
 

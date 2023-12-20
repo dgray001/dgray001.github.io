@@ -30,6 +30,10 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
     return this.form_field.checked;
   }
 
+  getStringData(): string {
+    return this.getData() ? 'true' : 'false';
+  }
+
   _setData(data: boolean): void {
     this.form_field.checked = data;
   }

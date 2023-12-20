@@ -19,7 +19,7 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
     if (!!datalist) {
       this.use_datalist = true;
       const datalist_element = document.createElement('datalist');
-      datalist_element.setAttribute('id', `${datalist}-datalist`);
+      datalist_element.setAttribute('id', `${this.id}-${datalist}-datalist`);
       const mapping = await specificMapping(datalist);
       const default_mapping = defaultMapping(datalist);
       for (const item of mapping) {
@@ -29,7 +29,7 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
         datalist_element.appendChild(item_element);
         this.datalist_options.set(item.value, item_element);
       }
-      this.form_field.setAttribute('list', this.id + '_datalist');
+      this.form_field.setAttribute('list', datalist_element.id);
       this.form_field.value = default_mapping;
       this.appendChild(datalist_element);
     }
@@ -52,6 +52,10 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
       }
     }
     return this.form_field.value;
+  }
+
+  getStringData(): string {
+    return this.getData();
   }
 
   _setData(data: string): void {

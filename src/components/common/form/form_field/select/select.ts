@@ -41,6 +41,10 @@ export class CufSelect extends CufFormField<HTMLSelectElement, string> {
     return this.form_field.value;
   }
 
+  getStringData(): string {
+    return this.getData();
+  }
+
   _setData(data: string): void {
     this.form_field.value = data;
   }

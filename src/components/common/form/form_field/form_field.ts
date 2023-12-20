@@ -57,6 +57,10 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     this.updateHelperText();
     this.form_field.id = `form-field-${this.id}`;
     this.form_field.setAttribute('name', `form-field-${this.id}`);
+    const autocomplete = this.attributes.getNamedItem('autocomplete')?.value;
+    if (!!autocomplete) {
+      this.form_field.setAttribute('autocomplete', autocomplete);
+    }
     this.form_field.addEventListener('focus', () => {
       this.classList.add('focused');
     });
@@ -85,7 +89,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   validate(): boolean {
     this.valid = true;
     for (const validator of this.validators) {
-      this.validation_error = validator.validate(this.getData(), this);
+      this.validation_error = validator.validate(this.getStringData(), this);
       if (!!this.validation_error) {
         this.valid = false;
         break;
@@ -130,6 +134,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   protected abstract _enable(): void;
   protected abstract _disable(): void;
   abstract getData(): R;
+  abstract getStringData(): string;
   abstract _setData(data: R): void;
   abstract clearData(): void;
 }

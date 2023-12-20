@@ -7,7 +7,12 @@ import './form_section_address.scss';
 import '../../form_field/input_text/input_text';
 
 interface AddressData {
-  //
+  line1: string;
+  line2: string;
+  city: string;
+  state: string;
+  zip: string;
+  country: string;
 }
 
 export class CufFormSectionAddress extends CufFormSection<AddressData> {
@@ -31,11 +36,23 @@ export class CufFormSectionAddress extends CufFormSection<AddressData> {
   }
 
   getData(): AddressData {
-    return {};
+    return {
+      line1: this.address_first.getData(),
+      line2: this.address_second.getData(),
+      city: this.address_city.getData(),
+      state: this.address_state.getData(),
+      zip: this.address_zip.getData(),
+      country: this.address_country.getData(),
+    };
   }
 
   setData(data: AddressData): void {
-    //
+    this.address_first.setData(data.line1);
+    this.address_second.setData(data.line2);
+    this.address_city.setData(data.city);
+    this.address_state.setData(data.state);
+    this.address_zip.setData(data.zip);
+    this.address_country.setData(data.country);
   }
 }
 

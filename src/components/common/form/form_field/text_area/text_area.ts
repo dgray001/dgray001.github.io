@@ -38,6 +38,10 @@ export class CufTextArea extends CufFormField<HTMLInputElement, string> {
     return this.form_field.value;
   }
 
+  getStringData(): string {
+    return this.getData();
+  }
+
   _setData(data: string): void {
     this.form_field.value = data;
   }

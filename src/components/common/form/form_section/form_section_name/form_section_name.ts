@@ -9,7 +9,10 @@ import '../../form_field/input_text/input_text';
 import '../../form_field/select/select';
 
 interface NameData {
-  //
+  prefix: string;
+  first: string;
+  last: string;
+  suffix: string;
 }
 
 export class CufFormSectionName extends CufFormSection<NameData> {
@@ -29,11 +32,19 @@ export class CufFormSectionName extends CufFormSection<NameData> {
   }
 
   getData(): NameData {
-    return {};
+    return {
+      prefix: this.name_prefix.getData(),
+      first: this.name_first.getData(),
+      last: this.name_last.getData(),
+      suffix: this.name_suffix.getData(),
+    };
   }
 
   setData(data: NameData): void {
-    //
+    this.name_prefix.setData(data.prefix);
+    this.name_first.setData(data.first);
+    this.name_last.setData(data.last);
+    this.name_suffix.setData(data.suffix);
   }
 }
 

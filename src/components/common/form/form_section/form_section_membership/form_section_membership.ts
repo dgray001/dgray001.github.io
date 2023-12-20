@@ -7,7 +7,10 @@ import './form_section_membership.scss';
 import '../../form_field/checkbox/checkbox';
 
 interface MembershipData {
-  //
+  member: boolean;
+  associate: boolean;
+  chapters: boolean;
+  start_chapter: boolean;
 }
 
 export class CufFormSectionMembership extends CufFormSection<MembershipData> {
@@ -27,11 +30,19 @@ export class CufFormSectionMembership extends CufFormSection<MembershipData> {
   }
 
   getData(): MembershipData {
-    return {};
+    return {
+      member: this.checkbox_member.getData(),
+      associate: this.checkbox_associate.getData(),
+      chapters: this.checkbox_chapters.getData(),
+      start_chapter: this.checkbox_start_chapter.getData(),
+    };
   }
 
   setData(data: MembershipData): void {
-    //
+    this.checkbox_member.setData(data.member);
+    this.checkbox_associate.setData(data.associate);
+    this.checkbox_chapters.setData(data.chapters);
+    this.checkbox_start_chapter.setData(data.start_chapter);
   }
 }
 
