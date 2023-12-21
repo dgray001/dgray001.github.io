@@ -37,5 +37,17 @@ $server_output = curl_exec($ch);
 
 curl_close ($ch);
 
-echo $server_output;
+if ($server_output) {
+  echo json_encode(array(
+    'success' => true,
+    'result' => $server_output,
+  ));
+}
+else {
+  echo json_encode(array(
+    'success' => false,
+    'error_message' => 'Failed to connect to authorize.net servers',
+  ));
+}
+
 exit();

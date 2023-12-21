@@ -12,9 +12,15 @@ require_once($config_path . '/mail_config.php');
 
 // send mail
 if (sendEmail($donate_form_recipient, 'CUF | Donate Form Submission Data', $received_data)) {
-  echo json_encode('true');
+  echo json_encode(array(
+    'success' => true,
+  ));
 }
 else {
-  echo json_encode('false');
+  echo json_encode(array(
+    'success' => false,
+    'error_message' => 'Email failed to send',
+  ));
 }
+
 exit();

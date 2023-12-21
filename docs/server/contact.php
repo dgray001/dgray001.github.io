@@ -18,8 +18,9 @@ if (sendEmail($contact_form_recipient, 'CUF | Contact Form Submission Data', $re
 }
 else {
   echo json_encode(array(
-    'error_message' => 'Email failed to send',
     'success' => false,
+    'error_message' => 'Email failed to send',
   ));
 }
+
 exit();

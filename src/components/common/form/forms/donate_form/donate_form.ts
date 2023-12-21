@@ -7,6 +7,8 @@ import {CufTextArea} from '../../form_field/text_area/text_area';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
 import {CufInputText} from '../../form_field/input_text/input_text';
 import {DEV} from '../../../../../scripts/util';
+import {createContactEmail} from '../util';
+import {apiGetPost, apiPost} from '../../../../../scripts/api';
 
 import html from './donate_form.html';
 
@@ -26,6 +28,10 @@ export declare interface DonateFormData {
   membership: string;
   message: string;
   amount: number;
+}
+
+/** Token response from authorize.net API */
+export declare interface TokenReponse {
 }
 
 export class CufDonateForm extends CufForm<DonateFormData> {
@@ -62,8 +68,20 @@ export class CufDonateForm extends CufForm<DonateFormData> {
         return;
       }
       recaptchaCallback(async () => {
-        console.log(this.getData());
-        // TODO: implement
+        const email_data = createContactEmail(this.getData(), false);
+        const email_res = await apiPost('donate_email', email_data);
+        if (!email_res.success) {
+          this.errorStatus(this.donate_form_status_message, email_res.error_message ??
+            'An unknown error occurred trying to send the donate form');
+          return;
+        }
+        const token_res = await apiGetPost<TokenReponse>('donate', this.getTokenPostData());
+        if (!token_res.success) {
+          this.errorStatus(this.donate_form_status_message, email_res.error_message ??
+            'An unknown error occurred trying to contact authorize.net servers');
+          return;
+        }
+        console.log(token_res);
       }, this.donate_form_button, this.donate_form_status_message, 'Sending');
     });
   }
@@ -85,12 +103,84 @@ export class CufDonateForm extends CufForm<DonateFormData> {
       contact: this.section_contact.getOutputData(),
       membership: this.section_membership.getOutputData(),
       message: this.message.getData(),
-      amount: parseInt(this.donate_amount.getData().replace('$', '')),
+      amount: this.getDonationAmount(),
     };
+  }
+
+  private getDonationAmount(): number {
+    return parseInt(this.donate_amount.getData().replace('$', ''));
   }
 
   setData(data: DonateFormData): void {
     console.error('Not implemented');
+  }
+
+  private getTokenPostData() {
+    const data_name = this.section_name.getData();
+    const data_address = this.section_address.getData();
+    const data_contact = this.section_contact.getData();
+    const order = {
+      'description': 'online donation',
+    };
+    const customer = {
+      'email': data_contact.email,
+    };
+    const billTo = {
+      'firstName': data_name.first,
+      'lastName': data_name.last,
+      'address': data_address.line1,
+      'city': data_address.city,
+      'state': data_address.state,
+      'zip': data_address.zip,
+      'country': data_address.country,
+    };
+    const transaction_request = {
+      "transactionType": "authCaptureTransaction",
+      "amount": this.getDonationAmount(),
+      "order": order,
+      "customer": customer,
+      "billTo": billTo,
+    };
+    const base_url = window.location.origin;
+    const hosted_payment_settings = {
+      "setting": [{
+        "settingName": "hostedPaymentReturnOptions",
+        "settingValue": `{\"showReceipt\": true, \"url\": \"${base_url}/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"${base_url}/donate\", \"cancelUrlText\": \"Cancel\"}`
+      }, {
+        "settingName": "hostedPaymentButtonOptions",
+        "settingValue": "{\"text\": \"Donate\"}"
+      }, {
+        "settingName": "hostedPaymentStyleOptions",
+        "settingValue": "{\"bgColor\": \"green\"}"
+      }, {
+        "settingName": "hostedPaymentPaymentOptions",
+        "settingValue": "{\"cardCodeRequired\": true, \"showCreditCard\": true, \"showBankAccount\": false}"
+      }, {
+        "settingName": "hostedPaymentSecurityOptions",
+        "settingValue": "{\"captcha\": true}"
+      }, {
+        "settingName": "hostedPaymentShippingAddressOptions",
+        "settingValue": "{\"show\": false, \"required\": false}"
+      }, {
+        "settingName": "hostedPaymentBillingAddressOptions",
+        "settingValue": "{\"show\": true, \"required\": true}"
+      }, {
+        "settingName": "hostedPaymentCustomerOptions",
+        "settingValue": "{\"showEmail\": true, \"requiredEmail\": true, \"addPaymentProfile\": true}"
+      }, {
+        "settingName": "hostedPaymentOrderOptions",
+        "settingValue": "{\"show\": true, \"merchantName\": \"CUF\"}"
+      }, {
+        "settingName": "hostedPaymentIFrameCommunicatorUrl",
+        "settingValue": `{\"url\": \"${base_url}/donate/iframe_communicator.html\"}`
+      }]
+    };
+    return {
+      'getHostedPaymentPageRequest': {
+        'transactionRequest': transaction_request,
+        'hostedPaymentSettings': hosted_payment_settings
+      }
+    };
   }
 }
 
