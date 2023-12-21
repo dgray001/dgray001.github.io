@@ -65,6 +65,27 @@ export abstract class CufForm<T> extends CufElement {
     return this.valid;
   }
 
+  protected messageStatus(el: HTMLDivElement, message: string): void {
+    if (!!message) {
+      el.innerHTML = message;
+      el.classList.remove('hide');
+    } else {
+      el.classList.add('hide');
+    }
+    el.classList.remove('error');
+    el.classList.remove('success');
+  }
+
+  protected successStatus(el: HTMLDivElement, message: string): void {
+    this.messageStatus(el, message);
+    el.classList.add('success');
+  }
+
+  protected errorStatus(el: HTMLDivElement, message: string): void {
+    this.messageStatus(el, message);
+    el.classList.add('error');
+  }
+
   protected postValidate(valid: boolean): void {}
 
   enable(): void {

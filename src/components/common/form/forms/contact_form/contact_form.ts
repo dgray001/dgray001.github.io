@@ -7,7 +7,7 @@ import {CufTextArea} from '../../form_field/text_area/text_area';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
 import {apiPost} from '../../../../../scripts/api';
 import {createContactEmail} from '../util';
-import {DEV} from '../../../../../scripts/util';
+import {DEV, scrollToElement} from '../../../../../scripts/util';
 
 import html from './contact_form.html';
 
@@ -33,8 +33,10 @@ export class CufContactForm extends CufForm<ContactFormData> {
   private section_contact: CufFormSectionContact;
   private section_membership: CufFormSectionMembership;
   private message: CufTextArea;
+  private form_wrapper: HTMLDivElement;
   private contact_form_button: HTMLButtonElement;
   private contact_form_status_message: HTMLDivElement;
+  private contact_form_receipt_message: HTMLDivElement;
 
   constructor() {
     super();
@@ -46,8 +48,10 @@ export class CufContactForm extends CufForm<ContactFormData> {
       'message',
       'section_membership',
     ]);
+    this.configureElement('form_wrapper');
     this.configureElement('contact_form_button');
     this.configureElement('contact_form_status_message');
+    this.configureElement('contact_form_receipt_message');
   }
 
   protected override async _parsedCallback(): Promise<void> {
@@ -61,18 +65,25 @@ export class CufContactForm extends CufForm<ContactFormData> {
       recaptchaCallback(async () => {
         const post_data = createContactEmail(this.getData(), true);
         const res = await apiPost('contact', post_data);
-        console.log(res);
+        if (res.success) {
+          this.successStatus(this.contact_form_status_message, 'Message sent!');
+          this.successStatus(this.contact_form_receipt_message,
+            'Thank you for contacting us. We will be in touch with you soon.');
+          this.form_wrapper.remove();
+          scrollToElement(this.contact_form_status_message);
+        } else {
+          this.errorStatus(this.contact_form_status_message, res.error_message ??
+            'An unknown error occurred trying to send the contact form');
+        }
       }, this.contact_form_button, this.contact_form_status_message, 'Sending');
     });
   }
 
   protected override postValidate(valid: boolean): void {
     if (valid) {
-      this.contact_form_status_message.classList.remove('error');
-      this.contact_form_status_message.innerText = '';
+      this.messageStatus(this.contact_form_status_message, '');
     } else {
-      this.contact_form_status_message.classList.add('error');
-      this.contact_form_status_message.innerText = 'Please fix the validation errors';
+      this.errorStatus(this.contact_form_status_message, 'Please fix the validation errors');
     }
   }
 

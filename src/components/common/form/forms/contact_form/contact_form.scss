@@ -2,4 +2,8 @@ cuf-contact-form {
   > #message {
     margin-top: 1em;
   }
+
+  > #contact-form-receipt-message {
+    font-size: var(--size-large);
+  }
 }

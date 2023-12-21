@@ -12,9 +12,14 @@ require_once($config_path . '/mail_config.php');
 
 // send mail
 if (sendEmail($contact_form_recipient, 'CUF | Contact Form Submission Data', $received_data)) {
-  echo json_encode('true');
+  echo json_encode(array(
+    'success' => true,
+  ));
 }
 else {
-  echo json_encode('false');
+  echo json_encode(array(
+    'error_message' => 'Email failed to send',
+    'success' => false,
+  ));
 }
 exit();

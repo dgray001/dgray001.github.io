@@ -27,6 +27,14 @@
     text-align: center;
     width: 100%;
 
+    &.hide {
+      display: none;
+    }
+
+    &.success {
+      color: green;
+    }
+
     &.error {
       color: red;
     }
