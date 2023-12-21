@@ -16,6 +16,24 @@ export class CufTextArea extends CufFormField<HTMLInputElement, string> {
   override async _parsedCallback(): Promise<void> {
     this.min_rows = parseInt(this.attributes.getNamedItem('min-rows')?.value) ?? 0;
     this.setMinHeight();
+    const observe = (el: Element, e: string, h: () => void) => {
+      el.addEventListener(e, h, false);
+    };
+    observe(this.form_field, 'change',  this.resize.bind(this));
+    observe(this.form_field, 'cut',     this.resize.bind(this));
+    observe(this.form_field, 'paste',   this.resize.bind(this));
+    observe(this.form_field, 'drop',    this.resize.bind(this));
+    observe(this.form_field, 'keydown', this.resize.bind(this));
+    this.form_field.focus();
+    this.form_field.select();
+    this.resize();
+  }
+
+  private resize() {
+    window.setTimeout(() => {
+      this.form_field.style.height = 'auto';
+      this.form_field.style.height = `${(this.form_field.scrollHeight + 2).toString()}px`;
+    }, 1);
   }
 
   private async setMinHeight() {
@@ -44,10 +62,15 @@ export class CufTextArea extends CufFormField<HTMLInputElement, string> {
 
   _setData(data: string): void {
     this.form_field.value = data;
+    this.resize();
   }
 
   clearData(): void {
     this.form_field.value = '';
+  }
+
+  setTestData(): void {
+    this.setData('some\nmulti\nline\ntext');
   }
 }
 

@@ -52,6 +52,12 @@ export class CufSelect extends CufFormField<HTMLSelectElement, string> {
   clearData(): void {
     this.form_field.value = '';
   }
+
+  setTestData(): void {
+    if (!!this.options.size) {
+      this.setData([...this.options.keys()][0]);
+    }
+  }
 }
 
 customElements.define('cuf-select', CufSelect);

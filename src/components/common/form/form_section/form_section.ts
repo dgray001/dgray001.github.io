@@ -95,6 +95,12 @@ export abstract class CufFormSection<T, R> extends CufElement {
     }
   }
 
+  setTestData(): void {
+    for (const field of this.form_fields) {
+      field.setTestData();
+    }
+  }
+
   abstract getData(): T;
   abstract getOutputData(): R;
   abstract setData(data: T): void;

@@ -41,6 +41,10 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
   clearData(): void {
     this.form_field.checked = false;
   }
+
+  setTestData(): void {
+    this.setData(Math.random() >= 0.5 ? true : false);
+  }
 }
 
 customElements.define('cuf-checkbox', CufCheckbox);

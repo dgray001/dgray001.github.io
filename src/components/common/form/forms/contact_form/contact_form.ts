@@ -7,6 +7,7 @@ import {CufTextArea} from '../../form_field/text_area/text_area';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
 import {apiPost} from '../../../../../scripts/api';
 import {createContactEmail} from '../util';
+import {DEV} from '../../../../../scripts/util';
 
 import html from './contact_form.html';
 
@@ -42,14 +43,17 @@ export class CufContactForm extends CufForm<ContactFormData> {
       'section_name',
       'section_address',
       'section_contact',
-      'section_membership',
       'message',
+      'section_membership',
     ]);
     this.configureElement('contact_form_button');
     this.configureElement('contact_form_status_message');
   }
 
   protected override async _parsedCallback(): Promise<void> {
+    if (DEV) {
+      this.setTestData();
+    }
     this.contact_form_button.addEventListener('click', () => {
       if (!this.validate()) {
         return;

@@ -101,6 +101,10 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     return this.valid;
   }
 
+  getValidators(): string[] {
+    return this.validators.map(v => v.type);
+  }
+
   private updateHelperText() {
     if (!!this.validation_error) {
       this.helper_text.classList.remove('hide');
@@ -137,4 +141,5 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   abstract getStringData(): string;
   abstract _setData(data: R): void;
   abstract clearData(): void;
+  abstract setTestData(): void;
 }

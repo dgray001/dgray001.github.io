@@ -1,1 +1,23 @@
-<div id="example">Hello from donate-form!</div>
+
+<cuf-form-section-name id="section-name"></cuf-form-section-name>
+
+<cuf-form-section-address id="section-address"></cuf-form-section-address>
+
+<cuf-form-section-contact id="section-contact"></cuf-form-section-contact>
+
+<cuf-text-area id="message" label="Message" min-rows="3"></cuf-text-area>
+
+<cuf-form-section-membership id="section-membership"></cuf-form-section-membership>
+
+<cuf-input-text
+  id="donate-amount"
+  label="Donation Amount"
+  flex_option="1"
+  validators='["required", "money"]'
+></cuf-input-text>
+
+<button id="donate-form-button" class="form-submit-button" type="button">
+  Contact Us
+</button>
+
+<div id="donate-form-status-message" class="form-status-message"></div>

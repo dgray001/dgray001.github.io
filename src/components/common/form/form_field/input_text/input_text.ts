@@ -65,6 +65,22 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
   clearData(): void {
     this.form_field.value = '';
   }
+
+  setTestData(): void {
+    if (this.use_datalist) {
+      this.setData([...this.datalist_options.values()][0].text);
+      return;
+    }
+    if (this.getValidators().some(v => v === 'email')) {
+      this.setData('testemail@some.site');
+    } else if (this.getValidators().some(v => v === 'suffix')) {
+      this.setData('III');
+    } else if (this.getValidators().some(v => v === 'money')) {
+      this.setData('$12');
+    } else {
+      this.setData('some input');
+    }
+  }
 }
 
 customElements.define('cuf-input-text', CufInputText);
