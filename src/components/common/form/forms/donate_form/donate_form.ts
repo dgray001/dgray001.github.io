@@ -32,6 +32,14 @@ export declare interface DonateFormData {
 
 /** Token response from authorize.net API */
 export declare interface TokenReponse {
+  token: string;
+  messages: {
+    resultCode: string;
+    message: {
+      code: string;
+      text: string;
+    }[];
+  };
 }
 
 export class CufDonateForm extends CufForm<DonateFormData> {
@@ -43,6 +51,8 @@ export class CufDonateForm extends CufForm<DonateFormData> {
   private donate_amount: CufInputText;
   private donate_form_button: HTMLButtonElement;
   private donate_form_status_message: HTMLDivElement;
+  private hidden_donate_form: HTMLFormElement;
+  private hidden_token_input: HTMLInputElement;
 
   constructor() {
     super();
@@ -57,6 +67,8 @@ export class CufDonateForm extends CufForm<DonateFormData> {
     ]);
     this.configureElement('donate_form_button');
     this.configureElement('donate_form_status_message');
+    this.configureElement('hidden_donate_form');
+    this.configureElement('hidden_token_input');
   }
 
   protected override async _parsedCallback(): Promise<void> {
@@ -81,7 +93,14 @@ export class CufDonateForm extends CufForm<DonateFormData> {
             'An unknown error occurred trying to contact authorize.net servers');
           return;
         }
-        console.log(token_res);
+        if (token_res.result.messages.resultCode !== 'Ok') {
+          const error = token_res.result?.messages?.message[0]?.text ?? 'No error returned';
+          this.errorStatus(this.donate_form_status_message,
+            `Authorize.net returned an error: ${error}`);
+          return;
+        }
+        this.hidden_token_input.value = token_res.result.token;
+        this.hidden_donate_form.submit();
       }, this.donate_form_button, this.donate_form_status_message, 'Sending');
     });
   }
@@ -145,7 +164,7 @@ export class CufDonateForm extends CufForm<DonateFormData> {
     const hosted_payment_settings = {
       "setting": [{
         "settingName": "hostedPaymentReturnOptions",
-        "settingValue": `{\"showReceipt\": true, \"url\": \"${base_url}/donate/receipt\", \"urlText\": \"Return to CUF.org\", \"cancelUrl\": \"${base_url}/donate\", \"cancelUrlText\": \"Cancel\"}`
+        "settingValue": `{\"showReceipt\": true, \"url\": \"${base_url}/donate/receipt\", \"urlText\": \"Return to CUF\", \"cancelUrl\": \"${base_url}/donate\", \"cancelUrlText\": \"Cancel\"}`
       }, {
         "settingName": "hostedPaymentButtonOptions",
         "settingValue": "{\"text\": \"Donate\"}"

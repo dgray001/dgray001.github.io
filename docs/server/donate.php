@@ -37,10 +37,12 @@ $server_output = curl_exec($ch);
 
 curl_close ($ch);
 
+$json_str = trim(ltrim($server_output, chr(239).chr(187).chr(191)), "\x0");
+
 if ($server_output) {
   echo json_encode(array(
     'success' => true,
-    'result' => $server_output,
+    'result' => json_decode($json_str, true),
   ));
 }
 else {
