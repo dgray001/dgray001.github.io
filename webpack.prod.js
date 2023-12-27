@@ -6,7 +6,7 @@ module.exports = {
   mode: 'production',
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, '/docs/dist'),
+    path: path.resolve(__dirname, 'docs/dist'),
     publicPath: '/dist/',
   },
 }
