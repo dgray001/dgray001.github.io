@@ -1,71 +1,139 @@
 <?php
 
+
 require_once(__DIR__ . '/force_include.php');
 
-function loggedIn(): bool {
-  return isset($_SESSION["user_id"]) && isset($_SESSION["user_email"]) && isset($_SESSION["role"]);
+
+/** Inactivity before automatically logged out */
+function inactivityTime(): int {
+  return 60 * 30;
 }
 
-function userEmailExists($conn, $email): array|bool|null {
+
+function startSession(): void {
+  session_name("session");
+  session_start();
+}
+
+
+/** Refresh session cookies to prevent session from expiring */
+function refreshCookies(): void {
+  $expire = time() + inactivityTime(); // refresh cookies
+  $secure = isset($_SERVER["HTTPS"]) ? $_SERVER["HTTPS"] !== "off" : false;
+  $path = "/";
+  $domain = "";
+  $http_only = false; // setting to true will break frontend cookie lookup
+
+  setcookie(session_name(), session_id(), $expire, $path, $domain, $secure, $http_only);
+  setcookie("email", $_SESSION["user_email"], $expire, $path, $domain, $secure, $http_only);
+  setcookie("role", $_SESSION["user_role"], $expire, $path, $domain, $secure, $http_only);
+
+  $_SESSION["session_expire"] = $expire;
+}
+
+
+function loggedIn(): bool {
+  startSession();
+  $loggedIn =
+    isset($_SESSION["session_expire"]) &&
+    isset($_SESSION["user_id"]) &&
+    isset($_SESSION["user_email"]) &&
+    isset($_SESSION["user_role"])
+  ;
+
+  if (!$loggedIn) {
+    return false;
+  }
+  if (time() > $_SESSION["session_expire"]) {
+    endSession(); // session expired
+    return false;
+  }
+
+  refreshCookies();
+  session_write_close();
+  return true;
+}
+
+
+/**
+ * Ends current session, example from:
+ * https://www.php.net/manual/en/function.session-destroy.php#refsect1-function.session-destroy-examples
+ */
+function endSession(): void {
+  startSession();
+
+  $params = session_get_cookie_params();
+  setcookie(session_name(), "", time(), $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+  setcookie("email", "", time(), $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+  setcookie("role", "", time(), $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+
+  $_SESSION = array();
+  session_destroy();
+}
+
+
+/** Returns tuple of result and string error message */
+function userEmailExists($conn, $email): array {
   $sqlCommand = "SELECT * FROM cuf_users WHERE email = ?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sqlCommand)) {
-    echo json_encode('Server can\'t log you in at this time.');
-    exit(11);
+    return array(null, 'Server can\'t log you in at this time');
   }
   if (!mysqli_stmt_bind_param($stmt, "s", $email)) {
-    echo json_encode('Parameter binding failed.');
-    exit(12);
+    return array(null, 'Parameter binding failed');
   }
   if (!mysqli_stmt_execute($stmt)) {
-    echo json_encode('Command execution failed.');
-    exit(13);
+    return array(null, 'Command execution failed');
   }
-  $result = mysqli_stmt_get_result($stmt);
-  return mysqli_fetch_assoc($result);
+
+  $user = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+  if (is_null($user)) {
+    return array(null, 'User doesn\'t exist');
+  } else if (!$user) {
+    return array(null, 'SQL server error');
+  }
+
+  return array($user, '');
 }
 
-function loginUser($conn, $email, $password): void {
-  $user = userEmailExists($conn, $email);
-  if (!$user) {
-    echo json_encode('User doesn\'t exist');
-    exit(21);
+
+/** Returns error message */
+function loginUser($conn, $email, $password): string {
+  if (loggedIn()) {
+    return 'Already logged in';
+  }
+  list($user, $error) = userEmailExists($conn, $email);
+  if ($error) {
+    endSession();
+    return $error;
   }
   if (!isset($user['activated']) || !$user['activated']) {
-    echo json_encode('Account not activated');
-    exit(22);
+    endSession();
+    return 'Account not activated';
   }
   $hashedPassword = $user["password_hash"];
-  if (!password_verify($password, $hashedPassword)) {
-    echo json_encode('Password doesn\'t match');
-    exit(23);
+  if (password_verify($password, $hashedPassword)) {
+    endSession();
+    return 'Password doesn\'t match';
   }
-  $session_lifetime = 60 * 60; // 1 hour until relogin required
-  session_set_cookie_params($session_lifetime, '/', $_SERVER['SERVER_NAME'],
-    isset($_SERVER['HTTPS']) ? $_SERVER['HTTPS'] !== 'off' : false, true);
-  session_start();
   $_SESSION["user_id"] = $user["id"];
   $_SESSION["user_email"] = $user["email"];
-  $_SESSION["role"] = $user["role"];
-  // set session lifetime here since doesn't work in session_set_cookie_params
-  setcookie(session_name(), session_id(), time() + $session_lifetime, '/');
-  setcookie('email', $user["email"], time() + $session_lifetime, '/');
-  setcookie('role', $user["role"], time() + $session_lifetime, '/');
+  $_SESSION["user_role"] = $user["role"];
+  refreshCookies();
+  return '';
 }
 
-function sendActivationCode($conn, $email, $expect_activated): void {
-  $user = userEmailExists($conn, $email);
-  if (!$user) {
-    echo json_encode('User doesn\'t exist');
-    exit(21);
+/** Returns error message */
+function sendActivationCode($conn, $email, $expect_activated): string {
+  list($user, $error) = userEmailExists($conn, $email);
+  if ($error) {
+    return $error;
   }
   if ($expect_activated && !$user['activated']) {
-    echo json_encode('Account not activated');
-    exit(22);
+    return 'Account not activated';
   }
   else if (!$expect_activated && $user['activated']) {
-    echo json_encode('Account already activated');
-    exit(22);
+    return 'Account already activated';
   }
   $code = bin2hex(random_bytes(3));
   $expiration = time() + 60 * 10;
@@ -74,22 +142,18 @@ function sendActivationCode($conn, $email, $expect_activated): void {
   $cmd = 'UPDATE cuf_users SET activation_code = ?, activation_code_expiration = ? WHERE email = ?';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $cmd)) {
-    echo json_encode('Server send activation code at this time.');
-    exit(23);
+    return 'Server send activation code at this time';
   }
   $hashed_code = password_hash($code, PASSWORD_DEFAULT);
   if (!mysqli_stmt_bind_param($stmt, "sds", $hashed_code, $expiration, $email)) {
-    echo json_encode('Parameter binding failed.');
-    exit(24);
+    return 'Parameter binding failed';
   }
   if (!mysqli_stmt_execute($stmt)) {
-    echo json_encode('Command execution failed.');
-    exit(25);
+    return 'Command execution failed';
   }
   $result = mysqli_stmt_affected_rows($stmt);
   if ($result != 1) {
-    echo json_encode('Command did not affect a single row.');
-    exit(26);
+    return 'Command did not affect a single row';
   }
 
   $email_body = "
@@ -108,9 +172,9 @@ function sendActivationCode($conn, $email, $expect_activated): void {
   </html>
   ";
   if (!sendEmail($email, 'CUF Single Use Email Verification Code', $email_body)) {
-    echo json_encode('Email didn\'t send');
-    exit(27);
+    return 'Email didn\'t send';
   }
+  return '';
 }
 
 function verifyEmail($conn, $email, $code, $expect_activated): void {
