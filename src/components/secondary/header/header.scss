@@ -32,11 +32,14 @@ cuf-header {
 
   > #fixed-container {
     background-color: var(--header-color);
+    box-sizing: border-box;
     display: flex;
     flex-flow: row nowrap;
-    gap: var(--size-title);
-    height: var(--fixed-container-height);
+    gap: var(--padding-top);
+    height: calc(var(--fixed-container-height) + var(--padding-top));
+    max-width: 100vw;
     padding-left: calc(var(--left-auto-margin) + var(--padding-top));
+    padding-right: 4px;
     padding-top: var(--padding-top);
     position: fixed;
     top: 0;
@@ -49,6 +52,7 @@ cuf-header {
       display: flex;
       font-size: var(--size-largest);
       height: var(--title-height);
+      white-space: nowrap;
 
       a {
         color: black;
@@ -63,11 +67,17 @@ cuf-header {
 
     > #navigation-container {
       height: var(--navigation-height);
+      margin-left: var(--size-largest);
       margin-top: calc(0.5 * (var(--fixed-container-height) - var(--navigation-height)));
     }
-  
-    > #profile-button {
-      //
+
+    > #profile-button-container {
+      margin-left: auto;
+
+      > #profile-button {
+        --height: var(--title-height);
+        margin-right: var(--padding-top);
+      }
     }
   }
 
@@ -84,6 +94,7 @@ cuf-header {
       font-size: var(--subtitle-font-size);
       height: calc(0.5 * var(--collapsed-container-height));
       line-height: calc(0.5 * var(--collapsed-container-height));
+      white-space: nowrap;
     }
   }
 
@@ -100,7 +111,7 @@ cuf-header {
 
 /* navigation panel below header for smaller devices */
 /* If change media query must change in navigation_pane.css */
-@media only screen and (max-width: 1300px) and (min-width: 701px) {
+@media only screen and (max-width: 1390px) and (min-width: 701px) {
   cuf-header {
     --title-height: calc(1.7 * var(--size-title));
     --max-offset: calc(var(--padding-top) + var(--collapsed-container-height));
@@ -109,6 +120,7 @@ cuf-header {
 
     > #fixed-container {
       background-color: transparent;
+      gap: 0px;
       padding: 0px;
 
       > #title-container {
@@ -122,11 +134,22 @@ cuf-header {
         box-sizing: border-box;
         flex: 0 0 auto;
         height: calc(var(--padding-top) + var(--navigation-height));
-        margin-top: 0px;
+        margin: 0px;
         padding: var(--padding-top) 10px 0px;
         position: absolute;
         top: calc(var(--header-total-height) - var(--navigation-height) - var(--padding-top));
         width: 100%;
+      }
+
+      > #profile-button-container {
+        background-color: var(--header-color);
+        padding-left: var(--padding-top);
+        padding-top: var(--padding-top);
+
+        > #profile-button {
+          --height: var(--title-height);
+          box-sizing: border-box;
+        }
       }
     }
 

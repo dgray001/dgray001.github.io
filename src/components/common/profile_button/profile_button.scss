@@ -1,4 +1,16 @@
 cuf-profile-button {
+  --height: 0px; // set by parent
+  --padding-width: 0.8vw;
+
+  display: inline-block;
+  height: var(--height);
+  min-height: var(--height);
+  min-width: var(--height);
+  max-height: var(--height);
+  max-width: var(--height);
+  position: relative;
+  width: var(--height);
+
   &:not(.dropdown-open) {
     > #menu-wrapper {
       display: none;
@@ -9,6 +21,66 @@ cuf-profile-button {
     > #menu-wrapper {
       > #menu-hr {
         display: none;
+      }
+    }
+  }
+
+  > #profile-picture-wrapper {
+    &:hover {
+      cursor: pointer;
+      filter: brightness(0%);
+    }
+  }
+
+  > #menu-wrapper {
+    background-color: rgb(45, 80, 80);
+    border-radius: var(--padding-width);
+    box-sizing: border-box;
+    color: white !important;
+    font-size: var(--size-medium);
+    max-width: calc(100vw - 2 * var(--padding-width));
+    min-width: min(150px, 30vw);
+    overflow: hidden;
+    padding: 0.6vw 0;
+    position: absolute;
+    right: 0px;
+    top: calc(0.4em + var(--height));
+
+    > #info-wrapper {
+      > .info {
+        margin: 0.4em var(--padding-width);
+        text-align: center;
+        white-space: nowrap;
+      }
+    }
+
+    > #menu-hr {
+      color: lightgray;
+    }
+
+    > #link-wrapper {
+      box-sizing: border-box;
+
+      > .link {
+        box-sizing: border-box;
+        color: white !important;
+        display: inline-block;
+        font-weight: normal !important;
+        padding: 0.5em 1em;
+        position: relative;
+        text-align: left;
+        text-decoration: none !important;
+        white-space: nowrap;
+        width: 100%;
+
+        &:hover {
+          background-color: rgb(110, 130, 130);
+        }
+
+        > span {
+          margin: 0.2em 0;
+          margin-right: 1em;
+        }
       }
     }
   }

@@ -32,7 +32,7 @@ export class CufProfileButton extends CufElement {
     if (logged_in) {
       const cookies = clientCookies();
       this.addInfoRow('header', 'Logged In');
-      this.addInfoRow('email', cookies.get('email') ?? '-');
+      this.addInfoRow('email', cookies.get('email') ?? 'none');
       this.addInfoRow('role', `- ${cookies.get('role') ?? 'unknown'} -`);
       if (hasPermission(cookies.get('role'), 'viewAdminDashboard')) {
         this.addLinkRow('admin-dashboard', 'admin_dashboard', 'Admin');
