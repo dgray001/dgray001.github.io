@@ -8,6 +8,7 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
   constructor() {
     super();
     this.htmlString = html + this.htmlString;
+    this.setAttribute('tabindex', '1');
   }
 
   protected override async _parsedCallback(): Promise<void> {
@@ -15,6 +16,14 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
       this.form_field.checked = !this.form_field.checked;
       e.preventDefault();
       e.stopPropagation();
+    });
+    this.addEventListener('keyup', (e: KeyboardEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (e.key !== ' ' && e.key !== 'Enter') {
+        return;
+      }
+      this.form_field.checked = !this.form_field.checked;
     });
   }
 

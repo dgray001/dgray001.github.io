@@ -15,7 +15,33 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
+    const datatype = this.attributes.getNamedItem('datatype')?.value ?? '';
     const datalist = this.attributes.getNamedItem('datalist')?.value ?? '';
+    if (!!datatype) {
+      this.removeAttribute('datatype');
+      this.form_field.setAttribute('type', datatype);
+      if (datatype === 'password') {
+        const eyeball = document.createElement('img');
+        eyeball.src = '/images/eye.png';
+        eyeball.classList.add('password-reveal');
+        const no_eyeball = document.createElement('img');
+        no_eyeball.src = '/images/no_eye.png';
+        no_eyeball.classList.add('password-reveal');
+        no_eyeball.setAttribute('style', 'display: none;');
+        eyeball.addEventListener('click', () => {
+          this.form_field.setAttribute('type', 'text');
+          eyeball.setAttribute('style', 'display: none;');
+          no_eyeball.removeAttribute('style');
+        });
+        no_eyeball.addEventListener('click', () => {
+          this.form_field.setAttribute('type', 'password');
+          no_eyeball.setAttribute('style', 'display: none;');
+          eyeball.removeAttribute('style');
+        });
+        this.appendChild(eyeball);
+        this.appendChild(no_eyeball);
+      }
+    }
     if (!!datalist) {
       this.use_datalist = true;
       const datalist_element = document.createElement('datalist');

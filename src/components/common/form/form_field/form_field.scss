@@ -31,6 +31,10 @@
     &.hide {
       display: none !important;
     }
+
+    a, .a {
+      text-decoration: none !important;
+    }
   }
 
   &.invalid {

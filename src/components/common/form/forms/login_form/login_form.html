@@ -1,1 +1,25 @@
-<div id="example">Hello from login-form!</div>
+<div id="form-wrapper">
+  <cuf-input-text
+    id="username-field"
+    flex_option="2"
+    validators='["required", "email"]'
+    label="Login ID (email)"
+    autocomplete="username">
+  </cuf-input-text>
+
+  <cuf-input-text
+    id="password-field"
+    flex_option="2"
+    validators='["required"]'
+    label="Password"
+    datatype="password"
+    helper-text="<a href='/login/reset_password'>Forgot password? Click here</a>"
+    autocomplete="current-password">
+  </cuf-input-text>
+  
+  <button id="login-form-button" class="form-submit-button" type="button" tabindex="1">
+    Login
+  </button>
+</div>
+
+<div id="login-form-status-message" class="form-status-message"></div>

@@ -108,15 +108,15 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   private updateHelperText() {
     if (!!this.validation_error) {
       this.helper_text.classList.remove('hide');
-      this.helper_text.innerText = this.validation_error;
+      this.helper_text.innerHTML = this.validation_error;
     }
     else if (!!this.default_helper_text) {
       this.helper_text.classList.remove('hide');
-      this.helper_text.innerText = this.default_helper_text;
+      this.helper_text.innerHTML = this.default_helper_text;
     }
     else {
       this.helper_text.classList.add('hide');
-      this.helper_text.innerText = '';
+      this.helper_text.innerHTML = '';
     }
   }
 

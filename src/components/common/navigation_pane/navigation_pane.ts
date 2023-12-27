@@ -34,13 +34,12 @@ export class CufNavigationPane extends CufElement {
     wrapper.classList.add('dropdown');
     const header_button = this.createButton(header, curr_path, true, wrapper);
     header_button.classList.add('header-el');
+    wrapper.style.setProperty('--num-items', (sub_els.length + 1).toString());
     wrapper.addEventListener('mouseenter', () => {
       wrapper.classList.add('hovered');
-      wrapper.style.setProperty('height', `${(sub_els.length + 1).toString()}00%`);
     });
     wrapper.addEventListener('mouseleave', () => {
       wrapper.classList.remove('hovered');
-      wrapper.style.removeProperty('height');
     });
     for (const sub_el of sub_els) {
       const button = this.createButton(sub_el, curr_path, false, wrapper);
@@ -62,6 +61,7 @@ export class CufNavigationPane extends CufElement {
       button.classList.add('a');
     }
     button.classList.add('button');
+    button.setAttribute('tabindex', '2');
     const label_wrapper = document.createElement('span');
     label_wrapper.textContent = label;
     label_wrapper.classList.add('label');

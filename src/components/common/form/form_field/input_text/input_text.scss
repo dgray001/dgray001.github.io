@@ -1,0 +1,17 @@
+cuf-input-text {
+  .password-reveal {
+    border-radius: 50%;
+    height: 50%;
+    position: absolute;
+    right: 8px;
+    top: 25%;
+  }
+  
+  .password-reveal:hover {
+    background-color: rgb(220, 220, 220);
+  }
+  
+  .password-reveal:active {
+    background-color: rgb(200, 200, 200);
+  }
+}
