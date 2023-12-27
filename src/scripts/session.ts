@@ -3,7 +3,7 @@ import {apiGet, apiPost} from './api';
 
 /** Whether current user is logged in */
 export async function loggedIn(check_backend = false): Promise<boolean> {
-  const login_cookies = ['session', 'username', 'email', 'role'];
+  const login_cookies = ['session', 'email', 'role'];
   const cookies = clientCookies();
   for (const cookie of login_cookies) {
     if (!cookies.get(cookie)) {
@@ -11,6 +11,7 @@ export async function loggedIn(check_backend = false): Promise<boolean> {
     }
   }
   if (check_backend) {
+    console.error('Not implemented');
     const response = await apiGet<boolean>('logged_in');
     if (!response.success || !response.result) {
       eraseAllCookies();
@@ -21,46 +22,20 @@ export async function loggedIn(check_backend = false): Promise<boolean> {
   return true;
 }
 
-/** Whether current user has permission to do something */
-export async function hasPermission(permission: string, check_backend = false): Promise<boolean> {
-  const cookies = clientCookies();
-  const role = cookies.get('role') ?? '';
-  let frontend_permission = false;
-  if (role === 'admin') {
-    frontend_permission = true;
+/** Returns whether cookies indicate the role has the input permission */
+export function hasPermission(role: string, permission: string): boolean {
+  if (role == 'admin') {
+    return true;
   }
-  else {
-    switch(permission) {
-      case 'add_user_none':
-        return true;
-      case 'access_site':
-        frontend_permission = role === 'soldier';
-        break;
-      case 'access_admin_dashboard':
-      case 'add_version':
-      case 'edit_wiki':
-      default:
-        frontend_permission = false;
-        break;
-    }
+  switch(permission) {
+    case "viewAdminDashboard":
+    case "layWitness":
+      return role == 'employee';
+    case "positionPapers":
+    case "news":
+    case "faithFacts":
+    case "jobsAvailable":
+    default:
+      return false;
   }
-  if (!frontend_permission) {
-    return false;
-  }
-  if (check_backend) {
-    const response = await apiPost('permission', {permission});
-    return response.success;
-  }
-  return true;
-}
-
-/** Interface describing a user from the database */
-export declare interface User {
-  id: number,
-  username: string,
-  email: string,
-  role: string,
-  activated: boolean,
-  last_activated: number,
-  last_logged_in: number,
 }

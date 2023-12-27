@@ -10,9 +10,10 @@ initializePage('');
 // permission
 import {hasPermission} from '../../scripts/session';
 import {navigate} from '../../scripts/url';
+import {getCookie} from '../../scripts/cookies';
 
 async function checkPermission() {
-  if (!await hasPermission('access_site')) {
+  if (!hasPermission(getCookie('role'), 'access_site')) {
     navigate('');
   }
 }

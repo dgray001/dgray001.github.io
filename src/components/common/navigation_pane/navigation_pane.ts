@@ -1,5 +1,5 @@
 import {getPage} from '../../../scripts/url';
-import { trim } from '../../../scripts/util';
+import {trim} from '../../../scripts/util';
 import {CufElement} from '../../cuf_element';
 import {pageToName} from '../util';
 

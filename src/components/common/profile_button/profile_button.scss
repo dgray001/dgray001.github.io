@@ -1,0 +1,15 @@
+cuf-profile-button {
+  &:not(.dropdown-open) {
+    > #menu-wrapper {
+      display: none;
+    }
+  }
+
+  &:not(.logged-in) {
+    > #menu-wrapper {
+      > #menu-hr {
+        display: none;
+      }
+    }
+  }
+}

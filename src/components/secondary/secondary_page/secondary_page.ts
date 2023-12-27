@@ -18,6 +18,7 @@ import '../../common/laywitness_list/laywitness_list';
 import '../../common/form/forms/contact_form/contact_form';
 import '../../common/form/forms/donate_form/donate_form';
 import '../../common/form/forms/login_form/login_form';
+import '../../common/profile_button/profile_button';
 
 export class CufSecondaryPage extends CufElement {
   private header: CufHeader;

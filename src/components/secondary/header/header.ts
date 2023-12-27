@@ -4,6 +4,7 @@ import {titleText} from '../../common/util';
 
 import html from './header.html';
 
+import '../../common/profile_button/profile_button';
 import './header.scss';
 import '../../common/navigation_pane/navigation_pane';
 

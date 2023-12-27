@@ -65,6 +65,10 @@ cuf-header {
       height: var(--navigation-height);
       margin-top: calc(0.5 * (var(--fixed-container-height) - var(--navigation-height)));
     }
+  
+    > #profile-button {
+      //
+    }
   }
 
   > #collapsed-container {
