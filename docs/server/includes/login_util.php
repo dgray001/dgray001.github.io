@@ -11,6 +11,9 @@ function inactivityTime(): int {
 
 
 function startSession(): void {
+  if (session_status() === PHP_SESSION_ACTIVE) {
+    return;
+  }
   session_name("session");
   session_start();
 }
@@ -74,7 +77,7 @@ function endSession(): void {
 
 /** Returns tuple of result and string error message */
 function userEmailExists($conn, $email): array {
-  $sqlCommand = "SELECT * FROM cuf_users WHERE email = ?;";
+  $sqlCommand = "SELECT * FROM cuf_users u WHERE u.email = ?;";
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $sqlCommand)) {
     return array(null, 'Server can\'t log you in at this time');
@@ -114,12 +117,24 @@ function loginUser($conn, $email, $password): string {
   $hashedPassword = $user["password_hash"];
   if (password_verify($password, $hashedPassword)) {
     endSession();
-    return 'Password doesn\'t match';
+    return 'Incorrect password';
   }
   $_SESSION["user_id"] = $user["id"];
   $_SESSION["user_email"] = $user["email"];
   $_SESSION["user_role"] = $user["role"];
   refreshCookies();
+
+  $time = time();
+  $userid = $user["id"];
+  $cmd = "UPDATE cuf_users u SET last_logged_in = ? WHERE u.id = ?;";
+  $stmt = mysqli_stmt_init($conn);
+  mysqli_stmt_prepare($stmt, $cmd);
+  mysqli_stmt_bind_param($stmt, "dd", $time, $userid);
+  mysqli_stmt_execute($stmt);
+  $result = mysqli_stmt_affected_rows($stmt);
+  if ($result != 1) {
+    return false;
+  }
   return '';
 }
 

@@ -38,7 +38,7 @@ export class CufProfileButton extends CufElement {
         this.addLinkRow('admin-dashboard', 'admin_dashboard', 'Admin');
       }
       this.addLinkRow('profile', 'profile', 'Profile');
-      this.addLinkRow('logout', `logout?hard_redirect=${window.location.href}`, 'Logout');
+      this.addLinkRow('logout', `server/logout.php?hard_redirect=${window.location.href}`, 'Logout');
     } else {
       this.addLinkRow('login', 'login', 'Member Login');
     }
