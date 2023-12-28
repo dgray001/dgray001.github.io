@@ -1,5 +1,6 @@
-import {Validator} from '../../../../scripts/validation';
+import {Validator, ValidatorConfig} from '../../../../scripts/validation';
 import {CufElement} from '../../../cuf_element';
+import {CufForm} from '../form';
 
 import html from './form_field.html';
 
@@ -15,6 +16,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   private ran_parsed_callback = false;
   private valid = false;
   private validation_error: string = undefined;
+  private form: CufForm<any> | undefined;
 
   constructor() {
     super();
@@ -41,9 +43,15 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
         required = true;
         this.classList.add('required');
       }
-      this.validators.push(validator.includes('=') ?
-        new Validator(validator.split('=')[0], validator.split('=')[1]) :
-        new Validator(validator));
+      const validator_split = validator.split('=');
+      const config: ValidatorConfig = {type: validator_split[0].trim()};
+      if (validator_split.length > 1) {
+        config.data = validator_split[1].trim();
+      }
+      if (validator_split.length > 2) {
+        config.custom_error_message = validator_split[2].trim();
+      }
+      this.validators.push(new Validator(config));
     }
     if (required) {
       this.label_el.innerHTML += '<span class="required-asterisk">*</span>';
@@ -82,6 +90,10 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     }
   }
 
+  setForm(form: CufForm<any>) {
+    this.form = form;
+  }
+
   setStyle(style: string) {
     this.setAttribute('ux', style);
   }
@@ -89,7 +101,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   validate(): boolean {
     this.valid = true;
     for (const validator of this.validators) {
-      this.validation_error = validator.validate(this.getStringData(), this);
+      this.validation_error = validator.validate(this.getStringData(), this, this.form);
       if (!!this.validation_error) {
         this.valid = false;
         break;
@@ -103,6 +115,15 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
 
   getValidators(): string[] {
     return this.validators.map(v => v.type);
+  }
+
+  get isValid(): boolean {
+    return this.valid;
+  }
+
+  setValidationError(error: string): void {
+    this.validation_error = error;
+    this.valid = !this.validation_error;
   }
 
   private updateHelperText() {

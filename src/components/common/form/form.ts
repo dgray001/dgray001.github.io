@@ -6,11 +6,13 @@ import html from './form.html';
 
 import './form.scss';
 
+type FormSection = CufFormSection<any, any>|CufFormField<any, any>;
+
 export abstract class CufForm<T> extends CufElement {
-  private form_sections: (CufFormSection<any, any>|CufFormField<any, any>)[] = [];
+  private form_sections = new Map<string, FormSection>();
   private valid = false;
   private ran_parsed_callback = false;
-  private section_ids: string[] = [];
+  private section_ids = new Set<string>();
 
   constructor() {
     super();
@@ -20,15 +22,17 @@ export abstract class CufForm<T> extends CufElement {
   }
 
   protected configureForm(section_ids: string[]) {
-    this.section_ids = section_ids;
-    for (const id of this.section_ids) {
+    this.section_ids = new Set<string>(section_ids);
+    for (const id of this.section_ids.values()) {
       this.configureElement(id);
     }
   }
 
   protected override async parsedCallback(): Promise<void> {
     for (const id of this.section_ids) {
-      this.form_sections.push(this.querySelector(`#${id.replace(/_/g, '-')}`));
+      const form_section = this.querySelector<FormSection>(`#${id.replace(/_/g, '-')}`);
+      form_section.setForm(this);
+      this.form_sections.set(id, form_section);
     }
     this.setStyle('style1');
     await this._parsedCallback();
@@ -45,16 +49,20 @@ export abstract class CufForm<T> extends CufElement {
     }
   }
 
+  getField(field_key: string): FormSection | undefined {
+    return this.form_sections.get(field_key);
+  }
+
   setStyle(style: string) {
     this.setAttribute('ux', style);
-    for (const section of this.form_sections) {
+    for (const section of this.form_sections.values()) {
       section.setStyle(style);
     }
   }
 
   validate(): boolean {
     this.valid = true;
-    for (const section of this.form_sections) {
+    for (const section of this.form_sections.values()) {
       if (!section.validate()) {
         this.valid = false;
       }
@@ -64,6 +72,8 @@ export abstract class CufForm<T> extends CufElement {
     this.postValidate(this.valid);
     return this.valid;
   }
+
+  protected postValidate(valid: boolean): void {}
 
   protected messageStatus(el: HTMLDivElement, message: string): void {
     if (!!message) {
@@ -86,30 +96,28 @@ export abstract class CufForm<T> extends CufElement {
     el.classList.add('error');
   }
 
-  protected postValidate(valid: boolean): void {}
-
   enable(): void {
     this.classList.add('disabled');
-    for (const section of this.form_sections) {
+    for (const section of this.form_sections.values()) {
       section.enable();
     }
   }
 
   disable(): void {
     this.classList.remove('disabled');
-    for (const section of this.form_sections) {
+    for (const section of this.form_sections.values()) {
       section.disable();
     }
   }
 
   clearData(): void {
-    for (const section of this.form_sections) {
+    for (const section of this.form_sections.values()) {
       section.clearData();
     }
   }
 
   setTestData(): void {
-    for (const section of this.form_sections) {
+    for (const section of this.form_sections.values()) {
       section.setTestData();
     }
   }

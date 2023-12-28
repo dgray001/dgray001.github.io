@@ -1,14 +1,34 @@
+import {CufForm} from "../components/common/form/form";
 import {CufFormField} from "../components/common/form/form_field/form_field";
+
+/** Config for the validator constructor */
+export declare interface ValidatorConfig {
+  type: string;
+  data?: string;
+  custom_error_message?: string;
+}
 
 /** Class allowing input data to be validated */
 export class Validator {
   type: string;
+  data: string;
+  custom_error_message: string;
 
-  constructor(type: string, data?: string) {
-    this.type = type;
+  constructor(config: ValidatorConfig) {
+    this.type = config.type;
+    this.data = config.data;
+    this.custom_error_message = config.custom_error_message;
   }
 
-  validate<T>(input: string, el: CufFormField<any, T>): string|undefined {
+  validate<T>(input: string, el: CufFormField<any, T>, form: CufForm<any>|undefined): string|undefined {
+    const err = this._validate(input, el, form);
+    if (!!err && !!this.custom_error_message) {
+      return this.custom_error_message;
+    }
+    return err;
+  }
+
+  private _validate<T>(input: string, el: CufFormField<any, T>, form: CufForm<any>|undefined): string|undefined {
     switch(this.type) {
       case 'required':
         if (!input) {
@@ -72,6 +92,11 @@ export class Validator {
       const re_password = /^\S*$/;
       if (!re_password.test(input)) {
         return 'Please omit whitespace from your password';
+      }
+      break;
+    case 'equals':
+      if (input !== form?.getField(this.data)?.getStringData()) {
+        return `Must match ${this.data}`;
       }
       break;
     default:

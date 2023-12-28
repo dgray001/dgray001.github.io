@@ -139,7 +139,14 @@ function loginUser($conn, $email, $password): string {
 }
 
 /** Returns error message */
-function sendActivationCode($conn, $email, $expect_activated): string {
+function sendVerificationCode($conn, $email, $expect_activated, $expect_logged_in): string {
+  $logged_in = loggedIn();
+  if ($logged_in && !$expect_logged_in) {
+    return 'Already logged in';
+  }
+  else if (!$logged_in && $expect_logged_in) {
+    return 'Not logged in';
+  }
   list($user, $error) = userEmailExists($conn, $email);
   if ($error) {
     return $error;

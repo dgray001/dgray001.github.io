@@ -2,27 +2,36 @@
 
 require_once(__DIR__ . '/includes/prevent_get.php');
 
-// get post data
-$received_data = json_decode(file_get_contents('php://input'), true);
-
-$user_email = $received_data['email'];
-
-if (empty($user_email)) {
-  echo json_encode('Bad login data sent to server.');
+require_once(__DIR__ . '/includes/util.php');
+$data = json_decode(file_get_contents('php://input'), true);
+if (!validateData($data, array('email')) || !validateData($data, array('expect_activated', 'expect_logged_in'), true)) {
+  echo json_encode(array(
+    'success' => false,
+    'error_message' => 'Bad verification email data sent to server',
+  ));
   exit(1);
 }
 
-$expect_activated = true;
-if (isset($received_data['expect_activated']) && $received_data['expect_activated'] == 'false') {
-  $expect_activated = false;
-}
+$user_email = $data['email'];
+$expect_activated = $data['expect_activated'];
+$expect_logged_in = $data['expect_logged_in'];
 
 require_once(__DIR__ . '/includes/db_connection.php');
 require_once(__DIR__ . '/includes/login_util.php');
 
 $conn = connectToTable();
 
-sendActivationCode($conn, $user_email, $expect_activated);
+$error = sendVerificationCode($conn, $user_email, $expect_activated, $expect_logged_in);
 
-echo json_encode(array('valid' => true));
+if ($error) {
+  echo json_encode(array(
+    'success' => false,
+    'error_message' => $error,
+  ));
+} else {
+  echo json_encode(array(
+    'success' => true,
+  ));
+}
+
 exit();

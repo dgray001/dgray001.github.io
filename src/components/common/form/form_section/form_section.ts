@@ -1,5 +1,6 @@
 import {until} from '../../../../scripts/util';
 import {CufElement} from '../../../cuf_element';
+import {CufForm} from '../form';
 import {CufFormField} from '../form_field/form_field';
 
 import html from './form_section.html';
@@ -16,6 +17,7 @@ export abstract class CufFormSection<T, R> extends CufElement {
   private field_ids: string[] = [];
   private form_fields: CufFormField<any, any>[] = [];
   private valid = false;
+  private form: CufForm<any> | undefined;
 
   constructor() {
     super();
@@ -53,6 +55,13 @@ export abstract class CufFormSection<T, R> extends CufElement {
       this.classList.remove('hidden');
     } else {
       console.error('Do not override parsedCallback in CufFormSection');
+    }
+  }
+
+  setForm(form: CufForm<any>) {
+    this.form = form;
+    for (const field of this.form_fields) {
+      field.setForm(form);
     }
   }
 
@@ -99,6 +108,10 @@ export abstract class CufFormSection<T, R> extends CufElement {
     for (const field of this.form_fields) {
       field.setTestData();
     }
+  }
+
+  getStringData(): string {
+    return JSON.stringify(this.getData());
   }
 
   abstract getData(): T;

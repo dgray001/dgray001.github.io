@@ -99,10 +99,6 @@ export class CufLoginForm extends CufForm<LoginFormData> {
     }
   }
 
-  /*protected override setTestData(): void {
-    //
-  }*/
-
   getData(): LoginFormData {
     return {
       username: this.username_field.getData(),

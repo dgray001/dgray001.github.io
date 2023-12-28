@@ -19,7 +19,7 @@ export async function recaptchaCallback(
   ): Promise<boolean>
 {
   let button_original_text = '';
-  if (button) {
+  if (!!button) {
     button_original_text = button.innerText;
     button.disabled = true;
     button.innerText = loading_text;
