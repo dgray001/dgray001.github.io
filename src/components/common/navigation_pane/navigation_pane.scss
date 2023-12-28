@@ -64,10 +64,10 @@ cuf-navigation-pane {
       --gap: 2px; // border size
       --num-items: 0; // set by component
 
+      background-color: var(--header-color);
       display: flex;
       flex-flow: column nowrap;
       flex: 0 0 var(--button-width);
-      gap: var(--gap);
       height: 100%;
       max-width: var(--button-width);
       min-width: var(--button-width);
@@ -79,6 +79,10 @@ cuf-navigation-pane {
 
         .button {
           display: block;
+
+          &.dropdown-el {
+            margin-top: var(--gap);
+          }
         }
       }
     }

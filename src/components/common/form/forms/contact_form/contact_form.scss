@@ -1,6 +1,15 @@
 cuf-contact-form {
-  > #message {
-    margin-top: 1em;
+  > #form-wrapper {
+    > #message {
+      margin-top: 0.2em;
+    }
+
+    > #laywitness-notice {
+      font-size: var(--size-small);
+      margin: 1em 15%;
+      text-align: center;
+      width: 70%;
+    }
   }
 
   > #contact-form-receipt-message {

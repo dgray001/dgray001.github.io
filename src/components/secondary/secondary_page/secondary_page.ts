@@ -3,7 +3,7 @@ import {CufHeader} from '../header/header';
 import {CufSidebar} from '../sidebar/sidebar';
 import {CufFooter} from '../../common/footer/footer';
 import {getPage, getUrlParam} from '../../../scripts/url';
-import {scrollToElement, trim} from '../../../scripts/util';
+import {scrollToElement, trim, until} from '../../../scripts/util';
 import {pageToName} from '../../common/util';
 import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
 
@@ -45,10 +45,18 @@ export class CufSecondaryPage extends CufElement {
     await this.setTitle(pageToName(this.page));
     const hash = getUrlParam('h');
     if (!!hash) {
-      const scroll_el = this.querySelector<HTMLElement>(`#${hash}`);
-      if (!!scroll_el) {
-        scrollToElement(scroll_el);
-      }
+      const scrollToHash = () => {
+        let scroll_el: HTMLElement|undefined = undefined;
+        until(() => {
+          scroll_el = this.querySelector<HTMLElement>(`#${hash}`);
+          return !!scroll_el;
+        }, 40, 200).then(() => {
+          until(() => scroll_el.offsetTop > 0, 40, 200).then(() => {
+            scrollToElement(scroll_el);
+          });
+        });
+      };
+      until(() => this.sidebar.scrollHeight > 0, 40, 200).then(scrollToHash.bind(this), scrollToHash.bind(this));
     }
     if (['position_papers', 'news', 'jobs_available'].includes(this.page)) {
       const json_data = await fetchJson<JsonData>(`${this.page}/${this.page}.json`);
@@ -60,8 +68,16 @@ export class CufSecondaryPage extends CufElement {
       if (contents.length === 0 && !!json_data.content_empty) {
         contents.push(json_data.content_empty);
       }
+      let first = true;
       for (const content of contents) {
+        if (!first) {
+          const hr = document.createElement('hr');
+          hr.classList.add('data-divider');
+          this.actual_content.appendChild(hr);
+        }
+        first = false;
         const section = document.createElement('div');
+        const section_content = document.createElement('div');
         section.classList.add('section');
         if (!!content.title) {
           const subtitle = document.createElement('h3');
@@ -72,11 +88,14 @@ export class CufSecondaryPage extends CufElement {
             subtitle.innerHTML = `<i>${content.title}</i>`;
           }
           section.appendChild(subtitle);
+        } else {
+          section_content.classList.add('no-title');
         }
         if (!!content.description) {
-          const section_content = document.createElement('div');
           section_content.classList.add('section-content');
-          section_content.innerHTML = content.description;
+          const section_p = document.createElement('p');
+          section_p.innerHTML = content.description;
+          section_content.appendChild(section_p);
           section.appendChild(section_content);
         }
         this.actual_content.appendChild(section);

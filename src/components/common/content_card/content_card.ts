@@ -1,5 +1,5 @@
 import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
-import {until} from '../../../scripts/util';
+import {until, untilTimer} from '../../../scripts/util';
 import {CufElement} from '../../cuf_element';
 
 import html from './content_card.html';
@@ -21,6 +21,10 @@ export class CufContentCard extends CufElement {
   private card_type: ContentCardType = ContentCardType.NORMAL;
 
   private json_data: JsonData;
+  private collapsible = false;
+  private start_closed = false;
+  private fade_in = false;
+  private fixed_height = 0;
 
   constructor() {
     super();
@@ -34,26 +38,34 @@ export class CufContentCard extends CufElement {
   protected override async parsedCallback(): Promise<void> {
     this.classList.add('hidden');
     this.content_key = this.attributes.getNamedItem('content-key')?.value ?? '';
-    const collapsible = !!(this.attributes.getNamedItem('collapsible')?.value ?? '');
-    const start_closed = !!(this.attributes.getNamedItem('start-closed')?.value ?? '');
-    const fade_in = !!(this.attributes.getNamedItem('fade-in')?.value ?? '');
-    const fixed_height = parseFloat(this.attributes.getNamedItem('fixed-height')?.value) ?? 0;
+    this.collapsible = !!(this.attributes.getNamedItem('collapsible')?.value ?? '');
+    this.start_closed = !!(this.attributes.getNamedItem('start-closed')?.value ?? '');
+    this.fade_in = !!(this.attributes.getNamedItem('fade-in')?.value ?? '');
+    this.fixed_height = parseFloat(this.attributes.getNamedItem('fixed-height')?.value) ?? 0;
     if (!this.content_key) {
       console.error('Must set content key for content card');
       return;
     }
-    if (!!fixed_height) {
+    if (!!this.fixed_height) {
       this.classList.add('fixed-height');
-      this.style.setProperty('--fixed-height', fixed_height.toString());
+      this.style.setProperty('--fixed-height', this.fixed_height.toString());
     }
+    if (!!this.fixed_height || this.start_closed) {
+      this.fetchAndSetContent();
+    } else {
+      await this.fetchAndSetContent();
+    }
+  }
+
+  private async fetchAndSetContent(): Promise<void> {
     this.json_data = await fetchJson<JsonData>(`${this.content_key}/${this.content_key}.json`);
     this.setContent();
-    if (fade_in) {
+    if (this.fade_in) {
       this.card_type = ContentCardType.FADE_IN;
     }
     switch(this.card_type) {
       case ContentCardType.FADE_IN:
-        if (fixed_height < 1) {
+        if (this.fixed_height < 1) {
           console.error('Must set fixed height for fade in content card');
           break;
         }
@@ -62,8 +74,8 @@ export class CufContentCard extends CufElement {
       default:
         break;
     }
-    if (collapsible) {
-      if (start_closed) {
+    if (this.collapsible) {
+      if (this.start_closed) {
         this.classList.add('closed');
       }
       this.header.addEventListener('click', () => {

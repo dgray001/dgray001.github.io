@@ -21,13 +21,22 @@ export const asyncLoop = async (times: number, callback: Function) => {
 };
 
 /** Returns promise that resolves when condition function becomes true */
-export function until(condition: () => boolean, poll_timer = 300): Promise<void> {
-  const poll = (resolve: () => void) => {
+export function until(condition: () => boolean, poll_timer = 300, max_time = 0): Promise<void> {
+  let i = 0;
+  let max_i = -1;
+  if (max_time > 0 && poll_timer > 0) {
+    max_i = Math.ceil(max_time / poll_timer);
+  }
+  const poll = (resolve: () => void, reject: () => void) => {
+    i++;
+    if (i === max_i) {
+      reject();
+    }
     if (condition()) {
       resolve();
     }
     else {
-      setTimeout(() => poll(resolve), poll_timer);
+      setTimeout(() => poll(resolve, reject), poll_timer);
     }
   }
   return new Promise<void>(poll);
