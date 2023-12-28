@@ -36,26 +36,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
       this.style.setProperty('--flex', `${flex_option} 0 ${flex_basis}px`);
     }
     const validator_data = JSON.parse(this.attributes.getNamedItem('validators')?.value ?? '[]') as string[];
-    let required = false;
-    for (const validator of validator_data) {
-      const validator_type = validator.split('=')[0];
-      if (validator_type === 'required') {
-        required = true;
-        this.classList.add('required');
-      }
-      const validator_split = validator.split('=');
-      const config: ValidatorConfig = {type: validator_split[0].trim()};
-      if (validator_split.length > 1) {
-        config.data = validator_split[1].trim();
-      }
-      if (validator_split.length > 2) {
-        config.custom_error_message = validator_split[2].trim();
-      }
-      this.validators.push(new Validator(config));
-    }
-    if (required) {
-      this.label_el.innerHTML += '<span class="required-asterisk">*</span>';
-    }
+    this.addValidators(...validator_data);
     this.label_el.id += `-${this.id}`;
     this.label_el.setAttribute('for', `form-field-${this.id}`);
     this.helper_text = document.createElement('div');
@@ -96,6 +77,25 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
 
   setStyle(style: string) {
     this.setAttribute('ux', style);
+  }
+
+  addValidators(...validators: string[]) {
+    for (const validator of validators) {
+      const validator_type = validator.split('=')[0];
+      if (validator_type === 'required') {
+        this.classList.add('required');
+        this.label_el.innerHTML += '<span class="required-asterisk">*</span>';
+      }
+      const validator_split = validator.split('=');
+      const config: ValidatorConfig = {type: validator_split[0].trim()};
+      if (validator_split.length > 1) {
+        config.data = validator_split[1].trim();
+      }
+      if (validator_split.length > 2) {
+        config.custom_error_message = validator_split[2].trim();
+      }
+      this.validators.push(new Validator(config));
+    }
   }
 
   validate(): boolean {

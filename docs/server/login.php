@@ -24,6 +24,7 @@ $conn = connectToTable();
 $error = loginUser($conn, $userid, $password);
 
 if ($error) {
+  endSession();
   echo json_encode(array(
     'success' => false,
     'error_message' => $error,

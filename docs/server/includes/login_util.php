@@ -107,16 +107,13 @@ function loginUser($conn, $email, $password): string {
   }
   list($user, $error) = userEmailExists($conn, $email);
   if ($error) {
-    endSession();
     return $error;
   }
   if (!isset($user['activated']) || !$user['activated']) {
-    endSession();
     return 'Account not activated';
   }
   $hashedPassword = $user["password_hash"];
-  if (password_verify($password, $hashedPassword)) {
-    endSession();
+  if (!password_verify($password, $hashedPassword)) {
     return 'Incorrect password';
   }
   $_SESSION["user_id"] = $user["id"];
@@ -157,7 +154,7 @@ function sendVerificationCode($conn, $email, $expect_activated, $expect_logged_i
   else if (!$expect_activated && $user['activated']) {
     return 'Account already activated';
   }
-  $code = bin2hex(random_bytes(3));
+  $code = bin2hex(random_bytes(6));
   $expiration = time() + 60 * 10;
   require_once(__DIR__ . '/send_email.php');
 
@@ -199,111 +196,85 @@ function sendVerificationCode($conn, $email, $expect_activated, $expect_logged_i
   return '';
 }
 
-function verifyEmail($conn, $email, $code, $expect_activated): void {
-  $user = userEmailExists($conn, $email);
-  if (!$user) {
-    echo json_encode('User doesn\'t exist');
-    exit(21);
+/** Returns error message */
+function verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in): string {
+  $logged_in = loggedIn();
+  if ($logged_in && !$expect_logged_in) {
+    return 'Already logged in';
+  }
+  else if (!$logged_in && $expect_logged_in) {
+    return 'Not logged in';
+  }
+  list($user, $error) = userEmailExists($conn, $email);
+  if ($error) {
+    return $error;
   }
   if ($expect_activated && !$user['activated']) {
-    echo json_encode('Account not activated');
-    exit(22);
+    return 'Account not activated';
   }
   else if (!$expect_activated && $user['activated']) {
-    echo json_encode('Account already activated');
-    exit(22);
+    return 'Account already activated';
   }
   if (time() > $user['activation_code_expiration']) {
-    echo json_encode('Single use code expired');
-    exit(23);
+    return 'Single use code expired';
   }
   if (!password_verify($code, $user['activation_code'])) {
-    echo json_encode('Incorrect code');
-    exit(24);
+    return 'Incorrect code';
   }
+  return '';
 }
 
-function activateAccount($conn, $email, $code, $password): void {
-  $user = userEmailExists($conn, $email);
-  if (!$user) {
-    echo json_encode('User doesn\'t exist');
-    exit(21);
-  }
-  if ($user['activated']) {
-    echo json_encode('Account already activated');
-    exit(22);
-  }
-  if (time() > $user['activation_code_expiration']) {
-    echo json_encode('Single use code expired');
-    exit(23);
-  }
-  if (!password_verify($code, $user['activation_code'])) {
-    echo json_encode('Incorrect code');
-    exit(24);
+/** Returns error message */
+function activateAccount($conn, $email, $code, $password, $expect_activated, $expect_logged_in): string {
+  $error = verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in);
+  if ($error) {
+    return $error;
   }
 
   $cmd = 'UPDATE cuf_users SET password_hash = ?, activated = ? WHERE email = ?';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $cmd)) {
-    echo json_encode('Server can\'t activate account at this time.');
-    exit(25);
+    return 'Server can\'t activate account at this time';
   }
   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
   $activated = 1;
   if (!mysqli_stmt_bind_param($stmt, "sds", $hashed_password, $activated, $email)) {
-    echo json_encode('Parameter binding failed.');
-    exit(26);
+    return 'Parameter binding failed';
   }
   if (!mysqli_stmt_execute($stmt)) {
-    echo json_encode('Command execution failed.');
-    exit(27);
+    return 'Command execution failed';
   }
   $result = mysqli_stmt_affected_rows($stmt);
   if ($result != 1) {
-    echo json_encode('Command did not affect a single row.');
-    exit(28);
+    return 'Command did not affect a single row';
   }
+  return '';
 }
 
-function resetPassword($conn, $email, $code, $password): void {
-  $user = userEmailExists($conn, $email);
-  if (!$user) {
-    echo json_encode('User doesn\'t exist');
-    exit(21);
-  }
-  if (!$user['activated']) {
-    echo json_encode('Account not activated');
-    exit(22);
-  }
-  if (time() > $user['activation_code_expiration']) {
-    echo json_encode('Single use code expired');
-    exit(23);
-  }
-  if (!password_verify($code, $user['activation_code'])) {
-    echo json_encode('Incorrect code');
-    exit(24);
+/** Returns error message */
+function resetPassword($conn, $email, $code, $password, $expect_activated, $expect_logged_in): string {
+  $error = verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in);
+  if ($error) {
+    return $error;
   }
 
   $cmd = 'UPDATE cuf_users SET password_hash = ? WHERE email = ?';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $cmd)) {
-    echo json_encode('Server can\'t activate account at this time.');
-    exit(25);
+    return 'Server can\'t activate account at this time';
   }
   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
   if (!mysqli_stmt_bind_param($stmt, "ss", $hashed_password, $email)) {
-    echo json_encode('Parameter binding failed.');
-    exit(26);
+    return 'Parameter binding failed';
   }
   if (!mysqli_stmt_execute($stmt)) {
-    echo json_encode('Command execution failed.');
-    exit(27);
+    return 'Command execution failed';
   }
   $result = mysqli_stmt_affected_rows($stmt);
   if ($result != 1) {
-    echo json_encode('Command did not affect a single row.');
-    exit(28);
+    return 'Command did not affect a single row';
   }
+  return '';
 }
 
 function changePassword($conn, $email, $old_password, $new_password): void {

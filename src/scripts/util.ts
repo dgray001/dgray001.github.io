@@ -86,10 +86,14 @@ export function headerHeight(): number {
 }
 
 /** Scrolls to the input element */
-export function scrollToElement(el: HTMLElement) {
+export function scrollToElement(el: HTMLElement, wait_time = 0) {
   const element_position = el.offsetTop;
-  window.scrollTo({
-    top: element_position - headerHeight() - 4, // -4 for box shadow
-    behavior: "smooth"
+  const scroll_y = element_position - headerHeight() - 4; // -4 for box shadow
+  until(() => document.documentElement.scrollHeight - document.documentElement.clientHeight > scroll_y,
+    40, wait_time).then(() => {
+      window.scrollTo({
+        top: scroll_y,
+        behavior: "smooth",
+      });
   });
 }

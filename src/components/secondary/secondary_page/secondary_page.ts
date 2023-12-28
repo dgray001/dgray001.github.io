@@ -54,7 +54,7 @@ export class CufSecondaryPage extends CufElement {
           return !!scroll_el;
         }, 40, 200).then(() => {
           until(() => scroll_el.offsetTop > 0, 40, 200).then(() => {
-            scrollToElement(scroll_el);
+            scrollToElement(scroll_el, 2000);
           });
         });
       };

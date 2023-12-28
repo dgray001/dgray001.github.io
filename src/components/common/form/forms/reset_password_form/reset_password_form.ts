@@ -20,18 +20,18 @@ export declare interface ResetPasswordFormData {
 }
 
 export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
-  email_field: CufInputText;
-  code_field: CufInputText;
-  password_field1: CufInputText;
-  password_field2: CufInputText;
-  form_button_email: HTMLButtonElement;
-  status_message_email: HTMLDivElement;
-  form_button_code: HTMLButtonElement;
-  status_message_code: HTMLDivElement;
-  form_button_password: HTMLButtonElement;
-  status_message_password: HTMLDivElement;
+  private email_field: CufInputText;
+  private code_field: CufInputText;
+  private password_field1: CufInputText;
+  private password_field2: CufInputText;
+  private form_button_email: HTMLButtonElement;
+  private status_message_email: HTMLDivElement;
+  private form_button_code: HTMLButtonElement;
+  private status_message_code: HTMLDivElement;
+  private form_button_password: HTMLButtonElement;
+  private status_message_password: HTMLDivElement;
 
-  active_status_message: HTMLDivElement;
+  private active_status_message: HTMLDivElement;
 
   constructor() {
     super();
@@ -52,7 +52,7 @@ export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
 
   protected override async _parsedCallback(): Promise<void> {
     if (await loggedIn()) {
-      // navigate to profile change password section
+      location.href = '/profile?h=account_management';
       return;
     }
     if (DEV) {
@@ -65,8 +65,57 @@ export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
       }
       recaptchaCallback(async () => {
         const res = await apiPost('verify_email_code', this.getData());
-        console.log(res);
+        if (res.success) {
+          this.email_field.disable();
+          this.form_button_email.classList.remove('show');
+          this.status_message_email.classList.remove('show');
+          this.code_field.classList.add('show');
+          this.code_field.addValidators('required');
+          this.form_button_code.classList.add('show');
+          this.status_message_code.classList.add('show');
+          this.active_status_message = this.status_message_code;
+        } else {
+          this.errorStatus(this.status_message_email, res.error_message ??
+            'An unknown error occurred trying to send verification email');
+        }
       }, this.form_button_email, this.status_message_email, 'Sending Verification Code');
+    });
+    this.form_button_code.addEventListener('click', () => {
+      if (!this.validate()) {
+        return;
+      }
+      recaptchaCallback(async () => {
+        const res = await apiPost('verify_email', this.getData());
+        if (res.success) {
+          this.code_field.disable();
+          this.form_button_code.classList.remove('show');
+          this.status_message_code.classList.remove('show');
+          this.password_field1.classList.add('show');
+          this.password_field1.addValidators('required', 'password');
+          this.password_field2.classList.add('show');
+          this.password_field2.addValidators('required', 'password');
+          this.form_button_password.classList.add('show');
+          this.status_message_password.classList.add('show');
+          this.active_status_message = this.status_message_password;
+        } else {
+          this.errorStatus(this.status_message_code, res.error_message ??
+            'An unknown error occurred trying to verify email');
+        }
+      }, this.form_button_code, this.status_message_code, 'Verifying Email');
+    });
+    this.form_button_password.addEventListener('click', () => {
+      if (!this.validate()) {
+        return;
+      }
+      recaptchaCallback(async () => {
+        const res = await apiPost('reset_password', this.getData());
+        if (res.success) {
+          location.href = '/profile';
+        } else {
+          this.errorStatus(this.status_message_password, res.error_message ??
+            'An unknown error occurred trying to reset password');
+        }
+      }, this.form_button_password, this.status_message_password, 'Verifying Email');
     });
   }
 
