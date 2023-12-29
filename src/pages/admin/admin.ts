@@ -1,21 +1,21 @@
 // styles
 import './admin.scss';
 
+// html
+import html from './admin.html';
+
 // dependencies
+import '../../components/admin/admin_dashboard/admin_dashboard';
 
 // initialize
 import {initializePage} from '../common';
-initializePage('');
+initializePage(html);
 
 // permission
 import {hasPermission} from '../../scripts/session';
 import {navigate} from '../../scripts/url';
 import {getCookie} from '../../scripts/cookies';
 
-async function checkPermission() {
-  if (!hasPermission(getCookie('role'), 'access_site')) {
-    navigate('');
-  }
+if (!hasPermission(getCookie('role'), 'viewAdminDashboard')) {
+  navigate('');
 }
-
-checkPermission();

@@ -25,11 +25,9 @@ import '../../common/form/forms/change_password_form/change_password_form';
 import '../../common/profile_button/profile_button';
 
 export class CufSecondaryPage extends CufElement {
-  private header: CufHeader;
   private page_title: HTMLHeadingElement;
   private actual_content: HTMLDivElement;
   private sidebar: CufSidebar;
-  private footer: CufFooter;
 
   private page = '';
 

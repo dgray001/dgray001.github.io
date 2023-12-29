@@ -52,6 +52,11 @@ def addCufComponent():
   f.close()
 
   f = open(os.path.join(newdir, f'{filename}.scss'), 'w')
+  f.write(f'cuf-{html_class_name} {{\n')
+  f.write('  > #example {\n')
+  f.write('    border: 1px solid black;\n')
+  f.write('  }\n')
+  f.write('}\n')
   f.close()
 
 

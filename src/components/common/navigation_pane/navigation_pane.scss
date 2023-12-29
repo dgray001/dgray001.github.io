@@ -1,5 +1,6 @@
 cuf-navigation-pane {
   --button-width: calc(3.4 * var(--navigation-height));
+  display: inline-block;
 
   #button-wrapper {
     display: flex;

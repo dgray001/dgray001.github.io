@@ -1,0 +1,51 @@
+cuf-admin-header {
+  --fixed-container-height: calc(2.6 * var(--size-title));
+  --subtitle-font-size: var(--size-larger);
+  --subtitle-height: calc(2.4 * var(--subtitle-font-size));
+  --navigation-margin: var(--size-medium);
+  --navigation-height: calc(3 * var(--size-medium));
+  --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
+
+  background-color: var(--header-home-color);
+  display: block;
+  height: var(--total-height);
+  position: relative;
+
+  > #fixed-container {
+    background-color: var(--header-home-color);
+    height: var(--fixed-container-height);
+    position: fixed;
+    width: 100vw;
+
+    > #title {
+      font-size: calc(0.35 * var(--fixed-container-height));
+      font-weight: bold;
+      height: var(--fixed-container-height);
+      line-height: var(--fixed-container-height);
+      margin: 0 auto;
+      text-align: center;
+      white-space: nowrap;
+    }
+  }
+
+  > .subtitle {
+    font-size: var(--subtitle-font-size);
+    font-weight: bold;
+    height: calc(0.5 * var(--subtitle-height));
+    line-height: calc(0.5 * var(--subtitle-height));
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+  }
+
+  > #subtitle-1 {
+    padding-top: var(--fixed-container-height);
+  }
+
+  > #navigation-container {
+    height: var(--navigation-height);
+    margin: var(--navigation-margin) auto;
+    width: fit-content;
+  }
+}

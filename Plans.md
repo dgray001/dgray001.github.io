@@ -1,6 +1,5 @@
-v0.8k: Profile info
+v0.8l: Admin dashboard outline
  n: Mobile sidebar hamburger
- o: Admin dashboard page outline
  p: Verify all styling
   - Ensure works for 50% - 150% scaling
   - Verify mobile styles for all pages (except admin dashboard)
@@ -8,8 +7,8 @@ v0.8k: Profile info
  q-z: Base admin page
   - laywitness add / edit / delete
   - news add / edit / delete
-  - jobs add / edit / delete
   - papers add / edit / delete
+  - jobs add / edit / delete
   - chapters add / edit / delete => chapters changed in page
   - involvement data add / edit / delete => ?? is news just part of it ??
   - faith facts add / edit / delete
