@@ -10,13 +10,17 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-  transition: background-color 600000s 0s, color 600000s 0s;
-  -webkit-box-shadow: 0 0 0px 1000px yellow inset;
+  transition: background-color 0s 600000s, color 0s 600000s;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+}
+
+input:autofill, select:autofill {
+  background: transparent; /* or any other */
 }
 
 input:-internal-autofill-selected {
   appearance: none !important;
-  background-color: transparent !important;
+  background-color: rgba(0, 0, 0, 0) !important;
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 

@@ -1,6 +1,8 @@
 import {apiPost} from '../../../../../scripts/api';
+import {getCookie} from '../../../../../scripts/cookies';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
-import {loggedIn} from '../../../../../scripts/session';
+import {hasPermission, loggedIn} from '../../../../../scripts/session';
+import {getUrlParam} from '../../../../../scripts/url';
 import {DEV} from '../../../../../scripts/util';
 import {CufForm} from '../../form';
 import {CufInputText} from '../../form_field/input_text/input_text';
@@ -109,7 +111,13 @@ export class CufActivateAccountForm extends CufForm<ActivateAccountFormData> {
       recaptchaCallback(async () => {
         const res = await apiPost('activate_account', this.getData());
         if (res.success) {
-          location.href = '/profile';
+          const redirect = getUrlParam('redirect');
+          if (redirect) {
+            document.location.href = redirect;
+          } else {
+            location.href = hasPermission(getCookie('role'), 'viewAdminDashboard') ?
+              '/admin_dashboard' : '/profile';
+          }
         } else {
           this.errorStatus(this.status_message_password, res.error_message ??
             'An unknown error occurred trying to reset password');

@@ -4,6 +4,7 @@ import {loggedIn} from '../../../../../scripts/session';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
 import {apiPost} from '../../../../../scripts/api';
 import {DEV} from '../../../../../scripts/util';
+import {getUrlParam} from '../../../../../scripts/url';
 
 import html from './reset_password_form.html';
 
@@ -110,7 +111,12 @@ export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
       recaptchaCallback(async () => {
         const res = await apiPost('reset_password', this.getData());
         if (res.success) {
-          location.href = '/profile';
+          const redirect = getUrlParam('redirect');
+          if (redirect) {
+            document.location.href = redirect;
+          } else {
+            location.href = '/profile';
+          }
         } else {
           this.errorStatus(this.status_message_password, res.error_message ??
             'An unknown error occurred trying to reset password');
