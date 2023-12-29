@@ -1,14 +1,14 @@
 import {CufForm} from '../../form';
 import {CufInputText} from '../../form_field/input_text/input_text';
 import {loggedIn} from '../../../../../scripts/session';
+import {recaptchaCallback} from '../../../../../scripts/recaptcha';
+import {apiPost} from '../../../../../scripts/api';
+import {DEV} from '../../../../../scripts/util';
 
 import html from './reset_password_form.html';
 
 import './reset_password_form.scss';
 import '../../form_field/input_text/input_text';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
-import { apiPost } from '../../../../../scripts/api';
-import { DEV } from '../../../../../scripts/util';
 
 /** Data captured in a reset password form */
 export declare interface ResetPasswordFormData {

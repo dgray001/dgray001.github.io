@@ -1,0 +1,25 @@
+cuf-activate-account-form {
+  > :not(.show) {
+    visibility: hidden;
+  }
+
+  > #account-activated {
+    box-sizing: border-box;
+    border-radius: 1em;
+    color: black;
+    display: block;
+    font-size: 1.2rem;
+    margin: 2.5em 0;
+    padding: 0.15em 0.4em;
+    text-decoration: none;
+    width: fit-content;
+
+    &:hover {
+      background-color: rgb(225, 225, 225);
+    }
+  }
+
+  > #password-reset-message:not(.show) {
+    visibility: hidden;
+  }
+}

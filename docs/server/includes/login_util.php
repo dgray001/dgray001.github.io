@@ -277,39 +277,37 @@ function resetPassword($conn, $email, $code, $password, $expect_activated, $expe
   return '';
 }
 
-function changePassword($conn, $email, $old_password, $new_password): void {
-  $user = userEmailExists($conn, $email);
-  if (!$user) {
-    echo json_encode('User doesn\'t exist');
-    exit(21);
+/** Returns error message */
+function changePassword($conn, $email, $old_password, $new_password): string {
+  if (!loggedIn()) {
+    return 'Must be logged in to change password';
+  }
+  list($user, $error) = userEmailExists($conn, $email);
+  if ($error) {
+    return $error;
   }
   if (!$user['activated']) {
-    echo json_encode('Account not activated');
-    exit(22);
+    return 'Account not activated';
   }
   if (!password_verify($old_password, $user['password_hash'])) {
-    echo json_encode('Incorrect old password');
-    exit(23);
+    return 'Incorrect old password';
   }
 
   $cmd = 'UPDATE cuf_users SET password_hash = ? WHERE email = ?';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $cmd)) {
-    echo json_encode('Server can\'t activate account at this time.');
-    exit(24);
+    return 'Server can\'t activate account at this time';
   }
   $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
   if (!mysqli_stmt_bind_param($stmt, "ss", $hashed_password, $email)) {
-    echo json_encode('Parameter binding failed.');
-    exit(25);
+    return 'Parameter binding failed';
   }
   if (!mysqli_stmt_execute($stmt)) {
-    echo json_encode('Command execution failed.');
-    exit(26);
+    return 'Command execution failed';
   }
   $result = mysqli_stmt_affected_rows($stmt);
   if ($result != 1) {
-    echo json_encode('Command did not affect a single row.');
-    exit(27);
+    return 'Command did not affect a single row';
   }
+  return '';
 }

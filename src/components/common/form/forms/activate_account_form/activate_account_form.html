@@ -1,1 +1,51 @@
-<div id="example">Hello from activate-account-form!</div>
+<a id="account-activated" class="show" href="/login">
+  You already activated your account? Click here to login!
+</a>
+
+<cuf-input-text
+  id="email-field"
+  class="show"
+  flex_option="3"
+  validators='["required", "email"]'
+  label="Login ID (email)"
+  autocomplete="username"
+></cuf-input-text>
+
+<button id="form-button-email" class="form-submit-button show" type="button" tabindex="1">
+  Send Verification Email
+</button>
+<div id="status-message-email" class="form-status-message show"></div>
+
+<cuf-input-text
+  id="code-field"
+  flex_option="3"
+  label="Single-Use Verification Code"
+  autocomplete="one-time-code"
+></cuf-input-text>
+
+<button id="form-button-code" class="form-submit-button" type="button" tabindex="1">
+  Verify Email
+</button>
+<div id="status-message-code" class="form-status-message"></div>
+
+<cuf-input-text
+  id="password-field1"
+  flex_option="3"
+  label="Set Password"
+  datatype="password"
+  autocomplete="new-password"
+></cuf-input-text>
+
+<cuf-input-text
+  id="password-field2"
+  flex_option="3"
+  validators='["equals=password_field1=Passwords must match"]'
+  label="Confirm Password"
+  datatype="password"
+  autocomplete="new-password"
+></cuf-input-text>
+
+<button id="form-button-password" class="form-submit-button" type="button" tabindex="1">
+  Set Password
+</button>
+<div id="status-message-password" class="form-status-message"></div>
