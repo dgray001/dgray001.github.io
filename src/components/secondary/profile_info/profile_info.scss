@@ -1,0 +1,10 @@
+cuf-profile-info {
+  display: grid;
+  font-size: var(--size-large);
+  gap: 0.4em;
+  grid-template-columns: max-content max-content;
+
+  > .align-right {
+    text-align: right;
+  }
+}

@@ -12,6 +12,7 @@ import html from './secondary_page.html';
 import './secondary_page.scss';
 import '../header/header';
 import '../sidebar/sidebar';
+import '../profile_info/profile_info';
 import '../../common/footer/footer';
 import '../../common/faith_fact_category_list/faith_fact_category_list';
 import '../../common/laywitness_list/laywitness_list';
