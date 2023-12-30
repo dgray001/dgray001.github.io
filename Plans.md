@@ -1,5 +1,5 @@
-v0.8p: Minor styling fixes
- p-z: Base admin page
+v0.8q: Base dashboard page
+ q-z: Base admin page
   - laywitness add / edit / delete
   - news add / edit / delete
   - papers add / edit / delete

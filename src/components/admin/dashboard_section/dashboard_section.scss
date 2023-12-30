@@ -1,0 +1,46 @@
+cuf-dashboard-section {
+  background-color: rgb(250, 250, 250);
+  width: 100%;
+
+  > #section-title {
+    border: none;
+    font-size: var(--size-larger);
+    margin: 0;
+    padding: 0.4em 0;
+    width: 100%;
+  }
+
+  > #section-body {
+    padding: 2em 1em;
+
+    &:not(.show) {
+      display: none;
+    }
+
+    > #button-container {
+      align-items: center;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 4em;
+      justify-content: right;
+
+      > #new-button-container {
+        display: flex;
+        flex-flow: column nowrap;
+        width: calc(50% - 2em);
+
+        > * {
+          padding: 0.4em;
+        }
+      }
+
+      button, input {
+        border: 0;
+        font-size: var(--size-medium);
+        margin: 0;
+        padding: 0.4em;
+        width: fit-content;
+      }
+    }
+  }
+}

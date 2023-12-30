@@ -6,6 +6,7 @@ import html from './admin_dashboard.html';
 
 import './admin_dashboard.scss';
 import '../admin_header/admin_header';
+import '../dashboard_section/dashboard_section';
 
 export class CufAdminDashboard extends CufElement {
   private admin_container: HTMLDivElement;
@@ -20,20 +21,13 @@ export class CufAdminDashboard extends CufElement {
 
   protected override async parsedCallback(): Promise<void> {
     const role = getCookie('role');
-    if (hasPermission(role, 'layWitness')) {
-      // TODO: implement
-    }
-    if (hasPermission(role, 'positionPapers')) {
-      // TODO: implement
-    }
-    if (hasPermission(role, 'news')) {
-      // TODO: implement
-    }
-    if (hasPermission(role, 'faithFacts')) {
-      // TODO: implement
-    }
-    if (hasPermission(role, 'jobsAvailable')) {
-      // TODO: implement
+    const possible_sections = ['layWitness', 'positionPapers', 'news', 'faithFacts', 'jobsAvailable'];
+    for (const section of possible_sections) {
+      if (hasPermission(role, section)) {
+        const section_el = document.createElement('cuf-dashboard-section');
+        section_el.setAttribute('section', section);
+        this.admin_container.appendChild(section_el);
+      }
     }
   }
 }
