@@ -33,7 +33,7 @@ export class CufHeaderHome extends CufElement {
     window.addEventListener('resize', () => {
       this.calculateLogoPosition();
     });
-    document.addEventListener('scroll', () => {    
+    document.body.addEventListener('scroll', () => {
       if (!this.ticking) {
         window.requestAnimationFrame(() => {
           this.updateScrollDependencies();
@@ -46,6 +46,11 @@ export class CufHeaderHome extends CufElement {
   }
 
   protected override async fullyParsedCallback(): Promise<void> {
+    if (document.body.classList.contains('mobile')) {
+      //
+    } else {
+      //
+    }
     await until(() => {
       return (
         this.home_title.getBoundingClientRect().width > 0 &&

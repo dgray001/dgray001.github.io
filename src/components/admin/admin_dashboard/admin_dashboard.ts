@@ -1,4 +1,6 @@
 import {CufElement} from '../../cuf_element';
+import {hasPermission} from '../../../scripts/session';
+import {getCookie} from '../../../scripts/cookies';
 
 import html from './admin_dashboard.html';
 
@@ -16,8 +18,23 @@ export class CufAdminDashboard extends CufElement {
     this.configureElement('footer');
   }
 
-  protected override parsedCallback(): void {
-    // TODO: add components based on permissions
+  protected override async parsedCallback(): Promise<void> {
+    const role = getCookie('role');
+    if (hasPermission(role, 'layWitness')) {
+      // TODO: implement
+    }
+    if (hasPermission(role, 'positionPapers')) {
+      // TODO: implement
+    }
+    if (hasPermission(role, 'news')) {
+      // TODO: implement
+    }
+    if (hasPermission(role, 'faithFacts')) {
+      // TODO: implement
+    }
+    if (hasPermission(role, 'jobsAvailable')) {
+      // TODO: implement
+    }
   }
 }
 

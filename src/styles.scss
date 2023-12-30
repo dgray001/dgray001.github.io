@@ -46,6 +46,8 @@
   --left-sidebar-width: 10vw;
   --content-card-width: 320px;
   --left-auto-margin: calc(0.5 * max(0px, 100vw - var(--max-width) - var(--left-sidebar-width)));
+  overflow-anchor: none;
+  overflow: hidden;
 }
 
 body {

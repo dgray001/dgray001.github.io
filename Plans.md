@@ -1,4 +1,4 @@
-v0.8l: Admin dashboard outline
+v0.8m: Initial hamburger
  n: Mobile sidebar hamburger
  p: Verify all styling
   - Ensure works for 50% - 150% scaling

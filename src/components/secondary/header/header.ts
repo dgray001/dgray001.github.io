@@ -25,7 +25,7 @@ export class CufHeader extends CufElement {
 
   protected override parsedCallback(): void {
     this.title_el.innerText = titleText();
-    document.addEventListener('scroll', () => {    
+    document.body.addEventListener('scroll', () => {
       if (!this.ticking) {
         window.requestAnimationFrame(() => {
           this.updateScrollDependencies();
@@ -49,7 +49,7 @@ export class CufHeader extends CufElement {
   }
 
   updateScrollDependencies() {
-    this.style.setProperty('--scrollY', `${window.scrollY}px`);
+    this.style.setProperty('--scrollY', `${document.body.scrollTop}px`);
   }
 }
 

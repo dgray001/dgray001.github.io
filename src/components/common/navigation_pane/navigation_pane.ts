@@ -9,22 +9,64 @@ import './navigation_pane.scss';
 
 export class CufNavigationPane extends CufElement {
   private button_wrapper: HTMLDivElement;
+  private hamburger: HTMLInputElement;
+  private background_grayed: HTMLDivElement;
+  private hamburger_button_wrapper: HTMLDivElement;
+
+  private use_hamburger = false;
+  private sidebar_open = false;
+  private last_clicked = 0;
+  private tab_index_buttons: HTMLElement[] = [];
 
   constructor() {
     super();
     this.htmlString = html;
     this.configureElement('button_wrapper');
+    this.configureElement('hamburger');
+    this.configureElement('background_grayed');
+    this.configureElement('hamburger_button_wrapper');
   }
 
   protected override parsedCallback(): void {
     const links: string[] = JSON.parse(this.getAttribute('links')) ??
       ['about', 'news', 'apostolic_activities', 'contact', 'donate'];
+    this.use_hamburger = document.body.classList.contains('mobile');
+    if (this.use_hamburger) {
+      this.hamburger.addEventListener('click', () => {
+        if (Date.now() - this.last_clicked < 500) {
+          return;
+        }
+        this.last_clicked = Date.now();
+        this.setSidebarOpen(!this.sidebar_open);
+      });
+      this.background_grayed.addEventListener('click', () => {
+        this.setSidebarOpen(false);
+      });
+    } else {
+      this.button_wrapper.replaceChildren();
+    }
     const curr_path = trim(getPage(), '/');
     for (const link of links) {
       if (link === 'apostolic_activities') {
         this.addHeaderButton(link, curr_path, ['information_services', 'lay_witness', 'faith_and_life_series']);
       } else {
         this.createButton(link, curr_path);
+      }
+    }
+  }
+
+  private setSidebarOpen(sidebar_open: boolean) {
+    this.sidebar_open = sidebar_open;
+    this.classList.toggle('sidebar-open', this.sidebar_open);
+    if (this.sidebar_open) {
+      document.body.style.setProperty('overflow', 'hidden');
+      for (const button of this.tab_index_buttons) {
+        button.setAttribute('tabIndex', '2');
+      }
+    } else {
+      document.body.style.removeProperty('overflow');
+      for (const button of this.tab_index_buttons) {
+        button.setAttribute('tabIndex', '-1');
       }
     }
   }
@@ -45,12 +87,16 @@ export class CufNavigationPane extends CufElement {
       const button = this.createButton(sub_el, curr_path, false, wrapper);
       button.classList.add('dropdown-el');
     }
-    this.button_wrapper.appendChild(wrapper);
+    if (this.use_hamburger) {
+      this.hamburger_button_wrapper.appendChild(wrapper);
+    } else {
+      this.button_wrapper.appendChild(wrapper);
+    }
   }
 
   private createButton(link: string, curr_path: string, header_el = false,
-    append_parent: HTMLDivElement = this.button_wrapper): HTMLElement
-  {
+    append_parent: HTMLDivElement = this.use_hamburger ? this.hamburger_button_wrapper : this.button_wrapper
+  ): HTMLElement {
     const label = pageToName(link);
     const link_el = link !== curr_path && !header_el;
     const button = link_el ? document.createElement('a') : document.createElement('div');
@@ -61,7 +107,14 @@ export class CufNavigationPane extends CufElement {
       button.classList.add('a');
     }
     button.classList.add('button');
-    button.setAttribute('tabindex', '2');
+    if (!this.use_hamburger) {
+      button.setAttribute('tabindex', '2');
+    } else if (!header_el) {
+      button.setAttribute('tabindex', '-1');
+      this.tab_index_buttons.push(button);
+    } else {
+      button.setAttribute('tabindex', '-1');
+    }
     const label_wrapper = document.createElement('span');
     label_wrapper.textContent = label;
     label_wrapper.classList.add('label');

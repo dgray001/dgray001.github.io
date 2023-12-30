@@ -10,6 +10,7 @@ cuf-profile-button {
   max-width: var(--height);
   position: relative;
   width: var(--height);
+  z-index: 9;
 
   &:not(.dropdown-open) {
     > #menu-wrapper {

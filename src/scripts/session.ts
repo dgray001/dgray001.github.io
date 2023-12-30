@@ -24,13 +24,13 @@ export async function loggedIn(check_backend = false): Promise<boolean> {
 
 /** Returns whether cookies indicate the role has the input permission */
 export function hasPermission(role: string, permission: string): boolean {
-  if (role == 'admin') {
+  if (role === 'admin') {
     return true;
   }
   switch(permission) {
     case "viewAdminDashboard":
     case "layWitness":
-      return role == 'employee';
+      return role === 'employee';
     case "positionPapers":
     case "news":
     case "faithFacts":

@@ -24,6 +24,10 @@ input:-internal-autofill-selected {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0;
 }
