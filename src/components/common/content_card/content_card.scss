@@ -186,3 +186,13 @@ cuf-content-card {
     }
   }
 }
+
+body.mobile {
+  cuf-content-card {
+    &.fade-in {
+      > #fade-image-wrapper {
+        display: none;
+      }
+    }
+  }
+}

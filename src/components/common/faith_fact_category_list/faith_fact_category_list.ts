@@ -22,8 +22,6 @@ export class CufFaithFactCategoryList extends CufElement {
   private faith_facts_container: HTMLDivElement;
 
   private loading = false;
-  private hovered = false;
-  private scrolling = false;
   private current_category = '';
   private category_els = new Map<string, HTMLDivElement>();
   loaded_json_data = new Map();
@@ -60,11 +58,11 @@ export class CufFaithFactCategoryList extends CufElement {
     }
     document.addEventListener('mouseup', this.removeRipples.bind(this));
     this.category_container.addEventListener('mouseover', () => {
-      this.hovered = true;
-      document.body.style.overflow = 'hidden';
+      if (!document.body.classList.contains('mobile')) {
+        document.body.style.overflow = 'hidden';
+      }
     });
     this.category_container.addEventListener('mouseout', () => {
-      this.hovered = false;
       document.body.style.overflow = 'auto';
     });
     this.category_container.addEventListener('wheel', (e) => {
@@ -131,7 +129,7 @@ export class CufFaithFactCategoryList extends CufElement {
 
     circle.style.width = circle.style.height = `${diameter}px`;
     circle.style.left = `${e.clientX + this.category_container.scrollLeft - button_wrapper.offsetLeft - radius}px`;
-    circle.style.top = `${e.clientY + window.scrollY - button_wrapper.offsetTop - radius}px`;
+    circle.style.top = `${e.clientY + document.body.scrollTop - button_wrapper.offsetTop - radius}px`;
     circle.classList.add("ripple");
 
     const ripple_container = button_wrapper.querySelector('.ripple-container');

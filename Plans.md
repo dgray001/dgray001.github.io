@@ -1,10 +1,5 @@
-v0.8n: Hamburger working
- p: Verify all styling
-  - Ensure works for 50% - 150% scaling
-  - Verify mobile styles for all pages (except admin dashboard)
-  - Add little highlight css when navigating to page section
-  - Fix checkbox styling when multiline
- q-z: Base admin page
+v0.8o: Minor styling fixes
+ p-z: Base admin page
   - laywitness add / edit / delete
   - news add / edit / delete
   - papers add / edit / delete

@@ -89,11 +89,18 @@ export function headerHeight(): number {
 export function scrollToElement(el: HTMLElement, wait_time = 0) {
   const element_position = el.offsetTop;
   const scroll_y = element_position - headerHeight() - 4; // -4 for box shadow
-  until(() => document.documentElement.scrollHeight - document.documentElement.clientHeight > scroll_y,
+  until(() => document.body.scrollHeight - document.body.clientHeight > scroll_y,
     40, wait_time).then(() => {
-      window.scrollTo({
+      document.body.scrollTo({
         top: scroll_y,
         behavior: "smooth",
       });
+      el.classList.add('scrolled-to');
+      setTimeout(() => {
+        el.classList.add('just-scrolled-to');
+      }, 1);
+      setTimeout(() => {
+        el.classList.remove('just-scrolled-to');
+      }, 1000);
   });
 }
