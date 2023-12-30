@@ -1,11 +1,15 @@
 cuf-header-home {
-  --logo-width: calc(2 * var(--size-title));
   --fixed-container-height: calc(2.6 * var(--size-title));
   --subtitle-font-size: var(--size-larger);
   --subtitle-height: calc(2.4 * var(--subtitle-font-size));
   --navigation-margin: var(--size-medium);
   --navigation-height: calc(3 * var(--size-medium));
   --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
+  --header-height: var(--total-height);
+  --margin: 4px;
+  --logo-height: calc(var(--header-height) - 2 * var(--margin));
+  --logo-width: calc((77 / 226) * var(--logo-height));
+  --max-logo-width: calc((77 / 226) * (var(--total-height) - 2 * var(--margin)));
 
   background-color: var(--header-home-color);
   display: block;
@@ -38,17 +42,13 @@ cuf-header-home {
   > #logo-container {
     --left: 0px; // set by component
     --offset: 0px; // set by component
-    --header-height: var(--total-height);
-    --margin: 4px;
-    --height: calc(var(--header-height) - 2 * var(--margin));
-    --width: calc((77 / 226) * var(--height));
 
     display: block;
-    left: calc(var(--left) + var(--offset));
-    height: var(--height);
+    left: max(2px, calc(var(--left) + var(--offset)));
+    height: var(--logo-height);
     position: fixed;
     top: var(--margin);
-    width: var(--width);
+    width: var(--logo-width);
     z-index: 5;
   }
 
@@ -77,5 +77,116 @@ cuf-header-home {
     top: var(--header-total-height);
     width: 100vw;
     z-index: 8;
+  }
+}
+
+body.mobile {
+  cuf-header-home {
+    --fixed-container-height: calc(2.4 * var(--size-title));
+    --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + var(--navigation-margin));
+
+    > #fixed-container-height-box {
+      > #title-container {
+        > #title {
+          font-size: calc(0.4 * var(--fixed-container-height));
+        }
+      }
+    }
+
+    > #navigation-container {
+      --height: calc(0.6 * var(--fixed-container-height));
+      display: inline-block;
+      height: var(--height);
+      margin: calc(0.2 * var(--fixed-container-height)) calc(0.2 * var(--fixed-container-height)) 0;
+      max-height: var(--height);
+      max-width: var(--height);
+      min-height: var(--height);
+      min-width: var(--height);
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: var(--height);
+      z-index: 9;
+
+      > #navigation-pane {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) and (min-width: 411px) {
+  body.mobile {
+    cuf-header-home {
+      --fixed-container-height: calc(2.2 * var(--size-title));
+      --subtitle-font-size: var(--size-large) !important;
+
+      > #fixed-container-height-box {
+        > #title-container {
+          > #title {
+            font-size: calc(0.45 * var(--fixed-container-height));
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  body.mobile {
+    cuf-header-home {
+      --fixed-container-height: calc(2 * var(--size-title));
+      --subtitle-font-size: var(--size-large);
+
+      > #fixed-container-height-box {
+        > #title-container {
+          > #title {
+            font-size: calc(0.5 * var(--fixed-container-height));
+            margin-left: calc(var(--max-logo-width) + 2 * var(--margin));
+            text-align: left;
+          }
+        }
+      }
+
+      .subtitle {
+        margin-left: calc(var(--max-logo-width) + 2 * var(--margin));
+        text-align: left;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  body.mobile {
+    cuf-header-home {
+      --fixed-container-height: calc(1.8 * var(--size-title));
+      --subtitle-font-size: var(--size-medium);
+
+      > #fixed-container-height-box {
+        > #title-container {
+          > #title {
+            font-size: calc(0.5 * var(--fixed-container-height));
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  body.mobile {
+    cuf-header-home {
+      --fixed-container-height: calc(1.6 * var(--size-title));
+      --subtitle-font-size: var(--size-small);
+
+      > #fixed-container-height-box {
+        > #title-container {
+          > #title {
+            font-size: calc(0.5 * var(--fixed-container-height));
+          }
+        }
+      }
+    }
   }
 }

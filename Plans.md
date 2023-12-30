@@ -1,9 +1,9 @@
-v0.8m: Initial hamburger
- n: Mobile sidebar hamburger
+v0.8n: Hamburger working
  p: Verify all styling
   - Ensure works for 50% - 150% scaling
   - Verify mobile styles for all pages (except admin dashboard)
   - Add little highlight css when navigating to page section
+  - Fix checkbox styling when multiline
  q-z: Base admin page
   - laywitness add / edit / delete
   - news add / edit / delete

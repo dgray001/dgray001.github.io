@@ -83,7 +83,7 @@ export class CufHeaderHome extends CufElement {
     const this_rect = this.getBoundingClientRect();
     const height = Math.max(title_rect.bottom, this_rect.bottom) - title_rect.top;
     const width = (77 / 226.0) * height;
-    this.logo_container.style.setProperty('--header-height', `${height}px`);
+    this.style.setProperty('--header-height', `${height}px`);
     this.logo_container.style.setProperty('--offset', `${0.5 * (this.logo_max_width - width)}px`);
   }
 }

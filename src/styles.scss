@@ -115,3 +115,7 @@ body {
     visibility: hidden;
   }
 }
+
+body.mobile {
+  --content-card-width: min(300px, calc(100vw - var(--left-sidebar-width) - var(--size-large)));
+}

@@ -33,7 +33,7 @@ export class CufNavigationPane extends CufElement {
     this.use_hamburger = document.body.classList.contains('mobile');
     if (this.use_hamburger) {
       this.hamburger.addEventListener('click', () => {
-        if (Date.now() - this.last_clicked < 500) {
+        if (Date.now() - this.last_clicked < 200) {
           return;
         }
         this.last_clicked = Date.now();

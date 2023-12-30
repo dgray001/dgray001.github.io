@@ -1,12 +1,14 @@
 cuf-content-card {
   --width: 0px; // set by component
   --border-radius: 20px;
+  --header-height: 40px;
 
   border: black solid 1px;
   border-radius: var(--border-radius);
   display: block;
   margin-left: 5px;
   margin-right: 5px;
+  overflow: hidden;
   padding: 3px;
   text-align: justify;
   text-justify: inter-word;
@@ -33,22 +35,30 @@ cuf-content-card {
   }
 
   &.fixed-height {
-    height: calc(var(--fixed-height) * var(--width));
-    max-height: calc(var(--fixed-height) * var(--width));
-    min-height: calc(var(--fixed-height) * var(--width));
+    --height: calc(var(--fixed-height) * var(--width));
+    height: var(--height);
+    max-height: var(--height);
+    min-height: var(--height);
+
+    > #content {
+      --content-height: calc(var(--height) - var(--header-height));
+      height: var(--content-height);
+      max-height: var(--content-height);
+      min-height: var(--content-height);
+    }
   }
 
   > #header {
     position: relative;
     background-color: transparent; /* var(--card-header-color); */
-    height: 40px;
+    height: var(--header-height);
 
     > #header-text {
       font-size: 24px;
       left: 0.3rem;
       margin-top: -14px;
-      max-height: 40px;
-      max-width: calc(100% - 40px - 0.3rem);
+      max-height: var(--header-height);
+      max-width: calc(100% - var(--header-height) - 0.3rem);
       overflow: hidden;
       position: absolute;
       text-decoration: none;
@@ -98,6 +108,7 @@ cuf-content-card {
   > #content {
     background-color: transparent; /* var(--card-background-color); */
     display: block;
+    overflow-y: auto;
 
     .content-element {
       margin-left: 0.5rem;
