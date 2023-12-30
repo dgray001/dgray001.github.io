@@ -5,7 +5,7 @@ import {DEV} from '../../../../../scripts/util';
 import {apiPost} from '../../../../../scripts/api';
 import {loggedIn} from '../../../../../scripts/session';
 import {getCookie} from '../../../../../scripts/cookies';
-import {getUrlParam} from '../../../../../scripts/url';
+import {getUrlParam, navigate, removeUrlParam} from '../../../../../scripts/url';
 
 import html from './login_form.html';
 
@@ -77,10 +77,12 @@ export class CufLoginForm extends CufForm<LoginFormData> {
           if (res.success) {
             const redirect = getUrlParam('redirect');
             if (redirect) {
-              document.location.href = redirect;
+              removeUrlParam('redirect');
+              navigate(redirect);
             }
             else {
-              document.location.href = '/';
+              removeUrlParam('redirect');
+              navigate('');
             }
           } else {
             this.errorStatus(this.login_form_status_message, res.error_message ??

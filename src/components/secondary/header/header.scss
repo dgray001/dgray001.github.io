@@ -39,7 +39,6 @@ cuf-header {
     height: calc(var(--fixed-container-height) + var(--padding-top));
     max-width: 100vw;
     padding-left: calc(var(--left-auto-margin) + var(--padding-top));
-    padding-right: 4px;
     padding-top: var(--padding-top);
     position: fixed;
     top: 0;
@@ -72,6 +71,8 @@ cuf-header {
     }
 
     > #profile-button-container {
+      background-color: var(--header-color);
+      height: calc(var(--header-total-height) + var(--margin-size) - var(--padding-top));
       margin-left: auto;
 
       > #profile-button {
@@ -137,12 +138,12 @@ cuf-header {
         margin: 0px;
         padding: var(--padding-top) 10px 0px;
         position: absolute;
-        top: calc(var(--header-total-height) - var(--navigation-height) - var(--padding-top));
+        top: calc(var(--header-total-height) - var(--navigation-height) - 2 * var(--padding-top));
         width: 100%;
       }
 
       > #profile-button-container {
-        background-color: var(--header-color);
+        height: calc(var(--header-total-height) + var(--margin-size) - 2 * var(--padding-top));
         padding-left: var(--padding-top);
         padding-top: var(--padding-top);
 
@@ -155,6 +156,10 @@ cuf-header {
 
     > #collapsed-container {
       margin-top: calc(var(--padding-top) + var(--title-height));
+    }
+
+    > #margin {
+      top: calc(var(--header-total-height) - var(--padding-top));
     }
   }
 }

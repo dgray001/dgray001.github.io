@@ -3,12 +3,8 @@ import {apiGet, apiPost} from './api';
 
 /** Whether current user is logged in */
 export async function loggedIn(check_backend = false): Promise<boolean> {
-  const login_cookies = ['session', 'email', 'role'];
-  const cookies = clientCookies();
-  for (const cookie of login_cookies) {
-    if (!cookies.get(cookie)) {
-      return false;
-    }
+  if (!loggedInSync()) {
+    return false;
   }
   if (check_backend) {
     console.error('Not implemented');
@@ -16,6 +12,18 @@ export async function loggedIn(check_backend = false): Promise<boolean> {
     if (!response.success || !response.result) {
       eraseAllCookies();
       await apiPost('logout', {});
+      return false;
+    }
+  }
+  return true;
+}
+
+/** Whether current user is logged in */
+export function loggedInSync(): boolean {
+  const login_cookies = ['session', 'email', 'role'];
+  const cookies = clientCookies();
+  for (const cookie of login_cookies) {
+    if (!cookies.get(cookie)) {
       return false;
     }
   }

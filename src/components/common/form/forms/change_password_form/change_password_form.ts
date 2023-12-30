@@ -1,7 +1,6 @@
 import {apiPost} from '../../../../../scripts/api';
 import {getCookie} from '../../../../../scripts/cookies';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
-import {loggedIn} from '../../../../../scripts/session';
 import {CufForm} from '../../form';
 import {CufInputText} from '../../form_field/input_text/input_text';
 
@@ -42,10 +41,6 @@ export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
-    if (!(await loggedIn())) {
-      location.href = '/login';
-      return;
-    }
     this.setFormOpen(false);
     this.open_form.addEventListener('click', () => {
       this.setFormOpen(!this.form_open);

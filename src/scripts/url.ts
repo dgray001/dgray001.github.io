@@ -17,6 +17,7 @@ export function setUrlParam(key: string, value: string): void {
 export function removeUrlParam(key: string): void {
   const params = new URL(window.location.href).searchParams;
   params.delete(key);
+  window.history.replaceState(null, '', `?${params.toString()}`);
 }
 
 export function getPage(): string {
@@ -25,14 +26,16 @@ export function getPage(): string {
 }
 
 /** Navigates to the input page */
-export function navigate(page: string): void {
+export function navigate(page: string, keep_params = true): void {
   if (!page.startsWith('./') && !page.startsWith('../')) {
     page = './' + page;
   }
   const new_url = new URL(page, location.protocol + '//' + location.host);
   const url = new URL(window.location.href);
-  for (const [key, value] of url.searchParams.entries()) {
-    new_url.searchParams.set(key, value);
+  if (keep_params) {
+    for (const [key, value] of url.searchParams.entries()) {
+      new_url.searchParams.set(key, value);
+    }
   }
   window.location.assign(new_url);
 }

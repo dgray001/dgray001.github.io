@@ -13,9 +13,10 @@ initializePage(html);
 
 // permission
 import {hasPermission} from '../../scripts/session';
-import {navigate} from '../../scripts/url';
+import {getPage, navigate, removeUrlParam} from '../../scripts/url';
 import {getCookie} from '../../scripts/cookies';
+import {trim} from '../../scripts/util';
 
 if (!hasPermission(getCookie('role'), 'viewAdminDashboard')) {
-  navigate('');
+  navigate(`/login?redirect=${trim(getPage(), '/')}`);
 }

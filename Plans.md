@@ -1,4 +1,4 @@
-v0.8o: Minor styling fixes
+v0.8p: Minor styling fixes
  p-z: Base admin page
   - laywitness add / edit / delete
   - news add / edit / delete
