@@ -15,8 +15,8 @@ export function pageToName(page: string): string {
       return 'Thank You';
     case 'faith_and_life_series':
       return 'Faith and Life Series';
-    case 'faith_and_life_series':
-      return 'Jobs Available';
+    case 'faith_facts':
+      return 'Faith Facts';
     case 'information_services':
       return 'Information Services';
     case 'involvement':

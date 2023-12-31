@@ -28,18 +28,20 @@ cuf-dashboard-section {
         display: flex;
         flex-flow: column nowrap;
         width: calc(50% - 2em);
-
-        > * {
-          padding: 0.4em;
-        }
       }
 
-      button, input {
+      button, input, label {
         border: 0;
         font-size: var(--size-medium);
         margin: 0;
         padding: 0.4em;
         width: fit-content;
+      }
+    }
+
+    > #new-form {
+      &:not(.show) {
+        display: none;
       }
     }
   }
