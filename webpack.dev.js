@@ -19,6 +19,9 @@ module.exports = {
     server: 'http',
     static: {
       directory: path.resolve(__dirname, 'docs/'),
+      watch: {
+        ignored: '**/data',
+      },
     },
   },
 }

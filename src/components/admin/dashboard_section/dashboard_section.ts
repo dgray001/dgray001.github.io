@@ -1,8 +1,10 @@
 import {CufElement} from '../../cuf_element';
-import {CufForm} from '../../common/form/form';
 import {JsonData, fetchJson} from '../../../data/data_control';
 import {LaywitnessData} from '../../common/laywitness_list/laywitness_list';
 import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_category_list';
+import {CufNewsForm} from '../forms/news_form/news_form';
+import {recaptchaCallback} from '../../../scripts/recaptcha';
+import {apiPost} from '../../../scripts/api';
 
 import html from './dashboard_section.html';
 import {getListJsonData, getListLaywitnessData} from './util';
@@ -13,7 +15,7 @@ import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
 
-type AdminFormType = 'cuf-jobs-available-form'|'cuf-lay-witness-form'|'cuf-news-form'|'cuf-position-papers-form';
+type AdminFormType = CufNewsForm;
 
 type DashboardSectionData = JsonData|LaywitnessData|FaithFactsData;
 
@@ -24,12 +26,15 @@ export class CufDashboardSection extends CufElement {
   private new_button_container: HTMLDivElement;
   private current_list: HTMLDivElement;
   private new_form: HTMLFormElement;
+  private status_message: HTMLDivElement;
 
   private section_key = '';
+  private tag_key = '';
+  private json_key = '';
   private body_open = false;
   private new_form_open = false;
   private new_form_button: HTMLButtonElement;
-  private new_form_el: CufForm<any>;
+  private new_form_el: AdminFormType;
   private current_data: DashboardSectionData;
 
   constructor() {
@@ -41,11 +46,14 @@ export class CufDashboardSection extends CufElement {
     this.configureElement('new_button_container');
     this.configureElement('current_list');
     this.configureElement('new_form');
+    this.configureElement('status_message');
   }
 
   protected override async parsedCallback(): Promise<void> {
     this.classList.add('section');
     this.section_key = this.getAttribute('section');
+    this.tag_key = this.section_key.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
+    this.json_key = this.section_key.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`);
     this.section_title.innerText = this.sectionTitle();
     this.edit_button.innerText = `Edit ${this.sectionTitle()} [Not implemented]`;
     this.edit_button.disabled = true;
@@ -105,20 +113,62 @@ export class CufDashboardSection extends CufElement {
   }
 
   private setNewForm() {
-    const form_tag_type = this.section_key.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
-    const form_tag = `cuf-${form_tag_type}-form` as AdminFormType;
-    this.new_form_el = document.createElement(form_tag);
+    this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
+    this.new_form_el.setSubmitCallback(async () => {
+      recaptchaCallback(async () => {
+        this.current_data = this.addNewData(this.new_form_el.getData());
+        const r = await apiPost(`admin_dashboard/${this.json_key}_data`, this.current_data);
+        if (r.success) {
+          this.successStatus(`Successfully added a new ${this.sectionTitle().toLowerCase()}`);
+          this.toggleNewForm(false);
+        } else {
+          this.errorStatus(r.error_message ?? 'An unknown error has occurrred');
+        }
+      }, this.new_form_el.getSubmitButton(), this.status_message, 'Uploading');
+    });
     this.new_form.appendChild(this.new_form_el);
   }
 
+  private addNewData(new_data: any): DashboardSectionData {
+    if (['news', 'jobs_available'].includes(this.json_key)) {
+      const d = this.current_data as JsonData;
+      d.content.unshift(new_data);
+      return d;
+    } else if ([].includes(this.json_key)) {
+      //
+    }
+    console.error('Not implemented');
+    return this.current_data;
+  }
+
+  private messageStatus(message: string): void {
+    if (!!message) {
+      this.status_message.innerHTML = message;
+      this.status_message.classList.remove('hide');
+    } else {
+      this.status_message.classList.add('hide');
+    }
+    this.status_message.classList.remove('error');
+    this.status_message.classList.remove('success');
+  }
+
+  private successStatus(message: string): void {
+    this.messageStatus(message);
+    this.status_message.classList.add('success');
+  }
+
+  private errorStatus(message: string): void {
+    this.messageStatus(message);
+    this.status_message.classList.add('error');
+  }
+
   private async setCurrentList() {
-    const json_key = this.section_key.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`);
-    this.current_data = await fetchJson<DashboardSectionData>(`${json_key}/${json_key}.json`);
-    if (['jobs_available', 'news', 'position_papers'].includes(json_key)) {
+    this.current_data = await fetchJson<DashboardSectionData>(`${this.json_key}/${this.json_key}.json`);
+    if (['jobs_available', 'news', 'position_papers'].includes(this.json_key)) {
       this.current_list.replaceChildren(...getListJsonData(this.current_data as JsonData));
-    } else if (json_key === 'lay_witness') {
+    } else if (this.json_key === 'lay_witness') {
       this.current_list.replaceChildren(...getListLaywitnessData(this.current_data as LaywitnessData));
-    } else if (json_key === 'faith_facts') {
+    } else if (this.json_key === 'faith_facts') {
       // TODO: implement
     }
   }

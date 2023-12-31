@@ -46,5 +46,24 @@ cuf-dashboard-section {
         display: none;
       }
     }
+
+    > #status-message {
+      font-size: var(--size-medium);
+      margin-top: 0.4em;
+      text-align: center;
+      width: 100%;
+  
+      &.hide {
+        display: none;
+      }
+  
+      &.success {
+        color: green;
+      }
+  
+      &.error {
+        color: red;
+      }
+    }
   }
 }

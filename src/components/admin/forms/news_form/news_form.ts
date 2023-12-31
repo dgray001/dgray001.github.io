@@ -44,6 +44,10 @@ export class CufNewsForm extends CufForm<NewsFormData> {
     this.submit_callback = submit_callback;
   }
 
+  getSubmitButton(): HTMLButtonElement {
+    return this.submit_button;
+  }
+
   override getData(): NewsFormData {
     return {
       title: this.news_title.getData() || undefined,
