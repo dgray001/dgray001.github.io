@@ -99,6 +99,11 @@ export class Validator {
         return `Must match ${this.data}`;
       }
       break;
+    case 'prereq':
+      if (!!input && !form?.getField(this.data)?.getStringData()) {
+        return `Must fill out ${this.data} first`;
+      }
+      break;
     default:
       console.error(`Unknown validation type: ${this.type}`);
       return 'Unknown validator';

@@ -5,7 +5,8 @@ import html from './laywitness_list.html';
 
 import './laywitness_list.scss';
 
-interface LaywitnessData {
+/** Data describing all Lay Witness pubs */
+export declare interface LaywitnessData {
   volumes: LaywitnessVolumeData[];
 }
 

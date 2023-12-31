@@ -8,7 +8,8 @@ import html from './faith_fact_category_list.html';
 import './faith_fact_category_list.scss';
 import '../faith_fact_category/faith_fact_category';
 
-interface FaithFactsData {
+/** Data describing all Faith Facts */
+export declare interface FaithFactsData {
   faith_fact_categories: CategoryData[];
 }
 

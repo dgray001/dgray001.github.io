@@ -17,8 +17,6 @@ export abstract class CufForm<T> extends CufElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.classList.add('hidden');
-    this.classList.add('cuf-form');
   }
 
   protected configureForm(section_ids: string[]) {
@@ -29,6 +27,8 @@ export abstract class CufForm<T> extends CufElement {
   }
 
   protected override async parsedCallback(): Promise<void> {
+    this.classList.add('hidden');
+    this.classList.add('cuf-form');
     for (const id of this.section_ids) {
       const form_section = this.querySelector<FormSection>(`#${id.replace(/_/g, '-')}`);
       form_section.setForm(this);

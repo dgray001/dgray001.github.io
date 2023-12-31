@@ -40,6 +40,8 @@ cuf-dashboard-section {
     }
 
     > #new-form {
+      margin-top: 2em;
+
       &:not(.show) {
         display: none;
       }

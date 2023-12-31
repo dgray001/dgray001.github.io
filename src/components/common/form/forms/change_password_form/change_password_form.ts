@@ -20,7 +20,6 @@ export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
   private change_password_form: HTMLFormElement;
   private change_password_old: CufInputText;
   private change_password_new: CufInputText;
-  private change_password_confirm: CufInputText;
   private change_password_button: HTMLButtonElement;
   private status_message: HTMLDivElement;
 
