@@ -13,10 +13,10 @@ if (!loggedIn()) {
 }
 
 // logged in but doesn't have permission
-if (!hasPermission('jobsAvailable', $_SESSION["user_role"])) {
+if (!hasPermission('positionPapers', $_SESSION["user_role"])) {
   echo json_encode(array(
     'success' => false,
-    'error_message' => 'You don\'t have permission to modify jobs data',
+    'error_message' => 'You don\'t have permission to modify position papers',
   ));
   exit(1);
 }
@@ -24,11 +24,11 @@ if (!hasPermission('jobsAvailable', $_SESSION["user_role"])) {
 require_once(__DIR__ . '/../includes/file_util.php');
 
 $received_data = file_get_contents('php://input');
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/jobs_available/jobs_available.json', $received_data);
+forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/position_papers/position_papers.json', $received_data);
 
 $data_control = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/data/data_control.json');
 $json_data = json_decode($data_control, true);
-$json_data['jobs_available/jobs_available.json'] = time();
+$json_data['position_papers/position_papers.json'] = time();
 forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/data_control.json', json_encode($json_data));
 
 echo json_encode(array(

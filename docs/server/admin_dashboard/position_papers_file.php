@@ -13,23 +13,29 @@ if (!loggedIn()) {
 }
 
 // logged in but doesn't have permission
-if (!hasPermission('news', $_SESSION["user_role"])) {
+if (!hasPermission('positionPapers', $_SESSION["user_role"])) {
   echo json_encode(array(
     'success' => false,
-    'error_message' => 'You don\'t have permission to modify news data',
+    'error_message' => 'You don\'t have permission to modify position papers',
   ));
   exit(1);
 }
 
 require_once(__DIR__ . '/../includes/file_util.php');
 
-$received_data = file_get_contents('php://input');
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/news/news.json', $received_data);
+$filename = $_SERVER['HTTP_X_FILE_NAME'];
+$in = fopen('php://input', 'r');
+$filetype = mime_content_type($in);
 
-$data_control = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/data/data_control.json');
-$json_data = json_decode($data_control, true);
-$json_data['news/news.json'] = time();
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/data_control.json', json_encode($json_data));
+if ($filetype !== 'application/pdf') {
+  echo json_encode(array(
+    'success' => false,
+    'error_message' => 'Position paper upload must be a pdf',
+  ));
+  exit(1);
+}
+
+forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/position_papers/' . $filename, $in);
 
 echo json_encode(array(
   'success' => true,

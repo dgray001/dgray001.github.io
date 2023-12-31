@@ -5,6 +5,8 @@ import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_c
 import {CufNewsForm} from '../forms/news_form/news_form';
 import {recaptchaCallback} from '../../../scripts/recaptcha';
 import {apiPost} from '../../../scripts/api';
+import {CufPositionPapersForm} from '../forms/position_papers_form/position_papers_form';
+import {CufJobsAvailableForm} from '../forms/jobs_available_form/jobs_available_form';
 
 import html from './dashboard_section.html';
 import {getListJsonData, getListLaywitnessData} from './util';
@@ -15,7 +17,7 @@ import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
 
-type AdminFormType = CufNewsForm;
+type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm;
 
 type DashboardSectionData = JsonData|LaywitnessData|FaithFactsData;
 
@@ -36,6 +38,7 @@ export class CufDashboardSection extends CufElement {
   private new_form_button: HTMLButtonElement;
   private new_form_el: AdminFormType;
   private current_data: DashboardSectionData;
+  private file_input: HTMLInputElement;
 
   constructor() {
     super();
@@ -57,8 +60,8 @@ export class CufDashboardSection extends CufElement {
     this.section_title.innerText = this.sectionTitle();
     this.edit_button.innerText = `Edit ${this.sectionTitle()} [Not implemented]`;
     this.edit_button.disabled = true;
-    this.setNewButton();
     this.setNewForm();
+    this.setNewButton();
     await this.setCurrentList();
     if (['faithFacts'].includes(this.section_key)) {
       this.section_title.disabled = true;
@@ -89,33 +92,61 @@ export class CufDashboardSection extends CufElement {
   private setNewButton() {
     if (['news', 'jobsAvailable'].includes(this.section_key)) {
       this.new_form_button = document.createElement('button');
-      this.new_form_button.innerText = `New ${this.sectionTitle()}`;
       this.new_form_button.addEventListener('click', () => {
         this.toggleNewForm(!this.new_form_open);
       });
       this.new_button_container.appendChild(this.new_form_button);
     } else if (['layWitness', 'positionPapers'].includes(this.section_key)) {
-      const file_input = document.createElement('input');
-      file_input.id = 'file-input';
-      file_input.setAttribute('type', 'file');
-      file_input.setAttribute('accept', 'application/pdf');
+      this.file_input = document.createElement('input');
+      this.file_input.id = 'file-input';
+      this.file_input.setAttribute('type', 'file');
+      this.file_input.setAttribute('accept', 'application/pdf');
       const file_label = document.createElement('label');
       file_label.innerText = `Upload New ${this.sectionTitle()}`;
       file_label.setAttribute('for', 'file-input');
-      file_input.addEventListener('change', () => {
-        // TODO
+      this.new_form_button = document.createElement('button');
+      this.new_form_button.classList.add('hide');
+      this.file_input.addEventListener('change', () => {
+        const file = this.file_input.files[0];
+        if (file.type !== 'application/pdf' || !file.name) {
+          return;
+        }
+        this.toggleNewForm(true);
+        this.new_form_button.classList.remove('hide');
+        this.file_input.classList.add('hide');
+        file_label.innerText = file.name;
+      });
+      this.new_form_button.addEventListener('click', () => {
+        this.toggleNewForm(false);
+        this.new_form_button.classList.add('hide');
+        this.file_input.value = '';
+        this.file_input.classList.remove('hide');
+        file_label.innerText = `Upload New ${this.sectionTitle()}`;
       });
       this.new_button_container.appendChild(file_label);
-      this.new_button_container.appendChild(file_input);
+      this.new_button_container.appendChild(this.file_input);
+      this.new_button_container.appendChild(this.new_form_button);
     } else {
       // TODO: implement for faith facts
     }
+    this.toggleNewForm(false);
   }
 
   private setNewForm() {
     this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
     this.new_form_el.setSubmitCallback(async () => {
+      if (!this.new_form_el.validate()) {
+        this.errorStatus('Please fix the validation errors');
+        return;
+      }
       recaptchaCallback(async () => {
+        if (['layWitness', 'positionPapers'].includes(this.section_key)) {
+          const r = await apiPost(`admin_dashboard/${this.json_key}_file`, this.file_input.files[0]);
+          if (!r.success) {
+            this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
+            return;
+          }
+        }
         this.current_data = this.addNewData(this.new_form_el.getData());
         const r = await apiPost(`admin_dashboard/${this.json_key}_data`, this.current_data);
         if (r.success) {
@@ -130,8 +161,11 @@ export class CufDashboardSection extends CufElement {
   }
 
   private addNewData(new_data: any): DashboardSectionData {
-    if (['news', 'jobs_available'].includes(this.json_key)) {
+    if (['news', 'jobs_available', 'position_papers'].includes(this.json_key)) {
       const d = this.current_data as JsonData;
+      if (this.json_key === 'position_papers') {
+        new_data.titlelink = `/data/position_papers/${this.file_input.files[0].name}`;
+      }
       d.content.unshift(new_data);
       return d;
     } else if ([].includes(this.json_key)) {
@@ -182,6 +216,7 @@ export class CufDashboardSection extends CufElement {
     this.new_form_open = new_form_open;
     this.new_form.classList.toggle('show', new_form_open);
     this.new_form_button.classList.toggle('open', new_form_open);
+    this.new_form_button.innerText = new_form_open ? 'Cancel' : `New ${this.sectionTitle()}`;
     if (new_form_open) {
       // TODO: close edit list
     } else {

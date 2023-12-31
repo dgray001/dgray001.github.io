@@ -36,6 +36,10 @@ cuf-dashboard-section {
         margin: 0;
         padding: 0.4em;
         width: fit-content;
+
+        &.hide {
+          display: none;
+        }
       }
     }
 

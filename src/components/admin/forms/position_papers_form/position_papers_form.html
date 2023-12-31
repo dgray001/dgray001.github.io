@@ -1,1 +1,22 @@
-<div id="example">Hello from position-papers-form!</div>
+
+<cuf-input-text
+  id="paper-title"
+  flex_option="3"
+  label="Paper Title"
+  validators='["required"]'
+></cuf-input-text>
+
+<cuf-text-area
+  id="paper-description"
+  flex_option="3"
+  min-rows="3"
+  label="Summary"
+></cuf-text-area>
+
+<button
+  id="submit-button"
+  type="button"
+  tabindex="1"
+  class="form-submit-button">
+  Submit
+</button>
