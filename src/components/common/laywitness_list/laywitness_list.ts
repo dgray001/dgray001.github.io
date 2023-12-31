@@ -10,13 +10,15 @@ export declare interface LaywitnessData {
   volumes: LaywitnessVolumeData[];
 }
 
-interface LaywitnessVolumeData {
+/** Data describing a lay witness volume */
+export declare interface LaywitnessVolumeData {
   number: number;
   year: number;
   issues: LaywitnessIssueData[];
 }
 
-interface LaywitnessIssueData {
+/** Data describing a lay witness issue */
+export declare interface LaywitnessIssueData {
   number: number;
   title: string;
   insert?: number;

@@ -1,6 +1,14 @@
 .cuf-form {
   display: block;
 
+  .flex-wrapper {
+    column-gap: 2em;
+    display: flex;
+    flex-flow: row wrap;
+    flex: 1 0 fit-content;
+    padding-bottom: 0.6em;
+  }
+
   .form-submit-button {
     border: none;
     box-shadow: 1px 1px 0px rgb(90, 90, 90);

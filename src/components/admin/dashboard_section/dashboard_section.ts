@@ -1,12 +1,14 @@
 import {CufElement} from '../../cuf_element';
 import {JsonData, fetchJson} from '../../../data/data_control';
-import {LaywitnessData} from '../../common/laywitness_list/laywitness_list';
+import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
 import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_category_list';
 import {CufNewsForm} from '../forms/news_form/news_form';
 import {recaptchaCallback} from '../../../scripts/recaptcha';
 import {apiPost} from '../../../scripts/api';
 import {CufPositionPapersForm} from '../forms/position_papers_form/position_papers_form';
 import {CufJobsAvailableForm} from '../forms/jobs_available_form/jobs_available_form';
+import {renameFile} from '../../../scripts/util';
+import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 
 import html from './dashboard_section.html';
 import {getListJsonData, getListLaywitnessData} from './util';
@@ -139,15 +141,31 @@ export class CufDashboardSection extends CufElement {
         this.errorStatus('Please fix the validation errors');
         return;
       }
-      recaptchaCallback(async () => {
+      await recaptchaCallback(async () => {
+        const form_data = this.new_form_el.getData() as LayWitnessFormData;
+        const {new_data, data_added} = this.addNewData(form_data);
+        if (!new_data) {
+          return;
+        }
         if (['layWitness', 'positionPapers'].includes(this.section_key)) {
-          const r = await apiPost(`admin_dashboard/${this.json_key}_file`, this.file_input.files[0]);
+          let file = this.file_input.files[0];
+          if (this.section_key === 'layWitness') {
+            let new_name = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
+            if (form_data.addendum) {
+              new_name += `-Addendum${data_added.addendum}`;
+            } else if (form_data.insert) {
+              new_name += `-Insert${data_added.insert}`;
+            }
+            new_name += '.pdf';
+            file = renameFile(file, new_name);
+          }
+          const r = await apiPost(`admin_dashboard/${this.json_key}_file`, file);
           if (!r.success) {
             this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
             return;
           }
         }
-        this.current_data = this.addNewData(this.new_form_el.getData());
+        this.current_data = new_data;
         const r = await apiPost(`admin_dashboard/${this.json_key}_data`, this.current_data);
         if (r.success) {
           this.successStatus(`Successfully added a new ${this.sectionTitle().toLowerCase()}`);
@@ -160,19 +178,83 @@ export class CufDashboardSection extends CufElement {
     this.new_form.appendChild(this.new_form_el);
   }
 
-  private addNewData(new_data: any): DashboardSectionData {
+  private addNewData(new_data: any): {new_data: DashboardSectionData|undefined, data_added?: any} {
     if (['news', 'jobs_available', 'position_papers'].includes(this.json_key)) {
       const d = this.current_data as JsonData;
       if (this.json_key === 'position_papers') {
         new_data.titlelink = `/data/position_papers/${this.file_input.files[0].name}`;
       }
       d.content.unshift(new_data);
-      return d;
-    } else if ([].includes(this.json_key)) {
-      //
+      return {new_data: d};
+    } else if (this.json_key === 'lay_witness') {
+      const d = this.current_data as LaywitnessData;
+      for (const volume of d.volumes) {
+        if (volume.number === new_data.volume) {
+          let found_issue = false;
+          for (const issue of volume.issues) {
+            if (issue.number === new_data.issue) {
+              found_issue = true;
+              break;
+            }
+          }
+          const new_issue: LaywitnessIssueData = {
+            number: new_data.issue,
+            title: new_data.title,
+          };
+          if (found_issue) {
+            if (new_data.addendum) {
+              new_issue.addendum = 1;
+              for (const addendum of volume.issues.filter(a => a.number === new_data.issue && !!a.addendum)) {
+                new_issue.addendum = Math.max(1, addendum.addendum + 1);
+              }
+            } else if (new_data.insert) {
+              new_issue.insert = 1;
+              for (const insert of volume.issues.filter(a => a.number === new_data.issue && !!a.insert)) {
+                new_issue.insert = Math.max(1, insert.insert + 1);
+              }
+            } else {
+              this.errorStatus('This issue already exists');
+              return {new_data: undefined};
+            }
+          } else {
+            if (new_data.addendum) {
+              new_issue.addendum = 1;
+            } else if (new_data.insert) {
+              new_issue.insert = 1;
+            }
+          }
+          volume.issues.push(new_issue);
+          volume.issues.sort((a, b) => {
+            if (a.number !== b.number) {
+              return a.number - b.number;
+            } else if (a.addendum !== b.addendum) {
+              return a.addendum - b.addendum;
+            }
+            return a.insert - b.insert;
+          });
+          return {new_data: d, data_added: new_issue};
+        }
+      }
+      const new_issue: LaywitnessIssueData = {
+        number: new_data.issue,
+        title: new_data.title,
+      };
+      if (new_data.addendum) {
+        new_issue.addendum = 1;
+      } else if (new_data.insert) {
+        new_issue.insert = 1;
+      }
+      const new_volume: LaywitnessVolumeData = {
+        number: new_data.volume,
+        year: new_data.volume + 2022 - 40,
+        issues: [new_issue],
+      };
+      d.volumes.push(new_volume);
+      d.volumes.sort((a, b) => a.number - b.number);
+      return {new_data: d, data_added: new_issue};
     }
     console.error('Not implemented');
-    return this.current_data;
+    return {new_data: this.current_data};
   }
 
   private messageStatus(message: string): void {

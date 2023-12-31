@@ -13,14 +13,6 @@
     flex-flow: column nowrap;
     gap: 0.3em;
     padding-bottom: 0.6em;
-
-    .flex-wrapper {
-      column-gap: 2em;
-      display: flex;
-      flex-flow: row wrap;
-      flex: 1 0 fit-content;
-      padding-bottom: 0.6em;
-    }
   }
 
   /* Style 1 */

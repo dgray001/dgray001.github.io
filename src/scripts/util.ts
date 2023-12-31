@@ -66,6 +66,14 @@ export function trim(s: string, c: string): string {
   ), "");
 }
 
+/** Change a file object's readonly name property */
+export function renameFile(file: File, name: string) {
+  return new File([file], name, {
+      type: file.type,
+      lastModified: file.lastModified,
+  });
+}
+
 /** Header height */
 export function headerHeight(): number {
   const fixed_container = document.querySelector('cuf-header #fixed-container');

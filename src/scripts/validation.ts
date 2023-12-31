@@ -85,6 +85,12 @@ export class Validator {
         return 'Please enter a valid integer';
       }
       break;
+    case 'positive-integer':
+      const valid_positive_integer = !isNaN(parseInt(input)) && /^\+?\d+$/.test(input);
+      if (!valid_positive_integer) {
+        return 'Please enter a valid positive integer';
+      }
+      break;
     case 'password':
       if (input.length < 6) {
         return 'Please choose a longer password'
