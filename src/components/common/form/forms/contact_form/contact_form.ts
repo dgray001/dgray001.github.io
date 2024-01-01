@@ -7,7 +7,7 @@ import {CufTextArea} from '../../form_field/text_area/text_area';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
 import {apiPost} from '../../../../../scripts/api';
 import {createContactEmail} from '../util';
-import {DEV, scrollToElement} from '../../../../../scripts/util';
+import {DEV, STAGING, scrollToElement} from '../../../../../scripts/util';
 
 import html from './contact_form.html';
 
@@ -64,7 +64,7 @@ export class CufContactForm extends CufForm<ContactFormData> {
       }
       recaptchaCallback(async () => {
         const post_data = createContactEmail(this.getData(), true);
-        const res = await apiPost('contact', post_data);
+        const res = await apiPost(STAGING ? 'con_tac' : 'contact', post_data);
         if (res.success) {
           this.successStatus(this.contact_form_status_message, 'Message sent!');
           this.successStatus(this.contact_form_receipt_message,

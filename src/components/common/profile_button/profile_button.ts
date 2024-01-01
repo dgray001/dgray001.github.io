@@ -23,11 +23,11 @@ export class CufProfileButton extends CufElement {
   }
 
   protected override async parsedCallback(): Promise<void> {
-    if (!DEV) {
+    const logged_in = await loggedIn();
+    if (!DEV && !logged_in) {
       this.remove();
       return;
     }
-    const logged_in = await loggedIn();
     this.classList.toggle('logged-in', logged_in);
     if (logged_in) {
       const cookies = clientCookies();

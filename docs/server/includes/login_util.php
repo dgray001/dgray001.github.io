@@ -182,15 +182,15 @@ function sendVerificationCode($conn, $email, $expect_activated, $expect_logged_i
     </head>
     <body>
       <p>
-        Below is your single-use email verification code. This code will expire in 10 minutes. If you did not request this code, someone may be trying to access your CUF.org account
+        Below is your single-use email verification code. This code will expire in 10 minutes. If you did not request this code, someone may be trying to access your CUF account
       </p>
-        $code
       <p>
+        $code
       </p>
     </body>
   </html>
   ";
-  if (!sendEmail($email, 'CUF Single Use Email Verification Code', $email_body)) {
+  if (!sendEmail($email, 'CUF Single Use Email Verification Code', json_decode(json_encode($email_body)))) {
     return 'Email didn\'t send';
   }
   return '';

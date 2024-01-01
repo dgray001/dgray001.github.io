@@ -1,6 +1,6 @@
 import {CufElement} from '../../cuf_element';
 import {JsonData, fetchJson} from '../../../data/data_control';
-import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
+import {LaywitnessData} from '../../common/laywitness_list/laywitness_list';
 import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_category_list';
 import {CufNewsForm} from '../forms/news_form/news_form';
 import {recaptchaCallback} from '../../../scripts/recaptcha';
@@ -8,10 +8,10 @@ import {apiPost} from '../../../scripts/api';
 import {CufPositionPapersForm} from '../forms/position_papers_form/position_papers_form';
 import {CufJobsAvailableForm} from '../forms/jobs_available_form/jobs_available_form';
 import {renameFile} from '../../../scripts/util';
-import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
+import {addNewJsonData, addNewLayWitnessData, getListJsonData, getListLaywitnessData} from './util';
+import {CufLayWitnessForm} from '../forms/lay_witness_form/lay_witness_form';
 
 import html from './dashboard_section.html';
-import {getListJsonData, getListLaywitnessData} from './util';
 
 import './dashboard_section.scss';
 import '../forms/jobs_available_form/jobs_available_form';
@@ -19,9 +19,9 @@ import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
 
-type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm;
+type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm | CufLayWitnessForm;
 
-type DashboardSectionData = JsonData|LaywitnessData|FaithFactsData;
+type DashboardSectionData = JsonData | LaywitnessData | FaithFactsData;
 
 export class CufDashboardSection extends CufElement {
   private section_title: HTMLButtonElement;
@@ -142,7 +142,7 @@ export class CufDashboardSection extends CufElement {
         return;
       }
       await recaptchaCallback(async () => {
-        const form_data = this.new_form_el.getData() as LayWitnessFormData;
+        const form_data: any = this.new_form_el.getData();
         const {new_data, data_added} = this.addNewData(form_data);
         if (!new_data) {
           return;
@@ -180,78 +180,9 @@ export class CufDashboardSection extends CufElement {
 
   private addNewData(new_data: any): {new_data: DashboardSectionData|undefined, data_added?: any} {
     if (['news', 'jobs_available', 'position_papers'].includes(this.json_key)) {
-      const d = this.current_data as JsonData;
-      if (this.json_key === 'position_papers') {
-        new_data.titlelink = `/data/position_papers/${this.file_input.files[0].name}`;
-      }
-      d.content.unshift(new_data);
-      return {new_data: d};
+      return addNewJsonData(this.current_data as JsonData, new_data);
     } else if (this.json_key === 'lay_witness') {
-      const d = this.current_data as LaywitnessData;
-      for (const volume of d.volumes) {
-        if (volume.number === new_data.volume) {
-          let found_issue = false;
-          for (const issue of volume.issues) {
-            if (issue.number === new_data.issue) {
-              found_issue = true;
-              break;
-            }
-          }
-          const new_issue: LaywitnessIssueData = {
-            number: new_data.issue,
-            title: new_data.title,
-          };
-          if (found_issue) {
-            if (new_data.addendum) {
-              new_issue.addendum = 1;
-              for (const addendum of volume.issues.filter(a => a.number === new_data.issue && !!a.addendum)) {
-                new_issue.addendum = Math.max(1, addendum.addendum + 1);
-              }
-            } else if (new_data.insert) {
-              new_issue.insert = 1;
-              for (const insert of volume.issues.filter(a => a.number === new_data.issue && !!a.insert)) {
-                new_issue.insert = Math.max(1, insert.insert + 1);
-              }
-            } else {
-              this.errorStatus('This issue already exists');
-              return {new_data: undefined};
-            }
-          } else {
-            if (new_data.addendum) {
-              new_issue.addendum = 1;
-            } else if (new_data.insert) {
-              new_issue.insert = 1;
-            }
-          }
-          volume.issues.push(new_issue);
-          volume.issues.sort((a, b) => {
-            if (a.number !== b.number) {
-              return b.number - a.number;
-            } else if (a.addendum !== b.addendum) {
-              return (a.addendum ?? 0) - (b.addendum ?? 0);
-            }
-            return a.insert - b.insert;
-          });
-          return {new_data: d, data_added: new_issue};
-        }
-      }
-      const new_issue: LaywitnessIssueData = {
-        number: new_data.issue,
-        title: new_data.title,
-      };
-      if (new_data.addendum) {
-        new_issue.addendum = 1;
-      } else if (new_data.insert) {
-        new_issue.insert = 1;
-      }
-      const new_volume: LaywitnessVolumeData = {
-        number: new_data.volume,
-        year: new_data.volume + 2022 - 40,
-        issues: [new_issue],
-      };
-      d.volumes.push(new_volume);
-      d.volumes.sort((a, b) => b.number - a.number);
-      return {new_data: d, data_added: new_issue};
+      return addNewLayWitnessData(this.current_data as LaywitnessData, new_data);
     }
     console.error('Not implemented');
     return {new_data: this.current_data};

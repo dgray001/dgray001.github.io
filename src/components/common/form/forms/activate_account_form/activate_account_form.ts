@@ -94,7 +94,7 @@ export class CufActivateAccountForm extends CufForm<ActivateAccountFormData> {
           this.password_field1.classList.add('show');
           this.password_field1.addValidators('required', 'password');
           this.password_field2.classList.add('show');
-          this.password_field2.addValidators('required', 'password');
+          this.password_field2.addValidators('required', 'password', 'equals=password_field1=Passwords must match');
           this.form_button_password.classList.add('show');
           this.status_message_password.classList.add('show');
           this.active_status_message = this.status_message_password;
