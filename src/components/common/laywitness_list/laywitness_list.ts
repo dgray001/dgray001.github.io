@@ -56,10 +56,13 @@ export class CufLaywitnessList extends CufElement {
           `${v.number}.${issue.number}-Lay-Witness`;
         if (!!issue.addendum) {
           issue_link.href += `-Addendum${issue.addendum}`;
+          issue_link.innerHTML = `Addendum: ${issue.title}`;
+          issue_link.classList.add('addendum');
         }
         else if (!!issue.insert) {
           issue_link.href += `-Insert${issue.insert}`;
-          issue_link.innerHTML = issue.title;
+          issue_link.innerHTML = `Insert: ${issue.title}`;
+          issue_link.classList.add('insert');
         }
         issue_link.href += '.pdf';
         issue_element.appendChild(issue_link);

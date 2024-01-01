@@ -3,5 +3,13 @@ cuf-laywitness-list {
 
   ul {
     font-size: smaller;
+
+    > li {
+      > a {
+        &.addendum, &.insert {
+          margin-left: 1.8em;
+        }
+      }
+    }
   }
 }

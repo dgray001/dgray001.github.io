@@ -226,9 +226,9 @@ export class CufDashboardSection extends CufElement {
           volume.issues.push(new_issue);
           volume.issues.sort((a, b) => {
             if (a.number !== b.number) {
-              return a.number - b.number;
+              return b.number - a.number;
             } else if (a.addendum !== b.addendum) {
-              return a.addendum - b.addendum;
+              return (a.addendum ?? 0) - (b.addendum ?? 0);
             }
             return a.insert - b.insert;
           });
@@ -250,7 +250,7 @@ export class CufDashboardSection extends CufElement {
         issues: [new_issue],
       };
       d.volumes.push(new_volume);
-      d.volumes.sort((a, b) => a.number - b.number);
+      d.volumes.sort((a, b) => b.number - a.number);
       return {new_data: d, data_added: new_issue};
     }
     console.error('Not implemented');
