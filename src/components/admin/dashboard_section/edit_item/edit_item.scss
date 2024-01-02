@@ -31,8 +31,9 @@ cuf-edit-item {
       display: grid;
       font-size: var(--size-large);
       gap: 0.4em 0.8em;
-      grid-template-columns: max-content max-content;
+      grid-template-columns: max-content auto;
       margin: 1em 0;
+      width: 100%;
 
       .name {
         text-align: right;
@@ -51,11 +52,43 @@ cuf-edit-item {
 
         &#edit-button {
           background-color: rgb(220, 220, 20);
+
+          &.open {
+            box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.7);
+            font-weight: bold;
+          }
         }
 
         &#delete-button {
           background-color: rgb(250, 100, 100);
         }
+      }
+    }
+
+    > #edit-form {
+      margin-top: 2em;
+
+      &:not(.show) {
+        display: none;
+      }
+    }
+
+    > #status-message {
+      font-size: var(--size-medium);
+      margin-top: 0.4em;
+      text-align: center;
+      width: 100%;
+  
+      &.hide {
+        display: none;
+      }
+  
+      &.success {
+        color: green;
+      }
+  
+      &.error {
+        color: red;
       }
     }
   }

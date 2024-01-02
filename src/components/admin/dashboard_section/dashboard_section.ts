@@ -2,14 +2,14 @@ import {CufElement} from '../../cuf_element';
 import {JsonData, fetchJson} from '../../../data/data_control';
 import {LaywitnessData} from '../../common/laywitness_list/laywitness_list';
 import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_category_list';
-import {CufNewsForm} from '../forms/news_form/news_form';
+import {CufNewsForm, NewsFormData} from '../forms/news_form/news_form';
 import {recaptchaCallback} from '../../../scripts/recaptcha';
 import {apiPost} from '../../../scripts/api';
-import {CufPositionPapersForm} from '../forms/position_papers_form/position_papers_form';
-import {CufJobsAvailableForm} from '../forms/jobs_available_form/jobs_available_form';
+import {CufPositionPapersForm, PositionPapersFormData} from '../forms/position_papers_form/position_papers_form';
+import {CufJobsAvailableForm, JobsAvailableData} from '../forms/jobs_available_form/jobs_available_form';
 import {renameFile} from '../../../scripts/util';
 import {addNewJsonData, addNewLayWitnessData, getListJsonData, getListLaywitnessData} from './util';
-import {CufLayWitnessForm} from '../forms/lay_witness_form/lay_witness_form';
+import {CufLayWitnessForm, LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 
 import html from './dashboard_section.html';
 
@@ -19,7 +19,11 @@ import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
 
-type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm | CufLayWitnessForm;
+/** All the different admin dashboard forms */
+export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm | CufLayWitnessForm;
+
+/** All the different admin dashboard form datas */
+export type AdminFormDataType = NewsFormData & PositionPapersFormData & JobsAvailableData & LayWitnessFormData;
 
 type DashboardSectionData = JsonData | LaywitnessData | FaithFactsData;
 
@@ -34,14 +38,14 @@ export class CufDashboardSection extends CufElement {
 
   private section_key = '';
   private tag_key = '';
-  json_key = '';
+  private json_key = '';
   private body_open = false;
   private edit_body_open = false;
   private new_form_open = false;
   private new_form_button: HTMLButtonElement;
   private new_form_el: AdminFormType;
   private current_data: DashboardSectionData;
-  file_input: HTMLInputElement;
+  private file_input: HTMLInputElement;
 
   constructor() {
     super();
@@ -53,6 +57,18 @@ export class CufDashboardSection extends CufElement {
     this.configureElement('current_list');
     this.configureElement('new_form');
     this.configureElement('status_message');
+  }
+
+  getJsonKey() {
+    return this.json_key;
+  }
+
+  getTagKey() {
+    return this.tag_key;
+  }
+
+  getFileInput() {
+    return this.file_input.files[0];
   }
 
   protected override async parsedCallback(): Promise<void> {
@@ -144,6 +160,7 @@ export class CufDashboardSection extends CufElement {
         this.errorStatus('Please fix the validation errors');
         return;
       }
+      this.messageStatus('');
       await recaptchaCallback(async () => {
         const form_data: any = this.new_form_el.getData();
         const {new_data, data_added} = this.addNewData(form_data);
@@ -215,7 +232,7 @@ export class CufDashboardSection extends CufElement {
   private async setCurrentList() {
     this.current_data = await fetchJson<DashboardSectionData>(`${this.json_key}/${this.json_key}.json`);
     if (['jobs_available', 'news', 'position_papers'].includes(this.json_key)) {
-      this.current_list.replaceChildren(...getListJsonData(this.current_data as JsonData));
+      this.current_list.replaceChildren(...getListJsonData(this, this.current_data as JsonData));
     } else if (this.json_key === 'lay_witness') {
       this.current_list.replaceChildren(...getListLaywitnessData(this.current_data as LaywitnessData));
     } else if (this.json_key === 'faith_facts') {

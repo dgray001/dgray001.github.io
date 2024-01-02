@@ -101,14 +101,14 @@ export class CufLoginForm extends CufForm<LoginFormData> {
     }
   }
 
-  getData(): LoginFormData {
+  override getData(): LoginFormData {
     return {
       username: this.username_field.getData(),
       password: this.password_field.getData(),
     };
   }
 
-  setData(data: LoginFormData): void {
+  protected override _setData(data: LoginFormData): void {
     console.error('Not implemented');
   }
 }

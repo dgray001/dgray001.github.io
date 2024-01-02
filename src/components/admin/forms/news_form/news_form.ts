@@ -56,8 +56,10 @@ export class CufNewsForm extends CufForm<NewsFormData> {
     };
   }
 
-  override setData(data: NewsFormData): void {
-    console.error('Not implemented');
+  protected override _setData(data: NewsFormData): void {
+    this.news_title.setData(data.title ?? '');
+    this.news_titlelink.setData(data.titlelink ?? '');
+    this.news_description.setData(data.description ?? '');
   }
 }
 

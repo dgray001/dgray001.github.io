@@ -70,7 +70,7 @@ export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
     }
   }
 
-  getData(): ChangePasswordFormData {
+  override getData(): ChangePasswordFormData {
     return {
       user_email: getCookie('email'),
       old_password: this.change_password_old.getData(),
@@ -78,7 +78,7 @@ export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
     };
   }
 
-  setData(data: ChangePasswordFormData): void {
+  protected override _setData(data: ChangePasswordFormData): void {
     console.error('Not implemented');
   }
 }

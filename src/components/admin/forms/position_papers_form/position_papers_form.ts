@@ -52,7 +52,7 @@ export class CufPositionPapersForm extends CufForm<PositionPapersFormData> {
     };
   }
 
-  override setData(data: PositionPapersFormData): void {
+  protected override _setData(data: PositionPapersFormData): void {
     console.error('Not implemented');
   }
 }

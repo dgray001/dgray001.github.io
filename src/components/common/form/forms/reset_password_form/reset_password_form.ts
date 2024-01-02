@@ -133,7 +133,7 @@ export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
     }
   }
 
-  getData(): ResetPasswordFormData {
+  override getData(): ResetPasswordFormData {
     return {
       email: this.email_field.getData(),
       expect_activated: true,
@@ -143,7 +143,7 @@ export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
     };
   }
 
-  setData(data: ResetPasswordFormData): void {
+  protected override _setData(data: ResetPasswordFormData): void {
     console.error('Not implemented');
   }
 

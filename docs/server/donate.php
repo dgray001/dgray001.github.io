@@ -21,8 +21,12 @@ foreach($received_data['getHostedPaymentPageRequest'] as $k => $v) {
 
 // Initiate curl request
 $ch = curl_init();
+require_once($config_path . '/is_prod.php');
+$url = $is_prod ?
+  'https://api.authorize.net/xml/v1/request.api' :
+  'https://apitest.authorize.net/xml/v1/request.api';
 
-curl_setopt($ch, CURLOPT_URL, 'https://apitest.authorize.net/xml/v1/request.api');
+curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTPS);
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);

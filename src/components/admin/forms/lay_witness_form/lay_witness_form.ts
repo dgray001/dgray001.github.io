@@ -64,7 +64,7 @@ export class CufLayWitnessForm extends CufForm<LayWitnessFormData> {
     };
   }
 
-  override setData(data: LayWitnessFormData): void {
+  protected override _setData(data: LayWitnessFormData): void {
     console.error('Not implemented');
   }
 }

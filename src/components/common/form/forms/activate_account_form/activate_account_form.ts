@@ -134,7 +134,7 @@ export class CufActivateAccountForm extends CufForm<ActivateAccountFormData> {
     }
   }
 
-  getData(): ActivateAccountFormData {
+  override getData(): ActivateAccountFormData {
     return {
       email: this.email_field.getData(),
       expect_activated: false,
@@ -144,7 +144,7 @@ export class CufActivateAccountForm extends CufForm<ActivateAccountFormData> {
     };
   }
 
-  setData(data: ActivateAccountFormData): void {
+  protected override _setData(data: ActivateAccountFormData): void {
     console.error('Not implemented');
   }
 

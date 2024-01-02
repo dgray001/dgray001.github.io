@@ -87,7 +87,7 @@ export class CufContactForm extends CufForm<ContactFormData> {
     }
   }
 
-  getData(): ContactFormData {
+  override getData(): ContactFormData {
     return {
       name: this.section_name.getOutputData(),
       address: this.section_address.getOutputData(),
@@ -97,7 +97,7 @@ export class CufContactForm extends CufForm<ContactFormData> {
     };
   }
 
-  setData(data: ContactFormData): void {
+  protected override _setData(data: ContactFormData): void {
     console.error('Not implemented');
   }
 }

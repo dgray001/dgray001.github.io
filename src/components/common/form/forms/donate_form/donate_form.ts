@@ -115,7 +115,7 @@ export class CufDonateForm extends CufForm<DonateFormData> {
     }
   }
 
-  getData(): DonateFormData {
+  override getData(): DonateFormData {
     return {
       name: this.section_name.getOutputData(),
       address: this.section_address.getOutputData(),
@@ -130,7 +130,7 @@ export class CufDonateForm extends CufForm<DonateFormData> {
     return parseInt(this.donate_amount.getData().replace('$', ''));
   }
 
-  setData(data: DonateFormData): void {
+  protected override _setData(data: DonateFormData): void {
     console.error('Not implemented');
   }
 
@@ -160,7 +160,7 @@ export class CufDonateForm extends CufForm<DonateFormData> {
       "customer": customer,
       "billTo": billTo,
     };
-    const base_url = window.location.origin;
+    const base_url = DEV ? 'http://127.0.0.1:8080' : window.location.origin;
     const hosted_payment_settings = {
       "setting": [{
         "settingName": "hostedPaymentReturnOptions",

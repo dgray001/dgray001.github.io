@@ -1,6 +1,7 @@
 import {CufElement} from '../../cuf_element';
 import {CufFormField} from './form_field/form_field';
 import {CufFormSection} from './form_section/form_section';
+import {until} from '../../../scripts/util';
 
 import html from './form.html';
 
@@ -122,6 +123,12 @@ export abstract class CufForm<T> extends CufElement {
     }
   }
 
+  setData(data: T) {
+    until(() => this.fully_parsed).then(() => {
+      this._setData(data);
+    });
+  }
+
   abstract getData(): T;
-  abstract setData(data: T): void;
+  protected abstract _setData(data: T): void;
 }

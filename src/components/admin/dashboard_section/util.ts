@@ -10,8 +10,8 @@ import './edit_item/edit_item';
 export function addNewJsonData(el: CufDashboardSection, data: JsonData, added: JsonDataContent):
   {new_data: JsonData|undefined, data_added?: JsonDataContent}
 {
-  if (el.json_key === 'position_papers') {
-    added.titlelink = `/data/position_papers/${el.file_input.files[0].name}`;
+  if (el.getJsonKey() === 'position_papers') {
+    added.titlelink = `/data/position_papers/${el.getFileInput().name}`;
   }
   data.content.unshift(added);
   return {new_data: data, data_added: added};
@@ -88,23 +88,23 @@ export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessDa
 }
 
 /** Return array of elements from json data */
-export function getListJsonData(data: JsonData): CufEditItem[] {
+export function getListJsonData(el: CufDashboardSection, data: JsonData): CufEditItem[] {
   const els: CufEditItem[] = [];
   if (!!data.subheader) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
-    item.addConfigJsonData(data.subheader);
+    item.addConfigJsonData(el, data.subheader);
     item.classList.add('subheader');
     els.push(item);
   }
   if (!!data.content_empty) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
-    item.addConfigJsonData(data.content_empty);
+    item.addConfigJsonData(el, data.content_empty);
     item.classList.add('content-empty');
     els.push(item);
   }
   for (const c of data.content) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
-    item.addConfigJsonData(c);
+    item.addConfigJsonData(el, c);
     els.push(item);
   }
   return els;
