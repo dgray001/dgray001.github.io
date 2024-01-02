@@ -13,8 +13,6 @@ Testing:
 
 Staging:
  - Bluehost (and hostgator) have a bug where if you can't have a php file (or folder?) name 'contact'
-    => I don't think it can have the word contact at all as it's a keyword (why tf?)
-    => So when deploying to staging, rename contact.php to anything else, say con_test.php
-    => Also need to update contact.js with the new name
- - Also need to make sure DEV = false in /scripts/util.js
+    => So when deploying to staging, rename contact.php to con_tac.php
+ - Also need to make sure DEV = false and STAGING = true in /scripts/util.js
  - Also need to update /server/includes/config_path.php

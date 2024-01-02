@@ -1,7 +1,7 @@
 
 /** Frontend flags marking environment */
-export const DEV = true;
-export const STAGING = false;
+export const DEV = false;
+export const STAGING = true;
 
 /** Loop helper function */
 export const loop = (times: number, callback: (i?: number) => void) => {

@@ -8,6 +8,10 @@ cuf-dashboard-section {
     margin: 0;
     padding: 0.4em 0;
     width: 100%;
+
+    &.open {
+      font-weight: bold;
+    }
   }
 
   > #section-body {
@@ -40,6 +44,26 @@ cuf-dashboard-section {
         &.hide {
           display: none;
         }
+
+        &.open {
+          background-color: rgba(150, 150, 150, 0.4);
+          box-shadow: 0 0 3px 3px rgba(0, 0, 0, 0.7);
+          font-weight: bold;
+        }
+      }
+    }
+
+    > #current-list {
+      margin-top: 2em;
+
+      &:not(.show) {
+        display: none;
+      }
+
+      > * {
+        display: inline-block;
+        margin: 1em;
+        width: calc(100% - 2em);
       }
     }
 

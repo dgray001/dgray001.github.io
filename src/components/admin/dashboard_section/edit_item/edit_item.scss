@@ -1,5 +1,62 @@
 cuf-edit-item {
-  > #example {
-    border: 1px solid black;
+  background-color: rgb(230, 230, 230);
+
+  > #item-title {
+    border: none;
+    font-size: var(--size-medium);
+    margin: 0;
+    padding: 0.3em;
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+    &.open {
+      font-weight: bold;
+    }
+
+    > .float-left {
+      left: 1em;
+      position: absolute;
+    }
+  }
+
+  > #item-details {
+    padding: 1em;
+
+    &:not(.show) {
+      display: none;
+    }
+
+    > #details {
+      display: grid;
+      font-size: var(--size-large);
+      gap: 0.4em 0.8em;
+      grid-template-columns: max-content max-content;
+      margin: 1em 0;
+
+      .name {
+        text-align: right;
+      }
+    }
+
+    > #buttons {
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 1em;
+      width: 100%;
+
+      > * {
+        flex: 1 0 0;
+        font-size: var(--size-medium);
+
+        &#edit-button {
+          background-color: rgb(220, 220, 20);
+        }
+
+        &#delete-button {
+          background-color: rgb(250, 100, 100);
+        }
+      }
+    }
   }
 }

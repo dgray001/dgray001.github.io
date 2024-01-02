@@ -1,21 +1,24 @@
-import {JsonData, JsonDataContent} from "../../../data/data_control";
-import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from "../../common/laywitness_list/laywitness_list";
-import {LayWitnessFormData} from "../forms/lay_witness_form/lay_witness_form";
-import {CufEditItem} from "./edit_item/edit_item";
+import {JsonData, JsonDataContent} from '../../../data/data_control';
+import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
+import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
+import {CufDashboardSection} from './dashboard_section';
+import {CufEditItem} from './edit_item/edit_item';
+
+import './edit_item/edit_item';
 
 /** Adds new data to existing json data */
-export function addNewJsonData(data: JsonData, added: JsonDataContent):
+export function addNewJsonData(el: CufDashboardSection, data: JsonData, added: JsonDataContent):
   {new_data: JsonData|undefined, data_added?: JsonDataContent}
 {
-  if (this.json_key === 'position_papers') {
-    added.titlelink = `/data/position_papers/${this.file_input.files[0].name}`;
+  if (el.json_key === 'position_papers') {
+    added.titlelink = `/data/position_papers/${el.file_input.files[0].name}`;
   }
   data.content.unshift(added);
   return {new_data: data, data_added: added};
 }
 
 /** Adds new laywitness data to existing data */
-export function addNewLayWitnessData(data: LaywitnessData, added: LayWitnessFormData):
+export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessData, added: LayWitnessFormData):
   {new_data: LaywitnessData|undefined, data_added?: LaywitnessIssueData}
 {
   for (const volume of data.volumes) {
@@ -43,7 +46,7 @@ export function addNewLayWitnessData(data: LaywitnessData, added: LayWitnessForm
             new_issue.insert = Math.max(1, insert.insert + 1);
           }
         } else {
-          this.errorStatus('This issue already exists');
+          el.errorStatus('This issue already exists');
           return {new_data: undefined};
         }
       } else {
@@ -87,16 +90,21 @@ export function addNewLayWitnessData(data: LaywitnessData, added: LayWitnessForm
 /** Return array of elements from json data */
 export function getListJsonData(data: JsonData): CufEditItem[] {
   const els: CufEditItem[] = [];
-  const content = [];
   if (!!data.subheader) {
-    content.push(data.subheader);
+    const item: CufEditItem = document.createElement('cuf-edit-item');
+    item.addConfigJsonData(data.subheader);
+    item.classList.add('subheader');
+    els.push(item);
   }
-  content.push(...data.content);
   if (!!data.content_empty) {
-    content.push(data.content_empty);
+    const item: CufEditItem = document.createElement('cuf-edit-item');
+    item.addConfigJsonData(data.content_empty);
+    item.classList.add('content-empty');
+    els.push(item);
   }
-  for (const c of content) {
-    const item = document.createElement('cuf-edit-item');
+  for (const c of data.content) {
+    const item: CufEditItem = document.createElement('cuf-edit-item');
+    item.addConfigJsonData(c);
     els.push(item);
   }
   return els;

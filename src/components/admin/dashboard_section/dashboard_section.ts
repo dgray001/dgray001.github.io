@@ -34,13 +34,14 @@ export class CufDashboardSection extends CufElement {
 
   private section_key = '';
   private tag_key = '';
-  private json_key = '';
+  json_key = '';
   private body_open = false;
+  private edit_body_open = false;
   private new_form_open = false;
   private new_form_button: HTMLButtonElement;
   private new_form_el: AdminFormType;
   private current_data: DashboardSectionData;
-  private file_input: HTMLInputElement;
+  file_input: HTMLInputElement;
 
   constructor() {
     super();
@@ -60,8 +61,7 @@ export class CufDashboardSection extends CufElement {
     this.tag_key = this.section_key.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`);
     this.json_key = this.section_key.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`);
     this.section_title.innerText = this.sectionTitle();
-    this.edit_button.innerText = `Edit ${this.sectionTitle()} [Not implemented]`;
-    this.edit_button.disabled = true;
+    this.edit_button.innerText = `Edit ${this.sectionTitle()}`;
     this.setNewForm();
     this.setNewButton();
     await this.setCurrentList();
@@ -72,6 +72,9 @@ export class CufDashboardSection extends CufElement {
         this.setBodyOpen(!this.body_open);
       });
     }
+    this.edit_button.addEventListener('click', () => {
+      this.currentListOpen(!this.edit_body_open);
+    });
   }
 
   private sectionTitle() {
@@ -180,9 +183,9 @@ export class CufDashboardSection extends CufElement {
 
   private addNewData(new_data: any): {new_data: DashboardSectionData|undefined, data_added?: any} {
     if (['news', 'jobs_available', 'position_papers'].includes(this.json_key)) {
-      return addNewJsonData(this.current_data as JsonData, new_data);
+      return addNewJsonData(this, this.current_data as JsonData, new_data);
     } else if (this.json_key === 'lay_witness') {
-      return addNewLayWitnessData(this.current_data as LaywitnessData, new_data);
+      return addNewLayWitnessData(this, this.current_data as LaywitnessData, new_data);
     }
     console.error('Not implemented');
     return {new_data: this.current_data};
@@ -204,7 +207,7 @@ export class CufDashboardSection extends CufElement {
     this.status_message.classList.add('success');
   }
 
-  private errorStatus(message: string): void {
+  errorStatus(message: string): void {
     this.messageStatus(message);
     this.status_message.classList.add('error');
   }
@@ -223,6 +226,20 @@ export class CufDashboardSection extends CufElement {
   private setBodyOpen(body_open: boolean) {
     this.body_open = body_open;
     this.section_body.classList.toggle('show', body_open);
+    this.section_title.classList.toggle('open', body_open);
+    if (!this.body_open) {
+      this.currentListOpen(false);
+      this.toggleNewForm(false);
+    }
+  }
+
+  private currentListOpen(edit_body_open: boolean) {
+    this.edit_body_open = edit_body_open;
+    this.current_list.classList.toggle('show', edit_body_open);
+    this.edit_button.classList.toggle('open', edit_body_open);
+    if (edit_body_open) {
+      this.toggleNewForm(false);
+    }
   }
 
   private toggleNewForm(new_form_open: boolean) {
@@ -231,7 +248,7 @@ export class CufDashboardSection extends CufElement {
     this.new_form_button.classList.toggle('open', new_form_open);
     this.new_form_button.innerText = new_form_open ? 'Cancel' : `New ${this.sectionTitle()}`;
     if (new_form_open) {
-      // TODO: close edit list
+      this.currentListOpen(false);
     } else {
       this.new_form_el.clearData();
     }
