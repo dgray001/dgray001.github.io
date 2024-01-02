@@ -25,7 +25,7 @@ export declare interface JsonDataContent {
 /** This function gets the most recent version of the input json data */
 export async function fetchJson<T>(path: string): Promise<T> {
   try {
-    const data_control_res = await fetch(`/data/data_control.json?v=${Math.floor(Date.now() / 3600000)}`);
+    const data_control_res = await fetch(`/data/data_control.json?v=${Math.floor(Date.now() / 3000)}`);
     const data_control = await data_control_res.json();
     let timestamp = '';
     if (data_control[path]) {

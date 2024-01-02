@@ -20,7 +20,7 @@ export function pageToName(page: string): string {
     case 'information_services':
       return 'Information Services';
     case 'involvement':
-      return 'Involvement';
+      return 'Revolution';
     case 'jobs_available':
       return 'Jobs Available';
     case 'lay_witness':

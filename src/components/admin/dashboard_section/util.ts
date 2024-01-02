@@ -1,6 +1,7 @@
 import {JsonData, JsonDataContent} from "../../../data/data_control";
 import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from "../../common/laywitness_list/laywitness_list";
 import {LayWitnessFormData} from "../forms/lay_witness_form/lay_witness_form";
+import {CufEditItem} from "./edit_item/edit_item";
 
 /** Adds new data to existing json data */
 export function addNewJsonData(data: JsonData, added: JsonDataContent):
@@ -84,11 +85,24 @@ export function addNewLayWitnessData(data: LaywitnessData, added: LayWitnessForm
 }
 
 /** Return array of elements from json data */
-export function getListJsonData(data: JsonData): HTMLButtonElement[] {
-  return [];
+export function getListJsonData(data: JsonData): CufEditItem[] {
+  const els: CufEditItem[] = [];
+  const content = [];
+  if (!!data.subheader) {
+    content.push(data.subheader);
+  }
+  content.push(...data.content);
+  if (!!data.content_empty) {
+    content.push(data.content_empty);
+  }
+  for (const c of content) {
+    const item = document.createElement('cuf-edit-item');
+    els.push(item);
+  }
+  return els;
 }
 
 /** Return array of elements from lay witness data */
-export function getListLaywitnessData(data: LaywitnessData): HTMLButtonElement[] {
+export function getListLaywitnessData(data: LaywitnessData): HTMLDivElement[] {
   return [];
 }
