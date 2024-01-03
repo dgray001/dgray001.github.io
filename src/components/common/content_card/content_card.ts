@@ -115,7 +115,7 @@ export class CufContentCard extends CufElement {
       content_list += '<div class="content-element"';
       if (content['title']) {
         if (content['titlelink']) {
-          content_list += ` class="element-with-title"><div class="element-title"><a href="${content['titlelink']}" target="_blank" onclick="event.stopPropagation()">${content['title']}</a></div`;
+          content_list += ` class="element-with-title"><div class="element-title"><a href="${content['titlelink']}" onclick="event.stopPropagation()">${content['title']}</a></div`;
         }
         else {
           content_list += ` class="element-with-title"><div class="element-title">${content['title']}</div`;

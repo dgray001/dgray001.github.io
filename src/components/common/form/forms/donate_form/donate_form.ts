@@ -74,6 +74,9 @@ export class CufDonateForm extends CufForm<DonateFormData> {
   protected override async _parsedCallback(): Promise<void> {
     if (DEV) {
       this.setTestData();
+      this.hidden_donate_form.action = 'https://test.authorize.net/payment/payment';
+    } else {
+      this.hidden_donate_form.action = 'https://accept.authorize.net/payment/payment';
     }
     this.donate_form_button.addEventListener('click', () => {
       if (!this.validate()) {
