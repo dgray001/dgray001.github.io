@@ -53,7 +53,8 @@ export class CufJobsAvailableForm extends CufForm<JobsAvailableData> {
   }
 
   protected override _setData(data: JobsAvailableData): void {
-    console.error('Not implemented');
+    this.job_title.setData(data.title ?? '');
+    this.job_description.setData(data.description ?? '');
   }
 }
 

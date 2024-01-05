@@ -25,7 +25,8 @@ export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailab
 /** All the different admin dashboard form datas */
 export type AdminFormDataType = NewsFormData & PositionPapersFormData & JobsAvailableData & LayWitnessFormData;
 
-type DashboardSectionData = JsonData | LaywitnessData | FaithFactsData;
+/** All the different admin dashboard form types */
+export type DashboardSectionData = JsonData | LaywitnessData | FaithFactsData;
 
 export class CufDashboardSection extends CufElement {
   private section_title: HTMLButtonElement;
@@ -68,7 +69,11 @@ export class CufDashboardSection extends CufElement {
   }
 
   getFileInput() {
-    return this.file_input.files[0];
+    return this.file_input?.files[0];
+  }
+
+  getCurrentData() {
+    return this.current_data;
   }
 
   protected override async parsedCallback(): Promise<void> {
@@ -167,35 +172,41 @@ export class CufDashboardSection extends CufElement {
         if (!new_data) {
           return;
         }
-        if (['layWitness', 'positionPapers'].includes(this.section_key)) {
-          let file = this.file_input.files[0];
-          if (this.section_key === 'layWitness') {
-            let new_name = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
-            if (form_data.addendum) {
-              new_name += `-Addendum${data_added.addendum}`;
-            } else if (form_data.insert) {
-              new_name += `-Insert${data_added.insert}`;
-            }
-            new_name += '.pdf';
-            file = renameFile(file, new_name);
-          }
-          const r = await apiPost(`admin_dashboard/${this.json_key}_file`, file);
-          if (!r.success) {
-            this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
-            return;
-          }
-        }
-        this.current_data = new_data;
-        const r = await apiPost(`admin_dashboard/${this.json_key}_data`, this.current_data);
-        if (r.success) {
-          this.successStatus(`Successfully added a new ${this.sectionTitle().toLowerCase()}`);
-          this.toggleNewForm(false);
-        } else {
-          this.errorStatus(r.error_message ?? 'An unknown error has occurrred');
-        }
+        await this.sendSaveDataRequest(form_data, new_data, data_added, this.getFileInput());
       }, this.new_form_el.getSubmitButton(), this.status_message, 'Uploading');
     });
     this.new_form.appendChild(this.new_form_el);
+  }
+
+  async sendSaveDataRequest(form_data: any, new_data: DashboardSectionData,
+    data_added: any, file: File, success_message = 'added a new')
+  {
+    if (['layWitness', 'positionPapers'].includes(this.section_key)) {
+      if (this.section_key === 'layWitness') {
+        let new_name = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
+        if (form_data.addendum) {
+          new_name += `-Addendum${data_added.addendum}`;
+        } else if (form_data.insert) {
+          new_name += `-Insert${data_added.insert}`;
+        }
+        new_name += '.pdf';
+        file = renameFile(file, new_name);
+      }
+      const r = await apiPost(`admin_dashboard/${this.json_key}_file`, file);
+      if (!r.success) {
+        this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
+        return;
+      }
+    }
+    this.current_data = new_data;
+    const r = await apiPost(`admin_dashboard/${this.json_key}_data`, this.current_data);
+    if (r.success) {
+      await this.setCurrentList();
+      this.successStatus(`Successfully ${success_message} ${this.sectionTitle().toLowerCase()}`);
+      this.toggleNewForm(false);
+    } else {
+      this.errorStatus(r.error_message ?? 'An unknown error has occurrred');
+    }
   }
 
   private addNewData(new_data: any): {new_data: DashboardSectionData|undefined, data_added?: any} {

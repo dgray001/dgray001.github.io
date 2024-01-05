@@ -17,6 +17,37 @@ export function addNewJsonData(el: CufDashboardSection, data: JsonData, added: J
   return {new_data: data, data_added: added};
 }
 
+/** Edits existing entry in json data */
+export function editJsonData(el: CufDashboardSection, data: JsonData, edited: JsonDataContent, data_key: string):
+  {new_data: JsonData|undefined, data_edited?: JsonDataContent}
+{
+  if (el.getJsonKey() === 'position_papers') {
+    //edited.titlelink = `/data/position_papers/${el.getFileInput().name}`; TODO: fix
+  }
+  data.content.unshift(edited);
+  return {new_data: data, data_edited: edited};
+}
+
+/** Deletes existing entry in json data */
+export function deleteJsonData(el: CufDashboardSection, data: JsonData, deleted: JsonDataContent, data_key: string):
+  {new_data: JsonData|undefined, data_deleted?: JsonDataContent}
+{
+  if (el.getJsonKey() === 'position_papers') {
+    //edited.titlelink = `/data/position_papers/${el.getFileInput().name}`; TODO: fix
+  }
+  if (data_key === 'subheader') {
+    el.errorStatus('Deleting subheader not implemented since adding subheader is not implemented');
+    return {new_data: undefined};
+  } else if (data_key === 'content-empty') {
+    el.errorStatus('Deleting empty content message not implemented since adding subheader is not implemented');
+    return {new_data: undefined};
+  } else {
+    const i = parseInt(data_key);
+    data.content.splice(i, 1);
+  }
+  return {new_data: data, data_deleted: deleted};
+}
+
 /** Adds new laywitness data to existing data */
 export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessData, added: LayWitnessFormData):
   {new_data: LaywitnessData|undefined, data_added?: LaywitnessIssueData}
@@ -87,24 +118,31 @@ export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessDa
   return {new_data: data, data_added: new_issue};
 }
 
+/** Edit existing entry in laywitness data */
+export function editLayWitnessData(el: CufDashboardSection, data: LaywitnessData, edited: LayWitnessFormData):
+  {new_data: LaywitnessData|undefined, data_edited?: LaywitnessIssueData}
+{
+  return {new_data: data};
+}
+
 /** Return array of elements from json data */
 export function getListJsonData(el: CufDashboardSection, data: JsonData): CufEditItem[] {
   const els: CufEditItem[] = [];
   if (!!data.subheader) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
-    item.addConfigJsonData(el, data.subheader);
+    item.addConfigJsonData(el, data.subheader, 'subheader');
     item.classList.add('subheader');
     els.push(item);
   }
   if (!!data.content_empty) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
-    item.addConfigJsonData(el, data.content_empty);
+    item.addConfigJsonData(el, data.content_empty, 'content-empty');
     item.classList.add('content-empty');
     els.push(item);
   }
-  for (const c of data.content) {
+  for (const [i, c] of data.content.entries()) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
-    item.addConfigJsonData(el, c);
+    item.addConfigJsonData(el, c, i.toString());
     els.push(item);
   }
   return els;

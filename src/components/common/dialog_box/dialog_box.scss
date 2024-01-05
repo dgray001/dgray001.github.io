@@ -1,0 +1,27 @@
+.dwg-dialog-box {
+  align-items: center;
+  background-color: rgba(120, 120, 120, 0.8);
+  bottom: 0;
+  display: flex;
+  left: 0;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+
+  #wrapper {
+    background-color: rgb(80, 80, 80);
+    box-shadow: 0px 0px 3px 3px rgba(200, 200, 200, 0.8);
+    color: white;
+    font-size: var(--size-larger);
+    padding: 1em;
+    position: relative;
+
+    button {
+      border-radius: 0.2em;
+      font-size: var(--size-medium);
+      padding: 0.2em 0.4em;
+    }
+  }
+}

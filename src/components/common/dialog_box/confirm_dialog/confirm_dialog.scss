@@ -1,0 +1,36 @@
+dwg-confirm-dialog {
+  #wrapper {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 35vh;
+    gap: 1em;
+    max-height: 400px;
+    max-width: 500px;
+    min-height: 220px;
+    min-width: 220px;
+    width: 35vw;
+  
+    > #button-wrapper {
+      align-items: center;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 0.5em;
+      margin-top: auto;
+
+      > buttom {
+        color: black;
+        padding: 0.3em 0.6em;
+      }
+    }
+  }
+}
+
+body.mobile {
+  dwg-confirm-dialog {
+    #wrapper {
+      height: 50svh;
+      width: 50vw;
+    }
+  }
+}

@@ -1,12 +1,15 @@
-import {JsonDataContent} from '../../../../data/data_control';
+import {JsonData, JsonDataContent} from '../../../../data/data_control';
 import {recaptchaCallback} from '../../../../scripts/recaptcha';
 import {until} from '../../../../scripts/util';
+import {LaywitnessData} from '../../../common/laywitness_list/laywitness_list';
 import {CufElement} from '../../../cuf_element';
-import {AdminFormDataType, AdminFormType, CufDashboardSection} from '../dashboard_section';
+import {AdminFormType, CufDashboardSection, DashboardSectionData} from '../dashboard_section';
+import {deleteJsonData, editJsonData, editLayWitnessData} from '../util';
 
 import html from './edit_item.html';
 
 import './edit_item.scss';
+import '../../../common/dialog_box/confirm_dialog/confirm_dialog';
 
 export class CufEditItem extends CufElement {
   private item_title: HTMLButtonElement;
@@ -20,6 +23,7 @@ export class CufEditItem extends CufElement {
   private body_open = false;
   private edit_open = false;
   private edit_form_el: AdminFormType;
+  private data_key = '';
 
   constructor() {
     super();
@@ -33,8 +37,9 @@ export class CufEditItem extends CufElement {
     this.configureElement('status_message');
   }
 
-  async addConfigJsonData(el: CufDashboardSection, data: JsonDataContent) {
+  async addConfigJsonData(el: CufDashboardSection, data: JsonDataContent, data_key: string) {
     await until(() => this.fully_parsed);
+    this.data_key = data_key;
     let title = data.title ?? '-- no title --';
     if (this.classList.contains('subheader')) {
       title = `<span class="float-left">[Subheader]</span>${title}`;
@@ -53,8 +58,19 @@ export class CufEditItem extends CufElement {
     this.edit_button.addEventListener('click', () => {
       this.toggleEditForm(!this.edit_open);
     });
-    this.delete_button.addEventListener('click', () => {
-      // TODO: confirm then delete
+    this.delete_button.addEventListener('click', async () => {
+      await recaptchaCallback(async () => {
+        const confirm_dialog = document.createElement('dwg-confirm-dialog');
+        confirm_dialog.setData({question: 'Are you sure you want to delete this?'});
+        confirm_dialog.addEventListener('confirmed', async () => {
+          const {new_data, data_deleted} = this.addDeleteData(el, el.getCurrentData(), data);
+          if (!new_data) {
+            return;
+          }
+          await el.sendSaveDataRequest(data, new_data, data_deleted, undefined, 'deleted a');
+        });
+        this.appendChild(confirm_dialog);
+      });
     });
   }
 
@@ -74,9 +90,9 @@ export class CufEditItem extends CufElement {
     this.details.appendChild(details_el);
   }
 
-  private addEditForm(el: CufDashboardSection, data: JsonDataContent) {
+  private addEditForm(el: CufDashboardSection, data: any) {
     this.edit_form_el = document.createElement(`cuf-${el.getTagKey()}-form`) as AdminFormType;
-    this.edit_form_el.setData(data as AdminFormDataType);
+    this.edit_form_el.setData(data);
     this.edit_form_el.setSubmitCallback(async () => {
       if (!this.edit_form_el.validate()) {
         this.errorStatus('Please fix the validation errors');
@@ -84,9 +100,39 @@ export class CufEditItem extends CufElement {
       }
       this.messageStatus('');
       await recaptchaCallback(async () => {
+        const form_data: any = this.edit_form_el.getData();
+        const {new_data, data_edited} = this.addEditData(el, el.getCurrentData(), form_data);
+        if (!new_data) {
+          return;
+        }
+        await el.sendSaveDataRequest(form_data, new_data, data_edited, undefined, 'edited a');
       });
     });
     this.edit_form.appendChild(this.edit_form_el);
+  }
+
+  private addEditData(el: CufDashboardSection, old_data: DashboardSectionData, form_data: any):
+    {new_data: DashboardSectionData|undefined, data_edited?: any}
+  {
+    if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
+      return editJsonData(el, old_data as JsonData, form_data, this.data_key);
+    } else if (el.getJsonKey() === 'lay_witness') {
+      return editLayWitnessData(el, old_data as LaywitnessData, form_data);
+    }
+    console.error('Not implemented');
+    return {new_data: old_data};
+  }
+
+  private addDeleteData(el: CufDashboardSection, old_data: DashboardSectionData, data_deleted: any):
+    {new_data: DashboardSectionData|undefined, data_deleted?: any}
+  {
+    if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
+      return deleteJsonData(el, old_data as JsonData, data_deleted, this.data_key);
+    } else if (el.getJsonKey() === 'lay_witness') {
+      //return editLayWitnessData(el, old_data as LaywitnessData, form_data);
+    }
+    console.error('Not implemented');
+    return {new_data: old_data};
   }
 
   private messageStatus(message: string): void {

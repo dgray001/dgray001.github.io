@@ -1,9 +1,1 @@
-{
-  "header": "Jobs Available",
-  "headerlink": "/jobs_available",
-  "content": [],
-  "content_empty": {
-    "title": "No jobs currently available",
-    "description": "No jobs currently available"
-  }
-}
+{"header":"Jobs Available","headerlink":"/jobs_available","content":[],"content_empty":{"title":"No jobs currently available","description":"No jobs currently available"}}
