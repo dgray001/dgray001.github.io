@@ -1,4 +1,4 @@
-import {JsonData, JsonDataContent} from '../../../data/data_control';
+import {JsonData, JsonDataContent, JsonDataSubheader} from '../../../data/data_control';
 import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
 import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {CufDashboardSection} from './dashboard_section';
@@ -24,7 +24,18 @@ export function editJsonData(el: CufDashboardSection, data: JsonData, edited: Js
   if (el.getJsonKey() === 'position_papers') {
     //edited.titlelink = `/data/position_papers/${el.getFileInput().name}`; TODO: fix
   }
-  data.content.unshift(edited);
+  if (data_key === 'subheader') {
+    if (!edited.title) {
+      el.errorStatus('Must have a title for a subheader');
+      return {new_data: undefined};
+    }
+    data.subheader = edited as JsonDataSubheader;
+  } else if (data_key === 'content-empty') {
+    data.content_empty = edited;
+  } else {
+    const i = parseInt(data_key);
+    data.content[i] = edited;
+  }
   return {new_data: data, data_edited: edited};
 }
 
@@ -32,9 +43,6 @@ export function editJsonData(el: CufDashboardSection, data: JsonData, edited: Js
 export function deleteJsonData(el: CufDashboardSection, data: JsonData, deleted: JsonDataContent, data_key: string):
   {new_data: JsonData|undefined, data_deleted?: JsonDataContent}
 {
-  if (el.getJsonKey() === 'position_papers') {
-    //edited.titlelink = `/data/position_papers/${el.getFileInput().name}`; TODO: fix
-  }
   if (data_key === 'subheader') {
     el.errorStatus('Deleting subheader not implemented since adding subheader is not implemented');
     return {new_data: undefined};

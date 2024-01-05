@@ -48,7 +48,9 @@ export class CufEditItem extends CufElement {
     }
     this.item_title.innerHTML = title;
     this.addItemDetails('Title:', data.title);
-    this.addItemDetails('Title Link:', data.titlelink);
+    if (el.getJsonKey() === 'news') {
+      this.addItemDetails('Title Link:', data.titlelink);
+    }
     this.addItemDetails('Description:', data.description);
     this.addEditForm(el, data);
     this.toggleEditForm(false);
@@ -67,7 +69,7 @@ export class CufEditItem extends CufElement {
           if (!new_data) {
             return;
           }
-          await el.sendSaveDataRequest(data, new_data, data_deleted, undefined, 'deleted a');
+          await el.sendSaveDataRequest(data, new_data, data_deleted, undefined, 'deleted a', false);
         });
         this.appendChild(confirm_dialog);
       });

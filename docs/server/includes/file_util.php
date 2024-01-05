@@ -5,9 +5,18 @@ require_once(__DIR__ . '/force_include.php');
 /**
  * delete file given the filepath
  * @param string $filepath
+ * @return string error message
  */
-function deleteFile($filepath) {
-  unlink($filepath);
+function deleteFile($filepath): string {
+  try {
+    $deleted = unlink($filepath);
+    if (!$deleted) {
+      return 'An unknown error occurred trying to delete a file';
+    }
+    return '';
+  } catch (Exception $e) {
+    return $e -> getMessage();
+  }
 }
 
 /**

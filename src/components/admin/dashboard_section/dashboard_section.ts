@@ -172,27 +172,41 @@ export class CufDashboardSection extends CufElement {
         if (!new_data) {
           return;
         }
-        await this.sendSaveDataRequest(form_data, new_data, data_added, this.getFileInput());
+        await this.sendSaveDataRequest(form_data, new_data, data_added, this.getFileInput(), 'added a new');
       }, this.new_form_el.getSubmitButton(), this.status_message, 'Uploading');
     });
     this.new_form.appendChild(this.new_form_el);
   }
 
   async sendSaveDataRequest(form_data: any, new_data: DashboardSectionData,
-    data_added: any, file: File, success_message = 'added a new')
+    data_added: any, file: File, success_message: string, upload_file = true)
   {
     if (['layWitness', 'positionPapers'].includes(this.section_key)) {
+      let api_suffix = '';
+      let filename = '';
+      let post_data: any = file;
       if (this.section_key === 'layWitness') {
-        let new_name = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
+        let filename = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
         if (form_data.addendum) {
-          new_name += `-Addendum${data_added.addendum}`;
+          filename += `-Addendum${data_added.addendum}`;
         } else if (form_data.insert) {
-          new_name += `-Insert${data_added.insert}`;
+          filename += `-Insert${data_added.insert}`;
         }
-        new_name += '.pdf';
-        file = renameFile(file, new_name);
+        filename += '.pdf';
       }
-      const r = await apiPost(`admin_dashboard/${this.json_key}_file`, file);
+      if (upload_file) { // add or edit file
+        api_suffix = 'file';
+        if (this.section_key === 'layWitness') {
+          file = renameFile(file, filename);
+        }
+      } else { // delete file
+        api_suffix = 'file_delete';
+        if (this.section_key === 'positionPapers') {
+          filename = data_added.titlelink ?? '';
+        }
+        post_data = {filename};
+      }
+      const r = await apiPost(`admin_dashboard/${this.json_key}_${api_suffix}`, post_data);
       if (!r.success) {
         this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
         return;
