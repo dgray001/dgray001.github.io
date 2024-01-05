@@ -190,7 +190,7 @@ export class CufDashboardSection extends CufElement {
       let filename = '';
       let post_data: any = file;
       if (this.section_key === 'layWitness') {
-        let filename = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
+        filename = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
         if (form_data.addendum) {
           filename += `-Addendum${data_added.addendum}`;
         } else if (form_data.insert) {

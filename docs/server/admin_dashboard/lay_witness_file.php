@@ -35,10 +35,17 @@ if ($filetype !== 'application/pdf') {
   exit(1);
 }
 
-forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/lay_witness/' . $filename, $in);
+$err = forceFilePutContents($_SERVER['DOCUMENT_ROOT'] . '/data/lay_witness/' . $filename, $in);
 
-echo json_encode(array(
-  'success' => true,
-));
+if ($err) {
+  echo json_encode(array(
+    'success' => false,
+    'error_message' => 'Error attempting to create file: ' . $err,
+  ));
+} else {
+  echo json_encode(array(
+    'success' => true,
+  ));
+}
 
 exit();

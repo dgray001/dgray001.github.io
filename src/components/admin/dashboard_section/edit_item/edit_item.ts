@@ -4,7 +4,8 @@ import {until} from '../../../../scripts/util';
 import {LaywitnessData, LaywitnessIssueData} from '../../../common/laywitness_list/laywitness_list';
 import {CufElement} from '../../../cuf_element';
 import {AdminFormType, CufDashboardSection, DashboardSectionData} from '../dashboard_section';
-import {deleteJsonData, editJsonData, editLayWitnessData} from '../util';
+import {deleteJsonData, deleteLayWitnessData, editJsonData, editLayWitnessData} from '../util';
+import {LayWitnessFormData} from '../../forms/lay_witness_form/lay_witness_form';
 
 import html from './edit_item.html';
 
@@ -60,18 +61,28 @@ export class CufEditItem extends CufElement {
     this.addEventListeners(el, data);
   }
 
-  async addConfigLaywitnessData(el: CufDashboardSection, data: LaywitnessIssueData, volume: number) {
+  async addConfigLaywitnessData(el: CufDashboardSection, data: LaywitnessIssueData, volume: number, data_key: string) {
     await until(() => this.fully_parsed);
+    this.data_key = data_key;
     const issue_title = `${volume}.${data.number}: ${data.title}`;
     let title = issue_title;
     if (!!data.insert) {
+      this.item_title.classList.add('indent-1');
       title = `<span class="float-left">[Insert ${data.insert}]</span>${title}`;
     } else if (!!data.addendum) {
+      this.classList.add('indent-1');
       title = `<span class="float-left">[Addendum ${data.addendum}]</span>${title}`;
     }
     this.item_title.innerHTML = title;
     this.addItemDetails('Title:', issue_title);
-    this.addEventListeners(el, data);
+    const form_data: LayWitnessFormData = {
+      volume,
+      issue: data.number,
+      title: data.title,
+      insert: !!data.insert,
+      addendum: !!data.addendum,
+    };
+    this.addEventListeners(el, form_data);
   }
 
   private addEventListeners(el: CufDashboardSection, data: any) {
@@ -92,6 +103,7 @@ export class CufEditItem extends CufElement {
           if (!new_data) {
             return;
           }
+          console.log(data, data_deleted);
           await el.sendSaveDataRequest(data, new_data, data_deleted, undefined, 'deleted a', false);
         });
         this.appendChild(confirm_dialog);
@@ -165,7 +177,7 @@ export class CufEditItem extends CufElement {
     if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
       return deleteJsonData(el, old_data as JsonData, data_deleted, this.data_key);
     } else if (el.getJsonKey() === 'lay_witness') {
-      //return editLayWitnessData(el, old_data as LaywitnessData, form_data);
+      return deleteLayWitnessData(el, old_data as LaywitnessData, data_deleted, this.data_key);
     }
     console.error('Not implemented');
     return {new_data: old_data};

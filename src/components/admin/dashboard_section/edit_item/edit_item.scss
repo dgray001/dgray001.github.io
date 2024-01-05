@@ -1,7 +1,17 @@
 cuf-edit-item {
-  background-color: rgb(230, 230, 230);
+  &.indent-1 {
+    > #item-title {
+      margin-left: 15%;
+      width: 85%;
+    }
+    > #item-details {
+      margin-left: 15%;
+      width: 85%;
+    }
+  }
 
   > #item-title {
+    box-sizing: border-box;
     border: none;
     font-size: var(--size-medium);
     margin: 0;
@@ -9,6 +19,10 @@ cuf-edit-item {
     position: relative;
     text-align: center;
     width: 100%;
+
+    &:not(:focus):not(:hover):not(:active) {
+      background-color: rgb(230, 230, 230);
+    }
 
     &.open {
       font-weight: bold;
@@ -21,6 +35,8 @@ cuf-edit-item {
   }
 
   > #item-details {
+    background-color: rgb(230, 230, 230);
+    box-sizing: border-box;
     padding: 1em;
 
     &:not(.show) {

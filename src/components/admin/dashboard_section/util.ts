@@ -145,6 +145,21 @@ export function editLayWitnessData(el: CufDashboardSection, data: LaywitnessData
   return {new_data: data};
 }
 
+/** Delete existing entry in laywitness data */
+export function deleteLayWitnessData(el: CufDashboardSection,
+  data: LaywitnessData, deleted: LayWitnessFormData, data_key: string):
+  {new_data: LaywitnessData|undefined, data_deleted?: LaywitnessIssueData}
+{
+  const i = parseInt(data_key.split('-')[0].trim());
+  const j = parseInt(data_key.split('-')[1].trim());
+  const issue_deleted = data.volumes[i].issues[j];
+  data.volumes[i].issues.splice(j, 1);
+  if (data.volumes[i].issues.length === 0) {
+    data.volumes.splice(i, 1);
+  }
+  return {new_data: data, data_deleted: issue_deleted};
+}
+
 /** Return array of elements from json data */
 export function getListJsonData(el: CufDashboardSection, data: JsonData): CufEditItem[] {
   const els: CufEditItem[] = [];
@@ -171,10 +186,10 @@ export function getListJsonData(el: CufDashboardSection, data: JsonData): CufEdi
 /** Return array of elements from lay witness data */
 export function getListLaywitnessData(el: CufDashboardSection, data: LaywitnessData): CufEditItem[] {
   const els: CufEditItem[] = [];
-  for (const volume of data.volumes) {
-    for (const issue of volume.issues) {
+  for (const [i, volume] of data.volumes.entries()) {
+    for (const [j, issue] of volume.issues.entries()) {
       const item: CufEditItem = document.createElement('cuf-edit-item');
-      item.addConfigLaywitnessData(el, issue, volume.number);
+      item.addConfigLaywitnessData(el, issue, volume.number, `${i}-${j}`);
       els.push(item);
     }
   }
