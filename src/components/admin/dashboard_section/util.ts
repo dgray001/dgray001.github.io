@@ -18,23 +18,27 @@ export function addNewJsonData(el: CufDashboardSection, data: JsonData, added: J
 }
 
 /** Edits existing entry in json data */
-export function editJsonData(el: CufDashboardSection, data: JsonData, edited: JsonDataContent, data_key: string):
+export function editJsonData(el: CufDashboardSection, data: JsonData,
+  edited: JsonDataContent, data_key: string, filename: string):
   {new_data: JsonData|undefined, data_edited?: JsonDataContent}
 {
-  if (el.getJsonKey() === 'position_papers') {
-    //edited.titlelink = `/data/position_papers/${el.getFileInput().name}`; TODO: fix
-  }
   if (data_key === 'subheader') {
     if (!edited.title) {
       el.errorStatus('Must have a title for a subheader');
       return {new_data: undefined};
     }
+    edited.titlelink = data.subheader.titlelink;
     data.subheader = edited as JsonDataSubheader;
   } else if (data_key === 'content-empty') {
+    edited.titlelink = data.content_empty.titlelink;
     data.content_empty = edited;
   } else {
     const i = parseInt(data_key);
+    edited.titlelink = data.content[i].titlelink;
     data.content[i] = edited;
+  }
+  if (el.getJsonKey() === 'position_papers' && !!filename) {
+    edited.titlelink = `/data/position_papers/${filename}`;
   }
   return {new_data: data, data_edited: edited};
 }
@@ -64,7 +68,7 @@ export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessDa
     if (volume.number === added.volume) {
       let found_issue = false;
       for (const issue of volume.issues) {
-        if (issue.number === added.issue) {
+        if (issue.number === added.issue && !issue.insert && !issue.addendum) {
           found_issue = true;
           break;
         }
@@ -99,7 +103,15 @@ export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessDa
       volume.issues.sort((a, b) => {
         if (a.number !== b.number) {
           return b.number - a.number;
-        } else if (a.addendum !== b.addendum) {
+        } else {
+          if (!a.insert && !a.addendum) {
+            return -1;
+          }
+          if (!b.insert && !b.addendum) {
+            return 1;
+          }
+        }
+        if (a.addendum !== b.addendum) {
           return (a.addendum ?? 0) - (b.addendum ?? 0);
         }
         return a.insert - b.insert;

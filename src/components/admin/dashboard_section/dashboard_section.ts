@@ -60,6 +60,10 @@ export class CufDashboardSection extends CufElement {
     this.configureElement('status_message');
   }
 
+  getSectionKey() {
+    return this.section_key;
+  }
+
   getJsonKey() {
     return this.json_key;
   }
@@ -179,7 +183,7 @@ export class CufDashboardSection extends CufElement {
   }
 
   async sendSaveDataRequest(form_data: any, new_data: DashboardSectionData,
-    data_added: any, file: File, success_message: string, upload_file = true)
+    data_added: any, file: File, success_message: string, upload_file = true, old_filename: string = undefined)
   {
     if (['layWitness', 'positionPapers'].includes(this.section_key)) {
       let api_suffix = '';
@@ -197,7 +201,7 @@ export class CufDashboardSection extends CufElement {
       if (upload_file) { // add or edit file
         api_suffix = 'file';
         if (this.section_key === 'layWitness') {
-          file = renameFile(file, filename);
+          post_data = renameFile(post_data, filename);
         }
       } else { // delete file
         api_suffix = 'file_delete';
@@ -206,10 +210,19 @@ export class CufDashboardSection extends CufElement {
         }
         post_data = {filename};
       }
-      const r = await apiPost(`admin_dashboard/${this.json_key}_${api_suffix}`, post_data);
-      if (!r.success) {
-        this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
-        return;
+      if (!upload_file || !!post_data) {
+        if (upload_file && !!old_filename) {
+          const r = await apiPost(`admin_dashboard/${this.json_key}_file_delete`, {filename: old_filename});
+          if (!r.success) {
+            this.errorStatus(r.error_message ?? 'An unknown error occurred trying to delete the old file');
+            return;
+          }
+        }
+        const r = await apiPost(`admin_dashboard/${this.json_key}_${api_suffix}`, post_data);
+        if (!r.success) {
+          this.errorStatus(r.error_message ?? 'An unknown error occurred trying to upload the file');
+          return;
+        }
       }
     }
     this.current_data = new_data;

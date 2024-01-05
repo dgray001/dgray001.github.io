@@ -24,6 +24,7 @@ export class CufEditItem extends CufElement {
   private edit_open = false;
   private edit_form_el: AdminFormType;
   private data_key = '';
+  private file_input: HTMLInputElement;
 
   constructor() {
     super();
@@ -35,6 +36,10 @@ export class CufEditItem extends CufElement {
     this.configureElement('delete_button');
     this.configureElement('edit_form');
     this.configureElement('status_message');
+  }
+
+  private getFile(): File|undefined {
+    return this.file_input?.files[0];
   }
 
   async addConfigJsonData(el: CufDashboardSection, data: JsonDataContent, data_key: string) {
@@ -107,9 +112,20 @@ export class CufEditItem extends CufElement {
         if (!new_data) {
           return;
         }
-        await el.sendSaveDataRequest(form_data, new_data, data_edited, undefined, 'edited a');
+        await el.sendSaveDataRequest(form_data, new_data, data_edited, this.getFile(), 'edited a', true, data.titlelink);
       });
     });
+    if (['layWitness', 'positionPapers'].includes(el.getSectionKey())) {
+      const file_input_label = document.createElement('label');
+      file_input_label.innerText = 'Replace File:';
+      file_input_label.setAttribute('for', 'file-input');
+      this.edit_form.appendChild(file_input_label);
+      this.file_input = document.createElement('input');
+      this.file_input.id = 'file-input';
+      this.file_input.setAttribute('type', 'file');
+      this.file_input.setAttribute('accept', 'application/pdf');
+      this.edit_form.appendChild(this.file_input);
+    }
     this.edit_form.appendChild(this.edit_form_el);
   }
 
@@ -117,7 +133,7 @@ export class CufEditItem extends CufElement {
     {new_data: DashboardSectionData|undefined, data_edited?: any}
   {
     if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
-      return editJsonData(el, old_data as JsonData, form_data, this.data_key);
+      return editJsonData(el, old_data as JsonData, form_data, this.data_key, this.getFile()?.name);
     } else if (el.getJsonKey() === 'lay_witness') {
       return editLayWitnessData(el, old_data as LaywitnessData, form_data);
     }

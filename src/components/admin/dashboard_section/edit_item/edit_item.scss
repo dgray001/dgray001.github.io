@@ -71,6 +71,16 @@ cuf-edit-item {
       &:not(.show) {
         display: none;
       }
+
+      > label {
+        display: inline-block;
+        margin-right: 1em;
+      }
+
+      > #file-input {
+        margin-bottom: 2em;
+        margin-top: 1em;
+      }
     }
 
     > #status-message {
