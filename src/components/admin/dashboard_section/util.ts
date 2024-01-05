@@ -139,10 +139,13 @@ export function addNewLayWitnessData(el: CufDashboardSection, data: LaywitnessDa
 }
 
 /** Edit existing entry in laywitness data */
-export function editLayWitnessData(el: CufDashboardSection, data: LaywitnessData, edited: LayWitnessFormData):
+export function editLayWitnessData(el: CufDashboardSection, data: LaywitnessData, 
+  edited: LayWitnessFormData, data_key: string):
   {new_data: LaywitnessData|undefined, data_edited?: LaywitnessIssueData}
 {
-  return {new_data: data};
+  const {new_data} = deleteLayWitnessData(el, data, edited, data_key);
+  const add_data = addNewLayWitnessData(el, new_data, edited);
+  return {new_data: add_data.new_data, data_edited: add_data.data_added};
 }
 
 /** Delete existing entry in laywitness data */

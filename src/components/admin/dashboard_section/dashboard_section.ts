@@ -200,7 +200,7 @@ export class CufDashboardSection extends CufElement {
       }
       if (upload_file) { // add or edit file
         api_suffix = 'file';
-        if (this.section_key === 'layWitness') {
+        if (this.section_key === 'layWitness' && !!post_data) {
           post_data = renameFile(post_data, filename);
         }
       } else { // delete file

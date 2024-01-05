@@ -67,7 +67,7 @@ export class CufEditItem extends CufElement {
     const issue_title = `${volume}.${data.number}: ${data.title}`;
     let title = issue_title;
     if (!!data.insert) {
-      this.item_title.classList.add('indent-1');
+      this.classList.add('indent-1');
       title = `<span class="float-left">[Insert ${data.insert}]</span>${title}`;
     } else if (!!data.addendum) {
       this.classList.add('indent-1');
@@ -139,6 +139,7 @@ export class CufEditItem extends CufElement {
       await recaptchaCallback(async () => {
         const form_data: any = this.edit_form_el.getData();
         const {new_data, data_edited} = this.addEditData(el, el.getCurrentData(), form_data);
+        console.log(new_data, data_edited);
         if (!new_data) {
           return;
         }
@@ -165,7 +166,7 @@ export class CufEditItem extends CufElement {
     if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
       return editJsonData(el, old_data as JsonData, form_data, this.data_key, this.getFile()?.name);
     } else if (el.getJsonKey() === 'lay_witness') {
-      return editLayWitnessData(el, old_data as LaywitnessData, form_data);
+      return editLayWitnessData(el, old_data as LaywitnessData, form_data, this.data_key);
     }
     console.error('Not implemented');
     return {new_data: old_data};

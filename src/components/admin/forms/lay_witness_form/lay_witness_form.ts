@@ -13,16 +13,16 @@ export declare interface LayWitnessFormData {
   volume: number;
   issue: number;
   title: string;
-  addendum: boolean;
   insert: boolean;
+  addendum: boolean;
 }
 
 export class CufLayWitnessForm extends CufForm<LayWitnessFormData> {
   private laywitness_volume: CufInputText;
   private laywitness_issue: CufInputText;
   private laywitness_title: CufInputText;
-  private checkbox_addendum: CufCheckbox;
   private checkbox_insert: CufCheckbox;
+  private checkbox_addendum: CufCheckbox;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
@@ -59,13 +59,17 @@ export class CufLayWitnessForm extends CufForm<LayWitnessFormData> {
       volume: parseInt(this.laywitness_volume.getData().trim()),
       issue: parseInt(this.laywitness_issue.getData().trim()),
       title: this.laywitness_title.getData(),
-      addendum: this.checkbox_addendum.getData(),
       insert: this.checkbox_insert.getData(),
+      addendum: this.checkbox_addendum.getData(),
     };
   }
 
   protected override _setData(data: LayWitnessFormData): void {
-    console.error('Not implemented');
+    this.laywitness_volume.setData(data.volume.toString());
+    this.laywitness_issue.setData(data.issue.toString());
+    this.laywitness_title.setData(data.title);
+    this.checkbox_insert.setData(data.insert);
+    this.checkbox_addendum.setData(data.addendum);
   }
 }
 
