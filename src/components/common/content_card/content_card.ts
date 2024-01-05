@@ -20,7 +20,7 @@ export class CufContentCard extends CufElement {
   private content_key = '';
   private card_type: ContentCardType = ContentCardType.NORMAL;
 
-  private json_data: JsonData;
+  private json_data: JsonData<JsonDataContent>;
   private collapsible = false;
   private start_closed = false;
   private fade_in = false;
@@ -58,7 +58,7 @@ export class CufContentCard extends CufElement {
   }
 
   private async fetchAndSetContent(): Promise<void> {
-    this.json_data = await fetchJson<JsonData>(`${this.content_key}/${this.content_key}.json`);
+    this.json_data = await fetchJson<JsonData<JsonDataContent>>(`${this.content_key}/${this.content_key}.json`);
     this.setContent();
     if (this.fade_in) {
       this.card_type = ContentCardType.FADE_IN;

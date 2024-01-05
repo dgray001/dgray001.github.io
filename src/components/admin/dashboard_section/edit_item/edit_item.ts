@@ -103,7 +103,6 @@ export class CufEditItem extends CufElement {
           if (!new_data) {
             return;
           }
-          console.log(data, data_deleted);
           await el.sendSaveDataRequest(data, new_data, data_deleted, undefined, 'deleted a', false);
         });
         this.appendChild(confirm_dialog);
@@ -139,7 +138,6 @@ export class CufEditItem extends CufElement {
       await recaptchaCallback(async () => {
         const form_data: any = this.edit_form_el.getData();
         const {new_data, data_edited} = this.addEditData(el, el.getCurrentData(), form_data);
-        console.log(new_data, data_edited);
         if (!new_data) {
           return;
         }
@@ -164,7 +162,7 @@ export class CufEditItem extends CufElement {
     {new_data: DashboardSectionData|undefined, data_edited?: any}
   {
     if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
-      return editJsonData(el, old_data as JsonData, form_data, this.data_key, this.getFile()?.name);
+      return editJsonData(el, old_data as JsonData<JsonDataContent>, form_data, this.data_key, this.getFile()?.name);
     } else if (el.getJsonKey() === 'lay_witness') {
       return editLayWitnessData(el, old_data as LaywitnessData, form_data, this.data_key);
     }
@@ -176,7 +174,7 @@ export class CufEditItem extends CufElement {
     {new_data: DashboardSectionData|undefined, data_deleted?: any}
   {
     if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
-      return deleteJsonData(el, old_data as JsonData, data_deleted, this.data_key);
+      return deleteJsonData(el, old_data as JsonData<JsonDataContent>, data_deleted, this.data_key);
     } else if (el.getJsonKey() === 'lay_witness') {
       return deleteLayWitnessData(el, old_data as LaywitnessData, data_deleted, this.data_key);
     }

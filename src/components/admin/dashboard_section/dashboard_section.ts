@@ -1,5 +1,5 @@
 import {CufElement} from '../../cuf_element';
-import {JsonData, fetchJson} from '../../../data/data_control';
+import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
 import {LaywitnessData} from '../../common/laywitness_list/laywitness_list';
 import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_category_list';
 import {CufNewsForm, NewsFormData} from '../forms/news_form/news_form';
@@ -8,8 +8,10 @@ import {apiPost} from '../../../scripts/api';
 import {CufPositionPapersForm, PositionPapersFormData} from '../forms/position_papers_form/position_papers_form';
 import {CufJobsAvailableForm, JobsAvailableData} from '../forms/jobs_available_form/jobs_available_form';
 import {renameFile} from '../../../scripts/util';
-import {addNewJsonData, addNewLayWitnessData, getListJsonData, getListLaywitnessData} from './util';
+import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListJsonData, getListLaywitnessData} from './util';
 import {CufLayWitnessForm, LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
+import {CufChaptersForm} from '../forms/chapters_form/chapters_form';
+import {ChapterData} from '../../common/chapters_list/chapters_list';
 
 import html from './dashboard_section.html';
 
@@ -18,15 +20,19 @@ import '../forms/jobs_available_form/jobs_available_form';
 import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
+import '../forms/chapters_form/chapters_form';
 
 /** All the different admin dashboard forms */
-export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm | CufLayWitnessForm;
+export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm |
+  CufLayWitnessForm | CufChaptersForm;
 
 /** All the different admin dashboard form datas */
-export type AdminFormDataType = NewsFormData & PositionPapersFormData & JobsAvailableData & LayWitnessFormData;
+export type AdminFormDataType = NewsFormData & PositionPapersFormData & JobsAvailableData &
+  LayWitnessFormData & ChapterData;
 
 /** All the different admin dashboard form types */
-export type DashboardSectionData = JsonData | LaywitnessData | FaithFactsData;
+export type DashboardSectionData = JsonData<JsonDataContent> | LaywitnessData |
+  FaithFactsData | JsonData<ChapterData>;
 
 export class CufDashboardSection extends CufElement {
   private section_title: HTMLButtonElement;
@@ -110,17 +116,19 @@ export class CufDashboardSection extends CufElement {
         return 'Position Papers';
       case 'news':
         return 'News';
+      case 'chapters':
+        return 'CUF Chapters';
       case 'faithFacts':
         return 'Faith Facts [not implemented]';
       case 'jobsAvailable':
         return 'Jobs Available';
       default:
-        return 'Unknown';
+        return 'Not Implemented';
     }
   }
 
   private setNewButton() {
-    if (['news', 'jobsAvailable'].includes(this.section_key)) {
+    if (['news', 'jobsAvailable', 'chapters'].includes(this.section_key)) {
       this.new_form_button = document.createElement('button');
       this.new_form_button.addEventListener('click', () => {
         this.toggleNewForm(!this.new_form_open);
@@ -156,8 +164,10 @@ export class CufDashboardSection extends CufElement {
       this.new_button_container.appendChild(file_label);
       this.new_button_container.appendChild(this.file_input);
       this.new_button_container.appendChild(this.new_form_button);
+    } else if (this.section_key === 'faithFacts') {
+      console.error('implement');
     } else {
-      // TODO: implement for faith facts
+      console.error('not implement');
     }
     this.toggleNewForm(false);
   }
@@ -238,9 +248,11 @@ export class CufDashboardSection extends CufElement {
 
   private addNewData(new_data: any): {new_data: DashboardSectionData|undefined, data_added?: any} {
     if (['news', 'jobs_available', 'position_papers'].includes(this.json_key)) {
-      return addNewJsonData(this, this.current_data as JsonData, new_data);
+      return addNewJsonData(this, this.current_data as JsonData<JsonDataContent>, new_data);
     } else if (this.json_key === 'lay_witness') {
       return addNewLayWitnessData(this, this.current_data as LaywitnessData, new_data);
+    } else if (this.json_key === 'chapters') {
+      return addChaptersData(this.current_data as JsonData<ChapterData>, new_data);
     }
     console.error('Not implemented');
     return {new_data: this.current_data};
@@ -270,11 +282,13 @@ export class CufDashboardSection extends CufElement {
   private async setCurrentList() {
     this.current_data = await fetchJson<DashboardSectionData>(`${this.json_key}/${this.json_key}.json`);
     if (['jobs_available', 'news', 'position_papers'].includes(this.json_key)) {
-      this.current_list.replaceChildren(...getListJsonData(this, this.current_data as JsonData));
+      this.current_list.replaceChildren(...getListJsonData(this, this.current_data as JsonData<JsonDataContent>));
     } else if (this.json_key === 'lay_witness') {
       this.current_list.replaceChildren(...getListLaywitnessData(this, this.current_data as LaywitnessData));
+    } else if (this.json_key === 'chapters') {
+      console.error('not implemented');
     } else if (this.json_key === 'faith_facts') {
-      // TODO: implement
+      console.error('not implemented');
     }
   }
 

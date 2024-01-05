@@ -61,7 +61,7 @@ export class CufSecondaryPage extends CufElement {
       until(() => this.sidebar.scrollHeight > 0, 40, 200).then(scrollToHash.bind(this), scrollToHash.bind(this));
     }
     if (['position_papers', 'news', 'jobs_available'].includes(this.page)) {
-      const json_data = await fetchJson<JsonData>(`${this.page}/${this.page}.json`);
+      const json_data = await fetchJson<JsonData<JsonDataContent>>(`${this.page}/${this.page}.json`);
       const contents: JsonDataContent[] = [];
       if (!!json_data.subheader) {
         contents.push(json_data.subheader);

@@ -1,11 +1,11 @@
 import {DEV} from "../scripts/util";
 
 /** Format all json data should be in */
-export declare interface JsonData {
+export declare interface JsonData<T> {
   header: string;
   headerlink?: string;
   subheader?: JsonDataSubheader;
-  content: JsonDataContent[];
+  content: T[];
   content_empty?: JsonDataContent;
 }
 

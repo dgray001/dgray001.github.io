@@ -1,4 +1,5 @@
 import {JsonData, JsonDataContent, JsonDataSubheader} from '../../../data/data_control';
+import {ChapterData} from '../../common/chapters_list/chapters_list';
 import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
 import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {CufDashboardSection} from './dashboard_section';
@@ -7,8 +8,8 @@ import {CufEditItem} from './edit_item/edit_item';
 import './edit_item/edit_item';
 
 /** Adds new data to existing json data */
-export function addNewJsonData(el: CufDashboardSection, data: JsonData, added: JsonDataContent):
-  {new_data: JsonData|undefined, data_added?: JsonDataContent}
+export function addNewJsonData(el: CufDashboardSection, data: JsonData<JsonDataContent>, added: JsonDataContent):
+  {new_data: JsonData<JsonDataContent>|undefined, data_added?: JsonDataContent}
 {
   if (el.getJsonKey() === 'position_papers') {
     added.titlelink = `/data/position_papers/${el.getFileInput().name}`;
@@ -18,9 +19,9 @@ export function addNewJsonData(el: CufDashboardSection, data: JsonData, added: J
 }
 
 /** Edits existing entry in json data */
-export function editJsonData(el: CufDashboardSection, data: JsonData,
+export function editJsonData(el: CufDashboardSection, data: JsonData<JsonDataContent>,
   edited: JsonDataContent, data_key: string, filename: string):
-  {new_data: JsonData|undefined, data_edited?: JsonDataContent}
+  {new_data: JsonData<JsonDataContent>|undefined, data_edited?: JsonDataContent}
 {
   if (data_key === 'subheader') {
     if (!edited.title) {
@@ -44,8 +45,8 @@ export function editJsonData(el: CufDashboardSection, data: JsonData,
 }
 
 /** Deletes existing entry in json data */
-export function deleteJsonData(el: CufDashboardSection, data: JsonData, deleted: JsonDataContent, data_key: string):
-  {new_data: JsonData|undefined, data_deleted?: JsonDataContent}
+export function deleteJsonData(el: CufDashboardSection, data: JsonData<JsonDataContent>, deleted: JsonDataContent, data_key: string):
+  {new_data: JsonData<JsonDataContent>|undefined, data_deleted?: JsonDataContent}
 {
   if (data_key === 'subheader') {
     el.errorStatus('Deleting subheader not implemented since adding subheader is not implemented');
@@ -164,7 +165,7 @@ export function deleteLayWitnessData(el: CufDashboardSection,
 }
 
 /** Return array of elements from json data */
-export function getListJsonData(el: CufDashboardSection, data: JsonData): CufEditItem[] {
+export function getListJsonData(el: CufDashboardSection, data: JsonData<JsonDataContent>): CufEditItem[] {
   const els: CufEditItem[] = [];
   if (!!data.subheader) {
     const item: CufEditItem = document.createElement('cuf-edit-item');
@@ -197,4 +198,12 @@ export function getListLaywitnessData(el: CufDashboardSection, data: LaywitnessD
     }
   }
   return els;
+}
+
+/** Adds new data to existing chapters data */
+export function addChaptersData(data: JsonData<ChapterData>, added: ChapterData):
+  {new_data: JsonData<ChapterData>|undefined, data_added?: ChapterData}
+{
+  data.content.unshift(added);
+  return {new_data: data, data_added: added};
 }
