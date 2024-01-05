@@ -272,7 +272,7 @@ export class CufDashboardSection extends CufElement {
     if (['jobs_available', 'news', 'position_papers'].includes(this.json_key)) {
       this.current_list.replaceChildren(...getListJsonData(this, this.current_data as JsonData));
     } else if (this.json_key === 'lay_witness') {
-      this.current_list.replaceChildren(...getListLaywitnessData(this.current_data as LaywitnessData));
+      this.current_list.replaceChildren(...getListLaywitnessData(this, this.current_data as LaywitnessData));
     } else if (this.json_key === 'faith_facts') {
       // TODO: implement
     }

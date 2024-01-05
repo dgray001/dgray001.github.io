@@ -1,7 +1,7 @@
 import {JsonData, JsonDataContent} from '../../../../data/data_control';
 import {recaptchaCallback} from '../../../../scripts/recaptcha';
 import {until} from '../../../../scripts/util';
-import {LaywitnessData} from '../../../common/laywitness_list/laywitness_list';
+import {LaywitnessData, LaywitnessIssueData} from '../../../common/laywitness_list/laywitness_list';
 import {CufElement} from '../../../cuf_element';
 import {AdminFormType, CufDashboardSection, DashboardSectionData} from '../dashboard_section';
 import {deleteJsonData, editJsonData, editLayWitnessData} from '../util';
@@ -57,6 +57,24 @@ export class CufEditItem extends CufElement {
       this.addItemDetails('Title Link:', data.titlelink);
     }
     this.addItemDetails('Description:', data.description);
+    this.addEventListeners(el, data);
+  }
+
+  async addConfigLaywitnessData(el: CufDashboardSection, data: LaywitnessIssueData, volume: number) {
+    await until(() => this.fully_parsed);
+    const issue_title = `${volume}.${data.number}: ${data.title}`;
+    let title = issue_title;
+    if (!!data.insert) {
+      title = `<span class="float-left">[Insert ${data.insert}]</span>${title}`;
+    } else if (!!data.addendum) {
+      title = `<span class="float-left">[Addendum ${data.addendum}]</span>${title}`;
+    }
+    this.item_title.innerHTML = title;
+    this.addItemDetails('Title:', issue_title);
+    this.addEventListeners(el, data);
+  }
+
+  private addEventListeners(el: CufDashboardSection, data: any) {
     this.addEditForm(el, data);
     this.toggleEditForm(false);
     this.item_title.addEventListener('click', () => {
@@ -113,7 +131,7 @@ export class CufEditItem extends CufElement {
           return;
         }
         await el.sendSaveDataRequest(form_data, new_data, data_edited, this.getFile(), 'edited a', true, data.titlelink);
-      });
+      }, this.edit_form_el.getSubmitButton(), this.status_message, 'Editing');
     });
     if (['layWitness', 'positionPapers'].includes(el.getSectionKey())) {
       const file_input_label = document.createElement('label');

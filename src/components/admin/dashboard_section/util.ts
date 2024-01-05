@@ -169,6 +169,14 @@ export function getListJsonData(el: CufDashboardSection, data: JsonData): CufEdi
 }
 
 /** Return array of elements from lay witness data */
-export function getListLaywitnessData(data: LaywitnessData): HTMLDivElement[] {
-  return [];
+export function getListLaywitnessData(el: CufDashboardSection, data: LaywitnessData): CufEditItem[] {
+  const els: CufEditItem[] = [];
+  for (const volume of data.volumes) {
+    for (const issue of volume.issues) {
+      const item: CufEditItem = document.createElement('cuf-edit-item');
+      item.addConfigLaywitnessData(el, issue, volume.number);
+      els.push(item);
+    }
+  }
+  return els;
 }
