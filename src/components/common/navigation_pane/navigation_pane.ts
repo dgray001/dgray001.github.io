@@ -47,10 +47,19 @@ export class CufNavigationPane extends CufElement {
     }
     const curr_path = trim(getPage(), '/');
     for (const link of links) {
-      if (link === 'apostolic_activities') {
-        this.addHeaderButton(link, curr_path, ['information_services', 'lay_witness', 'faith_and_life_series']);
-      } else {
-        this.createButton(link, curr_path);
+      switch(link) {
+        case 'apostolic_activities':
+          this.addHeaderButton(link, curr_path, ['information_services', 'lay_witness', 'faith_and_life_series']);
+          break;
+        case 'apostolic_activities_admin':
+          this.addHeaderButton(link, curr_path, ['faith_facts', 'lay_witness', 'chapters']);
+          break;
+        case 'sidebars':
+          this.addHeaderButton(link, curr_path, ['involvement', 'position_papers', 'jobs_available']);
+          break;
+        default:
+          this.createButton(link, curr_path);
+          break;
       }
     }
   }

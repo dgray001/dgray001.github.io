@@ -44,6 +44,7 @@ cuf-admin-header {
   }
 
   > #navigation-container {
+    --header-color: var(--header-home-color);
     height: var(--navigation-height);
     margin: var(--navigation-margin) auto;
     width: fit-content;

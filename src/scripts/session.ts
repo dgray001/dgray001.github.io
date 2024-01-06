@@ -45,6 +45,7 @@ export function hasPermission(role: string, permission: string): boolean {
     case 'prayer':
     case 'involvement':
     case 'faithFacts':
+    case 'links':
     case 'jobsAvailable':
     default:
       return false;

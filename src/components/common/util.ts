@@ -6,7 +6,10 @@ export function pageToName(page: string): string {
     case 'about':
       return 'About CUF';
     case 'apostolic_activities':
+    case 'apostolic_activities_admin':
       return 'Apostolic Activities';
+    case 'chapters':
+      return 'Chapters';
     case 'contact':
       return 'Contact';
     case 'donate':
@@ -39,6 +42,8 @@ export function pageToName(page: string): string {
       return 'Position Papers';
     case 'profile':
       return 'Profile';
+    case 'sidebars':
+      return 'Sidebars';
     default:
       console.error(`Uknown page: ${page}`);
       return '';

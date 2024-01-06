@@ -1,7 +1,9 @@
 import {JsonData, JsonDataContent, JsonDataSubheader} from '../../../data/data_control';
 import {ChapterData} from '../../common/chapters_list/chapters_list';
 import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
+import {LinksData} from '../../common/links_list/links_list';
 import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
+import {LinksFormData} from '../forms/links_form/links_form';
 import {CufDashboardSection} from './dashboard_section';
 import {CufEditItem} from './edit_item/edit_item';
 
@@ -261,5 +263,34 @@ export function editChaptersData(el: CufDashboardSection, data: JsonData<Chapter
     const i = parseInt(data_key);
     data.content[i] = edited as ChapterData;
   }
+  return {new_data: data, data_edited: edited};
+}
+
+/** Adds new data to existing links data */
+export function addLinks(data: LinksData, added: LinksFormData):
+  {new_data: LinksData|undefined, data_added?: LinksFormData}
+{
+  return {new_data: data, data_added: added};
+}
+
+/** Return array of elements from links data */
+export function getListLinksData(el: CufDashboardSection, data: LinksData): CufEditItem[] {
+  const els: CufEditItem[] = [];
+  return els;
+}
+
+/** Deletes existing entry in links data */
+export function deleteLinksData(el: CufDashboardSection, data: LinksData,
+  deleted: LinksFormData, data_key: string):
+  {new_data: LinksData|undefined, data_deleted?: JsonDataContent}
+{
+  return {new_data: data, data_deleted: deleted};
+}
+
+/** Edits existing entry in links data */
+export function editLinksData(el: CufDashboardSection, data: LinksData,
+  edited: LinksFormData, data_key: string):
+  {new_data: LinksData|undefined, data_edited?: JsonDataContent}
+{
   return {new_data: data, data_edited: edited};
 }

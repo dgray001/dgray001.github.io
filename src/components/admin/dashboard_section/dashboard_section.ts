@@ -8,11 +8,14 @@ import {apiPost} from '../../../scripts/api';
 import {CufPositionPapersForm, PositionPapersFormData} from '../forms/position_papers_form/position_papers_form';
 import {CufJobsAvailableForm, JobsAvailableData} from '../forms/jobs_available_form/jobs_available_form';
 import {renameFile} from '../../../scripts/util';
-import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListChaptersData, getListJsonData, getListLaywitnessData} from './util';
+import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListChaptersData, getListJsonData, getListLaywitnessData, getListLinksData} from './util';
 import {CufLayWitnessForm, LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {CufChaptersForm} from '../forms/chapters_form/chapters_form';
 import {ChapterData} from '../../common/chapters_list/chapters_list';
 import {CufSubheaderForm} from '../forms/subheader_form/subheader_form';
+import {LinksData} from '../../common/links_list/links_list';
+import {CufLinksForm, LinksFormData} from '../forms/links_form/links_form';
+import {CufFaithFactsForm} from '../forms/faith_facts_form/faith_facts_form';
 
 import html from './dashboard_section.html';
 
@@ -23,18 +26,20 @@ import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
 import '../forms/chapters_form/chapters_form';
 import '../forms/subheader_form/subheader_form';
+import '../forms/links_form/links_form';
+import '../forms/faith_facts_form/faith_facts_form';
 
 /** All the different admin dashboard forms */
 export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm |
-  CufLayWitnessForm | CufChaptersForm | CufSubheaderForm;
+  CufLayWitnessForm | CufChaptersForm | CufSubheaderForm | CufLinksForm | CufFaithFactsForm;
 
 /** All the different admin dashboard form datas */
 export type AdminFormDataType = NewsFormData & PositionPapersFormData & JobsAvailableData &
-  LayWitnessFormData & ChapterData & JsonDataContent;
+  LayWitnessFormData & ChapterData & JsonDataContent & LinksFormData;
 
 /** All the different admin dashboard form types */
 export type DashboardSectionData = JsonData<JsonDataContent> | LaywitnessData |
-  FaithFactsData | JsonData<ChapterData>;
+  FaithFactsData | JsonData<ChapterData> | LinksData;
 
 export class CufDashboardSection extends CufElement {
   private section_title: HTMLButtonElement;
@@ -128,13 +133,15 @@ export class CufDashboardSection extends CufElement {
         return 'CUF Prayer';
       case 'involvement':
         return 'Join Us Sidebar';
+      case 'links':
+        return 'Links';
       default:
         return 'Not Implemented';
     }
   }
 
   private setNewButton() {
-    if (['news', 'jobsAvailable', 'chapters', 'prayer', 'involvement'].includes(this.section_key)) {
+    if (['news', 'jobsAvailable', 'chapters', 'prayer', 'involvement', 'links'].includes(this.section_key)) {
       this.new_form_button = document.createElement('button');
       this.new_form_button.addEventListener('click', () => {
         this.toggleNewForm(!this.new_form_open);
@@ -263,6 +270,8 @@ export class CufDashboardSection extends CufElement {
       return addNewLayWitnessData(this, this.current_data as LaywitnessData, new_data);
     } else if (this.json_key === 'chapters') {
       return addChaptersData(this.current_data as JsonData<ChapterData>, new_data);
+    } else if (this.json_key === 'links') {
+      return addLinksData(this.current_data as LinksData, new_data);
     }
     console.error('Not implemented');
     return {new_data: this.current_data};
@@ -297,8 +306,10 @@ export class CufDashboardSection extends CufElement {
       this.current_list.replaceChildren(...getListLaywitnessData(this, this.current_data as LaywitnessData));
     } else if (this.json_key === 'chapters') {
       this.current_list.replaceChildren(...getListChaptersData(this, this.current_data as JsonData<ChapterData>));
+    } else if (this.json_key === 'links') {
+      this.current_list.replaceChildren(...getListLinksData(this, this.current_data as LinksData));
     } else if (this.json_key === 'faith_facts') {
-      console.error('not implemented');
+      console.error('faith factsnot implemented');
     } else {
       console.error('not implemented');
     }
@@ -343,3 +354,7 @@ declare global {
     'cuf-dashboard-section': CufDashboardSection;
   }
 }
+function addLinksData(arg0: LinksData, new_data: any): { new_data: DashboardSectionData | undefined; data_added?: any; } {
+  throw new Error('Function not implemented.');
+}
+
