@@ -1,13 +1,17 @@
 import {ChapterData} from '../../../common/chapters_list/chapters_list';
 import {CufForm} from '../../../common/form/form';
 import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
+import {CufStringList} from '../../../common/form/form_field/string_list/string_list';
 
 import html from './chapters_form.html';
 
 import './chapters_form.scss';
+import '../../../common/form/form_field/input_text/input_text';
+import '../../../common/form/form_field/string_list/string_list';
 
 export class CufChaptersForm extends CufForm<ChapterData> {
   private chapter_name: CufInputText;
+  private other_lines: CufStringList;
   private chapter_website: CufInputText;
   private chapter_email: CufInputText;
   private chapter_facebook: CufInputText;
@@ -22,6 +26,7 @@ export class CufChaptersForm extends CufForm<ChapterData> {
     this.htmlString = html;
     this.configureForm([
       'chapter_name',
+      'other_lines',
       'chapter_website',
       'chapter_email',
       'chapter_facebook',
@@ -44,7 +49,7 @@ export class CufChaptersForm extends CufForm<ChapterData> {
   override getData(): ChapterData {
     return {
       name: this.chapter_name.getData(),
-      other_lines: [], // TODO: implement
+      other_lines: this.other_lines.getData(),
       website: this.chapter_website.getData() || undefined,
       email: this.chapter_email.getData() || undefined,
       facebook: this.chapter_facebook.getData() || undefined,
@@ -53,7 +58,7 @@ export class CufChaptersForm extends CufForm<ChapterData> {
 
   protected override _setData(data: ChapterData): void {
     this.chapter_name.setData(data.name ?? '');
-    // this.chapter_other_lines.setData(data.other_lines);
+    this.other_lines.setData(data.other_lines);
     this.chapter_website.setData(data.website ?? '');
     this.chapter_email.setData(data.email ?? '');
     this.chapter_facebook.setData(data.facebook ?? '');

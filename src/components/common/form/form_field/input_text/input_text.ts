@@ -69,7 +69,7 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
     this.form_field.disabled = true;
   }
 
-  getData(): string {
+  override getData(): string {
     if (this.use_datalist) {
       for (const [k, o] of this.datalist_options) {
         if (this.form_field.value === o.innerText) {
@@ -80,19 +80,19 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
     return this.form_field.value;
   }
 
-  getStringData(): string {
+  override getStringData(): string {
     return this.getData();
   }
 
-  _setData(data: string): void {
+  override _setData(data: string): void {
     this.form_field.value = data;
   }
 
-  clearData(): void {
+  override clearData(): void {
     this.form_field.value = '';
   }
 
-  setTestData(): void {
+  override setTestData(): void {
     if (this.use_datalist) {
       this.setData([...this.datalist_options.values()][0].text);
       return;
