@@ -8,7 +8,7 @@ import {apiPost} from '../../../scripts/api';
 import {CufPositionPapersForm, PositionPapersFormData} from '../forms/position_papers_form/position_papers_form';
 import {CufJobsAvailableForm, JobsAvailableData} from '../forms/jobs_available_form/jobs_available_form';
 import {renameFile} from '../../../scripts/util';
-import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListJsonData, getListLaywitnessData} from './util';
+import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListChaptersData, getListJsonData, getListLaywitnessData} from './util';
 import {CufLayWitnessForm, LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {CufChaptersForm} from '../forms/chapters_form/chapters_form';
 import {ChapterData} from '../../common/chapters_list/chapters_list';
@@ -21,6 +21,7 @@ import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
 import '../forms/position_papers_form/position_papers_form';
 import '../forms/chapters_form/chapters_form';
+import '../forms/subheader_form/subheader_form';
 
 /** All the different admin dashboard forms */
 export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm |
@@ -286,7 +287,7 @@ export class CufDashboardSection extends CufElement {
     } else if (this.json_key === 'lay_witness') {
       this.current_list.replaceChildren(...getListLaywitnessData(this, this.current_data as LaywitnessData));
     } else if (this.json_key === 'chapters') {
-      console.error('not implemented');
+      this.current_list.replaceChildren(...getListChaptersData(this, this.current_data as JsonData<ChapterData>));
     } else if (this.json_key === 'faith_facts') {
       console.error('not implemented');
     }

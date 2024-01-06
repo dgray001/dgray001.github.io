@@ -1,0 +1,28 @@
+
+<cuf-input-text
+  id="subheader-title"
+  flex-option="3"
+  label="Title"
+></cuf-input-text>
+
+<cuf-input-text
+  id="subheader-titlelink"
+  flex-option="3"
+  validators='["prereq=subheader_title"]'
+  label="Title Link"
+></cuf-input-text>
+
+<cuf-text-area
+  id="subheader-description"
+  flex-option="3"
+  min-rows="3"
+  label="Description"
+></cuf-text-area>
+
+<button
+  id="submit-button"
+  type="button"
+  tabindex="1"
+  class="form-submit-button">
+  Submit
+</button>

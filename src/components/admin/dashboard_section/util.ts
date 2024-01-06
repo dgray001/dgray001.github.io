@@ -45,14 +45,15 @@ export function editJsonData(el: CufDashboardSection, data: JsonData<JsonDataCon
 }
 
 /** Deletes existing entry in json data */
-export function deleteJsonData(el: CufDashboardSection, data: JsonData<JsonDataContent>, deleted: JsonDataContent, data_key: string):
+export function deleteJsonData(el: CufDashboardSection, data: JsonData<JsonDataContent>,
+  deleted: JsonDataContent, data_key: string):
   {new_data: JsonData<JsonDataContent>|undefined, data_deleted?: JsonDataContent}
 {
   if (data_key === 'subheader') {
     el.errorStatus('Deleting subheader not implemented since adding subheader is not implemented');
     return {new_data: undefined};
   } else if (data_key === 'content-empty') {
-    el.errorStatus('Deleting empty content message not implemented since adding subheader is not implemented');
+    el.errorStatus('Deleting empty content message not implemented since adding empty content message not implemented');
     return {new_data: undefined};
   } else {
     const i = parseInt(data_key);
@@ -206,4 +207,59 @@ export function addChaptersData(data: JsonData<ChapterData>, added: ChapterData)
 {
   data.content.unshift(added);
   return {new_data: data, data_added: added};
+}
+
+/** Return array of elements from chapters data */
+export function getListChaptersData(el: CufDashboardSection, data: JsonData<ChapterData>): CufEditItem[] {
+  const els: CufEditItem[] = [];
+  if (!!data.subheader) {
+    const item: CufEditItem = document.createElement('cuf-edit-item');
+    item.addConfigJsonData(el, data.subheader, 'subheader');
+    item.classList.add('subheader');
+    els.push(item);
+  }
+  if (!!data.content_empty) {
+    const item: CufEditItem = document.createElement('cuf-edit-item');
+    item.addConfigJsonData(el, data.content_empty, 'content-empty');
+    item.classList.add('content-empty');
+    els.push(item);
+  }
+  for (const [i, c] of data.content.entries()) {
+    const item: CufEditItem = document.createElement('cuf-edit-item');
+    item.addConfigChapterData(el, c, i.toString());
+    els.push(item);
+  }
+  return els;
+}
+
+/** Deletes existing entry in chapters data */
+export function deleteChaptersData(el: CufDashboardSection, data: JsonData<ChapterData>,
+  deleted: ChapterData, data_key: string):
+  {new_data: JsonData<ChapterData>|undefined, data_deleted?: ChapterData}
+{
+  if (data_key === 'subheader') {
+    el.errorStatus('Deleting subheader not implemented since adding subheader is not implemented');
+    return {new_data: undefined};
+  } else if (data_key === 'content-empty') {
+    el.errorStatus('Deleting empty content message not implemented since adding empty content message not implemented');
+    return {new_data: undefined};
+  } else {
+    const i = parseInt(data_key);
+    data.content.splice(i, 1);
+  }
+  return {new_data: data, data_deleted: deleted};
+}
+
+/** Edits existing entry in chapters data */
+export function editChaptersData(el: CufDashboardSection, data: JsonData<ChapterData>,
+  edited: ChapterData|JsonDataSubheader, data_key: string):
+  {new_data: JsonData<ChapterData>|undefined, data_edited?: ChapterData|JsonDataSubheader}
+{
+  if (data_key === 'subheader' || data_key === 'content-empty') {
+    data.subheader = edited as JsonDataSubheader;
+  } else {
+    const i = parseInt(data_key);
+    data.content[i] = edited as ChapterData;
+  }
+  return {new_data: data, data_edited: edited};
 }

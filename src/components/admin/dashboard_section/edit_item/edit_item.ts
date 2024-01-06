@@ -4,8 +4,9 @@ import {until} from '../../../../scripts/util';
 import {LaywitnessData, LaywitnessIssueData} from '../../../common/laywitness_list/laywitness_list';
 import {CufElement} from '../../../cuf_element';
 import {AdminFormType, CufDashboardSection, DashboardSectionData} from '../dashboard_section';
-import {deleteJsonData, deleteLayWitnessData, editJsonData, editLayWitnessData} from '../util';
+import {deleteChaptersData, deleteJsonData, deleteLayWitnessData, editChaptersData, editJsonData, editLayWitnessData} from '../util';
 import {LayWitnessFormData} from '../../forms/lay_witness_form/lay_witness_form';
+import {ChapterData} from '../../../common/chapters_list/chapters_list';
 
 import html from './edit_item.html';
 
@@ -14,6 +15,8 @@ import '../../../common/dialog_box/confirm_dialog/confirm_dialog';
 
 export class CufEditItem extends CufElement {
   private item_title: HTMLButtonElement;
+  private title_label: HTMLSpanElement;
+  private title_text: HTMLSpanElement;
   private item_details: HTMLDivElement;
   private details: HTMLDivElement;
   private edit_button: HTMLButtonElement;
@@ -31,6 +34,8 @@ export class CufEditItem extends CufElement {
     super();
     this.htmlString = html;
     this.configureElement('item_title');
+    this.configureElement('title_label');
+    this.configureElement('title_text');
     this.configureElement('item_details');
     this.configureElement('details');
     this.configureElement('edit_button');
@@ -46,19 +51,22 @@ export class CufEditItem extends CufElement {
   async addConfigJsonData(el: CufDashboardSection, data: JsonDataContent, data_key: string) {
     await until(() => this.fully_parsed);
     this.data_key = data_key;
+    let tag_key = el.getTagKey();
     let title = data.title ?? '-- no title --';
+    this.title_text.innerText = title;
     if (this.classList.contains('subheader')) {
-      title = `<span class="float-left">[Subheader]</span>${title}`;
+      this.title_label.innerText = '[Subheader]';
+      tag_key = 'subheader';
     } else if (this.classList.contains('content-empty')) {
-      title = `<span class="float-left">[Empty Content]</span>${title}`;
+      this.title_label.innerText = '[Empty Content]';
+      tag_key = 'subheader';
     }
-    this.item_title.innerHTML = title;
     this.addItemDetails('Title:', data.title);
     if (el.getJsonKey() === 'news') {
       this.addItemDetails('Title Link:', data.titlelink);
     }
     this.addItemDetails('Description:', data.description);
-    this.addEventListeners(el, data);
+    this.addEventListeners(el, data, tag_key);
   }
 
   async addConfigLaywitnessData(el: CufDashboardSection, data: LaywitnessIssueData, volume: number, data_key: string) {
@@ -82,11 +90,33 @@ export class CufEditItem extends CufElement {
       insert: !!data.insert,
       addendum: !!data.addendum,
     };
-    this.addEventListeners(el, form_data);
+    this.addEventListeners(el, form_data, el.getTagKey());
   }
 
-  private addEventListeners(el: CufDashboardSection, data: any) {
-    this.addEditForm(el, data);
+  async addConfigChapterData(el: CufDashboardSection, data: ChapterData, data_key: string) {
+    await until(() => this.fully_parsed);
+    this.data_key = data_key;
+    let tag_key = el.getTagKey();
+    if (this.classList.contains('subheader')) {
+      this.title_label.innerText = '[Subheader]';
+      tag_key = 'subheader';
+    } else if (this.classList.contains('content-empty')) {
+      this.title_label.innerText = '[Empty Content]';
+      tag_key = 'subheader';
+    }
+    this.title_text.innerText = data.name;
+    this.addItemDetails('Name:', data.name);
+    for (const line of data.other_lines) {
+      this.addItemDetails('Other Link:', line);
+    }
+    this.addItemDetails('Website:', data.website);
+    this.addItemDetails('Email:', data.email);
+    this.addItemDetails('Facebook:', data.facebook);
+    this.addEventListeners(el, data, tag_key);
+  }
+
+  private addEventListeners(el: CufDashboardSection, data: any, tag_key: string) {
+    this.addEditForm(el, data, tag_key);
     this.toggleEditForm(false);
     this.item_title.addEventListener('click', () => {
       this.toggleBody(!this.body_open);
@@ -126,8 +156,8 @@ export class CufEditItem extends CufElement {
     this.details.appendChild(details_el);
   }
 
-  private addEditForm(el: CufDashboardSection, data: any) {
-    this.edit_form_el = document.createElement(`cuf-${el.getTagKey()}-form`) as AdminFormType;
+  private addEditForm(el: CufDashboardSection, data: any, tag_key: string) {
+    this.edit_form_el = document.createElement(`cuf-${tag_key}-form`) as AdminFormType;
     this.edit_form_el.setData(data);
     this.edit_form_el.setSubmitCallback(async () => {
       if (!this.edit_form_el.validate()) {
@@ -165,6 +195,8 @@ export class CufEditItem extends CufElement {
       return editJsonData(el, old_data as JsonData<JsonDataContent>, form_data, this.data_key, this.getFile()?.name);
     } else if (el.getJsonKey() === 'lay_witness') {
       return editLayWitnessData(el, old_data as LaywitnessData, form_data, this.data_key);
+    } else if (el.getJsonKey() === 'chapters') {
+      return editChaptersData(el, old_data as JsonData<ChapterData>, form_data, this.data_key);
     }
     console.error('Not implemented');
     return {new_data: old_data};
@@ -177,6 +209,8 @@ export class CufEditItem extends CufElement {
       return deleteJsonData(el, old_data as JsonData<JsonDataContent>, data_deleted, this.data_key);
     } else if (el.getJsonKey() === 'lay_witness') {
       return deleteLayWitnessData(el, old_data as LaywitnessData, data_deleted, this.data_key);
+    } else if (el.getJsonKey() === 'chapters') {
+      return deleteChaptersData(el, old_data as JsonData<ChapterData>, data_deleted, this.data_key);
     }
     console.error('Not implemented');
     return {new_data: old_data};

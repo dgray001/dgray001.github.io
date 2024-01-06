@@ -1,5 +1,10 @@
 cuf-chapters-list {
-  > #example {
-    border: 1px solid black;
+  > .chapter {
+    margin: 1em 0;
+
+    > .name {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
   }
 }

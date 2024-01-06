@@ -28,9 +28,8 @@ cuf-edit-item {
       font-weight: bold;
     }
 
-    > .float-left {
-      left: 1em;
-      position: absolute;
+    > #title-label {
+      float: left;
     }
   }
 

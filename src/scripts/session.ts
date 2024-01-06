@@ -41,6 +41,7 @@ export function hasPermission(role: string, permission: string): boolean {
       return role === 'employee';
     case "positionPapers":
     case "news":
+    case "chapters":
     case "faithFacts":
     case "jobsAvailable":
     default:

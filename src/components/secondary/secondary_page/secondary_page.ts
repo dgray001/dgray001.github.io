@@ -23,6 +23,7 @@ import '../../common/form/forms/activate_account_form/activate_account_form';
 import '../../common/form/forms/reset_password_form/reset_password_form';
 import '../../common/form/forms/change_password_form/change_password_form';
 import '../../common/profile_button/profile_button';
+import '../../common/chapters_list/chapters_list';
 
 export class CufSecondaryPage extends CufElement {
   private page_title: HTMLHeadingElement;
