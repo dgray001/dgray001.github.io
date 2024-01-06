@@ -157,7 +157,11 @@ export class CufEditItem extends CufElement {
   }
 
   private addEditForm(el: CufDashboardSection, data: any, tag_key: string) {
-    this.edit_form_el = document.createElement(`cuf-${tag_key}-form`) as AdminFormType;
+    if (['prayer', 'involvement'].includes(tag_key)) {
+      this.edit_form_el = document.createElement(`cuf-subheader-form`) as AdminFormType;
+    } else {
+      this.edit_form_el = document.createElement(`cuf-${tag_key}-form`) as AdminFormType;
+    }
     this.edit_form_el.setData(data);
     this.edit_form_el.setSubmitCallback(async () => {
       if (!this.edit_form_el.validate()) {
@@ -191,7 +195,7 @@ export class CufEditItem extends CufElement {
   private addEditData(el: CufDashboardSection, old_data: DashboardSectionData, form_data: any):
     {new_data: DashboardSectionData|undefined, data_edited?: any}
   {
-    if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
+    if (['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(el.getJsonKey())) {
       return editJsonData(el, old_data as JsonData<JsonDataContent>, form_data, this.data_key, this.getFile()?.name);
     } else if (el.getJsonKey() === 'lay_witness') {
       return editLayWitnessData(el, old_data as LaywitnessData, form_data, this.data_key);
@@ -205,7 +209,7 @@ export class CufEditItem extends CufElement {
   private addDeleteData(el: CufDashboardSection, old_data: DashboardSectionData, data_deleted: any):
     {new_data: DashboardSectionData|undefined, data_deleted?: any}
   {
-    if (['news', 'jobs_available', 'position_papers'].includes(el.getJsonKey())) {
+    if (['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(el.getJsonKey())) {
       return deleteJsonData(el, old_data as JsonData<JsonDataContent>, data_deleted, this.data_key);
     } else if (el.getJsonKey() === 'lay_witness') {
       return deleteLayWitnessData(el, old_data as LaywitnessData, data_deleted, this.data_key);

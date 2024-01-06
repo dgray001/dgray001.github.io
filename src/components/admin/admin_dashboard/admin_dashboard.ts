@@ -21,7 +21,8 @@ export class CufAdminDashboard extends CufElement {
 
   protected override async parsedCallback(): Promise<void> {
     const role = getCookie('role');
-    const possible_sections = ['layWitness', 'positionPapers', 'news', 'chapters', 'jobsAvailable'];
+    const possible_sections = ['layWitness', 'positionPapers', 'news',
+      'chapters', 'jobsAvailable', 'prayer', 'involvement', 'faithFacts'];
     for (const section of possible_sections) {
       if (hasPermission(role, section)) {
         const section_el = document.createElement('cuf-dashboard-section');

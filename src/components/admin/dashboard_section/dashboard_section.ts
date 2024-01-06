@@ -1,5 +1,5 @@
 import {CufElement} from '../../cuf_element';
-import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
+import {JsonData, JsonDataContent, JsonDataSubheader, fetchJson} from '../../../data/data_control';
 import {LaywitnessData} from '../../common/laywitness_list/laywitness_list';
 import {FaithFactsData} from '../../common/faith_fact_category_list/faith_fact_category_list';
 import {CufNewsForm, NewsFormData} from '../forms/news_form/news_form';
@@ -12,6 +12,7 @@ import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListChaptersDa
 import {CufLayWitnessForm, LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {CufChaptersForm} from '../forms/chapters_form/chapters_form';
 import {ChapterData} from '../../common/chapters_list/chapters_list';
+import {CufSubheaderForm} from '../forms/subheader_form/subheader_form';
 
 import html from './dashboard_section.html';
 
@@ -25,11 +26,11 @@ import '../forms/subheader_form/subheader_form';
 
 /** All the different admin dashboard forms */
 export type AdminFormType = CufNewsForm | CufPositionPapersForm | CufJobsAvailableForm |
-  CufLayWitnessForm | CufChaptersForm;
+  CufLayWitnessForm | CufChaptersForm | CufSubheaderForm;
 
 /** All the different admin dashboard form datas */
 export type AdminFormDataType = NewsFormData & PositionPapersFormData & JobsAvailableData &
-  LayWitnessFormData & ChapterData;
+  LayWitnessFormData & ChapterData & JsonDataContent;
 
 /** All the different admin dashboard form types */
 export type DashboardSectionData = JsonData<JsonDataContent> | LaywitnessData |
@@ -123,13 +124,17 @@ export class CufDashboardSection extends CufElement {
         return 'Faith Facts [not implemented]';
       case 'jobsAvailable':
         return 'Jobs Available';
+      case 'prayer':
+        return 'CUF Prayer';
+      case 'involvement':
+        return 'Join Us Sidebar';
       default:
         return 'Not Implemented';
     }
   }
 
   private setNewButton() {
-    if (['news', 'jobsAvailable', 'chapters'].includes(this.section_key)) {
+    if (['news', 'jobsAvailable', 'chapters', 'prayer', 'involvement'].includes(this.section_key)) {
       this.new_form_button = document.createElement('button');
       this.new_form_button.addEventListener('click', () => {
         this.toggleNewForm(!this.new_form_open);
@@ -168,13 +173,17 @@ export class CufDashboardSection extends CufElement {
     } else if (this.section_key === 'faithFacts') {
       console.error('implement');
     } else {
-      console.error('not implement');
+      console.error('not implemented');
     }
     this.toggleNewForm(false);
   }
 
   private setNewForm() {
-    this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
+    if (['prayer', 'involvement'].includes(this.json_key)) {
+      this.new_form_el = document.createElement(`cuf-subheader-form`) as AdminFormType;
+    } else {
+      this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
+    }
     this.new_form_el.setSubmitCallback(async () => {
       if (!this.new_form_el.validate()) {
         this.errorStatus('Please fix the validation errors');
@@ -248,7 +257,7 @@ export class CufDashboardSection extends CufElement {
   }
 
   private addNewData(new_data: any): {new_data: DashboardSectionData|undefined, data_added?: any} {
-    if (['news', 'jobs_available', 'position_papers'].includes(this.json_key)) {
+    if (['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(this.json_key)) {
       return addNewJsonData(this, this.current_data as JsonData<JsonDataContent>, new_data);
     } else if (this.json_key === 'lay_witness') {
       return addNewLayWitnessData(this, this.current_data as LaywitnessData, new_data);
@@ -282,13 +291,15 @@ export class CufDashboardSection extends CufElement {
 
   private async setCurrentList() {
     this.current_data = await fetchJson<DashboardSectionData>(`${this.json_key}/${this.json_key}.json`);
-    if (['jobs_available', 'news', 'position_papers'].includes(this.json_key)) {
+    if (['jobs_available', 'news', 'position_papers', 'prayer', 'involvement'].includes(this.json_key)) {
       this.current_list.replaceChildren(...getListJsonData(this, this.current_data as JsonData<JsonDataContent>));
     } else if (this.json_key === 'lay_witness') {
       this.current_list.replaceChildren(...getListLaywitnessData(this, this.current_data as LaywitnessData));
     } else if (this.json_key === 'chapters') {
       this.current_list.replaceChildren(...getListChaptersData(this, this.current_data as JsonData<ChapterData>));
     } else if (this.json_key === 'faith_facts') {
+      console.error('not implemented');
+    } else {
       console.error('not implemented');
     }
   }

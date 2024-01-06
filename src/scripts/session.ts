@@ -36,14 +36,16 @@ export function hasPermission(role: string, permission: string): boolean {
     return true;
   }
   switch(permission) {
-    case "viewAdminDashboard":
-    case "layWitness":
+    case 'viewAdminDashboard':
+    case 'layWitness':
       return role === 'employee';
-    case "positionPapers":
-    case "news":
-    case "chapters":
-    case "faithFacts":
-    case "jobsAvailable":
+    case 'positionPapers':
+    case 'news':
+    case 'chapters':
+    case 'prayer':
+    case 'involvement':
+    case 'faithFacts':
+    case 'jobsAvailable':
     default:
       return false;
   }
