@@ -1,6 +1,8 @@
 import {CufForm} from '../../../common/form/form';
 import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
 import {CufTextArea} from '../../../common/form/form_field/text_area/text_area';
+import {LinksData} from '../../../common/links_list/links_list';
+import {until} from '../../../../scripts/util';
 
 import html from './links_form.html';
 
@@ -65,6 +67,11 @@ export class CufLinksForm extends CufForm<LinksFormData> {
     this.links_title.setData(data.title ?? '');
     this.links_titlelink.setData(data.titlelink ?? '');
     this.links_description.setData(data.description ?? '');
+  }
+
+  async setJsonData(data: LinksData) {
+    await until(() => this.fully_parsed);
+    this.links_group.setDatalist(JSON.stringify(data.groups.map(g => g.subheader)));
   }
 }
 

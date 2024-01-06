@@ -43,22 +43,26 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
       }
     }
     if (!!datalist) {
-      this.use_datalist = true;
-      const datalist_element = document.createElement('datalist');
-      datalist_element.setAttribute('id', `${this.id}-${datalist}-datalist`);
-      const mapping = await specificMapping(datalist);
-      const default_mapping = defaultMapping(datalist);
-      for (const item of mapping) {
-        const item_element = document.createElement('option');
-        item_element.setAttribute('data_value', item.value);
-        item_element.innerText = item.text;
-        datalist_element.appendChild(item_element);
-        this.datalist_options.set(item.value, item_element);
-      }
-      this.form_field.setAttribute('list', datalist_element.id);
-      this.form_field.value = default_mapping;
-      this.appendChild(datalist_element);
+      await this.setDatalist(datalist);
     }
+  }
+
+  async setDatalist(datalist: string) {
+    this.use_datalist = true;
+    const datalist_element = document.createElement('datalist');
+    datalist_element.setAttribute('id', `${this.id}-${datalist}-datalist`);
+    const mapping = await specificMapping(datalist);
+    const default_mapping = defaultMapping(datalist);
+    for (const item of mapping) {
+      const item_element = document.createElement('option');
+      item_element.setAttribute('data_value', item.value);
+      item_element.innerText = item.text;
+      datalist_element.appendChild(item_element);
+      this.datalist_options.set(item.value, item_element);
+    }
+    this.form_field.setAttribute('list', datalist_element.id);
+    this.form_field.value = default_mapping;
+    this.appendChild(datalist_element);
   }
 
   protected _enable(): void {

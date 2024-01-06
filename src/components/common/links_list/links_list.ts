@@ -14,7 +14,7 @@ export declare interface LinksData {
 /** Data describing a group of links */
 export declare interface LinkGroupData {
   subheader: string;
-  links: JsonDataContent;
+  links: JsonDataContent[];
 }
 
 export class CufLinksList extends CufElement {

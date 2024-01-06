@@ -8,7 +8,7 @@ import {apiPost} from '../../../scripts/api';
 import {CufPositionPapersForm, PositionPapersFormData} from '../forms/position_papers_form/position_papers_form';
 import {CufJobsAvailableForm, JobsAvailableData} from '../forms/jobs_available_form/jobs_available_form';
 import {renameFile} from '../../../scripts/util';
-import {addChaptersData, addNewJsonData, addNewLayWitnessData, getListChaptersData, getListJsonData, getListLaywitnessData, getListLinksData} from './util';
+import {addChaptersData, addLinksData, addNewJsonData, addNewLayWitnessData, getListChaptersData, getListJsonData, getListLaywitnessData, getListLinksData} from './util';
 import {CufLayWitnessForm, LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {CufChaptersForm} from '../forms/chapters_form/chapters_form';
 import {ChapterData} from '../../common/chapters_list/chapters_list';
@@ -100,6 +100,7 @@ export class CufDashboardSection extends CufElement {
     this.json_key = this.section_key.replace(/[A-Z]/g, c => `_${c.toLowerCase()}`);
     this.section_title.innerText = this.sectionTitle();
     this.edit_button.innerText = `Edit ${this.sectionTitle()}`;
+    this.current_data = await fetchJson<DashboardSectionData>(`${this.json_key}/${this.json_key}.json`);
     this.setNewForm();
     this.setNewButton();
     await this.setCurrentList();
@@ -190,6 +191,10 @@ export class CufDashboardSection extends CufElement {
       this.new_form_el = document.createElement(`cuf-subheader-form`) as AdminFormType;
     } else {
       this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
+    }
+    if (['links'].includes(this.json_key)) {
+      // @ts-ignore
+      this.new_form_el.setJsonData(this.current_data);
     }
     this.new_form_el.setSubmitCallback(async () => {
       if (!this.new_form_el.validate()) {
@@ -299,7 +304,6 @@ export class CufDashboardSection extends CufElement {
   }
 
   private async setCurrentList() {
-    this.current_data = await fetchJson<DashboardSectionData>(`${this.json_key}/${this.json_key}.json`);
     if (['jobs_available', 'news', 'position_papers', 'prayer', 'involvement'].includes(this.json_key)) {
       this.current_list.replaceChildren(...getListJsonData(this, this.current_data as JsonData<JsonDataContent>));
     } else if (this.json_key === 'lay_witness') {
@@ -354,7 +358,3 @@ declare global {
     'cuf-dashboard-section': CufDashboardSection;
   }
 }
-function addLinksData(arg0: LinksData, new_data: any): { new_data: DashboardSectionData | undefined; data_added?: any; } {
-  throw new Error('Function not implemented.');
-}
-

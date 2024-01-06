@@ -1,7 +1,7 @@
 import {JsonData, JsonDataContent, JsonDataSubheader} from '../../../data/data_control';
 import {ChapterData} from '../../common/chapters_list/chapters_list';
 import {LaywitnessData, LaywitnessIssueData, LaywitnessVolumeData} from '../../common/laywitness_list/laywitness_list';
-import {LinksData} from '../../common/links_list/links_list';
+import {LinkGroupData, LinksData} from '../../common/links_list/links_list';
 import {LayWitnessFormData} from '../forms/lay_witness_form/lay_witness_form';
 import {LinksFormData} from '../forms/links_form/links_form';
 import {CufDashboardSection} from './dashboard_section';
@@ -267,30 +267,75 @@ export function editChaptersData(el: CufDashboardSection, data: JsonData<Chapter
 }
 
 /** Adds new data to existing links data */
-export function addLinks(data: LinksData, added: LinksFormData):
+export function addLinksData(data: LinksData, added: LinksFormData):
   {new_data: LinksData|undefined, data_added?: LinksFormData}
 {
+  const link: JsonDataContent = {
+    title: added.title,
+    titlelink: added.titlelink,
+    description: added.description,
+  };
+  let new_group = true;
+  for (const group of data.groups) {
+    if (group.subheader === added.group) {
+      new_group = false;
+      group.links.push(link);
+      break;
+    }
+  }
+  if (new_group) {
+    const group: LinkGroupData = {
+      subheader: added.group,
+      links: [link],
+    };
+    data.groups.push(group);
+  }
   return {new_data: data, data_added: added};
 }
 
 /** Return array of elements from links data */
 export function getListLinksData(el: CufDashboardSection, data: LinksData): CufEditItem[] {
   const els: CufEditItem[] = [];
+  for (const [i, group] of data.groups.entries()) {
+    for (const [j, link] of group.links.entries()) {
+      const item: CufEditItem = document.createElement('cuf-edit-item');
+      item.addConfigLinksData(el, group, link, `${i}-${j}`);
+      els.push(item);
+    }
+  }
   return els;
 }
 
 /** Deletes existing entry in links data */
-export function deleteLinksData(el: CufDashboardSection, data: LinksData,
-  deleted: LinksFormData, data_key: string):
+export function deleteLinksData(data: LinksData, data_key: string):
   {new_data: LinksData|undefined, data_deleted?: JsonDataContent}
 {
-  return {new_data: data, data_deleted: deleted};
+  const i = parseInt(data_key.split('-')[0].trim());
+  const j = parseInt(data_key.split('-')[1].trim());
+  const link_deleted = data.groups[i].links[j];
+  data.groups[i].links.splice(j, 1);
+  if (data.groups[i].links.length < 1) {
+    data.groups.splice(i, 1);
+  }
+  return {new_data: data, data_deleted: link_deleted};
 }
 
 /** Edits existing entry in links data */
-export function editLinksData(el: CufDashboardSection, data: LinksData,
-  edited: LinksFormData, data_key: string):
+export function editLinksData(data: LinksData, edited: LinksFormData, data_key: string):
   {new_data: LinksData|undefined, data_edited?: JsonDataContent}
 {
-  return {new_data: data, data_edited: edited};
+  const i = parseInt(data_key.split('-')[0].trim());
+  const j = parseInt(data_key.split('-')[1].trim());
+  const link_edited: JsonDataContent = {
+    title: edited.title,
+    titlelink: edited.titlelink,
+    description: edited.description,
+  };
+  if (edited.group !== data.groups[i].subheader) {
+    let {new_data} = deleteLinksData(data, data_key);
+    let r = addLinksData(new_data, edited);
+    return {new_data: r.new_data, data_edited: link_edited};
+  }
+  data.groups[i].links[j] = link_edited;
+  return {new_data: data, data_edited: link_edited};
 }
