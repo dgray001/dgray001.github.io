@@ -2,11 +2,13 @@ import {fetchJson} from '../../../data/data_control';
 import {scrollToElement} from '../../../scripts/util';
 import {CufElement} from '../../cuf_element';
 import {CufFaithFactCategory} from '../faith_fact_category/faith_fact_category';
+import {CufSpinner} from '../spinner/spinner';
 
 import html from './faith_fact_category_list.html';
 
 import './faith_fact_category_list.scss';
 import '../faith_fact_category/faith_fact_category';
+import '../spinner/spinner';
 
 /** Data describing all Faith Facts */
 export declare interface FaithFactsData {
@@ -20,6 +22,7 @@ interface CategoryData {
 
 export class CufFaithFactCategoryList extends CufElement {
   private category_container: HTMLDivElement;
+  private spinner: CufSpinner;
   private faith_facts_container: HTMLDivElement;
 
   private loading = false;
@@ -31,6 +34,7 @@ export class CufFaithFactCategoryList extends CufElement {
     super();
     this.htmlString = html;
     this.configureElement('category_container');
+    this.configureElement('spinner');
     this.configureElement('faith_facts_container');
   }
 
@@ -83,6 +87,7 @@ export class CufFaithFactCategoryList extends CufElement {
     }
 
     this.loading = true;
+    this.spinner.classList.add('show');
     button_wrapper.classList.add('current-category');
     const last_wrapper = this.category_els.get(this.current_category);
     if (!!last_wrapper) {
@@ -116,6 +121,7 @@ export class CufFaithFactCategoryList extends CufElement {
       this.loaded_json_data.set(json_data['category'], json_data);
     }
     scrollToElement(this);
+    this.spinner.classList.remove('show');
     this.loading = false;
   }
 

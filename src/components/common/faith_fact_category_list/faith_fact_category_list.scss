@@ -1,4 +1,15 @@
 cuf-faith-fact-category-list {
+  > #spinner {
+    --size: 40px;
+    --width: 8px;
+    --spin-time: 1s;
+    margin: 1em auto 0;
+
+    &:not(.show) {
+      display: none;
+    }
+  }
+
   > #category-container {
     display: flex;
     flex-flow: row nowrap;

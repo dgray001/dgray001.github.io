@@ -1,0 +1,20 @@
+cuf-spinner {
+  --background-color: #f3f3f3; /* Light grey */
+  --spinner-color: #3498db; /* Blue */
+  --size: 120px;
+  --width: 16px;
+  --spin-time: 2x;
+
+  animation: spin var(--spin-time) linear infinite;
+  border: var(--width) solid var(--background-color);
+  border-top: var(--width) solid var(--spinner-color);
+  border-radius: 50%;
+  display: block;
+  height: var(--size);
+  width: var(--size);
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
