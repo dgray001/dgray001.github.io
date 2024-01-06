@@ -37,7 +37,8 @@ export class Validator {
         break;
     case 'datalist':
       try {
-        if (!(el as any).datalist_options.has(input)) {
+        const options: HTMLOptionElement[] = [...(el as any).datalist_options.values()];
+        if (!options.map(o => o.innerText).includes(input)) {
           return 'Please enter one of the suggested values';
         }
       } catch(e) {

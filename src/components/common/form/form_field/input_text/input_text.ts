@@ -75,7 +75,7 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
 
   override getData(): string {
     if (this.use_datalist) {
-      for (const [k, o] of this.datalist_options) {
+      for (const [_, o] of this.datalist_options) {
         if (this.form_field.value === o.innerText) {
           return o.attributes.getNamedItem('data_value')?.value;
         }
@@ -85,6 +85,9 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
   }
 
   override getStringData(): string {
+    if (this.use_datalist) {
+      return this.form_field.value;
+    }
     return this.getData();
   }
 

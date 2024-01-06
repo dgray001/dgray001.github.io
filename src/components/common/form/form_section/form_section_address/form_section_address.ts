@@ -56,11 +56,11 @@ export class CufFormSectionAddress extends CufFormSection<AddressData, AddressOu
 
   getOutputData(): AddressOutputData {
     const data: AddressOutputData = {
-      line1: this.address_first.getData(),
-      line2: `${this.address_city.getData()}, ${this.address_state.getData()} ${this.address_zip.getData()}`,
-      line3: this.address_country.getData(),
+      line1: this.address_first.getStringData(),
+      line2: `${this.address_city.getStringData()}, ${this.address_state.getStringData()} ${this.address_zip.getStringData()}`,
+      line3: this.address_country.getStringData(),
     };
-    const address2 = this.address_second.getData();
+    const address2 = this.address_second.getStringData();
     if (!!address2) {
       data.line1 += ` ${address2}`;
     }
