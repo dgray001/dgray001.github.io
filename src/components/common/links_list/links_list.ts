@@ -1,4 +1,4 @@
-import {JsonDataContent} from '../../../data/data_control';
+import {JsonDataContent, fetchJson} from '../../../data/data_control';
 import {CufElement} from '../../cuf_element';
 
 import html from './links_list.html';
@@ -18,16 +18,27 @@ export declare interface LinkGroupData {
 }
 
 export class CufLinksList extends CufElement {
-  private example: HTMLDivElement;
-
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('example');
   }
 
-  protected override parsedCallback(): void {
-    console.log('CufLinksList parsed!');
+  protected override async parsedCallback(): Promise<void> {
+    const linksData = await fetchJson<LinksData>('links/links.json');
+    for (const group of linksData.groups) {
+      const header = document.createElement('h2');
+      header.classList.add('section-title');
+      header.innerHTML = group.subheader;
+      this.appendChild(header);
+      const content = document.createElement('div');
+      content.classList.add('section-content');
+      for (const link of group.links) {
+        const p = document.createElement('p');
+        p.innerHTML = `<a href="${link.titlelink}">${link.title}</a><br>${link.description ?? ''}`;
+        content.appendChild(p);
+      }
+      this.appendChild(content);
+    }
   }
 }
 
