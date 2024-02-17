@@ -6,7 +6,7 @@ import {CufFormSectionMembership} from '../../form_section/form_section_membersh
 import {CufTextArea} from '../../form_field/text_area/text_area';
 import {recaptchaCallback} from '../../../../../scripts/recaptcha';
 import {CufInputText} from '../../form_field/input_text/input_text';
-import {DEV} from '../../../../../scripts/util';
+import {DEV, STAGING} from '../../../../../scripts/util';
 import {createContactEmail} from '../util';
 import {apiGetPost, apiPost} from '../../../../../scripts/api';
 
@@ -72,7 +72,7 @@ export class CufDonateForm extends CufForm<DonateFormData> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
-    if (DEV) {
+    if (DEV || STAGING) {
       this.setTestData();
       this.hidden_donate_form.action = 'https://test.authorize.net/payment/payment';
     } else {

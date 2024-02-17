@@ -4,14 +4,17 @@ import {CufElement} from '../../cuf_element';
 import html from './faith_fact_category.html';
 
 import './faith_fact_category.scss';
+import '../faith_fact/faith_fact';
 
-interface FaithFactCategoryData {
+/** Data describing a category of faith facts */
+export declare interface FaithFactCategoryData {
   category: string;
   category_display: string;
   faith_facts: FaithFactData[];
 }
 
-interface FaithFactData {
+/** Data describing a single faith fact */
+export declare interface FaithFactData {
   title: string;
   question: string;
   summary: string;
@@ -37,7 +40,11 @@ export class CufFaithFactCategory extends CufElement {
       this.json_data = await fetchJson(`faith_facts/${category_name}.json`);
     }
     for (const faith_fact of this.json_data.faith_facts) {
-      const faith_fact_div = document.createElement('div');
+      const faith_fact_el = document.createElement('cuf-faith-fact');
+      faith_fact_el.classList.add('faith-fact');
+      faith_fact_el.setFaithFact(faith_fact);
+      this.faith_fact_list.appendChild(faith_fact_el);
+      /*
       const title = document.createElement('button');
       title.classList.add('title');
       title.innerHTML = faith_fact['title'].toUpperCase();
@@ -63,9 +70,7 @@ export class CufFaithFactCategory extends CufElement {
           return;
         }
         content.setAttribute('style', 'display: none;');
-      });
-      faith_fact_div.classList.add('faith-fact');
-      this.faith_fact_list.appendChild(faith_fact_div);
+      });*/
     }
     if (this.callback) {
       this.callback(this.json_data);

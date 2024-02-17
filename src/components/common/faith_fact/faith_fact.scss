@@ -1,0 +1,49 @@
+cuf-faith-fact {
+  background-color: var(--card-background-color);
+  border-radius: 6px;
+  display: block;
+
+  #title-el {
+    background-color: var(--card-header-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-sizing: border-box;
+    font-size: 1.2rem;
+    padding: 0.3em;
+    text-align: left;
+    user-select: text;
+    width: 100%;
+
+    &:hover {
+      background-color: rgb(241, 241, 241);
+    }
+
+    &:active {
+      background-color: var(--card-background-color);
+    }
+  }
+
+  #content-el {
+    padding: 0 0.3em 0.3em;
+
+    &:not(.showing) {
+      display: none;
+    }
+
+    #question {
+      display: flex;
+      flex-flow: row nowrap;
+      margin-bottom: 0.8rem;
+    }
+
+    #summary {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+
+    .label {
+      margin-right: 0.5em;
+    }
+  }
+}
