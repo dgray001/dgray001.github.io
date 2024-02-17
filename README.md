@@ -16,3 +16,11 @@ Staging:
     => So when deploying to staging, rename contact.php to con_tac.php
  - Also need to make sure DEV = false and STAGING = true in /scripts/util.js
  - Also need to update /server/includes/config_path.php
+
+Deploy Instructions:
+ - Update /scripts/util.js::DEV and /scripts/util.js::STAGING flags
+ - npm run build to update bundles
+ - Copy contents of the ./docs folder into the releases/new_release folder
+ - Delete the ./data folder, the .nojekyll file, and the config_path file
+ - Zip contents of releases/new_release, move to releases folder, then delete contents of releases/new_release
+ - Upload to inmotion
