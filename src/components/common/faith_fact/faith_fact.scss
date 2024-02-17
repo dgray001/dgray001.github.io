@@ -25,6 +25,7 @@ cuf-faith-fact {
   }
 
   #content-el {
+    --font-size: 1em;
     padding: 0 0.3em 0.3em;
 
     &:not(.showing) {
@@ -44,6 +45,17 @@ cuf-faith-fact {
 
     .label {
       margin-right: 0.5em;
+    }
+
+    #download {
+      display: block;
+      font-size: var(--font-size);
+      margin-top: 0.8rem;
+
+      > #download-img {
+        height: var(--font-size);
+        width: var(--font-size);
+      }
     }
   }
 }

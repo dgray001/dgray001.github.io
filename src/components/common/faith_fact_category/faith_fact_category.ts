@@ -16,7 +16,7 @@ export declare interface FaithFactCategoryData {
 /** Data describing a single faith fact */
 export declare interface FaithFactData {
   title: string;
-  question: string;
+  question?: string;
   summary: string;
 }
 
@@ -42,35 +42,8 @@ export class CufFaithFactCategory extends CufElement {
     for (const faith_fact of this.json_data.faith_facts) {
       const faith_fact_el = document.createElement('cuf-faith-fact');
       faith_fact_el.classList.add('faith-fact');
-      faith_fact_el.setFaithFact(faith_fact);
+      faith_fact_el.setFaithFact(faith_fact, category_name);
       this.faith_fact_list.appendChild(faith_fact_el);
-      /*
-      const title = document.createElement('button');
-      title.classList.add('title');
-      title.innerHTML = faith_fact['title'].toUpperCase();
-      faith_fact_div.appendChild(title);
-      const content = document.createElement('div');
-      content.classList.add('all-content');
-      content.setAttribute('style', 'display: none;');
-      const question_html = faith_fact['question'] ?
-        `<div class="question">
-          <div class="label"><em>Question</em>:</div>
-          <div class="content">${faith_fact['question']}</div>
-        </div>` : '';
-      content.innerHTML = `
-        ${question_html}
-        <div class="summary">
-          <div class="label"><em>Summary</em>:</div>
-          <div class="content">${faith_fact['summary']}</div>
-        </div>`;
-      faith_fact_div.appendChild(content);
-      title.addEventListener('click', () => {
-        if (content.hasAttribute('style')) {
-          content.removeAttribute('style');
-          return;
-        }
-        content.setAttribute('style', 'display: none;');
-      });*/
     }
     if (this.callback) {
       this.callback(this.json_data);

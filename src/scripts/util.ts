@@ -93,6 +93,23 @@ export function headerHeight(): number {
   return fixed_container_height + padding_top;
 }
 
+/** Downloads input string as file */
+export function downloadString(content: string, fileName: string, contentType = 'text/plain') {
+  var a = document.createElement("a");
+  var file = new Blob([content], {type: contentType});
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+}
+
+/** Downloads input blob as file */
+export function downloadBlob(content: Blob, fileName: string) {
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(content);
+  a.download = fileName;
+  a.click();
+}
+
 /** Scrolls to the input element */
 export function scrollToElement(el: HTMLElement, wait_time = 0) {
   const element_position = el.offsetTop;
