@@ -1,0 +1,13 @@
+reference_files/**
+___dist/**
+*.zip
+.vscode/*
+*.pptx
+article_navigation_demo.png
+node_modules/**
+.releases/**
+server/config/**
+tsout/**
+config/**
+MeetingNotes*
+releases/**
