@@ -1,6 +1,0 @@
-body:not(.loaded) .hide-for-load {
-  display: none;
-}
-body.loaded .hide-after-load {
-  display: none;
-}

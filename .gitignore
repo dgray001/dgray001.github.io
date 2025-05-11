@@ -3,6 +3,7 @@ ___dist/**
 *.zip
 .vscode/*
 *.pptx
+*.xlsx
 article_navigation_demo.png
 node_modules/**
 .releases/**
