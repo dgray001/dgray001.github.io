@@ -1,4 +1,5 @@
-v0.9u: Get dev working
+v0.9v: Fix small login issues
+ - Profile login ensure logic is working and can login from any page
  - Migrate member user data
  - Faith facts in admin dashboard
 

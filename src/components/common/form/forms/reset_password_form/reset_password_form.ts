@@ -121,7 +121,7 @@ export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
           this.errorStatus(this.status_message_password, res.error_message ??
             'An unknown error occurred trying to reset password');
         }
-      }, this.form_button_password, this.status_message_password, 'Verifying Email');
+      }, this.form_button_password, this.status_message_password, 'Setting Password');
     });
   }
 

@@ -180,8 +180,10 @@ export class CufDashboardSection extends CufElement {
       this.new_button_container.appendChild(this.new_form_button);
     } else if (this.section_key === 'faithFacts') {
       console.error('implement');
+      return;
     } else {
       console.error('not implemented');
+      return;
     }
     this.toggleNewForm(false);
   }
