@@ -1,4 +1,4 @@
-v0.9s: Deploy to staging
+v0.9t: Update package json
  - Migrate member user data
  - Faith facts in admin dashboard
 

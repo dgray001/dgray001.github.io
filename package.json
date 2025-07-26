@@ -1,6 +1,6 @@
 {
   "name": "lnz_site",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "LNZ Website",
   "main": "index.js",
   "scripts": {
@@ -20,27 +20,27 @@
   },
   "homepage": "https://github.com/dgray001/LNZ_site#readme",
   "devDependencies": {
-    "@types/node": "^18.19.3",
-    "@types/webpack": "^5.28.1",
-    "@webpack-cli/generators": "^3.0.1",
-    "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "declaration-bundler-webpack-plugin": "^1.0.3",
-    "ts-loader": "^9.4.2",
-    "typescript": "^5.0.4",
-    "webpack": "^5.78.0",
-    "webpack-dev-server": "^4.13.2",
-    "wepack-cli": "^0.0.1-security"
+    "@types/node": "^24",
+    "@types/webpack": "^5.28",
+    "@webpack-cli/generators": "^3.0.7",
+    "clean-webpack-plugin": "^4",
+    "copy-webpack-plugin": "^13",
+    "declaration-bundler-webpack-plugin": "^1",
+    "ts-loader": "^9.5",
+    "typescript": "^5.8",
+    "webpack": "^5.100",
+    "webpack-cli": "^6",
+    "webpack-dev-server": "^5"
   },
   "dependencies": {
-    "@mux/upchunk": "^3.1.0",
-    "@types/grecaptcha": "^3.0.4",
-    "css-loader": "^6.7.3",
-    "html-loader": "^4.2.0",
+    "@mux/upchunk": "^3.5",
+    "@types/grecaptcha": "^3",
+    "css-loader": "^7",
+    "html-loader": "^5",
     "lnz_site": "file:",
-    "normalize.css": "^8.0.1",
-    "sass": "^1.69.5",
-    "sass-loader": "^13.2.2",
-    "style-loader": "^3.3.2"
+    "normalize.css": "^8",
+    "sass": "^1.89",
+    "sass-loader": "^16",
+    "style-loader": "^4"
   }
 }
