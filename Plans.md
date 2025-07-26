@@ -1,4 +1,4 @@
-v0.9t: Update package json
+v0.9u: Get dev working
  - Migrate member user data
  - Faith facts in admin dashboard
 

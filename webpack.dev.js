@@ -13,9 +13,12 @@ module.exports = {
     compress: true,
     liveReload: true,
     port: 8080,
-    proxy: {
-      '/server': 'http://127.0.0.1:5432', // php server
-    },
+    proxy: [
+      {
+        context: ['/server'],
+        target: 'http://localhost:3000', // php server
+      },
+    ],
     server: 'http',
     static: {
       directory: path.resolve(__dirname, 'docs/'),

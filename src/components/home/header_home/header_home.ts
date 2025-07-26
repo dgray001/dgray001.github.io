@@ -7,6 +7,7 @@ import html from './header_home.html';
 
 import './header_home.scss';
 import '../../common/navigation_pane/navigation_pane';
+import '../../common/profile_button/profile_button';
 
 export class CufHeaderHome extends CufElement {
   private title_container: HTMLDivElement;

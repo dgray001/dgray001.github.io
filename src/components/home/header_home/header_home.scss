@@ -78,6 +78,23 @@ cuf-header-home {
     width: 100vw;
     z-index: 8;
   }
+
+  > #profile-button-container {
+    --padding-top: calc(0.3 * (1 - 0.35) * var(--fixed-container-height));
+    --title-height: calc(0.5 * var(--fixed-container-height));
+
+    height: var(--fixed-container-height);
+    margin-top: var(--padding-top);
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 4;
+
+    > #profile-button {
+      --height: var(--title-height);
+      margin-right: var(--padding-top);
+    }
+  }
 }
 
 body.mobile {
