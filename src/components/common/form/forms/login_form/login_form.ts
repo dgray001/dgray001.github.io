@@ -1,11 +1,11 @@
-import {CufForm} from '../../form';
-import {CufInputText} from '../../form_field/input_text/input_text';
-import {recaptchaCallback} from '../../../../../scripts/recaptcha';
-import {DEV} from '../../../../../scripts/util';
-import {apiPost} from '../../../../../scripts/api';
-import {loggedIn} from '../../../../../scripts/session';
-import {getCookie} from '../../../../../scripts/cookies';
-import {getUrlParam, navigate, removeUrlParam} from '../../../../../scripts/url';
+import { CufForm } from '../../form';
+import { CufInputText } from '../../form_field/input_text/input_text';
+import { recaptchaCallback } from '../../../../../scripts/recaptcha';
+import { DEV } from '../../../../../scripts/util';
+import { apiPost } from '../../../../../scripts/api';
+import { loggedIn } from '../../../../../scripts/session';
+import { getCookie } from '../../../../../scripts/cookies';
+import { getUrlParam, navigate, removeUrlParam } from '../../../../../scripts/url';
 
 import html from './login_form.html';
 
@@ -31,10 +31,7 @@ export class CufLoginForm extends CufForm<LoginFormData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'username_field',
-      'password_field',
-    ]);
+    this.configureForm(['username_field', 'password_field']);
     this.configureElement('form_wrapper');
     this.configureElement('login_form_button');
     this.configureElement('logout_form_wrapper');
@@ -47,48 +44,66 @@ export class CufLoginForm extends CufForm<LoginFormData> {
     if (await loggedIn()) {
       this.form_wrapper.remove();
       this.activate_account.remove();
-      this.messageStatus(this.login_form_status_message,
-        `You are already logged in as <b>${getCookie('email')}</b><br>Please logout to switch accounts`);
+      this.messageStatus(
+        this.login_form_status_message,
+        `You are already logged in as <b>${getCookie('email')}</b><br>Please logout to switch accounts`
+      );
       this.logout_form_button.addEventListener('click', () => {
-        recaptchaCallback(async () => {
-          const res = await apiPost('logout', {});
-          if (res.success) {
-            location.reload();
-          } else {
-            this.errorStatus(this.login_form_status_message, res.error_message ??
-              'An unknown error occurred trying to logout');
-          }
-        }, this.logout_form_button, this.login_form_status_message, 'Logging Out');
+        recaptchaCallback(
+          async () => {
+            const res = await apiPost('logout', {});
+            if (res.success) {
+              location.reload();
+            } else {
+              this.errorStatus(
+                this.login_form_status_message,
+                res.error_message ?? 'An unknown error occurred trying to logout'
+              );
+            }
+          },
+          this.logout_form_button,
+          this.login_form_status_message,
+          'Logging Out'
+        );
       });
     } else {
       this.logout_form_wrapper.remove();
       if (DEV) {
         this.setTestData();
       }
-      if (!!getUrlParam('redirect')) {
-        this.messageStatus(this.login_form_status_message, 'Please login to gain access to this page');
+      if (getUrlParam('redirect')) {
+        this.messageStatus(
+          this.login_form_status_message,
+          'Please login to gain access to this page'
+        );
       }
       this.login_form_button.addEventListener('click', () => {
         if (!this.validate()) {
           return;
         }
-        recaptchaCallback(async () => {
-          const res = await apiPost('login', this.getData());
-          if (res.success) {
-            const redirect = getUrlParam('redirect');
-            if (redirect) {
-              removeUrlParam('redirect');
-              navigate(redirect);
+        recaptchaCallback(
+          async () => {
+            const res = await apiPost('login', this.getData());
+            if (res.success) {
+              const redirect = getUrlParam('redirect');
+              if (redirect) {
+                removeUrlParam('redirect');
+                navigate(redirect);
+              } else {
+                removeUrlParam('redirect');
+                navigate('');
+              }
+            } else {
+              this.errorStatus(
+                this.login_form_status_message,
+                res.error_message ?? 'An unknown error occurred trying to login'
+              );
             }
-            else {
-              removeUrlParam('redirect');
-              navigate('');
-            }
-          } else {
-            this.errorStatus(this.login_form_status_message, res.error_message ??
-              'An unknown error occurred trying to login');
-          }
-        }, this.login_form_button, this.login_form_status_message, 'Logging In');
+          },
+          this.login_form_button,
+          this.login_form_status_message,
+          'Logging In'
+        );
       });
     }
   }

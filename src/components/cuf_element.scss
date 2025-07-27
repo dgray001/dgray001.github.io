@@ -1,5 +1,6 @@
 .cuf-element {
-  &:not(.parsed), &.hide {
+  &:not(.parsed),
+  &.hide {
     display: none;
   }
 

@@ -1,6 +1,6 @@
-import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
-import {until, untilTimer} from '../../../scripts/util';
-import {CufElement} from '../../cuf_element';
+import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
+import { until, untilTimer } from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
 
 import html from './content_card.html';
 
@@ -46,7 +46,7 @@ export class CufContentCard extends CufElement {
       console.error('Must set content key for content card');
       return;
     }
-    if (!!this.fixed_height) {
+    if (this.fixed_height) {
       this.classList.add('fixed-height');
       this.style.setProperty('--fixed-height', this.fixed_height.toString());
     }
@@ -58,12 +58,14 @@ export class CufContentCard extends CufElement {
   }
 
   private async fetchAndSetContent(): Promise<void> {
-    this.json_data = await fetchJson<JsonData<JsonDataContent>>(`${this.content_key}/${this.content_key}.json`);
+    this.json_data = await fetchJson<JsonData<JsonDataContent>>(
+      `${this.content_key}/${this.content_key}.json`
+    );
     this.setContent();
     if (this.fade_in) {
       this.card_type = ContentCardType.FADE_IN;
     }
-    switch(this.card_type) {
+    switch (this.card_type) {
       case ContentCardType.FADE_IN:
         if (this.fixed_height < 1) {
           console.error('Must set fixed height for fade in content card');
@@ -94,11 +96,11 @@ export class CufContentCard extends CufElement {
 
   private setContent() {
     this.header_text.innerText = this.json_data.header;
-    if (!!this.json_data.headerlink) {
+    if (this.json_data.headerlink) {
       this.header_text.href = this.json_data.headerlink;
     }
     const contents: JsonDataContent[] = [];
-    if (!!this.json_data.subheader) {
+    if (this.json_data.subheader) {
       contents.push(this.json_data.subheader);
     }
     contents.push(...this.json_data.content);
@@ -116,15 +118,13 @@ export class CufContentCard extends CufElement {
       if (content['title']) {
         if (content['titlelink']) {
           content_list += ` class="element-with-title"><div class="element-title"><a href="${content['titlelink']}" onclick="event.stopPropagation()">${content['title']}</a></div`;
-        }
-        else {
+        } else {
           content_list += ` class="element-with-title"><div class="element-title">${content['title']}</div`;
         }
       }
       if (content['description']) {
-        content_list += `>${content['description']}</div>`
-      }
-      else {
+        content_list += `>${content['description']}</div>`;
+      } else {
         content_list += '></div>';
       }
       not_first = true;
@@ -136,7 +136,7 @@ export class CufContentCard extends CufElement {
     this.classList.add('fade-in');
     const fade_time = 450;
     let card_fade_src = '';
-    switch(this.content_key) {
+    switch (this.content_key) {
       case 'involvement':
         card_fade_src = '/images/paintings/cards/annunciation.jpg';
         break;

@@ -1,5 +1,5 @@
-import {CufFormSection} from '../form_section';
-import {CufCheckbox} from '../../form_field/checkbox/checkbox';
+import { CufFormSection } from '../form_section';
+import { CufCheckbox } from '../../form_field/checkbox/checkbox';
 
 import html from './form_section_membership.html';
 

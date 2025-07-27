@@ -2,365 +2,365 @@
   "category": "liturgy_and_sacraments",
   "category_display": "Liturgy and Sacraments",
   "faith_facts": [
-      {
-          "title": "ANNOUNCEMENTS AT MASS",
-          "question": "When should announcements be made during Mass?",
-          "summary": "“Following the prayer after communion, if there are any brief announcements, the deacon may make them, unless the priest prefers to do so himself” [<em>General Instruction to the Roman Missal</em> (GIRM), no. 139]."
-      },
-      {
-          "title": "APPROVED BIBLICAL TRANSLATIONS FOR MASS READINGS",
-          "question": "In Latin Rite Masses celebrated in the United States according to the rite Pope Paul VI promulgated following Vatican II, which biblical translations may be used for the readings?",
-          "summary": "On May 19, 2002, the use of the four-volume Lectionary for Mass, based upon the New American Bible, became mandatory in the United States for the aforementioned Masses."
-      },
-      {
-          "title": "BAPTISM OF DESIRE",
-          "question": "Is Baptism of desire a teaching of the Church or a theological opinion?",
-          "summary": "The teaching that the desire for Baptism brings about the effects of Baptism for those who could not receive the Sacrament is more than a theological opinion. However, the Catechism speaks of the Baptism of desire only after stating that Baptism is the only means by which the Church knows a person is saved."
-      },
-      {
-          "title": "BAPTISM: IS THERE A “RITE” TIME?",
-          "question": "May people be baptized during Lent?",
-          "summary": "Because Lent is a time of preparation for catechumens and Easter the most important feast of the Church year, the Church has designated that the Easter Vigil or Easter Sunday be the ordinary time for baptism of adults."
-      },
-      {
-          "title": "BAPTISMAL FONTS",
-          "question": "What is a baptistery? Where should it be located?",
-          "summary": "“The baptistery is the area where the baptismal font flows or has been placed. It should be reserved for the sacrament of baptism and should be a place worthy for Christians to be reborn in water and the Holy Spirit.”"
-      },
-      {
-          "title": "BREAD AND WINE USED IN THE CONSECRATION OF THE EUCHARIST",
-          "question": "What constitutes proper matter for the bread and wine used in the Consecration at Mass? If variations in matter occur, do the variations invalidate the Eucharist or simply make it illicit?",
-          "summary": "In both the Oriental and Latin Churches, the matter for the Sacrament of the Holy Eucharist is bread and wine. The amount of variation in the matter determines whether the Eucharist is invalid or illicit."
-      },
-      {
-          "title": "CATHOLIC FUNERALS & BURIALS IN CATHOLIC CEMETERIES",
-          "question": "Who may receive a Catholic funeral? Who may be buried in a Catholic cemetery?",
-          "summary": "Any baptized Catholic in good standing has a right to a funeral within the Church and according to her liturgical practice. There are some people to whom the Church denies Catholic funeral rites."
-      },
-      {
-          "title": "CATHOLIC FUNERAL RITES: COMMON QUESTIONS",
-          "question": "What is a Catholic funeral? (Is it just the funeral Mass? The vigil? The committal?) What is a Mass for the Dead?",
-          "summary": "The following discussion starts with the basics: What elements make a Catholic funeral? From an overview of the Catholic funeral rites, our discussion moves to particular questions about various elements of the Catholic funeral."
-      },
-      {
-          "title": "CATHOLIC-PROTESTANT WEDDINGS",
-          "question": "What role can a Protestant minister play in a Catholic wedding between a Catholic and a baptized non-Catholic? Can vows be exchanged before both the Protestant minister and the Catholic priest? Can a Catholic be married at a Protestant service?",
-          "summary": "The 1993 Directory on Ecumenism encourages a marriage between a Catholic and a baptized non-Catholic to be celebrated in a ceremony outside of the Mass."
-      },
-      {
-          "title": "CHILDREN’S MASSES: DON’T “PLAY” WITH THE WORD OF GOD",
-          "question": "Regarding Masses for children, may the readings be acted out in a play?",
-          "summary": "While “dramatic elements” may be used, such as dividing the sacred readings into different parts or roles, “care should be taken not to give the impression that the Liturgy of the Word is play.”"
-      },
-      {
-          "title": "CHILDREN’S MASSES: MAY LAY PEOPLE READ THE GOSPEL AND GIVE THE HOMILY",
-          "question": "May lay people read the read the Gospel and provide the homily at a children’s Mass?",
-          "summary": "The <em>Lectionary for Masses with Children</em> implies a lay person may read the Gospel in certain circumstances."
-      },
-      {
-          "title": "CHRIST’S PRESENCE IN THE MASS",
-          "question": "In what ways is Christ present in the Mass?",
-          "summary": "At Mass Christ is present in the priest, in sacred scripture, in the congregation, and in the Eucharist. Among these, Christ’s presence in the Eucharist is preeminent."
-      },
-      {
-          "title": "COME WORSHIP THE LORD: PROMOTING ADORATION OF THE MOST HOLY EUCHARIST",
-          "question": "What is adoration of the Most Holy Eucharist? How can I promote adoration of the Most Holy Eucharist with exposition in my parish and diocese?",
-          "summary": "The Most Holy Eucharist is the body and blood of Our Lord and Savior Jesus Christ (cf. Mt. 26:26-28; Jn. 6:55). Because this sacrament is the fullness and substance of His divinity and humanity, His presence demands proper adoration."
-      },
-      {
-          "title": "COMMUNION SERVICES",
-          "question": "What is a Communion service? When may a Communion service be celebrated? Who may conduct such a service? Does a Communion service fulfill the obligation to attend Mass on a Holy Day or Sunday?",
-          "summary": "A Communion service is a Catholic liturgy that may be celebrated when no priest is available to celebrate Mass. It includes the readings of the day and the distribution of the Eucharist. It is not a Mass."
-      },
-      {
-          "title": "CROSS OR CRUCIFIX AT MASS?",
-          "question": "What are the Church’s norms regarding the use of crosses and crucifixes during Mass? May a crucifix with the image of the resurrected Christ ever be used?",
-          "summary": "The latest edition of the General Instruction to the Roman Missal provides that “a cross with the figure of Christ crucified upon it” should be used in entrance processions and in the sanctuary."
-      },
-      {
-          "title": "DEFENDING OUR RITES: CONSTRUCTIVELY ADDRESSING LITURGICAL ABUSE",
-          "question": "How do I know if liturgical abuse occurs in my parish? What can I do about it?",
-          "summary": "In most instances, the issues are easily addressed by applying certain principles and norms of liturgical law."
-      },
-      {
-          "title": "DOGMATIZING DISCIPLINE: PAPAL AUTHORITY, MODIFYING THE MASS & THE TRUTH ABOUT <em>QUO PRIMUM</em>",
-          "question": "When Pope Saint Pius V issued his apostolic constitution (<em>Quo Primum</em>) that promulgated the venerable Tridentine Rite of the Mass in 1570, could he bind all future Popes from modifying or superseding this rite?",
-          "summary": "No, because the rite of the Mass by its nature involves much <em>changeable</em> discipline, as opposed to simply <em>unchangeable</em> doctrine."
-      },
-      {
-          "title": "ELEVATION OF THE HOST",
-          "question": "Is During the liturgy of the Eucharist, when is the host to be elevated? What are the associated rubrics or rules?",
-          "summary": "The consecrated host is elevated at two distinct times during the Eucharistic Prayer: after the words of consecration and during the final doxology."
-      },
-      {
-          "title": "EUCHARISTIC CONSECRATION: KNEELING OR STANDING?",
-          "question": "Are Catholics in the United States supposed to kneel during the consecration at Mass?",
-          "summary": "With Vatican approval, the U.S. Bishops in both 1969 and 1995 decreed as a norm that people are to “kneel beginning after the <em>Sanctus</em> [the “Holy, Holy, Holy”] until after the Amen of the Eucharistic Prayer, that is, before the Lord’s Prayer.”"
-      },
-      {
-          "title": "EUCHARISTIC EXPOSITION: APPROPRIATE DEVOTIONAL ACTIVITIES",
-          "question": "What devotional activities are appropriate during Eucharistic exposition?",
-          "summary": "We Any devotional activity, whether communal or private, during Eucharistic exposition should direct the faithful to the worship of Christ, present in the Blessed Sacrament. The Church particularly encourages the reading of the Scriptures and silent prayer."
-      },
-      {
-          "title": "FIRST CONFESSION & FIRST COMMUNION",
-          "question": "Should a child receive First Confession before First Communion?",
-          "summary": "Yes. The Church definitively teaches that “[c]hildren must go to the sacrament of Penance before receiving Holy Communion for the first time” (<em>Catechism</em>, no. 1457)."
-      },
-      {
-          "title": "GATHERING AROUND THE ALTAR AT THE CONSECRATION",
-          "question": "Are members of the congregation permitted to stand around the altar during the consecration at Mass?",
-          "summary": "The faithful can infer from Church documents that the congregation should not gather around the altar during the consecration. The Sacred Congregation for Divine Worship and Discipline of the Sacraments has issued a prohibition of this practice."
-      },
-      {
-          "title": "GENERAL ABSOLUTION",
-          "question": "What is General Absolution? What are the Church’s norms regarding General Absolution?",
-          "summary": "General Absolution is an exceptional means of forgiving sins that the Church provides in grave circumstances, such as when danger of death threatens a person."
-      },
-      {
-          "title": "GENUFLECTING AT MASS",
-          "question": "What are the Church’s guidelines concerning genuflecting during Mass? What other guidelines does the Church provide regarding reverence toward the Blessed Sacrament?",
-          "summary": "Even when not participating at Mass, one should always adore the Blessed Sacrament whenever entering a Church, either by genuflecting toward the tabernacle or visiting the Blessed Sacrament chapel (CB, no. 71). If one is unable to genuflect, a bow is an appropriate substitute."
-      },
-      {
-          "title": "GOD’S DWELLING PLACE: THE PLACEMENT OF A TABERNACLE IN A CHURCH",
-          "question": "Where should the tabernacle be located in a parish church?",
-          "summary": "“The tabernacle, in which the Most Holy Eucharist is reserved, should be placed in a part of the church that is prominent, conspicuous, beautifully decorated, and suitable for prayer” (<em>Code of Canon Law</em>, canon 938 §2)."
-      },
-      {
-          "title": "GOD’S GIFT TO HIS BRIDE: PRIESTLY CELIBACY",
-          "question": "What is priestly celibacy?",
-          "summary": "Celibacy is a vocation, a gift from God freely accepted and a sacrifice freely undertaken by those responding to His call to the consecrated life. As a discipline, celibacy serves to conform the priest better to Christ."
-      },
-      {
-          "title": "GOSPEL TRUTH CONCERNING LAY READERS: THE ROLE OF THE LAITY DURING THE LITURGY OF THE WORD",
-          "question": "May a lay person proclaim all the readings at Mass?",
-          "summary": "A lay person may proclaim the first and second readings but not the Gospel."
-      },
-      {
-          "title": "HOLY COMMUNION FOR CATHOLICS WITH CELIAC SPRUE, ALCOHOLISM AND OTHER RELATED DISEASES",
-          "question": "How does the Church provide for Catholics who suffer from Celiac Sprue disease, alcoholism, or other related diseases, so that they can receive Holy Communion? What are the norms that regulate the use of these alternatives?",
-          "summary": "Communicants may always receive under one species alone—either bread or wine—and still receive the Body, Blood, soul, and divinity of our Lord."
-      },
-      {
-          "title": "HOLY COMMUNION UNDER BOTH SPECIES",
-          "question": "What is the Church’s teaching concerning the reception of Holy Communion under both species?",
-          "summary": "In 1984, with Vatican approval, the U.S. bishops authorized reception of Holy Communion under both species Since Christ is sacramentally present under each of the species, Communion under the species of bread alone makes it possible to receive all the fruit of Eucharistic grace. But “the sign of Communion is more complete when given under both kinds, since in that form the sign of the Eucharistic meal appears more clearly.”"
-      },
-      {
-          "title": "I BELIEVE IN ONE GOD: THE NICENE CREED AND THE MASS",
-          "question": "What is the Nicene Creed? Where did it come from? When must we pray the Nicene Creed (the profession of faith) at Mass?",
-          "summary": "The Nicene Creed is a summary of the Deposit of Faith as handed on to the Church from Christ Himself through His Apostles."
-      },
-      {
-          "title": "I CONFESS: THE BIBLICAL BASIS OF THE SACRAMENT OF RECONCILIATION",
-          "question": "Why do Catholics confess their sins to a priest? Is this biblical?",
-          "summary": "Jesus empowered His apostles to forgive men's sin, sending them to be ministers of reconciliation in His name, as His Heavenly Father first sent Him (Jn. 20:21-23)."
-      },
-      {
-          "title": "INDELIBLE CHARACTERS OF ORDINATION",
-          "question": "What are the “indelible characters” received at ordination?",
-          "summary": "A sacramental character, received in the sacraments of Baptism, Confirmation, and Holy Orders, is an indelible spiritual mark."
-      },
-      {
-          "title": "INTINCTION",
-          "question": "Is intinction permitted by the Church? What is the procedure for receiving Holy Communion by intinction?",
-          "summary": "The Church has provisions and norms for receiving Holy Communion under only one species or both."
-      },
-      {
-          "title": "INVALID MASSES",
-          "question": "Which changes and omissions render a Mass of the Roman Rite invalid?",
-          "summary": "A Mass of the Roman Rite is invalid when the celebrant of the Mass is not a validly ordained priest, when the priest does not have the proper intention, when wheat bread or grape wine is not used, or when the words “This is my Body” or “This is … my Blood” are not said."
-      },
-      {
-          "title": "IS THE WASHING OF HANDS REQUIRED AT MASS?",
-          "question": "Is the washing of hands during the Liturgy of the Eucharist a required part of the Mass?",
-          "summary": "According to the Sacramentary, which provides the official guidelines for celebrating the Mass and other liturgical rites of the Church, the washing of hands is a required part of the Mass."
-      },
-      {
-          "title": "KNEELING AFTER COMMUNION",
-          "question": "Are Catholics in the United States forbidden to kneel after receiving Communion? What should faithful Catholics do where the mandated practice is to stand?",
-          "summary": "The faithful are not forbidden to kneel after receiving Communion."
-      },
-      {
-          "title": "LAY PREACHING",
-          "question": "Are all Catholics called to preach?",
-          "summary": "Through Baptism, all Christians participate in Christ’s prophetic office, and are called to bear witness to the Gospel not only by example, but also by proclaiming Christ by word, to believers and non-believers alike (cf. <em>Catechism</em>, nos. 904-07). However, a “homily” is part of the sacred liturgy and should only be given by ordained ministers."
-      },
-      {
-          "title": "“LET THE CHILDREN COME TO ME”",
-          "question": "Why does the Catholic Church baptize infants?",
-          "summary": "Children, even babies, were not excluded from the Old Covenant. Likewise, the family of God in the New Covenant is for all people, including babies. As Jesus Himself said, “Let the children come to me, and do not hinder them; for to such belongs the kingdom of God” (Lk. 18:16)."
-      },
-      {
-          "title": "LITURGICAL DANCING",
-          "question": "Is liturgical dance permitted at Mass and other liturgical celebrations in western culture?",
-          "summary": "Liturgical dancing is not appropriate in western culture, according to statements made by the Vatican in 1975 and 1994."
-      },
-      {
-          "title": "LOSS OF THE CLERICAL STATE",
-          "question": "What is the process for a priest to leave the priesthood? May a priest return to the clerical state after losing it?",
-          "summary": "The priest himself may request to be dismissed from the clerical state, the bishop may counsel the priest to do so, or the loss of the clerical state can be imposed as a penalty. Once a loss of the clerical state has occurred, only the Vatican may permit a man to return to the active priesthood."
-      },
-      {
-          "title": "MAY A LAY PERSON EXPOSE THE BLESSED SACRAMENT?",
-          "question": "May a layperson expose the Blessed Sacrament?",
-          "summary": "<em>Holy Communion and Worship of the Eucharist Outside Mass</em> provides for the following laypersons to expose the Blessed Sacrament in the absence of a priest or deacon: an acolyte or special minister of communion, or, upon appointment by the local bishop, a member of a religious community or of a pious association of laymen or laywomen that is devoted to Eucharistic adoration (no. 91). A layperson may not, however, give a blessing with the Eucharist after adoration, or perform benediction."
-      },
-      {
-          "title": "MUSIC DURING THE PROCLAMATION OF THE PRAYERS AT MASS",
-          "question": "Should the proclamation of prayers during Mass be accompanied by music?",
-          "summary": "The Church affirms the use of music and musical instruments in the liturgy. However, some prayers during the Mass are to be proclaimed without any musical accompaniment."
-      },
-      {
-          "title": "MUSIC IN THE SACRED LITURGY",
-          "question": "What is the nature of sacred music, and what are the principles that guide its use? What are sacred music’s historic roots?",
-          "summary": "The roots of music in liturgical worship reach back to the Old Testament."
-      },
-      {
-          "title": "NORMS FOR CONFESSION",
-          "question": "Who can hear confessions? Does a penitent have to use a confessional with a fixed screen or grille? Should a priest set regular hours to hear confessions?",
-          "summary": "To validly absolve from sin, a priest must have the faculty to exercise the power of forgiveness. The priest may be limited in his exercise of this power. In danger of death, any priest can absolve from sin."
-      },
-      {
-          "title": "NORMS FOR CREMATION",
-          "question": "What are the Catholic Church’s norms on cremation?",
-          "summary": "The Church recommends and encourages the burial of Christian bodies, but allows for cremation when it is not chosen for reasons contrary to Church teaching (Code of Canon Law, nos. 1176 §3, 1184 §2°)."
-      },
-      {
-          "title": "NORMS FOR EUCHARISTIC ADORATION WITH EXPOSITION",
-          "question": "Who is the “ordinary minister” for exposition of the Holy Eucharist? May lay people serve in this role?",
-          "summary": "As decreed by the Vatican, a priest or deacon is the “ordinary minister” for exposition, though lay people may also serve."
-      },
-      {
-          "title": "NORMS FOR INFANT BAPTISM",
-          "question": "How soon should infants be baptized?",
-          "summary": "Infants should be baptized without delay if the infant is in danger of death or within a few weeks after birth (Code of Canon Law, no. 867, § 1-2)."
-      },
-      {
-          "title": "ONE HOUR FAST BEFORE COMMUNION",
-          "question": "Does the one-hour Eucharistic fast refer to an hour prior to the reception of Holy Communion or an hour prior to the beginning of Mass?",
-          "summary": "The one-hour Eucharistic fast refers to an hour prior to the reception of Holy Communion, not an hour prior to the beginning of Mass."
-      },
-      {
-          "title": "ORDINARY AND EXTRAORDINARY MINISTERS OF HOLY COMMUNION",
-          "question": "What is an “extraordinary” Eucharistic minister? What is the role of lay people in the distribution of Holy Communion?",
-          "summary": "An extraordinary minister of the Eucharist is a Eucharistic minister who is not ordained. The “ordinary” ministers of Holy Communion are bishops, priests, and deacons, all of whom have received the sacrament of Holy Orders."
-      },
-      {
-          "title": "POSTURE AFTER THE <em>AGNUS DEI</em>",
-          "question": "What is the proper posture following the <em>Agnus Dei</em> (Lamb of God)?",
-          "summary": "In the United States, the norm for posture immediately following the Agnus Dei (“Lamb of God”) is kneeling (cf. <em>General Instruction on the Roman Missal</em>, no. 43). However, the diocesan bishop may choose that the congregation stand instead."
-      },
-      {
-          "title": "POSTURES AND GESTURES DURING THE MASS",
-          "question": "Why does the Church regulate postures and gestures during the Mass? What are the proper postures and gestures for the faithful during Mass?",
-          "summary": "The Church provides norms for posture and gesture to preserve the sacred nature of the liturgy and to benefit the faithful."
-      },
-      {
-          "title": "PREPARATION OF THE GIFTS: WHEN TO STAND",
-          "question": "At what point during the preparation of the gifts are the members of the congregation to stand?",
-          "summary": "When the priest faces the people, extends his hands, and invites the people to pray by saying, “Pray brothers and sisters,” the people stand and respond, “May the Lord accept this sacrifice.”"
-      },
-      {
-          "title": "“<em>PRO MULTIS</em>” FOR MANY OR ALL?",
-          "question": "In the English translation of the Mass, the Latin words “<em>pro vobis et pro multis</em>” (literally, “for you and for many”) in the Eucharistic Prayer are translated “for you and for all.” Is this an accurate translation? Further, does this translation imply that all will necessarily be saved, a proposition that the Church has always rejected? Lastly, aside from the translation issue, is the precise language “for many” part of the formula of consecration instituted by Christ and, therefore, a necessary part of the Eucharistic Prayer?",
-          "summary": "“For all” is a legitimate translation of “<em>pro multis</em>,” and points to the profound truth that through the unique sacrifice of Christ, the “one mediator between God and men” (1 Tim. 2:5), salvation “is offered to all” (<em>Catechism</em>, nos. 618, 1368).<br>The appearance of the words “for many” is not necessary for the validity of a Eucharistic Prayer."
-      },
-      {
-          "title": "PROPER HANDLING OF EUCHARISTIC SPECIES AFTER COMMUNION",
-          "question": "What are the Church’s norms for handling the Body and Blood of our Lord after Communion and after Mass? How may we dispose of remaining Eucharistic Bread or Precious Blood?",
-          "summary": "When handling the Eucharistic species, the greatest care and reverence must be used. One is handling God."
-      },
-      {
-          "title": "SATURDAY VIGIL MASS",
-          "question": "At what time can a Holy Day vigil Mass be celebrated?",
-          "summary": "The common practice for the earliest vigil Mass is 4 p.m."
-      },
-      {
-          "title": "SELF-COMMUNICATION",
-          "question": "May a member of the lay faithful self-communicate?",
-          "summary": "“Self-communication” refers to the reception of Holy Communion without the assistance of a minister. A lay person may not self-communicate."
-      },
-      {
-          "title": "SIGNS OF THE CHRIST: SACRAMENTS OF THE CATHOLIC CHURCH",
-          "question": "What is a sacrament? How many are there?",
-          "summary": "“The sacraments are efficacious signs of grace instituted by Jesus Christ to make us holy.”  The Church herself is the universal sacrament of salvation through which we receive the seven sacraments of Baptism, Confirmation, Eucharist, Penance, Anointing of the Sick, Holy Orders, and Marriage."
-      },
-      {
-          "title": "SMELLS, BELLS, AND OTHER LITURGICAL ODDS AND ENDS",
-          "question": "Has the Church discouraged or forbidden the use of incense at Mass, the ringing of bells at the consecration, the use of hand missals and Communion patens, kneeling after receiving Holy Communion, the use of tabernacle veils, or the use of chalice veils?",
-          "summary": "No."
-      },
-      {
-          "title": "SPIRITUAL PARENTS: THE ROLE OF GODPARENTS IN THE CATHOLIC CHURCH",
-          "question": "What is the role of godparents (sponsors)?",
-          "summary": "A godparent’s role is to assist the growth of the baptized in his new spiritual life. A godparent promises to provide an example of faith to “help the baptized to lead a Christian life in harmony with baptism, and to fulfill faithfully the obligations connected with it” (canon 872)."
-      },
-      {
-          "title": "ST. BLAISE AND THE BLESSING OF THROATS",
-          "question": "What is the blessing of St. Blaise? Who may give the blessing of throats on the Feast of St. Blaise?",
-          "summary": "The blessing of St. Blaise is a special blessing in which the faithful invoke the saint’s intercession, asking him to protect them from ailments of the throat and every other illness. Priests, deacons, and even lay ministers provide the blessing of throats on the Feast of St. Blaise. However, the formula used by a layperson for the blessing is different than that used by an ordained minister."
-      },
-      {
-          "title": "THE GLORIA",
-          "question": "Does the Gloria have to be recited at every Mass and does it have to be sung?",
-          "summary": "Regarding the Gloria, it “is to be sung or said on Sundays outside Advent and Lent, on solemnities and feasts, and in special, more solemn celebrations” (General Instruction to the Roman Missal, no. 31)."
-      },
-      {
-          "title": "THE GRACES OF CONFIRMATION",
-          "question": "What is the biblical basis of the Sacrament of Confirmation?",
-          "summary": "Confirmation is a sacrament of Christian initiation with a strong biblical basis; it completes baptismal grace and strengthens the individual with the power of the Holy Spirit."
-      },
-      {
-          "title": "THE HISTORY OF DAILY MASS IN THE CHURCH",
-          "question": "When did the celebration of daily Mass begin in the early Church?",
-          "summary": "The Eucharist began to be celebrated daily on a regional basis in the seventh century. During this time the practice became widespread in Frankish monasteries and in rural parishes."
-      },
-      {
-          "title": "THE LOCATION OF THE CHOIR DURING MASS",
-          "question": "What is the proper location of the choir during the Mass?",
-          "summary": "The Vatican II Instruction on Implementing the Constitution on Sacred Liturgy (<em>Inter Oecumenici</em>) states: “The choir and organ shall occupy a place clearly showing that the singers and the organist form part of the united community of the faithful and allowing them best to fulfill their part in the liturgy” (no. 97)."
-      },
-      {
-          "title": "THE MASS: TIMELESS AND CHANGING",
-          "question": "Which parts of the Mass have remained unchanged over time? Why have some parts of the Mass changed?",
-          "summary": "The Second Vatican Council teaches that “the liturgy is made up of immutable elements divinely instituted, and of elements subject to change.”"
-      },
-      {
-          "title": "THE PLACEMENT OF GIFTS DURING THE CONSECRATION",
-          "question": "Where should the priest place the gifts of bread and wine for the consecration?",
-          "summary": "In the <em>General Instruction of the Roman Missal</em> (GIRM) and Sacramentary, the Church instructs that both the bread and the wine should be placed on the corporal on the altar for the consecration."
-      },
-      {
-          "title": "THE SACRAMENT OF CONFIRMATION",
-          "question": "What is the sacrament of Confirmation? How is it significant today?",
-          "summary": "Confirmation completes baptismal grace by strengthening the individual with power of the Holy Spirit, and enlivens the graces of the other sacraments (cf. <em>Catechism</em>, no. 1285)."
-      },
-      {
-          "title": "THIS IS MY BODY: CHRIST’S REAL PRESENCE IN THE EUCHARIST",
-          "question": "Does the Catholic Church teach that we actually eat the body of Christ and drink His blood when we receive Holy Communion?",
-          "summary": "Yes. The Catholic Church has always taught that in the Most Blessed Sacrament of the Eucharist, the body and blood, together with the soul and divinity, of our Lord Jesus—the whole Christ—is truly, really, and substantially present."
-      },
-      {
-          "title": "WHAT MUST BE DONE FOR A VALID BAPTISM?",
-          "question": "What does the Catholic Church require for valid baptism?",
-          "summary": "For valid baptism to occur, the Catholic Church requires proper matter, form and intention."
-      },
-      {
-          "title": "WHO RECEIVES HOLY COMMUNION FIRST?",
-          "question": "May the extraordinary ministers or the congregation receive communion at the same time as the priest? May anyone receive before the presiding priest?",
-          "summary": "No. According to the rubrics in the Sacramentary’s “Order of the Mass,” the presiding priest self-communicates before distributing Holy Communion to anyone else. Only concelebrating priests may receive at the same time as the principal celebrant."
-      },
-      {
-          "title": "WHY NOT WOMEN PRIESTS",
-          "question": "Did Jesus Christ, God the Son, institute the all-male priesthood and, if so, why? Is it an unchangeable teaching or a rule that can be modified as times change?",
-          "summary": "Jesus instituted the all-male priesthood to help fulfill His plan of salvation for all men and women. Jesus is the bridegroom who laid down His life for the sake of His bride, the Church."
-      },
-      {
-          "title": "WORTHY RECEPTION OF COMMUNION",
-          "question": "What conditions are necessary for the worthy reception of Holy Communion?",
-          "summary": "The Church exhorts Catholics to examine their consciences, “discern the Body” and fast in order to receive Holy Communion worthily."
-      }
+    {
+      "title": "ANNOUNCEMENTS AT MASS",
+      "question": "When should announcements be made during Mass?",
+      "summary": "“Following the prayer after communion, if there are any brief announcements, the deacon may make them, unless the priest prefers to do so himself” [<em>General Instruction to the Roman Missal</em> (GIRM), no. 139]."
+    },
+    {
+      "title": "APPROVED BIBLICAL TRANSLATIONS FOR MASS READINGS",
+      "question": "In Latin Rite Masses celebrated in the United States according to the rite Pope Paul VI promulgated following Vatican II, which biblical translations may be used for the readings?",
+      "summary": "On May 19, 2002, the use of the four-volume Lectionary for Mass, based upon the New American Bible, became mandatory in the United States for the aforementioned Masses."
+    },
+    {
+      "title": "BAPTISM OF DESIRE",
+      "question": "Is Baptism of desire a teaching of the Church or a theological opinion?",
+      "summary": "The teaching that the desire for Baptism brings about the effects of Baptism for those who could not receive the Sacrament is more than a theological opinion. However, the Catechism speaks of the Baptism of desire only after stating that Baptism is the only means by which the Church knows a person is saved."
+    },
+    {
+      "title": "BAPTISM: IS THERE A “RITE” TIME?",
+      "question": "May people be baptized during Lent?",
+      "summary": "Because Lent is a time of preparation for catechumens and Easter the most important feast of the Church year, the Church has designated that the Easter Vigil or Easter Sunday be the ordinary time for baptism of adults."
+    },
+    {
+      "title": "BAPTISMAL FONTS",
+      "question": "What is a baptistery? Where should it be located?",
+      "summary": "“The baptistery is the area where the baptismal font flows or has been placed. It should be reserved for the sacrament of baptism and should be a place worthy for Christians to be reborn in water and the Holy Spirit.”"
+    },
+    {
+      "title": "BREAD AND WINE USED IN THE CONSECRATION OF THE EUCHARIST",
+      "question": "What constitutes proper matter for the bread and wine used in the Consecration at Mass? If variations in matter occur, do the variations invalidate the Eucharist or simply make it illicit?",
+      "summary": "In both the Oriental and Latin Churches, the matter for the Sacrament of the Holy Eucharist is bread and wine. The amount of variation in the matter determines whether the Eucharist is invalid or illicit."
+    },
+    {
+      "title": "CATHOLIC FUNERALS & BURIALS IN CATHOLIC CEMETERIES",
+      "question": "Who may receive a Catholic funeral? Who may be buried in a Catholic cemetery?",
+      "summary": "Any baptized Catholic in good standing has a right to a funeral within the Church and according to her liturgical practice. There are some people to whom the Church denies Catholic funeral rites."
+    },
+    {
+      "title": "CATHOLIC FUNERAL RITES: COMMON QUESTIONS",
+      "question": "What is a Catholic funeral? (Is it just the funeral Mass? The vigil? The committal?) What is a Mass for the Dead?",
+      "summary": "The following discussion starts with the basics: What elements make a Catholic funeral? From an overview of the Catholic funeral rites, our discussion moves to particular questions about various elements of the Catholic funeral."
+    },
+    {
+      "title": "CATHOLIC-PROTESTANT WEDDINGS",
+      "question": "What role can a Protestant minister play in a Catholic wedding between a Catholic and a baptized non-Catholic? Can vows be exchanged before both the Protestant minister and the Catholic priest? Can a Catholic be married at a Protestant service?",
+      "summary": "The 1993 Directory on Ecumenism encourages a marriage between a Catholic and a baptized non-Catholic to be celebrated in a ceremony outside of the Mass."
+    },
+    {
+      "title": "CHILDREN’S MASSES: DON’T “PLAY” WITH THE WORD OF GOD",
+      "question": "Regarding Masses for children, may the readings be acted out in a play?",
+      "summary": "While “dramatic elements” may be used, such as dividing the sacred readings into different parts or roles, “care should be taken not to give the impression that the Liturgy of the Word is play.”"
+    },
+    {
+      "title": "CHILDREN’S MASSES: MAY LAY PEOPLE READ THE GOSPEL AND GIVE THE HOMILY",
+      "question": "May lay people read the read the Gospel and provide the homily at a children’s Mass?",
+      "summary": "The <em>Lectionary for Masses with Children</em> implies a lay person may read the Gospel in certain circumstances."
+    },
+    {
+      "title": "CHRIST’S PRESENCE IN THE MASS",
+      "question": "In what ways is Christ present in the Mass?",
+      "summary": "At Mass Christ is present in the priest, in sacred scripture, in the congregation, and in the Eucharist. Among these, Christ’s presence in the Eucharist is preeminent."
+    },
+    {
+      "title": "COME WORSHIP THE LORD: PROMOTING ADORATION OF THE MOST HOLY EUCHARIST",
+      "question": "What is adoration of the Most Holy Eucharist? How can I promote adoration of the Most Holy Eucharist with exposition in my parish and diocese?",
+      "summary": "The Most Holy Eucharist is the body and blood of Our Lord and Savior Jesus Christ (cf. Mt. 26:26-28; Jn. 6:55). Because this sacrament is the fullness and substance of His divinity and humanity, His presence demands proper adoration."
+    },
+    {
+      "title": "COMMUNION SERVICES",
+      "question": "What is a Communion service? When may a Communion service be celebrated? Who may conduct such a service? Does a Communion service fulfill the obligation to attend Mass on a Holy Day or Sunday?",
+      "summary": "A Communion service is a Catholic liturgy that may be celebrated when no priest is available to celebrate Mass. It includes the readings of the day and the distribution of the Eucharist. It is not a Mass."
+    },
+    {
+      "title": "CROSS OR CRUCIFIX AT MASS?",
+      "question": "What are the Church’s norms regarding the use of crosses and crucifixes during Mass? May a crucifix with the image of the resurrected Christ ever be used?",
+      "summary": "The latest edition of the General Instruction to the Roman Missal provides that “a cross with the figure of Christ crucified upon it” should be used in entrance processions and in the sanctuary."
+    },
+    {
+      "title": "DEFENDING OUR RITES: CONSTRUCTIVELY ADDRESSING LITURGICAL ABUSE",
+      "question": "How do I know if liturgical abuse occurs in my parish? What can I do about it?",
+      "summary": "In most instances, the issues are easily addressed by applying certain principles and norms of liturgical law."
+    },
+    {
+      "title": "DOGMATIZING DISCIPLINE: PAPAL AUTHORITY, MODIFYING THE MASS & THE TRUTH ABOUT <em>QUO PRIMUM</em>",
+      "question": "When Pope Saint Pius V issued his apostolic constitution (<em>Quo Primum</em>) that promulgated the venerable Tridentine Rite of the Mass in 1570, could he bind all future Popes from modifying or superseding this rite?",
+      "summary": "No, because the rite of the Mass by its nature involves much <em>changeable</em> discipline, as opposed to simply <em>unchangeable</em> doctrine."
+    },
+    {
+      "title": "ELEVATION OF THE HOST",
+      "question": "Is During the liturgy of the Eucharist, when is the host to be elevated? What are the associated rubrics or rules?",
+      "summary": "The consecrated host is elevated at two distinct times during the Eucharistic Prayer: after the words of consecration and during the final doxology."
+    },
+    {
+      "title": "EUCHARISTIC CONSECRATION: KNEELING OR STANDING?",
+      "question": "Are Catholics in the United States supposed to kneel during the consecration at Mass?",
+      "summary": "With Vatican approval, the U.S. Bishops in both 1969 and 1995 decreed as a norm that people are to “kneel beginning after the <em>Sanctus</em> [the “Holy, Holy, Holy”] until after the Amen of the Eucharistic Prayer, that is, before the Lord’s Prayer.”"
+    },
+    {
+      "title": "EUCHARISTIC EXPOSITION: APPROPRIATE DEVOTIONAL ACTIVITIES",
+      "question": "What devotional activities are appropriate during Eucharistic exposition?",
+      "summary": "We Any devotional activity, whether communal or private, during Eucharistic exposition should direct the faithful to the worship of Christ, present in the Blessed Sacrament. The Church particularly encourages the reading of the Scriptures and silent prayer."
+    },
+    {
+      "title": "FIRST CONFESSION & FIRST COMMUNION",
+      "question": "Should a child receive First Confession before First Communion?",
+      "summary": "Yes. The Church definitively teaches that “[c]hildren must go to the sacrament of Penance before receiving Holy Communion for the first time” (<em>Catechism</em>, no. 1457)."
+    },
+    {
+      "title": "GATHERING AROUND THE ALTAR AT THE CONSECRATION",
+      "question": "Are members of the congregation permitted to stand around the altar during the consecration at Mass?",
+      "summary": "The faithful can infer from Church documents that the congregation should not gather around the altar during the consecration. The Sacred Congregation for Divine Worship and Discipline of the Sacraments has issued a prohibition of this practice."
+    },
+    {
+      "title": "GENERAL ABSOLUTION",
+      "question": "What is General Absolution? What are the Church’s norms regarding General Absolution?",
+      "summary": "General Absolution is an exceptional means of forgiving sins that the Church provides in grave circumstances, such as when danger of death threatens a person."
+    },
+    {
+      "title": "GENUFLECTING AT MASS",
+      "question": "What are the Church’s guidelines concerning genuflecting during Mass? What other guidelines does the Church provide regarding reverence toward the Blessed Sacrament?",
+      "summary": "Even when not participating at Mass, one should always adore the Blessed Sacrament whenever entering a Church, either by genuflecting toward the tabernacle or visiting the Blessed Sacrament chapel (CB, no. 71). If one is unable to genuflect, a bow is an appropriate substitute."
+    },
+    {
+      "title": "GOD’S DWELLING PLACE: THE PLACEMENT OF A TABERNACLE IN A CHURCH",
+      "question": "Where should the tabernacle be located in a parish church?",
+      "summary": "“The tabernacle, in which the Most Holy Eucharist is reserved, should be placed in a part of the church that is prominent, conspicuous, beautifully decorated, and suitable for prayer” (<em>Code of Canon Law</em>, canon 938 §2)."
+    },
+    {
+      "title": "GOD’S GIFT TO HIS BRIDE: PRIESTLY CELIBACY",
+      "question": "What is priestly celibacy?",
+      "summary": "Celibacy is a vocation, a gift from God freely accepted and a sacrifice freely undertaken by those responding to His call to the consecrated life. As a discipline, celibacy serves to conform the priest better to Christ."
+    },
+    {
+      "title": "GOSPEL TRUTH CONCERNING LAY READERS: THE ROLE OF THE LAITY DURING THE LITURGY OF THE WORD",
+      "question": "May a lay person proclaim all the readings at Mass?",
+      "summary": "A lay person may proclaim the first and second readings but not the Gospel."
+    },
+    {
+      "title": "HOLY COMMUNION FOR CATHOLICS WITH CELIAC SPRUE, ALCOHOLISM AND OTHER RELATED DISEASES",
+      "question": "How does the Church provide for Catholics who suffer from Celiac Sprue disease, alcoholism, or other related diseases, so that they can receive Holy Communion? What are the norms that regulate the use of these alternatives?",
+      "summary": "Communicants may always receive under one species alone—either bread or wine—and still receive the Body, Blood, soul, and divinity of our Lord."
+    },
+    {
+      "title": "HOLY COMMUNION UNDER BOTH SPECIES",
+      "question": "What is the Church’s teaching concerning the reception of Holy Communion under both species?",
+      "summary": "In 1984, with Vatican approval, the U.S. bishops authorized reception of Holy Communion under both species Since Christ is sacramentally present under each of the species, Communion under the species of bread alone makes it possible to receive all the fruit of Eucharistic grace. But “the sign of Communion is more complete when given under both kinds, since in that form the sign of the Eucharistic meal appears more clearly.”"
+    },
+    {
+      "title": "I BELIEVE IN ONE GOD: THE NICENE CREED AND THE MASS",
+      "question": "What is the Nicene Creed? Where did it come from? When must we pray the Nicene Creed (the profession of faith) at Mass?",
+      "summary": "The Nicene Creed is a summary of the Deposit of Faith as handed on to the Church from Christ Himself through His Apostles."
+    },
+    {
+      "title": "I CONFESS: THE BIBLICAL BASIS OF THE SACRAMENT OF RECONCILIATION",
+      "question": "Why do Catholics confess their sins to a priest? Is this biblical?",
+      "summary": "Jesus empowered His apostles to forgive men's sin, sending them to be ministers of reconciliation in His name, as His Heavenly Father first sent Him (Jn. 20:21-23)."
+    },
+    {
+      "title": "INDELIBLE CHARACTERS OF ORDINATION",
+      "question": "What are the “indelible characters” received at ordination?",
+      "summary": "A sacramental character, received in the sacraments of Baptism, Confirmation, and Holy Orders, is an indelible spiritual mark."
+    },
+    {
+      "title": "INTINCTION",
+      "question": "Is intinction permitted by the Church? What is the procedure for receiving Holy Communion by intinction?",
+      "summary": "The Church has provisions and norms for receiving Holy Communion under only one species or both."
+    },
+    {
+      "title": "INVALID MASSES",
+      "question": "Which changes and omissions render a Mass of the Roman Rite invalid?",
+      "summary": "A Mass of the Roman Rite is invalid when the celebrant of the Mass is not a validly ordained priest, when the priest does not have the proper intention, when wheat bread or grape wine is not used, or when the words “This is my Body” or “This is … my Blood” are not said."
+    },
+    {
+      "title": "IS THE WASHING OF HANDS REQUIRED AT MASS?",
+      "question": "Is the washing of hands during the Liturgy of the Eucharist a required part of the Mass?",
+      "summary": "According to the Sacramentary, which provides the official guidelines for celebrating the Mass and other liturgical rites of the Church, the washing of hands is a required part of the Mass."
+    },
+    {
+      "title": "KNEELING AFTER COMMUNION",
+      "question": "Are Catholics in the United States forbidden to kneel after receiving Communion? What should faithful Catholics do where the mandated practice is to stand?",
+      "summary": "The faithful are not forbidden to kneel after receiving Communion."
+    },
+    {
+      "title": "LAY PREACHING",
+      "question": "Are all Catholics called to preach?",
+      "summary": "Through Baptism, all Christians participate in Christ’s prophetic office, and are called to bear witness to the Gospel not only by example, but also by proclaiming Christ by word, to believers and non-believers alike (cf. <em>Catechism</em>, nos. 904-07). However, a “homily” is part of the sacred liturgy and should only be given by ordained ministers."
+    },
+    {
+      "title": "“LET THE CHILDREN COME TO ME”",
+      "question": "Why does the Catholic Church baptize infants?",
+      "summary": "Children, even babies, were not excluded from the Old Covenant. Likewise, the family of God in the New Covenant is for all people, including babies. As Jesus Himself said, “Let the children come to me, and do not hinder them; for to such belongs the kingdom of God” (Lk. 18:16)."
+    },
+    {
+      "title": "LITURGICAL DANCING",
+      "question": "Is liturgical dance permitted at Mass and other liturgical celebrations in western culture?",
+      "summary": "Liturgical dancing is not appropriate in western culture, according to statements made by the Vatican in 1975 and 1994."
+    },
+    {
+      "title": "LOSS OF THE CLERICAL STATE",
+      "question": "What is the process for a priest to leave the priesthood? May a priest return to the clerical state after losing it?",
+      "summary": "The priest himself may request to be dismissed from the clerical state, the bishop may counsel the priest to do so, or the loss of the clerical state can be imposed as a penalty. Once a loss of the clerical state has occurred, only the Vatican may permit a man to return to the active priesthood."
+    },
+    {
+      "title": "MAY A LAY PERSON EXPOSE THE BLESSED SACRAMENT?",
+      "question": "May a layperson expose the Blessed Sacrament?",
+      "summary": "<em>Holy Communion and Worship of the Eucharist Outside Mass</em> provides for the following laypersons to expose the Blessed Sacrament in the absence of a priest or deacon: an acolyte or special minister of communion, or, upon appointment by the local bishop, a member of a religious community or of a pious association of laymen or laywomen that is devoted to Eucharistic adoration (no. 91). A layperson may not, however, give a blessing with the Eucharist after adoration, or perform benediction."
+    },
+    {
+      "title": "MUSIC DURING THE PROCLAMATION OF THE PRAYERS AT MASS",
+      "question": "Should the proclamation of prayers during Mass be accompanied by music?",
+      "summary": "The Church affirms the use of music and musical instruments in the liturgy. However, some prayers during the Mass are to be proclaimed without any musical accompaniment."
+    },
+    {
+      "title": "MUSIC IN THE SACRED LITURGY",
+      "question": "What is the nature of sacred music, and what are the principles that guide its use? What are sacred music’s historic roots?",
+      "summary": "The roots of music in liturgical worship reach back to the Old Testament."
+    },
+    {
+      "title": "NORMS FOR CONFESSION",
+      "question": "Who can hear confessions? Does a penitent have to use a confessional with a fixed screen or grille? Should a priest set regular hours to hear confessions?",
+      "summary": "To validly absolve from sin, a priest must have the faculty to exercise the power of forgiveness. The priest may be limited in his exercise of this power. In danger of death, any priest can absolve from sin."
+    },
+    {
+      "title": "NORMS FOR CREMATION",
+      "question": "What are the Catholic Church’s norms on cremation?",
+      "summary": "The Church recommends and encourages the burial of Christian bodies, but allows for cremation when it is not chosen for reasons contrary to Church teaching (Code of Canon Law, nos. 1176 §3, 1184 §2°)."
+    },
+    {
+      "title": "NORMS FOR EUCHARISTIC ADORATION WITH EXPOSITION",
+      "question": "Who is the “ordinary minister” for exposition of the Holy Eucharist? May lay people serve in this role?",
+      "summary": "As decreed by the Vatican, a priest or deacon is the “ordinary minister” for exposition, though lay people may also serve."
+    },
+    {
+      "title": "NORMS FOR INFANT BAPTISM",
+      "question": "How soon should infants be baptized?",
+      "summary": "Infants should be baptized without delay if the infant is in danger of death or within a few weeks after birth (Code of Canon Law, no. 867, § 1-2)."
+    },
+    {
+      "title": "ONE HOUR FAST BEFORE COMMUNION",
+      "question": "Does the one-hour Eucharistic fast refer to an hour prior to the reception of Holy Communion or an hour prior to the beginning of Mass?",
+      "summary": "The one-hour Eucharistic fast refers to an hour prior to the reception of Holy Communion, not an hour prior to the beginning of Mass."
+    },
+    {
+      "title": "ORDINARY AND EXTRAORDINARY MINISTERS OF HOLY COMMUNION",
+      "question": "What is an “extraordinary” Eucharistic minister? What is the role of lay people in the distribution of Holy Communion?",
+      "summary": "An extraordinary minister of the Eucharist is a Eucharistic minister who is not ordained. The “ordinary” ministers of Holy Communion are bishops, priests, and deacons, all of whom have received the sacrament of Holy Orders."
+    },
+    {
+      "title": "POSTURE AFTER THE <em>AGNUS DEI</em>",
+      "question": "What is the proper posture following the <em>Agnus Dei</em> (Lamb of God)?",
+      "summary": "In the United States, the norm for posture immediately following the Agnus Dei (“Lamb of God”) is kneeling (cf. <em>General Instruction on the Roman Missal</em>, no. 43). However, the diocesan bishop may choose that the congregation stand instead."
+    },
+    {
+      "title": "POSTURES AND GESTURES DURING THE MASS",
+      "question": "Why does the Church regulate postures and gestures during the Mass? What are the proper postures and gestures for the faithful during Mass?",
+      "summary": "The Church provides norms for posture and gesture to preserve the sacred nature of the liturgy and to benefit the faithful."
+    },
+    {
+      "title": "PREPARATION OF THE GIFTS: WHEN TO STAND",
+      "question": "At what point during the preparation of the gifts are the members of the congregation to stand?",
+      "summary": "When the priest faces the people, extends his hands, and invites the people to pray by saying, “Pray brothers and sisters,” the people stand and respond, “May the Lord accept this sacrifice.”"
+    },
+    {
+      "title": "“<em>PRO MULTIS</em>” FOR MANY OR ALL?",
+      "question": "In the English translation of the Mass, the Latin words “<em>pro vobis et pro multis</em>” (literally, “for you and for many”) in the Eucharistic Prayer are translated “for you and for all.” Is this an accurate translation? Further, does this translation imply that all will necessarily be saved, a proposition that the Church has always rejected? Lastly, aside from the translation issue, is the precise language “for many” part of the formula of consecration instituted by Christ and, therefore, a necessary part of the Eucharistic Prayer?",
+      "summary": "“For all” is a legitimate translation of “<em>pro multis</em>,” and points to the profound truth that through the unique sacrifice of Christ, the “one mediator between God and men” (1 Tim. 2:5), salvation “is offered to all” (<em>Catechism</em>, nos. 618, 1368).<br>The appearance of the words “for many” is not necessary for the validity of a Eucharistic Prayer."
+    },
+    {
+      "title": "PROPER HANDLING OF EUCHARISTIC SPECIES AFTER COMMUNION",
+      "question": "What are the Church’s norms for handling the Body and Blood of our Lord after Communion and after Mass? How may we dispose of remaining Eucharistic Bread or Precious Blood?",
+      "summary": "When handling the Eucharistic species, the greatest care and reverence must be used. One is handling God."
+    },
+    {
+      "title": "SATURDAY VIGIL MASS",
+      "question": "At what time can a Holy Day vigil Mass be celebrated?",
+      "summary": "The common practice for the earliest vigil Mass is 4 p.m."
+    },
+    {
+      "title": "SELF-COMMUNICATION",
+      "question": "May a member of the lay faithful self-communicate?",
+      "summary": "“Self-communication” refers to the reception of Holy Communion without the assistance of a minister. A lay person may not self-communicate."
+    },
+    {
+      "title": "SIGNS OF THE CHRIST: SACRAMENTS OF THE CATHOLIC CHURCH",
+      "question": "What is a sacrament? How many are there?",
+      "summary": "“The sacraments are efficacious signs of grace instituted by Jesus Christ to make us holy.”  The Church herself is the universal sacrament of salvation through which we receive the seven sacraments of Baptism, Confirmation, Eucharist, Penance, Anointing of the Sick, Holy Orders, and Marriage."
+    },
+    {
+      "title": "SMELLS, BELLS, AND OTHER LITURGICAL ODDS AND ENDS",
+      "question": "Has the Church discouraged or forbidden the use of incense at Mass, the ringing of bells at the consecration, the use of hand missals and Communion patens, kneeling after receiving Holy Communion, the use of tabernacle veils, or the use of chalice veils?",
+      "summary": "No."
+    },
+    {
+      "title": "SPIRITUAL PARENTS: THE ROLE OF GODPARENTS IN THE CATHOLIC CHURCH",
+      "question": "What is the role of godparents (sponsors)?",
+      "summary": "A godparent’s role is to assist the growth of the baptized in his new spiritual life. A godparent promises to provide an example of faith to “help the baptized to lead a Christian life in harmony with baptism, and to fulfill faithfully the obligations connected with it” (canon 872)."
+    },
+    {
+      "title": "ST. BLAISE AND THE BLESSING OF THROATS",
+      "question": "What is the blessing of St. Blaise? Who may give the blessing of throats on the Feast of St. Blaise?",
+      "summary": "The blessing of St. Blaise is a special blessing in which the faithful invoke the saint’s intercession, asking him to protect them from ailments of the throat and every other illness. Priests, deacons, and even lay ministers provide the blessing of throats on the Feast of St. Blaise. However, the formula used by a layperson for the blessing is different than that used by an ordained minister."
+    },
+    {
+      "title": "THE GLORIA",
+      "question": "Does the Gloria have to be recited at every Mass and does it have to be sung?",
+      "summary": "Regarding the Gloria, it “is to be sung or said on Sundays outside Advent and Lent, on solemnities and feasts, and in special, more solemn celebrations” (General Instruction to the Roman Missal, no. 31)."
+    },
+    {
+      "title": "THE GRACES OF CONFIRMATION",
+      "question": "What is the biblical basis of the Sacrament of Confirmation?",
+      "summary": "Confirmation is a sacrament of Christian initiation with a strong biblical basis; it completes baptismal grace and strengthens the individual with the power of the Holy Spirit."
+    },
+    {
+      "title": "THE HISTORY OF DAILY MASS IN THE CHURCH",
+      "question": "When did the celebration of daily Mass begin in the early Church?",
+      "summary": "The Eucharist began to be celebrated daily on a regional basis in the seventh century. During this time the practice became widespread in Frankish monasteries and in rural parishes."
+    },
+    {
+      "title": "THE LOCATION OF THE CHOIR DURING MASS",
+      "question": "What is the proper location of the choir during the Mass?",
+      "summary": "The Vatican II Instruction on Implementing the Constitution on Sacred Liturgy (<em>Inter Oecumenici</em>) states: “The choir and organ shall occupy a place clearly showing that the singers and the organist form part of the united community of the faithful and allowing them best to fulfill their part in the liturgy” (no. 97)."
+    },
+    {
+      "title": "THE MASS: TIMELESS AND CHANGING",
+      "question": "Which parts of the Mass have remained unchanged over time? Why have some parts of the Mass changed?",
+      "summary": "The Second Vatican Council teaches that “the liturgy is made up of immutable elements divinely instituted, and of elements subject to change.”"
+    },
+    {
+      "title": "THE PLACEMENT OF GIFTS DURING THE CONSECRATION",
+      "question": "Where should the priest place the gifts of bread and wine for the consecration?",
+      "summary": "In the <em>General Instruction of the Roman Missal</em> (GIRM) and Sacramentary, the Church instructs that both the bread and the wine should be placed on the corporal on the altar for the consecration."
+    },
+    {
+      "title": "THE SACRAMENT OF CONFIRMATION",
+      "question": "What is the sacrament of Confirmation? How is it significant today?",
+      "summary": "Confirmation completes baptismal grace by strengthening the individual with power of the Holy Spirit, and enlivens the graces of the other sacraments (cf. <em>Catechism</em>, no. 1285)."
+    },
+    {
+      "title": "THIS IS MY BODY: CHRIST’S REAL PRESENCE IN THE EUCHARIST",
+      "question": "Does the Catholic Church teach that we actually eat the body of Christ and drink His blood when we receive Holy Communion?",
+      "summary": "Yes. The Catholic Church has always taught that in the Most Blessed Sacrament of the Eucharist, the body and blood, together with the soul and divinity, of our Lord Jesus—the whole Christ—is truly, really, and substantially present."
+    },
+    {
+      "title": "WHAT MUST BE DONE FOR A VALID BAPTISM?",
+      "question": "What does the Catholic Church require for valid baptism?",
+      "summary": "For valid baptism to occur, the Catholic Church requires proper matter, form and intention."
+    },
+    {
+      "title": "WHO RECEIVES HOLY COMMUNION FIRST?",
+      "question": "May the extraordinary ministers or the congregation receive communion at the same time as the priest? May anyone receive before the presiding priest?",
+      "summary": "No. According to the rubrics in the Sacramentary’s “Order of the Mass,” the presiding priest self-communicates before distributing Holy Communion to anyone else. Only concelebrating priests may receive at the same time as the principal celebrant."
+    },
+    {
+      "title": "WHY NOT WOMEN PRIESTS",
+      "question": "Did Jesus Christ, God the Son, institute the all-male priesthood and, if so, why? Is it an unchangeable teaching or a rule that can be modified as times change?",
+      "summary": "Jesus instituted the all-male priesthood to help fulfill His plan of salvation for all men and women. Jesus is the bridegroom who laid down His life for the sake of His bride, the Church."
+    },
+    {
+      "title": "WORTHY RECEPTION OF COMMUNION",
+      "question": "What conditions are necessary for the worthy reception of Holy Communion?",
+      "summary": "The Church exhorts Catholics to examine their consciences, “discern the Body” and fast in order to receive Holy Communion worthily."
+    }
   ]
 }

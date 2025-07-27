@@ -1,4 +1,4 @@
-import {CufElement} from '../../cuf_element';
+import { CufElement } from '../../cuf_element';
 
 import html from './spinner.html';
 

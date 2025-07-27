@@ -4,7 +4,10 @@ cuf-admin-header {
   --subtitle-height: calc(2.4 * var(--subtitle-font-size));
   --navigation-margin: var(--size-medium);
   --navigation-height: calc(3 * var(--size-medium));
-  --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
+  --total-height: calc(
+    var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) +
+      var(--navigation-height)
+  );
 
   background-color: var(--header-home-color);
   display: block;

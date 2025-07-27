@@ -1,5 +1,5 @@
-import {CufFormSection} from '../form_section';
-import {CufInputText} from '../../form_field/input_text/input_text';
+import { CufFormSection } from '../form_section';
+import { CufInputText } from '../../form_field/input_text/input_text';
 
 import html from './form_section_address.html';
 
@@ -61,7 +61,7 @@ export class CufFormSectionAddress extends CufFormSection<AddressData, AddressOu
       line3: this.address_country.getStringData(),
     };
     const address2 = this.address_second.getStringData();
-    if (!!address2) {
+    if (address2) {
       data.line1 += ` ${address2}`;
     }
     return data;

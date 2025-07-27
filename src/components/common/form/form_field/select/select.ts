@@ -1,5 +1,5 @@
-import {defaultMapping, specificMapping} from '../../../../../scripts/datalists';
-import {CufFormField} from '../form_field';
+import { defaultMapping, specificMapping } from '../../../../../scripts/datalists';
+import { CufFormField } from '../form_field';
 
 import html from './select.html';
 
@@ -18,7 +18,7 @@ export class CufSelect extends CufFormField<HTMLSelectElement, string> {
     const mapping = await specificMapping(options_text);
     const default_mapping = defaultMapping(options_text);
     for (const data of mapping) {
-      const option = document.createElement("option");
+      const option = document.createElement('option');
       option.setAttribute('value', data.value);
       if (default_mapping === data.text) {
         option.setAttribute('selected', 'true');
@@ -54,7 +54,7 @@ export class CufSelect extends CufFormField<HTMLSelectElement, string> {
   }
 
   setTestData(): void {
-    if (!!this.options.size) {
+    if (this.options.size) {
       this.setData([...this.options.keys()][0]);
     }
   }

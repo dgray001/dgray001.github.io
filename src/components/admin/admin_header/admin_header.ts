@@ -1,5 +1,5 @@
-import {titleText} from '../../common/util';
-import {CufElement} from '../../cuf_element';
+import { titleText } from '../../common/util';
+import { CufElement } from '../../cuf_element';
 
 import html from './admin_header.html';
 

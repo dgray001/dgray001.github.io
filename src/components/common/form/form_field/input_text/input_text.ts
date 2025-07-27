@@ -1,5 +1,5 @@
-import {CufFormField} from '../form_field';
-import {defaultMapping, specificMapping} from '../../../../../scripts/datalists';
+import { CufFormField } from '../form_field';
+import { defaultMapping, specificMapping } from '../../../../../scripts/datalists';
 
 import html from './input_text.html';
 
@@ -17,7 +17,7 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
   protected override async _parsedCallback(): Promise<void> {
     const datatype = this.attributes.getNamedItem('datatype')?.value ?? '';
     const datalist = this.attributes.getNamedItem('datalist')?.value ?? '';
-    if (!!datatype) {
+    if (datatype) {
       this.removeAttribute('datatype');
       this.form_field.setAttribute('type', datatype);
       if (datatype === 'password') {
@@ -42,7 +42,7 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
         this.appendChild(no_eyeball);
       }
     }
-    if (!!datalist) {
+    if (datalist) {
       await this.setDatalist(datalist);
     }
   }
@@ -104,11 +104,11 @@ export class CufInputText extends CufFormField<HTMLInputElement, string> {
       this.setData([...this.datalist_options.values()][0].text);
       return;
     }
-    if (this.getValidators().some(v => v === 'email')) {
+    if (this.getValidators().some((v) => v === 'email')) {
       this.setData('testemail@some.site');
-    } else if (this.getValidators().some(v => v === 'suffix')) {
+    } else if (this.getValidators().some((v) => v === 'suffix')) {
       this.setData('III');
-    } else if (this.getValidators().some(v => v === 'money')) {
+    } else if (this.getValidators().some((v) => v === 'money')) {
       this.setData('$12');
     } else {
       this.setData('some input');

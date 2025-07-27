@@ -1,5 +1,5 @@
-import {CufFormSection} from '../form_section';
-import {CufInputText} from '../../form_field/input_text/input_text';
+import { CufFormSection } from '../form_section';
+import { CufInputText } from '../../form_field/input_text/input_text';
 
 import html from './form_section_contact.html';
 
@@ -18,10 +18,7 @@ export class CufFormSectionContact extends CufFormSection<ContactData, ContactDa
 
   constructor() {
     super();
-    this.configureFormSection(html, 'Contact', [
-      'contact_email',
-      'contact_phone',
-    ]);
+    this.configureFormSection(html, 'Contact', ['contact_email', 'contact_phone']);
   }
 
   getData(): ContactData {

@@ -1,6 +1,6 @@
-import {CufForm} from '../../../common/form/form';
-import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
-import {CufTextArea} from '../../../common/form/form_field/text_area/text_area';
+import { CufForm } from '../../../common/form/form';
+import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
+import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
 
 import html from './news_form.html';
 
@@ -28,11 +28,7 @@ export class CufNewsForm extends CufForm<NewsFormData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'news_title',
-      'news_titlelink',
-      'news_description',
-    ]);
+    this.configureForm(['news_title', 'news_titlelink', 'news_description']);
     this.configureElement('submit_button');
   }
 

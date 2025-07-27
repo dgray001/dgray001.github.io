@@ -1,8 +1,8 @@
-import {apiPost} from '../../../../../scripts/api';
-import {getCookie} from '../../../../../scripts/cookies';
-import {recaptchaCallback} from '../../../../../scripts/recaptcha';
-import {CufForm} from '../../form';
-import {CufInputText} from '../../form_field/input_text/input_text';
+import { apiPost } from '../../../../../scripts/api';
+import { getCookie } from '../../../../../scripts/cookies';
+import { recaptchaCallback } from '../../../../../scripts/recaptcha';
+import { CufForm } from '../../form';
+import { CufInputText } from '../../form_field/input_text/input_text';
 
 import html from './change_password_form.html';
 
@@ -28,11 +28,7 @@ export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'change_password_old',
-      'change_password_new',
-      'change_password_confirm',
-    ]);
+    this.configureForm(['change_password_old', 'change_password_new', 'change_password_confirm']);
     this.configureElement('open_form');
     this.configureElement('change_password_form');
     this.configureElement('change_password_button');
@@ -48,16 +44,23 @@ export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
       if (!this.validate()) {
         return;
       }
-      recaptchaCallback(async () => {
-        const res = await apiPost('change_password', this.getData());
-        if (res.success) {
-          this.successStatus(this.status_message, 'Password successfully changed');
-          this.setFormOpen(false);
-        } else {
-          this.errorStatus(this.status_message, res.error_message ??
-            'An unknown error occurred trying to send verification email');
-        }
-      }, this.change_password_button, this.status_message, 'Changing Password');
+      recaptchaCallback(
+        async () => {
+          const res = await apiPost('change_password', this.getData());
+          if (res.success) {
+            this.successStatus(this.status_message, 'Password successfully changed');
+            this.setFormOpen(false);
+          } else {
+            this.errorStatus(
+              this.status_message,
+              res.error_message ?? 'An unknown error occurred trying to send verification email'
+            );
+          }
+        },
+        this.change_password_button,
+        this.status_message,
+        'Changing Password'
+      );
     });
   }
 

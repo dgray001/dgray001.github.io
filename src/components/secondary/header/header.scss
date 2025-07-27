@@ -8,12 +8,14 @@ cuf-header {
   --scrollY: 0px; // set by component
   --max-offset: var(--collapsed-container-height);
   --margin-offset: min(var(--scrollY), var(--max-offset));
-  --header-total-height: calc(var(--padding-top) + var(--fixed-container-height) +
-    var(--collapsed-container-height) - var(--margin-offset));
+  --header-total-height: calc(
+    var(--padding-top) + var(--fixed-container-height) +
+      var(--collapsed-container-height) - var(--margin-offset)
+  );
 
   background-color: var(--header-color);
   display: block;
-  
+
   img {
     object-fit: contain;
     margin: 0 auto;
@@ -21,7 +23,7 @@ cuf-header {
     max-height: 100%;
     width: 100%;
   }
-  
+
   > #logo-container {
     left: var(--left-auto-margin);
     height: calc(2 * var(--left-sidebar-width));
@@ -116,7 +118,9 @@ cuf-header {
   cuf-header {
     --title-height: calc(1.7 * var(--size-title));
     --max-offset: calc(var(--padding-top) + var(--collapsed-container-height));
-    --fixed-container-height: calc(2 * var(--padding-top) + var(--title-height) + var(--navigation-height));
+    --fixed-container-height: calc(
+      2 * var(--padding-top) + var(--title-height) + var(--navigation-height)
+    );
     padding-bottom: var(--navigation-height);
 
     > #fixed-container {

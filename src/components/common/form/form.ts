@@ -1,13 +1,13 @@
-import {CufElement} from '../../cuf_element';
-import {CufFormField} from './form_field/form_field';
-import {CufFormSection} from './form_section/form_section';
-import {until} from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
+import { CufFormField } from './form_field/form_field';
+import { CufFormSection } from './form_section/form_section';
+import { until } from '../../../scripts/util';
 
 import html from './form.html';
 
 import './form.scss';
 
-type FormSection = CufFormSection<any, any>|CufFormField<any, any>;
+type FormSection = CufFormSection<any, any> | CufFormField<any, any>;
 
 export abstract class CufForm<T> extends CufElement {
   private form_sections = new Map<string, FormSection>();
@@ -77,7 +77,7 @@ export abstract class CufForm<T> extends CufElement {
   protected postValidate(valid: boolean): void {}
 
   protected messageStatus(el: HTMLDivElement, message: string): void {
-    if (!!message) {
+    if (message) {
       el.innerHTML = message;
       el.classList.remove('hide');
     } else {

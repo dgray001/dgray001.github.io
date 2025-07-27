@@ -1,8 +1,8 @@
-import {fetchJson} from '../../../data/data_control';
-import {scrollToElement} from '../../../scripts/util';
-import {CufElement} from '../../cuf_element';
-import {CufFaithFactCategory} from '../faith_fact_category/faith_fact_category';
-import {CufSpinner} from '../spinner/spinner';
+import { fetchJson } from '../../../data/data_control';
+import { scrollToElement } from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
+import { CufFaithFactCategory } from '../faith_fact_category/faith_fact_category';
+import { CufSpinner } from '../spinner/spinner';
 
 import html from './faith_fact_category_list.html';
 
@@ -90,14 +90,15 @@ export class CufFaithFactCategoryList extends CufElement {
     this.spinner.classList.add('show');
     button_wrapper.classList.add('current-category');
     const last_wrapper = this.category_els.get(this.current_category);
-    if (!!last_wrapper) {
+    if (last_wrapper) {
       last_wrapper.classList.remove('current-category');
     }
     this.current_category = category;
 
-    const new_category_element: CufFaithFactCategory = document.createElement('cuf-faith-fact-category');
+    const new_category_element: CufFaithFactCategory =
+      document.createElement('cuf-faith-fact-category');
     new_category_element.setAttribute('category', category);
-    
+
     const previous_children: Element[] = [];
     for (const child of this.faith_facts_container.children) {
       previous_children.push(child);
@@ -117,7 +118,7 @@ export class CufFaithFactCategoryList extends CufElement {
     if (remove_previous_child) {
       remove_previous_child();
     }
-    if (!!json_data) {
+    if (json_data) {
       this.loaded_json_data.set(json_data['category'], json_data);
     }
     scrollToElement(this);
@@ -137,11 +138,11 @@ export class CufFaithFactCategoryList extends CufElement {
     circle.style.width = circle.style.height = `${diameter}px`;
     circle.style.left = `${e.clientX + this.category_container.scrollLeft - button_wrapper.offsetLeft - radius}px`;
     circle.style.top = `${e.clientY + document.body.scrollTop - button_wrapper.offsetTop - radius}px`;
-    circle.classList.add("ripple");
+    circle.classList.add('ripple');
 
     const ripple_container = button_wrapper.querySelector('.ripple-container');
 
-    if (!!ripple_container) {
+    if (ripple_container) {
       for (const previous_ripple of ripple_container.getElementsByClassName('ripple')) {
         previous_ripple.remove();
       }

@@ -1,5 +1,5 @@
-import {fetchJson} from '../../../data/data_control';
-import {CufElement} from '../../cuf_element';
+import { fetchJson } from '../../../data/data_control';
+import { CufElement } from '../../cuf_element';
 
 import html from './faith_fact_category.html';
 

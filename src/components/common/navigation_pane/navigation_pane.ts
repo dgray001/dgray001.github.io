@@ -1,7 +1,7 @@
-import {getPage} from '../../../scripts/url';
-import {trim} from '../../../scripts/util';
-import {CufElement} from '../../cuf_element';
-import {pageToName} from '../util';
+import { getPage } from '../../../scripts/url';
+import { trim, until } from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
+import { pageToName } from '../util';
 
 import html from './navigation_pane.html';
 
@@ -27,9 +27,18 @@ export class CufNavigationPane extends CufElement {
     this.configureElement('hamburger_button_wrapper');
   }
 
-  protected override parsedCallback(): void {
-    const links: string[] = JSON.parse(this.getAttribute('links')) ??
-      ['about', 'news', 'apostolic_activities', 'contact', 'donate'];
+  protected override async parsedCallback(): Promise<void> {
+    const waitForLinks: boolean = this.getAttribute('waitForLinks') === 'true';
+    if (waitForLinks) {
+      await until(() => !!this.hasAttribute('links'));
+    }
+    const links: string[] = JSON.parse(this.getAttribute('links')) ?? [
+      'about',
+      'news',
+      'apostolic_activities',
+      'contact',
+      'donate',
+    ];
     this.use_hamburger = document.body.classList.contains('mobile');
     if (this.use_hamburger) {
       this.hamburger.addEventListener('click', () => {
@@ -47,15 +56,23 @@ export class CufNavigationPane extends CufElement {
     }
     const curr_path = trim(getPage(), '/');
     for (const link of links) {
-      switch(link) {
+      switch (link) {
         case 'apostolic_activities':
-          this.addHeaderButton(link, curr_path, ['information_services', 'lay_witness', 'faith_and_life_series']);
+          this.addHeaderButton(link, curr_path, [
+            'information_services',
+            'lay_witness',
+            'faith_and_life_series',
+          ]);
           break;
         case 'apostolic_activities_admin':
           this.addHeaderButton(link, curr_path, ['faith_facts', 'lay_witness', 'chapters']);
           break;
         case 'sidebars':
-          this.addHeaderButton(link, curr_path, ['involvement', 'position_papers', 'jobs_available']);
+          this.addHeaderButton(link, curr_path, [
+            'involvement',
+            'position_papers',
+            'jobs_available',
+          ]);
           break;
         default:
           this.createButton(link, curr_path);
@@ -103,8 +120,13 @@ export class CufNavigationPane extends CufElement {
     }
   }
 
-  private createButton(link: string, curr_path: string, header_el = false,
-    append_parent: HTMLDivElement = this.use_hamburger ? this.hamburger_button_wrapper : this.button_wrapper
+  private createButton(
+    link: string,
+    curr_path: string,
+    header_el = false,
+    append_parent: HTMLDivElement = this.use_hamburger
+      ? this.hamburger_button_wrapper
+      : this.button_wrapper
   ): HTMLElement {
     const label = pageToName(link);
     const link_el = link !== curr_path && !header_el;

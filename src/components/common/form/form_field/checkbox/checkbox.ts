@@ -1,4 +1,4 @@
-import {CufFormField} from '../form_field';
+import { CufFormField } from '../form_field';
 
 import html from './checkbox.html';
 

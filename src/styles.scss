@@ -1,11 +1,11 @@
-@use "./normalize";
+@use './normalize';
 
 :root {
   // colors
   --page-background-color: rgb(255, 255, 255);
   --card-background-color: rgb(245, 245, 245);
   --card-header-color: rgb(237, 237, 237);
-  --card-box-shadow-color: rgba(0, 0, 0, .5);
+  --card-box-shadow-color: rgba(0, 0, 0, 0.5);
   --navigation-hover-color: rgb(190, 190, 190);
   --navigation-current-color: rgba(190, 190, 190, 0.8);
   --link-text-color: rgb(70, 140, 40);
@@ -81,7 +81,7 @@ body {
   // global styles
   background-color: var(--page-background-color);
   color: black;
-  font-family: "Sans Serif";
+  font-family: 'Sans Serif';
   overflow-x: hidden;
 
   // misc classes
@@ -98,20 +98,25 @@ body {
   }
 
   // link styles
-  a, .a {
+  a,
+  .a {
     color: var(--link-text-color);
     font-weight: bold;
   }
-  a:visited, .a:visited {
+  a:visited,
+  .a:visited {
     color: var(--link-text-color-visited);
   }
-  a:hover, .a:hover {
+  a:hover,
+  .a:hover {
     color: var(--link-text-color-hover);
   }
-  a:active, .a:active {
+  a:active,
+  .a:active {
     color: var(--link-text-color-active);
   }
-  a:not(:focus-visible), .a:not(:focus-visible) {
+  a:not(:focus-visible),
+  .a:not(:focus-visible) {
     outline: none;
   }
 

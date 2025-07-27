@@ -1,5 +1,5 @@
-import {until} from '../../../../../scripts/util';
-import {CufFormField} from '../form_field';
+import { until } from '../../../../../scripts/util';
+import { CufFormField } from '../form_field';
 
 import html from './text_area.html';
 
@@ -19,10 +19,10 @@ export class CufTextArea extends CufFormField<HTMLInputElement, string> {
     const observe = (el: Element, e: string, h: () => void) => {
       el.addEventListener(e, h, false);
     };
-    observe(this.form_field, 'change',  this.resize.bind(this));
-    observe(this.form_field, 'cut',     this.resize.bind(this));
-    observe(this.form_field, 'paste',   this.resize.bind(this));
-    observe(this.form_field, 'drop',    this.resize.bind(this));
+    observe(this.form_field, 'change', this.resize.bind(this));
+    observe(this.form_field, 'cut', this.resize.bind(this));
+    observe(this.form_field, 'paste', this.resize.bind(this));
+    observe(this.form_field, 'drop', this.resize.bind(this));
     observe(this.form_field, 'keydown', this.resize.bind(this));
     this.form_field.focus();
     this.form_field.select();
@@ -40,7 +40,10 @@ export class CufTextArea extends CufFormField<HTMLInputElement, string> {
     await until(() => !!this.form_field.scrollHeight);
     const previous_value = this.form_field.value;
     this.form_field.value = '\n'.repeat(this.min_rows - 1);
-    this.form_field.style.setProperty('--min-height', `${(this.form_field.scrollHeight + 2).toString()}px`);
+    this.form_field.style.setProperty(
+      '--min-height',
+      `${(this.form_field.scrollHeight + 2).toString()}px`
+    );
     this.form_field.value = previous_value;
   }
 

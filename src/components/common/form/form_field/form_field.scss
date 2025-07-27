@@ -17,7 +17,7 @@
   > .form-field {
     box-sizing: border-box;
     display: inline-block;
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: var(--size-large);
     max-width: 100%;
     min-width: 100%;
@@ -32,7 +32,8 @@
       display: none !important;
     }
 
-    a, .a {
+    a,
+    .a {
       text-decoration: none !important;
     }
   }
@@ -46,19 +47,19 @@
 
   /* Style 1 */
 
-  &[ux="style1"][id^="checkbox-"] {
+  &[ux='style1'][id^='checkbox-'] {
     display: flex;
     padding-left: 1.2em;
 
-    input[type="checkbox"] {
+    input[type='checkbox'] {
       display: inline;
       opacity: 0;
     }
-    input[type="checkbox"] + label {
+    input[type='checkbox'] + label {
       outline: 0;
       user-select: none;
     }
-    input[type="checkbox"] + label::before {
+    input[type='checkbox'] + label::before {
       background: #fff;
       border: 1px solid #999;
       content: '';
@@ -72,11 +73,11 @@
       top: calc(50% - 0.65em);
       width: 1.2em;
     }
-    input[type="checkbox"]:checked + label::before {
+    input[type='checkbox']:checked + label::before {
       content: '\2714';
     }
-    input[type="checkbox"]:focus + label::before {
-      border-color: #135BCF;
+    input[type='checkbox']:focus + label::before {
+      border-color: #135bcf;
     }
 
     .label {
@@ -84,7 +85,7 @@
     }
   }
 
-  &[ux="style1"]:not([id^="checkbox-"]) {
+  &[ux='style1']:not([id^='checkbox-']) {
     --box-shadow-color: black;
     --box-shadow-width: 1px;
     --form-field-extra-width: 10px;
@@ -120,19 +121,18 @@
       white-space: nowrap;
     }
 
-    input[type="text"],
-    input[type="date"],
-    input[type="datetime"],
-    input[type="email"],
-    input[type="number"],
-    input[type="search"],
-    input[type="time"],
-    input[type="url"],
-    input[type="password"],
+    input[type='text'],
+    input[type='date'],
+    input[type='datetime'],
+    input[type='email'],
+    input[type='number'],
+    input[type='search'],
+    input[type='time'],
+    input[type='url'],
+    input[type='password'],
     textarea.form-field,
     select.form-field,
-    button.form-field
-    {
+    button.form-field {
       background-color: transparent;
       box-sizing: border-box;
       border: none;
@@ -161,20 +161,20 @@
       text-align: left;
     }
 
-    input[type="submit"],
-    input[type="button"] {
-      background: #2471FF;
+    input[type='submit'],
+    input[type='button'] {
+      background: #2471ff;
       border: none;
       padding: 10px 20px 10px 20px;
-      border-bottom: 3px solid #5994FF;
+      border-bottom: 3px solid #5994ff;
       border-radius: 3px;
-      color: #D2E2FF;
+      color: #d2e2ff;
     }
 
-    input[type="submit"]:hover,
-    input[type="button"]:hover {
-      background: #6B9FFF;
-      color:#fff;
+    input[type='submit']:hover,
+    input[type='button']:hover {
+      background: #6b9fff;
+      color: #fff;
     }
 
     &.invalid {

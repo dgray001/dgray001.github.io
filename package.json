@@ -7,7 +7,10 @@
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack serve --config webpack.dev.js",
     "add": "python addComponent.py",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint src docs",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src docs --check --write"
   },
   "repository": {
     "type": "git",
@@ -20,14 +23,21 @@
   },
   "homepage": "https://github.com/dgray001/LNZ_site#readme",
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
     "@types/node": "^24",
     "@types/webpack": "^5.28",
-    "@webpack-cli/generators": "^2.5.0",
+    "@webpack-cli/generators": "^3.0.7",
     "clean-webpack-plugin": "^4",
     "copy-webpack-plugin": "^13",
     "declaration-bundler-webpack-plugin": "^1",
+    "eslint": "^9.32.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.3",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
     "ts-loader": "^9.5",
     "typescript": "^5.8",
+    "typescript-eslint": "^8.38.0",
     "webpack": "^5.100",
     "webpack-cli": "^6",
     "webpack-dev-server": "^5"

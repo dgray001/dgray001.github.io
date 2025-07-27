@@ -1,4 +1,4 @@
-import {CufFormField} from '../form_field';
+import { CufFormField } from '../form_field';
 
 import html from './string_list.html';
 
@@ -63,7 +63,7 @@ export class CufStringList extends CufFormField<HTMLDivElement, string[]> {
   }
 
   override getData(): string[] {
-    return this.getLineEls().map(el => el.value);
+    return this.getLineEls().map((el) => el.value);
   }
 
   override getStringData(): string {
@@ -71,7 +71,7 @@ export class CufStringList extends CufFormField<HTMLDivElement, string[]> {
   }
 
   override _setData(data: string[]): void {
-    data.forEach(d => {
+    data.forEach((d) => {
       this.addLine(d);
     });
   }

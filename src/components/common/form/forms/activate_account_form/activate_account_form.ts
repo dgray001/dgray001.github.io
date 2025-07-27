@@ -1,11 +1,11 @@
-import {apiPost} from '../../../../../scripts/api';
-import {getCookie} from '../../../../../scripts/cookies';
-import {recaptchaCallback} from '../../../../../scripts/recaptcha';
-import {hasPermission, loggedIn} from '../../../../../scripts/session';
-import {getUrlParam} from '../../../../../scripts/url';
-import {DEV} from '../../../../../scripts/util';
-import {CufForm} from '../../form';
-import {CufInputText} from '../../form_field/input_text/input_text';
+import { apiPost } from '../../../../../scripts/api';
+import { getCookie } from '../../../../../scripts/cookies';
+import { recaptchaCallback } from '../../../../../scripts/recaptcha';
+import { hasPermission, loggedIn } from '../../../../../scripts/session';
+import { getUrlParam } from '../../../../../scripts/url';
+import { DEV } from '../../../../../scripts/util';
+import { CufForm } from '../../form';
+import { CufInputText } from '../../form_field/input_text/input_text';
 
 import html from './activate_account_form.html';
 
@@ -37,12 +37,7 @@ export class CufActivateAccountForm extends CufForm<ActivateAccountFormData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'email_field',
-      'code_field',
-      'password_field1',
-      'password_field2',
-    ]);
+    this.configureForm(['email_field', 'code_field', 'password_field1', 'password_field2']);
     this.configureElement('form_button_email');
     this.configureElement('status_message_email');
     this.configureElement('form_button_code');
@@ -64,65 +59,91 @@ export class CufActivateAccountForm extends CufForm<ActivateAccountFormData> {
       if (!this.validate()) {
         return;
       }
-      recaptchaCallback(async () => {
-        const res = await apiPost('verify_email_code', this.getData());
-        if (res.success) {
-          this.email_field.disable();
-          this.form_button_email.classList.remove('show');
-          this.status_message_email.classList.remove('show');
-          this.code_field.classList.add('show');
-          this.code_field.addValidators('required');
-          this.form_button_code.classList.add('show');
-          this.status_message_code.classList.add('show');
-          this.active_status_message = this.status_message_code;
-        } else {
-          this.errorStatus(this.status_message_email, res.error_message ??
-            'An unknown error occurred trying to send verification email');
-        }
-      }, this.form_button_email, this.status_message_email, 'Sending Verification Code');
+      recaptchaCallback(
+        async () => {
+          const res = await apiPost('verify_email_code', this.getData());
+          if (res.success) {
+            this.email_field.disable();
+            this.form_button_email.classList.remove('show');
+            this.status_message_email.classList.remove('show');
+            this.code_field.classList.add('show');
+            this.code_field.addValidators('required');
+            this.form_button_code.classList.add('show');
+            this.status_message_code.classList.add('show');
+            this.active_status_message = this.status_message_code;
+          } else {
+            this.errorStatus(
+              this.status_message_email,
+              res.error_message ?? 'An unknown error occurred trying to send verification email'
+            );
+          }
+        },
+        this.form_button_email,
+        this.status_message_email,
+        'Sending Verification Code'
+      );
     });
     this.form_button_code.addEventListener('click', () => {
       if (!this.validate()) {
         return;
       }
-      recaptchaCallback(async () => {
-        const res = await apiPost('verify_email', this.getData());
-        if (res.success) {
-          this.code_field.disable();
-          this.form_button_code.classList.remove('show');
-          this.status_message_code.classList.remove('show');
-          this.password_field1.classList.add('show');
-          this.password_field1.addValidators('required', 'password');
-          this.password_field2.classList.add('show');
-          this.password_field2.addValidators('required', 'password', 'equals=password_field1=Passwords must match');
-          this.form_button_password.classList.add('show');
-          this.status_message_password.classList.add('show');
-          this.active_status_message = this.status_message_password;
-        } else {
-          this.errorStatus(this.status_message_code, res.error_message ??
-            'An unknown error occurred trying to verify email');
-        }
-      }, this.form_button_code, this.status_message_code, 'Verifying Email');
+      recaptchaCallback(
+        async () => {
+          const res = await apiPost('verify_email', this.getData());
+          if (res.success) {
+            this.code_field.disable();
+            this.form_button_code.classList.remove('show');
+            this.status_message_code.classList.remove('show');
+            this.password_field1.classList.add('show');
+            this.password_field1.addValidators('required', 'password');
+            this.password_field2.classList.add('show');
+            this.password_field2.addValidators(
+              'required',
+              'password',
+              'equals=password_field1=Passwords must match'
+            );
+            this.form_button_password.classList.add('show');
+            this.status_message_password.classList.add('show');
+            this.active_status_message = this.status_message_password;
+          } else {
+            this.errorStatus(
+              this.status_message_code,
+              res.error_message ?? 'An unknown error occurred trying to verify email'
+            );
+          }
+        },
+        this.form_button_code,
+        this.status_message_code,
+        'Verifying Email'
+      );
     });
     this.form_button_password.addEventListener('click', () => {
       if (!this.validate()) {
         return;
       }
-      recaptchaCallback(async () => {
-        const res = await apiPost('activate_account', this.getData());
-        if (res.success) {
-          const redirect = getUrlParam('redirect');
-          if (redirect) {
-            document.location.href = redirect;
+      recaptchaCallback(
+        async () => {
+          const res = await apiPost('activate_account', this.getData());
+          if (res.success) {
+            const redirect = getUrlParam('redirect');
+            if (redirect) {
+              document.location.href = redirect;
+            } else {
+              location.href = hasPermission(getCookie('role'), 'viewAdminDashboard')
+                ? '/admin_dashboard'
+                : '/profile';
+            }
           } else {
-            location.href = hasPermission(getCookie('role'), 'viewAdminDashboard') ?
-              '/admin_dashboard' : '/profile';
+            this.errorStatus(
+              this.status_message_password,
+              res.error_message ?? 'An unknown error occurred trying to reset password'
+            );
           }
-        } else {
-          this.errorStatus(this.status_message_password, res.error_message ??
-            'An unknown error occurred trying to reset password');
-        }
-      }, this.form_button_password, this.status_message_password, 'Activating Account');
+        },
+        this.form_button_password,
+        this.status_message_password,
+        'Activating Account'
+      );
     });
   }
 

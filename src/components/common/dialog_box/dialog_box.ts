@@ -1,5 +1,5 @@
-import {CufElement} from '../../cuf_element';
-import {until} from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
+import { until } from '../../../scripts/util';
 
 import html from './dialog_box.html';
 

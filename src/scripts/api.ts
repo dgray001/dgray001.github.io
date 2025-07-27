@@ -1,15 +1,14 @@
-
 /** Data structure for all returns to get requests */
 export interface GetResponse<T> {
-  success: boolean,
-  result?: T,
-  error_message?: string,
+  success: boolean;
+  result?: T;
+  error_message?: string;
 }
 
 /** Data structure for all returns to post requests */
 export interface PostResponse {
-  success: boolean,
-  error_message?: string,
+  success: boolean;
+  error_message?: string;
 }
 
 /** Converts string api to actual api url */
@@ -23,12 +22,12 @@ export async function apiGet<T>(api: string): Promise<GetResponse<T>> {
     const response = await fetch(apiToUrl(api), {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
     });
-    const response_json = await response.json() as GetResponse<T>;
+    const response_json = (await response.json()) as GetResponse<T>;
     return response_json;
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
   return {
@@ -55,14 +54,18 @@ export async function apiGetFile(api: string, data: any, signal?: AbortSignal): 
     });
     const response_blob = await response.blob();
     return response_blob;
-  } catch(e) {
+  } catch (e) {
     console.error(e);
   }
   return new Blob();
 }
 
 /** Calls and returns the input post api that returns data */
-export async function apiGetPost<T>(api: string, data: any, signal?: AbortSignal): Promise<GetResponse<T>> {
+export async function apiGetPost<T>(
+  api: string,
+  data: any,
+  signal?: AbortSignal
+): Promise<GetResponse<T>> {
   const is_file = data instanceof File;
   const content_type = is_file ? data.type : 'application/json';
   const filename = is_file ? data.name : undefined;
@@ -77,9 +80,9 @@ export async function apiGetPost<T>(api: string, data: any, signal?: AbortSignal
       body,
       signal,
     });
-    const response_json = await response.json() as GetResponse<T>;
+    const response_json = (await response.json()) as GetResponse<T>;
     return response_json;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
   return {
@@ -103,9 +106,9 @@ export async function apiPost(api: string, data: any): Promise<PostResponse> {
       },
       body,
     });
-    const response_json = await response.json() as PostResponse;
+    const response_json = (await response.json()) as PostResponse;
     return response_json;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
   return {
@@ -121,18 +124,16 @@ export async function apiPost(api: string, data: any): Promise<PostResponse> {
 export async function apiPostCallback(
   api: string,
   data: any,
-  callback: () => Promise<void>|void,
+  callback: () => Promise<void> | void,
   status_message: HTMLElement,
   success_message: string
-  ): Promise<void>
-{
+): Promise<void> {
   const response = await apiPost(api, data);
   if (response.success) {
     status_message.setAttribute('style', 'display: block; color: var(--success-color);');
     status_message.innerText = success_message;
     await callback();
-  }
-  else {
+  } else {
     status_message.setAttribute('style', 'display: block; color: var(--warning-color);');
     status_message.innerText = response.error_message;
   }
@@ -147,8 +148,7 @@ export async function apiPostSuccess(
   data: any,
   status_message: HTMLElement,
   success_message: string
-  ): Promise<boolean>
-{
+): Promise<boolean> {
   const response = await apiPost(api, data);
   if (response.success) {
     status_message.setAttribute('style', 'display: block; color: var(--success-color);');

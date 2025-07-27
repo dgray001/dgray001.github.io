@@ -1,4 +1,4 @@
-import {DEV} from "../scripts/util";
+import { DEV } from '../scripts/util';
 
 /** Format all json data should be in */
 export declare interface JsonData<T> {
@@ -25,13 +25,14 @@ export declare interface JsonDataContent {
 /** This function gets the most recent version of the input json data */
 export async function fetchJson<T>(path: string): Promise<T> {
   try {
-    const data_control_res = await fetch(`/data/data_control.json?v=${Math.floor(Date.now() / 3000)}`);
+    const data_control_res = await fetch(
+      `/data/data_control.json?v=${Math.floor(Date.now() / 3000)}`
+    );
     const data_control = await data_control_res.json();
     let timestamp = '';
     if (data_control[path]) {
       timestamp = data_control[path];
-    }
-    else if (!DEV) {
+    } else if (!DEV) {
       data_control[path] = '';
       const post_response = await fetch('/server/data_control.php', {
         method: 'POST',
@@ -47,7 +48,7 @@ export async function fetchJson<T>(path: string): Promise<T> {
     }
     const json_response = await fetch(`/data/${path}?v=${timestamp}`);
     return json_response.json();
-  } catch(e) {
+  } catch (e) {
     console.error(`Error fetching json data: ${e}`);
     return {} as T;
   }

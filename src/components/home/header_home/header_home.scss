@@ -4,7 +4,10 @@ cuf-header-home {
   --subtitle-height: calc(2.4 * var(--subtitle-font-size));
   --navigation-margin: var(--size-medium);
   --navigation-height: calc(3 * var(--size-medium));
-  --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) + var(--navigation-height));
+  --total-height: calc(
+    var(--fixed-container-height) + var(--subtitle-height) + 2 * var(--navigation-margin) +
+      var(--navigation-height)
+  );
   --header-height: var(--total-height);
   --margin: 4px;
   --logo-height: calc(var(--header-height) - 2 * var(--margin));
@@ -26,7 +29,7 @@ cuf-header-home {
       height: var(--fixed-container-height);
       position: fixed;
       width: 100vw;
-  
+
       > #title {
         font-size: calc(0.35 * var(--fixed-container-height));
         font-weight: bold;
@@ -100,7 +103,9 @@ cuf-header-home {
 body.mobile {
   cuf-header-home {
     --fixed-container-height: calc(2.4 * var(--size-title));
-    --total-height: calc(var(--fixed-container-height) + var(--subtitle-height) + var(--navigation-margin));
+    --total-height: calc(
+      var(--fixed-container-height) + var(--subtitle-height) + var(--navigation-margin)
+    );
 
     > #fixed-container-height-box {
       > #title-container {
@@ -129,6 +134,10 @@ body.mobile {
         height: 100%;
         width: 100%;
       }
+    }
+
+    > #profile-button-container {
+      display: none;
     }
   }
 }

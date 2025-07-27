@@ -1,6 +1,6 @@
-import {CufElement} from '../../cuf_element';
-import {until} from '../../../scripts/util';
-import {titleText} from '../../common/util';
+import { CufElement } from '../../cuf_element';
+import { until } from '../../../scripts/util';
+import { titleText } from '../../common/util';
 
 import html from './header.html';
 

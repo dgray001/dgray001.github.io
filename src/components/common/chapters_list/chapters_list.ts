@@ -1,5 +1,5 @@
-import {JsonData, fetchJson} from '../../../data/data_control';
-import {CufElement} from '../../cuf_element';
+import { JsonData, fetchJson } from '../../../data/data_control';
+import { CufElement } from '../../cuf_element';
 
 import html from './chapters_list.html';
 
@@ -28,15 +28,23 @@ export class CufChaptersList extends CufElement {
       for (const other_line of chapter.other_lines) {
         wrapper.appendChild(this.addLine(other_line, 'other'));
       }
-      if (!!chapter.website) {
-        wrapper.appendChild(this.addLine(`<a href="${chapter.website}">${chapter.website}</a>`, 'website'));
+      if (chapter.website) {
+        wrapper.appendChild(
+          this.addLine(`<a href="${chapter.website}">${chapter.website}</a>`, 'website')
+        );
       }
-      if (!!chapter.email) {
-        wrapper.appendChild(this.addLine(`<a href="mailto:${chapter.email}">${chapter.email}</a>`, 'email'));
+      if (chapter.email) {
+        wrapper.appendChild(
+          this.addLine(`<a href="mailto:${chapter.email}">${chapter.email}</a>`, 'email')
+        );
       }
-      if (!!chapter.facebook) {
-        wrapper.appendChild(this.addLine(
-          `<a href="${chapter.facebook}">Connect with them on Facebook</a>`, 'facebook'));
+      if (chapter.facebook) {
+        wrapper.appendChild(
+          this.addLine(
+            `<a href="${chapter.facebook}">Connect with them on Facebook</a>`,
+            'facebook'
+          )
+        );
       }
       this.appendChild(wrapper);
     }

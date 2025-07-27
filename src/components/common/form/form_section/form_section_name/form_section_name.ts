@@ -1,6 +1,6 @@
-import {CufFormSection} from '../form_section';
-import {CufInputText} from '../../form_field/input_text/input_text';
-import {CufSelect} from '../../form_field/select/select';
+import { CufFormSection } from '../form_section';
+import { CufInputText } from '../../form_field/input_text/input_text';
+import { CufSelect } from '../../form_field/select/select';
 
 import html from './form_section_name.html';
 
@@ -44,7 +44,7 @@ export class CufFormSectionName extends CufFormSection<NameData, string> {
   getOutputData(): string {
     const data = this.getData();
     const parts = [data.prefix, data.first, data.last, data.suffix];
-    return parts.filter(p => !!p).join(' ');
+    return parts.filter((p) => !!p).join(' ');
   }
 
   setData(data: NameData): void {

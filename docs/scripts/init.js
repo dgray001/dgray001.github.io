@@ -3,7 +3,7 @@
 export {};
 
 // Get a new version each day, so caching can still be effective
-const {version} = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
+const { version } = await import(`/scripts/version.js?v=${Math.floor(Date.now() / 86400000)}`);
 
 /**
  * Attaches the correct version of the input bundle to the page

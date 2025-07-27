@@ -1,7 +1,8 @@
-import {CufElement} from '../../cuf_element';
-import {until} from '../../../scripts/util';
-import {CufNavigationPane} from '../../common/navigation_pane/navigation_pane';
-import {titleText} from '../../common/util';
+import { CufElement } from '../../cuf_element';
+import { until } from '../../../scripts/util';
+import { CufNavigationPane } from '../../common/navigation_pane/navigation_pane';
+import { titleText } from '../../common/util';
+import { loggedInSync } from '../../../scripts/session';
 
 import html from './header_home.html';
 
@@ -27,6 +28,18 @@ export class CufHeaderHome extends CufElement {
     this.configureElement('logo_container');
     this.configureElement('subtitle_2');
     this.configureElement('navigation_pane');
+    until(() => !!this.navigation_pane).then(() => {
+      const links = ['about', 'news', 'contact', 'donate'];
+      if (document.body.classList.contains('mobile')) {
+        if (loggedInSync) {
+          links.push('profile');
+          links.push('logout');
+        } else {
+          links.push('login');
+        }
+      }
+      this.navigation_pane.setAttribute('links', JSON.stringify(links));
+    });
   }
 
   protected override parsedCallback(): void {
@@ -66,14 +79,16 @@ export class CufHeaderHome extends CufElement {
   }
 
   private async calculateLogoPosition(set_max_width = false) {
-    let margin_left = Math.min(
+    const margin_left = Math.min(
       this.home_title.getBoundingClientRect().x,
       this.subtitle_2.getBoundingClientRect().x,
-      this.navigation_pane.getBoundingClientRect().x,
+      this.navigation_pane.getBoundingClientRect().x
     );
     const logo_width = this.logo_container.getBoundingClientRect().width;
-    this.logo_container.style.setProperty('--left',
-      `max(2px, calc(${margin_left}px - ${logo_width}px - var(--size-small)))`);
+    this.logo_container.style.setProperty(
+      '--left',
+      `max(2px, calc(${margin_left}px - ${logo_width}px - var(--size-small)))`
+    );
     if (set_max_width) {
       this.logo_max_width = logo_width;
     }

@@ -1,5 +1,5 @@
-import {CufElement} from '../../cuf_element';
-import {until} from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
+import { until } from '../../../scripts/util';
 
 import html from './slider.html';
 
@@ -14,7 +14,7 @@ export class CufSlider extends CufElement {
   private img_map = new Map<string, HTMLImageElement>();
   private last_scale_used = 0;
   private stop_moving = false;
-  private stop_moving_timeout: NodeJS.Timeout|undefined = undefined;
+  private stop_moving_timeout: NodeJS.Timeout | undefined = undefined;
   private current_index = 0;
   private in_transition = false;
 
@@ -73,7 +73,7 @@ export class CufSlider extends CufElement {
   }
 
   private imageName(image: string): string {
-    switch(image) {
+    switch (image) {
       case 'information_services':
         return 'calling_of_apostles';
       case 'faith_facts':
@@ -88,7 +88,7 @@ export class CufSlider extends CufElement {
   }
 
   private imageText(image: string): string {
-    switch(image) {
+    switch (image) {
       case 'information_services':
         return 'Information\nServices';
       case 'faith_facts':
@@ -110,7 +110,7 @@ export class CufSlider extends CufElement {
     if (remaining_height < 1) {
       remaining_height = 1;
     }
-    const ratio = 10 * window.innerWidth / remaining_height;
+    const ratio = (10 * window.innerWidth) / remaining_height;
     for (const [i, scale] of available_scales.entries()) {
       if (i < available_scales.length - 1 && ratio > scale) {
         continue;
@@ -133,7 +133,7 @@ export class CufSlider extends CufElement {
       return;
     }
     const last_index = this.current_index;
-    const next_index = (this.current_index + 1) >= this.imgs.length ? 0 : this.current_index + 1;
+    const next_index = this.current_index + 1 >= this.imgs.length ? 0 : this.current_index + 1;
     this.setImage(last_index, next_index);
   }
 

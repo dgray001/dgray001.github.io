@@ -1,7 +1,7 @@
-import {ChapterData} from '../../../common/chapters_list/chapters_list';
-import {CufForm} from '../../../common/form/form';
-import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
-import {CufStringList} from '../../../common/form/form_field/string_list/string_list';
+import { ChapterData } from '../../../common/chapters_list/chapters_list';
+import { CufForm } from '../../../common/form/form';
+import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
+import { CufStringList } from '../../../common/form/form_field/string_list/string_list';
 
 import html from './chapters_form.html';
 

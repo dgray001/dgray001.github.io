@@ -6,7 +6,8 @@ cuf-laywitness-list {
 
     > li {
       > a {
-        &.addendum, &.insert {
+        &.addendum,
+        &.insert {
           margin-left: 1.8em;
         }
       }

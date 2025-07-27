@@ -1,13 +1,25 @@
-import {JsonData, JsonDataContent} from '../../../../data/data_control';
-import {recaptchaCallback} from '../../../../scripts/recaptcha';
-import {until} from '../../../../scripts/util';
-import {LaywitnessData, LaywitnessIssueData} from '../../../common/laywitness_list/laywitness_list';
-import {CufElement} from '../../../cuf_element';
-import {AdminFormType, CufDashboardSection, DashboardSectionData} from '../dashboard_section';
-import {deleteChaptersData, deleteJsonData, deleteLayWitnessData, deleteLinksData, editChaptersData, editJsonData, editLayWitnessData, editLinksData} from '../util';
-import {LayWitnessFormData} from '../../forms/lay_witness_form/lay_witness_form';
-import {ChapterData} from '../../../common/chapters_list/chapters_list';
-import {LinkGroupData, LinksData} from '../../../common/links_list/links_list';
+import { JsonData, JsonDataContent } from '../../../../data/data_control';
+import { recaptchaCallback } from '../../../../scripts/recaptcha';
+import { until } from '../../../../scripts/util';
+import {
+  LaywitnessData,
+  LaywitnessIssueData,
+} from '../../../common/laywitness_list/laywitness_list';
+import { CufElement } from '../../../cuf_element';
+import { AdminFormType, CufDashboardSection, DashboardSectionData } from '../dashboard_section';
+import {
+  deleteChaptersData,
+  deleteJsonData,
+  deleteLayWitnessData,
+  deleteLinksData,
+  editChaptersData,
+  editJsonData,
+  editLayWitnessData,
+  editLinksData,
+} from '../util';
+import { LayWitnessFormData } from '../../forms/lay_witness_form/lay_witness_form';
+import { ChapterData } from '../../../common/chapters_list/chapters_list';
+import { LinkGroupData, LinksData } from '../../../common/links_list/links_list';
 
 import html from './edit_item.html';
 
@@ -45,7 +57,7 @@ export class CufEditItem extends CufElement {
     this.configureElement('status_message');
   }
 
-  private getFile(): File|undefined {
+  private getFile(): File | undefined {
     return this.file_input?.files[0];
   }
 
@@ -53,7 +65,7 @@ export class CufEditItem extends CufElement {
     await until(() => this.fully_parsed);
     this.data_key = data_key;
     let tag_key = el.getTagKey();
-    let title = data.title ?? '-- no title --';
+    const title = data.title ?? '-- no title --';
     this.title_text.innerText = title;
     if (this.classList.contains('subheader')) {
       this.title_label.innerText = '[Subheader]';
@@ -70,15 +82,20 @@ export class CufEditItem extends CufElement {
     this.addEventListeners(el, data, tag_key);
   }
 
-  async addConfigLaywitnessData(el: CufDashboardSection, data: LaywitnessIssueData, volume: number, data_key: string) {
+  async addConfigLaywitnessData(
+    el: CufDashboardSection,
+    data: LaywitnessIssueData,
+    volume: number,
+    data_key: string
+  ) {
     await until(() => this.fully_parsed);
     this.data_key = data_key;
     const issue_title = `${volume}.${data.number}: ${data.title}`;
     let title = issue_title;
-    if (!!data.insert) {
+    if (data.insert) {
       this.classList.add('indent-1');
       title = `<span class="float-left">[Insert ${data.insert}]</span>${title}`;
-    } else if (!!data.addendum) {
+    } else if (data.addendum) {
       this.classList.add('indent-1');
       title = `<span class="float-left">[Addendum ${data.addendum}]</span>${title}`;
     }
@@ -116,7 +133,12 @@ export class CufEditItem extends CufElement {
     this.addEventListeners(el, data, tag_key);
   }
 
-  async addConfigLinksData(el: CufDashboardSection, group: LinkGroupData, link: JsonDataContent, data_key: string) {
+  async addConfigLinksData(
+    el: CufDashboardSection,
+    group: LinkGroupData,
+    link: JsonDataContent,
+    data_key: string
+  ) {
     await until(() => this.fully_parsed);
     this.data_key = data_key;
     this.title_text.innerText = link.title;
@@ -124,7 +146,7 @@ export class CufEditItem extends CufElement {
     this.addItemDetails('Group', group.subheader);
     this.addItemDetails('Url', link.titlelink);
     this.addItemDetails('Description', link.description);
-    this.addEventListeners(el, {group: group.subheader, ...link}, el.getTagKey());
+    this.addEventListeners(el, { group: group.subheader, ...link }, el.getTagKey());
   }
 
   private addEventListeners(el: CufDashboardSection, data: any, tag_key: string) {
@@ -139,9 +161,11 @@ export class CufEditItem extends CufElement {
     this.delete_button.addEventListener('click', async () => {
       await recaptchaCallback(async () => {
         const confirm_dialog = document.createElement('dwg-confirm-dialog');
-        confirm_dialog.setData({question: 'Are you sure you want to delete this?'});
+        confirm_dialog.setData({
+          question: 'Are you sure you want to delete this?',
+        });
         confirm_dialog.addEventListener('confirmed', async () => {
-          const {new_data, data_deleted} = this.addDeleteData(el, el.getCurrentData(), data);
+          const { new_data, data_deleted } = this.addDeleteData(el, el.getCurrentData(), data);
           if (!new_data) {
             return;
           }
@@ -157,7 +181,7 @@ export class CufEditItem extends CufElement {
     name_el.innerText = name;
     name_el.classList.add('name');
     const details_el = document.createElement('div');
-    if (!!details) {
+    if (details) {
       details_el.innerHTML = details;
     } else {
       details_el.innerText = '-- empty --';
@@ -185,14 +209,27 @@ export class CufEditItem extends CufElement {
         return;
       }
       this.messageStatus('');
-      await recaptchaCallback(async () => {
-        const form_data: any = this.edit_form_el.getData();
-        const {new_data, data_edited} = this.addEditData(el, el.getCurrentData(), form_data);
-        if (!new_data) {
-          return;
-        }
-        await el.sendSaveDataRequest(form_data, new_data, data_edited, this.getFile(), 'edited a', true, data.titlelink);
-      }, this.edit_form_el.getSubmitButton(), this.status_message, 'Editing');
+      await recaptchaCallback(
+        async () => {
+          const form_data: any = this.edit_form_el.getData();
+          const { new_data, data_edited } = this.addEditData(el, el.getCurrentData(), form_data);
+          if (!new_data) {
+            return;
+          }
+          await el.sendSaveDataRequest(
+            form_data,
+            new_data,
+            data_edited,
+            this.getFile(),
+            'edited a',
+            true,
+            data.titlelink
+          );
+        },
+        this.edit_form_el.getSubmitButton(),
+        this.status_message,
+        'Editing'
+      );
     });
     if (['layWitness', 'positionPapers'].includes(el.getSectionKey())) {
       const file_input_label = document.createElement('label');
@@ -208,11 +245,23 @@ export class CufEditItem extends CufElement {
     this.edit_form.appendChild(this.edit_form_el);
   }
 
-  private addEditData(el: CufDashboardSection, old_data: DashboardSectionData, form_data: any):
-    {new_data: DashboardSectionData|undefined, data_edited?: any}
-  {
-    if (['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(el.getJsonKey())) {
-      return editJsonData(el, old_data as JsonData<JsonDataContent>, form_data, this.data_key, this.getFile()?.name);
+  private addEditData(
+    el: CufDashboardSection,
+    old_data: DashboardSectionData,
+    form_data: any
+  ): { new_data: DashboardSectionData | undefined; data_edited?: any } {
+    if (
+      ['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(
+        el.getJsonKey()
+      )
+    ) {
+      return editJsonData(
+        el,
+        old_data as JsonData<JsonDataContent>,
+        form_data,
+        this.data_key,
+        this.getFile()?.name
+      );
     } else if (el.getJsonKey() === 'lay_witness') {
       return editLayWitnessData(el, old_data as LaywitnessData, form_data, this.data_key);
     } else if (el.getJsonKey() === 'chapters') {
@@ -221,13 +270,19 @@ export class CufEditItem extends CufElement {
       return editLinksData(old_data as LinksData, form_data, this.data_key);
     }
     console.error('Not implemented');
-    return {new_data: old_data};
+    return { new_data: old_data };
   }
 
-  private addDeleteData(el: CufDashboardSection, old_data: DashboardSectionData, data_deleted: any):
-    {new_data: DashboardSectionData|undefined, data_deleted?: any}
-  {
-    if (['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(el.getJsonKey())) {
+  private addDeleteData(
+    el: CufDashboardSection,
+    old_data: DashboardSectionData,
+    data_deleted: any
+  ): { new_data: DashboardSectionData | undefined; data_deleted?: any } {
+    if (
+      ['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(
+        el.getJsonKey()
+      )
+    ) {
       return deleteJsonData(el, old_data as JsonData<JsonDataContent>, data_deleted, this.data_key);
     } else if (el.getJsonKey() === 'lay_witness') {
       return deleteLayWitnessData(el, old_data as LaywitnessData, data_deleted, this.data_key);
@@ -239,11 +294,11 @@ export class CufEditItem extends CufElement {
       // TODO: implement
     }
     console.error('Not implemented');
-    return {new_data: old_data};
+    return { new_data: old_data };
   }
 
   private messageStatus(message: string): void {
-    if (!!message) {
+    if (message) {
       this.status_message.innerHTML = message;
       this.status_message.classList.remove('hide');
     } else {

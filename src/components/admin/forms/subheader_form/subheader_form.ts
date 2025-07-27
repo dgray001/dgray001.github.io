@@ -1,7 +1,7 @@
-import {CufForm} from '../../../common/form/form';
-import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
-import {CufTextArea} from '../../../common/form/form_field/text_area/text_area';
-import {JsonDataContent} from '../../../../data/data_control';
+import { CufForm } from '../../../common/form/form';
+import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
+import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
+import { JsonDataContent } from '../../../../data/data_control';
 
 import html from './subheader_form.html';
 
@@ -22,11 +22,7 @@ export class CufSubheaderForm extends CufForm<JsonDataContent> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'subheader_title',
-      'subheader_titlelink',
-      'subheader_description',
-    ]);
+    this.configureForm(['subheader_title', 'subheader_titlelink', 'subheader_description']);
     this.configureElement('submit_button');
   }
 

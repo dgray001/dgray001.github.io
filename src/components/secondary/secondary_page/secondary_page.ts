@@ -1,11 +1,11 @@
-import {CufElement} from '../../cuf_element';
-import {CufHeader} from '../header/header';
-import {CufSidebar} from '../sidebar/sidebar';
-import {CufFooter} from '../../common/footer/footer';
-import {getPage, getUrlParam} from '../../../scripts/url';
-import {scrollToElement, trim, until} from '../../../scripts/util';
-import {pageToName} from '../../common/util';
-import {JsonData, JsonDataContent, fetchJson} from '../../../data/data_control';
+import { CufElement } from '../../cuf_element';
+import { CufHeader } from '../header/header';
+import { CufSidebar } from '../sidebar/sidebar';
+import { CufFooter } from '../../common/footer/footer';
+import { getPage, getUrlParam } from '../../../scripts/url';
+import { scrollToElement, trim, until } from '../../../scripts/util';
+import { pageToName } from '../../common/util';
+import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
 
 import html from './secondary_page.html';
 
@@ -48,24 +48,33 @@ export class CufSecondaryPage extends CufElement {
     this.sidebar.removePanel(this.page);
     await this.setTitle(pageToName(this.page));
     const hash = getUrlParam('h');
-    if (!!hash) {
+    if (hash) {
       const scrollToHash = () => {
-        let scroll_el: HTMLElement|undefined = undefined;
-        until(() => {
-          scroll_el = this.querySelector<HTMLElement>(`#${hash}`);
-          return !!scroll_el;
-        }, 40, 200).then(() => {
+        let scroll_el: HTMLElement | undefined = undefined;
+        until(
+          () => {
+            scroll_el = this.querySelector<HTMLElement>(`#${hash}`);
+            return !!scroll_el;
+          },
+          40,
+          200
+        ).then(() => {
           until(() => scroll_el.offsetTop > 0, 40, 200).then(() => {
             scrollToElement(scroll_el, 2000);
           });
         });
       };
-      until(() => this.sidebar.scrollHeight > 0, 40, 200).then(scrollToHash.bind(this), scrollToHash.bind(this));
+      until(() => this.sidebar.scrollHeight > 0, 40, 200).then(
+        scrollToHash.bind(this),
+        scrollToHash.bind(this)
+      );
     }
     if (['position_papers', 'news', 'jobs_available'].includes(this.page)) {
-      const json_data = await fetchJson<JsonData<JsonDataContent>>(`${this.page}/${this.page}.json`);
+      const json_data = await fetchJson<JsonData<JsonDataContent>>(
+        `${this.page}/${this.page}.json`
+      );
       const contents: JsonDataContent[] = [];
-      if (!!json_data.subheader) {
+      if (json_data.subheader) {
         contents.push(json_data.subheader);
       }
       contents.push(...json_data.content);
@@ -83,10 +92,10 @@ export class CufSecondaryPage extends CufElement {
         const section = document.createElement('div');
         const section_content = document.createElement('div');
         section.classList.add('section');
-        if (!!content.title) {
+        if (content.title) {
           const subtitle = document.createElement('h3');
           subtitle.classList.add('section-subtitle');
-          if (!!content.titlelink) {
+          if (content.titlelink) {
             subtitle.innerHTML = `<i><a href="${content.titlelink}">${content.title}</a></i>`;
           } else {
             subtitle.innerHTML = `<i>${content.title}</i>`;
@@ -95,7 +104,7 @@ export class CufSecondaryPage extends CufElement {
         } else {
           section_content.classList.add('no-title');
         }
-        if (!!content.description) {
+        if (content.description) {
           section_content.classList.add('section-content');
           const section_p = document.createElement('p');
           section_p.innerHTML = content.description;

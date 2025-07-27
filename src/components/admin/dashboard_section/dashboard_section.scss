@@ -35,7 +35,9 @@ cuf-dashboard-section {
         width: calc(50% - 2em);
       }
 
-      button, input, label {
+      button,
+      input,
+      label {
         border: 0;
         font-size: var(--size-medium);
         margin: 0;
@@ -81,15 +83,15 @@ cuf-dashboard-section {
       margin-top: 0.4em;
       text-align: center;
       width: 100%;
-  
+
       &.hide {
         display: none;
       }
-  
+
       &.success {
         color: green;
       }
-  
+
       &.error {
         color: red;
       }

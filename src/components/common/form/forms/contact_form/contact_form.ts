@@ -1,13 +1,19 @@
-import {CufForm} from '../../form';
-import {CufFormSectionName} from '../../form_section/form_section_name/form_section_name';
-import {AddressOutputData, CufFormSectionAddress} from '../../form_section/form_section_address/form_section_address';
-import {ContactData, CufFormSectionContact} from '../../form_section/form_section_contact/form_section_contact';
-import {CufFormSectionMembership} from '../../form_section/form_section_membership/form_section_membership';
-import {CufTextArea} from '../../form_field/text_area/text_area';
-import {recaptchaCallback} from '../../../../../scripts/recaptcha';
-import {apiPost} from '../../../../../scripts/api';
-import {createContactEmail} from '../util';
-import {DEV, STAGING, scrollToElement} from '../../../../../scripts/util';
+import { CufForm } from '../../form';
+import { CufFormSectionName } from '../../form_section/form_section_name/form_section_name';
+import {
+  AddressOutputData,
+  CufFormSectionAddress,
+} from '../../form_section/form_section_address/form_section_address';
+import {
+  ContactData,
+  CufFormSectionContact,
+} from '../../form_section/form_section_contact/form_section_contact';
+import { CufFormSectionMembership } from '../../form_section/form_section_membership/form_section_membership';
+import { CufTextArea } from '../../form_field/text_area/text_area';
+import { recaptchaCallback } from '../../../../../scripts/recaptcha';
+import { apiPost } from '../../../../../scripts/api';
+import { createContactEmail } from '../util';
+import { DEV, STAGING, scrollToElement } from '../../../../../scripts/util';
 
 import html from './contact_form.html';
 
@@ -62,20 +68,29 @@ export class CufContactForm extends CufForm<ContactFormData> {
       if (!this.validate()) {
         return;
       }
-      recaptchaCallback(async () => {
-        const post_data = createContactEmail(this.getData(), true);
-        const res = await apiPost(STAGING ? 'con_tac' : 'contact', post_data);
-        if (res.success) {
-          this.successStatus(this.contact_form_status_message, 'Message sent!');
-          this.successStatus(this.contact_form_receipt_message,
-            'Thank you for contacting us. We will be in touch with you soon.');
-          this.form_wrapper.remove();
-          scrollToElement(this.contact_form_status_message);
-        } else {
-          this.errorStatus(this.contact_form_status_message, res.error_message ??
-            'An unknown error occurred trying to send the contact form');
-        }
-      }, this.contact_form_button, this.contact_form_status_message, 'Sending');
+      recaptchaCallback(
+        async () => {
+          const post_data = createContactEmail(this.getData(), true);
+          const res = await apiPost(STAGING ? 'con_tac' : 'contact', post_data);
+          if (res.success) {
+            this.successStatus(this.contact_form_status_message, 'Message sent!');
+            this.successStatus(
+              this.contact_form_receipt_message,
+              'Thank you for contacting us. We will be in touch with you soon.'
+            );
+            this.form_wrapper.remove();
+            scrollToElement(this.contact_form_status_message);
+          } else {
+            this.errorStatus(
+              this.contact_form_status_message,
+              res.error_message ?? 'An unknown error occurred trying to send the contact form'
+            );
+          }
+        },
+        this.contact_form_button,
+        this.contact_form_status_message,
+        'Sending'
+      );
     });
   }
 

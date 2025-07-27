@@ -8,5 +8,5 @@ import html from './home.html';
 import '../../components/home/homepage/homepage';
 
 // initialize
-import {initializePage} from '../common';
+import { initializePage } from '../common';
 initializePage(html);

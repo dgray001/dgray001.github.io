@@ -1,9 +1,9 @@
-import {apiGetFile} from '../../../scripts/api';
-import {getCookie} from '../../../scripts/cookies';
-import {hasPermission} from '../../../scripts/session';
-import {downloadBlob} from '../../../scripts/util';
-import {CufElement} from '../../cuf_element';
-import {FaithFactData} from '../faith_fact_category/faith_fact_category';
+import { apiGetFile } from '../../../scripts/api';
+import { getCookie } from '../../../scripts/cookies';
+import { hasPermission } from '../../../scripts/session';
+import { downloadBlob } from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
+import { FaithFactData } from '../faith_fact_category/faith_fact_category';
 
 import html from './faith_fact.html';
 
@@ -38,7 +38,7 @@ export class CufFaithFact extends CufElement {
       return;
     }
     this.title_el.innerText = this.faith_fact.title.toUpperCase();
-    if (!!this.faith_fact.question) {
+    if (this.faith_fact.question) {
       this.question_text.innerText = this.faith_fact.question;
     } else {
       this.question.remove();
@@ -51,8 +51,12 @@ export class CufFaithFact extends CufElement {
     const role = getCookie('role');
     if (hasPermission(role, 'downloadFaithFacts')) {
       this.download.addEventListener('click', async () => {
-        let filename = this.faith_fact.title.toLowerCase().trim().replaceAll(' ', '_').replaceAll('-', '_');
-        for (const c of [':', '?', ',', '\'', '"', '.', '’', '“', '”', '!']) {
+        let filename = this.faith_fact.title
+          .toLowerCase()
+          .trim()
+          .replaceAll(' ', '_')
+          .replaceAll('-', '_');
+        for (const c of [':', '?', ',', "'", '"', '.', '’', '“', '”', '!']) {
           filename = filename.replaceAll(c, '');
         }
         filename = filename.trim();

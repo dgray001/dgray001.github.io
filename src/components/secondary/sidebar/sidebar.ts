@@ -1,6 +1,6 @@
-import {panelsToIncludeFrom} from '../../../scripts/datalists';
-import {CufContentCard} from '../../common/content_card/content_card';
-import {CufElement} from '../../cuf_element';
+import { panelsToIncludeFrom } from '../../../scripts/datalists';
+import { CufContentCard } from '../../common/content_card/content_card';
+import { CufElement } from '../../cuf_element';
 
 import html from './sidebar.html';
 
@@ -44,7 +44,7 @@ export class CufSidebar extends CufElement {
   /** Returns whether panel was removed */
   removePanel(panel: string): boolean {
     const card = this.panels.get(panel);
-    if (!!card) {
+    if (card) {
       card.remove();
       this.panels.delete(panel);
     }

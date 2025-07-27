@@ -1,9 +1,11 @@
-import {ContactFormData} from "./contact_form/contact_form";
+import { ContactFormData } from './contact_form/contact_form';
 
 /** Creates HTML email from contact data */
 export function createContactEmail(data: ContactFormData, contact_page = true) {
   const page_name = contact_page ? 'Contact Us' : 'Donate';
-  const donate_message = contact_page ? '' : '<div><em>This email is not receipt of an actual donation. This email is sent when the user submits the donate form on CUF.org/donate. They will be redirected to authorize.net to complete their payment; authorize.net will send a receipt email if they complete the actual donation.</em></div>';
+  const donate_message = contact_page
+    ? ''
+    : '<div><em>This email is not receipt of an actual donation. This email is sent when the user submits the donate form on CUF.org/donate. They will be redirected to authorize.net to complete their payment; authorize.net will send a receipt email if they complete the actual donation.</em></div>';
 
   let membership_html = '';
   if (data.membership) {
@@ -89,4 +91,4 @@ export function createContactEmail(data: ContactFormData, contact_page = true) {
         </td></tr></table>
       </body>
     </html>`;
-  }
+}

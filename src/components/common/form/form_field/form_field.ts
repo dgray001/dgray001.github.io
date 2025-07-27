@@ -1,6 +1,6 @@
-import {Validator, ValidatorConfig} from '../../../../scripts/validation';
-import {CufElement} from '../../../cuf_element';
-import {CufForm} from '../form';
+import { Validator, ValidatorConfig } from '../../../../scripts/validation';
+import { CufElement } from '../../../cuf_element';
+import { CufForm } from '../form';
 
 import html from './form_field.html';
 
@@ -31,11 +31,13 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     this.default_helper_text = this.attributes.getNamedItem('helper-text')?.value ?? '';
     this.label_el.innerText = this.attributes.getNamedItem('label')?.value ?? '';
     const flex_option = parseInt(this.attributes.getNamedItem('flex-option')?.value);
-    if (!!flex_option) {
+    if (flex_option) {
       const flex_basis = flex_option * 60;
       this.style.setProperty('--flex', `${flex_option} 0 ${flex_basis}px`);
     }
-    const validator_data = JSON.parse(this.attributes.getNamedItem('validators')?.value ?? '[]') as string[];
+    const validator_data = JSON.parse(
+      this.attributes.getNamedItem('validators')?.value ?? '[]'
+    ) as string[];
     this.addValidators(...validator_data);
     this.label_el.id += `-${this.id}`;
     this.label_el.setAttribute('for', `form-field-${this.id}`);
@@ -47,7 +49,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     this.form_field.id = `form-field-${this.id}`;
     this.form_field.setAttribute('name', `form-field-${this.id}`);
     const autocomplete = this.attributes.getNamedItem('autocomplete')?.value;
-    if (!!autocomplete) {
+    if (autocomplete) {
       this.form_field.setAttribute('autocomplete', autocomplete);
     }
     this.form_field.addEventListener('focus', () => {
@@ -87,7 +89,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
         this.label_el.innerHTML += '<span class="required-asterisk">*</span>';
       }
       const validator_split = validator.split('=');
-      const config: ValidatorConfig = {type: validator_split[0].trim()};
+      const config: ValidatorConfig = { type: validator_split[0].trim() };
       if (validator_split.length > 1) {
         config.data = validator_split[1].trim();
       }
@@ -102,7 +104,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
     this.valid = true;
     for (const validator of this.validators) {
       this.validation_error = validator.validate(this.getStringData(), this, this.form);
-      if (!!this.validation_error) {
+      if (this.validation_error) {
         this.valid = false;
         break;
       }
@@ -114,7 +116,7 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   }
 
   getValidators(): string[] {
-    return this.validators.map(v => v.type);
+    return this.validators.map((v) => v.type);
   }
 
   get isValid(): boolean {
@@ -127,15 +129,13 @@ export abstract class CufFormField<T extends HTMLElement, R> extends CufElement 
   }
 
   private updateHelperText() {
-    if (!!this.validation_error) {
+    if (this.validation_error) {
       this.helper_text.classList.remove('hide');
       this.helper_text.innerHTML = this.validation_error;
-    }
-    else if (!!this.default_helper_text) {
+    } else if (this.default_helper_text) {
       this.helper_text.classList.remove('hide');
       this.helper_text.innerHTML = this.default_helper_text;
-    }
-    else {
+    } else {
       this.helper_text.classList.add('hide');
       this.helper_text.innerHTML = '';
     }

@@ -1,6 +1,6 @@
-import {CufForm} from '../../../common/form/form';
-import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
-import {CufCheckbox} from '../../../common/form/form_field/checkbox/checkbox';
+import { CufForm } from '../../../common/form/form';
+import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
+import { CufCheckbox } from '../../../common/form/form_field/checkbox/checkbox';
 
 import html from './lay_witness_form.html';
 

@@ -1,12 +1,14 @@
 /** Returns mapping of client-side cookies */
 export function clientCookies(): Map<string, string> {
-  return !document.cookie ? new Map() : document.cookie
-    .split(';')
-    .map(cookie => cookie.split('='))
-    .reduce((acc, v) => {
-      acc.set(decodeURIComponent(v[0].trim()), decodeURIComponent(v[1].trim()));
-      return acc;
-    }, new Map<string, string>());
+  return !document.cookie
+    ? new Map()
+    : document.cookie
+        .split(';')
+        .map((cookie) => cookie.split('='))
+        .reduce((acc, v) => {
+          acc.set(decodeURIComponent(v[0].trim()), decodeURIComponent(v[1].trim()));
+          return acc;
+        }, new Map<string, string>());
 }
 
 /** Returns specified cookie, or an empty string if it doesn't exist */

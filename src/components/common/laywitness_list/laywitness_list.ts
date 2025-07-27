@@ -1,5 +1,5 @@
-import {fetchJson} from '../../../data/data_control';
-import {CufElement} from '../../cuf_element';
+import { fetchJson } from '../../../data/data_control';
+import { CufElement } from '../../cuf_element';
 
 import html from './laywitness_list.html';
 
@@ -52,14 +52,13 @@ export class CufLaywitnessList extends CufElement {
         const issue_link = document.createElement('a');
         issue_link.innerHTML = `Issue ${issue.number} — ${issue.title}`;
         issue_link.target = '_blank';
-        issue_link.href = `/data/lay_witness/${v.number}/` +
-          `${v.number}.${issue.number}-Lay-Witness`;
-        if (!!issue.addendum) {
+        issue_link.href =
+          `/data/lay_witness/${v.number}/` + `${v.number}.${issue.number}-Lay-Witness`;
+        if (issue.addendum) {
           issue_link.href += `-Addendum${issue.addendum}`;
           issue_link.innerHTML = `Addendum: ${issue.title}`;
           issue_link.classList.add('addendum');
-        }
-        else if (!!issue.insert) {
+        } else if (issue.insert) {
           issue_link.href += `-Insert${issue.insert}`;
           issue_link.innerHTML = `Insert: ${issue.title}`;
           issue_link.classList.add('insert');

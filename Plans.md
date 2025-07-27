@@ -1,4 +1,4 @@
-v0.9v: Fix small login issues
+v0.9w: Initial eslint and prettier
  - Profile login ensure logic is working and can login from any page
  - Migrate member user data
  - Faith facts in admin dashboard

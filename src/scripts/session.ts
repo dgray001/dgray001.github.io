@@ -1,5 +1,5 @@
-import {clientCookies, eraseAllCookies} from './cookies';
-import {apiGet, apiPost} from './api';
+import { clientCookies, eraseAllCookies } from './cookies';
+import { apiGet, apiPost } from './api';
 
 /** Whether current user is logged in */
 export async function loggedIn(check_backend = false): Promise<boolean> {
@@ -35,7 +35,7 @@ export function hasPermission(role: string, permission: string): boolean {
   if (role === 'admin') {
     return true;
   }
-  switch(permission) {
+  switch (permission) {
     case 'viewAdminDashboard':
     case 'layWitness':
       return role === 'employee';

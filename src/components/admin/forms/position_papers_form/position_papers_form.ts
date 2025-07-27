@@ -1,6 +1,6 @@
-import {CufForm} from '../../../common/form/form';
-import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
-import {CufTextArea} from '../../../common/form/form_field/text_area/text_area';
+import { CufForm } from '../../../common/form/form';
+import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
+import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
 
 import html from './position_papers_form.html';
 
@@ -26,10 +26,7 @@ export class CufPositionPapersForm extends CufForm<PositionPapersFormData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'paper_title',
-      'paper_description',
-    ]);
+    this.configureForm(['paper_title', 'paper_description']);
     this.configureElement('submit_button');
   }
 

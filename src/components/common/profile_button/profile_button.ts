@@ -1,7 +1,7 @@
-import {clientCookies} from '../../../scripts/cookies';
-import {hasPermission, loggedIn} from '../../../scripts/session';
-import {DEV} from '../../../scripts/util';
-import {CufElement} from '../../cuf_element';
+import { clientCookies } from '../../../scripts/cookies';
+import { hasPermission, loggedIn } from '../../../scripts/session';
+import { DEV } from '../../../scripts/util';
+import { CufElement } from '../../cuf_element';
 
 import html from './profile_button.html';
 
@@ -38,7 +38,11 @@ export class CufProfileButton extends CufElement {
         this.addLinkRow('admin-dashboard', 'admin_dashboard', 'Admin');
       }
       this.addLinkRow('profile', 'profile', 'Profile');
-      this.addLinkRow('logout', `server/logout.php?hard_redirect=${window.location.href}`, 'Logout');
+      this.addLinkRow(
+        'logout',
+        `server/logout.php?hard_redirect=${window.location.href}`,
+        'Logout'
+      );
     } else {
       this.addLinkRow('login', 'login', 'Member Login');
     }

@@ -1,6 +1,6 @@
-import {CufForm} from '../../../common/form/form';
-import {CufInputText} from '../../../common/form/form_field/input_text/input_text';
-import {CufTextArea} from '../../../common/form/form_field/text_area/text_area';
+import { CufForm } from '../../../common/form/form';
+import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
+import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
 
 import html from './faith_facts_form.html';
 
@@ -28,11 +28,7 @@ export class CufFaithFactsForm extends CufForm<FaithFactsFormData> {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureForm([
-      'ff_title',
-      'ff_question',
-      'ff_summary',
-    ]);
+    this.configureForm(['ff_title', 'ff_question', 'ff_summary']);
     this.configureElement('submit_button');
   }
 

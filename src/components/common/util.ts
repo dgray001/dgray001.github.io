@@ -1,8 +1,8 @@
-import {DEV, STAGING} from '../../scripts/util';
+import { DEV, STAGING } from '../../scripts/util';
 
 /** Converts page url to readable title */
 export function pageToName(page: string): string {
-  switch(page) {
+  switch (page) {
     case 'about':
       return 'About CUF';
     case 'apostolic_activities':
@@ -32,6 +32,8 @@ export function pageToName(page: string): string {
       return 'Links';
     case 'login':
       return 'Login';
+    case 'logout':
+      return 'Logout';
     case 'login/activate':
       return 'Activate Account';
     case 'login/reset_password':

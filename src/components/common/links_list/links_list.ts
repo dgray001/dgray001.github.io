@@ -1,5 +1,5 @@
-import {JsonDataContent, fetchJson} from '../../../data/data_control';
-import {CufElement} from '../../cuf_element';
+import { JsonDataContent, fetchJson } from '../../../data/data_control';
+import { CufElement } from '../../cuf_element';
 
 import html from './links_list.html';
 
