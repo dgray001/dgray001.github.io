@@ -31,7 +31,7 @@ export class CufHeaderHome extends CufElement {
     until(() => !!this.navigation_pane).then(() => {
       const links = ['about', 'news', 'contact', 'donate'];
       if (document.body.classList.contains('mobile')) {
-        if (loggedInSync) {
+        if (loggedInSync()) {
           links.push('profile');
           links.push('logout');
         } else {

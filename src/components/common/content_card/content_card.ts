@@ -1,5 +1,5 @@
 import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
-import { until, untilTimer } from '../../../scripts/util';
+import { until } from '../../../scripts/util';
 import { CufElement } from '../../cuf_element';
 
 import html from './content_card.html';
@@ -103,7 +103,9 @@ export class CufContentCard extends CufElement {
     if (this.json_data.subheader) {
       contents.push(this.json_data.subheader);
     }
-    contents.push(...this.json_data.content);
+    if (this.content_key !== 'chapters') {
+      contents.push(...this.json_data.content);
+    }
     if (contents.length === 0) {
       this.remove();
       return;

@@ -1,6 +1,4 @@
-v0.9w: Initial eslint and prettier
- - Profile login ensure logic is working and can login from any page
- - Migrate member user data
+v1.0a: Staging build
  - Faith facts in admin dashboard
 
 Questions:
