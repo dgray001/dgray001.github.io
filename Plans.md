@@ -1,4 +1,4 @@
-v1.1: Prod build
+v1.1.1: Add mass send email api
  - Faith facts in admin dashboard
 
 Questions:

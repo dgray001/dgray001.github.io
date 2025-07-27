@@ -1,5 +1,5 @@
 import { CufElement } from '../../cuf_element';
-import { CufFormField } from './form_field/form_field';
+import { CufFormField, FormFieldChangeEventData } from './form_field/form_field';
 import { CufFormSection } from './form_section/form_section';
 import { until } from '../../../scripts/util';
 
@@ -37,10 +37,16 @@ export abstract class CufForm<T> extends CufElement {
     }
     this.setStyle('style1');
     await this._parsedCallback();
+    this.addEventListener('form-field-changed', (e: CustomEvent) => {
+      this.formFieldChangedEvent(e.detail)
+      e.stopPropagation();
+    });
     this.ran_parsed_callback = true;
   }
 
   protected async _parsedCallback(): Promise<void> {}
+
+  protected formFieldChangedEvent(data: FormFieldChangeEventData) {}
 
   protected override fullyParsedCallback(): void {
     if (this.ran_parsed_callback) {

@@ -1,6 +1,5 @@
 import { clientCookies } from '../../../scripts/cookies';
 import { hasPermission, loggedIn } from '../../../scripts/session';
-import { DEV } from '../../../scripts/util';
 import { CufElement } from '../../cuf_element';
 
 import html from './profile_button.html';
@@ -24,10 +23,6 @@ export class CufProfileButton extends CufElement {
 
   protected override async parsedCallback(): Promise<void> {
     const logged_in = await loggedIn();
-    if (!DEV && !logged_in) {
-      this.remove();
-      return;
-    }
     this.classList.toggle('logged-in', logged_in);
     if (logged_in) {
       const cookies = clientCookies();

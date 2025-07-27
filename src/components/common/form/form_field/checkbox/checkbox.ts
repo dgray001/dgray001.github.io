@@ -1,4 +1,4 @@
-import { CufFormField } from '../form_field';
+import { CufFormField, formFieldChangeEvent } from '../form_field';
 
 import html from './checkbox.html';
 
@@ -16,6 +16,8 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
       this.form_field.checked = !this.form_field.checked;
       e.preventDefault();
       e.stopPropagation();
+      const customEvent = formFieldChangeEvent<boolean>(this.tagName, this.id.replaceAll('-', '_'), this.form_field.checked);
+      this.dispatchEvent(customEvent);
     });
     this.addEventListener('keyup', (e: KeyboardEvent) => {
       e.preventDefault();

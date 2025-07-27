@@ -311,3 +311,62 @@ function changePassword($conn, $email, $old_password, $new_password): string {
   }
   return '';
 }
+
+/**
+ * Returns all users
+ *
+ * @param mysqli $conn The MySQLi database connection object
+ */
+function getAllUsers($conn): array | string {
+  $cmd = 'SELECT email, role, activated, last_activated, last_logged_in FROM cuf_users';
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $cmd)) {
+    return 'Server can\'t activate account at this time';
+  }
+  if (!mysqli_stmt_execute($stmt)) {
+    return 'Command execution failed';
+  }
+  $result = mysqli_stmt_get_result($stmt);
+  if ($result === false) {
+    return 'Failed to get result set';
+  }
+  $results = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $results[] = $row;
+  }
+  mysqli_free_result($result);
+  mysqli_stmt_close($stmt);
+  return $results;
+}
+
+/**
+ * Returns all users based on whether they are activated
+ *
+ * @param mysqli $conn The MySQLi database connection object
+ * @param bool $active Whether to search for active or inactive users
+ */
+function getAllUsersActivated($conn, $active): array | string {
+  $cmd = 'SELECT email, role, activated, last_activated, last_logged_in FROM cuf_users WHERE activated = ?';
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $cmd)) {
+    return 'Server can\'t activate account at this time';
+  }
+  $activated = $active ? 1 : 0;
+  if (!mysqli_stmt_bind_param($stmt, "d", $activated)) {
+    return 'Parameter binding failed';
+  }
+  if (!mysqli_stmt_execute($stmt)) {
+    return 'Command execution failed';
+  }
+  $result = mysqli_stmt_get_result($stmt);
+  if ($result === false) {
+    return 'Failed to get result set';
+  }
+  $results = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+    $results[] = $row;
+  }
+  mysqli_free_result($result);
+  mysqli_stmt_close($stmt);
+  return $results;
+}

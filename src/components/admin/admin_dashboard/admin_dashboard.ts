@@ -22,6 +22,7 @@ export class CufAdminDashboard extends CufElement {
   protected override async parsedCallback(): Promise<void> {
     const role = getCookie('role');
     const possible_sections = [
+      'userManagement',
       'layWitness',
       'positionPapers',
       'news',

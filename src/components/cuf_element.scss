@@ -1,10 +1,10 @@
 .cuf-element {
   &:not(.parsed),
   &.hide {
-    display: none;
+    display: none !important;
   }
 
   &.hidden {
-    visibility: hidden;
+    visibility: hidden !important;
   }
 }

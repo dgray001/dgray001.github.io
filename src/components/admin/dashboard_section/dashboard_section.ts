@@ -40,6 +40,7 @@ import { CufFaithFactsForm } from '../forms/faith_facts_form/faith_facts_form';
 import html from './dashboard_section.html';
 
 import './dashboard_section.scss';
+import '../user_management/user_management';
 import '../forms/jobs_available_form/jobs_available_form';
 import '../forms/lay_witness_form/lay_witness_form';
 import '../forms/news_form/news_form';
@@ -92,6 +93,7 @@ export class CufDashboardSection extends CufElement {
   private body_open = false;
   private edit_body_open = false;
   private new_form_open = false;
+  private custom_section = false;
   private new_form_button: HTMLButtonElement;
   private new_form_el: AdminFormType;
   private current_data: DashboardSectionData;
@@ -135,13 +137,22 @@ export class CufDashboardSection extends CufElement {
     this.tag_key = this.section_key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
     this.json_key = this.section_key.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
     this.section_title.innerText = this.sectionTitle();
-    this.edit_button.innerText = `Edit ${this.sectionTitle()}`;
-    this.current_data = await fetchJson<DashboardSectionData>(
-      `${this.json_key}/${this.json_key}.json`
-    );
-    this.setNewForm();
-    this.setNewButton();
-    await this.setCurrentList();
+    if (['userManagement'].includes(this.section_key)) {
+      this.custom_section = true;
+      const customSection = document.createElement(`cuf-${this.tag_key}`);
+      this.section_body.replaceChildren(customSection);
+    } else {
+      this.edit_button.innerText = `Edit ${this.sectionTitle()}`;
+      this.current_data = await fetchJson<DashboardSectionData>(
+        `${this.json_key}/${this.json_key}.json`
+      );
+      this.setNewForm();
+      this.setNewButton();
+      await this.setCurrentList();
+      this.edit_button.addEventListener('click', () => {
+        this.currentListOpen(!this.edit_body_open);
+      });
+    }
     if (['faithFacts'].includes(this.section_key)) {
       this.section_title.disabled = true;
     } else {
@@ -149,13 +160,12 @@ export class CufDashboardSection extends CufElement {
         this.setBodyOpen(!this.body_open);
       });
     }
-    this.edit_button.addEventListener('click', () => {
-      this.currentListOpen(!this.edit_body_open);
-    });
   }
 
   private sectionTitle() {
     switch (this.section_key) {
+      case 'userManagement':
+        return 'User Management';
       case 'layWitness':
         return 'Lay Witness';
       case 'positionPapers':
@@ -237,7 +247,7 @@ export class CufDashboardSection extends CufElement {
       this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
     }
     if (['links'].includes(this.json_key)) {
-      // @ts-ignore
+      // @ts-expect-error
       this.new_form_el.setJsonData(this.current_data);
     }
     this.new_form_el.setSubmitCallback(async () => {
@@ -395,7 +405,7 @@ export class CufDashboardSection extends CufElement {
     } else if (this.json_key === 'links') {
       this.current_list.replaceChildren(...getListLinksData(this, this.current_data as LinksData));
     } else if (this.json_key === 'faith_facts') {
-      console.error('faith factsnot implemented');
+      console.error('faith facts not implemented');
     } else {
       console.error('not implemented');
     }
@@ -405,7 +415,7 @@ export class CufDashboardSection extends CufElement {
     this.body_open = body_open;
     this.section_body.classList.toggle('show', body_open);
     this.section_title.classList.toggle('open', body_open);
-    if (!this.body_open) {
+    if (!this.body_open && !this.custom_section) {
       this.currentListOpen(false);
       this.toggleNewForm(false);
     }

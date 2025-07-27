@@ -6,6 +6,23 @@ import html from './form_field.html';
 
 import './form_field.scss';
 
+/** Data in a form field change event */
+export declare interface FormFieldChangeEventData<T = any> {
+  form_field_key: string;
+  new_data: T;
+}
+
+/** Creates custom event for when a form field changes */
+export function formFieldChangeEvent<T>(formFieldType: string, key: string, data: T): CustomEvent<FormFieldChangeEventData<T>> {
+  return new CustomEvent('form-field-changed', {
+    detail: {
+      form_field_key: key,
+      new_data: data,
+    },
+    bubbles: true,
+  });
+}
+
 export abstract class CufFormField<T extends HTMLElement, R> extends CufElement {
   private label_el: HTMLLabelElement;
   protected form_field: T;

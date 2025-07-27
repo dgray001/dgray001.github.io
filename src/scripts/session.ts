@@ -39,16 +39,10 @@ export function hasPermission(role: string, permission: string): boolean {
     case 'viewAdminDashboard':
     case 'layWitness':
       return role === 'employee';
+
     case 'downloadFaithFacts':
       return ['employee', 'member'].includes(role);
-    case 'positionPapers':
-    case 'news':
-    case 'chapters':
-    case 'prayer':
-    case 'involvement':
-    case 'faithFacts':
-    case 'links':
-    case 'jobsAvailable':
+
     default:
       return false;
   }
