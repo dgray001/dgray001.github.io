@@ -3,11 +3,20 @@
 
 <cuf-checkbox id="checkbox-activated-users" label="Send only to activated users" class="hide"></cuf-checkbox>
 
+<cuf-input-text
+  id="email-subject"
+  flex-option="3"
+  label="Email Subject"
+  validators='["required"]'
+></cuf-input-text>
+
 <cuf-text-area
   id="email-body"
   flex-option="3"
   min-rows="3"
   label="Email Body"
+  validators='["required"]'
 ></cuf-text-area>
 
 <button id="send-emails-button" type="button" tabindex="1" class="form-submit-button">Send Emails</button>
+<div id="status-message-send" class="form-status-message"></div>

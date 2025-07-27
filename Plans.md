@@ -1,4 +1,4 @@
-v1.1.1: Add mass send email api
+v1.1.2: Mass email frontend finished
  - Faith facts in admin dashboard
 
 Questions:
