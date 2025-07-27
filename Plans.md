@@ -1,4 +1,4 @@
-v1.0a: Staging build
+v1.1: Prod build
  - Faith facts in admin dashboard
 
 Questions:
