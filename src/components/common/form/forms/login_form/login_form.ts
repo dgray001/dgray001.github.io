@@ -41,7 +41,8 @@ export class CufLoginForm extends CufForm<LoginFormData> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
-    if (await loggedIn()) {
+    const isLoggedIn = await loggedIn();
+    if (isLoggedIn) {
       this.form_wrapper.remove();
       this.activate_account.remove();
       this.messageStatus(
@@ -124,7 +125,8 @@ export class CufLoginForm extends CufForm<LoginFormData> {
   }
 
   protected override _setData(data: LoginFormData): void {
-    console.error('Not implemented');
+    this.username_field.setData(data.username ?? '');
+    this.password_field.setData(data.password ?? '');
   }
 }
 

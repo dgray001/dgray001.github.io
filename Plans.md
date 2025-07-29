@@ -1,4 +1,4 @@
-v1.1.2: Mass email frontend finished
+v1.1.3: Fix php bug
  - Faith facts in admin dashboard
 
 Questions:

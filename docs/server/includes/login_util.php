@@ -130,10 +130,11 @@ function loginUser($conn, $email, $password): string {
   mysqli_stmt_execute($stmt);
   $result = mysqli_stmt_affected_rows($stmt);
   if ($result != 1) {
-    return false;
+    return "Didn't affect exactly one row";
   }
   return '';
 }
+
 
 /** Returns error message */
 function sendVerificationCode($conn, $email, $expect_activated, $expect_logged_in): string {
@@ -196,6 +197,7 @@ function sendVerificationCode($conn, $email, $expect_activated, $expect_logged_i
   return '';
 }
 
+
 /** Returns error message */
 function verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in): string {
   $logged_in = loggedIn();
@@ -224,6 +226,7 @@ function verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in)
   return '';
 }
 
+
 /** Returns error message */
 function activateAccount($conn, $email, $code, $password, $expect_activated, $expect_logged_in): string {
   $error = verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in);
@@ -251,6 +254,7 @@ function activateAccount($conn, $email, $code, $password, $expect_activated, $ex
   return '';
 }
 
+
 /** Returns error message */
 function resetPassword($conn, $email, $code, $password, $expect_activated, $expect_logged_in): string {
   $error = verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in);
@@ -276,6 +280,7 @@ function resetPassword($conn, $email, $code, $password, $expect_activated, $expe
   }
   return '';
 }
+
 
 /** Returns error message */
 function changePassword($conn, $email, $old_password, $new_password): string {
@@ -312,12 +317,13 @@ function changePassword($conn, $email, $old_password, $new_password): string {
   return '';
 }
 
+
 /**
  * Returns all users
  *
  * @param mysqli $conn The MySQLi database connection object
  */
-function getAllUsers($conn): array | string {
+function getAllUsers($conn) {
   $cmd = 'SELECT email, role, activated, last_activated, last_logged_in FROM cuf_users';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $cmd)) {
@@ -339,13 +345,14 @@ function getAllUsers($conn): array | string {
   return $results;
 }
 
+
 /**
  * Returns all users based on whether they are activated
  *
  * @param mysqli $conn The MySQLi database connection object
  * @param bool $active Whether to search for active or inactive users
  */
-function getAllUsersActivated($conn, $active): array | string {
+function getAllUsersActivated($conn, $active) {
   $cmd = 'SELECT email, role, activated, last_activated, last_logged_in FROM cuf_users WHERE activated = ?';
   $stmt = mysqli_stmt_init($conn);
   if (!mysqli_stmt_prepare($stmt, $cmd)) {

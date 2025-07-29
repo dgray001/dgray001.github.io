@@ -32,7 +32,7 @@ foreach ($users as $user) {
   if (sendEmail($user["email"], $received_data["subject"], $received_data["body"])) {
     $sent_count++;
   } else {
-    $errors = 'Email failed to send to ' . $user["email"];
+    $errors[] = 'Email failed to send to ' . $user["email"];
   }
 }
 
