@@ -13,19 +13,35 @@ export class CufCheckbox extends CufFormField<HTMLInputElement, boolean> {
 
   protected override async _parsedCallback(): Promise<void> {
     this.addEventListener('click', (e: MouseEvent) => {
+      if (this.form_field.disabled) {
+        return;
+      }
       this.form_field.checked = !this.form_field.checked;
       e.preventDefault();
       e.stopPropagation();
-      const customEvent = formFieldChangeEvent<boolean>(this.tagName, this.id.replaceAll('-', '_'), this.form_field.checked);
+      const customEvent = formFieldChangeEvent<boolean>(
+        this.tagName,
+        this.id.replaceAll('-', '_'),
+        this.form_field.checked
+      );
       this.dispatchEvent(customEvent);
     });
     this.addEventListener('keyup', (e: KeyboardEvent) => {
+      if (this.form_field.disabled) {
+        return;
+      }
       e.preventDefault();
       e.stopPropagation();
       if (e.key !== ' ' && e.key !== 'Enter') {
         return;
       }
       this.form_field.checked = !this.form_field.checked;
+      const customEvent = formFieldChangeEvent<boolean>(
+        this.tagName,
+        this.id.replaceAll('-', '_'),
+        this.form_field.checked
+      );
+      this.dispatchEvent(customEvent);
     });
   }
 

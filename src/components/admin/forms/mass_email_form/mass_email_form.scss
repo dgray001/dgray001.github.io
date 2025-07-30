@@ -2,4 +2,16 @@ cuf-mass-email-form {
   > #email-subject {
     margin-top: 1.5em;
   }
+
+  > #checkbox-confirm-email:not(.show) {
+    display: none;
+  }
+
+  > #checkbox-cancel-email:not(.show) {
+    display: none;
+  }
+
+  > #send-emails-button:not(.show) {
+    display: none;
+  }
 }

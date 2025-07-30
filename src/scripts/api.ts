@@ -6,9 +6,10 @@ export interface GetResponse<T> {
 }
 
 /** Data structure for all returns to post requests */
-export interface PostResponse {
+export interface PostResponse<T = any> {
   success: boolean;
   error_message?: string;
+  data?: T;
 }
 
 /** Converts string api to actual api url */

@@ -13,7 +13,11 @@ export declare interface FormFieldChangeEventData<T = any> {
 }
 
 /** Creates custom event for when a form field changes */
-export function formFieldChangeEvent<T>(formFieldType: string, key: string, data: T): CustomEvent<FormFieldChangeEventData<T>> {
+export function formFieldChangeEvent<T>(
+  formFieldType: string,
+  key: string,
+  data: T
+): CustomEvent<FormFieldChangeEventData<T>> {
   return new CustomEvent('form-field-changed', {
     detail: {
       form_field_key: key,

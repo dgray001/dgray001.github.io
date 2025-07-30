@@ -1,7 +1,10 @@
-
 <cuf-checkbox id="checkbox-all-users" label="Send to all users"></cuf-checkbox>
 
-<cuf-checkbox id="checkbox-activated-users" label="Send only to activated users" class="hide"></cuf-checkbox>
+<cuf-checkbox
+  id="checkbox-activated-users"
+  label="Send only to activated users"
+  class="hide"
+></cuf-checkbox>
 
 <cuf-input-text
   id="email-subject"
@@ -18,5 +21,14 @@
   validators='["required"]'
 ></cuf-text-area>
 
-<button id="send-emails-button" type="button" tabindex="1" class="form-submit-button">Send Emails</button>
+<button id="send-email-button" type="button" tabindex="1" class="form-submit-button">
+  Send Test Email
+</button>
+
+<cuf-checkbox id="checkbox-confirm-email" label="Verified test email looks correct"></cuf-checkbox>
+<cuf-checkbox id="checkbox-cancel-email" label="Cancel this email"></cuf-checkbox>
+<button id="send-emails-button" type="button" tabindex="1" class="form-submit-button">
+  Send Emails
+</button>
+
 <div id="status-message-send" class="form-status-message"></div>

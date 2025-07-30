@@ -38,7 +38,7 @@ export abstract class CufForm<T> extends CufElement {
     this.setStyle('style1');
     await this._parsedCallback();
     this.addEventListener('form-field-changed', (e: CustomEvent) => {
-      this.formFieldChangedEvent(e.detail)
+      this.formFieldChangedEvent(e.detail);
       e.stopPropagation();
     });
     this.ran_parsed_callback = true;

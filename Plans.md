@@ -1,4 +1,4 @@
-v1.1.3: Fix php bug
+v1.1.4: Release
  - Faith facts in admin dashboard
 
 Questions:
