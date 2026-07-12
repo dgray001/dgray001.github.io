@@ -1,27 +1,25 @@
-Dev server:
- - run PHP dev server (php -S localhost:3000 or via vscode PHP server extension) in the docs folder
- - run ngrok via: ngrok http http://localhost:5432
-     => EDIT: Need to have an https url for authorize.net to work but need http when actually going to localhost
- - modify scripts/util.js::base_url to accomodate forwarding url given by ngrok
- - ensure config files (outside doc root) are in dev mode
- - can still use site in localhost => ngrok only for receipt page after donating
- - run WAMP server to simulate db
- - on linux I use mailhog to catch mail and mariadb for db
+# Nonprofit sites monorepo
 
-Testing:
- - run dev server and navigate to ./tests
- - event listeners can become corrupt; so may need to refresh page
+Two static-frontend + PHP-backend sites for affiliated nonprofits, sharing most logic.
 
-Staging:
- - Bluehost (and hostgator) have a bug where if you can't have a php file (or folder?) name 'contact'
-    => So when deploying to staging, rename contact.php to con_tac.php
- - Also need to make sure DEV = false and STAGING = true in /scripts/util.js
- - Also need to update /server/includes/config_path.php
+- **CUF** (`sites/cuf/`) — Catholics United for the Faith. In production on InMotion.
+- **SJF** (`sites/sjf/`) — The St. Joseph Foundation. Not yet scaffolded.
+- **`core/`** — shared library (frontend components/scripts + PHP), populated incrementally.
 
-Deploy Instructions:
- - Update /scripts/util.js::DEV and /scripts/util.js::STAGING flags
- - npm run build to update bundles
- - Copy contents of the ./docs folder into the releases/new_release folder
- - Delete the ./data folder, the .nojekyll file, and the config_path file
- - Zip contents of releases/new_release, move to releases folder, then delete contents of releases/new_release
- - Upload to inmotion
+Each site is self-contained today; shared code is extracted into `core/` module by module
+so CUF never breaks. See `Issues.md` for the CUF code-review findings. The architecture and
+migration plan live in the planning docs kept outside this repo.
+
+## Build / run a site
+
+Currently only CUF exists. From its directory:
+
+```
+cd sites/cuf
+npm run build      # prod bundles -> docs/dist
+npm run dev        # webpack dev server on :8080, proxies /server to PHP on :3000
+```
+
+Local dev also needs the PHP server (`php -S localhost:3000` in `sites/cuf/docs`) and the
+gitignored `sites/cuf/config/` secrets. Deploy is `npm run build:deploy` (zips `docs/` for
+upload to InMotion).
