@@ -1,0 +1,17 @@
+{
+  "name": "nonprofit-sites",
+  "version": "1.0.0",
+  "description": "CUF + SJF monorepo (shared library + independent apps)",
+  "private": true,
+  "workspaces": [
+    "sites/*"
+  ],
+  "scripts": {
+    "build:cuf": "npm run build -w sites/cuf",
+    "dev:cuf": "npm run dev -w sites/cuf",
+    "build:sjf": "npm run build -w sites/sjf",
+    "dev:sjf": "npm run dev -w sites/sjf"
+  },
+  "author": "Daniel Gray",
+  "license": "ISC"
+}

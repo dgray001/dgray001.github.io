@@ -1,0 +1,12 @@
+{
+  "name": "sjf",
+  "version": "0.1.0",
+  "description": "The St. Joseph Foundation website",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.prod.js",
+    "dev": "webpack serve --config webpack.dev.js"
+  },
+  "author": "Daniel Gray",
+  "license": "ISC"
+}

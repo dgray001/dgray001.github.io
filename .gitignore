@@ -1,0 +1,7 @@
+# Dependencies (hoisted to root by npm workspaces, plus any per-workspace .bin)
+node_modules/
+
+# Editor / OS
+.vscode/*
+.DS_Store
+*.log
