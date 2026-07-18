@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=document.createElement("h1");e.textContent="SJF dev",document.body.appendChild(e)})();

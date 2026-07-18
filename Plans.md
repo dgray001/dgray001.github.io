@@ -1,6 +1,7 @@
-v1.1.5: CUF builds after rearranging
+v1.1.6: SJF skeleton build
 
 SJF
+
 
 CUF
  - Faith facts in admin dashboard
