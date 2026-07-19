@@ -4,7 +4,7 @@ import { loggedIn } from '../../../../../scripts/session';
 import { recaptchaCallback } from '../../../../../scripts/recaptcha';
 import { apiPost } from '../../../../../scripts/api';
 import { DEV } from '../../../../../scripts/util';
-import { getUrlParam } from '../../../../../scripts/url';
+import { getUrlParam } from '@core/scripts/url';
 
 import html from './reset_password_form.html';
 

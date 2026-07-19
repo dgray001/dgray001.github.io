@@ -1,4 +1,4 @@
-v1.1.6: SJF skeleton build
+v1.1.7: Refactor core
 
 SJF
 

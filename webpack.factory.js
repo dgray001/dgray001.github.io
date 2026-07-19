@@ -18,7 +18,10 @@ function makeConfig({ siteDir, mode }) {
         { test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/ },
       ],
     },
-    resolve: { extensions: ['.tsx', '.ts', '.js'] },
+    resolve: {
+      extensions: ['.tsx', '.ts', '.js'],
+      alias: { '@core': path.resolve(repoRoot, 'core/src') },
+    },
     resolveLoader: { modules: [path.resolve(repoRoot, 'node_modules'), 'node_modules'] },
     output: {
       filename: '[name].bundle.js',

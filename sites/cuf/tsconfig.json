@@ -2,11 +2,8 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "allowJs": true,
-    "declaration": true,
-    "outDir": "./tsout",
     "preserveConstEnums": true,
     "removeComments": true,
-    "rootDir": ".",
     "sourceMap": true,
     "types": ["node", "grecaptcha"],
   },

@@ -13,7 +13,7 @@ initializePage(html);
 
 // permission
 import { loggedInSync } from '../../scripts/session';
-import { getPage, navigate } from '../../scripts/url';
+import { getPage, navigate } from '@core/scripts/url';
 import { trim } from '../../scripts/util';
 
 const page = trim(getPage(), '/');

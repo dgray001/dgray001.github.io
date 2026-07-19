@@ -5,7 +5,7 @@ import { DEV } from '../../../../../scripts/util';
 import { apiPost } from '../../../../../scripts/api';
 import { loggedIn } from '../../../../../scripts/session';
 import { getCookie } from '../../../../../scripts/cookies';
-import { getUrlParam, navigate, removeUrlParam } from '../../../../../scripts/url';
+import { getUrlParam, navigate, removeUrlParam } from '@core/scripts/url';
 
 import html from './login_form.html';
 
