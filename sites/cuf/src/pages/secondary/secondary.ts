@@ -12,9 +12,9 @@ import { initializePage } from '../common';
 initializePage(html);
 
 // permission
-import { loggedInSync } from '../../scripts/session';
+import { loggedInSync } from '@core/scripts/session';
 import { getPage, navigate } from '@core/scripts/url';
-import { trim } from '../../scripts/util';
+import { trim } from '@core/scripts/util';
 
 const page = trim(getPage(), '/');
 if (['profile'].includes(page) && !loggedInSync()) {

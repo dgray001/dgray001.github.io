@@ -1,4 +1,4 @@
-import { until } from '../../../../scripts/util';
+import { until } from '@core/scripts/util';
 import { CufElement } from '../../../cuf_element';
 import { CufForm } from '../form';
 import { CufFormField } from '../form_field/form_field';

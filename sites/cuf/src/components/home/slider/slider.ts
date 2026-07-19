@@ -1,5 +1,5 @@
 import { CufElement } from '../../cuf_element';
-import { until } from '../../../scripts/util';
+import { until } from '@core/scripts/util';
 
 import html from './slider.html';
 

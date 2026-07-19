@@ -1,7 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": []
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["../../core/src/*"],
+      "@site/*": ["src/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "../../core/src/globals.d.ts"]
 }

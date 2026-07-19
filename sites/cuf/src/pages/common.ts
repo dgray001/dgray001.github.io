@@ -6,7 +6,7 @@ import '../styles.scss';
 // dependencies
 import '../components/common/footer/footer';
 
-import { public_recaptcha_site_key } from '../scripts/recaptcha';
+import { public_recaptcha_site_key } from '@site/config/recaptcha';
 
 /** Detects whether the current browser is a mobile browser */
 export function clientOnMobile() {

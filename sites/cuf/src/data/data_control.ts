@@ -1,5 +1,3 @@
-import { DEV } from '../scripts/util';
-
 /** Format all json data should be in */
 export declare interface JsonData<T> {
   header: string;

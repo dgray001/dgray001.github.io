@@ -1,4 +1,4 @@
-import { until } from '../scripts/util';
+import { until } from '@core/scripts/util';
 
 import './cuf_element.scss';
 

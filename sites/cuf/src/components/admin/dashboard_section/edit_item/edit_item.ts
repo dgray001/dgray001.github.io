@@ -1,6 +1,6 @@
 import { JsonData, JsonDataContent } from '../../../../data/data_control';
-import { recaptchaCallback } from '../../../../scripts/recaptcha';
-import { until } from '../../../../scripts/util';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
+import { until } from '@core/scripts/util';
 import {
   LaywitnessData,
   LaywitnessIssueData,

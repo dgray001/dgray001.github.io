@@ -10,10 +10,10 @@ import {
 } from '../../form_section/form_section_contact/form_section_contact';
 import { CufFormSectionMembership } from '../../form_section/form_section_membership/form_section_membership';
 import { CufTextArea } from '../../form_field/text_area/text_area';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
-import { apiPost } from '../../../../../scripts/api';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
+import { apiPost } from '@core/scripts/api';
 import { createContactEmail } from '../util';
-import { DEV, STAGING, scrollToElement } from '../../../../../scripts/util';
+import { scrollToElement } from '@core/scripts/util';
 
 import html from './contact_form.html';
 

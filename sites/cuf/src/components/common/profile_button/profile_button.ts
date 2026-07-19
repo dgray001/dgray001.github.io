@@ -1,5 +1,5 @@
-import { clientCookies } from '../../../scripts/cookies';
-import { hasPermission, loggedIn } from '../../../scripts/session';
+import { clientCookies } from '@core/scripts/cookies';
+import { hasPermission, loggedIn } from '@core/scripts/session';
 import { CufElement } from '../../cuf_element';
 
 import html from './profile_button.html';

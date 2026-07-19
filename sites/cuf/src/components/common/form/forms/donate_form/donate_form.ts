@@ -10,11 +10,10 @@ import {
 } from '../../form_section/form_section_contact/form_section_contact';
 import { CufFormSectionMembership } from '../../form_section/form_section_membership/form_section_membership';
 import { CufTextArea } from '../../form_field/text_area/text_area';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { CufInputText } from '../../form_field/input_text/input_text';
-import { DEV, STAGING } from '../../../../../scripts/util';
 import { createContactEmail } from '../util';
-import { apiGetPost, apiPost } from '../../../../../scripts/api';
+import { apiGetPost, apiPost } from '@core/scripts/api';
 
 import html from './donate_form.html';
 

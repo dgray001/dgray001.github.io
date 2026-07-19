@@ -1,4 +1,4 @@
-v1.1.7: Refactor core
+v1.1.8: Make all scripts logic consistent
 
 SJF
 

@@ -1,4 +1,4 @@
-import { getCookie } from '../../../scripts/cookies';
+import { getCookie } from '@core/scripts/cookies';
 import { CufElement } from '../../cuf_element';
 
 import html from './profile_info.html';

@@ -1,9 +1,8 @@
 import { CufForm } from '../../form';
 import { CufInputText } from '../../form_field/input_text/input_text';
-import { loggedIn } from '../../../../../scripts/session';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
-import { apiPost } from '../../../../../scripts/api';
-import { DEV } from '../../../../../scripts/util';
+import { loggedIn } from '@core/scripts/session';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
+import { apiPost } from '@core/scripts/api';
 import { getUrlParam } from '@core/scripts/url';
 
 import html from './reset_password_form.html';

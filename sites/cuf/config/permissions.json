@@ -1,0 +1,14 @@
+{
+  "links": ["admin_assistant"],
+  "jobsAvailable": ["admin_assistant"],
+  "chapters": ["admin_assistant"],
+  "prayer": ["admin_assistant"],
+  "involvement": ["admin_assistant"],
+  "sendEmail": ["admin_assistant"],
+  "viewAdminDashboard": ["admin_assistant", "employee"],
+  "layWitness": ["admin_assistant", "employee"],
+  "news": ["admin_assistant", "employee"],
+  "faithFacts": ["admin_assistant", "employee"],
+  "positionPapers": ["admin_assistant", "employee"],
+  "downloadFaithFacts": ["employee", "member"]
+}

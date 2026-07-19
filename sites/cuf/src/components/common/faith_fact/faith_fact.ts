@@ -1,7 +1,7 @@
-import { apiGetFile } from '../../../scripts/api';
-import { getCookie } from '../../../scripts/cookies';
-import { hasPermission } from '../../../scripts/session';
-import { downloadBlob } from '../../../scripts/util';
+import { apiGetFile } from '@core/scripts/api';
+import { getCookie } from '@core/scripts/cookies';
+import { hasPermission } from '@core/scripts/session';
+import { downloadBlob } from '@core/scripts/util';
 import { CufElement } from '../../cuf_element';
 import { FaithFactData } from '../faith_fact_category/faith_fact_category';
 

@@ -3,7 +3,7 @@ import { CufHeader } from '../header/header';
 import { CufSidebar } from '../sidebar/sidebar';
 import { CufFooter } from '../../common/footer/footer';
 import { getPage, getUrlParam } from '@core/scripts/url';
-import { scrollToElement, trim, until } from '../../../scripts/util';
+import { scrollToElement, trim, until } from '@core/scripts/util';
 import { pageToName } from '../../common/util';
 import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
 

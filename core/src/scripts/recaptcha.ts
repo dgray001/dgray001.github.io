@@ -1,11 +1,6 @@
-import { apiPost } from './api';
-import { DEV, STAGING, until } from './util';
-
-// reCaptcha public site key
-export const public_recaptcha_site_key =
-  DEV || STAGING
-    ? '6LcRVAwkAAAAABsESBOrqe69rI_U6J5xEhI2ZBI1'
-    : '6LcNpAskAAAAAKc6tm_rQ8FpJo-j6ftEVaWPu8Gk';
+import { apiPost } from '@core/scripts/api';
+import { until } from '@core/scripts/util';
+import { public_recaptcha_site_key } from '@site/config/recaptcha';
 
 /**
  * Frontend recaptcha api

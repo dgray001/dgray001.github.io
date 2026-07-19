@@ -1,5 +1,6 @@
-import { clientCookies, eraseAllCookies } from './cookies';
-import { apiGet, apiPost } from './api';
+import { clientCookies, eraseAllCookies } from '@core/scripts/cookies';
+import { apiGet, apiPost } from '@core/scripts/api';
+import { permissions } from '@site/config/permissions';
 
 /** Whether current user is logged in */
 export async function loggedIn(check_backend = false): Promise<boolean> {
@@ -30,20 +31,10 @@ export function loggedInSync(): boolean {
   return true;
 }
 
-/** Returns whether cookies indicate the role has the input permission */
+/** Returns whether the role has the input permission (see @site/config/permissions) */
 export function hasPermission(role: string, permission: string): boolean {
   if (role === 'admin') {
     return true;
   }
-  switch (permission) {
-    case 'viewAdminDashboard':
-    case 'layWitness':
-      return role === 'employee';
-
-    case 'downloadFaithFacts':
-      return ['employee', 'member'].includes(role);
-
-    default:
-      return false;
-  }
+  return permissions[permission]?.includes(role) ?? false;
 }

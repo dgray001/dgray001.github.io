@@ -1,5 +1,3 @@
-import { DEV, STAGING } from '../../scripts/util';
-
 /** Converts page url to readable title */
 export function pageToName(page: string): string {
   switch (page) {

@@ -1,6 +1,6 @@
 import { CufElement } from '../../cuf_element';
-import { hasPermission } from '../../../scripts/session';
-import { getCookie } from '../../../scripts/cookies';
+import { hasPermission } from '@core/scripts/session';
+import { getCookie } from '@core/scripts/cookies';
 
 import html from './admin_dashboard.html';
 

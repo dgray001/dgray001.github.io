@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const repoRoot = __dirname;
 
@@ -20,9 +21,18 @@ function makeConfig({ siteDir, mode }) {
     },
     resolve: {
       extensions: ['.tsx', '.ts', '.js'],
-      alias: { '@core': path.resolve(repoRoot, 'core/src') },
+      alias: {
+        '@core': path.resolve(repoRoot, 'core/src'),
+        '@site': path.resolve(siteDir, 'src'),
+      },
     },
     resolveLoader: { modules: [path.resolve(repoRoot, 'node_modules'), 'node_modules'] },
+    plugins: [
+      new webpack.DefinePlugin({
+        DEV: JSON.stringify(!isProd),
+        STAGING: JSON.stringify(process.env.STAGING === 'true'),
+      }),
+    ],
     output: {
       filename: '[name].bundle.js',
       path: isProd ? path.resolve(siteDir, 'docs/dist') : path.resolve(siteDir, 'dist'),

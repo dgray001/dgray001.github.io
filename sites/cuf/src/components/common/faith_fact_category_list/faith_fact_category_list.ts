@@ -1,5 +1,5 @@
 import { fetchJson } from '../../../data/data_control';
-import { scrollToElement } from '../../../scripts/util';
+import { scrollToElement } from '@core/scripts/util';
 import { CufElement } from '../../cuf_element';
 import { CufFaithFactCategory } from '../faith_fact_category/faith_fact_category';
 import { CufSpinner } from '../spinner/spinner';

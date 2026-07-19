@@ -1,10 +1,9 @@
 import { CufForm } from '../../form';
 import { CufInputText } from '../../form_field/input_text/input_text';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
-import { DEV } from '../../../../../scripts/util';
-import { apiPost } from '../../../../../scripts/api';
-import { loggedIn } from '../../../../../scripts/session';
-import { getCookie } from '../../../../../scripts/cookies';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
+import { apiPost } from '@core/scripts/api';
+import { loggedIn } from '@core/scripts/session';
+import { getCookie } from '@core/scripts/cookies';
 import { getUrlParam, navigate, removeUrlParam } from '@core/scripts/url';
 
 import html from './login_form.html';

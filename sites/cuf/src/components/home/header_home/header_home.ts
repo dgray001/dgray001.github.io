@@ -1,8 +1,8 @@
 import { CufElement } from '../../cuf_element';
-import { until } from '../../../scripts/util';
+import { until } from '@core/scripts/util';
 import { CufNavigationPane } from '../../common/navigation_pane/navigation_pane';
 import { titleText } from '../../common/util';
-import { loggedInSync } from '../../../scripts/session';
+import { loggedInSync } from '@core/scripts/session';
 
 import html from './header_home.html';
 

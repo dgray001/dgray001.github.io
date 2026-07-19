@@ -3,15 +3,15 @@ import { CufCheckbox } from '../../../common/form/form_field/checkbox/checkbox';
 import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
 import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
 import { FormFieldChangeEventData } from '../../../common/form/form_field/form_field';
-import { apiPost } from '../../../../scripts/api';
-import { clientCookies } from '../../../../scripts/cookies';
+import { apiPost } from '@core/scripts/api';
+import { clientCookies } from '@core/scripts/cookies';
 
 import html from './mass_email_form.html';
 
 import './mass_email_form.scss';
 import '../../../common/form/form_field/checkbox/checkbox';
 import '../../../common/form/form_field/text_area/text_area';
-import { recaptchaCallback } from '../../../../scripts/recaptcha';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
 
 /** Data captured in a mass email form */
 export declare interface MassEmailData {

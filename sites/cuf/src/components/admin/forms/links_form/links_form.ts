@@ -2,7 +2,7 @@ import { CufForm } from '../../../common/form/form';
 import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
 import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
 import { LinksData } from '../../../common/links_list/links_list';
-import { until } from '../../../../scripts/util';
+import { until } from '@core/scripts/util';
 
 import html from './links_form.html';
 

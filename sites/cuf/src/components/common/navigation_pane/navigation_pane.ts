@@ -1,5 +1,5 @@
 import { getPage } from '@core/scripts/url';
-import { trim, until } from '../../../scripts/util';
+import { trim, until } from '@core/scripts/util';
 import { CufElement } from '../../cuf_element';
 import { pageToName } from '../util';
 

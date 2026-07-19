@@ -8,8 +8,8 @@ import {
 import { LaywitnessData } from '../../common/laywitness_list/laywitness_list';
 import { FaithFactsData } from '../../common/faith_fact_category_list/faith_fact_category_list';
 import { CufNewsForm, NewsFormData } from '../forms/news_form/news_form';
-import { recaptchaCallback } from '../../../scripts/recaptcha';
-import { apiPost } from '../../../scripts/api';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
+import { apiPost } from '@core/scripts/api';
 import {
   CufPositionPapersForm,
   PositionPapersFormData,
@@ -18,7 +18,7 @@ import {
   CufJobsAvailableForm,
   JobsAvailableData,
 } from '../forms/jobs_available_form/jobs_available_form';
-import { renameFile } from '../../../scripts/util';
+import { renameFile } from '@core/scripts/util';
 import {
   addChaptersData,
   addLinksData,

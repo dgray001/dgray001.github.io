@@ -1,5 +1,5 @@
 import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
-import { until } from '../../../scripts/util';
+import { until } from '@core/scripts/util';
 import { CufElement } from '../../cuf_element';
 
 import html from './content_card.html';

@@ -1,9 +1,8 @@
-import { apiPost } from '../../../../../scripts/api';
-import { getCookie } from '../../../../../scripts/cookies';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
-import { hasPermission, loggedIn } from '../../../../../scripts/session';
+import { apiPost } from '@core/scripts/api';
+import { getCookie } from '@core/scripts/cookies';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
+import { hasPermission, loggedIn } from '@core/scripts/session';
 import { getUrlParam } from '@core/scripts/url';
-import { DEV } from '../../../../../scripts/util';
 import { CufForm } from '../../form';
 import { CufInputText } from '../../form_field/input_text/input_text';
 

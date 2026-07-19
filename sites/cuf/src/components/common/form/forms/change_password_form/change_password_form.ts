@@ -1,6 +1,6 @@
-import { apiPost } from '../../../../../scripts/api';
-import { getCookie } from '../../../../../scripts/cookies';
-import { recaptchaCallback } from '../../../../../scripts/recaptcha';
+import { apiPost } from '@core/scripts/api';
+import { getCookie } from '@core/scripts/cookies';
+import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { CufForm } from '../../form';
 import { CufInputText } from '../../form_field/input_text/input_text';
 
