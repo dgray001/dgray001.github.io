@@ -24,7 +24,7 @@ export declare interface JsonDataContent {
 export async function fetchJson<T>(path: string): Promise<T> {
   try {
     const data_control_res = await fetch(
-      `/data/data_control.json?v=${Math.floor(Date.now() / 3000)}`
+      `${BASE_PATH}/data/data_control.json?v=${Math.floor(Date.now() / 3000)}`
     );
     const data_control = await data_control_res.json();
     let timestamp = '';
@@ -32,7 +32,7 @@ export async function fetchJson<T>(path: string): Promise<T> {
       timestamp = data_control[path];
     } else if (!DEV) {
       data_control[path] = '';
-      const post_response = await fetch('/server/data_control.php', {
+      const post_response = await fetch(`${BASE_PATH}/server/data_control.php`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export async function fetchJson<T>(path: string): Promise<T> {
         throw new Error('Posting to data_control.php failed.');
       }
     }
-    const json_response = await fetch(`/data/${path}?v=${timestamp}`);
+    const json_response = await fetch(`${BASE_PATH}/data/${path}?v=${timestamp}`);
     return json_response.json();
   } catch (e) {
     console.error(`Error fetching json data: ${e}`);

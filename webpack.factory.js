@@ -3,7 +3,7 @@ const webpack = require('webpack');
 
 const repoRoot = __dirname;
 
-function makeConfig({ siteDir, mode }) {
+function makeConfig({ siteDir, mode, basePath = '' }) {
   const isProd = mode === 'production';
   return {
     mode,
@@ -31,12 +31,13 @@ function makeConfig({ siteDir, mode }) {
       new webpack.DefinePlugin({
         DEV: JSON.stringify(!isProd),
         STAGING: JSON.stringify(process.env.STAGING === 'true'),
+        BASE_PATH: JSON.stringify(basePath),
       }),
     ],
     output: {
       filename: '[name].bundle.js',
       path: isProd ? path.resolve(siteDir, 'docs/dist') : path.resolve(siteDir, 'dist'),
-      publicPath: '/dist/',
+      publicPath: `${basePath}/dist/`,
     },
     ...(isProd ? {} : {
       devServer: {

@@ -29,7 +29,7 @@ export function navigate(page: string, keep_params = true): void {
   if (!page.startsWith('./') && !page.startsWith('../')) {
     page = './' + page;
   }
-  const new_url = new URL(page, location.protocol + '//' + location.host);
+  const new_url = new URL(page, `${location.protocol}//${location.host}${BASE_PATH}/`);
   const url = new URL(window.location.href);
   if (keep_params) {
     for (const [key, value] of url.searchParams.entries()) {
