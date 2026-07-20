@@ -1,4 +1,4 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './homepage.html';
 
@@ -6,7 +6,7 @@ import './homepage.scss';
 import '../header_home/header_home';
 import '../slider/slider';
 
-export class CufHomepage extends CufElement {
+export class CufHomepage extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;

@@ -1,29 +1,29 @@
-import { CufForm } from '../../form';
-import { CufFormSectionName } from '../../form_section/form_section_name/form_section_name';
+import { DwgForm } from '@core/components/form/form';
+import { DwgFormSectionName } from '@core/components/form/form_section/form_section_name/form_section_name';
 import {
   AddressOutputData,
-  CufFormSectionAddress,
-} from '../../form_section/form_section_address/form_section_address';
+  DwgFormSectionAddress,
+} from '@core/components/form/form_section/form_section_address/form_section_address';
 import {
   ContactData,
-  CufFormSectionContact,
-} from '../../form_section/form_section_contact/form_section_contact';
+  DwgFormSectionContact,
+} from '@core/components/form/form_section/form_section_contact/form_section_contact';
 import { CufFormSectionMembership } from '../../form_section/form_section_membership/form_section_membership';
-import { CufTextArea } from '../../form_field/text_area/text_area';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
-import { CufInputText } from '../../form_field/input_text/input_text';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
 import { createContactEmail } from '../util';
 import { apiGetPost, apiPost } from '@core/scripts/api';
 
 import html from './donate_form.html';
 
 import './donate_form.scss';
-import '../../form_section/form_section_name/form_section_name';
-import '../../form_section/form_section_address/form_section_address';
-import '../../form_section/form_section_contact/form_section_contact';
+import '@core/components/form/form_section/form_section_name/form_section_name';
+import '@core/components/form/form_section/form_section_address/form_section_address';
+import '@core/components/form/form_section/form_section_contact/form_section_contact';
 import '../../form_section/form_section_membership/form_section_membership';
-import '../../form_field/text_area/text_area';
-import '../../form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
 
 /** Data describing the contact form */
 export declare interface DonateFormData {
@@ -47,13 +47,13 @@ export declare interface TokenReponse {
   };
 }
 
-export class CufDonateForm extends CufForm<DonateFormData> {
-  private section_name: CufFormSectionName;
-  private section_address: CufFormSectionAddress;
-  private section_contact: CufFormSectionContact;
+export class CufDonateForm extends DwgForm<DonateFormData> {
+  private section_name: DwgFormSectionName;
+  private section_address: DwgFormSectionAddress;
+  private section_contact: DwgFormSectionContact;
   private section_membership: CufFormSectionMembership;
-  private message: CufTextArea;
-  private donate_amount: CufInputText;
+  private message: DwgTextArea;
+  private donate_amount: DwgInputText;
   private donate_form_button: HTMLButtonElement;
   private donate_form_status_message: HTMLDivElement;
   private hidden_donate_form: HTMLFormElement;

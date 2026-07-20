@@ -1,5 +1,5 @@
-import { JsonData, fetchJson } from '../../../data/data_control';
-import { CufElement } from '../../cuf_element';
+import { JsonData, fetchJson } from '@core/data/data_control';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './chapters_list.html';
 
@@ -14,7 +14,7 @@ export declare interface ChapterData {
   facebook?: string;
 }
 
-export class CufChaptersList extends CufElement {
+export class CufChaptersList extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;

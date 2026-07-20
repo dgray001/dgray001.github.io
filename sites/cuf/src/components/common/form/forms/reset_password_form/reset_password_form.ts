@@ -1,5 +1,5 @@
-import { CufForm } from '../../form';
-import { CufInputText } from '../../form_field/input_text/input_text';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
 import { loggedIn } from '@core/scripts/session';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { apiPost } from '@core/scripts/api';
@@ -8,7 +8,7 @@ import { getUrlParam } from '@core/scripts/url';
 import html from './reset_password_form.html';
 
 import './reset_password_form.scss';
-import '../../form_field/input_text/input_text';
+import '@core/components/form/form_field/input_text/input_text';
 
 /** Data captured in a reset password form */
 export declare interface ResetPasswordFormData {
@@ -19,11 +19,11 @@ export declare interface ResetPasswordFormData {
   password: string;
 }
 
-export class CufResetPasswordForm extends CufForm<ResetPasswordFormData> {
-  private email_field: CufInputText;
-  private code_field: CufInputText;
-  private password_field1: CufInputText;
-  private password_field2: CufInputText;
+export class CufResetPasswordForm extends DwgForm<ResetPasswordFormData> {
+  private email_field: DwgInputText;
+  private code_field: DwgInputText;
+  private password_field1: DwgInputText;
+  private password_field2: DwgInputText;
   private form_button_email: HTMLButtonElement;
   private status_message_email: HTMLDivElement;
   private form_button_code: HTMLButtonElement;

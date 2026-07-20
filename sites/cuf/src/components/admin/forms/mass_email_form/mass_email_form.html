@@ -1,32 +1,32 @@
-<cuf-checkbox id="checkbox-all-users" label="Send to all users"></cuf-checkbox>
+<dwg-checkbox id="checkbox-all-users" label="Send to all users"></dwg-checkbox>
 
-<cuf-checkbox
+<dwg-checkbox
   id="checkbox-activated-users"
   label="Send only to activated users"
   class="hide"
-></cuf-checkbox>
+></dwg-checkbox>
 
-<cuf-input-text
+<dwg-input-text
   id="email-subject"
   flex-option="3"
   label="Email Subject"
   validators='["required"]'
-></cuf-input-text>
+></dwg-input-text>
 
-<cuf-text-area
+<dwg-text-area
   id="email-body"
   flex-option="3"
   min-rows="3"
   label="Email Body"
   validators='["required"]'
-></cuf-text-area>
+></dwg-text-area>
 
 <button id="send-email-button" type="button" tabindex="1" class="form-submit-button">
   Send Test Email
 </button>
 
-<cuf-checkbox id="checkbox-confirm-email" label="Verified test email looks correct"></cuf-checkbox>
-<cuf-checkbox id="checkbox-cancel-email" label="Cancel this email"></cuf-checkbox>
+<dwg-checkbox id="checkbox-confirm-email" label="Verified test email looks correct"></dwg-checkbox>
+<dwg-checkbox id="checkbox-cancel-email" label="Cancel this email"></dwg-checkbox>
 <button id="send-emails-button" type="button" tabindex="1" class="form-submit-button">
   Send Emails
 </button>

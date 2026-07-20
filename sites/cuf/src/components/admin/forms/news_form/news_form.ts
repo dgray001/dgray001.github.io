@@ -1,12 +1,12 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
 
 import html from './news_form.html';
 
 import './news_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a news form */
 export declare interface NewsFormData {
@@ -15,10 +15,10 @@ export declare interface NewsFormData {
   description?: string;
 }
 
-export class CufNewsForm extends CufForm<NewsFormData> {
-  private news_title: CufInputText;
-  private news_titlelink: CufInputText;
-  private news_description: CufTextArea;
+export class CufNewsForm extends DwgForm<NewsFormData> {
+  private news_title: DwgInputText;
+  private news_titlelink: DwgInputText;
+  private news_description: DwgTextArea;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

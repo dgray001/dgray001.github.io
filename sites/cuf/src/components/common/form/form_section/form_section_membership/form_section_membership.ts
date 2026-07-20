@@ -1,10 +1,10 @@
-import { CufFormSection } from '../form_section';
-import { CufCheckbox } from '../../form_field/checkbox/checkbox';
+import { DwgFormSection } from '@core/components/form/form_section/form_section';
+import { DwgCheckbox } from '@core/components/form/form_field/checkbox/checkbox';
 
 import html from './form_section_membership.html';
 
 import './form_section_membership.scss';
-import '../../form_field/checkbox/checkbox';
+import '@core/components/form/form_field/checkbox/checkbox';
 
 /** Data describing which membership desire checkbox a person checked */
 export declare interface MembershipData {
@@ -14,11 +14,11 @@ export declare interface MembershipData {
   start_chapter: boolean;
 }
 
-export class CufFormSectionMembership extends CufFormSection<MembershipData, string> {
-  private checkbox_member: CufCheckbox;
-  private checkbox_associate: CufCheckbox;
-  private checkbox_chapters: CufCheckbox;
-  private checkbox_start_chapter: CufCheckbox;
+export class CufFormSectionMembership extends DwgFormSection<MembershipData, string> {
+  private checkbox_member: DwgCheckbox;
+  private checkbox_associate: DwgCheckbox;
+  private checkbox_chapters: DwgCheckbox;
+  private checkbox_start_chapter: DwgCheckbox;
 
   constructor() {
     super();

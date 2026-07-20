@@ -1,5 +1,5 @@
-import { fetchJson } from '../../../data/data_control';
-import { CufElement } from '../../cuf_element';
+import { fetchJson } from '@core/data/data_control';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './faith_fact_category.html';
 
@@ -20,7 +20,7 @@ export declare interface FaithFactData {
   summary: string;
 }
 
-export class CufFaithFactCategory extends CufElement {
+export class CufFaithFactCategory extends DwgElement {
   private subtitle: HTMLHeadingElement;
   private faith_fact_list: HTMLDivElement;
 

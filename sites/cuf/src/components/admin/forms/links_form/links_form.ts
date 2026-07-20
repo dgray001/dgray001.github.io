@@ -1,14 +1,14 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
-import { LinksData } from '../../../common/links_list/links_list';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
+import { LinksData } from '@core/components/links_list/links_list';
 import { until } from '@core/scripts/util';
 
 import html from './links_form.html';
 
 import './links_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a links form */
 export declare interface LinksFormData {
@@ -18,11 +18,11 @@ export declare interface LinksFormData {
   description?: string;
 }
 
-export class CufLinksForm extends CufForm<LinksFormData> {
-  private links_group: CufInputText;
-  private links_title: CufInputText;
-  private links_titlelink: CufInputText;
-  private links_description: CufTextArea;
+export class CufLinksForm extends DwgForm<LinksFormData> {
+  private links_group: DwgInputText;
+  private links_title: DwgInputText;
+  private links_titlelink: DwgInputText;
+  private links_description: DwgTextArea;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

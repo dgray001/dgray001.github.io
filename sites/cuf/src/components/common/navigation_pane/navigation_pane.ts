@@ -1,13 +1,13 @@
 import { getPage } from '@core/scripts/url';
 import { trim, until } from '@core/scripts/util';
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { pageToName } from '../util';
 
 import html from './navigation_pane.html';
 
 import './navigation_pane.scss';
 
-export class CufNavigationPane extends CufElement {
+export class CufNavigationPane extends DwgElement {
   private button_wrapper: HTMLDivElement;
   private hamburger: HTMLInputElement;
   private background_grayed: HTMLDivElement;

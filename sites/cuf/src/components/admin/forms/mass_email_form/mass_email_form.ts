@@ -1,16 +1,16 @@
-import { CufForm } from '../../../common/form/form';
-import { CufCheckbox } from '../../../common/form/form_field/checkbox/checkbox';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
-import { FormFieldChangeEventData } from '../../../common/form/form_field/form_field';
+import { DwgForm } from '@core/components/form/form';
+import { DwgCheckbox } from '@core/components/form/form_field/checkbox/checkbox';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
+import { FormFieldChangeEventData } from '@core/components/form/form_field/form_field';
 import { apiPost } from '@core/scripts/api';
 import { clientCookies } from '@core/scripts/cookies';
 
 import html from './mass_email_form.html';
 
 import './mass_email_form.scss';
-import '../../../common/form/form_field/checkbox/checkbox';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/checkbox/checkbox';
+import '@core/components/form/form_field/text_area/text_area';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 
 /** Data captured in a mass email form */
@@ -21,14 +21,14 @@ export declare interface MassEmailData {
   body: string;
 }
 
-export class CufMassEmailForm extends CufForm<MassEmailData> {
-  private checkbox_all_users: CufCheckbox;
-  private checkbox_activated_users: CufCheckbox;
-  private email_subject: CufInputText;
-  private email_body: CufTextArea;
+export class CufMassEmailForm extends DwgForm<MassEmailData> {
+  private checkbox_all_users: DwgCheckbox;
+  private checkbox_activated_users: DwgCheckbox;
+  private email_subject: DwgInputText;
+  private email_body: DwgTextArea;
   private send_email_button: HTMLButtonElement;
-  private checkbox_confirm_email: CufCheckbox;
-  private checkbox_cancel_email: CufCheckbox;
+  private checkbox_confirm_email: DwgCheckbox;
+  private checkbox_cancel_email: DwgCheckbox;
   private send_emails_button: HTMLButtonElement;
   private status_message_send: HTMLDivElement;
 

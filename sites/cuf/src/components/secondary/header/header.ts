@@ -1,14 +1,14 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { until } from '@core/scripts/util';
 import { titleText } from '../../common/util';
 
 import html from './header.html';
 
-import '../../common/profile_button/profile_button';
+import '@core/components/profile_button/profile_button';
 import './header.scss';
 import '../../common/navigation_pane/navigation_pane';
 
-export class CufHeader extends CufElement {
+export class CufHeader extends DwgElement {
   private logo_container: HTMLDivElement;
   private fixed_container: HTMLDivElement;
   private title_el: HTMLDivElement;

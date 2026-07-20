@@ -1,5 +1,5 @@
-import { fetchJson } from '../../../data/data_control';
-import { CufElement } from '../../cuf_element';
+import { fetchJson } from '@core/data/data_control';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './laywitness_list.html';
 
@@ -25,7 +25,7 @@ export declare interface LaywitnessIssueData {
   addendum?: number;
 }
 
-export class CufLaywitnessList extends CufElement {
+export class CufLaywitnessList extends DwgElement {
   private data: LaywitnessData;
 
   constructor() {

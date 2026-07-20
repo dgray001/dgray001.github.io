@@ -1,10 +1,10 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import {
   JsonData,
   JsonDataContent,
   JsonDataSubheader,
   fetchJson,
-} from '../../../data/data_control';
+} from '@core/data/data_control';
 import { LaywitnessData } from '../../common/laywitness_list/laywitness_list';
 import { FaithFactsData } from '../../common/faith_fact_category_list/faith_fact_category_list';
 import { CufNewsForm, NewsFormData } from '../forms/news_form/news_form';
@@ -33,7 +33,7 @@ import { CufLayWitnessForm, LayWitnessFormData } from '../forms/lay_witness_form
 import { CufChaptersForm } from '../forms/chapters_form/chapters_form';
 import { ChapterData } from '../../common/chapters_list/chapters_list';
 import { CufSubheaderForm } from '../forms/subheader_form/subheader_form';
-import { LinksData } from '../../common/links_list/links_list';
+import { LinksData } from '@core/components/links_list/links_list';
 import { CufLinksForm, LinksFormData } from '../forms/links_form/links_form';
 import { CufFaithFactsForm } from '../forms/faith_facts_form/faith_facts_form';
 
@@ -78,7 +78,7 @@ export type DashboardSectionData =
   | JsonData<ChapterData>
   | LinksData;
 
-export class CufDashboardSection extends CufElement {
+export class CufDashboardSection extends DwgElement {
   private section_title: HTMLButtonElement;
   private section_body: HTMLDivElement;
   private edit_button: HTMLButtonElement;

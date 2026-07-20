@@ -1,11 +1,11 @@
-import { JsonData, JsonDataContent } from '../../../../data/data_control';
+import { JsonData, JsonDataContent } from '@core/data/data_control';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { until } from '@core/scripts/util';
 import {
   LaywitnessData,
   LaywitnessIssueData,
 } from '../../../common/laywitness_list/laywitness_list';
-import { CufElement } from '../../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { AdminFormType, CufDashboardSection, DashboardSectionData } from '../dashboard_section';
 import {
   deleteChaptersData,
@@ -19,14 +19,14 @@ import {
 } from '../util';
 import { LayWitnessFormData } from '../../forms/lay_witness_form/lay_witness_form';
 import { ChapterData } from '../../../common/chapters_list/chapters_list';
-import { LinkGroupData, LinksData } from '../../../common/links_list/links_list';
+import { LinkGroupData, LinksData } from '@core/components/links_list/links_list';
 
 import html from './edit_item.html';
 
 import './edit_item.scss';
-import '../../../common/dialog_box/confirm_dialog/confirm_dialog';
+import '@core/components/dialog_box/confirm_dialog/confirm_dialog';
 
-export class CufEditItem extends CufElement {
+export class CufEditItem extends DwgElement {
   private item_title: HTMLButtonElement;
   private title_label: HTMLSpanElement;
   private title_text: HTMLSpanElement;

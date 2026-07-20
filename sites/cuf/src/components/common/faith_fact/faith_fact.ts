@@ -2,14 +2,14 @@ import { apiGetFile } from '@core/scripts/api';
 import { getCookie } from '@core/scripts/cookies';
 import { hasPermission } from '@core/scripts/session';
 import { downloadBlob } from '@core/scripts/util';
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { FaithFactData } from '../faith_fact_category/faith_fact_category';
 
 import html from './faith_fact.html';
 
 import './faith_fact.scss';
 
-export class CufFaithFact extends CufElement {
+export class CufFaithFact extends DwgElement {
   private title_el: HTMLButtonElement;
   private content_el: HTMLDivElement;
   private question: HTMLDivElement;

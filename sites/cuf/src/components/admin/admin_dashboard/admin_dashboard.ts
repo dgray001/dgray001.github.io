@@ -1,4 +1,4 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { hasPermission } from '@core/scripts/session';
 import { getCookie } from '@core/scripts/cookies';
 
@@ -8,7 +8,7 @@ import './admin_dashboard.scss';
 import '../admin_header/admin_header';
 import '../dashboard_section/dashboard_section';
 
-export class CufAdminDashboard extends CufElement {
+export class CufAdminDashboard extends DwgElement {
   private admin_container: HTMLDivElement;
 
   constructor() {

@@ -1,12 +1,12 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
 
 import html from './faith_facts_form.html';
 
 import './faith_facts_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a faith fact form */
 export declare interface FaithFactsFormData {
@@ -15,10 +15,10 @@ export declare interface FaithFactsFormData {
   summary: string;
 }
 
-export class CufFaithFactsForm extends CufForm<FaithFactsFormData> {
-  private ff_title: CufInputText;
-  private ff_question: CufInputText;
-  private ff_summary: CufTextArea;
+export class CufFaithFactsForm extends DwgForm<FaithFactsFormData> {
+  private ff_title: DwgInputText;
+  private ff_question: DwgInputText;
+  private ff_summary: DwgTextArea;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

@@ -1,12 +1,12 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufCheckbox } from '../../../common/form/form_field/checkbox/checkbox';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgCheckbox } from '@core/components/form/form_field/checkbox/checkbox';
 
 import html from './lay_witness_form.html';
 
 import './lay_witness_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/checkbox/checkbox';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/checkbox/checkbox';
 
 /** Data captured in a laywitness form */
 export declare interface LayWitnessFormData {
@@ -17,12 +17,12 @@ export declare interface LayWitnessFormData {
   addendum: boolean;
 }
 
-export class CufLayWitnessForm extends CufForm<LayWitnessFormData> {
-  private laywitness_volume: CufInputText;
-  private laywitness_issue: CufInputText;
-  private laywitness_title: CufInputText;
-  private checkbox_insert: CufCheckbox;
-  private checkbox_addendum: CufCheckbox;
+export class CufLayWitnessForm extends DwgForm<LayWitnessFormData> {
+  private laywitness_volume: DwgInputText;
+  private laywitness_issue: DwgInputText;
+  private laywitness_title: DwgInputText;
+  private checkbox_insert: DwgCheckbox;
+  private checkbox_addendum: DwgCheckbox;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

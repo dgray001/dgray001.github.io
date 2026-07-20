@@ -1,13 +1,13 @@
 import { panelsToIncludeFrom } from '../../../scripts/datalists';
 import { CufContentCard } from '../../common/content_card/content_card';
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './sidebar.html';
 
 import './sidebar.scss';
 import '../../common/content_card/content_card';
 
-export class CufSidebar extends CufElement {
+export class CufSidebar extends DwgElement {
   private wrapper: HTMLDivElement;
 
   private panels = new Map<string, CufContentCard>();

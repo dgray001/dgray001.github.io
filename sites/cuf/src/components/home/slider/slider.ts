@@ -1,11 +1,11 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { until } from '@core/scripts/util';
 
 import html from './slider.html';
 
 import './slider.scss';
 
-export class CufSlider extends CufElement {
+export class CufSlider extends DwgElement {
   private wrapper: HTMLDivElement;
   private dots: HTMLDivElement;
 

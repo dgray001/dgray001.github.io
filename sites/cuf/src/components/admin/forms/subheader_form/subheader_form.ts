@@ -1,18 +1,18 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
-import { JsonDataContent } from '../../../../data/data_control';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
+import { JsonDataContent } from '@core/data/data_control';
 
 import html from './subheader_form.html';
 
 import './subheader_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
 
-export class CufSubheaderForm extends CufForm<JsonDataContent> {
-  private subheader_title: CufInputText;
-  private subheader_titlelink: CufInputText;
-  private subheader_description: CufTextArea;
+export class CufSubheaderForm extends DwgForm<JsonDataContent> {
+  private subheader_title: DwgInputText;
+  private subheader_titlelink: DwgInputText;
+  private subheader_description: DwgTextArea;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

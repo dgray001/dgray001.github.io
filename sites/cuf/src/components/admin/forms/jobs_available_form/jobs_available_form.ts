@@ -1,12 +1,12 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
 
 import html from './jobs_available_form.html';
 
 import './jobs_available_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a jobs available form */
 export declare interface JobsAvailableData {
@@ -14,9 +14,9 @@ export declare interface JobsAvailableData {
   description?: string;
 }
 
-export class CufJobsAvailableForm extends CufForm<JobsAvailableData> {
-  private job_title: CufInputText;
-  private job_description: CufTextArea;
+export class CufJobsAvailableForm extends DwgForm<JobsAvailableData> {
+  private job_title: DwgInputText;
+  private job_description: DwgTextArea;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

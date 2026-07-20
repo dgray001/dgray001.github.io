@@ -1,5 +1,5 @@
-import { CufForm } from '../../form';
-import { CufInputText } from '../../form_field/input_text/input_text';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { apiPost } from '@core/scripts/api';
 import { loggedIn } from '@core/scripts/session';
@@ -9,7 +9,7 @@ import { getUrlParam, navigate, removeUrlParam } from '@core/scripts/url';
 import html from './login_form.html';
 
 import './login_form.scss';
-import '../../form_field/input_text/input_text';
+import '@core/components/form/form_field/input_text/input_text';
 
 /** Data describing the contact form */
 export declare interface LoginFormData {
@@ -17,9 +17,9 @@ export declare interface LoginFormData {
   password: string;
 }
 
-export class CufLoginForm extends CufForm<LoginFormData> {
-  private username_field: CufInputText;
-  private password_field: CufInputText;
+export class CufLoginForm extends DwgForm<LoginFormData> {
+  private username_field: DwgInputText;
+  private password_field: DwgInputText;
   private form_wrapper: HTMLDivElement;
   private login_form_button: HTMLButtonElement;
   private logout_form_wrapper: HTMLDivElement;

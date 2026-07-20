@@ -1,6 +1,6 @@
-import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
+import { JsonData, JsonDataContent, fetchJson } from '@core/data/data_control';
 import { until } from '@core/scripts/util';
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './content_card.html';
 
@@ -11,7 +11,7 @@ enum ContentCardType {
   FADE_IN,
 }
 
-export class CufContentCard extends CufElement {
+export class CufContentCard extends DwgElement {
   private header: HTMLDivElement;
   private header_text: HTMLAnchorElement;
   private img_wrapper: HTMLDivElement;

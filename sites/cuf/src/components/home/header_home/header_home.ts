@@ -1,4 +1,4 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { until } from '@core/scripts/util';
 import { CufNavigationPane } from '../../common/navigation_pane/navigation_pane';
 import { titleText } from '../../common/util';
@@ -8,9 +8,9 @@ import html from './header_home.html';
 
 import './header_home.scss';
 import '../../common/navigation_pane/navigation_pane';
-import '../../common/profile_button/profile_button';
+import '@core/components/profile_button/profile_button';
 
-export class CufHeaderHome extends CufElement {
+export class CufHeaderHome extends DwgElement {
   private title_container: HTMLDivElement;
   private home_title: HTMLDivElement;
   private logo_container: HTMLDivElement;

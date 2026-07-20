@@ -1,0 +1,39 @@
+<div class="flex-wrapper">
+  <div class="flex-wrapper">
+    <dwg-select
+      id="name-prefix"
+      autocomplete="honorific-prefix"
+      flex-option="1"
+      options="prefixes"
+      label="Prefix"
+    >
+    </dwg-select>
+    <dwg-input-text
+      id="name-first"
+      autocomplete="given-name"
+      flex-option="3"
+      validators='["required", "name"]'
+      label="First"
+    >
+    </dwg-input-text>
+  </div>
+
+  <div class="flex-wrapper">
+    <dwg-input-text
+      id="name-last"
+      autocomplete="family-name"
+      flex-option="3"
+      validators='["required", "name"]'
+      label="Last"
+    >
+    </dwg-input-text>
+    <dwg-input-text
+      id="name-suffix"
+      autocomplete="honorific-suffix"
+      flex-option="1"
+      validators='["suffix"]'
+      label="Suffix"
+    >
+    </dwg-input-text>
+  </div>
+</div>

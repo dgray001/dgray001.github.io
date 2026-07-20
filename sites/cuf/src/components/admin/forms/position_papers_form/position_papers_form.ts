@@ -1,12 +1,12 @@
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufTextArea } from '../../../common/form/form_field/text_area/text_area';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
 
 import html from './position_papers_form.html';
 
 import './position_papers_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/text_area/text_area';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a position papers form */
 export declare interface PositionPapersFormData {
@@ -14,9 +14,9 @@ export declare interface PositionPapersFormData {
   description?: string;
 }
 
-export class CufPositionPapersForm extends CufForm<PositionPapersFormData> {
-  private paper_title: CufInputText;
-  private paper_description: CufTextArea;
+export class CufPositionPapersForm extends DwgForm<PositionPapersFormData> {
+  private paper_title: DwgInputText;
+  private paper_description: DwgTextArea;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

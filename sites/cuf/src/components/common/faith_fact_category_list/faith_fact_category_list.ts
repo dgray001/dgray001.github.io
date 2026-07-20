@@ -1,14 +1,14 @@
-import { fetchJson } from '../../../data/data_control';
+import { fetchJson } from '@core/data/data_control';
 import { scrollToElement } from '@core/scripts/util';
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { CufFaithFactCategory } from '../faith_fact_category/faith_fact_category';
-import { CufSpinner } from '../spinner/spinner';
+import { DwgSpinner } from '@core/components/spinner/spinner';
 
 import html from './faith_fact_category_list.html';
 
 import './faith_fact_category_list.scss';
 import '../faith_fact_category/faith_fact_category';
-import '../spinner/spinner';
+import '@core/components/spinner/spinner';
 
 /** Data describing all Faith Facts */
 export declare interface FaithFactsData {
@@ -20,9 +20,9 @@ interface CategoryData {
   category_display: string;
 }
 
-export class CufFaithFactCategoryList extends CufElement {
+export class CufFaithFactCategoryList extends DwgElement {
   private category_container: HTMLDivElement;
-  private spinner: CufSpinner;
+  private spinner: DwgSpinner;
   private faith_facts_container: HTMLDivElement;
 
   private loading = false;

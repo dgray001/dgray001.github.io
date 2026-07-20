@@ -1,20 +1,20 @@
 import { ChapterData } from '../../../common/chapters_list/chapters_list';
-import { CufForm } from '../../../common/form/form';
-import { CufInputText } from '../../../common/form/form_field/input_text/input_text';
-import { CufStringList } from '../../../common/form/form_field/string_list/string_list';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
+import { DwgStringList } from '@core/components/form/form_field/string_list/string_list';
 
 import html from './chapters_form.html';
 
 import './chapters_form.scss';
-import '../../../common/form/form_field/input_text/input_text';
-import '../../../common/form/form_field/string_list/string_list';
+import '@core/components/form/form_field/input_text/input_text';
+import '@core/components/form/form_field/string_list/string_list';
 
-export class CufChaptersForm extends CufForm<ChapterData> {
-  private chapter_name: CufInputText;
-  private other_lines: CufStringList;
-  private chapter_website: CufInputText;
-  private chapter_email: CufInputText;
-  private chapter_facebook: CufInputText;
+export class CufChaptersForm extends DwgForm<ChapterData> {
+  private chapter_name: DwgInputText;
+  private other_lines: DwgStringList;
+  private chapter_website: DwgInputText;
+  private chapter_email: DwgInputText;
+  private chapter_facebook: DwgInputText;
   private submit_button: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {

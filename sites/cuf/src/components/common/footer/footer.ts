@@ -1,10 +1,10 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 
 import html from './footer.html';
 
 import './footer.scss';
 
-export class CufFooter extends CufElement {
+export class CufFooter extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;

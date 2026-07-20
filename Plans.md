@@ -1,4 +1,4 @@
-v1.1.8: Make all scripts logic consistent
+v1.1.9: Migrate remaining core logic
 
 SJF
 

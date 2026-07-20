@@ -1,8 +1,8 @@
 import { apiPost } from '@core/scripts/api';
 import { getCookie } from '@core/scripts/cookies';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
-import { CufForm } from '../../form';
-import { CufInputText } from '../../form_field/input_text/input_text';
+import { DwgForm } from '@core/components/form/form';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
 
 import html from './change_password_form.html';
 
@@ -15,11 +15,11 @@ export declare interface ChangePasswordFormData {
   new_password: string;
 }
 
-export class CufChangePasswordForm extends CufForm<ChangePasswordFormData> {
+export class CufChangePasswordForm extends DwgForm<ChangePasswordFormData> {
   private open_form: HTMLButtonElement;
   private change_password_form: HTMLFormElement;
-  private change_password_old: CufInputText;
-  private change_password_new: CufInputText;
+  private change_password_old: DwgInputText;
+  private change_password_new: DwgInputText;
   private change_password_button: HTMLButtonElement;
   private status_message: HTMLDivElement;
 

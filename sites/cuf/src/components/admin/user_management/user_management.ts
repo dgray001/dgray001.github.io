@@ -1,4 +1,4 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { CufMassEmailForm } from '../forms/mass_email_form/mass_email_form';
 
 import html from './user_management.html';
@@ -6,7 +6,7 @@ import html from './user_management.html';
 import './user_management.scss';
 import '../forms/mass_email_form/mass_email_form';
 
-export class CufUserManagement extends CufElement {
+export class CufUserManagement extends DwgElement {
   private mass_email_form: CufMassEmailForm;
 
   constructor() {

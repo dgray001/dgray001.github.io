@@ -1,18 +1,18 @@
-import { CufElement } from '../../cuf_element';
+import { DwgElement } from '@core/components/dwg_element';
 import { CufHeader } from '../header/header';
 import { CufSidebar } from '../sidebar/sidebar';
 import { CufFooter } from '../../common/footer/footer';
 import { getPage, getUrlParam } from '@core/scripts/url';
 import { scrollToElement, trim, until } from '@core/scripts/util';
 import { pageToName } from '../../common/util';
-import { JsonData, JsonDataContent, fetchJson } from '../../../data/data_control';
+import { JsonData, JsonDataContent, fetchJson } from '@core/data/data_control';
 
 import html from './secondary_page.html';
 
 import './secondary_page.scss';
 import '../header/header';
 import '../sidebar/sidebar';
-import '../profile_info/profile_info';
+import '@core/components/profile_info/profile_info';
 import '../../common/footer/footer';
 import '../../common/faith_fact_category_list/faith_fact_category_list';
 import '../../common/laywitness_list/laywitness_list';
@@ -22,11 +22,11 @@ import '../../common/form/forms/login_form/login_form';
 import '../../common/form/forms/activate_account_form/activate_account_form';
 import '../../common/form/forms/reset_password_form/reset_password_form';
 import '../../common/form/forms/change_password_form/change_password_form';
-import '../../common/profile_button/profile_button';
+import '@core/components/profile_button/profile_button';
 import '../../common/chapters_list/chapters_list';
-import '../../common/links_list/links_list';
+import '@core/components/links_list/links_list';
 
-export class CufSecondaryPage extends CufElement {
+export class CufSecondaryPage extends DwgElement {
   private page_title: HTMLHeadingElement;
   private actual_content: HTMLDivElement;
   private sidebar: CufSidebar;

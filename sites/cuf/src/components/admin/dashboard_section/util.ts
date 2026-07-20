@@ -1,11 +1,11 @@
-import { JsonData, JsonDataContent, JsonDataSubheader } from '../../../data/data_control';
+import { JsonData, JsonDataContent, JsonDataSubheader } from '@core/data/data_control';
 import { ChapterData } from '../../common/chapters_list/chapters_list';
 import {
   LaywitnessData,
   LaywitnessIssueData,
   LaywitnessVolumeData,
 } from '../../common/laywitness_list/laywitness_list';
-import { LinkGroupData, LinksData } from '../../common/links_list/links_list';
+import { LinkGroupData, LinksData } from '@core/components/links_list/links_list';
 import { LayWitnessFormData } from '../forms/lay_witness_form/lay_witness_form';
 import { LinksFormData } from '../forms/links_form/links_form';
 import { CufDashboardSection } from './dashboard_section';

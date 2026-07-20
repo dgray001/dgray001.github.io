@@ -1,15 +1,15 @@
-import { CufForm } from '../../form';
-import { CufFormSectionName } from '../../form_section/form_section_name/form_section_name';
+import { DwgForm } from '@core/components/form/form';
+import { DwgFormSectionName } from '@core/components/form/form_section/form_section_name/form_section_name';
 import {
   AddressOutputData,
-  CufFormSectionAddress,
-} from '../../form_section/form_section_address/form_section_address';
+  DwgFormSectionAddress,
+} from '@core/components/form/form_section/form_section_address/form_section_address';
 import {
   ContactData,
-  CufFormSectionContact,
-} from '../../form_section/form_section_contact/form_section_contact';
+  DwgFormSectionContact,
+} from '@core/components/form/form_section/form_section_contact/form_section_contact';
 import { CufFormSectionMembership } from '../../form_section/form_section_membership/form_section_membership';
-import { CufTextArea } from '../../form_field/text_area/text_area';
+import { DwgTextArea } from '@core/components/form/form_field/text_area/text_area';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { apiPost } from '@core/scripts/api';
 import { createContactEmail } from '../util';
@@ -18,11 +18,11 @@ import { scrollToElement } from '@core/scripts/util';
 import html from './contact_form.html';
 
 import './contact_form.scss';
-import '../../form_section/form_section_name/form_section_name';
-import '../../form_section/form_section_address/form_section_address';
-import '../../form_section/form_section_contact/form_section_contact';
+import '@core/components/form/form_section/form_section_name/form_section_name';
+import '@core/components/form/form_section/form_section_address/form_section_address';
+import '@core/components/form/form_section/form_section_contact/form_section_contact';
 import '../../form_section/form_section_membership/form_section_membership';
-import '../../form_field/text_area/text_area';
+import '@core/components/form/form_field/text_area/text_area';
 
 /** Data describing the contact form */
 export declare interface ContactFormData {
@@ -33,12 +33,12 @@ export declare interface ContactFormData {
   message: string;
 }
 
-export class CufContactForm extends CufForm<ContactFormData> {
-  private section_name: CufFormSectionName;
-  private section_address: CufFormSectionAddress;
-  private section_contact: CufFormSectionContact;
+export class CufContactForm extends DwgForm<ContactFormData> {
+  private section_name: DwgFormSectionName;
+  private section_address: DwgFormSectionAddress;
+  private section_contact: DwgFormSectionContact;
   private section_membership: CufFormSectionMembership;
-  private message: CufTextArea;
+  private message: DwgTextArea;
   private form_wrapper: HTMLDivElement;
   private contact_form_button: HTMLButtonElement;
   private contact_form_status_message: HTMLDivElement;
