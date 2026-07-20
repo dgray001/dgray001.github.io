@@ -14,6 +14,7 @@ import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { apiPost } from '@core/scripts/api';
 import { createContactEmail } from '../util';
 import { scrollToElement } from '@core/scripts/util';
+import { internalHref } from '@core/scripts/url';
 
 import html from './contact_form.html';
 
@@ -43,6 +44,7 @@ export class CufContactForm extends DwgForm<ContactFormData> {
   private contact_form_button: HTMLButtonElement;
   private contact_form_status_message: HTMLDivElement;
   private contact_form_receipt_message: HTMLDivElement;
+  private lay_witness_link: HTMLAnchorElement;
 
   constructor() {
     super();
@@ -58,9 +60,11 @@ export class CufContactForm extends DwgForm<ContactFormData> {
     this.configureElement('contact_form_button');
     this.configureElement('contact_form_status_message');
     this.configureElement('contact_form_receipt_message');
+    this.configureElement('lay_witness_link');
   }
 
   protected override async _parsedCallback(): Promise<void> {
+    this.lay_witness_link.href = internalHref('lay_witness');
     if (DEV) {
       this.setTestData();
     }

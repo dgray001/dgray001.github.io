@@ -2,7 +2,7 @@ import { DwgElement } from '@core/components/dwg_element';
 import { CufHeader } from '../header/header';
 import { CufSidebar } from '../sidebar/sidebar';
 import { CufFooter } from '../../common/footer/footer';
-import { getPage, getUrlParam } from '@core/scripts/url';
+import { getPage, getUrlParam, internalHref } from '@core/scripts/url';
 import { scrollToElement, trim, until } from '@core/scripts/util';
 import { pageToName } from '../../common/util';
 import { JsonData, JsonDataContent, fetchJson } from '@core/data/data_control';
@@ -119,7 +119,7 @@ export class CufSecondaryPage extends DwgElement {
   private async setTitle(title: string) {
     this.page_title.innerText = title;
     document.title = `${title.replace('CUF', '')} | CUF`;
-    const response = await fetch(`/secondary_page_html/${this.page}.html`, {
+    const response = await fetch(internalHref(`secondary_page_html/${this.page}.html`), {
       method: 'GET',
       headers: {
         'Content-Type': 'text/html; charset=UTF-8',

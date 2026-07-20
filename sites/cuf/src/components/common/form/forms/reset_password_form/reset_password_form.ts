@@ -3,7 +3,7 @@ import { DwgInputText } from '@core/components/form/form_field/input_text/input_
 import { loggedIn } from '@core/scripts/session';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { apiPost } from '@core/scripts/api';
-import { getUrlParam } from '@core/scripts/url';
+import { getUrlParam, internalHref } from '@core/scripts/url';
 
 import html from './reset_password_form.html';
 
@@ -30,6 +30,7 @@ export class CufResetPasswordForm extends DwgForm<ResetPasswordFormData> {
   private status_message_code: HTMLDivElement;
   private form_button_password: HTMLButtonElement;
   private status_message_password: HTMLDivElement;
+  private remember_password: HTMLAnchorElement;
 
   private active_status_message: HTMLDivElement;
 
@@ -37,6 +38,7 @@ export class CufResetPasswordForm extends DwgForm<ResetPasswordFormData> {
     super();
     this.htmlString = html;
     this.configureForm(['email_field', 'code_field', 'password_field1', 'password_field2']);
+    this.configureElement('remember_password');
     this.configureElement('form_button_email');
     this.configureElement('status_message_email');
     this.configureElement('form_button_code');
@@ -46,8 +48,9 @@ export class CufResetPasswordForm extends DwgForm<ResetPasswordFormData> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
+    this.remember_password.href = internalHref('login');
     if (await loggedIn()) {
-      location.href = '/profile?h=account_management';
+      location.href = internalHref('profile?h=account_management');
       return;
     }
     if (DEV) {
@@ -128,7 +131,7 @@ export class CufResetPasswordForm extends DwgForm<ResetPasswordFormData> {
             if (redirect) {
               document.location.href = redirect;
             } else {
-              location.href = '/profile';
+              location.href = internalHref('profile');
             }
           } else {
             this.errorStatus(

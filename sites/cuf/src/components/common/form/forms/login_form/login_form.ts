@@ -4,7 +4,7 @@ import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { apiPost } from '@core/scripts/api';
 import { loggedIn } from '@core/scripts/session';
 import { getCookie } from '@core/scripts/cookies';
-import { getUrlParam, navigate, removeUrlParam } from '@core/scripts/url';
+import { getUrlParam, internalHref, navigate, removeUrlParam } from '@core/scripts/url';
 
 import html from './login_form.html';
 
@@ -40,6 +40,12 @@ export class CufLoginForm extends DwgForm<LoginFormData> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
+    this.activate_account.href = internalHref('login/activate');
+    const reset_password_link =
+      this.password_field.querySelector<HTMLAnchorElement>('#reset-password-link');
+    if (reset_password_link) {
+      reset_password_link.href = internalHref('login/reset_password');
+    }
     const isLoggedIn = await loggedIn();
     if (isLoggedIn) {
       this.form_wrapper.remove();

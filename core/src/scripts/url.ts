@@ -21,7 +21,16 @@ export function removeUrlParam(key: string): void {
 
 export function getPage(): string {
   const url = new URL(window.location.href);
-  return url.pathname;
+  let pathname = url.pathname;
+  if (BASE_PATH && pathname.startsWith(BASE_PATH)) {
+    pathname = pathname.slice(BASE_PATH.length);
+  }
+  return pathname;
+}
+
+/** Builds an href for an internal root-relative path, respecting BASE_PATH */
+export function internalHref(path: string): string {
+  return `${BASE_PATH}/${path}`;
 }
 
 /** Navigates to the input page */

@@ -2,7 +2,7 @@ import { apiPost } from '@core/scripts/api';
 import { getCookie } from '@core/scripts/cookies';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
 import { hasPermission, loggedIn } from '@core/scripts/session';
-import { getUrlParam } from '@core/scripts/url';
+import { getUrlParam, internalHref } from '@core/scripts/url';
 import { DwgForm } from '@core/components/form/form';
 import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
 
@@ -30,6 +30,7 @@ export class CufActivateAccountForm extends DwgForm<ActivateAccountFormData> {
   private status_message_code: HTMLDivElement;
   private form_button_password: HTMLButtonElement;
   private status_message_password: HTMLDivElement;
+  private account_activated: HTMLAnchorElement;
 
   private active_status_message: HTMLDivElement;
 
@@ -37,6 +38,7 @@ export class CufActivateAccountForm extends DwgForm<ActivateAccountFormData> {
     super();
     this.htmlString = html;
     this.configureForm(['email_field', 'code_field', 'password_field1', 'password_field2']);
+    this.configureElement('account_activated');
     this.configureElement('form_button_email');
     this.configureElement('status_message_email');
     this.configureElement('form_button_code');
@@ -46,8 +48,9 @@ export class CufActivateAccountForm extends DwgForm<ActivateAccountFormData> {
   }
 
   protected override async _parsedCallback(): Promise<void> {
+    this.account_activated.href = internalHref('login');
     if (await loggedIn()) {
-      location.href = '/profile?h=account_management';
+      location.href = internalHref('profile?h=account_management');
       return;
     }
     if (DEV) {
@@ -128,9 +131,9 @@ export class CufActivateAccountForm extends DwgForm<ActivateAccountFormData> {
             if (redirect) {
               document.location.href = redirect;
             } else {
-              location.href = hasPermission(getCookie('role'), 'viewAdminDashboard')
-                ? '/admin_dashboard'
-                : '/profile';
+              location.href = internalHref(
+                hasPermission(getCookie('role'), 'viewAdminDashboard') ? 'admin_dashboard' : 'profile'
+              );
             }
           } else {
             this.errorStatus(

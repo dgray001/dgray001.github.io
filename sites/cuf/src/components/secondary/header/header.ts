@@ -1,5 +1,6 @@
 import { DwgElement } from '@core/components/dwg_element';
 import { until } from '@core/scripts/util';
+import { internalHref } from '@core/scripts/url';
 import { titleText } from '../../common/util';
 
 import html from './header.html';
@@ -12,6 +13,7 @@ export class CufHeader extends DwgElement {
   private logo_container: HTMLDivElement;
   private fixed_container: HTMLDivElement;
   private title_el: HTMLDivElement;
+  private title_link: HTMLAnchorElement;
 
   private ticking = false;
 
@@ -21,10 +23,12 @@ export class CufHeader extends DwgElement {
     this.configureElement('logo_container');
     this.configureElement('fixed_container');
     this.configureElement('title_el', 'title');
+    this.configureElement('title_link');
   }
 
   protected override parsedCallback(): void {
     this.title_el.innerText = titleText();
+    this.title_link.href = internalHref('');
     document.body.addEventListener('scroll', () => {
       if (!this.ticking) {
         window.requestAnimationFrame(() => {

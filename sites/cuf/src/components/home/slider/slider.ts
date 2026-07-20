@@ -1,5 +1,6 @@
 import { DwgElement } from '@core/components/dwg_element';
 import { until } from '@core/scripts/util';
+import { internalHref } from '@core/scripts/url';
 
 import html from './slider.html';
 
@@ -43,7 +44,7 @@ export class CufSlider extends DwgElement {
       this.imgs.push(container);
       this.img_map.set(this.imageName(picture), img);
       const text = document.createElement('a');
-      text.href = `/${picture}`;
+      text.href = internalHref(picture);
       text.innerHTML = this.imageText(picture);
       text.tabIndex = -1;
       if (picture === 'faith_facts') {

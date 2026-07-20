@@ -1,4 +1,4 @@
-import { getPage } from '@core/scripts/url';
+import { getPage, internalHref } from '@core/scripts/url';
 import { trim, until } from '@core/scripts/util';
 import { DwgElement } from '@core/components/dwg_element';
 import { pageToName } from '../util';
@@ -132,7 +132,7 @@ export class CufNavigationPane extends DwgElement {
     const link_el = link !== curr_path && !header_el;
     const button = link_el ? document.createElement('a') : document.createElement('div');
     if (link_el) {
-      (button as HTMLAnchorElement).href = `/${link}`;
+      (button as HTMLAnchorElement).href = internalHref(link);
       button.draggable = false;
     } else {
       button.classList.add('a');

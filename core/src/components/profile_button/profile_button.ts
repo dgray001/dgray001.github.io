@@ -1,6 +1,7 @@
 import { clientCookies } from '@core/scripts/cookies';
 import { hasPermission, loggedIn } from '@core/scripts/session';
 import { DwgElement } from '@core/components/dwg_element';
+import { internalHref } from '@core/scripts/url';
 
 import html from './profile_button.html';
 
@@ -59,7 +60,7 @@ export class DwgProfileButton extends DwgElement {
     const link = document.createElement('a');
     link.classList.add('link');
     link.classList.add(cls);
-    link.href = `/${route}`;
+    link.href = internalHref(route);
     const txt = document.createElement('span');
     txt.innerText = text;
     link.appendChild(txt);

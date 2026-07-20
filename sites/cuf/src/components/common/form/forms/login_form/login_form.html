@@ -14,7 +14,7 @@
     validators='["required"]'
     label="Password"
     datatype="password"
-    helper-text="<a href='/login/reset_password'>Forgot password? Click here</a>"
+    helper-text="<a id='reset-password-link'>Forgot password? Click here</a>"
     autocomplete="current-password"
   >
   </dwg-input-text>
@@ -32,6 +32,6 @@
 
 <div id="login-form-status-message" class="form-status-message"></div>
 
-<a id="activate-account" href="/login/activate">
+<a id="activate-account">
   Don't have your login credentials yet? Click here to activate your account!
 </a>
