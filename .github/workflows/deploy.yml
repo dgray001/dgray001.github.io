@@ -1,0 +1,62 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch: {}
+
+env:
+  # Which site is also served at the Pages root, in addition to its own /<site>/ path.
+  DEFAULT_SITE: cuf
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+
+      - name: Build and assemble each site at its own /<site>/ path
+        run: |
+          set -euo pipefail
+          mkdir -p _site
+          for site in cuf sjf; do
+            BASE_PATH="/$site" npm run build -w "sites/$site"
+            mkdir -p "_site/$site"
+            cp -r "sites/$site/docs/." "_site/$site/"
+            bash tools/apply_base_path.sh "_site/$site" "/$site"
+          done
+
+      - name: Also build the default site at the Pages root
+        run: |
+          set -euo pipefail
+          BASE_PATH='' npm run build -w "sites/$DEFAULT_SITE"
+          cp -r "sites/$DEFAULT_SITE/docs/." _site/
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
