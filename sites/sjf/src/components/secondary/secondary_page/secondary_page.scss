@@ -1,0 +1,23 @@
+sjf-secondary-page {
+  display: flex;
+  flex-flow: column nowrap;
+
+  > #page-content {
+    margin: var(--margin-size) auto 0;
+    max-width: var(--max-width);
+    padding: 1em;
+    text-align: justify;
+    text-justify: inter-word;
+    width: 90%;
+
+    > #page-title {
+      color: var(--name-color);
+      font-size: 2.2em;
+    }
+
+    > #actual-content {
+      font-size: var(--size-medium);
+      margin-bottom: 2em;
+    }
+  }
+}

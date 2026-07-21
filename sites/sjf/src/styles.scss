@@ -1,0 +1,19 @@
+@use '@core/styles/base';
+
+:root {
+  // colors (placeholders pending Philip's exact palette / logo colors)
+  --name-color: rgb(74, 44, 23); // dark brown
+  --mission-color: rgb(27, 61, 41); // deep green
+  --nav-bar-color: rgb(0, 0, 0);
+  --nav-text-color: rgb(255, 255, 255);
+  --nav-hover-color: rgba(255, 255, 255, 0.15);
+  --nav-current-color: rgba(255, 255, 255, 0.3);
+  --separator-color: rgb(0, 0, 0);
+  --footer-color: rgb(245, 245, 245);
+  --link-text-color: rgb(27, 61, 41);
+  --link-text-color-visited: rgb(27, 61, 41);
+  --link-text-color-hover: rgb(45, 90, 60);
+  --link-text-color-active: rgb(70, 130, 90);
+
+  --max-width: 1400px;
+}

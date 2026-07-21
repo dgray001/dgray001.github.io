@@ -1,10 +1,5 @@
 import { DwgElement } from '@core/components/dwg_element';
-import {
-  JsonData,
-  JsonDataContent,
-  JsonDataSubheader,
-  fetchJson,
-} from '@core/data/data_control';
+import { JsonData, JsonDataContent, JsonDataSubheader, fetchJson } from '@core/data/data_control';
 import { LaywitnessData } from '../../common/laywitness_list/laywitness_list';
 import { FaithFactsData } from '../../common/faith_fact_category_list/faith_fact_category_list';
 import { CufNewsForm, NewsFormData } from '../forms/news_form/news_form';
@@ -72,11 +67,7 @@ export type AdminFormDataType = NewsFormData &
 
 /** All the different admin dashboard form types */
 export type DashboardSectionData =
-  | JsonData<JsonDataContent>
-  | LaywitnessData
-  | FaithFactsData
-  | JsonData<ChapterData>
-  | LinksData;
+  JsonData<JsonDataContent> | LaywitnessData | FaithFactsData | JsonData<ChapterData> | LinksData;
 
 export class CufDashboardSection extends DwgElement {
   private section_title: HTMLButtonElement;

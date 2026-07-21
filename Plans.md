@@ -1,4 +1,4 @@
-v1.1.9: Migrate remaining core logic
+v1.2: SJF skeleton site
 
 SJF
 

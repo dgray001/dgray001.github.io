@@ -1,11 +1,15 @@
 {
   "name": "sjf",
   "version": "0.1.0",
-  "description": "The St. Joseph Foundation website",
+  "description": "SJF website",
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack serve --config webpack.dev.js"
+    "dev": "webpack serve --config webpack.dev.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint src",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src docs --check --write"
   },
   "author": "Daniel Gray",
   "license": "ISC"

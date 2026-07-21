@@ -6,9 +6,10 @@ import html from './admin.html';
 
 // dependencies
 import '../../components/admin/admin_dashboard/admin_dashboard';
+import '../../components/common/footer/footer';
 
 // initialize
-import { initializePage } from '../common';
+import { initializePage } from '@core/scripts/page_init';
 initializePage(html);
 
 // permission

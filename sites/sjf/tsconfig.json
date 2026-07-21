@@ -8,5 +8,10 @@
       "@site/*": ["src/*"]
     }
   },
-  "include": ["src", "../../core/src/globals.d.ts"]
+  "include": [
+    "src",
+    "../../core/src/globals.d.ts",
+    "../../core/src/html.d.ts",
+    "../../core/src/png.d.ts"
+  ]
 }

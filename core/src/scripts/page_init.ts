@@ -1,11 +1,3 @@
-// Script run by all pages
-
-// global style
-import '../styles.scss';
-
-// dependencies
-import '../components/common/footer/footer';
-
 import { public_recaptcha_site_key } from '@site/config/recaptcha';
 
 /** Detects whether the current browser is a mobile browser */
@@ -19,6 +11,7 @@ export function clientOnMobile() {
   return mobileByUserAgent || window.innerWidth < 700;
 }
 
+/** Renders the page body and wires up shared cross-page behavior (mobile class, recaptcha script) */
 export function initializePage(html: string) {
   document.body.innerHTML = html;
   if (clientOnMobile()) {

@@ -132,7 +132,9 @@ export class CufActivateAccountForm extends DwgForm<ActivateAccountFormData> {
               document.location.href = redirect;
             } else {
               location.href = internalHref(
-                hasPermission(getCookie('role'), 'viewAdminDashboard') ? 'admin_dashboard' : 'profile'
+                hasPermission(getCookie('role'), 'viewAdminDashboard')
+                  ? 'admin_dashboard'
+                  : 'profile'
               );
             }
           } else {

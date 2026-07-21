@@ -1,0 +1,147 @@
+sjf-navigation-pane {
+  --button-width: calc(3.4 * var(--navigation-height));
+  display: inline-block;
+
+  #button-wrapper {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
+    gap: var(--size-smaller);
+    max-width: 100%;
+    min-width: 100%;
+    width: 100%;
+
+    .button {
+      color: var(--nav-text-color);
+      cursor: default;
+      flex: 0 0 var(--button-width);
+      font-size: calc(0.4 * var(--navigation-height));
+      font-weight: bold;
+      height: var(--navigation-height);
+      line-height: var(--navigation-height);
+      max-width: var(--button-width);
+      min-width: var(--button-width);
+      text-align: center;
+      text-decoration: none;
+      transition: box-shadow ease-out 150ms;
+      width: var(--button-width);
+      user-select: none;
+
+      &:hover {
+        box-shadow: inset 0 var(--navigation-height) 0 0 var(--nav-hover-color);
+      }
+
+      &:hover:not(.current-el) {
+        cursor: pointer;
+      }
+
+      &.current-el {
+        background-color: var(--nav-current-color);
+      }
+
+      .label {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: normal;
+      }
+    }
+
+    > #hamburger {
+      background: none;
+      border: none;
+      border-radius: 50%;
+      color: var(--nav-text-color);
+      cursor: pointer;
+      font-size: var(--size-larger);
+      margin: 0;
+      outline: none;
+      padding: 0.3em;
+      position: relative;
+      z-index: 9;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &:active {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    > #background-grayed {
+      background: rgba(0, 0, 0, 0.5);
+      bottom: 0;
+      display: none;
+      left: 0;
+      position: fixed;
+      right: 0;
+      top: 0;
+      z-index: 7;
+    }
+
+    > #hamburger-sidebar {
+      background-color: var(--nav-bar-color);
+      box-shadow: 0 0 6px var(--card-box-shadow-color);
+      bottom: 0;
+      height: 100%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      transition: all ease-out 200ms;
+      width: 0px;
+      z-index: 8;
+    }
+  }
+
+  &.sidebar-open {
+    > #button-wrapper {
+      > #background-grayed {
+        display: block;
+      }
+
+      > #hamburger-sidebar {
+        --sidebar-width: calc(max(180px, min(350px, 35vw)));
+        width: var(--sidebar-width);
+      }
+    }
+  }
+}
+
+body.mobile {
+  sjf-navigation-pane {
+    > #button-wrapper {
+      > #hamburger-sidebar {
+        > #hamburger-button-wrapper {
+          display: flex;
+          flex-flow: column nowrap;
+          height: calc(100% - 3 * var(--size-title));
+          gap: calc(0.2 * var(--navigation-height));
+          margin-top: calc(3 * var(--size-title));
+          width: 100%;
+
+          .button {
+            --button-width: calc(0.7 * var(--sidebar-width));
+            background-color: rgba(255, 255, 255, 0.06);
+            border-radius: calc(0.5 * var(--navigation-height));
+            flex: 0 0 var(--navigation-height);
+            margin-left: calc(0.1 * var(--sidebar-width));
+            padding: 0 0.5em;
+
+            &:hover {
+              box-shadow: none;
+            }
+
+            &:hover:not(.current-el) {
+              cursor: default;
+            }
+
+            &:active:not(.current-el) {
+              box-shadow: inset 0 var(--navigation-height) 0 0 var(--nav-hover-color);
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+  }
+}
