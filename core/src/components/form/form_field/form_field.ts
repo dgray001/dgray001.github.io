@@ -27,6 +27,12 @@ export function formFieldChangeEvent<T>(
   });
 }
 
+declare global {
+  interface HTMLElementEventMap {
+    'form-field-changed': CustomEvent<FormFieldChangeEventData>;
+  }
+}
+
 export abstract class DwgFormField<T extends HTMLElement, R> extends DwgElement {
   private label_el!: HTMLLabelElement;
   protected form_field!: T;

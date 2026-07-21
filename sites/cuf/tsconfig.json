@@ -6,10 +6,9 @@
     "removeComments": true,
     "sourceMap": true,
     "types": ["node", "grecaptcha"],
-    "baseUrl": ".",
     "paths": {
       "@core/*": ["../../core/src/*"],
-      "@site/*": ["src/*"],
+      "@site/*": ["./src/*"],
     },
   },
   "include": [

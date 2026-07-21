@@ -2,10 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "types": ["grecaptcha"],
-    "baseUrl": ".",
     "paths": {
       "@core/*": ["../../core/src/*"],
-      "@site/*": ["src/*"]
+      "@site/*": ["./src/*"]
     }
   },
   "include": [

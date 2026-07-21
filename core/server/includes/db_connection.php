@@ -3,6 +3,10 @@
 require_once(__DIR__ . '/force_include.php');
 
 function connectToTable() {
+  static $conn = null;
+  if ($conn !== null) {
+    return $conn;
+  }
   require_once(__DIR__ . '/config_path.php');
   require_once($config_path . '/db_login.php');
   $conn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);

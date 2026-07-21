@@ -96,7 +96,7 @@ export class SjfNavigationPane extends DwgElement {
     }
     if (!link_el) {
       button.setAttribute('disabled', 'true');
-      button.addEventListener('click', (e: MouseEvent) => {
+      (button as HTMLDivElement).addEventListener('click', (e: MouseEvent) => {
         e.preventDefault();
       });
     }

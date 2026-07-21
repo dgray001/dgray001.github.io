@@ -18,22 +18,20 @@ const internal_links = [
 ] as const;
 
 export class CufFooter extends DwgElement {
-  private link_about: HTMLAnchorElement;
-  private link_news: HTMLAnchorElement;
-  private link_links: HTMLAnchorElement;
-  private link_contact: HTMLAnchorElement;
-  private link_donate: HTMLAnchorElement;
-  private link_information_services: HTMLAnchorElement;
-  private link_faith_facts: HTMLAnchorElement;
-  private link_lay_witness: HTMLAnchorElement;
-  private link_faith_and_life_series: HTMLAnchorElement;
+  private link_about!: HTMLAnchorElement;
+  private link_news!: HTMLAnchorElement;
+  private link_links!: HTMLAnchorElement;
+  private link_contact!: HTMLAnchorElement;
+  private link_donate!: HTMLAnchorElement;
+  private link_information_services!: HTMLAnchorElement;
+  private link_faith_facts!: HTMLAnchorElement;
+  private link_lay_witness!: HTMLAnchorElement;
+  private link_faith_and_life_series!: HTMLAnchorElement;
 
   constructor() {
     super();
     this.htmlString = html;
-    for (const link of internal_links) {
-      this.configureElement(link);
-    }
+    this.configureElements(...internal_links);
   }
 
   protected override parsedCallback(): void {

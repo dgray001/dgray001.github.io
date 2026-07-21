@@ -1,4 +1,4 @@
-v1.2d: Recaptcha fixes
+v1.2f: Bug fixes
 
 SJF
 

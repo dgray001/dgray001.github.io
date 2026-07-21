@@ -10,7 +10,7 @@ interface ElementMetadata {
 }
 
 export abstract class DwgElement extends HTMLElement {
-  protected htmlString: string;
+  protected htmlString!: string;
   fully_parsed = false;
   private els_metadata: ElementMetadata[] = [];
 
