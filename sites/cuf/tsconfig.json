@@ -17,5 +17,6 @@
     "../../core/src/globals.d.ts",
     "../../core/src/html.d.ts",
     "../../core/src/png.d.ts",
+    "../../core/src/scss.d.ts",
   ],
 }

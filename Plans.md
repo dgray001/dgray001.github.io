@@ -1,4 +1,4 @@
-v1.2: SJF skeleton site
+v1.2a: eslint fixes
 
 SJF
 
