@@ -1,0 +1,10 @@
+sjf-login-form {
+  margin: 2em auto;
+  width: 75%;
+
+  #form-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    column-gap: 2em;
+  }
+}

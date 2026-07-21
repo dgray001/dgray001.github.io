@@ -8,6 +8,8 @@ import html from './secondary_page.html';
 import './secondary_page.scss';
 import '../header/header';
 import '../../common/footer/footer';
+import '../../common/form/forms/login_form/login_form';
+import '../../common/form/forms/reset_password_form/reset_password_form';
 
 export class SjfSecondaryPage extends DwgElement {
   private page_title!: HTMLHeadingElement;
@@ -26,8 +28,18 @@ export class SjfSecondaryPage extends DwgElement {
     const title = pageToName(this.page);
     this.page_title.innerText = title;
     document.title = `${title} | SJF`;
-    // Placeholder body content until the admin-editable content_page component exists
-    this.actual_content.innerText = `${title} page content`;
+    switch (this.page) {
+      case 'login':
+        this.actual_content.appendChild(document.createElement('sjf-login-form'));
+        break;
+      case 'login/reset_password':
+        this.actual_content.appendChild(document.createElement('sjf-reset-password-form'));
+        break;
+      default:
+        // Placeholder body content until the admin-editable content_page component exists
+        this.actual_content.innerText = `${title} page content`;
+        break;
+    }
 
     const hash = getUrlParam('h');
     if (hash) {

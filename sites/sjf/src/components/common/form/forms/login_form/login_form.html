@@ -1,0 +1,33 @@
+<div id="form-wrapper">
+  <dwg-input-text
+    id="username-field"
+    flex_option="3"
+    validators='["required", "email"]'
+    label="Login ID (email)"
+    autocomplete="username"
+  >
+  </dwg-input-text>
+
+  <dwg-input-text
+    id="password-field"
+    flex_option="3"
+    validators='["required"]'
+    label="Password"
+    datatype="password"
+    helper-text="<a id='reset-password-link'>Forgot password? Click here</a>"
+    autocomplete="current-password"
+  >
+  </dwg-input-text>
+
+  <button id="login-form-button" class="form-submit-button" type="button" tabindex="1">
+    Login
+  </button>
+</div>
+
+<div id="logout-form-wrapper">
+  <button id="logout-form-button" class="form-submit-button" type="button" tabindex="1">
+    Logout
+  </button>
+</div>
+
+<div id="login-form-status-message" class="form-status-message"></div>

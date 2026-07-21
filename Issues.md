@@ -6,12 +6,14 @@ instead. Severity is rough, top to bottom.
 ## Security
 
 ### 1. reCAPTCHA is never verified server-side
-`recaptcha.php` exists but no endpoint calls it. `login`, `contact`, `donate_email`,
-`verify_email`, and `reset_password` all trust that the frontend ran the captcha, so a
-direct POST bypasses it entirely. There's also no rate limiting or lockout on login, so
-this is an open door for mail spam and unlimited password brute-force.
-SJF: verify the captcha token inside each protected endpoint and add basic per-IP login
-throttling.
+**Partially fixed** for `login`, `verify_email_code`, `verify_email`, and `reset_password`
+(both CUF and SJF): each now calls `requireRecaptchaVerified()` (shared in
+`core/server/includes/recaptcha_util.php`) before doing anything else, gated by a
+one-time, session-linked flag set by the also-fixed `recaptcha.php` (which now checks the
+v3 `score`/`action`, not just `success`). `contact` and `donate_email` are still
+unprotected (not yet touched) and there's still no rate limiting or lockout on login, so
+brute-force/spam via those two endpoints or via slow/low-rate credential stuffing is
+still open.
 
 ### 2. `download_faith_fact.php` has no auth and no input sanitization
 The endpoint has no `loggedIn()` check, so the "members only" gate is purely client-side
@@ -42,10 +44,10 @@ SJF: keep the session cookie httponly and expose a separate non-sensitive flag f
 state.
 
 ### 6. curl disables TLS verification everywhere
-`donate.php`, `recaptcha.php`, and `internal_post.php` all set `CURLOPT_SSL_VERIFYPEER=0`
-and `CURLOPT_SSL_VERIFYHOST=0`. There's no reason to disable cert verification in prod,
-and it opens the outbound authorize.net credential exchange to MITM. SJF: leave TLS
-verification on.
+**Fixed in `recaptcha.php`** (now `core/server/recaptcha.php`, shared by both sites) —
+TLS verification is left on. `donate.php` and `internal_post.php` still set
+`CURLOPT_SSL_VERIFYPEER=0` / `CURLOPT_SSL_VERIFYHOST=0` and still open the outbound
+authorize.net credential exchange to MITM.
 
 ### 7. `logout.php` open redirect
 `header("location: " . $_GET['hard_redirect'])` redirects to an unvalidated user-supplied

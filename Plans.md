@@ -1,4 +1,4 @@
-v1.2c: Enable strictNullChecks
+v1.2d: Recaptcha fixes
 
 SJF
 

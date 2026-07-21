@@ -19,6 +19,8 @@ export function pageToName(page: string): string {
       return 'Donate';
     case 'login':
       return 'Log In';
+    case 'login/reset_password':
+      return 'Reset Password';
     default:
       console.error(`Uknown page: ${page}`);
       return '';
