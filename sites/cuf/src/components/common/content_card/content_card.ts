@@ -38,7 +38,7 @@ export class CufContentCard extends DwgElement {
     this.collapsible = !!(this.attributes.getNamedItem('collapsible')?.value ?? '');
     this.start_closed = !!(this.attributes.getNamedItem('start-closed')?.value ?? '');
     this.fade_in = !!(this.attributes.getNamedItem('fade-in')?.value ?? '');
-    this.fixed_height = parseFloat(this.attributes.getNamedItem('fixed-height')?.value) ?? 0;
+    this.fixed_height = parseFloat(this.attributes.getNamedItem('fixed-height')?.value ?? '') ?? 0;
     if (!this.content_key) {
       console.error('Must set content key for content card');
       return;

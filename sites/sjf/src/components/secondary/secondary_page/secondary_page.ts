@@ -31,7 +31,7 @@ export class SjfSecondaryPage extends DwgElement {
 
     const hash = getUrlParam('h');
     if (hash) {
-      let scroll_el: HTMLElement | undefined = undefined;
+      let scroll_el: HTMLElement | null = null;
       until(
         () => {
           scroll_el = this.querySelector<HTMLElement>(`#${hash}`);
@@ -40,8 +40,12 @@ export class SjfSecondaryPage extends DwgElement {
         40,
         200
       ).then(() => {
-        until(() => scroll_el.offsetTop > 0, 40, 200).then(() => {
-          scrollToElement(scroll_el, 2000);
+        const el = scroll_el;
+        if (!el) {
+          return;
+        }
+        until(() => el.offsetTop > 0, 40, 200).then(() => {
+          scrollToElement(el, 2000);
         });
       });
     }

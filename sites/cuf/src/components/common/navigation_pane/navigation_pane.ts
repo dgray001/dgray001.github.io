@@ -34,7 +34,7 @@ export class CufNavigationPane extends DwgElement {
     if (waitForLinks) {
       await until(() => !!this.hasAttribute('links'));
     }
-    const links: string[] = JSON.parse(this.getAttribute('links')) ?? [
+    const links: string[] = JSON.parse(this.getAttribute('links') ?? 'null') ?? [
       'about',
       'news',
       'apostolic_activities',

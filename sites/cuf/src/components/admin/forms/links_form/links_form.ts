@@ -12,9 +12,9 @@ import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a links form */
 export declare interface LinksFormData {
-  group: string;
-  title: string;
-  titlelink: string;
+  group?: string;
+  title?: string;
+  titlelink?: string;
   description?: string;
 }
 

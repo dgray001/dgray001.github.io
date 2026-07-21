@@ -17,7 +17,7 @@ export abstract class DwgDialogBox<T> extends DwgElement {
   override async connectedCallback() {
     super.connectedCallback(); // don't await
     await until(() => {
-      this.content_container = this.querySelector('#content-container');
+      this.content_container = this.querySelector<HTMLDivElement>('#content-container')!;
       return !!this.content_container;
     });
     this.classList.add('dwg-dialog-box');

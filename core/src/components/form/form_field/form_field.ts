@@ -36,7 +36,7 @@ export abstract class DwgFormField<T extends HTMLElement, R> extends DwgElement 
   private validators: Validator[] = [];
   private ran_parsed_callback = false;
   private valid = false;
-  private validation_error: string = undefined;
+  private validation_error: string | undefined = undefined;
   private form: DwgForm<any> | undefined;
 
   constructor() {
@@ -51,7 +51,7 @@ export abstract class DwgFormField<T extends HTMLElement, R> extends DwgElement 
   protected override async parsedCallback(): Promise<void> {
     this.default_helper_text = this.attributes.getNamedItem('helper-text')?.value ?? '';
     this.label_el.innerText = this.attributes.getNamedItem('label')?.value ?? '';
-    const flex_option = parseInt(this.attributes.getNamedItem('flex-option')?.value);
+    const flex_option = parseInt(this.attributes.getNamedItem('flex-option')?.value ?? '');
     if (flex_option) {
       const flex_basis = flex_option * 60;
       this.style.setProperty('--flex', `${flex_option} 0 ${flex_basis}px`);

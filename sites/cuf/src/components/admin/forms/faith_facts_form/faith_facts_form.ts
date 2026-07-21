@@ -10,9 +10,9 @@ import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a faith fact form */
 export declare interface FaithFactsFormData {
-  title: string;
-  question: string;
-  summary: string;
+  title?: string;
+  question?: string;
+  summary?: string;
 }
 
 export class CufFaithFactsForm extends DwgForm<FaithFactsFormData> {

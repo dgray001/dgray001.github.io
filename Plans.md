@@ -1,4 +1,4 @@
-v1.2b: Lint fixes
+v1.2c: Enable strictNullChecks
 
 SJF
 

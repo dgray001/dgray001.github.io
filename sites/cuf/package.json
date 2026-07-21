@@ -9,9 +9,11 @@
     "dev": "webpack serve --config webpack.dev.js",
     "add": "python addComponent.py",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "tsc --noEmit",
     "lint": "npx eslint src docs",
     "lint:fix": "npm run lint -- --fix",
-    "prettier": "npx prettier src docs --check --write"
+    "prettier": "npx prettier src docs --check --write",
+    "check": "npm run prettier && npm run tsc && npm run lint"
   },
   "repository": {
     "type": "git",

@@ -23,7 +23,7 @@ export function addNewJsonData(
   data_added?: JsonDataContent;
 } {
   if (el.getJsonKey() === 'position_papers') {
-    added.titlelink = `/data/position_papers/${el.getFileInput().name}`;
+    added.titlelink = `/data/position_papers/${el.getFileInput()?.name}`;
   }
   data.content.unshift(added);
   return { new_data: data, data_added: added };
@@ -35,7 +35,7 @@ export function editJsonData(
   data: JsonData<JsonDataContent>,
   edited: JsonDataContent,
   data_key: string,
-  filename: string
+  filename: string | undefined
 ): {
   new_data: JsonData<JsonDataContent> | undefined;
   data_edited?: JsonDataContent;
@@ -45,10 +45,10 @@ export function editJsonData(
       el.errorStatus('Must have a title for a subheader');
       return { new_data: undefined };
     }
-    edited.titlelink = data.subheader.titlelink;
+    edited.titlelink = data.subheader?.titlelink;
     data.subheader = edited as JsonDataSubheader;
   } else if (data_key === 'content-empty') {
-    edited.titlelink = data.content_empty.titlelink;
+    edited.titlelink = data.content_empty?.titlelink;
     data.content_empty = edited;
   } else {
     const i = parseInt(data_key);
@@ -111,14 +111,14 @@ export function addNewLayWitnessData(
           for (const addendum of volume.issues.filter(
             (a) => a.number === added.issue && !!a.addendum
           )) {
-            new_issue.addendum = Math.max(1, addendum.addendum + 1);
+            new_issue.addendum = Math.max(1, (addendum.addendum ?? 0) + 1);
           }
         } else if (added.insert) {
           new_issue.insert = 1;
           for (const insert of volume.issues.filter(
             (a) => a.number === added.issue && !!a.insert
           )) {
-            new_issue.insert = Math.max(1, insert.insert + 1);
+            new_issue.insert = Math.max(1, (insert.insert ?? 0) + 1);
           }
         } else {
           el.errorStatus('This issue already exists');
@@ -146,7 +146,7 @@ export function addNewLayWitnessData(
         if (a.addendum !== b.addendum) {
           return (a.addendum ?? 0) - (b.addendum ?? 0);
         }
-        return a.insert - b.insert;
+        return (a.insert ?? 0) - (b.insert ?? 0);
       });
       return { new_data: data, data_added: new_issue };
     }
@@ -178,6 +178,9 @@ export function editLayWitnessData(
   data_key: string
 ): { new_data: LaywitnessData | undefined; data_edited?: LaywitnessIssueData } {
   const { new_data } = deleteLayWitnessData(el, data, edited, data_key);
+  if (!new_data) {
+    return { new_data: undefined };
+  }
   const add_data = addNewLayWitnessData(el, new_data, edited);
   return { new_data: add_data.new_data, data_edited: add_data.data_added };
 }
@@ -340,7 +343,7 @@ export function addLinksData(
   }
   if (new_group) {
     const group: LinkGroupData = {
-      subheader: added.group,
+      subheader: added.group ?? '',
       links: [link],
     };
     data.groups.push(group);
@@ -391,6 +394,9 @@ export function editLinksData(
   };
   if (edited.group !== data.groups[i].subheader) {
     const { new_data } = deleteLinksData(data, data_key);
+    if (!new_data) {
+      return { new_data: undefined };
+    }
     const r = addLinksData(new_data, edited);
     return { new_data: r.new_data, data_edited: link_edited };
   }

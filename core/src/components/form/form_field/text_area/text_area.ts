@@ -14,7 +14,7 @@ export class DwgTextArea extends DwgFormField<HTMLInputElement, string> {
   }
 
   override async _parsedCallback(): Promise<void> {
-    this.min_rows = parseInt(this.attributes.getNamedItem('min-rows')?.value) ?? 0;
+    this.min_rows = parseInt(this.attributes.getNamedItem('min-rows')?.value ?? '') ?? 0;
     this.setMinHeight();
     const observe = (el: Element, e: string, h: () => void) => {
       el.addEventListener(e, h, false);

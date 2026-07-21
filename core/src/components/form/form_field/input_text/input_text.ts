@@ -61,7 +61,7 @@ export class DwgInputText extends DwgFormField<HTMLInputElement, string> {
       this.datalist_options.set(item.value, item_element);
     }
     this.form_field.setAttribute('list', datalist_element.id);
-    this.form_field.value = default_mapping;
+    this.form_field.value = default_mapping ?? '';
     this.appendChild(datalist_element);
   }
 
@@ -77,7 +77,7 @@ export class DwgInputText extends DwgFormField<HTMLInputElement, string> {
     if (this.use_datalist) {
       for (const [_, o] of this.datalist_options) {
         if (this.form_field.value === o.innerText) {
-          return o.attributes.getNamedItem('data_value')?.value;
+          return o.attributes.getNamedItem('data_value')?.value ?? '';
         }
       }
     }

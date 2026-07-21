@@ -62,7 +62,7 @@ export class CufMassEmailForm extends DwgForm<MassEmailData> {
             body: `<p>This email is a test so you can ensure the mass email looks correctly</p><hr><br>${this.email_body.getData() ?? ''}`,
           });
           if (!res.success) {
-            this.errorStatus(this.status_message_send, res.error_message);
+            this.errorStatus(this.status_message_send, res.error_message ?? '');
             console.error(res.error_message);
             this.reset();
             return false;
@@ -86,7 +86,7 @@ export class CufMassEmailForm extends DwgForm<MassEmailData> {
         async () => {
           const res = await apiPost('admin_dashboard/mass_send_email', this.getData());
           if (!res.success) {
-            this.errorStatus(this.status_message_send, res.error_message);
+            this.errorStatus(this.status_message_send, res.error_message ?? '');
             console.error(res.error_message);
             return false;
           }

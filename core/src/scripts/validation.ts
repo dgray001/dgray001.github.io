@@ -11,8 +11,8 @@ export declare interface ValidatorConfig {
 /** Class allowing input data to be validated */
 export class Validator {
   type: string;
-  data: string;
-  custom_error_message: string;
+  data: string | undefined;
+  custom_error_message: string | undefined;
 
   constructor(config: ValidatorConfig) {
     this.type = config.type;
@@ -111,12 +111,12 @@ export class Validator {
         }
         break;
       case 'equals':
-        if (input !== form?.getField(this.data)?.getStringData()) {
+        if (input !== form?.getField(this.data ?? '')?.getStringData()) {
           return `Must match ${this.data}`;
         }
         break;
       case 'prereq':
-        if (!!input && !form?.getField(this.data)?.getStringData()) {
+        if (!!input && !form?.getField(this.data ?? '')?.getStringData()) {
           return `Must fill out ${this.data} first`;
         }
         break;

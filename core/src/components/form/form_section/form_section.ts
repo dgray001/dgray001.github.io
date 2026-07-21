@@ -39,7 +39,9 @@ export abstract class DwgFormSection<T, R> extends DwgElement {
     this.configureElements(...this.field_ids);
     await until(this.elementsParsed.bind(this));
     for (const id of this.field_ids) {
-      this.form_fields.push(this.querySelector(`#${id.replace(/_/g, '-')}`));
+      this.form_fields.push(
+        this.querySelector<DwgFormField<any, any>>(`#${id.replace(/_/g, '-')}`)!
+      );
     }
     await this._parsedCallback();
     this.ran_parsed_callback = true;

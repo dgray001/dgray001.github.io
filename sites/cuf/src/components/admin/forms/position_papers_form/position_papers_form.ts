@@ -10,7 +10,7 @@ import '@core/components/form/form_field/text_area/text_area';
 
 /** Data captured in a position papers form */
 export declare interface PositionPapersFormData {
-  title: string;
+  title?: string;
   description?: string;
 }
 

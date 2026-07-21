@@ -60,7 +60,7 @@ export class CufEditItem extends DwgElement {
   }
 
   private getFile(): File | undefined {
-    return this.file_input?.files[0];
+    return this.file_input?.files?.[0];
   }
 
   async addConfigJsonData(el: CufDashboardSection, data: JsonDataContent, data_key: string) {
@@ -143,7 +143,7 @@ export class CufEditItem extends DwgElement {
   ) {
     await until(() => this.fully_parsed);
     this.data_key = data_key;
-    this.title_text.innerText = link.title;
+    this.title_text.innerText = link.title ?? '';
     this.addItemDetails('Title', link.title);
     this.addItemDetails('Group', group.subheader);
     this.addItemDetails('Url', link.titlelink);
@@ -178,7 +178,7 @@ export class CufEditItem extends DwgElement {
     });
   }
 
-  private addItemDetails(name: string, details: string) {
+  private addItemDetails(name: string, details: string | undefined) {
     const name_el = document.createElement('div');
     name_el.innerText = name;
     name_el.classList.add('name');

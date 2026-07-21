@@ -28,7 +28,7 @@ export class DwgProfileButton extends DwgElement {
       this.addInfoRow('header', 'Logged In');
       this.addInfoRow('email', cookies.get('email') ?? 'none');
       this.addInfoRow('role', `- ${cookies.get('role') ?? 'unknown'} -`);
-      if (hasPermission(cookies.get('role'), 'viewAdminDashboard')) {
+      if (hasPermission(cookies.get('role') ?? '', 'viewAdminDashboard')) {
         this.addLinkRow('admin-dashboard', 'admin_dashboard', 'Admin');
       }
       this.addLinkRow('profile', 'profile', 'Profile');

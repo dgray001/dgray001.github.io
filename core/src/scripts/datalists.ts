@@ -57,7 +57,7 @@ export function defaultMapping(options_text: string): string | undefined {
   try {
     const json_data = JSON.parse(options_text);
     if (Array.isArray(json_data)) {
-      return null;
+      return undefined;
     }
   } catch (e) {}
   switch (options_text) {

@@ -101,7 +101,7 @@ export class CufDonateForm extends DwgForm<DonateFormData> {
             return;
           }
           const token_res = await apiGetPost<TokenReponse>('donate', this.getTokenPostData());
-          if (!token_res.success) {
+          if (!token_res.success || !token_res.result) {
             this.errorStatus(
               this.donate_form_status_message,
               email_res.error_message ??

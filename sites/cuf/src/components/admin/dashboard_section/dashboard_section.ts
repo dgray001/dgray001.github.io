@@ -117,7 +117,7 @@ export class CufDashboardSection extends DwgElement {
   }
 
   getFileInput() {
-    return this.file_input?.files[0];
+    return this.file_input?.files?.[0];
   }
 
   getCurrentData() {
@@ -126,7 +126,7 @@ export class CufDashboardSection extends DwgElement {
 
   protected override async parsedCallback(): Promise<void> {
     this.classList.add('section');
-    this.section_key = this.getAttribute('section');
+    this.section_key = this.getAttribute('section') ?? '';
     this.tag_key = this.section_key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
     this.json_key = this.section_key.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
     this.section_title.innerText = this.sectionTitle();
@@ -204,7 +204,7 @@ export class CufDashboardSection extends DwgElement {
       this.new_form_button = document.createElement('button');
       this.new_form_button.classList.add('hide');
       this.file_input.addEventListener('change', () => {
-        const file = this.file_input.files[0];
+        const file = this.file_input.files![0];
         if (file.type !== 'application/pdf' || !file.name) {
           return;
         }
@@ -276,10 +276,10 @@ export class CufDashboardSection extends DwgElement {
     form_data: any,
     new_data: DashboardSectionData,
     data_added: any,
-    file: File,
+    file: File | undefined,
     success_message: string,
     upload_file = true,
-    old_filename: string = undefined
+    old_filename?: string
   ) {
     if (['layWitness', 'positionPapers'].includes(this.section_key)) {
       let api_suffix = '';

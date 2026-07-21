@@ -41,7 +41,7 @@ export async function apiGet<T>(api: string): Promise<GetResponse<T>> {
 export async function apiGetFile(api: string, data: any, signal?: AbortSignal): Promise<Blob> {
   const is_file = data instanceof File;
   const content_type = is_file ? data.type : 'application/json';
-  const filename = is_file ? data.name : undefined;
+  const filename: string = is_file ? data.name : '';
   const body = is_file ? data : JSON.stringify(data);
   try {
     const response = await fetch(apiToUrl(api), {
@@ -69,7 +69,7 @@ export async function apiGetPost<T>(
 ): Promise<GetResponse<T>> {
   const is_file = data instanceof File;
   const content_type = is_file ? data.type : 'application/json';
-  const filename = is_file ? data.name : undefined;
+  const filename: string = is_file ? data.name : '';
   const body = is_file ? data : JSON.stringify(data);
   try {
     const response = await fetch(apiToUrl(api), {
@@ -96,7 +96,7 @@ export async function apiGetPost<T>(
 export async function apiPost(api: string, data: any): Promise<PostResponse> {
   const is_file = data instanceof File;
   const content_type = is_file ? data.type : 'application/json';
-  const filename = is_file ? data.name : undefined;
+  const filename: string = is_file ? data.name : '';
   const body = is_file ? data : JSON.stringify(data);
   try {
     const response = await fetch(apiToUrl(api), {
@@ -136,7 +136,7 @@ export async function apiPostCallback(
     await callback();
   } else {
     status_message.setAttribute('style', 'display: block; color: var(--warning-color);');
-    status_message.innerText = response.error_message;
+    status_message.innerText = response.error_message ?? '';
   }
 }
 
@@ -157,6 +157,6 @@ export async function apiPostSuccess(
     return true;
   }
   status_message.setAttribute('style', 'display: block; color: var(--warning-color);');
-  status_message.innerText = response.error_message;
+  status_message.innerText = response.error_message ?? '';
   return false;
 }

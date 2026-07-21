@@ -72,7 +72,7 @@ export function renameFile(file: File, name: string) {
 export function headerHeight(): number {
   const fixed_container = document.querySelector('cuf-header #fixed-container');
   const header_margin = document.querySelector('cuf-header #margin');
-  const curr_height = fixed_container.clientHeight + header_margin?.clientHeight;
+  const curr_height = (fixed_container?.clientHeight ?? 0) + (header_margin?.clientHeight ?? 0);
   if (curr_height) {
     return curr_height;
   }

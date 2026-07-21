@@ -26,7 +26,7 @@ export async function recaptchaCallback(
     button_original_text = status_message.innerText;
     status_message.innerText = loading_text;
   }
-  let success: boolean;
+  let success = true;
   let finished = false;
 
   if (DEV && typeof grecaptcha === 'undefined') {
@@ -34,7 +34,7 @@ export async function recaptchaCallback(
     if (typeof callback_success === 'boolean') {
       success = callback_success;
     }
-    return;
+    return success;
   }
 
   grecaptcha.ready(async function () {
@@ -50,7 +50,7 @@ export async function recaptchaCallback(
       }
     } else if (status_message) {
       status_message.classList.add('error');
-      status_message.innerText = response.error_message;
+      status_message.innerText = response.error_message ?? '';
     }
     finished = true;
   });

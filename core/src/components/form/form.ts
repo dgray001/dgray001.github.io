@@ -29,7 +29,7 @@ export abstract class DwgForm<T> extends DwgElement {
     this.classList.add('hidden');
     this.classList.add('dwg-form');
     for (const id of this.section_ids) {
-      const form_section = this.querySelector<FormSection>(`#${id.replace(/_/g, '-')}`);
+      const form_section = this.querySelector<FormSection>(`#${id.replace(/_/g, '-')}`)!;
       form_section.setForm(this);
       this.form_sections.set(id, form_section);
     }
