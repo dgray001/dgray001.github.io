@@ -7,8 +7,8 @@ import html from './slider.html';
 import './slider.scss';
 
 export class CufSlider extends DwgElement {
-  private wrapper: HTMLDivElement;
-  private dots: HTMLDivElement;
+  private wrapper!: HTMLDivElement;
+  private dots!: HTMLDivElement;
 
   private imgs: HTMLDivElement[] = [];
   private dot_els: HTMLButtonElement[] = [];
@@ -22,8 +22,7 @@ export class CufSlider extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('wrapper');
-    this.configureElement('dots');
+    this.configureElements('wrapper', 'dots');
   }
 
   protected override parsedCallback(): void {

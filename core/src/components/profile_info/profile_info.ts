@@ -6,14 +6,13 @@ import html from './profile_info.html';
 import './profile_info.scss';
 
 export class DwgProfileInfo extends DwgElement {
-  private info_email: HTMLDivElement;
-  private info_role: HTMLDivElement;
+  private info_email!: HTMLDivElement;
+  private info_role!: HTMLDivElement;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('info_email');
-    this.configureElement('info_role');
+    this.configureElements('info_email', 'info_role');
   }
 
   protected override parsedCallback(): void {

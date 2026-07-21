@@ -18,12 +18,12 @@ export declare interface LayWitnessFormData {
 }
 
 export class CufLayWitnessForm extends DwgForm<LayWitnessFormData> {
-  private laywitness_volume: DwgInputText;
-  private laywitness_issue: DwgInputText;
-  private laywitness_title: DwgInputText;
-  private checkbox_insert: DwgCheckbox;
-  private checkbox_addendum: DwgCheckbox;
-  private submit_button: HTMLButtonElement;
+  private laywitness_volume!: DwgInputText;
+  private laywitness_issue!: DwgInputText;
+  private laywitness_title!: DwgInputText;
+  private checkbox_insert!: DwgCheckbox;
+  private checkbox_addendum!: DwgCheckbox;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

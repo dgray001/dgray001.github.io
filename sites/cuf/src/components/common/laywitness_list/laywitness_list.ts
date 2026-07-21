@@ -26,7 +26,7 @@ export declare interface LaywitnessIssueData {
 }
 
 export class CufLaywitnessList extends DwgElement {
-  private data: LaywitnessData;
+  private data!: LaywitnessData;
 
   constructor() {
     super();

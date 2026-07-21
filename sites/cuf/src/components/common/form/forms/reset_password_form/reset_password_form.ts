@@ -20,31 +20,33 @@ export declare interface ResetPasswordFormData {
 }
 
 export class CufResetPasswordForm extends DwgForm<ResetPasswordFormData> {
-  private email_field: DwgInputText;
-  private code_field: DwgInputText;
-  private password_field1: DwgInputText;
-  private password_field2: DwgInputText;
-  private form_button_email: HTMLButtonElement;
-  private status_message_email: HTMLDivElement;
-  private form_button_code: HTMLButtonElement;
-  private status_message_code: HTMLDivElement;
-  private form_button_password: HTMLButtonElement;
-  private status_message_password: HTMLDivElement;
-  private remember_password: HTMLAnchorElement;
+  private email_field!: DwgInputText;
+  private code_field!: DwgInputText;
+  private password_field1!: DwgInputText;
+  private password_field2!: DwgInputText;
+  private form_button_email!: HTMLButtonElement;
+  private status_message_email!: HTMLDivElement;
+  private form_button_code!: HTMLButtonElement;
+  private status_message_code!: HTMLDivElement;
+  private form_button_password!: HTMLButtonElement;
+  private status_message_password!: HTMLDivElement;
+  private remember_password!: HTMLAnchorElement;
 
-  private active_status_message: HTMLDivElement;
+  private active_status_message!: HTMLDivElement;
 
   constructor() {
     super();
     this.htmlString = html;
     this.configureForm(['email_field', 'code_field', 'password_field1', 'password_field2']);
-    this.configureElement('remember_password');
-    this.configureElement('form_button_email');
-    this.configureElement('status_message_email');
-    this.configureElement('form_button_code');
-    this.configureElement('status_message_code');
-    this.configureElement('form_button_password');
-    this.configureElement('status_message_password');
+    this.configureElements(
+      'remember_password',
+      'form_button_email',
+      'status_message_email',
+      'form_button_code',
+      'status_message_code',
+      'form_button_password',
+      'status_message_password'
+    );
   }
 
   protected override async _parsedCallback(): Promise<void> {

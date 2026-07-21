@@ -10,12 +10,12 @@ import '@core/components/form/form_field/input_text/input_text';
 import '@core/components/form/form_field/string_list/string_list';
 
 export class CufChaptersForm extends DwgForm<ChapterData> {
-  private chapter_name: DwgInputText;
-  private other_lines: DwgStringList;
-  private chapter_website: DwgInputText;
-  private chapter_email: DwgInputText;
-  private chapter_facebook: DwgInputText;
-  private submit_button: HTMLButtonElement;
+  private chapter_name!: DwgInputText;
+  private other_lines!: DwgStringList;
+  private chapter_website!: DwgInputText;
+  private chapter_email!: DwgInputText;
+  private chapter_facebook!: DwgInputText;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

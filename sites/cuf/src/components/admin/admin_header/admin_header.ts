@@ -7,7 +7,7 @@ import './admin_header.scss';
 import '../../common/navigation_pane/navigation_pane';
 
 export class CufAdminHeader extends DwgElement {
-  private title_el: HTMLDivElement;
+  private title_el!: HTMLDivElement;
 
   constructor() {
     super();

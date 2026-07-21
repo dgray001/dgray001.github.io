@@ -19,11 +19,11 @@ export declare interface LinksFormData {
 }
 
 export class CufLinksForm extends DwgForm<LinksFormData> {
-  private links_group: DwgInputText;
-  private links_title: DwgInputText;
-  private links_titlelink: DwgInputText;
-  private links_description: DwgTextArea;
-  private submit_button: HTMLButtonElement;
+  private links_group!: DwgInputText;
+  private links_title!: DwgInputText;
+  private links_titlelink!: DwgInputText;
+  private links_description!: DwgTextArea;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

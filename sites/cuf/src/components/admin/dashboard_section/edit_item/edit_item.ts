@@ -27,34 +27,36 @@ import './edit_item.scss';
 import '@core/components/dialog_box/confirm_dialog/confirm_dialog';
 
 export class CufEditItem extends DwgElement {
-  private item_title: HTMLButtonElement;
-  private title_label: HTMLSpanElement;
-  private title_text: HTMLSpanElement;
-  private item_details: HTMLDivElement;
-  private details: HTMLDivElement;
-  private edit_button: HTMLButtonElement;
-  private delete_button: HTMLButtonElement;
-  private edit_form: HTMLFormElement;
-  private status_message: HTMLDivElement;
+  private item_title!: HTMLButtonElement;
+  private title_label!: HTMLSpanElement;
+  private title_text!: HTMLSpanElement;
+  private item_details!: HTMLDivElement;
+  private details!: HTMLDivElement;
+  private edit_button!: HTMLButtonElement;
+  private delete_button!: HTMLButtonElement;
+  private edit_form!: HTMLFormElement;
+  private status_message!: HTMLDivElement;
 
   private body_open = false;
   private edit_open = false;
-  private edit_form_el: AdminFormType;
+  private edit_form_el!: AdminFormType;
   private data_key = '';
-  private file_input: HTMLInputElement;
+  private file_input!: HTMLInputElement;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('item_title');
-    this.configureElement('title_label');
-    this.configureElement('title_text');
-    this.configureElement('item_details');
-    this.configureElement('details');
-    this.configureElement('edit_button');
-    this.configureElement('delete_button');
-    this.configureElement('edit_form');
-    this.configureElement('status_message');
+    this.configureElements(
+      'item_title',
+      'title_label',
+      'title_text',
+      'item_details',
+      'details',
+      'edit_button',
+      'delete_button',
+      'edit_form',
+      'status_message'
+    );
   }
 
   private getFile(): File | undefined {

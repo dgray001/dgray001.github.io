@@ -16,10 +16,10 @@ export declare interface FaithFactsFormData {
 }
 
 export class CufFaithFactsForm extends DwgForm<FaithFactsFormData> {
-  private ff_title: DwgInputText;
-  private ff_question: DwgInputText;
-  private ff_summary: DwgTextArea;
-  private submit_button: HTMLButtonElement;
+  private ff_title!: DwgInputText;
+  private ff_question!: DwgInputText;
+  private ff_summary!: DwgTextArea;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

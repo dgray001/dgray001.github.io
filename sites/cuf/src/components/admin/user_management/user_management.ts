@@ -7,7 +7,7 @@ import './user_management.scss';
 import '../forms/mass_email_form/mass_email_form';
 
 export class CufUserManagement extends DwgElement {
-  private mass_email_form: CufMassEmailForm;
+  private mass_email_form!: CufMassEmailForm;
 
   constructor() {
     super();

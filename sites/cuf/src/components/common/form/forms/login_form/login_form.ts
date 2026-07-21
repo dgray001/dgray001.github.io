@@ -18,25 +18,27 @@ export declare interface LoginFormData {
 }
 
 export class CufLoginForm extends DwgForm<LoginFormData> {
-  private username_field: DwgInputText;
-  private password_field: DwgInputText;
-  private form_wrapper: HTMLDivElement;
-  private login_form_button: HTMLButtonElement;
-  private logout_form_wrapper: HTMLDivElement;
-  private logout_form_button: HTMLButtonElement;
-  private login_form_status_message: HTMLDivElement;
-  private activate_account: HTMLAnchorElement;
+  private username_field!: DwgInputText;
+  private password_field!: DwgInputText;
+  private form_wrapper!: HTMLDivElement;
+  private login_form_button!: HTMLButtonElement;
+  private logout_form_wrapper!: HTMLDivElement;
+  private logout_form_button!: HTMLButtonElement;
+  private login_form_status_message!: HTMLDivElement;
+  private activate_account!: HTMLAnchorElement;
 
   constructor() {
     super();
     this.htmlString = html;
     this.configureForm(['username_field', 'password_field']);
-    this.configureElement('form_wrapper');
-    this.configureElement('login_form_button');
-    this.configureElement('logout_form_wrapper');
-    this.configureElement('logout_form_button');
-    this.configureElement('login_form_status_message');
-    this.configureElement('activate_account');
+    this.configureElements(
+      'form_wrapper',
+      'login_form_button',
+      'logout_form_wrapper',
+      'logout_form_button',
+      'login_form_status_message',
+      'activate_account'
+    );
   }
 
   protected override async _parsedCallback(): Promise<void> {

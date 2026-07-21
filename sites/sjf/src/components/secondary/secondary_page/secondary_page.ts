@@ -10,18 +10,15 @@ import '../header/header';
 import '../../common/footer/footer';
 
 export class SjfSecondaryPage extends DwgElement {
-  private page_title: HTMLHeadingElement;
-  private actual_content: HTMLDivElement;
+  private page_title!: HTMLHeadingElement;
+  private actual_content!: HTMLDivElement;
 
   private page = '';
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('header');
-    this.configureElement('page_title');
-    this.configureElement('actual_content');
-    this.configureElement('footer');
+    this.configureElements('header', 'page_title', 'actual_content', 'footer');
   }
 
   protected override parsedCallback(): void {

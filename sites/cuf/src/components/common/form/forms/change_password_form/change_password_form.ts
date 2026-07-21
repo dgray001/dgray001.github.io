@@ -16,12 +16,12 @@ export declare interface ChangePasswordFormData {
 }
 
 export class CufChangePasswordForm extends DwgForm<ChangePasswordFormData> {
-  private open_form: HTMLButtonElement;
-  private change_password_form: HTMLFormElement;
-  private change_password_old: DwgInputText;
-  private change_password_new: DwgInputText;
-  private change_password_button: HTMLButtonElement;
-  private status_message: HTMLDivElement;
+  private open_form!: HTMLButtonElement;
+  private change_password_form!: HTMLFormElement;
+  private change_password_old!: DwgInputText;
+  private change_password_new!: DwgInputText;
+  private change_password_button!: HTMLButtonElement;
+  private status_message!: HTMLDivElement;
 
   private form_open = false;
 
@@ -29,10 +29,12 @@ export class CufChangePasswordForm extends DwgForm<ChangePasswordFormData> {
     super();
     this.htmlString = html;
     this.configureForm(['change_password_old', 'change_password_new', 'change_password_confirm']);
-    this.configureElement('open_form');
-    this.configureElement('change_password_form');
-    this.configureElement('change_password_button');
-    this.configureElement('status_message');
+    this.configureElements(
+      'open_form',
+      'change_password_form',
+      'change_password_button',
+      'status_message'
+    );
   }
 
   protected override async _parsedCallback(): Promise<void> {

@@ -11,11 +11,11 @@ import '../../common/navigation_pane/navigation_pane';
 import '@core/components/profile_button/profile_button';
 
 export class CufHeaderHome extends DwgElement {
-  private title_container: HTMLDivElement;
-  private home_title: HTMLDivElement;
-  private logo_container: HTMLDivElement;
-  private subtitle_2: HTMLDivElement;
-  private navigation_pane: CufNavigationPane;
+  private title_container!: HTMLDivElement;
+  private home_title!: HTMLDivElement;
+  private logo_container!: HTMLDivElement;
+  private subtitle_2!: HTMLDivElement;
+  private navigation_pane!: CufNavigationPane;
 
   private logo_max_width = 0;
   private ticking = false;
@@ -23,11 +23,8 @@ export class CufHeaderHome extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('title_container');
+    this.configureElements('title_container', 'logo_container', 'subtitle_2', 'navigation_pane');
     this.configureElement('home_title', 'title');
-    this.configureElement('logo_container');
-    this.configureElement('subtitle_2');
-    this.configureElement('navigation_pane');
     until(() => !!this.navigation_pane).then(() => {
       const links = ['about', 'news', 'contact', 'donate'];
       if (document.body.classList.contains('mobile')) {

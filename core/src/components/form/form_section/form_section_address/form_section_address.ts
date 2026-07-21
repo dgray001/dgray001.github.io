@@ -24,12 +24,12 @@ export declare interface AddressOutputData {
 }
 
 export class DwgFormSectionAddress extends DwgFormSection<AddressData, AddressOutputData> {
-  private address_first: DwgInputText;
-  private address_second: DwgInputText;
-  private address_city: DwgInputText;
-  private address_state: DwgInputText;
-  private address_zip: DwgInputText;
-  private address_country: DwgInputText;
+  private address_first!: DwgInputText;
+  private address_second!: DwgInputText;
+  private address_city!: DwgInputText;
+  private address_state!: DwgInputText;
+  private address_zip!: DwgInputText;
+  private address_country!: DwgInputText;
 
   constructor() {
     super();

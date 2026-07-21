@@ -10,20 +10,18 @@ import './header.scss';
 import '../../common/navigation_pane/navigation_pane';
 
 export class CufHeader extends DwgElement {
-  private logo_container: HTMLDivElement;
-  private fixed_container: HTMLDivElement;
-  private title_el: HTMLDivElement;
-  private title_link: HTMLAnchorElement;
+  private logo_container!: HTMLDivElement;
+  private fixed_container!: HTMLDivElement;
+  private title_el!: HTMLDivElement;
+  private title_link!: HTMLAnchorElement;
 
   private ticking = false;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('logo_container');
-    this.configureElement('fixed_container');
+    this.configureElements('logo_container', 'fixed_container', 'title_link');
     this.configureElement('title_el', 'title');
-    this.configureElement('title_link');
   }
 
   protected override parsedCallback(): void {

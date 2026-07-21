@@ -13,8 +13,8 @@ export declare interface ContactData {
 }
 
 export class DwgFormSectionContact extends DwgFormSection<ContactData, ContactData> {
-  private contact_email: DwgInputText;
-  private contact_phone: DwgInputText;
+  private contact_email!: DwgInputText;
+  private contact_phone!: DwgInputText;
 
   constructor() {
     super();

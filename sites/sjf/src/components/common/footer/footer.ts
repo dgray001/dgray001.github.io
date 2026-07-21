@@ -18,22 +18,20 @@ const internal_links = [
 ] as const;
 
 export class SjfFooter extends DwgElement {
-  private link_about: HTMLAnchorElement;
-  private link_christifidelis: HTMLAnchorElement;
-  private link_articles_opinions: HTMLAnchorElement;
-  private link_priests: HTMLAnchorElement;
-  private link_parishes: HTMLAnchorElement;
-  private link_news: HTMLAnchorElement;
-  private link_contact: HTMLAnchorElement;
-  private link_donate: HTMLAnchorElement;
-  private link_login: HTMLAnchorElement;
+  private link_about!: HTMLAnchorElement;
+  private link_christifidelis!: HTMLAnchorElement;
+  private link_articles_opinions!: HTMLAnchorElement;
+  private link_priests!: HTMLAnchorElement;
+  private link_parishes!: HTMLAnchorElement;
+  private link_news!: HTMLAnchorElement;
+  private link_contact!: HTMLAnchorElement;
+  private link_donate!: HTMLAnchorElement;
+  private link_login!: HTMLAnchorElement;
 
   constructor() {
     super();
     this.htmlString = html;
-    for (const link of internal_links) {
-      this.configureElement(link);
-    }
+    this.configureElements(...internal_links);
   }
 
   protected override parsedCallback(): void {

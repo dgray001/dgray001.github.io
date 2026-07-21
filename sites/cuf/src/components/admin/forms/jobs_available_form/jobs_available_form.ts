@@ -15,9 +15,9 @@ export declare interface JobsAvailableData {
 }
 
 export class CufJobsAvailableForm extends DwgForm<JobsAvailableData> {
-  private job_title: DwgInputText;
-  private job_description: DwgTextArea;
-  private submit_button: HTMLButtonElement;
+  private job_title!: DwgInputText;
+  private job_description!: DwgTextArea;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

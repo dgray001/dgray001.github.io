@@ -8,10 +8,10 @@ import html from './navigation_pane.html';
 import './navigation_pane.scss';
 
 export class CufNavigationPane extends DwgElement {
-  private button_wrapper: HTMLDivElement;
-  private hamburger: HTMLInputElement;
-  private background_grayed: HTMLDivElement;
-  private hamburger_button_wrapper: HTMLDivElement;
+  private button_wrapper!: HTMLDivElement;
+  private hamburger!: HTMLInputElement;
+  private background_grayed!: HTMLDivElement;
+  private hamburger_button_wrapper!: HTMLDivElement;
 
   private use_hamburger = false;
   private sidebar_open = false;
@@ -21,10 +21,12 @@ export class CufNavigationPane extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('button_wrapper');
-    this.configureElement('hamburger');
-    this.configureElement('background_grayed');
-    this.configureElement('hamburger_button_wrapper');
+    this.configureElements(
+      'button_wrapper',
+      'hamburger',
+      'background_grayed',
+      'hamburger_button_wrapper'
+    );
   }
 
   protected override async parsedCallback(): Promise<void> {

@@ -15,9 +15,9 @@ export declare interface PositionPapersFormData {
 }
 
 export class CufPositionPapersForm extends DwgForm<PositionPapersFormData> {
-  private paper_title: DwgInputText;
-  private paper_description: DwgTextArea;
-  private submit_button: HTMLButtonElement;
+  private paper_title!: DwgInputText;
+  private paper_description!: DwgTextArea;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

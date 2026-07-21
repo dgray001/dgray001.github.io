@@ -1,4 +1,4 @@
-v1.2a: eslint fixes
+v1.2b: Lint fixes
 
 SJF
 

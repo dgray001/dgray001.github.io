@@ -10,10 +10,10 @@ import '@core/components/form/form_field/input_text/input_text';
 import '@core/components/form/form_field/text_area/text_area';
 
 export class CufSubheaderForm extends DwgForm<JsonDataContent> {
-  private subheader_title: DwgInputText;
-  private subheader_titlelink: DwgInputText;
-  private subheader_description: DwgTextArea;
-  private submit_button: HTMLButtonElement;
+  private subheader_title!: DwgInputText;
+  private subheader_titlelink!: DwgInputText;
+  private subheader_description!: DwgTextArea;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

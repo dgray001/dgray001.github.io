@@ -6,7 +6,7 @@ import html from './dialog_box.html';
 import './dialog_box.scss';
 
 export abstract class DwgDialogBox<T> extends DwgElement {
-  content_container: HTMLDivElement;
+  content_container!: HTMLDivElement;
 
   constructor() {
     super();

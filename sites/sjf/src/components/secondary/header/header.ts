@@ -8,8 +8,8 @@ import '../../common/navigation_pane/navigation_pane';
 import './header.scss';
 
 export class SjfHeader extends DwgElement {
-  private name_el: HTMLAnchorElement;
-  private mission_el: HTMLDivElement;
+  private name_el!: HTMLAnchorElement;
+  private mission_el!: HTMLDivElement;
 
   constructor() {
     super();

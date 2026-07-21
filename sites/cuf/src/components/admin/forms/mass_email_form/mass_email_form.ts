@@ -22,15 +22,15 @@ export declare interface MassEmailData {
 }
 
 export class CufMassEmailForm extends DwgForm<MassEmailData> {
-  private checkbox_all_users: DwgCheckbox;
-  private checkbox_activated_users: DwgCheckbox;
-  private email_subject: DwgInputText;
-  private email_body: DwgTextArea;
-  private send_email_button: HTMLButtonElement;
-  private checkbox_confirm_email: DwgCheckbox;
-  private checkbox_cancel_email: DwgCheckbox;
-  private send_emails_button: HTMLButtonElement;
-  private status_message_send: HTMLDivElement;
+  private checkbox_all_users!: DwgCheckbox;
+  private checkbox_activated_users!: DwgCheckbox;
+  private email_subject!: DwgInputText;
+  private email_body!: DwgTextArea;
+  private send_email_button!: HTMLButtonElement;
+  private checkbox_confirm_email!: DwgCheckbox;
+  private checkbox_cancel_email!: DwgCheckbox;
+  private send_emails_button!: HTMLButtonElement;
+  private status_message_send!: HTMLDivElement;
 
   constructor() {
     super();
@@ -43,9 +43,7 @@ export class CufMassEmailForm extends DwgForm<MassEmailData> {
       'checkbox_confirm_email',
       'checkbox_cancel_email',
     ]);
-    this.configureElement('send_email_button');
-    this.configureElement('send_emails_button');
-    this.configureElement('status_message_send');
+    this.configureElements('send_email_button', 'send_emails_button', 'status_message_send');
   }
 
   protected override async _parsedCallback(): Promise<void> {

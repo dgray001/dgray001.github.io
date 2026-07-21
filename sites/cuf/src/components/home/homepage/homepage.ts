@@ -10,9 +10,7 @@ export class CufHomepage extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('header');
-    this.configureElement('slider');
-    this.configureElement('footer');
+    this.configureElements('header', 'slider', 'footer');
   }
 }
 

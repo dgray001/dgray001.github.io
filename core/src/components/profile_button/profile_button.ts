@@ -8,18 +8,16 @@ import html from './profile_button.html';
 import './profile_button.scss';
 
 export class DwgProfileButton extends DwgElement {
-  private profile_picture_wrapper: HTMLDivElement;
-  private info_wrapper: HTMLDivElement;
-  private link_wrapper: HTMLDivElement;
+  private profile_picture_wrapper!: HTMLDivElement;
+  private info_wrapper!: HTMLDivElement;
+  private link_wrapper!: HTMLDivElement;
 
   private dropdown_open = false;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('profile_picture_wrapper');
-    this.configureElement('info_wrapper');
-    this.configureElement('link_wrapper');
+    this.configureElements('profile_picture_wrapper', 'info_wrapper', 'link_wrapper');
   }
 
   protected override async parsedCallback(): Promise<void> {

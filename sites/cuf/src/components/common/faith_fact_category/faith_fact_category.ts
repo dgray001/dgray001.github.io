@@ -21,17 +21,16 @@ export declare interface FaithFactData {
 }
 
 export class CufFaithFactCategory extends DwgElement {
-  private subtitle: HTMLHeadingElement;
-  private faith_fact_list: HTMLDivElement;
+  private subtitle!: HTMLHeadingElement;
+  private faith_fact_list!: HTMLDivElement;
 
-  json_data: FaithFactCategoryData;
-  callback: (data: FaithFactCategoryData) => void;
+  json_data!: FaithFactCategoryData;
+  callback!: (data: FaithFactCategoryData) => void;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('subtitle');
-    this.configureElement('faith_fact_list');
+    this.configureElements('subtitle', 'faith_fact_list');
   }
 
   protected override async parsedCallback(): Promise<void> {

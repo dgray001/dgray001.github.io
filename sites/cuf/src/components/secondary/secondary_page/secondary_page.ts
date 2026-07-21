@@ -27,20 +27,16 @@ import '../../common/chapters_list/chapters_list';
 import '@core/components/links_list/links_list';
 
 export class CufSecondaryPage extends DwgElement {
-  private page_title: HTMLHeadingElement;
-  private actual_content: HTMLDivElement;
-  private sidebar: CufSidebar;
+  private page_title!: HTMLHeadingElement;
+  private actual_content!: HTMLDivElement;
+  private sidebar!: CufSidebar;
 
   private page = '';
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('header');
-    this.configureElement('page_title');
-    this.configureElement('actual_content');
-    this.configureElement('sidebar');
-    this.configureElement('footer');
+    this.configureElements('header', 'page_title', 'actual_content', 'sidebar', 'footer');
   }
 
   protected override async parsedCallback(): Promise<void> {

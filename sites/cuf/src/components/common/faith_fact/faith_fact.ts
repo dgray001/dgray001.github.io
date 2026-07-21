@@ -10,26 +10,28 @@ import html from './faith_fact.html';
 import './faith_fact.scss';
 
 export class CufFaithFact extends DwgElement {
-  private title_el: HTMLButtonElement;
-  private content_el: HTMLDivElement;
-  private question: HTMLDivElement;
-  private question_text: HTMLDivElement;
-  private summary_text: HTMLDivElement;
-  private download: HTMLButtonElement;
+  private title_el!: HTMLButtonElement;
+  private content_el!: HTMLDivElement;
+  private question!: HTMLDivElement;
+  private question_text!: HTMLDivElement;
+  private summary_text!: HTMLDivElement;
+  private download!: HTMLButtonElement;
 
-  private faith_fact: FaithFactData;
-  private category_name: string;
+  private faith_fact!: FaithFactData;
+  private category_name!: string;
   private showing = false;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('title_el');
-    this.configureElement('content_el');
-    this.configureElement('question');
-    this.configureElement('question_text');
-    this.configureElement('summary_text');
-    this.configureElement('download');
+    this.configureElements(
+      'title_el',
+      'content_el',
+      'question',
+      'question_text',
+      'summary_text',
+      'download'
+    );
   }
 
   protected override parsedCallback(): void {

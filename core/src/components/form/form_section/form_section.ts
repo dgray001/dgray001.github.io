@@ -8,8 +8,8 @@ import html from './form_section.html';
 import './form_section.scss';
 
 export abstract class DwgFormSection<T, R> extends DwgElement {
-  private form_section_label: HTMLDivElement;
-  private form_section_wrapper: HTMLDivElement;
+  private form_section_label!: HTMLDivElement;
+  private form_section_wrapper!: HTMLDivElement;
 
   private ran_parsed_callback = false;
   private internal_html = '';
@@ -22,8 +22,7 @@ export abstract class DwgFormSection<T, R> extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('form_section_label');
-    this.configureElement('form_section_wrapper');
+    this.configureElements('form_section_label', 'form_section_wrapper');
     this.classList.add('hidden');
     this.classList.add('dwg-form-section');
   }
@@ -37,9 +36,7 @@ export abstract class DwgFormSection<T, R> extends DwgElement {
   protected override async parsedCallback(): Promise<void> {
     this.form_section_label.innerText = this.section_title;
     this.form_section_wrapper.innerHTML = this.internal_html;
-    for (const id of this.field_ids) {
-      this.configureElement(id);
-    }
+    this.configureElements(...this.field_ids);
     await until(this.elementsParsed.bind(this));
     for (const id of this.field_ids) {
       this.form_fields.push(this.querySelector(`#${id.replace(/_/g, '-')}`));

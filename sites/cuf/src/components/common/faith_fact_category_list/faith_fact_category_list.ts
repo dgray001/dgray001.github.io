@@ -21,9 +21,9 @@ interface CategoryData {
 }
 
 export class CufFaithFactCategoryList extends DwgElement {
-  private category_container: HTMLDivElement;
-  private spinner: DwgSpinner;
-  private faith_facts_container: HTMLDivElement;
+  private category_container!: HTMLDivElement;
+  private spinner!: DwgSpinner;
+  private faith_facts_container!: HTMLDivElement;
 
   private loading = false;
   private current_category = '';
@@ -33,9 +33,7 @@ export class CufFaithFactCategoryList extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('category_container');
-    this.configureElement('spinner');
-    this.configureElement('faith_facts_container');
+    this.configureElements('category_container', 'spinner', 'faith_facts_container');
   }
 
   protected override async parsedCallback(): Promise<void> {

@@ -16,10 +16,10 @@ export declare interface NewsFormData {
 }
 
 export class CufNewsForm extends DwgForm<NewsFormData> {
-  private news_title: DwgInputText;
-  private news_titlelink: DwgInputText;
-  private news_description: DwgTextArea;
-  private submit_button: HTMLButtonElement;
+  private news_title!: DwgInputText;
+  private news_titlelink!: DwgInputText;
+  private news_description!: DwgTextArea;
+  private submit_button!: HTMLButtonElement;
 
   private submit_callback: () => Promise<void> = async () => {
     console.error('not implemented');

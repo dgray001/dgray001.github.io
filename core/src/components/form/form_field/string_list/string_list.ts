@@ -5,7 +5,7 @@ import html from './string_list.html';
 import './string_list.scss';
 
 export class DwgStringList extends DwgFormField<HTMLDivElement, string[]> {
-  private add_line: HTMLButtonElement;
+  private add_line!: HTMLButtonElement;
 
   constructor() {
     super();

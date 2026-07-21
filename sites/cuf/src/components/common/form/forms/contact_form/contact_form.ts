@@ -35,16 +35,16 @@ export declare interface ContactFormData {
 }
 
 export class CufContactForm extends DwgForm<ContactFormData> {
-  private section_name: DwgFormSectionName;
-  private section_address: DwgFormSectionAddress;
-  private section_contact: DwgFormSectionContact;
-  private section_membership: CufFormSectionMembership;
-  private message: DwgTextArea;
-  private form_wrapper: HTMLDivElement;
-  private contact_form_button: HTMLButtonElement;
-  private contact_form_status_message: HTMLDivElement;
-  private contact_form_receipt_message: HTMLDivElement;
-  private lay_witness_link: HTMLAnchorElement;
+  private section_name!: DwgFormSectionName;
+  private section_address!: DwgFormSectionAddress;
+  private section_contact!: DwgFormSectionContact;
+  private section_membership!: CufFormSectionMembership;
+  private message!: DwgTextArea;
+  private form_wrapper!: HTMLDivElement;
+  private contact_form_button!: HTMLButtonElement;
+  private contact_form_status_message!: HTMLDivElement;
+  private contact_form_receipt_message!: HTMLDivElement;
+  private lay_witness_link!: HTMLAnchorElement;
 
   constructor() {
     super();
@@ -56,11 +56,13 @@ export class CufContactForm extends DwgForm<ContactFormData> {
       'message',
       'section_membership',
     ]);
-    this.configureElement('form_wrapper');
-    this.configureElement('contact_form_button');
-    this.configureElement('contact_form_status_message');
-    this.configureElement('contact_form_receipt_message');
-    this.configureElement('lay_witness_link');
+    this.configureElements(
+      'form_wrapper',
+      'contact_form_button',
+      'contact_form_status_message',
+      'contact_form_receipt_message',
+      'lay_witness_link'
+    );
   }
 
   protected override async _parsedCallback(): Promise<void> {

@@ -48,16 +48,16 @@ export declare interface TokenReponse {
 }
 
 export class CufDonateForm extends DwgForm<DonateFormData> {
-  private section_name: DwgFormSectionName;
-  private section_address: DwgFormSectionAddress;
-  private section_contact: DwgFormSectionContact;
-  private section_membership: CufFormSectionMembership;
-  private message: DwgTextArea;
-  private donate_amount: DwgInputText;
-  private donate_form_button: HTMLButtonElement;
-  private donate_form_status_message: HTMLDivElement;
-  private hidden_donate_form: HTMLFormElement;
-  private hidden_token_input: HTMLInputElement;
+  private section_name!: DwgFormSectionName;
+  private section_address!: DwgFormSectionAddress;
+  private section_contact!: DwgFormSectionContact;
+  private section_membership!: CufFormSectionMembership;
+  private message!: DwgTextArea;
+  private donate_amount!: DwgInputText;
+  private donate_form_button!: HTMLButtonElement;
+  private donate_form_status_message!: HTMLDivElement;
+  private hidden_donate_form!: HTMLFormElement;
+  private hidden_token_input!: HTMLInputElement;
 
   constructor() {
     super();
@@ -70,10 +70,12 @@ export class CufDonateForm extends DwgForm<DonateFormData> {
       'section_membership',
       'donate_amount',
     ]);
-    this.configureElement('donate_form_button');
-    this.configureElement('donate_form_status_message');
-    this.configureElement('hidden_donate_form');
-    this.configureElement('hidden_token_input');
+    this.configureElements(
+      'donate_form_button',
+      'donate_form_status_message',
+      'hidden_donate_form',
+      'hidden_token_input'
+    );
   }
 
   protected override async _parsedCallback(): Promise<void> {

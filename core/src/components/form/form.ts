@@ -22,9 +22,7 @@ export abstract class DwgForm<T> extends DwgElement {
 
   protected configureForm(section_ids: string[]) {
     this.section_ids = new Set<string>(section_ids);
-    for (const id of this.section_ids.values()) {
-      this.configureElement(id);
-    }
+    this.configureElements(...this.section_ids);
   }
 
   protected override async parsedCallback(): Promise<void> {

@@ -15,10 +15,10 @@ export declare interface MembershipData {
 }
 
 export class CufFormSectionMembership extends DwgFormSection<MembershipData, string> {
-  private checkbox_member: DwgCheckbox;
-  private checkbox_associate: DwgCheckbox;
-  private checkbox_chapters: DwgCheckbox;
-  private checkbox_start_chapter: DwgCheckbox;
+  private checkbox_member!: DwgCheckbox;
+  private checkbox_associate!: DwgCheckbox;
+  private checkbox_chapters!: DwgCheckbox;
+  private checkbox_start_chapter!: DwgCheckbox;
 
   constructor() {
     super();

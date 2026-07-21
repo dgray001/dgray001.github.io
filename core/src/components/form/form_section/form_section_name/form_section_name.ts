@@ -17,10 +17,10 @@ export declare interface NameData {
 }
 
 export class DwgFormSectionName extends DwgFormSection<NameData, string> {
-  private name_prefix: DwgSelect;
-  private name_first: DwgInputText;
-  private name_last: DwgInputText;
-  private name_suffix: DwgInputText;
+  private name_prefix!: DwgSelect;
+  private name_first!: DwgInputText;
+  private name_last!: DwgInputText;
+  private name_suffix!: DwgInputText;
 
   constructor() {
     super();

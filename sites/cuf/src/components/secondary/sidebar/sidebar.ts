@@ -8,7 +8,7 @@ import './sidebar.scss';
 import '../../common/content_card/content_card';
 
 export class CufSidebar extends DwgElement {
-  private wrapper: HTMLDivElement;
+  private wrapper!: HTMLDivElement;
 
   private panels = new Map<string, CufContentCard>();
 

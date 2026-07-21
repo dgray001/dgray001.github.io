@@ -12,15 +12,15 @@ enum ContentCardType {
 }
 
 export class CufContentCard extends DwgElement {
-  private header: HTMLDivElement;
-  private header_text: HTMLAnchorElement;
-  private img_wrapper: HTMLDivElement;
-  private content: HTMLDivElement;
+  private header!: HTMLDivElement;
+  private header_text!: HTMLAnchorElement;
+  private img_wrapper!: HTMLDivElement;
+  private content!: HTMLDivElement;
 
   private content_key = '';
   private card_type: ContentCardType = ContentCardType.NORMAL;
 
-  private json_data: JsonData<JsonDataContent>;
+  private json_data!: JsonData<JsonDataContent>;
   private collapsible = false;
   private start_closed = false;
   private fade_in = false;
@@ -29,10 +29,7 @@ export class CufContentCard extends DwgElement {
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('header');
-    this.configureElement('header_text');
-    this.configureElement('img_wrapper');
-    this.configureElement('content');
+    this.configureElements('header', 'header_text', 'img_wrapper', 'content');
   }
 
   protected override async parsedCallback(): Promise<void> {

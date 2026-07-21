@@ -70,13 +70,13 @@ export type DashboardSectionData =
   JsonData<JsonDataContent> | LaywitnessData | FaithFactsData | JsonData<ChapterData> | LinksData;
 
 export class CufDashboardSection extends DwgElement {
-  private section_title: HTMLButtonElement;
-  private section_body: HTMLDivElement;
-  private edit_button: HTMLButtonElement;
-  private new_button_container: HTMLDivElement;
-  private current_list: HTMLDivElement;
-  private new_form: HTMLFormElement;
-  private status_message: HTMLDivElement;
+  private section_title!: HTMLButtonElement;
+  private section_body!: HTMLDivElement;
+  private edit_button!: HTMLButtonElement;
+  private new_button_container!: HTMLDivElement;
+  private current_list!: HTMLDivElement;
+  private new_form!: HTMLFormElement;
+  private status_message!: HTMLDivElement;
 
   private section_key = '';
   private tag_key = '';
@@ -85,21 +85,23 @@ export class CufDashboardSection extends DwgElement {
   private edit_body_open = false;
   private new_form_open = false;
   private custom_section = false;
-  private new_form_button: HTMLButtonElement;
-  private new_form_el: AdminFormType;
-  private current_data: DashboardSectionData;
-  private file_input: HTMLInputElement;
+  private new_form_button!: HTMLButtonElement;
+  private new_form_el!: AdminFormType;
+  private current_data!: DashboardSectionData;
+  private file_input!: HTMLInputElement;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('section_title');
-    this.configureElement('section_body');
-    this.configureElement('edit_button');
-    this.configureElement('new_button_container');
-    this.configureElement('current_list');
-    this.configureElement('new_form');
-    this.configureElement('status_message');
+    this.configureElements(
+      'section_title',
+      'section_body',
+      'edit_button',
+      'new_button_container',
+      'current_list',
+      'new_form',
+      'status_message'
+    );
   }
 
   getSectionKey() {

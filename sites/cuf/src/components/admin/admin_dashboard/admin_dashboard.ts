@@ -9,14 +9,12 @@ import '../admin_header/admin_header';
 import '../dashboard_section/dashboard_section';
 
 export class CufAdminDashboard extends DwgElement {
-  private admin_container: HTMLDivElement;
+  private admin_container!: HTMLDivElement;
 
   constructor() {
     super();
     this.htmlString = html;
-    this.configureElement('header');
-    this.configureElement('admin_container');
-    this.configureElement('footer');
+    this.configureElements('header', 'admin_container', 'footer');
   }
 
   protected override async parsedCallback(): Promise<void> {

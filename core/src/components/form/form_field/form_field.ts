@@ -28,9 +28,9 @@ export function formFieldChangeEvent<T>(
 }
 
 export abstract class DwgFormField<T extends HTMLElement, R> extends DwgElement {
-  private label_el: HTMLLabelElement;
-  protected form_field: T;
-  private helper_text: HTMLDivElement;
+  private label_el!: HTMLLabelElement;
+  protected form_field!: T;
+  private helper_text!: HTMLDivElement;
 
   private default_helper_text = '';
   private validators: Validator[] = [];
