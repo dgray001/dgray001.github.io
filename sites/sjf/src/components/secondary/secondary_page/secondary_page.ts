@@ -1,7 +1,9 @@
 import { DwgElement } from '@core/components/dwg_element';
 import { getPage, getUrlParam } from '@core/scripts/url';
 import { scrollToElement, trim, until } from '@core/scripts/util';
+import { fetchJson } from '@core/data/data_control';
 import { pageToName } from '../../common/util';
+import { page_sections } from '../../../config/page_sections';
 
 import html from './secondary_page.html';
 
@@ -25,7 +27,7 @@ export class SjfSecondaryPage extends DwgElement {
     this.configureElements('header', 'page_title', 'actual_content', 'footer');
   }
 
-  protected override parsedCallback(): void {
+  protected override async parsedCallback(): Promise<void> {
     this.page = trim(getPage(), '/');
     const title = pageToName(this.page);
     this.page_title.innerText = title;
@@ -41,10 +43,21 @@ export class SjfSecondaryPage extends DwgElement {
         this.actual_content.appendChild(document.createElement('dwg-profile-info'));
         this.actual_content.appendChild(document.createElement('sjf-change-password-form'));
         break;
-      default:
-        // Placeholder body content until the admin-editable content_page component exists
-        this.actual_content.innerText = `${title} page content`;
+      default: {
+        const sections = page_sections.filter((section) => section.page === this.page);
+        if (sections.length) {
+          const page_content = await fetchJson<Record<string, string>>(
+            'page_content/page_content.json'
+          );
+          for (const section of sections) {
+            this.actual_content.appendChild(this.contentSection(section.id, page_content));
+          }
+        } else {
+          // Placeholder body content until this page has configured content sections
+          this.actual_content.innerText = `${title} page content`;
+        }
         break;
+      }
     }
 
     const hash = getUrlParam('h');
@@ -67,6 +80,14 @@ export class SjfSecondaryPage extends DwgElement {
         });
       });
     }
+  }
+
+  /** A named, admin-editable content area, populated from the fetched page content map */
+  private contentSection(id: string, page_content: Record<string, string>): HTMLDivElement {
+    const section = document.createElement('div');
+    section.id = id;
+    section.innerHTML = page_content[id] ?? '';
+    return section;
   }
 }
 

@@ -1,0 +1,47 @@
+sjf-page-content-editor {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 0.6em;
+
+  > #page-select {
+    font-size: var(--size-medium);
+    padding: 0.4em;
+    width: fit-content;
+  }
+
+  > #content-textarea {
+    font-family: monospace;
+    font-size: var(--size-medium);
+    width: 100%;
+  }
+
+  > #button-row {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 1em;
+
+    button {
+      border: none;
+      box-shadow: 1px 1px 0px rgb(90, 90, 90);
+      cursor: pointer;
+      font-size: var(--size-medium);
+      padding: 0.4em 0.8em;
+    }
+  }
+
+  > #status-message {
+    font-size: var(--size-medium);
+
+    &.hide {
+      display: none;
+    }
+
+    &.success {
+      color: green;
+    }
+
+    &.error {
+      color: red;
+    }
+  }
+}

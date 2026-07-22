@@ -1,0 +1,25 @@
+sjf-dashboard-section {
+  background-color: rgb(250, 250, 250);
+  display: block;
+  width: 100%;
+
+  > #section-title {
+    border: none;
+    font-size: var(--size-larger);
+    margin: 0;
+    padding: 0.4em 0;
+    width: 100%;
+
+    &.open {
+      font-weight: bold;
+    }
+  }
+
+  > #section-body {
+    padding: 2em 1em;
+
+    &:not(.show) {
+      display: none;
+    }
+  }
+}

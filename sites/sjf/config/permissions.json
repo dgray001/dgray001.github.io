@@ -1,1 +1,4 @@
-{}
+{
+  "viewAdminDashboard": ["employee"],
+  "pageContentEditor": ["employee"]
+}

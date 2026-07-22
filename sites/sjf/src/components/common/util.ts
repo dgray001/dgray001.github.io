@@ -1,6 +1,8 @@
 /** Converts page url to readable title */
 export function pageToName(page: string): string {
   switch (page) {
+    case 'home':
+      return 'Home';
     case 'about':
       return 'About Us';
     case 'christifidelis':
