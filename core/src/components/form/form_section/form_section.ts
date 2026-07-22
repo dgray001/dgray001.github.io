@@ -15,9 +15,9 @@ export abstract class DwgFormSection<T, R> extends DwgElement {
   private internal_html = '';
   private section_title = '';
   private field_ids: string[] = [];
-  private form_fields: DwgFormField<any, any>[] = [];
+  private form_fields: DwgFormField<HTMLElement, unknown>[] = [];
   private valid = false;
-  private form: DwgForm<any> | undefined;
+  private form: DwgForm<unknown> | undefined;
 
   constructor() {
     super();
@@ -40,7 +40,7 @@ export abstract class DwgFormSection<T, R> extends DwgElement {
     await until(this.elementsParsed.bind(this));
     for (const id of this.field_ids) {
       this.form_fields.push(
-        this.querySelector<DwgFormField<any, any>>(`#${id.replace(/_/g, '-')}`)!
+        this.querySelector<DwgFormField<HTMLElement, unknown>>(`#${id.replace(/_/g, '-')}`)!
       );
     }
     await this._parsedCallback();
@@ -57,7 +57,7 @@ export abstract class DwgFormSection<T, R> extends DwgElement {
     }
   }
 
-  setForm(form: DwgForm<any>) {
+  setForm(form: DwgForm<unknown>) {
     this.form = form;
     for (const field of this.form_fields) {
       field.setForm(form);

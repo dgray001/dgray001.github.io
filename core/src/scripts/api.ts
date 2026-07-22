@@ -6,11 +6,14 @@ export interface GetResponse<T> {
 }
 
 /** Data structure for all returns to post requests */
-export interface PostResponse<T = any> {
+export interface PostResponse<T = unknown> {
   success: boolean;
   error_message?: string;
   data?: T;
 }
+
+/** Anything postable to an api: a file upload, or a JSON-serializable payload */
+export type ApiRequestData = File | object | string | number | boolean;
 
 /** Converts string api to actual api url */
 function apiToUrl(api: string) {
@@ -38,7 +41,7 @@ export async function apiGet<T>(api: string): Promise<GetResponse<T>> {
 }
 
 /** Calls api that returns a blob */
-export async function apiGetFile(api: string, data: any, signal?: AbortSignal): Promise<Blob> {
+export async function apiGetFile(api: string, data: ApiRequestData, signal?: AbortSignal): Promise<Blob> {
   const is_file = data instanceof File;
   const content_type = is_file ? data.type : 'application/json';
   const filename: string = is_file ? data.name : '';
@@ -64,7 +67,7 @@ export async function apiGetFile(api: string, data: any, signal?: AbortSignal): 
 /** Calls and returns the input post api that returns data */
 export async function apiGetPost<T>(
   api: string,
-  data: any,
+  data: ApiRequestData,
   signal?: AbortSignal
 ): Promise<GetResponse<T>> {
   const is_file = data instanceof File;
@@ -93,7 +96,10 @@ export async function apiGetPost<T>(
 }
 
 /** Calls and returns the input post api, using json input */
-export async function apiPost(api: string, data: any): Promise<PostResponse> {
+export async function apiPost<T = unknown>(
+  api: string,
+  data: ApiRequestData
+): Promise<PostResponse<T>> {
   const is_file = data instanceof File;
   const content_type = is_file ? data.type : 'application/json';
   const filename: string = is_file ? data.name : '';
@@ -107,7 +113,7 @@ export async function apiPost(api: string, data: any): Promise<PostResponse> {
       },
       body,
     });
-    const response_json = (await response.json()) as PostResponse;
+    const response_json = (await response.json()) as PostResponse<T>;
     return response_json;
   } catch (error) {
     console.error(error);
@@ -124,7 +130,7 @@ export async function apiPost(api: string, data: any): Promise<PostResponse> {
  */
 export async function apiPostCallback(
   api: string,
-  data: any,
+  data: ApiRequestData,
   callback: () => Promise<void> | void,
   status_message: HTMLElement,
   success_message: string
@@ -146,7 +152,7 @@ export async function apiPostCallback(
  */
 export async function apiPostSuccess(
   api: string,
-  data: any,
+  data: ApiRequestData,
   status_message: HTMLElement,
   success_message: string
 ): Promise<boolean> {

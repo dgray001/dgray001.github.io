@@ -1,7 +1,10 @@
 import { fetchJson } from '@core/data/data_control';
 import { scrollToElement } from '@core/scripts/util';
 import { DwgElement } from '@core/components/dwg_element';
-import { CufFaithFactCategory } from '../faith_fact_category/faith_fact_category';
+import {
+  CufFaithFactCategory,
+  FaithFactCategoryData,
+} from '../faith_fact_category/faith_fact_category';
 import { DwgSpinner } from '@core/components/spinner/spinner';
 
 import html from './faith_fact_category_list.html';
@@ -74,7 +77,7 @@ export class CufFaithFactCategoryList extends DwgElement {
     });
   }
 
-  async setCategory(button_wrapper: HTMLDivElement, e: MouseEvent) {
+  async setCategory(button_wrapper: HTMLDivElement, _e: MouseEvent) {
     if (this.loading) {
       return;
     }
@@ -112,7 +115,7 @@ export class CufFaithFactCategoryList extends DwgElement {
     this.faith_facts_container.appendChild(new_category_element);
   }
 
-  renderChildCallback(remove_previous_child: () => void, json_data?: any) {
+  renderChildCallback(remove_previous_child: () => void, json_data?: FaithFactCategoryData) {
     if (remove_previous_child) {
       remove_previous_child();
     }

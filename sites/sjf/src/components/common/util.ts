@@ -21,6 +21,8 @@ export function pageToName(page: string): string {
       return 'Log In';
     case 'login/reset_password':
       return 'Reset Password';
+    case 'profile':
+      return 'Profile';
     default:
       console.error(`Uknown page: ${page}`);
       return '';

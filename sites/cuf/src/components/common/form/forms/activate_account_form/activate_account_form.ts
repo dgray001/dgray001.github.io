@@ -171,7 +171,7 @@ export class CufActivateAccountForm extends DwgForm<ActivateAccountFormData> {
     };
   }
 
-  protected override _setData(data: ActivateAccountFormData): void {
+  protected override _setData(_data: ActivateAccountFormData): void {
     console.error('Not implemented');
   }
 

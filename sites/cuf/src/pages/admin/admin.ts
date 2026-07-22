@@ -14,7 +14,7 @@ initializePage(html);
 
 // permission
 import { hasPermission } from '@core/scripts/session';
-import { getPage, navigate, removeUrlParam } from '@core/scripts/url';
+import { getPage, navigate } from '@core/scripts/url';
 import { getCookie } from '@core/scripts/cookies';
 import { trim } from '@core/scripts/util';
 

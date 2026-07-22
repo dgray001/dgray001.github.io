@@ -84,7 +84,10 @@ export class CufMassEmailForm extends DwgForm<MassEmailData> {
     this.send_emails_button.addEventListener('click', async () => {
       const success = await recaptchaCallback(
         async () => {
-          const res = await apiPost('admin_dashboard/mass_send_email', this.getData());
+          const res = await apiPost<{ sent_count: number; errors: string[] }>(
+            'admin_dashboard/mass_send_email',
+            this.getData()
+          );
           if (!res.success) {
             this.errorStatus(this.status_message_send, res.error_message ?? '');
             console.error(res.error_message);

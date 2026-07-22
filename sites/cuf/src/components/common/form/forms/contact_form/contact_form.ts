@@ -118,7 +118,7 @@ export class CufContactForm extends DwgForm<ContactFormData> {
     };
   }
 
-  protected override _setData(data: ContactFormData): void {
+  protected override _setData(_data: ContactFormData): void {
     console.error('Not implemented');
   }
 }

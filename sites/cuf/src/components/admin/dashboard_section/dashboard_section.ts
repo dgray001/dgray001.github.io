@@ -1,6 +1,6 @@
 import { DwgElement } from '@core/components/dwg_element';
 import { JsonData, JsonDataContent, JsonDataSubheader, fetchJson } from '@core/data/data_control';
-import { LaywitnessData } from '../../common/laywitness_list/laywitness_list';
+import { LaywitnessData, LaywitnessIssueData } from '../../common/laywitness_list/laywitness_list';
 import { FaithFactsData } from '../../common/faith_fact_category_list/faith_fact_category_list';
 import { CufNewsForm, NewsFormData } from '../forms/news_form/news_form';
 import { recaptchaCallback } from '@core/scripts/recaptcha';
@@ -64,6 +64,13 @@ export type AdminFormDataType = NewsFormData &
   ChapterData &
   JsonDataContent &
   LinksFormData;
+
+/** The item actually added/edited/deleted, returned by the admin dashboard util functions */
+export type AdminItemData = Partial<JsonDataContent> &
+  Partial<LaywitnessIssueData> &
+  Partial<ChapterData> &
+  Partial<JsonDataSubheader> &
+  Partial<LinksFormData>;
 
 /** All the different admin dashboard form types */
 export type DashboardSectionData =
@@ -240,7 +247,7 @@ export class CufDashboardSection extends DwgElement {
       this.new_form_el = document.createElement(`cuf-${this.tag_key}-form`) as AdminFormType;
     }
     if (['links'].includes(this.json_key)) {
-      // @ts-expect-error
+      // @ts-expect-error -- setJsonData only exists on CufLinksForm, not all of AdminFormType
       this.new_form_el.setJsonData(this.current_data);
     }
     this.new_form_el.setSubmitCallback(async () => {
@@ -251,7 +258,7 @@ export class CufDashboardSection extends DwgElement {
       this.messageStatus('');
       await recaptchaCallback(
         async () => {
-          const form_data: any = this.new_form_el.getData();
+          const form_data = this.new_form_el.getData() as AdminFormDataType;
           const { new_data, data_added } = this.addNewData(form_data);
           if (!new_data) {
             return;
@@ -273,9 +280,9 @@ export class CufDashboardSection extends DwgElement {
   }
 
   async sendSaveDataRequest(
-    form_data: any,
+    form_data: AdminFormDataType,
     new_data: DashboardSectionData,
-    data_added: any,
+    data_added: AdminItemData | undefined,
     file: File | undefined,
     success_message: string,
     upload_file = true,
@@ -284,13 +291,13 @@ export class CufDashboardSection extends DwgElement {
     if (['layWitness', 'positionPapers'].includes(this.section_key)) {
       let api_suffix = '';
       let filename = '';
-      let post_data: any = file;
+      let post_data: File | { filename: string } | undefined = file;
       if (this.section_key === 'layWitness') {
         filename = `${form_data.volume}/${form_data.volume}.${form_data.issue}-Lay-Witness`;
         if (form_data.addendum) {
-          filename += `-Addendum${data_added.addendum}`;
+          filename += `-Addendum${data_added?.addendum}`;
         } else if (form_data.insert) {
-          filename += `-Insert${data_added.insert}`;
+          filename += `-Insert${data_added?.insert}`;
         }
         filename += '.pdf';
       }
@@ -304,7 +311,7 @@ export class CufDashboardSection extends DwgElement {
         // delete file
         api_suffix = 'file_delete';
         if (this.section_key === 'positionPapers') {
-          filename = data_added.titlelink ?? '';
+          filename = data_added?.titlelink ?? '';
         }
         post_data = { filename };
       }
@@ -320,7 +327,7 @@ export class CufDashboardSection extends DwgElement {
             return;
           }
         }
-        const r = await apiPost(`admin_dashboard/${this.json_key}_${api_suffix}`, post_data);
+        const r = await apiPost(`admin_dashboard/${this.json_key}_${api_suffix}`, post_data!);
         if (!r.success) {
           this.errorStatus(
             r.error_message ?? 'An unknown error occurred trying to upload the file'
@@ -340,9 +347,9 @@ export class CufDashboardSection extends DwgElement {
     }
   }
 
-  private addNewData(new_data: any): {
+  private addNewData(new_data: AdminFormDataType): {
     new_data: DashboardSectionData | undefined;
-    data_added?: any;
+    data_added?: AdminItemData;
   } {
     if (
       ['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(this.json_key)

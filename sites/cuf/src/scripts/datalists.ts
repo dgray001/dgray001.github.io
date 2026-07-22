@@ -5,7 +5,9 @@ export function panelsToIncludeFrom(panels_data: string): string[] {
     if (Array.isArray(json_data)) {
       return json_data.map((s) => `${s}`);
     }
-  } catch (e) {} // if not an array
+  } catch {
+    // if not an array
+  }
   const panels_data_split = panels_data.split('-');
   const remove_element = panels_data_split[1];
   let return_array: string[] = [];

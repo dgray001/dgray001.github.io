@@ -6,7 +6,13 @@ import {
   LaywitnessIssueData,
 } from '../../../common/laywitness_list/laywitness_list';
 import { DwgElement } from '@core/components/dwg_element';
-import { AdminFormType, CufDashboardSection, DashboardSectionData } from '../dashboard_section';
+import {
+  AdminFormDataType,
+  AdminFormType,
+  AdminItemData,
+  CufDashboardSection,
+  DashboardSectionData,
+} from '../dashboard_section';
 import {
   deleteChaptersData,
   deleteJsonData,
@@ -81,7 +87,7 @@ export class CufEditItem extends DwgElement {
       this.addItemDetails('Title Link:', data.titlelink);
     }
     this.addItemDetails('Description:', data.description);
-    this.addEventListeners(el, data, tag_key);
+    this.addEventListeners(el, data as AdminFormDataType, tag_key);
   }
 
   async addConfigLaywitnessData(
@@ -110,7 +116,7 @@ export class CufEditItem extends DwgElement {
       insert: !!data.insert,
       addendum: !!data.addendum,
     };
-    this.addEventListeners(el, form_data, el.getTagKey());
+    this.addEventListeners(el, form_data as AdminFormDataType, el.getTagKey());
   }
 
   async addConfigChapterData(el: CufDashboardSection, data: ChapterData, data_key: string) {
@@ -132,7 +138,7 @@ export class CufEditItem extends DwgElement {
     this.addItemDetails('Website:', data.website);
     this.addItemDetails('Email:', data.email);
     this.addItemDetails('Facebook:', data.facebook);
-    this.addEventListeners(el, data, tag_key);
+    this.addEventListeners(el, data as AdminFormDataType, tag_key);
   }
 
   async addConfigLinksData(
@@ -148,10 +154,14 @@ export class CufEditItem extends DwgElement {
     this.addItemDetails('Group', group.subheader);
     this.addItemDetails('Url', link.titlelink);
     this.addItemDetails('Description', link.description);
-    this.addEventListeners(el, { group: group.subheader, ...link }, el.getTagKey());
+    this.addEventListeners(
+      el,
+      { group: group.subheader, ...link } as AdminFormDataType,
+      el.getTagKey()
+    );
   }
 
-  private addEventListeners(el: CufDashboardSection, data: any, tag_key: string) {
+  private addEventListeners(el: CufDashboardSection, data: AdminFormDataType, tag_key: string) {
     this.addEditForm(el, data, tag_key);
     this.toggleEditForm(false);
     this.item_title.addEventListener('click', () => {
@@ -194,14 +204,14 @@ export class CufEditItem extends DwgElement {
     this.details.appendChild(details_el);
   }
 
-  private addEditForm(el: CufDashboardSection, data: any, tag_key: string) {
+  private addEditForm(el: CufDashboardSection, data: AdminFormDataType, tag_key: string) {
     if (['prayer', 'involvement'].includes(tag_key)) {
       this.edit_form_el = document.createElement(`cuf-subheader-form`) as AdminFormType;
     } else {
       this.edit_form_el = document.createElement(`cuf-${tag_key}-form`) as AdminFormType;
     }
     if (['links'].includes(tag_key)) {
-      // @ts-ignore
+      // @ts-expect-error -- setJsonData only exists on CufLinksForm, not all of AdminFormType
       this.edit_form_el.setJsonData(el.getCurrentData());
     }
     this.edit_form_el.setData(data);
@@ -213,7 +223,7 @@ export class CufEditItem extends DwgElement {
       this.messageStatus('');
       await recaptchaCallback(
         async () => {
-          const form_data: any = this.edit_form_el.getData();
+          const form_data = this.edit_form_el.getData() as AdminFormDataType;
           const { new_data, data_edited } = this.addEditData(el, el.getCurrentData(), form_data);
           if (!new_data) {
             return;
@@ -250,8 +260,8 @@ export class CufEditItem extends DwgElement {
   private addEditData(
     el: CufDashboardSection,
     old_data: DashboardSectionData,
-    form_data: any
-  ): { new_data: DashboardSectionData | undefined; data_edited?: any } {
+    form_data: AdminFormDataType
+  ): { new_data: DashboardSectionData | undefined; data_edited?: AdminItemData } {
     if (
       ['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(
         el.getJsonKey()
@@ -278,8 +288,8 @@ export class CufEditItem extends DwgElement {
   private addDeleteData(
     el: CufDashboardSection,
     old_data: DashboardSectionData,
-    data_deleted: any
-  ): { new_data: DashboardSectionData | undefined; data_deleted?: any } {
+    data_deleted: AdminFormDataType
+  ): { new_data: DashboardSectionData | undefined; data_deleted?: AdminItemData } {
     if (
       ['news', 'jobs_available', 'position_papers', 'prayer', 'involvement'].includes(
         el.getJsonKey()

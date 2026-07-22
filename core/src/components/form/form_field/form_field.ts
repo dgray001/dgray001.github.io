@@ -7,14 +7,14 @@ import html from './form_field.html';
 import './form_field.scss';
 
 /** Data in a form field change event */
-export declare interface FormFieldChangeEventData<T = any> {
+export declare interface FormFieldChangeEventData<T = unknown> {
   form_field_key: string;
   new_data: T;
 }
 
 /** Creates custom event for when a form field changes */
 export function formFieldChangeEvent<T>(
-  formFieldType: string,
+  _formFieldType: string,
   key: string,
   data: T
 ): CustomEvent<FormFieldChangeEventData<T>> {
@@ -43,7 +43,7 @@ export abstract class DwgFormField<T extends HTMLElement, R> extends DwgElement 
   private ran_parsed_callback = false;
   private valid = false;
   private validation_error: string | undefined = undefined;
-  private form: DwgForm<any> | undefined;
+  private form: DwgForm<unknown> | undefined;
 
   constructor() {
     super();
@@ -100,7 +100,7 @@ export abstract class DwgFormField<T extends HTMLElement, R> extends DwgElement 
     }
   }
 
-  setForm(form: DwgForm<any>) {
+  setForm(form: DwgForm<unknown>) {
     this.form = form;
   }
 

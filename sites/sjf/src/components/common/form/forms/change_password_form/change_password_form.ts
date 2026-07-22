@@ -15,7 +15,7 @@ export declare interface ChangePasswordFormData {
   new_password: string;
 }
 
-export class CufChangePasswordForm extends DwgForm<ChangePasswordFormData> {
+export class SjfChangePasswordForm extends DwgForm<ChangePasswordFormData> {
   private open_form!: HTMLButtonElement;
   private change_password_form!: HTMLFormElement;
   private change_password_old!: DwgInputText;
@@ -88,10 +88,10 @@ export class CufChangePasswordForm extends DwgForm<ChangePasswordFormData> {
   }
 }
 
-customElements.define('cuf-change-password-form', CufChangePasswordForm);
+customElements.define('sjf-change-password-form', SjfChangePasswordForm);
 
 declare global {
   interface HTMLElementTagNameMap {
-    'cuf-change-password-form': CufChangePasswordForm;
+    'sjf-change-password-form': SjfChangePasswordForm;
   }
 }

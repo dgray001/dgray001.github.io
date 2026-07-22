@@ -152,7 +152,7 @@ export class CufDonateForm extends DwgForm<DonateFormData> {
     return parseInt(this.donate_amount.getData().replace('$', ''));
   }
 
-  protected override _setData(data: DonateFormData): void {
+  protected override _setData(_data: DonateFormData): void {
     console.error('Not implemented');
   }
 
@@ -187,7 +187,7 @@ export class CufDonateForm extends DwgForm<DonateFormData> {
       setting: [
         {
           settingName: 'hostedPaymentReturnOptions',
-          settingValue: `{\"showReceipt\": true, \"url\": \"${base_url}/donate/receipt\", \"urlText\": \"Return to CUF\", \"cancelUrl\": \"${base_url}/donate\", \"cancelUrlText\": \"Cancel\"}`,
+          settingValue: `{"showReceipt": true, "url": "${base_url}/donate/receipt", "urlText": "Return to CUF", "cancelUrl": "${base_url}/donate", "cancelUrlText": "Cancel"}`,
         },
         {
           settingName: 'hostedPaymentButtonOptions',
@@ -224,7 +224,7 @@ export class CufDonateForm extends DwgForm<DonateFormData> {
         },
         {
           settingName: 'hostedPaymentIFrameCommunicatorUrl',
-          settingValue: `{\"url\": \"${base_url}/donate/iframe_communicator.html\"}`,
+          settingValue: `{"url": "${base_url}/donate/iframe_communicator.html"}`,
         },
       ],
     };

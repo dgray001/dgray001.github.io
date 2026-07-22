@@ -20,7 +20,9 @@ export async function specificMapping(options_text: string): Promise<MappingData
         return v as MappingData;
       });
     }
-  } catch (e) {}
+  } catch {
+    // options_text isn't JSON, fall through to keyword lookup below
+  }
   switch (options_text) {
     case 'countries':
       return await countriesList();
@@ -59,7 +61,9 @@ export function defaultMapping(options_text: string): string | undefined {
     if (Array.isArray(json_data)) {
       return undefined;
     }
-  } catch (e) {}
+  } catch {
+    // options_text isn't JSON, fall through to keyword lookup below
+  }
   switch (options_text) {
     case 'countries':
       return 'United States';

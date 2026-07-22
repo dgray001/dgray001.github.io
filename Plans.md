@@ -1,4 +1,4 @@
-v1.2f: Bug fixes
+v1.2g: Lint fixes
 
 SJF
 

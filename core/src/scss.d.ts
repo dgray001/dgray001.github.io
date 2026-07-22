@@ -1,4 +1,4 @@
 declare module '*.scss' {
-  const value: any;
+  const value: unknown;
   export default value;
 }

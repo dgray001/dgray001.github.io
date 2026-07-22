@@ -1,5 +1,6 @@
 import { DwgForm } from '@core/components/form/form';
 import { DwgFormField } from '@core/components/form/form_field/form_field';
+import { DwgInputText } from '@core/components/form/form_field/input_text/input_text';
 
 /** Config for the validator constructor */
 export declare interface ValidatorConfig {
@@ -22,8 +23,8 @@ export class Validator {
 
   validate<T>(
     input: string,
-    el: DwgFormField<any, T>,
-    form: DwgForm<any> | undefined
+    el: DwgFormField<HTMLElement, T>,
+    form: DwgForm<unknown> | undefined
   ): string | undefined {
     const err = this._validate(input, el, form);
     if (!!err && !!this.custom_error_message) {
@@ -34,8 +35,8 @@ export class Validator {
 
   private _validate<T>(
     input: string,
-    el: DwgFormField<any, T>,
-    form: DwgForm<any> | undefined
+    el: DwgFormField<HTMLElement, T>,
+    form: DwgForm<unknown> | undefined
   ): string | undefined {
     switch (this.type) {
       case 'required':
@@ -45,12 +46,14 @@ export class Validator {
         break;
       case 'datalist':
         try {
-          const options: HTMLOptionElement[] = [...(el as any).datalist_options.values()];
+          const options: HTMLOptionElement[] = [
+            ...(el as unknown as DwgInputText).getDatalistOptions().values(),
+          ];
           if (!options.map((o) => o.innerText).includes(input)) {
             return 'Please enter one of the suggested values';
           }
         } catch (e) {
-          console.error('Element with datalist validator has no datalist.');
+          console.error('Element with datalist validator has no datalist.', e);
         }
         break;
       case 'name':
@@ -67,6 +70,7 @@ export class Validator {
         break;
       case 'email':
         const re_email =
+          // eslint-disable-next-line no-control-regex -- RFC 5322 quoted-string grammar requires these ranges
           /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
         if (!!input && (!re_email.test(input) || input.length > 320)) {
           return 'Please enter a valid email address';

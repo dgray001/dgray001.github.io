@@ -47,6 +47,10 @@ export class DwgInputText extends DwgFormField<HTMLInputElement, string> {
     }
   }
 
+  getDatalistOptions(): Map<string, HTMLOptionElement> {
+    return this.datalist_options;
+  }
+
   async setDatalist(datalist: string) {
     this.use_datalist = true;
     const datalist_element = document.createElement('datalist');

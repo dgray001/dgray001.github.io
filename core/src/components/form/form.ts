@@ -7,7 +7,7 @@ import html from './form.html';
 
 import './form.scss';
 
-type FormSection = DwgFormSection<any, any> | DwgFormField<any, any>;
+type FormSection = DwgFormSection<unknown, unknown> | DwgFormField<HTMLElement, unknown>;
 
 export abstract class DwgForm<T> extends DwgElement {
   private form_sections = new Map<string, FormSection>();
@@ -44,7 +44,7 @@ export abstract class DwgForm<T> extends DwgElement {
 
   protected async _parsedCallback(): Promise<void> {}
 
-  protected formFieldChangedEvent(data: FormFieldChangeEventData) {}
+  protected formFieldChangedEvent(_data: FormFieldChangeEventData) {}
 
   protected override fullyParsedCallback(): void {
     if (this.ran_parsed_callback) {
@@ -78,7 +78,7 @@ export abstract class DwgForm<T> extends DwgElement {
     return this.valid;
   }
 
-  protected postValidate(valid: boolean): void {}
+  protected postValidate(_valid: boolean): void {}
 
   protected messageStatus(el: HTMLDivElement, message: string): void {
     if (message) {

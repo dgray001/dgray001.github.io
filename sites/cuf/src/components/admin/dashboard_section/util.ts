@@ -187,9 +187,9 @@ export function editLayWitnessData(
 
 /** Delete existing entry in laywitness data */
 export function deleteLayWitnessData(
-  el: CufDashboardSection,
+  _el: CufDashboardSection,
   data: LaywitnessData,
-  deleted: LayWitnessFormData,
+  _deleted: LayWitnessFormData,
   data_key: string
 ): {
   new_data: LaywitnessData | undefined;
@@ -306,7 +306,7 @@ export function deleteChaptersData(
 
 /** Edits existing entry in chapters data */
 export function editChaptersData(
-  el: CufDashboardSection,
+  _el: CufDashboardSection,
   data: JsonData<ChapterData>,
   edited: ChapterData | JsonDataSubheader,
   data_key: string

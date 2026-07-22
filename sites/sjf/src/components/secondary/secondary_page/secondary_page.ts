@@ -10,6 +10,8 @@ import '../header/header';
 import '../../common/footer/footer';
 import '../../common/form/forms/login_form/login_form';
 import '../../common/form/forms/reset_password_form/reset_password_form';
+import '../../common/form/forms/change_password_form/change_password_form';
+import '@core/components/profile_info/profile_info';
 
 export class SjfSecondaryPage extends DwgElement {
   private page_title!: HTMLHeadingElement;
@@ -34,6 +36,10 @@ export class SjfSecondaryPage extends DwgElement {
         break;
       case 'login/reset_password':
         this.actual_content.appendChild(document.createElement('sjf-reset-password-form'));
+        break;
+      case 'profile':
+        this.actual_content.appendChild(document.createElement('dwg-profile-info'));
+        this.actual_content.appendChild(document.createElement('sjf-change-password-form'));
         break;
       default:
         // Placeholder body content until the admin-editable content_page component exists

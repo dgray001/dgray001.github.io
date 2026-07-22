@@ -237,6 +237,42 @@ function verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in)
 
 
 /** Returns error message */
+function changePassword($conn, $email, $old_password, $new_password): string {
+  if (!loggedIn()) {
+    return 'Must be logged in to change password';
+  }
+  list($user, $error) = userEmailExists($conn, $email);
+  if ($error) {
+    return $error;
+  }
+  if (!$user['activated']) {
+    return 'Account not activated';
+  }
+  if (!password_verify($old_password, $user['password_hash'])) {
+    return 'Incorrect old password';
+  }
+
+  $cmd = 'UPDATE sjf_users SET password_hash = ? WHERE email = ?';
+  $stmt = mysqli_stmt_init($conn);
+  if (!mysqli_stmt_prepare($stmt, $cmd)) {
+    return 'Server can\'t activate account at this time';
+  }
+  $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
+  if (!mysqli_stmt_bind_param($stmt, "ss", $hashed_password, $email)) {
+    return 'Parameter binding failed';
+  }
+  if (!mysqli_stmt_execute($stmt)) {
+    return 'Command execution failed';
+  }
+  $result = mysqli_stmt_affected_rows($stmt);
+  if ($result != 1) {
+    return 'Command did not affect a single row';
+  }
+  return '';
+}
+
+
+/** Returns error message */
 function resetPassword($conn, $email, $code, $password, $expect_activated, $expect_logged_in): string {
   $error = verifyEmail($conn, $email, $code, $expect_activated, $expect_logged_in);
   if ($error) {

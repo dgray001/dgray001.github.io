@@ -167,7 +167,7 @@ export class SjfResetPasswordForm extends DwgForm<ResetPasswordFormData> {
     };
   }
 
-  protected override _setData(data: ResetPasswordFormData): void {
+  protected override _setData(_data: ResetPasswordFormData): void {
     console.error('Not implemented');
   }
 

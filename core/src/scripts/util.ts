@@ -6,13 +6,10 @@ export const loop = (times: number, callback: (i?: number) => void) => {
 };
 
 /** Async loop helper function */
-export const asyncLoop = async (times: number, callback: Function) => {
-  return new Promise<void>(async (resolve) => {
-    for (let i = 0; i < times; i++) {
-      await callback(i);
-    }
-    resolve();
-  });
+export const asyncLoop = async (times: number, callback: (i?: number) => void | Promise<void>) => {
+  for (let i = 0; i < times; i++) {
+    await callback(i);
+  }
 };
 
 /** Returns promise that resolves when condition function becomes true */

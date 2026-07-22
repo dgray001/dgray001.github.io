@@ -27,12 +27,12 @@ export abstract class DwgElement extends HTMLElement {
   protected elementsParsed(): boolean {
     let parsed = true;
     for (const el_metadata of this.els_metadata) {
-      // @ts-ignore -> check value in subclass
+      // @ts-expect-error -> check value in subclass
       let el: HTMLElement | null = el_metadata.found_element ? this[el_metadata.name] : null;
       if (!el_metadata.found_element) {
         el = this.querySelector(`#${el_metadata.element_id}`);
         if (el) {
-          // @ts-ignore -> set value in subclass
+          // @ts-expect-error -> set value in subclass
           this[el_metadata.name] = el;
           el_metadata.found_element = true;
         }
